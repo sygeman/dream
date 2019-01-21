@@ -35,15 +35,15 @@ class ScrollTopButton extends React.Component<{}, IState> {
     };
   }
 
-  public componentDidMount() {
-    document.getElementById('layoutContent').addEventListener('scroll', () => {
-      const scrollTop = document.getElementById('layoutContent').scrollTop;
+  // public componentDidMount() {
+  //   document.getElementById('layoutContent').addEventListener('scroll', () => {
+  //     const scrollTop = document.getElementById('layoutContent').scrollTop;
 
-      if (this.state.topPx !== scrollTop) {
-        this.setState({ topPx: scrollTop });
-      }
-    });
-  }
+  //     if (this.state.topPx !== scrollTop) {
+  //       this.setState({ topPx: scrollTop });
+  //     }
+  //   });
+  // }
 
   public scrollToTop() {
     document.getElementById('layoutContent').scrollTop = 0;

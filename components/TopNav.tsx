@@ -92,17 +92,17 @@ class TopNav extends Component<{}, IState> {
     }
   }
 
-  public componentDidMount() {
-    document
-      .getElementById('layoutContent')
-      .addEventListener('scroll', this.scrollHandler);
-  }
+  // public componentDidMount() {
+  //   document
+  //     .getElementById('layoutContent')
+  //     .addEventListener('scroll', this.scrollHandler);
+  // }
 
-  public componentWillUnmount() {
-    document
-      .getElementById('layoutContent')
-      .removeEventListener('scroll', this.scrollHandler);
-  }
+  // public componentWillUnmount() {
+  //   document
+  //     .getElementById('layoutContent')
+  //     .removeEventListener('scroll', this.scrollHandler);
+  // }
 
   public render() {
     return (

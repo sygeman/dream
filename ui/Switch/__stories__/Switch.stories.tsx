@@ -4,7 +4,7 @@ import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { Switch } from '../';
 
-storiesOf('UI/Switch', module).add('Switch', () => (
+storiesOf('UI', module).add('Switch', () => (
   <Switch
     checked={boolean('Checked', true)}
     onChange={() => undefined}

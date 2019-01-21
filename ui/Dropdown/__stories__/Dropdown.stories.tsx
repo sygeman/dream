@@ -5,7 +5,7 @@ import { Button } from '../../Button';
 import { storiesOf } from '@storybook/react';
 import { Dropdown } from '../';
 
-storiesOf('UI/Dropdown', module).add('Dropdown', () => (
+storiesOf('UI', module).add('Dropdown', () => (
   <Dropdown
     onClick={() => undefined}
     overlay={<div>{text('Overlay', 'Overlay')}</div>}

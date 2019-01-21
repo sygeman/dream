@@ -4,7 +4,7 @@ import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import * as Blade from '../';
 
-storiesOf('UI/Blade', module).add('Blade', () => (
+storiesOf('UI', module).add('Blade', () => (
   <div style={{ width: 1500, height: 1000 }}>
     <Blade.Screen onClose={() => undefined}>
       <Blade.Left>

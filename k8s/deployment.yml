@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: twitchru-client
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: twitchru-client
+    spec:
+      containers:
+        - name: twitchru-client
+          image: registry.gitlab.com/twitchru/twitchru-client:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 5000
+      imagePullSecrets:
+        - name: gitlab-auth

@@ -1,0 +1,44 @@
+image: edoburu/gitlab-kubernetes-client:kubectl-1.10.2-helm-2.9.0
+
+services:
+  - docker:dind
+
+variables:
+  CONTAINER_IMAGE: registry.gitlab.com/$CI_PROJECT_PATH
+  DOCKER_HOST: tcp://docker:2375
+  DOCKER_DRIVER: overlay2
+
+stages:
+  - build
+  - deploy
+
+.anchors:
+  - &KUBELOGIN kubectl config set-cluster cluster --insecure-skip-tls-verify=true --server="$KUBE_URL" &&
+    kubectl config set-credentials cluster --token="$KUBE_TOKEN" && kubectl config set-context cluster --cluster=cluster --user=cluster --namespace="$KUBE_NAMESPACE" &&
+    kubectl config use-context cluster
+
+before_script:
+  - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
+
+build:
+  stage: build
+  script:
+    - docker pull $CONTAINER_IMAGE:latest || true
+    - docker build --cache-from $CONTAINER_IMAGE:latest --tag $CONTAINER_IMAGE:$CI_BUILD_REF --tag $CONTAINER_IMAGE:latest ./
+    - docker push $CONTAINER_IMAGE:$CI_BUILD_REF
+    - docker push $CONTAINER_IMAGE:latest
+  only:
+    - master
+
+deploy:
+  stage: deploy
+  script:
+    - *KUBELOGIN
+    - kubectl apply -f k8s
+    - kubectl set image deployment/$APP_NAME $APP_NAME=$CONTAINER_IMAGE:$CI_BUILD_REF
+    - kubectl rollout status "deployment/$APP_NAME"
+  environment:
+    name: production
+    url: $PROD_URL
+  only:
+    - master

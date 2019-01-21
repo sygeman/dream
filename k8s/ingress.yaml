@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: twitchru-client-ingress
+  annotations:
+    kubernetes.io/ingress.allow-http: 'false'
+spec:
+  tls:
+    - hosts:
+        - twitchru.com
+      secretName: twitchru-tls
+  rules:
+    - host: twitchru.com
+      http:
+        paths:
+          - backend:
+              serviceName: twitchru-client
+              servicePort: 80

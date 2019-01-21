@@ -1,0 +1,42 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "jsx": "preserve",
+    "allowJs": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "removeComments": false,
+    "experimentalDecorators": true,
+    "preserveConstEnums": true,
+    "sourceMap": true,
+    "skipLibCheck": true,
+    "plugins": [
+      {
+        "name": "typescript-styled-plugin"
+      }
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "components/*": ["components/*"],
+      "layouts/*": ["layouts/*"],
+      "pages/*": ["pages/*"],
+      "theme/*": ["theme/*"],
+      "utils/*": ["utils/*"],
+      "store/*": ["lib/store/*"]
+    },
+    "typeRoots": ["./node_modules/@types"],
+    "lib": ["es2017", "dom", "esnext"]
+  },
+  "include": ["pages", "layouts"],
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts",
+    "**/*.spec.tsx",
+    "**/*.test.ts",
+    "**/*.test.tsx"
+  ]
+}

@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 import { FC } from 'react';
 import { Mutation, Query } from 'react-apollo';
 import styled from '../../theme';
-import Button from '../Button';
+import { Button } from '../../ui/Button';
 import { GET_PINNED_POSTS } from './PinnedPosts';
 
 export const GET_POST = gql`

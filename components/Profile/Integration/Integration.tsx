@@ -3,9 +3,9 @@ import { darken, lighten } from 'polished';
 import * as React from 'react';
 import { Mutation } from 'react-apollo';
 import { connect, disconnect } from '../../../auth';
-import Button from '../../../components/Button';
 import SWRow from '../../../components/SWRow';
 import styled from '../../../theme';
+import { Button } from '../../../ui/Button';
 
 const SET_PROFILE_VISIBLE = gql`
   mutation setUserProfileVisible($id: ID!, $visible: Boolean!) {
@@ -85,12 +85,15 @@ class Integration extends React.Component<IProps> {
           )}
           <IntegrationHeaderActions>
             {isConnect && !denyDisconnect && (
-              <Button color={bgColor} onClick={() => disconnect(serviceName)}>
+              <Button
+                mainColor={bgColor}
+                onClick={() => disconnect(serviceName)}
+              >
                 Отключить
               </Button>
             )}
             {!isConnect && (
-              <Button color={bgColor} onClick={() => connect(serviceName)}>
+              <Button mainColor={bgColor} onClick={() => connect(serviceName)}>
                 Подключить
               </Button>
             )}

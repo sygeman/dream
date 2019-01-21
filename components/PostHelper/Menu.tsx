@@ -3,8 +3,8 @@ import { darken } from 'polished';
 import * as React from 'react';
 import { Mutation } from 'react-apollo';
 import styled from '../../theme';
+import { ButtonFlat } from '../../ui/Button';
 import Access from '../Access';
-import Button from '../Button';
 import Dropdown from '../Dropdown';
 import Icon from '../Icon';
 
@@ -114,9 +114,9 @@ export default class PostMenu extends React.Component<IProps> {
       >
         <Box>
           <Dropdown overlay={this.renderMenu(id, pinned, authorId)}>
-            <Button flat>
+            <ButtonFlat>
               <Icon type="more-vert" />
-            </Button>
+            </ButtonFlat>
           </Dropdown>
         </Box>
       </Access>

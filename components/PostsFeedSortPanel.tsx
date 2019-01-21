@@ -1,7 +1,7 @@
 import { darken } from 'polished';
 import { FC } from 'react';
 import styled from '../theme';
-import Button from './Button';
+import { Button, ButtonFlat, ButtonGroup } from '../ui/Button';
 import Dropdown from './Dropdown';
 import Icon from './Icon';
 
@@ -72,7 +72,7 @@ const PostsFeedSortPanel: FC<IProps> = ({ sort, setSort }) => {
 
   return (
     <SortPanel>
-      <Button.Group>
+      <ButtonGroup>
         <Button
           color={sort === 'hot' ? undefined : unactiveColor}
           onClick={() => setSort('hot')}
@@ -91,7 +91,7 @@ const PostsFeedSortPanel: FC<IProps> = ({ sort, setSort }) => {
         >
           Top
         </Button>
-      </Button.Group>
+      </ButtonGroup>
       {isSortTop && (
         <Dropdown
           overlay={
@@ -111,10 +111,10 @@ const PostsFeedSortPanel: FC<IProps> = ({ sort, setSort }) => {
             </SortTopMenu>
           }
         >
-          <Button flat>
+          <ButtonFlat>
             <TopCurrentSort>{sortTopCurrentTitle}</TopCurrentSort>
             <Icon type="caret-down" />
-          </Button>
+          </ButtonFlat>
         </Dropdown>
       )}
     </SortPanel>

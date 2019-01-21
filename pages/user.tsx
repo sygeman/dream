@@ -80,7 +80,7 @@ class UserPage extends React.Component<IProps> {
       <Box>
         <Query query={GET_USER} variables={{ id: userId }}>
           {({ loading, error, data }) => {
-            if (loading) {
+            if (loading || error) {
               return null;
             }
 

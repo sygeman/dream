@@ -5,7 +5,7 @@ import { Mutation, Query } from 'react-apollo';
 import posed from 'react-pose';
 import styled from '../../theme';
 import { Icon } from '../../ui/Icon';
-import TwitchPlayer from '../TwitchPlayer';
+import { TwitchPlayer } from '../../ui/TwitchPlayer';
 
 interface IProcess {
   browser: boolean;

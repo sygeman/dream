@@ -23,11 +23,11 @@ export function getSDK(
     resolves[url] = [resolve];
     const onLoaded = sdk => {
       // When loaded, resolve all pending promises
-      resolves[url].forEach(resolve => resolve(sdk));
+      resolves[url].forEach(res => res(sdk));
     };
     if (sdkReady) {
       const previousOnReady = window[sdkReady];
-      window[sdkReady] = function() {
+      window[sdkReady] = () => {
         if (previousOnReady) {
           previousOnReady();
         }
@@ -54,7 +54,7 @@ interface IProps {
   channel: string;
 }
 
-class TwitchPlayer extends Component<IProps> {
+export class TwitchPlayer extends Component<IProps> {
   public playerID = nanoid();
   public player = null;
 
@@ -88,5 +88,3 @@ class TwitchPlayer extends Component<IProps> {
     return <div style={style} id={this.playerID} />;
   }
 }
-
-export default TwitchPlayer;

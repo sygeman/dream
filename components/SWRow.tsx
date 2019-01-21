@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import Switch from '../components/Switch';
 import styled from '../theme';
+import { Switch } from '../ui/Switch';
 
 const Box = styled.div`
   display: flex;
@@ -68,7 +68,7 @@ const SWRow: FC<IProps> = ({
       <SRowSwitch>
         <Switch
           checked={isActive}
-          bgColor={bgColor}
+          activeColor={bgColor}
           onChange={() => onChange()}
         />
       </SRowSwitch>

@@ -111,7 +111,7 @@ class Integration extends React.Component<IProps> {
                       variables: { id: profile.id, visible: !profile.visible }
                     })
                   }
-                  bgColor={bgColor}
+                  bgColor={lighten(0.1, bgColor)}
                 />
               )}
             </Mutation>

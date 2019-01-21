@@ -2,6 +2,7 @@ import Router from 'next/router';
 import { lighten } from 'polished';
 import { Component } from 'react';
 import styled from '../theme';
+import Access from './Access';
 
 import TopUserBlock from './TopUserBlock';
 
@@ -118,9 +119,11 @@ class TopNav extends Component<{}, IState> {
           </LogoLink>
           <Links>
             <TopLink onClick={() => Router.push('/')}>Home</TopLink>
-            <TopLink onClick={() => Router.push('/twitchFollowsClips')}>
-              Following Clips
-            </TopLink>
+            <Access allow={currentUser => currentUser.role === 'admin'}>
+              <TopLink onClick={() => Router.push('/twitchFollowsClips')}>
+                Following Clips
+              </TopLink>
+            </Access>
             <TopLink onClick={() => Router.push('/casino')}>NeCasino</TopLink>
           </Links>
         </Left>

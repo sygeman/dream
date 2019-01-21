@@ -1,7 +1,7 @@
 import Router from 'next/router';
 import { darken } from 'polished';
 import * as React from 'react';
-import { logout } from '../../auth';
+import { logout } from '../../lib/auth';
 import styled from '../../theme';
 import { Dropdown } from '../../ui/Dropdown';
 import { changeURLParams } from '../../utils/url';

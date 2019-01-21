@@ -1,6 +1,6 @@
 import { lighten } from 'polished';
 import { FC } from 'react';
-import { auth } from '../auth';
+import { auth } from '../lib/auth';
 import styled from '../theme';
 import { Icon } from '../ui/Icon';
 

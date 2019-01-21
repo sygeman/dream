@@ -14,7 +14,7 @@ initialize {
         "children": Array [
           Object {
             "attribs": Object {
-              "class": "SWRow__SRowTitle-sc-4cnxn-2 dJxmNE",
+              "class": "SWRow__SRowTitle-sc-4cnxn-2 djWdQf",
             },
             "children": Array [
               Object {
@@ -58,7 +58,7 @@ initialize {
                   "children": Array [
                     Object {
                       "attribs": Object {
-                        "class": "Switch__Slider-sc-3fp1kt-1 bZRDim",
+                        "class": "Switch__Slider-sc-3fp1kt-1 gSDdFV",
                       },
                       "children": Array [],
                       "name": "div",
@@ -143,7 +143,7 @@ initialize {
                 "children": Array [
                   Object {
                     "attribs": Object {
-                      "class": "Switch__Slider-sc-3fp1kt-1 bZRDim",
+                      "class": "Switch__Slider-sc-3fp1kt-1 gSDdFV",
                     },
                     "children": Array [],
                     "name": "div",
@@ -199,7 +199,7 @@ initialize {
           "children": Array [
             Object {
               "attribs": Object {
-                "class": "SWRow__SRowTitle-sc-4cnxn-2 dJxmNE",
+                "class": "SWRow__SRowTitle-sc-4cnxn-2 djWdQf",
               },
               "children": Array [
                 Object {

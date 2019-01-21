@@ -9,5 +9,6 @@ export const ButtonGroup = styled.div`
 
   ${ButtonCommon} {
     border-radius: 0;
+    box-shadow: none;
   }
 `;

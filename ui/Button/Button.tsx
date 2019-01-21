@@ -9,6 +9,7 @@ interface IButton {
 export const Button = styled(ButtonCommon)<IButton>`
   background: ${({ mainColor }) => mainColor};
   color: ${({ mainColor }) => lighten('0.45', mainColor)};
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 
   :focus {
     background: ${({ mainColor }) => lighten('0.05', mainColor)};

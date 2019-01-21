@@ -5,7 +5,7 @@ import { Query } from 'react-apollo';
 import styled from '../theme';
 import { Button } from '../ui/Button';
 import { Dropdown } from '../ui/Dropdown';
-import Icon from './Icon';
+import { Icon } from '../ui/Icon';
 import Tag from './Tag';
 
 const GET_TAGS = gql`

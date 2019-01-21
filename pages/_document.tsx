@@ -29,6 +29,7 @@ export default class MyDocument extends Document<IProps> {
         </Head>
         <body>
           <Main />
+          <div id="root-modal-full" />
           <div id="root-modal" />
           <NextScript />
         </body>

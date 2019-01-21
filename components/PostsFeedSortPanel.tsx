@@ -3,7 +3,7 @@ import { FC } from 'react';
 import styled from '../theme';
 import { Button, ButtonFlat, ButtonGroup } from '../ui/Button';
 import { Dropdown } from '../ui/Dropdown';
-import Icon from './Icon';
+import { Icon } from '../ui/Icon';
 
 const SortPanel = styled.div`
   margin-bottom: 20px;

@@ -5,8 +5,8 @@ import { Mutation } from 'react-apollo';
 import styled from '../../theme';
 import { ButtonFlat } from '../../ui/Button';
 import { Dropdown } from '../../ui/Dropdown';
+import { Icon } from '../../ui/Icon';
 import Access from '../Access';
-import Icon from '../Icon';
 
 const REMOVE_POST = gql`
   mutation($id: ID!) {

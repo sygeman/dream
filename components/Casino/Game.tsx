@@ -1,4 +1,4 @@
-import * as format from 'date-fns/format';
+import format from 'date-fns/format';
 import gql from 'graphql-tag';
 import { lighten } from 'polished';
 import { Component } from 'react';
@@ -13,13 +13,6 @@ const PLACE_BET = gql`
   mutation placeBet($gameId: ID!, $betSize: Int!) {
     placeBet(gameId: $gameId, betSize: $betSize)
   }
-`;
-
-const Box = styled.div`
-  background: ${({ theme }) => lighten(0.01, theme.dark2Color)};
-  padding: 20px 0 0;
-  border-radius: 5px;
-  overflow: hidden;
 `;
 
 const TopData = styled.div`

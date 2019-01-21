@@ -4,7 +4,7 @@ import { FC } from 'react';
 import { Mutation, Query } from 'react-apollo';
 import posed from 'react-pose';
 import styled from '../../theme';
-import Icon from '../Icon';
+import { Icon } from '../../ui/Icon';
 import TwitchPlayer from '../TwitchPlayer';
 
 interface IProcess {

@@ -10,7 +10,7 @@ import {
 
 import styled from '../../theme';
 import { Dropdown } from '../../ui/Dropdown';
-import Icon from '../Icon';
+import { Icon } from '../../ui/Icon';
 
 const ShareButton = styled.div`
   height: 100%;

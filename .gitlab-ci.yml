@@ -30,6 +30,17 @@ build:
   only:
     - master
 
+test:
+  image: node
+  stage: test
+  variables:
+    NODE_ENV: test
+  before_script:
+    # Install yarn
+    - yarn
+  script:
+    - yarn test
+
 deploy:
   stage: deploy
   script:

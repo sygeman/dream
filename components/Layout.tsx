@@ -110,14 +110,6 @@ const Main: FC<IProps> = ({ query, children }) => (
         </Query>
       )}
     </ContentBox>
-    <iframe
-      width="0"
-      height="0"
-      src="https://www.youtube.com/embed/ti7ZWqVpwW0?rel=0&amp;autoplay=1&mute=1"
-      frameborder="0"
-      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen
-    />
     <YMInitializer accounts={[51879323]} version="2" />
   </Box>
 );

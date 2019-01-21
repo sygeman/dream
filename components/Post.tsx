@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 import { FC } from 'react';
 import { Query } from 'react-apollo';
-import { getAccessToken } from '../auth';
+import { getAccessToken } from '../lib/auth';
 import PostView from './PostHelper/View';
 
 export const GET_POST = gql`

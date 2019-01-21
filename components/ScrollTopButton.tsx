@@ -1,4 +1,6 @@
+import { inject, observer } from 'mobx-react';
 import * as React from 'react';
+import { IStore } from '../lib/store';
 import styled from '../theme';
 import { Icon } from '../ui/Icon';
 
@@ -22,35 +24,19 @@ const ScrollButton = styled.div`
   }
 `;
 
-interface IState {
-  topPx: number;
+interface IProps {
+  store?: IStore;
 }
 
-class ScrollTopButton extends React.Component<{}, IState> {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      topPx: 0
-    };
-  }
-
-  // public componentDidMount() {
-  //   document.getElementById('layoutContent').addEventListener('scroll', () => {
-  //     const scrollTop = document.getElementById('layoutContent').scrollTop;
-
-  //     if (this.state.topPx !== scrollTop) {
-  //       this.setState({ topPx: scrollTop });
-  //     }
-  //   });
-  // }
-
+@inject('store')
+@observer
+class ScrollTopButton extends React.Component<IProps> {
   public scrollToTop() {
     document.getElementById('layoutContent').scrollTop = 0;
   }
 
   public render() {
-    if (this.state.topPx === 0) {
+    if (this.props.store.layoutScrollIsTop) {
       return null;
     }
 

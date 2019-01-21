@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 import { darken, lighten } from 'polished';
 import * as React from 'react';
 import { Mutation } from 'react-apollo';
-import { connect, disconnect } from '../../../auth';
+import { connect, disconnect } from '../../../lib/auth';
 import styled from '../../../theme';
 import { Button } from '../../../ui/Button';
 import { SWRow } from '../../../ui/SWRow';

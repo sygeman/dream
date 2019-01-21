@@ -6,8 +6,8 @@ import { setContext } from 'apollo-link-context';
 import { WebSocketLink } from 'apollo-link-ws';
 import { getMainDefinition } from 'apollo-utilities';
 import fetch from 'isomorphic-unfetch';
-import { getAccessTokenAsync } from '../auth';
 import config from '../config';
+import { getAccessTokenAsync } from './auth';
 
 let apolloClient = null;
 

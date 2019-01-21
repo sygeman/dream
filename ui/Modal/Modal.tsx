@@ -66,7 +66,7 @@ const ModalB = styled.div`
   background: ${({ theme }) =>
     theme.dark2Color && lighten(0.01, theme.dark2Color)};
   border-radius: 4px;
-  /* box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 `;
 
 const Header = styled.div`

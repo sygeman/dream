@@ -5,6 +5,7 @@ import * as React from 'react';
 import { Query } from 'react-apollo';
 import Posts from '../components/Posts';
 import RightPanel from '../components/RightPanel';
+import ScrollTopButton from '../components/ScrollTopButton';
 import Streams from '../components/Streams';
 import UserPanelProfile from '../components/User/UserPanelProfile';
 import styled from '../theme';
@@ -80,7 +81,7 @@ class UserPage extends React.Component<IProps> {
       <Box>
         <Query query={GET_USER} variables={{ id: userId }}>
           {({ loading, error, data }) => {
-            if (loading) {
+            if (loading || error) {
               return null;
             }
 
@@ -110,6 +111,7 @@ class UserPage extends React.Component<IProps> {
             );
           }}
         </Query>
+        <ScrollTopButton />
       </Box>
     );
   }

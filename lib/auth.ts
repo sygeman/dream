@@ -1,8 +1,8 @@
 import * as Cookies from 'js-cookie';
 import jwt from 'jsonwebtoken';
 import { destroyCookie, parseCookies, setCookie } from 'nookies';
-import config from './config';
-import { changeURLParams } from './utils/url';
+import config from '../config';
+import { changeURLParams } from '../utils/url';
 
 export const auth = (serviceName: string) => {
   changeURLParams({ remove: ['auth'] });

@@ -4,6 +4,6 @@ import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { Emoji } from '../';
 
-storiesOf('UI/Emoji', module).add('Emoji', () => (
+storiesOf('UI', module).add('Emoji', () => (
   <Emoji name={text('Name', 'BibleThump')} />
 ));

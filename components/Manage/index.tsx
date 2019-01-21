@@ -75,8 +75,8 @@ class Manage extends Component<IProps> {
           <SectionsBox>
             <SectionGroupTitle>Основное</SectionGroupTitle>
             <Section
-              onClick={() => changeURLParams({ set: { section: '' } })}
-              active={router.query.section === ''}
+              onClick={() => changeURLParams({ remove: ['section'] })}
+              active={name === ''}
             >
               Dashboard
             </Section>

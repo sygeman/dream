@@ -4,6 +4,6 @@ import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { Icon } from '../';
 
-storiesOf('UI/Icon', module).add('Icon', () => (
+storiesOf('UI', module).add('Icon', () => (
   <Icon type={text('Type', 'twitch')} />
 ));

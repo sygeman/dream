@@ -2,9 +2,9 @@ import gql from 'graphql-tag';
 import { FC } from 'react';
 import { Query } from 'react-apollo';
 import styled from '../theme';
+import { Emoji } from '../ui/Emoji';
 import { scrollToTop } from '../utils/scroll';
 import { changeURLParams } from '../utils/url';
-import Emoji from './Emoji';
 import Pagination from './Pagination';
 import Post from './Post';
 

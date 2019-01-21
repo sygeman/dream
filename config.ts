@@ -1,3 +1,7 @@
+const commonConfig = {
+  emojiUrl: `https://ravepro.ams3.digitaloceanspaces.com/emojis/`
+};
+
 const devConfig = {
   apiUrl: 'http://localhost:3000/',
   gqlUrl: 'http://localhost:3000/graphql',
@@ -16,4 +20,4 @@ const prodConfig = {
 
 const isProduction = process.env.NODE_ENV === 'production';
 
-export default isProduction ? prodConfig : devConfig;
+export default { ...commonConfig, ...(isProduction ? prodConfig : devConfig) };

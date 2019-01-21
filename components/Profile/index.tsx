@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as Blade from '../../components/Blade';
+import * as Blade from '../../ui/Blade';
 import Integration from './Integration';
 
 interface IProps {
@@ -30,12 +30,6 @@ export default class Profile extends React.Component<IProps, IState> {
       <Blade.Screen onClose={() => this.props.onClose()}>
         <Blade.Left>
           <Blade.MenuTitle>Настройки пользователя</Blade.MenuTitle>
-          {/* <Blade.Tab
-            active={tab === 'general'}
-            onClick={() => this.openTab('general')}
-          >
-            Основные
-          </Blade.Tab> */}
           <Blade.Tab
             active={tab === 'integration'}
             onClick={() => this.openTab('integration')}
@@ -44,12 +38,6 @@ export default class Profile extends React.Component<IProps, IState> {
           </Blade.Tab>
         </Blade.Left>
         <Blade.Right>
-          {/* {tab === 'general' && (
-            <Blade.TabContent>
-              <Blade.TabContentTitle>Основные</Blade.TabContentTitle>
-              <General />
-            </Blade.TabContent>
-          )} */}
           {tab === 'integration' && (
             <Blade.TabContent>
               <Blade.TabContentTitle>Интеграции</Blade.TabContentTitle>

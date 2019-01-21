@@ -4,9 +4,9 @@ import * as React from 'react';
 import { Mutation } from 'react-apollo';
 import styled from '../theme';
 import { Button } from '../ui/Button';
+import { Input } from '../ui/Input';
 import { SWRow } from '../ui/SWRow';
 import { parseSource } from '../utils/parseSoruce';
-import Input from './Input';
 import SourceView from './SourceView';
 import TagsManage from './TagsManage';
 

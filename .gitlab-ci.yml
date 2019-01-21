@@ -10,6 +10,7 @@ variables:
 
 stages:
   - build
+  - test
   - deploy
 
 .anchors:
@@ -36,7 +37,6 @@ test:
   variables:
     NODE_ENV: test
   before_script:
-    # Install yarn
     - yarn
   script:
     - yarn test

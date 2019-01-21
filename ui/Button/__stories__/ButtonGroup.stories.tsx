@@ -3,7 +3,7 @@ import * as React from 'react';
 import results from '../../../.jest-test-results.json';
 
 import { storiesOf } from '@storybook/react';
-import { Button, ButtonGroup } from '../../../ui/Button';
+import { Button, ButtonGroup } from '../';
 
 storiesOf('UI/Button', module)
   .addDecorator(withTests({ results }))

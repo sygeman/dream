@@ -1471,7 +1471,7 @@
     hey-listen "^1.0.5"
     style-value-types "^3.0.7"
 
-"@storybook/addon-jest@^4.1.7":
+"@storybook/addon-jest@4.1.7":
   version "4.1.7"
   resolved "https://registry.yarnpkg.com/@storybook/addon-jest/-/addon-jest-4.1.7.tgz#e772d45a4f1ed68af2aa854644eee80b595c2ba1"
   integrity sha512-9g2Q/pj890rZMcOWuKqQkFhtSG5xdNMDebxHtfRX76h31HX/14zG/dylXpLml+o3DAPtkUwU4zgTzCzCCxfXmg==
@@ -1485,7 +1485,7 @@
     upath "^1.1.0"
     util-deprecate "^1.0.2"
 
-"@storybook/addon-options@^4.1.7":
+"@storybook/addon-options@4.1.7":
   version "4.1.7"
   resolved "https://registry.yarnpkg.com/@storybook/addon-options/-/addon-options-4.1.7.tgz#00c23ed3de30ff5358138ff545731cee83e94d0d"
   integrity sha512-U1dM8jUqAj/NG+zCAfqlCT/VbXGsGOeXogeHIr1sfBaBxYB3MTbIqmxjGoiGldMoZEjOkeTUGiQtRFg7w96DlQ==
@@ -1670,7 +1670,7 @@
   dependencies:
     babel-runtime "^6.5.0"
 
-"@storybook/react@^4.1.7":
+"@storybook/react@4.1.7":
   version "4.1.7"
   resolved "https://registry.yarnpkg.com/@storybook/react/-/react-4.1.7.tgz#66e9fa1f4580fd7847e945a1e7173041e720a96c"
   integrity sha512-1RdsdCNNFbVdGWSl9tGdlbA95GHDy+v6/IdZ0JnpAHF56K9WKxnFG4WY/3Ybd3PFUFzgUMwT99KaItxLiRDVhg==
@@ -1961,7 +1961,7 @@
     "@types/prop-types" "*"
     csstype "^2.2.0"
 
-"@types/storybook__react@^4.0.0":
+"@types/storybook__react@4.0.0":
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/@types/storybook__react/-/storybook__react-4.0.0.tgz#52cc452fbab599568d595075a90142ef4a1233f6"
   integrity sha512-Iq3RX953fqZRwWN3jywm8pUx1/Atev+x/9tF7/2CNA+Ii55sGSJJRWMRthUKQXTa3zOexcvfksfVYdUaIZY91w==
@@ -3013,7 +3013,7 @@ babel-loader@8.0.4:
     mkdirp "^0.5.1"
     util.promisify "^1.0.0"
 
-babel-loader@^8.0.5:
+babel-loader@8.0.5:
   version "8.0.5"
   resolved "https://registry.yarnpkg.com/babel-loader/-/babel-loader-8.0.5.tgz#225322d7509c2157655840bba52e46b6c2f2fe33"
   integrity sha512-NTnHnVRd2JnRqPC0vW+iOQWU5pchDbYXsG2E6DMXEpMfUcQKclF9gmf3G3ZMhzG7IG9ji4coL0cm+FxeWxDpnw==
@@ -5039,7 +5039,7 @@ enzyme-adapter-utils@^1.9.0:
     prop-types "^15.6.2"
     semver "^5.6.0"
 
-enzyme-to-json@^3.3.5:
+enzyme-to-json@3.3.5:
   version "3.3.5"
   resolved "https://registry.yarnpkg.com/enzyme-to-json/-/enzyme-to-json-3.3.5.tgz#f8eb82bd3d5941c9d8bc6fd9140030777d17d0af"
   integrity sha512-DmH1wJ68HyPqKSYXdQqB33ZotwfUhwQZW3IGXaNXgR69Iodaoj8TF/D9RjLdz4pEhGq2Tx2zwNUIjBuqoZeTgA==
@@ -10951,7 +10951,7 @@ stealthy-require@^1.1.0:
   resolved "https://registry.yarnpkg.com/stealthy-require/-/stealthy-require-1.1.1.tgz#35b09875b4ff49f26a777e509b3090a3226bf24b"
   integrity sha1-NbCYdbT/SfJqd35QmzCQoyJr8ks=
 
-storybook-addon-styled-component-theme@^1.1.1:
+storybook-addon-styled-component-theme@1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/storybook-addon-styled-component-theme/-/storybook-addon-styled-component-theme-1.1.1.tgz#64b5061da41132b32199bd26c967b50bd4539a4f"
   integrity sha512-GnUNKPqtAJEaF3Kb3NhvZRxxXq1Dgd7mkDlPXRZX6rH3SltVSTEbrAvxvkEkgL07zmNR1WeHRrCYz4KHI29aAw==

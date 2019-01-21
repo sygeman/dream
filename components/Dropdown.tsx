@@ -1,5 +1,5 @@
 import RCDropdown from 'rc-dropdown';
-import { MouseEventHandler, FC } from 'react';
+import { FC, MouseEventHandler } from 'react';
 
 interface IProps {
   onClick?: MouseEventHandler<HTMLElement>;

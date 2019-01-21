@@ -74,19 +74,19 @@ const PostsFeedSortPanel: FC<IProps> = ({ sort, setSort }) => {
     <SortPanel>
       <ButtonGroup>
         <Button
-          color={sort === 'hot' ? undefined : unactiveColor}
+          mainColor={sort === 'hot' ? undefined : unactiveColor}
           onClick={() => setSort('hot')}
         >
           Hot
         </Button>
         <Button
-          color={sort === 'new' ? undefined : unactiveColor}
+          mainColor={sort === 'new' ? undefined : unactiveColor}
           onClick={() => setSort('new')}
         >
           New
         </Button>
         <Button
-          color={isSortTop ? undefined : unactiveColor}
+          mainColor={isSortTop ? undefined : unactiveColor}
           onClick={() => setSort('topDay')}
         >
           Top

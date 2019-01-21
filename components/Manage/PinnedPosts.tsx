@@ -38,7 +38,7 @@ const PinnedPosts: FC = () => {
         return (
           <Box>
             {data.pinnedPosts.posts.length === 0 && 'No posts'}
-            {data.pinnedPosts.posts.map((post) => (
+            {data.pinnedPosts.posts.map(post => (
               <PinnedPost key={post.id} id={post.id} />
             ))}
           </Box>

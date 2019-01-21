@@ -1,5 +1,5 @@
 import { darken, lighten } from 'polished';
-import styled from '../theme';
+import styled from 'styled-components';
 
 const Box = styled.a`
   background: radial-gradient(

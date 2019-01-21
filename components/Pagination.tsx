@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import styled from '../theme';
-import Button from './Button';
+import { Button, ButtonFlat, ButtonGroup } from '../ui/Button';
 
 const isExistPage = (pageNumber: number, postsCount: number) => {
   if (pageNumber < 0) {
@@ -79,23 +79,23 @@ const Pagination: FC<IProps> = ({ page, setPage, rowsCount }) => {
         {page !== 0 && <Button onClick={() => setPage(page - 1)}>Назад</Button>}
       </PaginationPrev>
       <PaginationCurrent>
-        {aroundPages.prevMore && <Button flat>...</Button>}
-        <Button.Group>
+        {aroundPages.prevMore && <ButtonFlat>...</ButtonFlat>}
+        <ButtonGroup>
           {aroundPages.prev.map(pageN => (
             <Button key={`p${pageN}`} onClick={() => setPage(pageN)}>
               {pageN + 1}
             </Button>
           ))}
-        </Button.Group>
-        <Button flat>{page + 1}</Button>
-        <Button.Group>
+        </ButtonGroup>
+        <ButtonFlat>{page + 1}</ButtonFlat>
+        <ButtonGroup>
           {aroundPages.next.map(pageN => (
             <Button key={`p${pageN}`} onClick={() => setPage(pageN)}>
               {pageN + 1}
             </Button>
           ))}
-        </Button.Group>
-        {aroundPages.nextMore && <Button flat>...</Button>}
+        </ButtonGroup>
+        {aroundPages.nextMore && <ButtonFlat>...</ButtonFlat>}
       </PaginationCurrent>
       <PaginationNext>
         {rowsCount > (page + 1) * 10 && (

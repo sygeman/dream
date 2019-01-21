@@ -1,13 +1,13 @@
 import { RouterProps, withRouter } from 'next/router';
 import { darken, lighten } from 'polished';
 import { Component } from 'react';
-import Button from '../../components/Button';
 import CreatePost from '../../components/CreatePost';
 import Icon from '../../components/Icon';
 import Modal from '../../components/Modal';
 import ModalFull from '../../components/ModalFull';
 import Profile from '../../components/Profile';
 import styled from '../../theme';
+import { Button } from '../../ui/Button';
 import { humanNumbers } from '../../utils/count';
 import { changeURLParams } from '../../utils/url';
 import Avatar from '../Avatar';

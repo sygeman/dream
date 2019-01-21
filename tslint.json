@@ -6,6 +6,7 @@
     "tslint-plugin-prettier"
   ],
   "rules": {
+    "no-implicit-dependencies": [true, "dev"],
     "prettier": true,
     "no-submodule-imports": false,
     "object-literal-sort-keys": false,

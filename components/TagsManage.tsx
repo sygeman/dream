@@ -3,7 +3,7 @@ import { differenceWith } from 'lodash';
 import { FC } from 'react';
 import { Query } from 'react-apollo';
 import styled from '../theme';
-import Button from './Button';
+import { Button } from '../ui/Button';
 import Dropdown from './Dropdown';
 import Icon from './Icon';
 import Tag from './Tag';

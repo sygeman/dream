@@ -3,6 +3,7 @@
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
+    "resolveJsonModule": true,
     "jsx": "preserve",
     "allowJs": true,
     "moduleResolution": "node",
@@ -14,11 +15,9 @@
     "preserveConstEnums": true,
     "sourceMap": true,
     "skipLibCheck": true,
-    "plugins": [
-      {
-        "name": "typescript-styled-plugin"
-      }
-    ],
+    "plugins": [{
+      "name": "typescript-styled-plugin"
+    }],
     "baseUrl": ".",
     "paths": {
       "components/*": ["components/*"],

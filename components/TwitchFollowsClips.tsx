@@ -10,10 +10,10 @@ import SimpleBar from 'simplebar-react';
 import { connect } from '../auth';
 import config from '../config';
 import styled from '../theme';
+import { Button } from '../ui/Button';
 import { humanNumbers } from '../utils/count';
 import { changeURLParams } from '../utils/url';
 import Access from './Access';
-import Button from './Button';
 import Icon from './Icon';
 import Modal from './Modal';
 import SourceView from './SourceView';
@@ -23,7 +23,6 @@ interface IProcess {
 }
 
 declare var process: IProcess;
-
 
 const Box = styled.div`
   display: flex;
@@ -347,7 +346,7 @@ class TwitchFollowsClips extends Component<IProps> {
                   Войдите через свой Twitch аккаунт чтобы видеть клипы по своим
                   подпискам
                 </NoConnectTwitchAccountText>
-                <Button color="#7e5bbc" onClick={() => auth('twitch')}>
+                <Button mainColor="#7e5bbc" onClick={() => auth('twitch')}>
                   Войти через Twitch
                 </Button>
               </NoConnectTwitchAccount>
@@ -369,7 +368,7 @@ class TwitchFollowsClips extends Component<IProps> {
                 Подлючите свой аккаунт Twitch чтобы видеть клипы по своим
                 подпискам
               </NoConnectTwitchAccountText>
-              <Button color="#7e5bbc" onClick={() => connect('twitch')}>
+              <Button mainColor="#7e5bbc" onClick={() => connect('twitch')}>
                 Подключить
               </Button>
             </NoConnectTwitchAccount>

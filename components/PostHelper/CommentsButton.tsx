@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import styled from '../../theme';
-import Icon from '../Icon';
+import { Icon } from '../../ui/Icon';
 
 const CommentsBox = styled.div`
   height: 100%;

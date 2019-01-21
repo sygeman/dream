@@ -2,8 +2,8 @@ import { darken } from 'polished';
 import { FC } from 'react';
 import styled from '../theme';
 import { Button, ButtonFlat, ButtonGroup } from '../ui/Button';
-import Dropdown from './Dropdown';
-import Icon from './Icon';
+import { Dropdown } from '../ui/Dropdown';
+import { Icon } from '../ui/Icon';
 
 const SortPanel = styled.div`
   margin-bottom: 20px;

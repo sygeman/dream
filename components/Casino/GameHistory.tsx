@@ -1,4 +1,4 @@
-import * as format from 'date-fns/format';
+import format from 'date-fns/format';
 import gql from 'graphql-tag';
 import { lighten } from 'polished';
 import { FC } from 'react';

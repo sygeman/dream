@@ -1,6 +1,6 @@
 import { lighten } from 'polished';
 import { FC } from 'react';
-import styled from '../theme';
+import styled from 'styled-components';
 
 const Box = styled.div`
   display: flex;
@@ -32,7 +32,7 @@ const Container = styled.div`
   display: flex;
   position: relative;
   height: 100%;
-  width: 1000px;
+  min-width: 1000px;
   margin: 0 auto;
   background: ${({ theme }) => theme.dark2Color};
 `;
@@ -81,7 +81,11 @@ export const Right = styled.div`
   padding-top: 40px;
 `;
 
-export const Tab = styled('div')<{active?: boolean;}>`
+interface ITab {
+  active?: boolean;
+}
+
+export const Tab = styled('div')<ITab>`
   font-size: 13px;
   padding: 10px;
   margin: 2px 10px;

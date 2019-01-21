@@ -1,3 +1,5 @@
+import centered from '@storybook/addon-centered/dist/react';
+import { withKnobs } from '@storybook/addon-knobs';
 import { withOptions } from '@storybook/addon-options';
 import { themes } from '@storybook/components';
 import { addDecorator, configure } from '@storybook/react';
@@ -26,6 +28,8 @@ addDecorator(
 );
 
 addDecorator(withGlobalStyles);
+addDecorator(withKnobs);
+addDecorator(centered);
 
 addDecorator(
   withThemesProvider([

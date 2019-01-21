@@ -3,8 +3,8 @@ import { FC } from 'react';
 import { Query } from 'react-apollo';
 import { YMInitializer } from 'react-yandex-metrika';
 import styled from '../theme';
+import { Modal } from '../ui/Modal';
 import { changeURLParams } from '../utils/url';
-import Modal from './Modal';
 import Post from './Post';
 import TopNav from './TopNav';
 

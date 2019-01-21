@@ -11,11 +11,11 @@ import { connect } from '../auth';
 import config from '../config';
 import styled from '../theme';
 import { Button } from '../ui/Button';
+import { Icon } from '../ui/Icon';
+import { Modal } from '../ui/Modal';
 import { humanNumbers } from '../utils/count';
 import { changeURLParams } from '../utils/url';
 import Access from './Access';
-import Icon from './Icon';
-import Modal from './Modal';
 import SourceView from './SourceView';
 
 interface IProcess {

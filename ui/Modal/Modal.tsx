@@ -1,8 +1,8 @@
 import { lighten, rgba } from 'polished';
 import * as React from 'react';
-import styled from '../theme';
-import Icon from './Icon';
-import Portal from './Portal';
+import styled from 'styled-components';
+import { Icon } from '../Icon';
+import { Portal } from '../Portal';
 
 const BG = styled.div`
   position: fixed;
@@ -39,7 +39,7 @@ const BoxNav = styled.div`
   align-items: center;
   min-width: 60px;
   justify-content: center;
-  color: ${({ theme }) => rgba(theme.accent2Color, 0.5)};
+  color: ${({ theme }) => theme.accent2Color && rgba(theme.accent2Color, 0.5)};
 
   i {
     font-size: 40px;
@@ -63,7 +63,8 @@ const Box = styled('div')<{
 `;
 
 const ModalB = styled.div`
-  background: ${({ theme }) => lighten(0.01, theme.dark2Color)};
+  background: ${({ theme }) =>
+    theme.dark2Color && lighten(0.01, theme.dark2Color)};
   border-radius: 4px;
   /* box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); */
 `;
@@ -106,7 +107,7 @@ const CloseOut = styled.div`
   width: 60px;
   justify-content: center;
   font-size: 34px;
-  color: ${({ theme }) => rgba(theme.accent2Color, 0.5)};
+  color: ${({ theme }) => theme.accent2Color && rgba(theme.accent2Color, 0.5)};
   cursor: pointer;
 
   :hover {
@@ -130,7 +131,7 @@ interface IProps {
   minimal?: boolean;
 }
 
-export default class Modal extends React.Component<IProps> {
+export class Modal extends React.Component<IProps> {
   public static defaultProps: IProps = {
     minimal: false,
     isOpen: false,
@@ -166,7 +167,7 @@ export default class Modal extends React.Component<IProps> {
     }
 
     return (
-      <Portal selector="#root-modal">
+      <Portal selector="root-modal">
         <BG>
           <BGOut onClick={() => onClose()} />
           <BoxW>

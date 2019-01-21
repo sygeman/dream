@@ -1,9 +1,9 @@
 import { withRouter } from 'next/router';
 import { Component } from 'react';
 import Auth from '../../components/Auth';
-import Modal from '../../components/Modal';
 import styled from '../../theme';
 import { Button } from '../../ui/Button';
+import { Modal } from '../../ui/Modal';
 import { changeURLParams } from '../../utils/url';
 
 const Box = styled.div`

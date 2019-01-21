@@ -1,5 +1,6 @@
 import { FC } from 'react';
-import styled from '../theme';
+import styled from 'styled-components';
+import config from '../../config';
 
 const EmojiImg = styled.img`
   height: 1rem;
@@ -11,15 +12,14 @@ const EmojiImg = styled.img`
   width: 1rem;
 `;
 
-const emojiUrl = `https://ravepro.ams3.digitaloceanspaces.com/emojis/`;
-
 interface IProps {
   id?: string;
   name: string;
 }
 
-const Emoji: FC<IProps> = ({ name, id }) => (
-  <EmojiImg alt={name} src={`${emojiUrl}${id ? id : name.toLowerCase()}.png`} />
+export const Emoji: FC<IProps> = ({ name, id }) => (
+  <EmojiImg
+    alt={name}
+    src={`${config.emojiUrl}${id ? id : name.toLowerCase()}.png`}
+  />
 );
-
-export default Emoji;

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from '../theme';
-import Icon from './Icon';
+import { Icon } from '../ui/Icon';
 
 const ScrollButton = styled.div`
   height: 40px;

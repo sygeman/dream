@@ -1,12 +1,13 @@
+import { darken } from 'polished';
 import { FC } from 'react';
-import Switch from '../components/Switch';
-import styled from '../theme';
+import styled from 'styled-components';
+import { Switch } from '../Switch';
 
 const Box = styled.div`
   display: flex;
   width: 100%;
   padding: 10px 0;
-  border-bottom: 1px solid ${({ theme }) => theme.accent1Color};
+  border-bottom: 1px solid ${({ theme }) => theme.dark1Color};
   align-items: center;
 
   &:last-child {
@@ -26,12 +27,13 @@ const SRowTitle = styled.div`
   font-size: 14px;
   display: flex;
   align-items: center;
+  color: ${({ theme }) => theme.text1Color};
 `;
 
 const SRowDescription = styled.div`
   padding-top: 5px;
   font-size: 12.5px;
-  color: ${({ theme }) => theme.accent2Color};
+  color: ${({ theme }) => darken(0.4, theme.text1Color)};
 `;
 
 const SRowRight = styled.div`
@@ -47,12 +49,12 @@ const SRowSwitch = styled.div`
 interface IProps {
   title: string;
   description?: string;
-  isActive: boolean;
-  onChange: () => void;
+  isActive?: boolean;
+  onChange?: () => void;
   bgColor?: string;
 }
 
-const SWRow: FC<IProps> = ({
+export const SWRow: FC<IProps> = ({
   title,
   description,
   isActive,
@@ -68,12 +70,10 @@ const SWRow: FC<IProps> = ({
       <SRowSwitch>
         <Switch
           checked={isActive}
-          bgColor={bgColor}
+          activeColor={bgColor}
           onChange={() => onChange()}
         />
       </SRowSwitch>
     </SRowRight>
   </Box>
 );
-
-export default SWRow;

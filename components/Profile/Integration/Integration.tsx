@@ -3,9 +3,9 @@ import { darken, lighten } from 'polished';
 import * as React from 'react';
 import { Mutation } from 'react-apollo';
 import { connect, disconnect } from '../../../auth';
-import SWRow from '../../../components/SWRow';
 import styled from '../../../theme';
 import { Button } from '../../../ui/Button';
+import { SWRow } from '../../../ui/SWRow';
 
 const SET_PROFILE_VISIBLE = gql`
   mutation setUserProfileVisible($id: ID!, $visible: Boolean!) {
@@ -111,7 +111,7 @@ class Integration extends React.Component<IProps> {
                       variables: { id: profile.id, visible: !profile.visible }
                     })
                   }
-                  bgColor={bgColor}
+                  bgColor={lighten(0.1, bgColor)}
                 />
               )}
             </Mutation>

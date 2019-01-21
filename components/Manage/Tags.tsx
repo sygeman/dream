@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 import { createRef, FC } from 'react';
 import { Mutation, Query } from 'react-apollo';
 import styled from '../../theme';
-import Input from '../Input';
+import { Input } from '../../ui/Input';
 import Tag from '../Tag';
 
 const GET_TAGS = gql`

@@ -2,7 +2,7 @@ import { inject, observer } from 'mobx-react';
 import * as React from 'react';
 import { IStore } from '../lib/store';
 import styled from '../theme';
-import Icon from './Icon';
+import { Icon } from '../ui/Icon';
 
 const Box = styled.div`
   position: relative;
@@ -232,7 +232,7 @@ class SourceView extends React.Component<IProps> {
     if (sourceType === 'twitchClip') {
       content = this.renderTwitchClip(sourceId, cover);
     } else if (sourceType === 'youtubeVideo') {
-      content = this.renderYoutubeVideo(sourceId)
+      content = this.renderYoutubeVideo(sourceId);
     }
 
     return (

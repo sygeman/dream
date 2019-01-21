@@ -1,7 +1,9 @@
 import gql from 'graphql-tag';
-import { FC } from 'react';
+import { inject, observer } from 'mobx-react';
+import { Component } from 'react';
 import { Query } from 'react-apollo';
 import { YMInitializer } from 'react-yandex-metrika';
+import { IStore } from '../lib/store';
 import styled from '../theme';
 import { Modal } from '../ui/Modal';
 import { changeURLParams } from '../utils/url';
@@ -43,75 +45,110 @@ const ContentBox = styled.div`
 
 interface IProps {
   query: any;
+  store?: IStore;
 }
 
-const Main: FC<IProps> = ({ query, children }) => (
-  <Box>
-    <ContentBox>
-      <TopNav />
-      <Content id="layoutContent">{children}</Content>
-      {!!query.postId && (
-        <Query
-          query={GET_POST_AROUND}
-          variables={{ id: query.postId, sort: query.sort || 'hot' }}
-          onCompleted={data => {
-            if (!data || !data.postAround) {
-              return;
-            }
+@inject('store')
+@observer
+class Main extends Component<IProps> {
+  public scrollHandler = () => {
+    const scrollTop = document.getElementById('layoutContent').scrollTop;
 
-            const { order } = data.postAround;
-            const page = parseInt(query.page, 10) || 0;
+    const currnet = scrollTop === 0;
 
-            const pageFromOrder = Math.floor((order > 1 ? order - 1 : 0) / 10);
+    if (currnet !== this.props.store.layoutScrollIsTop) {
+      this.props.store.setLayoutScrollTop(currnet);
+    }
+  };
 
-            if (page !== pageFromOrder) {
-              if (pageFromOrder === 0) {
-                changeURLParams({ remove: ['page'] });
-              } else {
-                changeURLParams({ set: { page: pageFromOrder } });
-              }
-            }
-          }}
-        >
-          {({ loading, error, data }) => {
-            if (loading) {
-              return null;
-            }
+  public componentDidMount() {
+    document
+      .getElementById('layoutContent')
+      .addEventListener('scroll', this.scrollHandler);
+  }
 
-            if (error || !data.postAround) {
-              return (
-                <Modal
-                  isOpen={query.postId}
-                  minimal
-                  onClose={() => changeURLParams({ remove: ['postId'] })}
-                >
-                  <Post id={query.postId} full />
-                </Modal>
-              );
-            }
+  public componentWillUnmount() {
+    document
+      .getElementById('layoutContent')
+      .removeEventListener('scroll', this.scrollHandler);
+  }
 
-            const { prevId, nextId } = data.postAround;
+  public render() {
+    const { query, children } = this.props;
 
-            const goPrev = () => changeURLParams({ set: { postId: prevId } });
-            const goNext = () => changeURLParams({ set: { postId: nextId } });
+    return (
+      <Box>
+        <ContentBox>
+          <TopNav />
+          <Content id="layoutContent">{children}</Content>
+          {!!query.postId && (
+            <Query
+              query={GET_POST_AROUND}
+              variables={{ id: query.postId, sort: query.sort || 'hot' }}
+              onCompleted={data => {
+                if (!data || !data.postAround) {
+                  return;
+                }
 
-            return (
-              <Modal
-                isOpen={query.postId}
-                minimal
-                onLeftClick={prevId && goPrev}
-                onRightClick={nextId && goNext}
-                onClose={() => changeURLParams({ remove: ['postId'] })}
-              >
-                <Post id={query.postId} full />
-              </Modal>
-            );
-          }}
-        </Query>
-      )}
-    </ContentBox>
-    <YMInitializer accounts={[51879323]} version="2" />
-  </Box>
-);
+                const { order } = data.postAround;
+                const page = parseInt(query.page, 10) || 0;
+
+                const pageFromOrder = Math.floor(
+                  (order > 1 ? order - 1 : 0) / 10
+                );
+
+                if (page !== pageFromOrder) {
+                  if (pageFromOrder === 0) {
+                    changeURLParams({ remove: ['page'] });
+                  } else {
+                    changeURLParams({ set: { page: pageFromOrder } });
+                  }
+                }
+              }}
+            >
+              {({ loading, error, data }) => {
+                if (loading) {
+                  return null;
+                }
+
+                if (error || !data.postAround) {
+                  return (
+                    <Modal
+                      isOpen={query.postId}
+                      minimal
+                      onClose={() => changeURLParams({ remove: ['postId'] })}
+                    >
+                      <Post id={query.postId} full />
+                    </Modal>
+                  );
+                }
+
+                const { prevId, nextId } = data.postAround;
+
+                const goPrev = () =>
+                  changeURLParams({ set: { postId: prevId } });
+                const goNext = () =>
+                  changeURLParams({ set: { postId: nextId } });
+
+                return (
+                  <Modal
+                    isOpen={query.postId}
+                    minimal
+                    onLeftClick={prevId && goPrev}
+                    onRightClick={nextId && goNext}
+                    onClose={() => changeURLParams({ remove: ['postId'] })}
+                  >
+                    <Post id={query.postId} full />
+                  </Modal>
+                );
+              }}
+            </Query>
+          )}
+        </ContentBox>
+        <YMInitializer accounts={[51879323]} version="2" />
+      </Box>
+    );
+  }
+}
 
 export default Main;

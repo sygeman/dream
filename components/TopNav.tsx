@@ -1,6 +1,8 @@
+import { inject, observer } from 'mobx-react';
 import Router from 'next/router';
 import { lighten } from 'polished';
 import { Component } from 'react';
+import { IStore } from '../lib/store';
 import styled from '../theme';
 import Access from './Access';
 
@@ -67,46 +69,20 @@ const TopLink = styled.a`
 
 const LogoLink = styled.a``;
 
+interface IProps {
+  store?: IStore;
+}
+
 interface IState {
   topPx: number;
 }
 
-class TopNav extends Component<{}, IState> {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      topPx: 0
-    };
-  }
-
-  public scrollHandler() {
-    const scrollTop = document.getElementById('layoutContent').scrollTop;
-
-    if (!this.state) {
-      return;
-    }
-
-    if (this.state.topPx !== scrollTop) {
-      this.setState({ topPx: scrollTop });
-    }
-  }
-
-  // public componentDidMount() {
-  //   document
-  //     .getElementById('layoutContent')
-  //     .addEventListener('scroll', this.scrollHandler);
-  // }
-
-  // public componentWillUnmount() {
-  //   document
-  //     .getElementById('layoutContent')
-  //     .removeEventListener('scroll', this.scrollHandler);
-  // }
-
+@inject('store')
+@observer
+class TopNav extends Component<IProps, IState> {
   public render() {
     return (
-      <Box shadow={this.state.topPx !== 0}>
+      <Box shadow={!this.props.store.layoutScrollIsTop}>
         <Left>
           <LogoLink
             href="/"

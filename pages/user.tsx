@@ -5,6 +5,7 @@ import * as React from 'react';
 import { Query } from 'react-apollo';
 import Posts from '../components/Posts';
 import RightPanel from '../components/RightPanel';
+import ScrollTopButton from '../components/ScrollTopButton';
 import Streams from '../components/Streams';
 import UserPanelProfile from '../components/User/UserPanelProfile';
 import styled from '../theme';
@@ -110,6 +111,7 @@ class UserPage extends React.Component<IProps> {
             );
           }}
         </Query>
+        <ScrollTopButton />
       </Box>
     );
   }

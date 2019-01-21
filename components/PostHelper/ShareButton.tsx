@@ -9,7 +9,7 @@ import {
 } from 'react-share';
 
 import styled from '../../theme';
-import Dropdown from '../Dropdown';
+import { Dropdown } from '../../ui/Dropdown';
 import Icon from '../Icon';
 
 const ShareButton = styled.div`

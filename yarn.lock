@@ -1484,20 +1484,6 @@
     core-js "^2.5.7"
     global "^4.3.2"
 
-"@storybook/addon-jest@4.1.7":
-  version "4.1.7"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-jest/-/addon-jest-4.1.7.tgz#e772d45a4f1ed68af2aa854644eee80b595c2ba1"
-  integrity sha512-9g2Q/pj890rZMcOWuKqQkFhtSG5xdNMDebxHtfRX76h31HX/14zG/dylXpLml+o3DAPtkUwU4zgTzCzCCxfXmg==
-  dependencies:
-    "@emotion/styled" "^0.10.6"
-    "@storybook/addons" "4.1.7"
-    "@storybook/components" "4.1.7"
-    core-js "^2.5.7"
-    global "^4.3.2"
-    prop-types "^15.6.2"
-    upath "^1.1.0"
-    util-deprecate "^1.0.2"
-
 "@storybook/addon-knobs@4.1.7":
   version "4.1.7"
   resolved "https://registry.yarnpkg.com/@storybook/addon-knobs/-/addon-knobs-4.1.7.tgz#298a1bd17f177e4653b073c9bca70c073746daea"
@@ -11829,7 +11815,7 @@ unzip-response@^2.0.1:
   resolved "https://registry.yarnpkg.com/unzip-response/-/unzip-response-2.0.1.tgz#d2f0f737d16b0615e72a6935ed04214572d56f97"
   integrity sha1-0vD3N9FrBhXnKmk17QQhRXLVb5c=
 
-upath@^1.0.5, upath@^1.1.0:
+upath@^1.0.5:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/upath/-/upath-1.1.0.tgz#35256597e46a581db4793d0ce47fa9aebfc9fabd"
   integrity sha512-bzpH/oBhoS/QI/YtbkqCg6VEiPYjSZtrHQM6/QnJS6OL9pKUFLqb3aFh4Scvwm45+7iAgiMkLhSbaZxUqmrprw==

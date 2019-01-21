@@ -3,9 +3,9 @@ import { darken } from 'polished';
 import * as React from 'react';
 import { logout } from '../../auth';
 import styled from '../../theme';
+import { Dropdown } from '../../ui/Dropdown';
 import { changeURLParams } from '../../utils/url';
 import Access from '../Access';
-import Dropdown from '../Dropdown';
 
 const Box = styled.div`
   height: 100%;

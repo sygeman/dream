@@ -31,12 +31,16 @@ Box.defaultProps = {
   inactiveColor: undefined
 };
 
-const Slider = styled.div`
+interface ISlider {
+  active: boolean;
+}
+
+const Slider = styled('div')<ISlider>`
   margin: ${padding}px;
   height: ${heightInner}px;
   width: ${heightInner}px;
   border-radius: ${heightInner / 2}px;
-  background: #eee;
+  background: ${({ active }) => (active ? '#eee' : darken(0.1, '#eee'))};
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 `;
@@ -61,7 +65,7 @@ export const Switch: FC<IProps> = ({
       inactiveColor={inactiveColor}
       onClick={() => onChange()}
     >
-      <Slider />
+      <Slider active={checked} />
     </Box>
   );
 };

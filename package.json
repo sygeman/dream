@@ -9,7 +9,7 @@
     "dev": "next -p 7000",
     "build": "next build",
     "start": "next start -p 5000",
-    "test": "jest",
+    "test": "jest -u",
     "storybook": "start-storybook -p 9001 -c .storybook"
   },
   "dependencies": {

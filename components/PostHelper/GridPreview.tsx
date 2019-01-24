@@ -118,7 +118,23 @@ const Date = styled.div`
   color: ${({ theme }) => rgba(theme.text1Color, 0.9)};
 `;
 
-const GridPreview: FC = ({ onClick, cover, nsfw, spoiler, date, views }) => (
+interface IProps {
+  onClick?: () => void;
+  cover?: string;
+  nsfw?: boolean;
+  spoiler?: boolean;
+  date?: string;
+  views?: string;
+}
+
+const GridPreview: FC<IProps> = ({
+  onClick,
+  cover,
+  nsfw,
+  spoiler,
+  date,
+  views
+}) => (
   <Box>
     <ContentBox>
       <PreviewBox onClick={onClick}>

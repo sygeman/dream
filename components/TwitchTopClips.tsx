@@ -108,6 +108,10 @@ interface IProps {
 }
 
 class TwitchFollows extends Component<IProps> {
+  constructor(props) {
+    super(props);
+  }
+
   public render() {
     const { router } = this.props;
 

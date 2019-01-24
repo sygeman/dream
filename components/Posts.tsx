@@ -69,7 +69,7 @@ const Posts: FC<IProps> = ({
 
       return (
         <>
-          {data.posts.posts.map(({ id }, index) => (
+          {data.posts.posts.map(({ id }) => (
             <PostContainer key={id}>
               <PostProvider id={id}>
                 {({ post }) => <PostGridView post={post} />}

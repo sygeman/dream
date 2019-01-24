@@ -1,6 +1,6 @@
 import { inject, observer } from 'mobx-react';
 import { Component } from 'react';
-import { Scrollbars } from 'react-custom-scrollbars';
+import Scrollbars from 'react-custom-scrollbars';
 import { YMInitializer } from 'react-yandex-metrika';
 import { IStore } from '../lib/store';
 import styled from '../theme';

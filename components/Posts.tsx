@@ -1,22 +1,9 @@
 import gql from 'graphql-tag';
 import { FC } from 'react';
 import { Query } from 'react-apollo';
-import styled from '../theme';
-import { Emoji } from '../ui/Emoji';
-import { scrollToTop } from '../utils/scroll';
-import { changeURLParams } from '../utils/url';
-import Pagination from './Pagination';
-import Post from './Post';
-
-const setPage = (page: number) => {
-  if (page === 0) {
-    changeURLParams({ remove: ['page'] });
-  } else {
-    changeURLParams({ set: { page } });
-  }
-
-  scrollToTop();
-};
+import styled from 'styled-components';
+import PostProvider from '../providers/Post';
+import PostGridView from './PostHelper/GridView';
 
 export const GET_POSTS = gql`
   query getPosts(
@@ -41,20 +28,8 @@ export const GET_POSTS = gql`
   }
 `;
 
-const PostContainer = styled.div``;
-
-const NoPosts = styled.div`
-  padding: 40px 0;
-  justify-content: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const NoPostsText = styled.div`
-  margin-bottom: 5px;
-  font-size: 14px;
-  color: ${({ theme }) => theme.text1Color};
+const PostContainer = styled.div`
+  padding: 5px;
 `;
 
 interface IProps {
@@ -74,7 +49,7 @@ const Posts: FC<IProps> = ({
 }) => (
   <Query
     query={GET_POSTS}
-    fetchPolicy="network-only"
+    fetchPolicy="cache-and-network"
     variables={{
       page,
       sort,
@@ -94,24 +69,13 @@ const Posts: FC<IProps> = ({
 
       return (
         <>
-          {data.posts.posts.length === 0 && (
-            <NoPosts>
-              <NoPostsText>Тут пока нет постов</NoPostsText>
-              <Emoji name="BibleThump" />
-            </NoPosts>
-          )}
-          {data.posts.posts.map((post, index) => (
-            <PostContainer key={post.id}>
-              <Post {...post} withPreview orderPlay={page * 10 + index} />
+          {data.posts.posts.map(({ id }, index) => (
+            <PostContainer key={id}>
+              <PostProvider id={id}>
+                {({ post }) => <PostGridView post={post} />}
+              </PostProvider>
             </PostContainer>
           ))}
-          {data.posts.posts.length !== 0 && (
-            <Pagination
-              page={page}
-              rowsCount={data.posts.count}
-              setPage={n => setPage(n)}
-            />
-          )}
         </>
       );
     }}

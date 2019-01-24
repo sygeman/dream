@@ -1,11 +1,11 @@
 import { RouterProps, withRouter } from 'next/router';
 import { Component } from 'react';
 import styled from 'styled-components';
-import PostFullView from '../components/PostHelper/FullView';
-import Posts from '../components/Posts';
-import Streams from '../components/Stream';
-import PostProvider from '../providers/Post';
-import { Modal } from '../ui/Modal';
+import PostFullView from '../../components/PostHelper/FullView';
+import Posts from '../../components/Posts';
+import Streams from '../../components/Stream';
+import PostProvider from '../../providers/Post';
+import { Modal } from '../../ui/Modal';
 
 const Grid = styled.div`
   width: 100%;
@@ -25,7 +25,7 @@ interface IProps {
   router: RouterProps;
 }
 
-class IndexPage extends Component<IProps> {
+class TopWeekPage extends Component<IProps> {
   public render() {
     let postId = null;
 
@@ -47,21 +47,13 @@ class IndexPage extends Component<IProps> {
         <Grid>
           <Streams />
         </Grid>
-        <SectionTitle>Топ за день</SectionTitle>
+        <SectionTitle>Top за неделю</SectionTitle>
         <Grid>
-          <Posts sort={'topDay'} />
-        </Grid>
-        <SectionTitle>Hot</SectionTitle>
-        <Grid>
-          <Posts sort={'hot'} />
-        </Grid>
-        <SectionTitle>Новое</SectionTitle>
-        <Grid>
-          <Posts sort={'new'} />
+          <Posts sort={'topWeek'} />
         </Grid>
       </>
     );
   }
 }
 
-export default withRouter(IndexPage);
+export default withRouter(TopWeekPage);

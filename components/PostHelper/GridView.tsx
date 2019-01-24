@@ -1,0 +1,135 @@
+import distanceInWordsToNow from 'date-fns/distance_in_words_to_now';
+import ruLocale from 'date-fns/locale/ru';
+import Router from 'next/router';
+import { darken, lighten, rgba } from 'polished';
+import { FC } from 'react';
+import styled from 'styled-components';
+import { Icon } from '../../ui/Icon';
+import { shortNumbers } from '../../utils/count';
+import AuthorGrid from './AuthorGrid';
+import GridPreview from './GridPreview';
+import { IPost } from './interfaces/Post';
+
+const Box = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+`;
+
+const Preview = styled.div`
+  position: relative;
+  padding-bottom: 56.25%;
+  width: 100%;
+  background: ${({ theme }) => theme.dark2Color};
+`;
+
+const PreviewContent = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+`;
+
+const Bottom = styled.div`
+  display: flex;
+  font-size: 11.5px;
+  color: ${({ theme }) => lighten(0.25, theme.main1Color)};
+  width: 100%;
+`;
+
+const BottomLeft = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 4px 8px 4px 0;
+  line-height: 16px;
+`;
+
+const BottomRight = styled.div``;
+
+const Title = styled.div`
+  font-size: 13px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  color: ${({ theme }) => theme.text1Color};
+`;
+
+const Rating = styled.div`
+  min-width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  font-size: 12px;
+  color: ${({ theme }) => lighten(0.4, theme.main1Color)};
+  background: ${({ theme }) => lighten(0.05, theme.main1Color)};
+  font-weight: 500;
+`;
+
+const Author = styled.div``;
+
+const IconBox = styled.div`
+  margin-right: 8px;
+`;
+
+const Date = styled.div`
+  display: flex;
+`;
+
+interface IProps {
+  post: IPost;
+}
+
+export const GridView: FC<IProps> = ({ post }) => {
+  const date =
+    distanceInWordsToNow(parseInt(post.createdAt, 10), {
+      locale: ruLocale
+    }) + ' назад';
+
+  return (
+    <Box>
+      <Preview>
+        <PreviewContent>
+          {post && (
+            <GridPreview
+              onClick={() =>
+                Router.push(`/?postId=${post.id}`, `/post?id=${post.id}`, {
+                  shallow: true
+                })
+              }
+              nsfw={post.nfws}
+              spoiler={post.spoiler}
+              cover={post.cover}
+              date={date}
+            />
+          )}
+        </PreviewContent>
+      </Preview>
+      <Bottom>
+        <BottomLeft>
+          <Title>{post && post.title}</Title>
+          <Author>
+            <AuthorGrid id={post.authorId} />
+          </Author>
+          <Date />
+        </BottomLeft>
+        <BottomRight>
+          <Rating>
+            <IconBox>
+              <Icon type="thumb-up" />
+            </IconBox>
+            {shortNumbers(post.likesCount)}
+          </Rating>
+        </BottomRight>
+      </Bottom>
+    </Box>
+  );
+};
+
+export default GridView;

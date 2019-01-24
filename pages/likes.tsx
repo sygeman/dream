@@ -3,8 +3,8 @@ import Head from 'next/head';
 import { RouterProps, withRouter } from 'next/router';
 import * as React from 'react';
 import { Query } from 'react-apollo';
+import RightPanel from '../components/Nav/Right';
 import Posts from '../components/Posts';
-import RightPanel from '../components/RightPanel';
 import ScrollTopButton from '../components/ScrollTopButton';
 import Streams from '../components/Streams';
 import styled from '../theme';
@@ -54,7 +54,7 @@ class UserPage extends React.Component<IProps> {
       <Box>
         <Query query={GET_USER}>
           {({ loading, error, data }) => {
-            if (loading) {
+            if (loading || error) {
               return null;
             }
 

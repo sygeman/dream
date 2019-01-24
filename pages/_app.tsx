@@ -87,7 +87,7 @@ class MyApp extends App<IProps> {
                     key="viewport"
                   />
                 </Head>
-                <Layout query={this.props.router.query}>
+                <Layout>
                   <Component {...pageProps} />
                 </Layout>
               </React.Fragment>

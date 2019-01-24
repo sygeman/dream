@@ -1,11 +1,11 @@
 import Router from 'next/router';
 import { darken } from 'polished';
 import * as React from 'react';
-import { logout } from '../../lib/auth';
-import styled from '../../theme';
-import { Dropdown } from '../../ui/Dropdown';
-import { changeURLParams } from '../../utils/url';
-import Access from '../Access';
+import styled from 'styled-components';
+import { logout } from '../../../lib/auth';
+import { Dropdown } from '../../../ui/Dropdown';
+import { changeURLParams } from '../../../utils/url';
+import Access from '../../Access';
 
 const Box = styled.div`
   height: 100%;
@@ -46,7 +46,6 @@ export default class PostMenu extends React.Component<IProps> {
         <UserMenuItem onClick={() => Router.push(`/user?id=${user.id}`)}>
           Профиль
         </UserMenuItem>
-        <UserMenuItem onClick={() => Router.push(`/likes`)}>Лайки</UserMenuItem>
         <Access allow={currentUser => currentUser.role === 'admin'}>
           <UserMenuItem onClick={() => Router.push('/manage')}>
             Панель управления

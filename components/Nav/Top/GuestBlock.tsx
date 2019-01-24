@@ -1,10 +1,10 @@
 import { withRouter } from 'next/router';
 import { Component } from 'react';
-import Auth from '../../components/Auth';
-import styled from '../../theme';
-import { Button } from '../../ui/Button';
-import { Modal } from '../../ui/Modal';
-import { changeURLParams } from '../../utils/url';
+import styled from 'styled-components';
+import { Button } from '../../../ui/Button';
+import { Modal } from '../../../ui/Modal';
+import { changeURLParams } from '../../../utils/url';
+import Auth from '../../Auth';
 
 const Box = styled.div`
   padding: 0 10px;

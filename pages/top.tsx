@@ -25,7 +25,7 @@ interface IProps {
   router: RouterProps;
 }
 
-class IndexPage extends Component<IProps> {
+class TopPage extends Component<IProps> {
   public render() {
     let postId = null;
 
@@ -47,21 +47,25 @@ class IndexPage extends Component<IProps> {
         <Grid>
           <Streams />
         </Grid>
-        <SectionTitle>Топ за день</SectionTitle>
+        <SectionTitle>Top за день</SectionTitle>
         <Grid>
           <Posts sort={'topDay'} />
         </Grid>
-        <SectionTitle>Hot</SectionTitle>
+        <SectionTitle>Top за неделю</SectionTitle>
         <Grid>
-          <Posts sort={'hot'} />
+          <Posts sort={'topWeek'} />
         </Grid>
-        <SectionTitle>Новое</SectionTitle>
+        <SectionTitle>Top за месяц</SectionTitle>
         <Grid>
-          <Posts sort={'new'} />
+          <Posts sort={'topMonth'} />
+        </Grid>
+        <SectionTitle>Top за все время</SectionTitle>
+        <Grid>
+          <Posts sort={'topAll'} />
         </Grid>
       </>
     );
   }
 }
 
-export default withRouter(IndexPage);
+export default withRouter(TopPage);

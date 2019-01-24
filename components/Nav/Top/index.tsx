@@ -1,20 +1,18 @@
 import { inject, observer } from 'mobx-react';
-import Router from 'next/router';
-import { lighten } from 'polished';
+import Link from 'next/link';
+import { lighten, rgba } from 'polished';
 import { Component } from 'react';
-import { IStore } from '../lib/store';
-import styled from '../theme';
-import Access from './Access';
-
-import TopUserBlock from './TopUserBlock';
+import styled from 'styled-components';
+import { IStore } from '../../../lib/store';
+import UserProvider from '../../../providers/User';
+import GuestBlock from './GuestBlock';
+import UserBlock from './UserBlock';
 
 const Box = styled.div`
   height: 50px;
   display: flex;
   z-index: 100;
-  ${({ shadow }) =>
-    shadow &&
-    'box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);'}
+  border-bottom: 1px solid ${({ theme }) => rgba(theme.main1Color, 0.5)};
 `;
 
 const Left = styled.div`
@@ -67,8 +65,6 @@ const TopLink = styled.a`
   }
 `;
 
-const LogoLink = styled.a``;
-
 interface IProps {
   store?: IStore;
 }
@@ -84,28 +80,30 @@ class TopNav extends Component<IProps, IState> {
     return (
       <Box shadow={!this.props.store.layoutScrollIsTop}>
         <Left>
-          <LogoLink
-            href="/"
-            onClick={e => {
-              e.preventDefault();
-              Router.push('/');
-            }}
-          >
-            <LogoImg src="https://cdn.frankerfacez.com/emoticon/243789/2" />
-          </LogoLink>
+          <Link href="/" passHref>
+            <a>
+              <LogoImg src="https://cdn.frankerfacez.com/emoticon/243789/2" />
+            </a>
+          </Link>
           <Links>
-            <TopLink onClick={() => Router.push('/')}>Home</TopLink>
-            <Access allow={currentUser => currentUser.role === 'admin'}>
-              <TopLink onClick={() => Router.push('/twitchFollowsClips')}>
-                Following Clips
-              </TopLink>
-            </Access>
-            <TopLink onClick={() => Router.push('/casino')}>NeCasino</TopLink>
+            <Link href="/" passHref>
+              <TopLink>Клипы</TopLink>
+            </Link>
+            <Link href="/casino" passHref>
+              <TopLink>Игры</TopLink>
+            </Link>
+            <TopLink href="https://discord.gg/xVprhFC" target="_blank">
+              Discord
+            </TopLink>
           </Links>
         </Left>
         <Right>
           <UserBox>
-            <TopUserBlock />
+            <UserProvider>
+              {({ user }) =>
+                user ? <UserBlock user={user} /> : <GuestBlock />
+              }
+            </UserProvider>
           </UserBox>
         </Right>
       </Box>

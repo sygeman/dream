@@ -79,10 +79,6 @@ const PostFullView: FC<IPost> = ({
   <Box>
     <Head>
       <title>{title}</title>
-      <meta property="og:title" content={title} />
-      <meta property="og:description" content={title} />
-      <meta property="og:image" content={cover} />
-      <meta property="og:url" content={`https://twitchru.com/?postId=${id}`} />
     </Head>
     <MainBox>
       <Left>

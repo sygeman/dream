@@ -25,7 +25,7 @@ interface IProps {
   router: RouterProps;
 }
 
-class IndexPage extends Component<IProps> {
+class NewPage extends Component<IProps> {
   public render() {
     let postId = null;
 
@@ -47,15 +47,7 @@ class IndexPage extends Component<IProps> {
         <Grid>
           <Streams />
         </Grid>
-        <SectionTitle>Топ за день</SectionTitle>
-        <Grid>
-          <Posts sort={'topDay'} />
-        </Grid>
-        <SectionTitle>Hot</SectionTitle>
-        <Grid>
-          <Posts sort={'hot'} />
-        </Grid>
-        <SectionTitle>Новое</SectionTitle>
+        <SectionTitle>New</SectionTitle>
         <Grid>
           <Posts sort={'new'} />
         </Grid>
@@ -64,4 +56,4 @@ class IndexPage extends Component<IProps> {
   }
 }
 
-export default withRouter(IndexPage);
+export default withRouter(NewPage);

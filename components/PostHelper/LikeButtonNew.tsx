@@ -1,4 +1,5 @@
 import gql from 'graphql-tag';
+import { lighten } from 'polished';
 import * as React from 'react';
 import { Mutation } from 'react-apollo';
 import posed from 'react-pose';
@@ -20,7 +21,6 @@ const LikeBox = styled.div`
   height: 100%;
   padding: 0 16px;
   align-items: center;
-  font-size: 14px;
   display: flex;
 `;
 
@@ -31,27 +31,28 @@ interface ILikeButton {
 const LikeButtonAnim = posed.div({
   pressable: true,
   init: { scale: 1 },
-  press: { scale: 1.5 },
+  press: { scale: 1.3 },
   pressEnd: { scale: 1 }
 });
 
 const LikeButton = styled(LikeButtonAnim)<ILikeButton>`
   display: flex;
   justify-content: center;
-  padding: 5px;
   cursor: pointer;
 
   i {
-    font-size: 21px;
-    color: ${({ theme, active }) => (active ? '#cc2939' : theme.accent2Color)};
+    font-size: 15px;
+    color: ${({ theme, active }) =>
+      active ? lighten(0.3, theme.main1Color) : theme.accent2Color};
   }
 `;
 
-const LikesCount = styled('div')<ILikeButton>`
-  color: ${({ theme, active }) => (active ? '#cc2939' : theme.accent2Color)};
-  margin-left: 10px;
+const LikesCount = styled('div')`
+  color: ${({ theme }) => theme.accent2Color};
   font-weight: 500;
   user-select: none;
+  font-size: 12px;
+  margin-left: 10px;
 `;
 
 interface IProps {
@@ -69,7 +70,7 @@ export default class PostLike extends React.Component<IProps> {
         denyContent={
           <LikeBox onClick={() => changeURLParams({ set: { auth: 1 } })}>
             <LikeButton active={liked}>
-              <Icon type="thumb-up" />
+              <Icon type={liked ? 'favorite' : 'favorite-outline'} />
             </LikeButton>
             {likesCount > 0 && (
               <LikesCount active={liked}>{likesCount}</LikesCount>
@@ -90,11 +91,11 @@ export default class PostLike extends React.Component<IProps> {
                   })
                 }
               >
-                <Icon type="thumb-up" />
+                <Icon type={liked ? 'favorite' : 'favorite-outline'} />
               </LikeButton>
-              {likesCount > 0 && (
+              {/* {likesCount > 0 && (
                 <LikesCount active={liked}>{likesCount}</LikesCount>
-              )}
+              )} */}
             </LikeBox>
           )}
         </Mutation>

@@ -1,7 +1,5 @@
-import { inject, observer } from 'mobx-react';
-import * as React from 'react';
-import { IStore } from '../lib/store';
-import styled from '../theme';
+import { FC } from 'react';
+import styled from 'styled-components';
 import { Icon } from '../ui/Icon';
 
 const ScrollButton = styled.div`
@@ -25,32 +23,20 @@ const ScrollButton = styled.div`
 `;
 
 interface IProps {
-  store?: IStore;
+  toTop: () => void;
+  show: boolean;
 }
 
-@inject('store')
-@observer
-class ScrollTopButton extends React.Component<IProps> {
-  public scrollToTop() {
-    document.getElementById('layoutContent').scrollTop = 0;
+const ScrollTopButton: FC<IProps> = ({ show, toTop }) => {
+  if (!show) {
+    return null;
   }
 
-  public render() {
-    if (this.props.store.layoutScrollIsTop) {
-      return null;
-    }
-
-    return (
-      <ScrollButton
-        title="Наверх"
-        onClick={() => {
-          this.scrollToTop();
-        }}
-      >
-        <Icon type="chevron-up" />
-      </ScrollButton>
-    );
-  }
-}
+  return (
+    <ScrollButton title="Наверх" onClick={() => toTop()}>
+      <Icon type="chevron-up" />
+    </ScrollButton>
+  );
+};
 
 export default ScrollTopButton;

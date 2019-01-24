@@ -1,15 +1,15 @@
 import { RouterProps, withRouter } from 'next/router';
 import { darken, lighten } from 'polished';
 import { Component } from 'react';
-import CreatePost from '../../components/CreatePost';
-import Profile from '../../components/Profile';
-import styled from '../../theme';
-import { Button } from '../../ui/Button';
-import { Icon } from '../../ui/Icon';
-import { Modal, ModalFull } from '../../ui/Modal';
-import { humanNumbers } from '../../utils/count';
-import { changeURLParams } from '../../utils/url';
-import Avatar from '../Avatar';
+import styled from 'styled-components';
+import { Button } from '../../../ui/Button';
+import { Icon } from '../../../ui/Icon';
+import { Modal, ModalFull } from '../../../ui/Modal';
+import { humanNumbers } from '../../../utils/count';
+import { changeURLParams } from '../../../utils/url';
+import Avatar from '../../Avatar';
+import CreatePost from '../../CreatePost';
+import Profile from '../../Profile';
 import Menu from './Menu';
 
 const Box = styled.div`
@@ -30,10 +30,15 @@ const AvatarBox = styled.div`
   padding-left: 14px;
 `;
 
-const UserPoints = styled.div`
+const PointsBox = styled.div`
+  display: flex;
+  margin: 0 20px;
+`;
+
+const Points = styled.div`
   display: flex;
   align-items: center;
-  margin: 0 20px;
+  margin: 0 5px;
   font-size: 13px;
   background: radial-gradient(
     ${({ theme }) => lighten(0.02, theme.dark2Color)},
@@ -48,21 +53,28 @@ const UserPoints = styled.div`
   }
 `;
 
-const UserPointsIcon = styled.div`
-  height: 18px;
-  width: 18px;
+const PointsIcon = styled.div`
+  height: 10px;
+  width: 10px;
   border-radius: 100%;
   background: transparent;
-  border: 2px solid #a48b3f;
+  border: 2px solid;
   margin: 0 10px 0 5px;
   font-size: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: ${() => lighten(0.3, '#a48b3f')};
 `;
 
-const UserPointsCount = styled.div`
+const PointsIconGold = styled(PointsIcon)`
+  border-color: #a48b3f;
+`;
+
+const PointsIconPepega = styled(PointsIcon)`
+  border-color: #3fa447;
+`;
+
+const PointsCount = styled.div`
   color: ${({ theme }) => lighten(0.4, theme.main1Color)};
   font-size: 12px;
   font-weight: 500;
@@ -112,10 +124,16 @@ class UserBlockWithoutRouter extends Component<IProps> {
         >
           <CreatePost />
         </Modal>
-        <UserPoints>
-          <UserPointsIcon>$</UserPointsIcon>
-          <UserPointsCount>{humanNumbers(user.points)}</UserPointsCount>
-        </UserPoints>
+        <PointsBox>
+          <Points>
+            <PointsIconGold />
+            <PointsCount>{humanNumbers(user.points)}</PointsCount>
+          </Points>
+          <Points>
+            <PointsIconPepega />
+            <PointsCount>{humanNumbers(1200)}</PointsCount>
+          </Points>
+        </PointsBox>
         <Menu user={user}>
           <UserDataBox>
             <UserNameBox>{user.mainProfile.name}</UserNameBox>

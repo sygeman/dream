@@ -1,8 +1,8 @@
 import * as React from 'react';
-import TwitchFollowsClips from '../components/TwitchFollowsClips';
+import TwitchTopClips from '../components/TwitchTopClips';
 
 export default class extends React.Component {
   public render() {
-    return <TwitchFollowsClips />;
+    return <TwitchTopClips />;
   }
 }

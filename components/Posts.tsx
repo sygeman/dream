@@ -117,7 +117,20 @@ class Posts extends Component<IProps> {
                 {data.posts.posts.map(({ id }) => (
                   <PostContainer key={id}>
                     <PostProvider id={id}>
-                      {({ post }) => <PostGridView post={post} />}
+                      {({ post }) => (
+                        <PostGridView
+                          post={post}
+                          onPlay={() => {
+                            router.push(
+                              `${router.route}?postId=${post.id}`,
+                              `/post?id=${post.id}`,
+                              {
+                                shallow: true
+                              }
+                            );
+                          }}
+                        />
+                      )}
                     </PostProvider>
                   </PostContainer>
                 ))}

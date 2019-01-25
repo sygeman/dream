@@ -1,6 +1,5 @@
 import distanceInWordsToNow from 'date-fns/distance_in_words_to_now';
 import ruLocale from 'date-fns/locale/ru';
-import Router from 'next/router';
 import { lighten } from 'polished';
 import { FC } from 'react';
 import styled from 'styled-components';
@@ -84,9 +83,10 @@ const Date = styled.div`
 
 interface IProps {
   post: IPost;
+  onPlay: () => void;
 }
 
-export const GridView: FC<IProps> = ({ post }) => {
+export const GridView: FC<IProps> = ({ post, onPlay }) => {
   const date =
     distanceInWordsToNow(parseInt(post.createdAt, 10), {
       locale: ruLocale
@@ -98,11 +98,7 @@ export const GridView: FC<IProps> = ({ post }) => {
         <PreviewContent>
           {post && (
             <GridPreview
-              onClick={() =>
-                Router.push(`/?postId=${post.id}`, `/post?id=${post.id}`, {
-                  shallow: true
-                })
-              }
+              onClick={() => onPlay()}
               nsfw={post.nfws}
               spoiler={post.spoiler}
               cover={post.cover}

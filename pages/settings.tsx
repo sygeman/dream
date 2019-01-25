@@ -3,9 +3,9 @@ import Integration from '../components/Profile/Integration';
 import { Access } from '../helpers/Access';
 
 const Box = styled.div`
-  width: 800px;
+  max-width: 800px;
   margin: 0 auto;
-  padding: 20px 0;
+  padding: 20px;
 `;
 
 const SectionTitle = styled.div``;

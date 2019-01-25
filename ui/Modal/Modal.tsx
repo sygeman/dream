@@ -29,6 +29,7 @@ const BGOut = styled.div`
 const BoxW = styled.div`
   z-index: 3500;
   margin: auto;
+  padding: 60px 0;
   display: flex;
 `;
 

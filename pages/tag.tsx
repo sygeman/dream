@@ -34,7 +34,8 @@ const TagTitle = styled.div`
 
 const PostsBox = styled.div`
   margin: 0 20px;
-  width: 800px;
+  display: flex;
+  flex: 1;
   border-radius: 5px;
   overflow: hidden;
 `;
@@ -81,11 +82,14 @@ class UserPage extends React.Component<IProps> {
             return (
               <>
                 <Head>
-                  <title>TwitchRu - {data.tag.title}</title>
+                  <title>#{data.tag.title}</title>
                 </Head>
                 <PostsBox>
-                  <TagTitle>#{data.tag.title}</TagTitle>
-                  <Posts tagId={tagId} sort="new" page={page} />
+                  <Posts
+                    title={`#${data.tag.title}`}
+                    tagId={tagId}
+                    sort="new"
+                  />
                 </PostsBox>
                 <RightPanel.Box>
                   <RightPanel.Block>

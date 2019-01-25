@@ -1,8 +1,11 @@
 import gql from 'graphql-tag';
-import { FC } from 'react';
+import { RouterProps, withRouter } from 'next/router';
+import { Component } from 'react';
 import { Query } from 'react-apollo';
 import styled from 'styled-components';
+import PostView from '../components/PostHelper/View';
 import PostProvider from '../providers/Post';
+import { Modal } from '../ui/Modal';
 import PostGridView from './PostHelper/GridView';
 
 export const GET_POSTS = gql`
@@ -32,6 +35,12 @@ const PostContainer = styled.div`
   padding: 5px;
 `;
 
+const Box = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`;
+
 const Grid = styled.div`
   width: 100%;
   display: grid;
@@ -47,62 +56,78 @@ const SectionTitle = styled.div`
 `;
 
 interface IProps {
-  page?: number;
   sort?: string;
   authorId?: string;
   likedUserId?: string;
   tagId?: string;
   title?: string;
+  router: RouterProps;
 }
 
-const Posts: FC<IProps> = ({
-  page = 0,
-  sort,
-  authorId,
-  likedUserId,
-  tagId,
-  title
-}) => (
-  <Query
-    query={GET_POSTS}
-    fetchPolicy="cache-and-network"
-    variables={{
-      page,
-      sort,
-      authorId,
-      likedUserId,
-      tagId
-    }}
-  >
-    {({ loading, error, data }) => {
-      if (loading) {
-        return null;
-      }
+class Posts extends Component<IProps> {
+  constructor(props) {
+    super(props);
+  }
 
-      if (error) {
-        return error;
-      }
+  public render() {
+    const { sort, authorId, likedUserId, tagId, title, router } = this.props;
 
-      if (data.posts.posts.length === 0) {
-        return null;
-      }
+    let postId = null;
 
-      return (
-        <>
-          {title && <SectionTitle>{title}</SectionTitle>}
-          <Grid>
-            {data.posts.posts.map(({ id }) => (
-              <PostContainer key={id}>
-                <PostProvider id={id}>
-                  {({ post }) => <PostGridView post={post} />}
-                </PostProvider>
-              </PostContainer>
-            ))}
-          </Grid>
-        </>
-      );
-    }}
-  </Query>
-);
+    if (typeof router.query.postId === 'string') {
+      postId = router.query.postId;
+    }
 
-export default Posts;
+    return (
+      <Query
+        query={GET_POSTS}
+        fetchPolicy="cache-and-network"
+        variables={{
+          page: 0,
+          sort,
+          authorId,
+          likedUserId,
+          tagId
+        }}
+      >
+        {({ loading, error, data }) => {
+          if (loading) {
+            return null;
+          }
+
+          if (error) {
+            return error;
+          }
+
+          if (data.posts.posts.length === 0) {
+            return null;
+          }
+
+          return (
+            <Box>
+              <Modal minimal isOpen={!!postId} onClose={() => router.back()}>
+                <div style={{ width: '1000px' }}>
+                  <PostProvider id={postId}>
+                    {({ post }) => <PostView {...post} />}
+                  </PostProvider>
+                </div>
+              </Modal>
+              {title && <SectionTitle>{title}</SectionTitle>}
+              <Grid>
+                {data.posts.posts.map(({ id }) => (
+                  <PostContainer key={id}>
+                    <PostProvider id={id}>
+                      {({ post }) => <PostGridView post={post} />}
+                    </PostProvider>
+                  </PostContainer>
+                ))}
+              </Grid>
+            </Box>
+          );
+        }}
+      </Query>
+    );
+  }
+}
+
+export default withRouter(Posts);

@@ -44,7 +44,8 @@ const Box = styled.div`
 
 const PostsBox = styled.div`
   margin: 0 20px;
-  width: 800px;
+  display: flex;
+  flex: 1;
   border-radius: 5px;
   overflow: hidden;
 `;
@@ -93,10 +94,10 @@ class UserPage extends React.Component<IProps> {
             return (
               <>
                 <Head>
-                  <title>TwitchRu - {user.mainProfile.name}</title>
+                  <title>{user.mainProfile.name}</title>
                 </Head>
                 <PostsBox>
-                  <Posts authorId={user.id} sort="new" page={page} />
+                  <Posts authorId={user.id} sort="new" />
                 </PostsBox>
                 <RightPanel.Box>
                   <RightPanel.Block>

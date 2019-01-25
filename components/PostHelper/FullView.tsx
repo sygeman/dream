@@ -9,7 +9,7 @@ import { IPost } from './interfaces/Post';
 const Box = styled.div`
   display: flex;
   align-items: stretch;
-  width: 1500px;
+  width: 1300px;
 
   @media (max-width: 1100px) {
     width: 600px;
@@ -18,6 +18,7 @@ const Box = styled.div`
 
 const MainBox = styled.div`
   display: flex;
+  flex-direction: column;
   flex: 1;
   background: ${({ theme }) => theme.dark2Color};
   overflow: hidden;

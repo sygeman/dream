@@ -1,7 +1,6 @@
 import gql from 'graphql-tag';
 import Head from 'next/head';
 import { RouterProps, withRouter } from 'next/router';
-import { lighten } from 'polished';
 import * as React from 'react';
 import { Query } from 'react-apollo';
 import RightPanel from '../components/Nav/Right';
@@ -23,13 +22,6 @@ const Box = styled.div`
   justify-content: center;
   margin: 0 auto;
   padding: 20px 0;
-`;
-
-const TagTitle = styled.div`
-  padding: 10px;
-  margin-bottom: 10px;
-  font-size: 20px;
-  color: ${({ theme }) => lighten(0.3, theme.main1Color)};
 `;
 
 const PostsBox = styled.div`
@@ -56,15 +48,6 @@ class UserPage extends React.Component<IProps> {
 
     if (typeof router.query.id === 'string') {
       tagId = router.query.id;
-    }
-
-    let page = 0;
-
-    if (
-      this.props.router.query.page &&
-      typeof this.props.router.query.page === 'string'
-    ) {
-      page = parseInt(this.props.router.query.page, 10);
     }
 
     return (

@@ -32,12 +32,27 @@ const PostContainer = styled.div`
   padding: 5px;
 `;
 
+const Grid = styled.div`
+  width: 100%;
+  display: grid;
+  padding: 10px 30px;
+  grid-template-columns: repeat(auto-fit, 300px);
+  overflow-y: hidden;
+`;
+
+const SectionTitle = styled.div`
+  display: flex;
+  width: 100%;
+  padding: 15px 35px 0;
+`;
+
 interface IProps {
   page?: number;
   sort?: string;
   authorId?: string;
   likedUserId?: string;
   tagId?: string;
+  title?: string;
 }
 
 const Posts: FC<IProps> = ({
@@ -45,7 +60,8 @@ const Posts: FC<IProps> = ({
   sort,
   authorId,
   likedUserId,
-  tagId
+  tagId,
+  title
 }) => (
   <Query
     query={GET_POSTS}
@@ -67,15 +83,22 @@ const Posts: FC<IProps> = ({
         return error;
       }
 
+      if (data.posts.posts.length === 0) {
+        return null;
+      }
+
       return (
         <>
-          {data.posts.posts.map(({ id }) => (
-            <PostContainer key={id}>
-              <PostProvider id={id}>
-                {({ post }) => <PostGridView post={post} />}
-              </PostProvider>
-            </PostContainer>
-          ))}
+          {title && <SectionTitle>{title}</SectionTitle>}
+          <Grid>
+            {data.posts.posts.map(({ id }) => (
+              <PostContainer key={id}>
+                <PostProvider id={id}>
+                  {({ post }) => <PostGridView post={post} />}
+                </PostProvider>
+              </PostContainer>
+            ))}
+          </Grid>
         </>
       );
     }}

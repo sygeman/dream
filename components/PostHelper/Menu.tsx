@@ -3,10 +3,10 @@ import { darken } from 'polished';
 import * as React from 'react';
 import { Mutation } from 'react-apollo';
 import styled from 'styled-components';
+import { Access } from '../../helpers/Access';
 import { ButtonFlat } from '../../ui/Button';
 import { Dropdown } from '../../ui/Dropdown';
 import { Icon } from '../../ui/Icon';
-import Access from '../Access';
 
 const REMOVE_POST = gql`
   mutation($id: ID!) {

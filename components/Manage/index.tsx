@@ -2,8 +2,8 @@ import { RouterProps, withRouter } from 'next/router';
 import { lighten } from 'polished';
 import { Component } from 'react';
 import styled from 'styled-components';
+import { Access } from '../../helpers/Access';
 import { changeURLParams } from '../../utils/url';
-import Access from '../Access';
 import SectionContent from './SectionContent';
 
 const Box = styled.div`

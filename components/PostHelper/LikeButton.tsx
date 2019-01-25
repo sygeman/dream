@@ -3,9 +3,9 @@ import * as React from 'react';
 import { Mutation } from 'react-apollo';
 import posed from 'react-pose';
 import styled from 'styled-components';
+import { Access } from '../../helpers/Access';
 import { Icon } from '../../ui/Icon';
 import { changeURLParams } from '../../utils/url';
-import Access from '../Access';
 
 const SET_LIKE_STATE = gql`
   mutation($postId: ID!) {

@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import styled from 'styled-components';
-import Access from '../../Access';
+import { Access } from '../../../helpers/Access';
 import Categories from './Categories';
 import Follows from './Follows';
 import MenuItem from './Item';

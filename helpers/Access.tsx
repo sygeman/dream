@@ -40,7 +40,7 @@ interface IProps {
   denyContent?: ReactNode;
 }
 
-const Access: FC<IProps> = ({ allow, children, denyContent }) => (
+export const Access: FC<IProps> = ({ allow, children, denyContent }) => (
   <Query query={GET_USER}>
     {({ loading, error, data }) => {
       if (loading) {
@@ -75,5 +75,3 @@ const Access: FC<IProps> = ({ allow, children, denyContent }) => (
     }}
   </Query>
 );
-
-export default Access;

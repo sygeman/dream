@@ -1,9 +1,6 @@
-import { inject, observer } from 'mobx-react';
-import { Component } from 'react';
 import Scrollbars from 'react-custom-scrollbars';
 import { YMInitializer } from 'react-yandex-metrika';
 import styled from 'styled-components';
-import { IStore } from '../lib/store';
 import LeftMenu from './Nav/Left';
 import TopNav from './Nav/Top';
 
@@ -50,37 +47,25 @@ const ContentInsideBox = styled.div`
   display: flex;
 `;
 
-interface IProps {
-  store?: IStore;
-}
+const Layout = ({ children }) => (
+  <Box>
+    <ContentBox>
+      <TopNav />
+      <Content>
+        <ContentInsideBox>
+          <Left>
+            <Scrollbars>
+              <LeftMenu />
+            </Scrollbars>
+          </Left>
+          <PostsBox>
+            <Scrollbars>{children}</Scrollbars>
+          </PostsBox>
+        </ContentInsideBox>
+      </Content>
+    </ContentBox>
+    <YMInitializer accounts={[51879323]} version="2" />
+  </Box>
+);
 
-@inject('store')
-@observer
-class Main extends Component<IProps> {
-  public render() {
-    const { children } = this.props;
-
-    return (
-      <Box>
-        <ContentBox>
-          <TopNav />
-          <Content>
-            <ContentInsideBox>
-              <Left>
-                <Scrollbars>
-                  <LeftMenu />
-                </Scrollbars>
-              </Left>
-              <PostsBox>
-                <Scrollbars>{children}</Scrollbars>
-              </PostsBox>
-            </ContentInsideBox>
-          </Content>
-        </ContentBox>
-        <YMInitializer accounts={[51879323]} version="2" />
-      </Box>
-    );
-  }
-}
-
-export default Main;
+export default Layout;

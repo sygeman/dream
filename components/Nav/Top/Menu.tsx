@@ -2,10 +2,10 @@ import Router from 'next/router';
 import { darken } from 'polished';
 import * as React from 'react';
 import styled from 'styled-components';
+import { Access } from '../../../helpers/Access';
 import { logout } from '../../../lib/auth';
 import { Dropdown } from '../../../ui/Dropdown';
 import { changeURLParams } from '../../../utils/url';
-import Access from '../../Access';
 
 const Box = styled.div`
   height: 100%;

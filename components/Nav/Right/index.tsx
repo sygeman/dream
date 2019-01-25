@@ -4,8 +4,9 @@ export const RightPanel = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
-  min-width: 340px;
-  max-width: 340px;
+  min-width: 360px;
+  max-width: 360px;
+  padding: 0 20px;
 
   @media (max-width: 1100px) {
     display: none;

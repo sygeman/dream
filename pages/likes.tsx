@@ -2,7 +2,6 @@ import gql from 'graphql-tag';
 import { RouterProps, withRouter } from 'next/router';
 import { Component } from 'react';
 import { Query } from 'react-apollo';
-import styled from 'styled-components';
 import PostFullView from '../components/PostHelper/FullView';
 import Posts from '../components/Posts';
 import Streams from '../components/Stream';
@@ -15,20 +14,6 @@ const GET_USER = gql`
       id
     }
   }
-`;
-
-const Grid = styled.div`
-  width: 100%;
-  display: grid;
-  padding: 10px 30px;
-  grid-template-columns: repeat(auto-fit, 300px);
-  overflow-y: hidden;
-`;
-
-const SectionTitle = styled.div`
-  display: flex;
-  width: 100%;
-  padding: 15px 35px 0;
 `;
 
 interface IProps {
@@ -71,13 +56,8 @@ class LikesPage extends Component<IProps> {
                   {({ post }) => <PostFullView {...post} />}
                 </PostProvider>
               </Modal>
-              <Grid>
-                <Streams />
-              </Grid>
-              <SectionTitle>Понравившиеся</SectionTitle>
-              <Grid>
-                <Posts likedUserId={user.id} />
-              </Grid>
+              <Streams />
+              <Posts title="Понравившиеся" likedUserId={user.id} />
             </>
           );
         }}

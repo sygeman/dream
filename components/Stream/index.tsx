@@ -1,6 +1,7 @@
 import gql from 'graphql-tag';
 import { FC } from 'react';
 import { Query } from 'react-apollo';
+import styled from 'styled-components';
 import Streams from './Streams';
 
 const GET_STREAMS = gql`
@@ -42,6 +43,14 @@ const STREAM_REMOVED = gql`
   }
 `;
 
+const Grid = styled.div`
+  width: 100%;
+  display: grid;
+  padding: 10px 30px;
+  grid-template-columns: repeat(auto-fit, 300px);
+  overflow-y: hidden;
+`;
+
 interface IProps {
   manage?: boolean;
 }
@@ -58,64 +67,66 @@ const StreamsWithData: FC<IProps> = ({ manage }) => (
       }
 
       return (
-        <Streams
-          streams={data.streams}
-          manage={manage}
-          streamAdded={() =>
-            subscribeToMore({
-              document: STREAM_ADDED,
-              updateQuery: (prev, { subscriptionData }) => {
-                if (!subscriptionData.data) {
-                  return prev;
+        <Grid>
+          <Streams
+            streams={data.streams}
+            manage={manage}
+            streamAdded={() =>
+              subscribeToMore({
+                document: STREAM_ADDED,
+                updateQuery: (prev, { subscriptionData }) => {
+                  if (!subscriptionData.data) {
+                    return prev;
+                  }
+                  const newStream = subscriptionData.data.streamAdded;
+
+                  return {
+                    ...prev,
+                    streams: [...prev.streams, newStream]
+                  };
                 }
-                const newStream = subscriptionData.data.streamAdded;
+              })
+            }
+            streamUpdated={() =>
+              subscribeToMore({
+                document: STREAM_UPDATED,
+                updateQuery: (prev, { subscriptionData }) => {
+                  if (!subscriptionData.data) {
+                    return prev;
+                  }
+                  const stream = subscriptionData.data.streamUpdated;
 
-                return {
-                  ...prev,
-                  streams: [...prev.streams, newStream]
-                };
-              }
-            })
-          }
-          streamUpdated={() =>
-            subscribeToMore({
-              document: STREAM_UPDATED,
-              updateQuery: (prev, { subscriptionData }) => {
-                if (!subscriptionData.data) {
-                  return prev;
+                  return {
+                    ...prev,
+                    streams: prev.streams.map(s => {
+                      if (s.id !== stream.id) {
+                        return s;
+                      }
+
+                      return stream;
+                    })
+                  };
                 }
-                const stream = subscriptionData.data.streamUpdated;
+              })
+            }
+            streamRemoved={() =>
+              subscribeToMore({
+                document: STREAM_REMOVED,
+                updateQuery: (prev, { subscriptionData }) => {
+                  if (!subscriptionData.data) {
+                    return prev;
+                  }
+                  const streamId = subscriptionData.data.streamRemoved;
 
-                return {
-                  ...prev,
-                  streams: prev.streams.map(s => {
-                    if (s.id !== stream.id) {
-                      return s;
-                    }
-
-                    return stream;
-                  })
-                };
-              }
-            })
-          }
-          streamRemoved={() =>
-            subscribeToMore({
-              document: STREAM_REMOVED,
-              updateQuery: (prev, { subscriptionData }) => {
-                if (!subscriptionData.data) {
-                  return prev;
+                  return {
+                    ...prev,
+                    streams: prev.streams.filter(s => s.id !== streamId)
+                  };
                 }
-                const streamId = subscriptionData.data.streamRemoved;
-
-                return {
-                  ...prev,
-                  streams: prev.streams.filter(s => s.id !== streamId)
-                };
-              }
-            })
-          }
-        />
+              })
+            }
+          />
+        </Grid>
       );
     }}
   </Query>

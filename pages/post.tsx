@@ -1,8 +1,9 @@
 import { RouterProps, withRouter } from 'next/router';
 import * as React from 'react';
 import RightPanel from '../components/Nav/Right';
-import Post from '../components/Post';
+import PostFeedView from '../components/PostHelper/FeedView';
 import Streams from '../components/Streams';
+import PostProvider from '../providers/Post';
 import styled from '../theme';
 
 const Box = styled.div`
@@ -40,7 +41,9 @@ class PostPage extends React.Component<IProps> {
     return (
       <Box>
         <PostBox>
-          <Post id={postId} meta />
+          <PostProvider id={postId}>
+            {({ post }) => <PostFeedView {...post} meta />}
+          </PostProvider>
         </PostBox>
         <RightPanel.Box>
           <RightPanel.Block>

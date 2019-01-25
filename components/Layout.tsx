@@ -1,7 +1,9 @@
 import { inject, observer } from 'mobx-react';
 import { RouterProps, withRouter } from 'next/router';
+import { rgba } from 'polished';
 import { Component } from 'react';
 import Scrollbars from 'react-custom-scrollbars';
+import posed from 'react-pose';
 import { YMInitializer } from 'react-yandex-metrika';
 import styled from 'styled-components';
 import PostView from '../components/PostHelper/View';
@@ -23,24 +25,37 @@ const Box = styled.div`
 const Content = styled.div`
   flex: 1;
   overflow: hidden;
+  position: relative;
 `;
 
-const Left = styled.div`
-  min-width: 260px;
+const LeftAnim = posed.div({
+  closed: { left: -260 },
+  open: { left: 0 }
+});
+
+const Left = styled(LeftAnim)`
   background: ${({ theme }) => theme.dark2Color};
-
-  @media (max-width: 1000px) {
-    display: none;
-  }
+  width: 260px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  z-index: 100;
+}
 `;
 
-const PostsBox = styled.div`
+const PostsBoxAnim = posed.div({
+  noPaddingLeft: { 'padding-left': 0 },
+  paddingLeft: { 'padding-left': '260px' }
+});
+
+const PostsBox = styled(PostsBoxAnim)`
   display: flex;
   flex-direction: column;
   width: 100%;
 `;
 
-const ContentBox = styled.div`
+const ContentBox = styled('div')`
   position: relative;
   width: 100%;
   height: 100%;
@@ -54,14 +69,23 @@ const ContentInsideBox = styled.div`
   display: flex;
 `;
 
+const Overlay = styled.div`
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: ${({ theme }) => rgba(theme.dark2Color, 0.7)};
+  z-index: 50;
+`;
+
 interface IProps {
   store?: IStore;
   router: RouterProps;
 }
 
 interface IState {
-  countOnRow: number;
-  gridWidth: number;
+  smallWindow: boolean;
 }
 
 @inject('store')
@@ -69,6 +93,10 @@ interface IState {
 class Layout extends Component<IProps, IState> {
   constructor(props) {
     super(props);
+
+    this.state = {
+      smallWindow: true
+    };
   }
 
   public getCalcCountOnRow = () => {
@@ -76,6 +104,14 @@ class Layout extends Component<IProps, IState> {
 
     if (width >= 1000) {
       width = width - 260;
+    }
+
+    const smallWindow = width < 1000;
+
+    if (smallWindow !== this.state.smallWindow) {
+      this.props.store.leftMenuTrigger(!smallWindow);
+
+      this.setState({ smallWindow });
     }
 
     let countOnRow = Math.floor((width - 60) / 300);
@@ -131,12 +167,19 @@ class Layout extends Component<IProps, IState> {
           <TopNav />
           <Content>
             <ContentInsideBox>
-              <Left>
+              <Left pose={store.leftMenuIsOpen ? 'open' : 'closed'}>
                 <Scrollbars>
                   <LeftMenu />
                 </Scrollbars>
               </Left>
-              <PostsBox id="layoutContent">
+              <PostsBox
+                id="layoutContent"
+                pose={
+                  store.leftMenuIsOpen && !this.state.smallWindow
+                    ? 'paddingLeft'
+                    : 'noPaddingLeft'
+                }
+              >
                 <Scrollbars
                   onScrollFrame={e => {
                     const offset =
@@ -148,6 +191,11 @@ class Layout extends Component<IProps, IState> {
                 </Scrollbars>
               </PostsBox>
             </ContentInsideBox>
+            {this.state.smallWindow && store.leftMenuIsOpen && (
+              <Overlay
+                onClick={() => this.props.store.leftMenuTrigger(false)}
+              />
+            )}
           </Content>
         </ContentBox>
         <YMInitializer accounts={[51879323]} version="2" />

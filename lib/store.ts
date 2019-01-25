@@ -13,7 +13,8 @@ const Store = types
     playSourceKey: '',
     layoutInLoadArea: false,
     gridCountOnRow: 0,
-    gridWidth: 0
+    gridWidth: 0,
+    leftMenuIsOpen: true
   })
   .actions(self => {
     const setPlaySource = playSourceKey => {
@@ -29,7 +30,12 @@ const Store = types
       self.gridWidth = gridWidth;
     };
 
-    return { setPlaySource, setLayoutInLoadArea, setGridData };
+    const leftMenuTrigger = (isOpen?: boolean) => {
+      self.leftMenuIsOpen =
+        typeof isOpen === 'boolean' ? isOpen : !self.leftMenuIsOpen;
+    };
+
+    return { setPlaySource, setLayoutInLoadArea, setGridData, leftMenuTrigger };
   });
 
 type IStore = Instance<typeof Store>;

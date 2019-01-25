@@ -5,6 +5,7 @@ import { Component } from 'react';
 import styled from 'styled-components';
 import { IStore } from '../../../lib/store';
 import UserProvider from '../../../providers/User';
+import { Icon } from '../../../ui/Icon';
 import GuestBlock from './GuestBlock';
 import UserBlock from './UserBlock';
 
@@ -35,6 +36,16 @@ const Links = styled.div`
 const Right = styled.div`
   display: flex;
   align-items: center;
+`;
+
+const MenuButton = styled.div`
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 10px 0 30px;
+  font-size: 20px;
+  color: ${({ theme }) => lighten(0.3, theme.main1Color)};
+  cursor: pointer;
 `;
 
 const LogoImg = styled.img`
@@ -78,8 +89,11 @@ interface IState {
 class TopNav extends Component<IProps, IState> {
   public render() {
     return (
-      <Box shadow={!this.props.store.layoutScrollIsTop}>
+      <Box>
         <Left>
+          <MenuButton onClick={() => this.props.store.leftMenuTrigger()}>
+            <Icon type="menu" />
+          </MenuButton>
           <Link href="/" passHref>
             <a>
               <LogoImg src="https://cdn.frankerfacez.com/emoticon/243789/2" />

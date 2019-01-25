@@ -3,6 +3,7 @@ import { inject, observer } from 'mobx-react';
 import { FC } from 'react';
 import { Query } from 'react-apollo';
 import styled from 'styled-components';
+import { IStore } from '../../lib/store';
 import Streams from './Streams';
 
 const GET_STREAMS = gql`
@@ -61,6 +62,7 @@ const Grid = styled.div`
 
 interface IProps {
   manage?: boolean;
+  store: IStore;
 }
 
 const StreamsWithData: FC<IProps> = ({ manage, store }) => (

@@ -3,6 +3,7 @@ import { inject, observer } from 'mobx-react';
 import { RouterProps, withRouter } from 'next/router';
 import { Component } from 'react';
 import styled from 'styled-components';
+import { IStore } from '../lib/store';
 import PostProvider from '../providers/Post';
 import { Button } from '../ui/Button';
 import PostGridView from './PostHelper/GridView';
@@ -60,6 +61,7 @@ interface IProps {
   loading: boolean;
   hasMore: boolean;
   router: RouterProps;
+  store: IStore;
   loadMore: () => Promise<void>;
 }
 
@@ -89,6 +91,7 @@ class PostsView extends Component<IProps> {
   public render() {
     const { posts, router, store, loading, hasMore, loadMore } = this.props;
 
+    /* tslint:disable */
     store.layoutInLoadArea;
 
     return (

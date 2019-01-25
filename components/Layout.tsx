@@ -3,6 +3,7 @@ import { Component } from 'react';
 import Scrollbars from 'react-custom-scrollbars';
 import { YMInitializer } from 'react-yandex-metrika';
 import styled from 'styled-components';
+import { IStore } from '../lib/store';
 import LeftMenu from './Nav/Left';
 import TopNav from './Nav/Top';
 
@@ -49,6 +50,10 @@ const ContentInsideBox = styled.div`
   display: flex;
 `;
 
+interface IProps {
+  store: IStore;
+}
+
 interface IState {
   countOnRow: number;
   gridWidth: number;
@@ -56,7 +61,7 @@ interface IState {
 
 @inject('store')
 @observer
-export default class Layout extends Component<{}, IState> {
+export default class Layout extends Component<IProps, IState> {
   public getCalcCountOnRow = () => {
     let width = window.innerWidth;
 

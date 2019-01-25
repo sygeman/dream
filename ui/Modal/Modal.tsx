@@ -21,7 +21,7 @@ const BGOut = styled.div`
   width: 100%;
   top: 0;
   left: 0;
-  background: ${({ theme }) => theme.dark2Color};
+  background: ${({ theme }) => theme.dark1Color};
   opacity: 0.7;
   z-index: 3000;
 `;

@@ -5,7 +5,6 @@ import styled from 'styled-components';
 import { Access } from '../../../helpers/Access';
 import { logout } from '../../../lib/auth';
 import { Dropdown } from '../../../ui/Dropdown';
-import { changeURLParams } from '../../../utils/url';
 
 const Box = styled.div`
   height: 100%;
@@ -51,7 +50,7 @@ export default class PostMenu extends React.Component<IProps> {
             Панель управления
           </UserMenuItem>
         </Access>
-        <UserMenuItem onClick={() => changeURLParams({ set: { profile: 1 } })}>
+        <UserMenuItem onClick={() => Router.push('/settings')}>
           Настройки
         </UserMenuItem>
         <UserMenuItem onClick={() => logout()}>Выход</UserMenuItem>

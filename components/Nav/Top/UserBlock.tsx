@@ -5,11 +5,10 @@ import styled from 'styled-components';
 import { Avatar } from '../../../ui/Avatar';
 import { Button } from '../../../ui/Button';
 import { Icon } from '../../../ui/Icon';
-import { Modal, ModalFull } from '../../../ui/Modal';
+import { Modal } from '../../../ui/Modal';
 import { humanNumbers } from '../../../utils/count';
 import { changeURLParams } from '../../../utils/url';
 import CreatePost from '../../CreatePost';
-import Profile from '../../Profile';
 import Menu from './Menu';
 
 const Box = styled.div`
@@ -145,9 +144,6 @@ class UserBlockWithoutRouter extends Component<IProps> {
             </UserCaratBox>
           </UserDataBox>
         </Menu>
-        <ModalFull isOpen={router.query.profile === '1'}>
-          <Profile onClose={() => changeURLParams({ remove: ['profile'] })} />
-        </ModalFull>
       </Box>
     );
   }

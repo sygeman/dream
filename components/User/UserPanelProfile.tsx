@@ -1,7 +1,7 @@
 import { darken, lighten, rgba } from 'polished';
 import * as React from 'react';
 // import UserProvider from '../providers/User';
-import styled from '../../theme';
+import styled from 'styled-components';
 import { Icon } from '../../ui/Icon';
 import { shortNumbers } from '../../utils/count';
 

@@ -1,9 +1,9 @@
 import gql from 'graphql-tag';
-import { darken, lighten, rgba } from 'polished';
+import { darken, lighten } from 'polished';
 import { FC } from 'react';
 import { Mutation, Query } from 'react-apollo';
 import posed from 'react-pose';
-import styled from '../../theme';
+import styled from 'styled-components';
 import { Icon } from '../../ui/Icon';
 import { TwitchPlayer } from '../../ui/TwitchPlayer';
 
@@ -85,6 +85,7 @@ const Logo = styled.div`
 const LogoImg = styled.img`
   width: 30px;
   height: 30px;
+  border-radius: 4px;
 `;
 
 const Online = styled.div`

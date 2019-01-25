@@ -2,8 +2,8 @@ import { inject, observer } from 'mobx-react';
 import { Component } from 'react';
 import Scrollbars from 'react-custom-scrollbars';
 import { YMInitializer } from 'react-yandex-metrika';
+import styled from 'styled-components';
 import { IStore } from '../lib/store';
-import styled from '../theme';
 import LeftMenu from './Nav/Left';
 import TopNav from './Nav/Top';
 
@@ -22,7 +22,7 @@ const Content = styled.div`
 `;
 
 const Left = styled.div`
-  min-width: 280px;
+  min-width: 260px;
   background: ${({ theme }) => theme.dark2Color};
 
   @media (max-width: 1000px) {

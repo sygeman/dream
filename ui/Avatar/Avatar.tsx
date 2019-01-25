@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import styled from '../theme';
+import styled from 'styled-components';
 
 const AuthorAvatar = styled.div`
   min-height: 32px;
@@ -23,10 +23,8 @@ interface IProps {
   onClick?: () => void;
 }
 
-const Avatar: FC<IProps> = ({ avatar, onClick }) => (
+export const Avatar: FC<IProps> = ({ avatar, onClick }) => (
   <AuthorAvatar onClick={onClick}>
     {avatar && <AuthorAvatarImg src={avatar} />}
   </AuthorAvatar>
 );
-
-export default Avatar;

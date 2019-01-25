@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import styled from '../../theme';
+import styled from 'styled-components';
 import { Icon } from '../../ui/Icon';
 
 const CommentsBox = styled.div`

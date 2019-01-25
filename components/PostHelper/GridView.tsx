@@ -1,7 +1,7 @@
 import distanceInWordsToNow from 'date-fns/distance_in_words_to_now';
 import ruLocale from 'date-fns/locale/ru';
 import Router from 'next/router';
-import { darken, lighten, rgba } from 'polished';
+import { lighten } from 'polished';
 import { FC } from 'react';
 import styled from 'styled-components';
 import { Icon } from '../../ui/Icon';

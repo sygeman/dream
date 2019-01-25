@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 import { lighten } from 'polished';
 import { FC } from 'react';
 import { Query, Subscription } from 'react-apollo';
-import styled from '../../theme';
+import styled from 'styled-components';
 import Game from './Game';
 import History from './History';
 

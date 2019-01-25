@@ -1,7 +1,7 @@
 import { inject, observer } from 'mobx-react';
 import * as React from 'react';
+import styled from 'styled-components';
 import { IStore } from '../lib/store';
-import styled from '../theme';
 import { Icon } from '../ui/Icon';
 
 const Box = styled.div`

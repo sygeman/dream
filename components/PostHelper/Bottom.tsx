@@ -1,4 +1,4 @@
-import styled from '../../theme';
+import styled from 'styled-components';
 
 const Bottom = styled.div`
   height: 50px;

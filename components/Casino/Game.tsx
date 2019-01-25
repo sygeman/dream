@@ -3,7 +3,7 @@ import gql from 'graphql-tag';
 import { lighten } from 'polished';
 import { Component } from 'react';
 import { Mutation } from 'react-apollo';
-import styled from '../../theme';
+import styled from 'styled-components';
 import { Button } from '../../ui/Button';
 import { changeURLParams } from '../../utils/url';
 import Access from '../Access';

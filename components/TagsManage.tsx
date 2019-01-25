@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 import { differenceWith } from 'lodash';
 import { FC } from 'react';
 import { Query } from 'react-apollo';
-import styled from '../theme';
+import styled from 'styled-components';
 import { Button } from '../ui/Button';
 import { Dropdown } from '../ui/Dropdown';
 import { Icon } from '../ui/Icon';

@@ -5,8 +5,8 @@ import Head from 'next/head';
 import Link from 'next/link';
 import * as React from 'react';
 import { Query } from 'react-apollo';
-import styled from '../../theme';
-import Avatar from '../Avatar';
+import styled from 'styled-components';
+import { Avatar } from '../../ui/Avatar';
 
 const GET_USER = gql`
   query($id: ID!) {

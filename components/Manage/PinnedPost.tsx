@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 import { FC } from 'react';
 import { Mutation, Query } from 'react-apollo';
-import styled from '../../theme';
+import styled from 'styled-components';
 import { Button } from '../../ui/Button';
 import { GET_PINNED_POSTS } from './PinnedPosts';
 

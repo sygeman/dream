@@ -2,12 +2,12 @@ import { RouterProps, withRouter } from 'next/router';
 import { darken, lighten } from 'polished';
 import { Component } from 'react';
 import styled from 'styled-components';
+import { Avatar } from '../../../ui/Avatar';
 import { Button } from '../../../ui/Button';
 import { Icon } from '../../../ui/Icon';
 import { Modal, ModalFull } from '../../../ui/Modal';
 import { humanNumbers } from '../../../utils/count';
 import { changeURLParams } from '../../../utils/url';
-import Avatar from '../../Avatar';
 import CreatePost from '../../CreatePost';
 import Profile from '../../Profile';
 import Menu from './Menu';
@@ -19,7 +19,7 @@ const Box = styled.div`
 `;
 
 const UserDataBox = styled.div`
-  padding: 0 10px;
+  padding: 0 5px;
   display: flex;
   cursor: pointer;
   align-items: center;
@@ -32,7 +32,7 @@ const AvatarBox = styled.div`
 
 const PointsBox = styled.div`
   display: flex;
-  margin: 0 20px;
+  margin: 0 10px;
 `;
 
 const Points = styled.div`
@@ -59,7 +59,7 @@ const PointsIcon = styled.div`
   border-radius: 100%;
   background: transparent;
   border: 2px solid;
-  margin: 0 10px 0 5px;
+  margin: 0 10px 0 0;
   font-size: 10px;
   display: flex;
   align-items: center;

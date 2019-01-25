@@ -26,6 +26,10 @@ interface IProps {
 }
 
 class TopAllPage extends Component<IProps> {
+  constructor(props) {
+    super(props);
+  }
+
   public render() {
     let postId = null;
 

@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import { FC } from 'react';
-import styled from '../../theme';
+import styled from 'styled-components';
 import Comments from '../Comments';
 import PostHelper from '../PostHelper';
 import SourceView from '../SourceView';

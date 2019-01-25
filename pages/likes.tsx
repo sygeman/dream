@@ -1,13 +1,13 @@
 import gql from 'graphql-tag';
-import Head from 'next/head';
 import { RouterProps, withRouter } from 'next/router';
-import * as React from 'react';
+import { Component } from 'react';
 import { Query } from 'react-apollo';
-import RightPanel from '../components/Nav/Right';
+import styled from 'styled-components';
+import PostFullView from '../components/PostHelper/FullView';
 import Posts from '../components/Posts';
-import ScrollTopButton from '../components/ScrollTopButton';
-import Streams from '../components/Streams';
-import styled from '../theme';
+import Streams from '../components/Stream';
+import PostProvider from '../providers/Post';
+import { Modal } from '../ui/Modal';
 
 const GET_USER = gql`
   query getUser {
@@ -17,74 +17,73 @@ const GET_USER = gql`
   }
 `;
 
-const Box = styled.div`
-  display: flex;
-  justify-content: center;
-  margin: 0 auto;
-  padding: 20px 0;
+const Grid = styled.div`
+  width: 100%;
+  display: grid;
+  padding: 10px 30px;
+  grid-template-columns: repeat(auto-fit, 300px);
+  overflow-y: hidden;
 `;
 
-const PostsBox = styled.div`
-  margin: 0 20px;
-  width: 800px;
-  border-radius: 5px;
-  overflow: hidden;
+const SectionTitle = styled.div`
+  display: flex;
+  width: 100%;
+  padding: 15px 35px 0;
 `;
 
 interface IProps {
   router: RouterProps;
 }
 
-class UserPage extends React.Component<IProps> {
+class LikesPage extends Component<IProps> {
   constructor(props) {
     super(props);
   }
 
   public render() {
-    let page = 0;
+    let postId = null;
 
-    if (
-      this.props.router.query.page &&
-      typeof this.props.router.query.page === 'string'
-    ) {
-      page = parseInt(this.props.router.query.page, 10);
+    if (typeof this.props.router.query.postId === 'string') {
+      postId = this.props.router.query.postId;
     }
 
     return (
-      <Box>
-        <Query query={GET_USER}>
-          {({ loading, error, data }) => {
-            if (loading || error) {
-              return null;
-            }
+      <Query query={GET_USER}>
+        {({ loading, error, data }) => {
+          if (loading || error) {
+            return null;
+          }
 
-            if (!data || !data.user) {
-              return 'User not found';
-            }
+          if (!data || !data.user) {
+            return 'User not found';
+          }
 
-            const user = data.user;
+          const user = data.user;
 
-            return (
-              <>
-                <Head>
-                  <title>TwitchRu - Лайки</title>
-                </Head>
-                <PostsBox>
-                  <Posts likedUserId={user.id} sort="new" page={page} />
-                </PostsBox>
-                <RightPanel.Box>
-                  <RightPanel.Block>
-                    <Streams />
-                  </RightPanel.Block>
-                </RightPanel.Box>
-              </>
-            );
-          }}
-        </Query>
-        <ScrollTopButton />
-      </Box>
+          return (
+            <>
+              <Modal
+                minimal
+                isOpen={!!postId}
+                onClose={() => this.props.router.back()}
+              >
+                <PostProvider id={postId}>
+                  {({ post }) => <PostFullView {...post} />}
+                </PostProvider>
+              </Modal>
+              <Grid>
+                <Streams />
+              </Grid>
+              <SectionTitle>Понравившиеся</SectionTitle>
+              <Grid>
+                <Posts likedUserId={user.id} />
+              </Grid>
+            </>
+          );
+        }}
+      </Query>
     );
   }
 }
 
-export default withRouter(UserPage);
+export default withRouter(LikesPage);

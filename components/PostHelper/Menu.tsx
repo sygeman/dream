@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 import { darken } from 'polished';
 import * as React from 'react';
 import { Mutation } from 'react-apollo';
-import styled from '../../theme';
+import styled from 'styled-components';
 import { ButtonFlat } from '../../ui/Button';
 import { Dropdown } from '../../ui/Dropdown';
 import { Icon } from '../../ui/Icon';

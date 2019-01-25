@@ -26,6 +26,10 @@ interface IProps {
 }
 
 class TopWeekPage extends Component<IProps> {
+  constructor(props) {
+    super(props);
+  }
+
   public render() {
     let postId = null;
 

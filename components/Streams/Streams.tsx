@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import styled from '../../theme';
+import styled from 'styled-components';
 import Stream from './Stream';
 
 const Box = styled.div`

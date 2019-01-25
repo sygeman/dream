@@ -26,6 +26,10 @@ interface IProps {
 }
 
 class HotPage extends Component<IProps> {
+  constructor(props) {
+    super(props);
+  }
+
   public render() {
     let postId = null;
 

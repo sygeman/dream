@@ -3,7 +3,7 @@ import { lighten } from 'polished';
 import * as React from 'react';
 import { Mutation } from 'react-apollo';
 import posed from 'react-pose';
-import styled from '../../theme';
+import styled from 'styled-components';
 import { Icon } from '../../ui/Icon';
 import { changeURLParams } from '../../utils/url';
 import Access from '../Access';

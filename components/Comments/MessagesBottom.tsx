@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 import * as React from 'react';
 import { Mutation } from 'react-apollo';
-import styled from '../../theme';
+import styled from 'styled-components';
 import { convertTextToEmojiCode } from '../../utils/emoji';
 import Access from '../Access';
 

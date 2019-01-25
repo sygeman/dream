@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 import { FC } from 'react';
 import { Query } from 'react-apollo';
-import styled from '../../theme';
+import styled from 'styled-components';
 import PinnedPost from './PinnedPost';
 
 export const GET_PINNED_POSTS = gql`

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from '../../theme';
+import styled from 'styled-components';
 import Comment from './Comment';
 
 const Messages = styled.div`

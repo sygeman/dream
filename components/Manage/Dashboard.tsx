@@ -1,8 +1,7 @@
 import gql from 'graphql-tag';
 import { FC } from 'react';
 import { Query } from 'react-apollo';
-import styled from '../../theme';
-import UsersTop from '../UsersTop';
+import styled from 'styled-components';
 import DashCount from './DashCount';
 import OnlineCount from './OnlineCount';
 
@@ -52,12 +51,6 @@ const Box = styled.div`
   padding: 20px;
   grid-template-columns: repeat(auto-fit, 300px);
   overflow-y: hidden;
-`;
-
-const Block = styled.div`
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  overflow-y: hidden;
-  border-radius: 5px;
 `;
 
 const Dashboard: FC = () => {
@@ -123,9 +116,6 @@ const Dashboard: FC = () => {
           return <DashCount title="Клипы" count={count} />;
         }}
       </Query>
-      <Block>
-        <UsersTop />
-      </Block>
     </Box>
   );
 };

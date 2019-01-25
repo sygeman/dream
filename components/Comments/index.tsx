@@ -91,6 +91,14 @@ export default class extends React.Component<IProps> {
                         }
                         const newMessage = subscriptionData.data.commentCreated;
 
+                        if (
+                          prev.comments.findIndex(
+                            c => c.id === newMessage.id
+                          ) >= 0
+                        ) {
+                          return prev;
+                        }
+
                         return {
                           ...prev,
                           comments: [...prev.comments.slice(-limit), newMessage]

@@ -11,7 +11,9 @@ let store: IStore = null as any;
 const Store = types
   .model({
     playSourceKey: '',
-    layoutInLoadArea: false
+    layoutInLoadArea: false,
+    gridCountOnRow: 0,
+    gridWidth: 0
   })
   .actions(self => {
     const setPlaySource = playSourceKey => {
@@ -22,7 +24,12 @@ const Store = types
       self.layoutInLoadArea = layoutInLoadArea;
     };
 
-    return { setPlaySource, setLayoutInLoadArea };
+    const setGridData = (gridCountOnRow, gridWidth) => {
+      self.gridCountOnRow = gridCountOnRow;
+      self.gridWidth = gridWidth;
+    };
+
+    return { setPlaySource, setLayoutInLoadArea, setGridData };
   });
 
 type IStore = Instance<typeof Store>;

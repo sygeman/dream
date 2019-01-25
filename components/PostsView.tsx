@@ -2,12 +2,9 @@ import gql from 'graphql-tag';
 import { inject, observer } from 'mobx-react';
 import { RouterProps, withRouter } from 'next/router';
 import { Component } from 'react';
-import { Query } from 'react-apollo';
 import styled from 'styled-components';
-import PostView from '../components/PostHelper/View';
 import PostProvider from '../providers/Post';
 import { Button } from '../ui/Button';
-import { Modal } from '../ui/Modal';
 import PostGridView from './PostHelper/GridView';
 
 export const GET_POSTS = gql`
@@ -49,15 +46,17 @@ const Grid = styled.div`
 
 const Loading = styled.div`
   padding: 10px;
+  text-align: center;
 `;
 
 const LoadMore = styled.div`
   padding: 10px;
+  text-align: center;
+  cursor: pointer;
 `;
 
 interface IProps {
   posts: any;
-  count: number;
   loading: boolean;
   hasMore: boolean;
   router: RouterProps;
@@ -81,44 +80,48 @@ class PostsView extends Component<IProps> {
       this.props.hasMore
     ) {
       this.loadLock = true;
-      console.log('loadMore');
       this.props.loadMore().then(() => {
-        console.log('loaded');
         this.loadLock = false;
       });
     }
   }
 
   public render() {
-    const { posts, count, router, store, loading, hasMore } = this.props;
+    const { posts, router, store, loading, hasMore, loadMore } = this.props;
 
     store.layoutInLoadArea;
 
     return (
-      <Grid>
-        {posts.map(({ id }) => (
-          <PostContainer key={id}>
-            <PostProvider id={id}>
-              {({ post }) => (
-                <PostGridView
-                  post={post}
-                  onPlay={() => {
-                    router.push(
-                      `${router.route}?postId=${post.id}`,
-                      `/post?id=${post.id}`,
-                      {
-                        shallow: true
-                      }
-                    );
-                  }}
-                />
-              )}
-            </PostProvider>
-          </PostContainer>
-        ))}
+      <>
+        <Grid>
+          {posts.map(({ id }) => (
+            <PostContainer key={id}>
+              <PostProvider id={id}>
+                {({ post }) => (
+                  <PostGridView
+                    post={post}
+                    onPlay={() => {
+                      router.push(
+                        `${router.route}?postId=${post.id}`,
+                        `/post?id=${post.id}`,
+                        {
+                          shallow: true
+                        }
+                      );
+                    }}
+                  />
+                )}
+              </PostProvider>
+            </PostContainer>
+          ))}
+        </Grid>
         {loading && <Loading>Загрузка...</Loading>}
-        {!loading && hasMore && <LoadMore>Загрузить еще</LoadMore>}
-      </Grid>
+        {!loading && hasMore && (
+          <LoadMore>
+            <Button onClick={() => loadMore()}>Загрузить еще</Button>
+          </LoadMore>
+        )}
+      </>
     );
   }
 }

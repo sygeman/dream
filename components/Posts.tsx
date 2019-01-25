@@ -1,13 +1,13 @@
 import gql from 'graphql-tag';
+import { inject, observer } from 'mobx-react';
 import { RouterProps, withRouter } from 'next/router';
 import { Component } from 'react';
 import { Query } from 'react-apollo';
 import styled from 'styled-components';
 import PostView from '../components/PostHelper/View';
+import { IStore } from '../lib/store';
 import PostProvider from '../providers/Post';
-import { Button } from '../ui/Button';
 import { Modal } from '../ui/Modal';
-import PostGridView from './PostHelper/GridView';
 import PostsView from './PostsView';
 
 export const GET_POSTS = gql`
@@ -35,14 +35,11 @@ export const GET_POSTS = gql`
   }
 `;
 
-const PostContainer = styled.div`
-  padding: 5px;
-`;
-
 const Box = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: ${({ gridWidth }) => gridWidth}px;
+  margin: 0 auto;
 `;
 
 const SectionTitle = styled.div`
@@ -61,8 +58,11 @@ interface IProps {
   limit?: number;
   noMore?: boolean;
   router: RouterProps;
+  store: IStore;
 }
 
+@inject('store')
+@observer
 class Posts extends Component<IProps> {
   public limit: number = 25;
   public page: number = 0;
@@ -73,7 +73,17 @@ class Posts extends Component<IProps> {
   }
 
   public render() {
-    const { sort, authorId, likedUserId, tagId, title, router } = this.props;
+    const {
+      sort,
+      authorId,
+      likedUserId,
+      tagId,
+      title,
+      router,
+      noMore,
+      rows,
+      store
+    } = this.props;
 
     let postId = null;
 
@@ -82,7 +92,7 @@ class Posts extends Component<IProps> {
     }
 
     return (
-      <Box>
+      <Box gridWidth={store.gridWidth}>
         <Modal minimal isOpen={!!postId} onClose={() => router.back()}>
           <div style={{ width: '1000px' }}>
             <PostProvider id={postId}>
@@ -90,8 +100,6 @@ class Posts extends Component<IProps> {
             </PostProvider>
           </div>
         </Modal>
-        {title && <SectionTitle>{title}</SectionTitle>}
-
         <Query
           query={GET_POSTS}
           fetchPolicy="cache-and-network"
@@ -109,7 +117,13 @@ class Posts extends Component<IProps> {
               return null;
             }
 
-            const currentCount = data.posts.posts.length;
+            let posts = data.posts.posts;
+
+            if (rows > 0) {
+              posts = posts.slice(0, rows * store.gridCountOnRow);
+            }
+
+            const currentCount = posts.length;
 
             if (currentCount === 0) {
               return null;
@@ -117,36 +131,42 @@ class Posts extends Component<IProps> {
 
             const hasMore = data.posts.count - currentCount > 0;
 
-            return (
-              <PostsView
-                posts={data.posts.posts}
-                count={data.posts.count}
-                loading={loading}
-                hasMore={hasMore}
-                loadMore={() =>
-                  fetchMore({
-                    variables: {
-                      offset: data.posts.posts.length
-                    },
-                    updateQuery: (prev, { fetchMoreResult }) => {
-                      if (!fetchMoreResult) {
-                        return prev;
-                      }
+            if (store.gridWidth === 0) {
+              return null;
+            }
 
-                      return {
-                        ...prev,
-                        posts: {
-                          ...prev.posts,
-                          posts: [
-                            ...prev.posts.posts,
-                            ...fetchMoreResult.posts.posts
-                          ]
+            return (
+              <>
+                {title && <SectionTitle>{title}</SectionTitle>}
+                <PostsView
+                  posts={posts}
+                  loading={loading}
+                  hasMore={hasMore && !rows && !noMore}
+                  loadMore={() =>
+                    fetchMore({
+                      variables: {
+                        offset: currentCount
+                      },
+                      updateQuery: (prev, { fetchMoreResult }) => {
+                        if (!fetchMoreResult) {
+                          return prev;
                         }
-                      };
-                    }
-                  })
-                }
-              />
+
+                        return {
+                          ...prev,
+                          posts: {
+                            ...prev.posts,
+                            posts: [
+                              ...prev.posts.posts,
+                              ...fetchMoreResult.posts.posts
+                            ]
+                          }
+                        };
+                      }
+                    })
+                  }
+                />
+              </>
             );
           }}
         </Query>

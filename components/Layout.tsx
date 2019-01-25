@@ -1,3 +1,4 @@
+import { inject, observer } from 'mobx-react';
 import Scrollbars from 'react-custom-scrollbars';
 import { YMInitializer } from 'react-yandex-metrika';
 import styled from 'styled-components';
@@ -47,7 +48,7 @@ const ContentInsideBox = styled.div`
   display: flex;
 `;
 
-const Layout = ({ children }) => (
+const Layout = ({ children, store }) => (
   <Box>
     <ContentBox>
       <TopNav />
@@ -59,7 +60,14 @@ const Layout = ({ children }) => (
             </Scrollbars>
           </Left>
           <PostsBox>
-            <Scrollbars>{children}</Scrollbars>
+            <Scrollbars
+              onScrollFrame={e => {
+                const offset = e.scrollHeight - e.scrollTop - e.clientHeight;
+                store.setLayoutInLoadArea(offset <= 250);
+              }}
+            >
+              {children}
+            </Scrollbars>
           </PostsBox>
         </ContentInsideBox>
       </Content>
@@ -68,4 +76,4 @@ const Layout = ({ children }) => (
   </Box>
 );
 
-export default Layout;
+export default inject('store')(observer(Layout));

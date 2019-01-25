@@ -11,18 +11,18 @@ let store: IStore = null as any;
 const Store = types
   .model({
     playSourceKey: '',
-    layoutScrollIsTop: true
+    layoutInLoadArea: false
   })
   .actions(self => {
     const setPlaySource = playSourceKey => {
       self.playSourceKey = playSourceKey;
     };
 
-    const setLayoutScrollTop = layoutScrollIsTop => {
-      self.layoutScrollIsTop = layoutScrollIsTop;
+    const setLayoutInLoadArea = layoutInLoadArea => {
+      self.layoutInLoadArea = layoutInLoadArea;
     };
 
-    return { setPlaySource, setLayoutScrollTop };
+    return { setPlaySource, setLayoutInLoadArea };
   });
 
 type IStore = Instance<typeof Store>;

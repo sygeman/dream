@@ -5,8 +5,10 @@ import { Query } from 'react-apollo';
 import styled from 'styled-components';
 import PostView from '../components/PostHelper/View';
 import PostProvider from '../providers/Post';
+import { Button } from '../ui/Button';
 import { Modal } from '../ui/Modal';
 import PostGridView from './PostHelper/GridView';
+import PostsView from './PostsView';
 
 export const GET_POSTS = gql`
   query getPosts(
@@ -14,14 +16,16 @@ export const GET_POSTS = gql`
     $likedUserId: ID
     $tagId: ID
     $sort: SortType
-    $page: Int
+    $offset: Int
+    $limit: Int
   ) {
     posts(
       authorId: $authorId
       likedUserId: $likedUserId
       tagId: $tagId
       sort: $sort
-      page: $page
+      offset: $offset
+      limit: $limit
     ) {
       count
       posts {
@@ -41,14 +45,6 @@ const Box = styled.div`
   width: 100%;
 `;
 
-const Grid = styled.div`
-  width: 100%;
-  display: grid;
-  padding: 10px 30px;
-  grid-template-columns: repeat(auto-fit, 300px);
-  overflow-y: hidden;
-`;
-
 const SectionTitle = styled.div`
   display: flex;
   width: 100%;
@@ -61,10 +57,17 @@ interface IProps {
   likedUserId?: string;
   tagId?: string;
   title?: string;
+  rows?: number;
+  limit?: number;
+  noMore?: boolean;
   router: RouterProps;
 }
 
 class Posts extends Component<IProps> {
+  public limit: number = 25;
+  public page: number = 0;
+  public loadLock: boolean = false;
+
   constructor(props) {
     super(props);
   }
@@ -79,66 +82,75 @@ class Posts extends Component<IProps> {
     }
 
     return (
-      <Query
-        query={GET_POSTS}
-        fetchPolicy="cache-and-network"
-        variables={{
-          page: 0,
-          sort,
-          authorId,
-          likedUserId,
-          tagId
-        }}
-      >
-        {({ loading, error, data }) => {
-          if (loading) {
-            return null;
-          }
+      <Box>
+        <Modal minimal isOpen={!!postId} onClose={() => router.back()}>
+          <div style={{ width: '1000px' }}>
+            <PostProvider id={postId}>
+              {({ post }) => <PostView {...post} />}
+            </PostProvider>
+          </div>
+        </Modal>
+        {title && <SectionTitle>{title}</SectionTitle>}
 
-          if (error) {
-            return error;
-          }
+        <Query
+          query={GET_POSTS}
+          fetchPolicy="cache-and-network"
+          variables={{
+            sort,
+            authorId,
+            likedUserId,
+            tagId,
+            offset: 0,
+            limit: this.limit
+          }}
+        >
+          {({ loading, error, data, fetchMore }) => {
+            if (error) {
+              return null;
+            }
 
-          if (data.posts.posts.length === 0) {
-            return null;
-          }
+            const currentCount = data.posts.posts.length;
 
-          return (
-            <Box>
-              <Modal minimal isOpen={!!postId} onClose={() => router.back()}>
-                <div style={{ width: '1000px' }}>
-                  <PostProvider id={postId}>
-                    {({ post }) => <PostView {...post} />}
-                  </PostProvider>
-                </div>
-              </Modal>
-              {title && <SectionTitle>{title}</SectionTitle>}
-              <Grid>
-                {data.posts.posts.map(({ id }) => (
-                  <PostContainer key={id}>
-                    <PostProvider id={id}>
-                      {({ post }) => (
-                        <PostGridView
-                          post={post}
-                          onPlay={() => {
-                            router.push(
-                              `${router.route}?postId=${post.id}`,
-                              `/post?id=${post.id}`,
-                              {
-                                shallow: true
-                              }
-                            );
-                          }}
-                        />
-                      )}
-                    </PostProvider>
-                  </PostContainer>
-                ))}
-              </Grid>
-            </Box>
-          );
-        }}
-      </Query>
+            if (currentCount === 0) {
+              return null;
+            }
+
+            const hasMore = data.posts.count - currentCount > 0;
+
+            return (
+              <PostsView
+                posts={data.posts.posts}
+                count={data.posts.count}
+                loading={loading}
+                hasMore={hasMore}
+                loadMore={() =>
+                  fetchMore({
+                    variables: {
+                      offset: data.posts.posts.length
+                    },
+                    updateQuery: (prev, { fetchMoreResult }) => {
+                      if (!fetchMoreResult) {
+                        return prev;
+                      }
+
+                      return {
+                        ...prev,
+                        posts: {
+                          ...prev.posts,
+                          posts: [
+                            ...prev.posts.posts,
+                            ...fetchMoreResult.posts.posts
+                          ]
+                        }
+                      };
+                    }
+                  })
+                }
+              />
+            );
+          }}
+        </Query>
+      </Box>
     );
   }
 }

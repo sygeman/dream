@@ -1,9 +1,13 @@
 import { inject, observer } from 'mobx-react';
+import { RouterProps, withRouter } from 'next/router';
 import { Component } from 'react';
 import Scrollbars from 'react-custom-scrollbars';
 import { YMInitializer } from 'react-yandex-metrika';
 import styled from 'styled-components';
+import PostView from '../components/PostHelper/View';
 import { IStore } from '../lib/store';
+import PostProvider from '../providers/Post';
+import { Modal } from '../ui/Modal';
 import LeftMenu from './Nav/Left';
 import TopNav from './Nav/Top';
 
@@ -51,7 +55,8 @@ const ContentInsideBox = styled.div`
 `;
 
 interface IProps {
-  store: IStore;
+  store?: IStore;
+  router: RouterProps;
 }
 
 interface IState {
@@ -61,7 +66,11 @@ interface IState {
 
 @inject('store')
 @observer
-export default class Layout extends Component<IProps, IState> {
+class Layout extends Component<IProps, IState> {
+  constructor(props) {
+    super(props);
+  }
+
   public getCalcCountOnRow = () => {
     let width = window.innerWidth;
 
@@ -101,9 +110,23 @@ export default class Layout extends Component<IProps, IState> {
   }
 
   public render() {
-    const { children, store } = this.props;
+    const { children, store, router } = this.props;
+
+    let postId = null;
+
+    if (typeof router.query.postId === 'string') {
+      postId = router.query.postId;
+    }
+
     return (
       <Box>
+        <Modal minimal isOpen={!!postId} onClose={() => router.back()}>
+          <div style={{ width: '1000px' }}>
+            <PostProvider id={postId}>
+              {({ post }) => <PostView {...post} />}
+            </PostProvider>
+          </div>
+        </Modal>
         <ContentBox>
           <TopNav />
           <Content>
@@ -132,3 +155,5 @@ export default class Layout extends Component<IProps, IState> {
     );
   }
 }
+
+export default withRouter(Layout);

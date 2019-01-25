@@ -46,15 +46,10 @@ const PostFeedView: FC<IProps> = ({
   likesCount,
   commentsCount,
   sourceType,
-  channelName,
   sourceId,
   createdAt,
   authorId,
-  tags,
-  nfws,
-  spoiler,
-  pinned,
-  meta
+  pinned
 }) => {
   return (
     <Box>

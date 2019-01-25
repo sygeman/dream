@@ -1,13 +1,10 @@
 import gql from 'graphql-tag';
 import { inject, observer } from 'mobx-react';
-import { RouterProps, withRouter } from 'next/router';
+import Link from 'next/link';
 import { Component } from 'react';
 import { Query } from 'react-apollo';
 import styled from 'styled-components';
-import PostView from '../components/PostHelper/View';
 import { IStore } from '../lib/store';
-import PostProvider from '../providers/Post';
-import { Modal } from '../ui/Modal';
 import PostsView from './PostsView';
 
 export const GET_POSTS = gql`
@@ -42,7 +39,7 @@ const Box = styled.div`
   margin: 0 auto;
 `;
 
-const SectionTitle = styled.div`
+const SectionTitle = styled.a`
   display: flex;
   width: 100%;
   padding: 15px 35px 0;
@@ -57,8 +54,8 @@ interface IProps {
   rows?: number;
   limit?: number;
   noMore?: boolean;
-  router: RouterProps;
-  store: IStore;
+  titleLink?: string;
+  store?: IStore;
 }
 
 @inject('store')
@@ -79,27 +76,14 @@ class Posts extends Component<IProps> {
       likedUserId,
       tagId,
       title,
-      router,
       noMore,
       rows,
-      store
+      store,
+      titleLink
     } = this.props;
-
-    let postId = null;
-
-    if (typeof router.query.postId === 'string') {
-      postId = router.query.postId;
-    }
 
     return (
       <Box gridWidth={store.gridWidth}>
-        <Modal minimal isOpen={!!postId} onClose={() => router.back()}>
-          <div style={{ width: '1000px' }}>
-            <PostProvider id={postId}>
-              {({ post }) => <PostView {...post} />}
-            </PostProvider>
-          </div>
-        </Modal>
         <Query
           query={GET_POSTS}
           fetchPolicy="cache-and-network"
@@ -137,7 +121,12 @@ class Posts extends Component<IProps> {
 
             return (
               <>
-                {title && <SectionTitle>{title}</SectionTitle>}
+                {title && !titleLink && <SectionTitle>{title}</SectionTitle>}
+                {title && titleLink && (
+                  <Link href={titleLink} passHref>
+                    <SectionTitle>{title}</SectionTitle>
+                  </Link>
+                )}
                 <PostsView
                   posts={posts}
                   loading={loading}
@@ -175,4 +164,4 @@ class Posts extends Component<IProps> {
   }
 }
 
-export default withRouter(Posts);
+export default Posts;

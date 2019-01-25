@@ -61,7 +61,7 @@ interface IProps {
   loading: boolean;
   hasMore: boolean;
   router: RouterProps;
-  store: IStore;
+  store?: IStore;
   loadMore: () => Promise<void>;
 }
 

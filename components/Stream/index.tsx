@@ -62,7 +62,7 @@ const Grid = styled.div`
 
 interface IProps {
   manage?: boolean;
-  store: IStore;
+  store?: IStore;
 }
 
 const StreamsWithData: FC<IProps> = ({ manage, store }) => (

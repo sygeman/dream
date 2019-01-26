@@ -112,9 +112,7 @@ export const GridView: FC<IProps> = ({ post, onPlay }) => {
       <Bottom>
         <BottomLeft>
           <Title>{post && post.title}</Title>
-          <Author>
-            <AuthorGrid id={post.authorId} />
-          </Author>
+          <Author>{post && <AuthorGrid id={post.authorId} />}</Author>
           <Date />
         </BottomLeft>
         <BottomRight>
@@ -122,7 +120,7 @@ export const GridView: FC<IProps> = ({ post, onPlay }) => {
             <IconBox>
               <Icon type="thumb-up" />
             </IconBox>
-            {shortNumbers(post.likesCount)}
+            {shortNumbers(post ? post.likesCount : 0)}
           </Rating>
         </BottomRight>
       </Bottom>

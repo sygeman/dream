@@ -1,7 +1,7 @@
 import { inject, observer } from 'mobx-react';
 import { RouterProps, withRouter } from 'next/router';
 import { rgba } from 'polished';
-import { Component } from 'react';
+import { Component, ReactNode } from 'react';
 import Scrollbars from 'react-custom-scrollbars';
 import posed from 'react-pose';
 import { YMInitializer } from 'react-yandex-metrika';
@@ -85,6 +85,7 @@ const Overlay = styled.div`
 interface IProps {
   store?: IStore;
   router: RouterProps;
+  fixedTopContent?: ReactNode;
 }
 
 interface IState {
@@ -149,7 +150,7 @@ class MainLayout extends Component<IProps, IState> {
   }
 
   public render() {
-    const { children, store, router } = this.props;
+    const { children, store, router, fixedTopContent } = this.props;
 
     let postId = null;
 
@@ -258,6 +259,7 @@ class MainLayout extends Component<IProps, IState> {
                     : 'noPaddingLeft'
                 }
               >
+                {fixedTopContent}
                 <Scrollbars
                   onScrollFrame={e => {
                     const offset =

@@ -3,9 +3,8 @@ import Head from 'next/head';
 import { RouterProps, withRouter } from 'next/router';
 import * as React from 'react';
 import { Query } from 'react-apollo';
-import RightPanel from '../components/Nav/Right';
 import Posts from '../components/Posts';
-import Streams from '../components/Streams';
+import Streams from '../components/Stream';
 import UserPanelProfile from '../components/User/UserPanelProfile';
 import Layout from '../layouts/Main';
 import styled from '../theme';
@@ -38,15 +37,16 @@ const GET_USER = gql`
 
 const Box = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   margin: 0 auto;
-  padding: 20px 0;
 `;
 
 const PostsBox = styled.div`
   margin: 0 20px;
   display: flex;
   flex: 1;
+  flex-direction: column;
   border-radius: 5px;
   overflow: hidden;
 `;
@@ -69,52 +69,35 @@ class UserPage extends React.Component<IProps> {
       userId = router.query.id;
     }
 
-    let page = 0;
-
-    if (
-      this.props.router.query.page &&
-      typeof this.props.router.query.page === 'string'
-    ) {
-      page = parseInt(this.props.router.query.page, 10);
-    }
-
     return (
-      <Layout>
-        <Box>
-          <Query query={GET_USER} variables={{ id: userId }}>
-            {({ loading, error, data }) => {
-              if (loading || error) {
-                return null;
-              }
+      <Query query={GET_USER} variables={{ id: userId }}>
+        {({ loading, error, data }) => {
+          if (loading || error) {
+            return null;
+          }
 
-              if (!data || !data.user) {
-                return 'User not found';
-              }
+          if (!data || !data.user) {
+            return 'User not found';
+          }
 
-              const user = data.user;
+          const user = data.user;
 
-              return (
-                <>
-                  <Head>
-                    <title>{user.mainProfile.name}</title>
-                  </Head>
-                  <PostsBox>
-                    <Posts authorId={user.id} sort="new" />
-                  </PostsBox>
-                  <RightPanel.Box>
-                    <RightPanel.Block>
-                      <UserPanelProfile user={user} />
-                    </RightPanel.Block>
-                    <RightPanel.Block>
-                      <Streams />
-                    </RightPanel.Block>
-                  </RightPanel.Box>
-                </>
-              );
-            }}
-          </Query>
-        </Box>
-      </Layout>
+          return (
+            <Layout fixedTopContent={<UserPanelProfile user={user} />}>
+              <Box>
+                <Head>
+                  <title>{user.mainProfile.name}</title>
+                </Head>
+
+                <PostsBox>
+                  <Streams />
+                  <Posts title="Клипы" authorId={user.id} sort="new" />
+                </PostsBox>
+              </Box>
+            </Layout>
+          );
+        }}
+      </Query>
     );
   }
 }

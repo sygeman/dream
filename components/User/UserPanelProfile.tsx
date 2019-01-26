@@ -1,28 +1,36 @@
-import { darken, lighten, rgba } from 'polished';
-import * as React from 'react';
+import { inject, observer } from 'mobx-react';
+import { rgba } from 'polished';
+import { FC } from 'react';
 import styled from 'styled-components';
+import { IStore } from '../../lib/store';
 import { Icon } from '../../ui/Icon';
 import { shortNumbers } from '../../utils/count';
 
 const Box = styled.div`
   display: flex;
-  flex-direction: column;
-  background: radial-gradient(
-    ${({ theme }) => lighten(0.02, theme.dark2Color)},
-    ${({ theme }) => darken(0.02, theme.dark2Color)}
-  );
+  background: ${({ theme }) => theme.main1Color};
+  height: 50px;
+`;
+
+const Container = styled.div`
+  width: ${({ gridWidth }) => gridWidth}px;
+  height: 100%;
+  padding: 0 30px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
 `;
 
 const UserAvatar = styled.div`
   display: flex;
   justify-content: center;
-  padding: 20px 30px 5px;
   position: relative;
+  padding: 0 10px;
 `;
 
 const UserAvatarImg = styled.img`
-  height: 44px;
-  width: 44px;
+  height: 34px;
+  width: 34px;
   border-radius: 100%;
   overflow: hidden;
 `;
@@ -30,49 +38,18 @@ const UserAvatarImg = styled.img`
 const UserName = styled.div`
   display: flex;
   justify-content: center;
-  font-size: 18px;
-  padding: 10px 0 16px;
+  font-size: 13px;
+  padding: 0 10px;
 `;
 
 const UserData = styled.div`
   justify-content: center;
-`;
-
-const Stats = styled.div`
-  display: flex;
-  justify-content: space-around;
-  padding: 10px 0;
-  background: ${({ theme }) => theme.main1Color};
-`;
-
-const StatsOneBox = styled.div`
+  height: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 4px;
-  flex-direction: column;
-`;
-
-const StatsOneCount = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
-`;
-
-const StatsOneTitle = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-transform: uppercase;
-  color: ${({ theme }) => rgba(theme.text1Color, 0.5)};
-  font-size: 12px;
 `;
 
 const SocialLinks = styled.div`
-  position: absolute;
-  left: 0;
-  top: 0;
   padding: 10px;
   display: flex;
   align-items: center;
@@ -80,16 +57,49 @@ const SocialLinks = styled.div`
 `;
 
 const SocialLink = styled.div`
-  padding: 4px 8px;
-  font-size: 14px;
+  padding: 0 10px;
+  font-size: 16px;
 `;
 
-const StatsOne = ({ count, title }) => (
-  <StatsOneBox>
-    <StatsOneCount>{shortNumbers(count)}</StatsOneCount>
-    <StatsOneTitle>{title}</StatsOneTitle>
-  </StatsOneBox>
-);
+const Menu = styled.div`
+  display: flex;
+  flex: 1;
+  height: 100%;
+  padding: 0 10px;
+`;
+
+const MenuItem = styled.div`
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 5px;
+  font-size: 12px;
+`;
+
+const MenuItemTitle = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+`;
+
+const MenuItemCount = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 5px;
+  color: ${({ theme }) => rgba(theme.text1Color, 0.5)};
+`;
+
+const MenuLeft = styled.div`
+  display: flex;
+`;
+
+const MenuRight = styled.div`
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+`;
 
 const SocialLinkOne = ({ profile }) => {
   let iconType = '';
@@ -119,23 +129,37 @@ const SocialLinkOne = ({ profile }) => {
   );
 };
 
-export const PanelProfile = ({ user }) => (
+interface IProps {
+  store?: IStore;
+  user: any;
+}
+
+export const PanelProfile: FC<IProps> = ({ user, store }) => (
   <Box>
-    <UserAvatar>
-      <SocialLinks>
-        {user.profiles.map(profile => (
-          <SocialLinkOne key={profile.id} profile={profile} />
-        ))}
-      </SocialLinks>
-      <UserAvatarImg src={user.mainProfile.avatar} />
-    </UserAvatar>
-    <UserData>
-      <UserName>{user.mainProfile.name}</UserName>
-      <Stats>
-        <StatsOne count={user.postsCount} title="Клипы" />
-      </Stats>
-    </UserData>
+    <Container gridWidth={store.gridWidth}>
+      <UserData>
+        <UserAvatar>
+          <UserAvatarImg src={user.mainProfile.avatar} />
+        </UserAvatar>
+        <UserName>{user.mainProfile.name}</UserName>
+      </UserData>
+      <Menu>
+        <MenuLeft>
+          <MenuItem>
+            <MenuItemTitle>Клипы</MenuItemTitle>
+            <MenuItemCount>{shortNumbers(user.postsCount)}</MenuItemCount>
+          </MenuItem>
+        </MenuLeft>
+        <MenuRight>
+          <SocialLinks>
+            {user.profiles.map(profile => (
+              <SocialLinkOne key={profile.id} profile={profile} />
+            ))}
+          </SocialLinks>
+        </MenuRight>
+      </Menu>
+    </Container>
   </Box>
 );
 
-export default PanelProfile;
+export default inject('store')(observer(PanelProfile));

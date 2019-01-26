@@ -1,7 +1,7 @@
 import { inject, observer } from 'mobx-react';
 import { rgba } from 'polished';
 import { Component } from 'react';
-import Scrollbars from 'react-custom-scrollbars';
+import {Scrollbars} from 'react-custom-scrollbars';
 import posed from 'react-pose';
 import styled from 'styled-components';
 import TopNav from '../components/Nav/Top';
@@ -150,7 +150,7 @@ class ManageLayout extends Component<IProps, IState> {
             <Content>
               <ContentInsideBox>
                 <Left pose={store.leftMenuIsOpen ? 'open' : 'closed'}>
-                  <Scrollbars>
+                  <Scrollbars autoHide>
                     <LeftMenu>
                       <LeftMenu.Item
                         route="/manage"
@@ -185,6 +185,7 @@ class ManageLayout extends Component<IProps, IState> {
                   }
                 >
                   <Scrollbars
+                    autoHide
                     onScrollFrame={e => {
                       const offset =
                         e.scrollHeight - e.scrollTop - e.clientHeight;

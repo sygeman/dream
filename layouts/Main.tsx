@@ -4,7 +4,7 @@ import { RouterProps, withRouter } from 'next/router';
 import { rgba } from 'polished';
 import { Component, ReactNode } from 'react';
 import { Query } from 'react-apollo';
-import Scrollbars from 'react-custom-scrollbars';
+import { Scrollbars } from 'react-custom-scrollbars';
 import posed from 'react-pose';
 import { YMInitializer } from 'react-yandex-metrika';
 import styled from 'styled-components';
@@ -251,7 +251,7 @@ class MainLayout extends Component<IProps, IState> {
           <Content>
             <ContentInsideBox>
               <Left pose={store.leftMenuIsOpen ? 'open' : 'closed'}>
-                <Scrollbars>
+                <Scrollbars autoHide>
                   <LeftMenu>
                     <LeftMenu.Item
                       route="/"
@@ -340,6 +340,7 @@ class MainLayout extends Component<IProps, IState> {
               >
                 {fixedTopContent}
                 <Scrollbars
+                  autoHide
                   onScrollFrame={e => {
                     const offset =
                       e.scrollHeight - e.scrollTop - e.clientHeight;

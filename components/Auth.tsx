@@ -14,8 +14,8 @@ const AuthTitle = styled.div`
   display: flex;
   justify-content: center;
   text-align: center;
-  font-size: 1rem;
-  padding: 16px 0 30px;
+  font-size: 0.95rem;
+  padding: 16px 0 20px;
   color: ${({ theme }) => theme.accent2Color};
 `;
 

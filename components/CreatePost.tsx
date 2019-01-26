@@ -8,7 +8,7 @@ import { Input } from '../ui/Input';
 import { SWRow } from '../ui/SWRow';
 import { parseSource } from '../utils/parseSoruce';
 import SourceView from './SourceView';
-import TagsManage from './TagsManage';
+// import TagsManage from './TagsManage';
 
 const CREATE_POST = gql`
   mutation(
@@ -35,7 +35,7 @@ const Box = styled.div`
 `;
 
 const Bottom = styled.div`
-  margin-top: 10px;
+  margin-top: 20px;
   display: flex;
   justify-content: flex-end;
 `;
@@ -114,7 +114,7 @@ export default class CreatePost extends React.Component<{}, IState> {
               onChange={() => this.setState({ spoiler: !this.state.spoiler })}
               isActive={this.state.spoiler}
             />
-            <TagsManage
+            {/* <TagsManage
               tags={this.state.tags}
               onTagAdded={tagId =>
                 this.setState({ tags: [...this.state.tags, tagId] })
@@ -126,7 +126,7 @@ export default class CreatePost extends React.Component<{}, IState> {
                   })
                 })
               }
-            />
+            /> */}
             <Bottom>
               <Button
                 onClick={() =>

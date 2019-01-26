@@ -67,7 +67,7 @@ const Rating = styled.div`
   height: 30px;
   font-size: 12px;
   color: ${({ theme }) => lighten(0.4, theme.main1Color)};
-  background: ${({ theme }) => lighten(0.05, theme.main1Color)};
+  background: ${({ theme }) => lighten(0.05, theme.dark2Color)};
   font-weight: 500;
 `;
 

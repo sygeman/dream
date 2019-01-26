@@ -1,10 +1,10 @@
 import gql from 'graphql-tag';
 import { inject, observer } from 'mobx-react';
 import { RouterProps, withRouter } from 'next/router';
-import { rgba, darken } from 'polished';
+import { rgba, lighten } from 'polished';
 import { Component, ReactNode } from 'react';
 import { Query } from 'react-apollo';
-import { Scrollbars } from 'react-custom-scrollbars';
+import Scrollbars from 'react-custom-scrollbars';
 import posed from 'react-pose';
 import { YMInitializer } from 'react-yandex-metrika';
 import styled from 'styled-components';
@@ -47,7 +47,7 @@ const Box = styled.div`
   flex-direction: column;
   height: 100%;
   overflow: hidden;
-  background: ${({ theme }) => darken(0.15, theme.main1Color)};
+  background: ${({ theme }) => theme.dark1Color};
 `;
 
 const Content = styled.div`
@@ -62,9 +62,7 @@ const LeftAnim = posed.div({
 });
 
 const Left = styled(LeftAnim)`
-  border-right: 1px solid ${({ theme }) => rgba(theme.main1Color, 0.5)};
-  /* background: ${({ theme }) => theme.dark2Color}; */
-  background: ${({ theme }) => darken(0.17, theme.main1Color)};
+  background: ${({ theme }) => lighten(0.05, theme.dark1Color)};
   width: ${LEFT_MENU_WIDTH}px;
   position: absolute;
   left: 0;
@@ -189,6 +187,12 @@ class MainLayout extends Component<IProps, IState> {
       postId = router.query.postId;
     }
 
+    let backPath = null;
+
+    if (typeof router.query.backPath === 'string') {
+      backPath = router.query.backPath;
+    }
+
     return (
       <Box>
         <Query
@@ -238,7 +242,7 @@ class MainLayout extends Component<IProps, IState> {
                 minimal
                 isOpen={!!postId}
                 onClose={() => {
-                  router.replace(router.query.backPath);
+                  router.replace(backPath);
                 }}
                 onLeftClick={toPrevPost}
                 onRightClick={toNextPost}
@@ -266,8 +270,8 @@ class MainLayout extends Component<IProps, IState> {
                       icon="home"
                       title="Главная"
                     />
-                    <LeftMenu.Item route="/hot" icon="fire" title="В тренде" />
-                    <LeftMenu.Item route="/new" icon="flare" title="Новое" />
+                    <LeftMenu.Item equal route="/hot" icon="fire" title="В тренде" />
+                    <LeftMenu.Item equal route="/new" icon="flare" title="Новое" />
                     <LeftMenu.Item route="/top" icon="trending-up" title="Топ">
                       <LeftMenu.SubItem route="/top/day">День</LeftMenu.SubItem>
                       <LeftMenu.SubItem route="/top/week">

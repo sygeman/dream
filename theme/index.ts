@@ -12,10 +12,8 @@ const {
 export interface IThemeInterface {
   dark1Color: string;
   dark2Color: string;
-  accent1Color: string;
   accent2Color: string;
   main1Color: string;
-  main2Color: string;
   text1Color: string;
 }
 

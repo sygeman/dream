@@ -133,7 +133,7 @@ class TwitchFollows extends Component<IProps> {
                   }
 
                   if (error || !data || !data.twitchChannelTopClips) {
-                    return error;
+                    return null;
                   }
 
                   const curretClipIndex = data.twitchChannelTopClips.findIndex(

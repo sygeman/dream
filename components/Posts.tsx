@@ -97,7 +97,7 @@ class Posts extends Component<IProps> {
           }}
         >
           {({ loading, error, data, fetchMore }) => {
-            if (error) {
+            if (error || !data || !data.posts) {
               return null;
             }
 

@@ -43,6 +43,10 @@ const SectionTitle = styled.div`
   display: flex;
   width: 100%;
   padding: 15px 35px 0;
+
+  a {
+    cursor: pointer;
+  }
 `;
 
 interface IProps {
@@ -125,7 +129,7 @@ class Posts extends Component<IProps> {
                 {title && titleLink && (
                   <SectionTitle>
                     <Link href={titleLink} passHref>
-                      {title}
+                      <a>{title}</a>
                     </Link>
                   </SectionTitle>
                 )}

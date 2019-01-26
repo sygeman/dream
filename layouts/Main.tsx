@@ -61,6 +61,7 @@ const LeftAnim = posed.div({
 });
 
 const Left = styled(LeftAnim)`
+  border-right: 1px solid ${({ theme }) => rgba(theme.main1Color, 0.5)};
   background: ${({ theme }) => theme.dark2Color};
   width: 260px;
   position: absolute;

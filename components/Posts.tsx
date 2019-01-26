@@ -39,7 +39,7 @@ const Box = styled.div`
   margin: 0 auto;
 `;
 
-const SectionTitle = styled.a`
+const SectionTitle = styled.div`
   display: flex;
   width: 100%;
   padding: 15px 35px 0;
@@ -123,9 +123,11 @@ class Posts extends Component<IProps> {
               <>
                 {title && !titleLink && <SectionTitle>{title}</SectionTitle>}
                 {title && titleLink && (
-                  <Link href={titleLink} passHref>
-                    <SectionTitle>{title}</SectionTitle>
-                  </Link>
+                  <SectionTitle>
+                    <Link href={titleLink} passHref>
+                      {title}
+                    </Link>
+                  </SectionTitle>
                 )}
                 <PostsView
                   posts={posts}

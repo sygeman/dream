@@ -1,6 +1,6 @@
 import { inject, observer } from 'mobx-react';
 import Link from 'next/link';
-import { lighten, rgba } from 'polished';
+import { lighten, rgba, darken } from 'polished';
 import { Component } from 'react';
 import styled from 'styled-components';
 import { IStore } from '../../../lib/store';
@@ -13,6 +13,7 @@ const Box = styled.div`
   height: 50px;
   display: flex;
   z-index: 100;
+  background: ${({ theme }) => darken(0.1, theme.main1Color)};
   border-bottom: 1px solid ${({ theme }) => rgba(theme.main1Color, 0.5)};
 `;
 

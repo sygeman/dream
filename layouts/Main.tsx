@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 import { inject, observer } from 'mobx-react';
 import { RouterProps, withRouter } from 'next/router';
-import { rgba } from 'polished';
+import { rgba, darken } from 'polished';
 import { Component, ReactNode } from 'react';
 import { Query } from 'react-apollo';
 import { Scrollbars } from 'react-custom-scrollbars';
@@ -47,8 +47,7 @@ const Box = styled.div`
   flex-direction: column;
   height: 100%;
   overflow: hidden;
-  background: ${({ theme }) =>
-    'radial-gradient(' + theme.main1Color + ', ' + theme.dark2Color + ')'};
+  background: ${({ theme }) => darken(0.15, theme.main1Color)};
 `;
 
 const Content = styled.div`
@@ -63,8 +62,9 @@ const LeftAnim = posed.div({
 });
 
 const Left = styled(LeftAnim)`
-  /* border-right: 1px solid ${({ theme }) => rgba(theme.main1Color, 0.5)}; */
+  border-right: 1px solid ${({ theme }) => rgba(theme.main1Color, 0.5)};
   /* background: ${({ theme }) => theme.dark2Color}; */
+  background: ${({ theme }) => darken(0.17, theme.main1Color)};
   width: ${LEFT_MENU_WIDTH}px;
   position: absolute;
   left: 0;

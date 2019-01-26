@@ -29,8 +29,8 @@ const ClipsBox = styled.div`
 const Clips = styled.div`
   width: 100%;
   display: grid;
-  padding: 10px 30px;
-  grid-template-columns: repeat(auto-fit, 300px);
+  padding: 10px 20px;
+  grid-template-columns: repeat(auto-fit, 280px);
   overflow-y: hidden;
   justify-content: center;
 `;

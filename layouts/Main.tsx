@@ -40,6 +40,8 @@ const GET_POST_AROUND = gql`
   }
 `;
 
+const LEFT_MENU_WIDTH = 260;
+
 const Box = styled.div`
   display: flex;
   flex-direction: column;
@@ -56,14 +58,14 @@ const Content = styled.div`
 `;
 
 const LeftAnim = posed.div({
-  closed: { left: -260 },
+  closed: { left: -LEFT_MENU_WIDTH },
   open: { left: 0 }
 });
 
 const Left = styled(LeftAnim)`
-  border-right: 1px solid ${({ theme }) => rgba(theme.main1Color, 0.5)};
-  background: ${({ theme }) => theme.dark2Color};
-  width: 260px;
+  /* border-right: 1px solid ${({ theme }) => rgba(theme.main1Color, 0.5)}; */
+  /* background: ${({ theme }) => theme.dark2Color}; */
+  width: ${LEFT_MENU_WIDTH}px;
   position: absolute;
   left: 0;
   top: 0;
@@ -73,13 +75,14 @@ const Left = styled(LeftAnim)`
 
 const PostsBoxAnim = posed.div({
   noPaddingLeft: { 'padding-left': 0 },
-  paddingLeft: { 'padding-left': '260px' }
+  paddingLeft: { 'padding-left': LEFT_MENU_WIDTH + 'px' }
 });
 
 const PostsBox = styled(PostsBoxAnim)`
   display: flex;
   flex-direction: column;
   width: 100%;
+  padding-left: ${LEFT_MENU_WIDTH}px;
 `;
 
 const ContentBox = styled('div')`
@@ -102,7 +105,7 @@ const Overlay = styled.div`
   top: 0;
   width: 100%;
   height: 100%;
-  background: ${({ theme }) => rgba(theme.dark2Color, 0.7)};
+  background: ${({ theme }) => rgba(theme.dark2Color, 0.95)};
   z-index: 50;
 `;
 
@@ -131,7 +134,7 @@ class MainLayout extends Component<IProps, IState> {
     let width = window.innerWidth;
 
     if (width >= 1000) {
-      width = width - 260;
+      width = width - LEFT_MENU_WIDTH;
     }
 
     const smallWindow = width < 1000;
@@ -142,11 +145,15 @@ class MainLayout extends Component<IProps, IState> {
       this.setState({ smallWindow });
     }
 
-    let countOnRow = Math.floor((width - 60) / 300);
-    let gridWidth = countOnRow * 300 + 60;
+    const GRID_ELEMENT_WIDTH = 280;
+    const GRID_PADDING_ONE = 20;
+    const GRID_PADDING = GRID_PADDING_ONE * 2;
 
-    if (gridWidth < 360) {
-      gridWidth = 360;
+    let countOnRow = Math.floor((width - GRID_PADDING) / GRID_ELEMENT_WIDTH);
+    let gridWidth = countOnRow * GRID_ELEMENT_WIDTH + GRID_PADDING;
+
+    if (gridWidth < GRID_ELEMENT_WIDTH + GRID_PADDING) {
+      gridWidth = GRID_ELEMENT_WIDTH + GRID_PADDING;
     }
 
     if (countOnRow < 1) {

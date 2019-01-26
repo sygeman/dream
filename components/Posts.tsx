@@ -1,6 +1,7 @@
 import gql from 'graphql-tag';
 import { inject, observer } from 'mobx-react';
 import Link from 'next/link';
+import { RouterProps, withRouter } from 'next/router';
 import { Component } from 'react';
 import { Query } from 'react-apollo';
 import styled from 'styled-components';
@@ -59,6 +60,7 @@ interface IProps {
   limit?: number;
   noMore?: boolean;
   titleLink?: string;
+  router: RouterProps;
   store?: IStore;
 }
 
@@ -83,6 +85,7 @@ class Posts extends Component<IProps> {
       noMore,
       rows,
       store,
+      router,
       titleLink
     } = this.props;
 
@@ -137,6 +140,29 @@ class Posts extends Component<IProps> {
                   posts={posts}
                   loading={loading}
                   hasMore={hasMore && !rows && !noMore}
+                  onPlay={id => {
+                    router.push(
+                      {
+                        pathname: router.route,
+                        query: {
+                          postId: id,
+                          postAroudSort: sort,
+                          postAroudAuthorId: authorId,
+                          postAroudLikedUserId: likedUserId,
+                          postAroudTagId: tagId,
+                          backPath: router.asPath,
+                          ...router.query
+                        }
+                      },
+                      {
+                        pathname: '/post',
+                        query: { id }
+                      },
+                      {
+                        shallow: true
+                      }
+                    );
+                  }}
                   loadMore={() =>
                     fetchMore({
                       variables: {
@@ -170,4 +196,4 @@ class Posts extends Component<IProps> {
   }
 }
 
-export default Posts;
+export default withRouter(Posts);

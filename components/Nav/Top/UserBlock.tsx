@@ -130,7 +130,7 @@ class UserBlockWithoutRouter extends Component<IProps> {
           </Points>
           <Points>
             <PointsIconPepega />
-            <PointsCount>{humanNumbers(1200)}</PointsCount>
+            <PointsCount>{humanNumbers(0)}</PointsCount>
           </Points>
         </PointsBox>
         <Menu user={user}>

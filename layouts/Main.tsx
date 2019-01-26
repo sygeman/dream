@@ -1,7 +1,9 @@
+import gql from 'graphql-tag';
 import { inject, observer } from 'mobx-react';
 import { RouterProps, withRouter } from 'next/router';
 import { rgba } from 'polished';
 import { Component, ReactNode } from 'react';
+import { Query } from 'react-apollo';
 import Scrollbars from 'react-custom-scrollbars';
 import posed from 'react-pose';
 import { YMInitializer } from 'react-yandex-metrika';
@@ -16,6 +18,27 @@ import PostProvider from '../providers/Post';
 import { Icon } from '../ui/Icon';
 import LeftMenu from '../ui/LeftMenu';
 import { Modal } from '../ui/Modal';
+
+const GET_POST_AROUND = gql`
+  query postAround(
+    $id: ID!
+    $authorId: ID
+    $tagId: ID
+    $likedUserId: ID
+    $sort: SortType
+  ) {
+    postAround(
+      id: $id
+      authorId: $authorId
+      tagId: $tagId
+      likedUserId: $likedUserId
+      sort: $sort
+    ) {
+      prevId
+      nextId
+    }
+  }
+`;
 
 const Box = styled.div`
   display: flex;
@@ -160,13 +183,68 @@ class MainLayout extends Component<IProps, IState> {
 
     return (
       <Box>
-        <Modal minimal isOpen={!!postId} onClose={() => router.back()}>
-          <div style={{ width: '1000px' }}>
-            <PostProvider id={postId}>
-              {({ post }) => <PostView {...post} />}
-            </PostProvider>
-          </div>
-        </Modal>
+        <Query
+          query={GET_POST_AROUND}
+          fetchPolicy="network-only"
+          variables={{
+            id: postId,
+            authorId: router.query.postAroudAuthorId,
+            tagId: router.query.postAroudTagId,
+            likedUserId: router.query.postAroudLikedUserId,
+            sort: router.query.postAroudSort
+          }}
+        >
+          {({ data }) => {
+            let toPrevPost;
+            let toNextPost;
+
+            const toPost = (id: string) => {
+              router.push(
+                {
+                  pathname: router.route,
+                  query: {
+                    ...router.query,
+                    postId: id
+                  }
+                },
+                {
+                  pathname: '/post',
+                  query: { id }
+                },
+                {
+                  shallow: true
+                }
+              );
+            };
+
+            if (data && data.postAround && data.postAround.prevId) {
+              toPrevPost = () => toPost(data.postAround.prevId);
+            }
+
+            if (data && data.postAround && data.postAround.nextId) {
+              toNextPost = () => toPost(data.postAround.nextId);
+            }
+
+            return (
+              <Modal
+                minimal
+                isOpen={!!postId}
+                onClose={() => {
+                  router.replace(router.query.backPath);
+                }}
+                onLeftClick={toPrevPost}
+                onRightClick={toNextPost}
+              >
+                <div style={{ width: '1000px' }}>
+                  <PostProvider id={postId}>
+                    {({ post }) => <PostView {...post} />}
+                  </PostProvider>
+                </div>
+              </Modal>
+            );
+          }}
+        </Query>
+
         <ContentBox>
           <TopNav />
           <Content>

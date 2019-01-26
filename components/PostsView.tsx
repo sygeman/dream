@@ -1,6 +1,5 @@
 import gql from 'graphql-tag';
 import { inject, observer } from 'mobx-react';
-import { RouterProps, withRouter } from 'next/router';
 import { Component } from 'react';
 import styled from 'styled-components';
 import { IStore } from '../lib/store';
@@ -60,9 +59,9 @@ interface IProps {
   posts: any;
   loading: boolean;
   hasMore: boolean;
-  router: RouterProps;
   store?: IStore;
-  loadMore: () => Promise<void>;
+  loadMore: () => Promise<any>;
+  onPlay: (id: string) => void;
 }
 
 @inject('store')
@@ -89,7 +88,7 @@ class PostsView extends Component<IProps> {
   }
 
   public render() {
-    const { posts, router, store, loading, hasMore, loadMore } = this.props;
+    const { posts, store, loading, hasMore, loadMore, onPlay } = this.props;
 
     /* tslint:disable */
     store.layoutInLoadArea;
@@ -101,18 +100,7 @@ class PostsView extends Component<IProps> {
             <PostContainer key={id}>
               <PostProvider id={id}>
                 {({ post }) => (
-                  <PostGridView
-                    post={post}
-                    onPlay={() => {
-                      router.push(
-                        `${router.route}?postId=${post.id}`,
-                        `/post?id=${post.id}`,
-                        {
-                          shallow: true
-                        }
-                      );
-                    }}
-                  />
+                  <PostGridView post={post} onPlay={() => onPlay(post.id)} />
                 )}
               </PostProvider>
             </PostContainer>
@@ -129,4 +117,4 @@ class PostsView extends Component<IProps> {
   }
 }
 
-export default withRouter(PostsView);
+export default PostsView;

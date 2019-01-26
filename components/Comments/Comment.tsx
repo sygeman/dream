@@ -3,11 +3,11 @@ import Link from 'next/link';
 import { darken, lighten } from 'polished';
 import * as React from 'react';
 import { Mutation, Query } from 'react-apollo';
-import styled from '../../theme';
+import styled from 'styled-components';
+import { Access } from '../../helpers/Access';
 import { Dropdown } from '../../ui/Dropdown';
 import { Emoji } from '../../ui/Emoji';
 import { splitTextToEmojiArray } from '../../utils/emoji';
-import Access from '../Access';
 
 const GET_USER = gql`
   query($id: ID!) {

@@ -1,22 +1,12 @@
 import gql from 'graphql-tag';
-import { FC } from 'react';
+import { inject, observer } from 'mobx-react';
+import Link from 'next/link';
+import { RouterProps, withRouter } from 'next/router';
+import { Component } from 'react';
 import { Query } from 'react-apollo';
-import styled from '../theme';
-import { Emoji } from '../ui/Emoji';
-import { scrollToTop } from '../utils/scroll';
-import { changeURLParams } from '../utils/url';
-import Pagination from './Pagination';
-import Post from './Post';
-
-const setPage = (page: number) => {
-  if (page === 0) {
-    changeURLParams({ remove: ['page'] });
-  } else {
-    changeURLParams({ set: { page } });
-  }
-
-  scrollToTop();
-};
+import styled from 'styled-components';
+import { IStore } from '../lib/store';
+import PostsView from './PostsView';
 
 export const GET_POSTS = gql`
   query getPosts(
@@ -24,14 +14,16 @@ export const GET_POSTS = gql`
     $likedUserId: ID
     $tagId: ID
     $sort: SortType
-    $page: Int
+    $offset: Int
+    $limit: Int
   ) {
     posts(
       authorId: $authorId
       likedUserId: $likedUserId
       tagId: $tagId
       sort: $sort
-      page: $page
+      offset: $offset
+      limit: $limit
     ) {
       count
       posts {
@@ -41,81 +33,167 @@ export const GET_POSTS = gql`
   }
 `;
 
-const PostContainer = styled.div``;
-
-const NoPosts = styled.div`
-  padding: 40px 0;
-  justify-content: center;
+const Box = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  width: ${({ gridWidth }) => gridWidth}px;
+  margin: 0 auto;
 `;
 
-const NoPostsText = styled.div`
-  margin-bottom: 5px;
-  font-size: 14px;
-  color: ${({ theme }) => theme.text1Color};
+const SectionTitle = styled.div`
+  display: flex;
+  width: 100%;
+  padding: 15px 35px 0;
+
+  a {
+    cursor: pointer;
+  }
 `;
 
 interface IProps {
-  page?: number;
   sort?: string;
   authorId?: string;
   likedUserId?: string;
   tagId?: string;
+  title?: string;
+  rows?: number;
+  limit?: number;
+  noMore?: boolean;
+  titleLink?: string;
+  router: RouterProps;
+  store?: IStore;
 }
 
-const Posts: FC<IProps> = ({
-  page = 0,
-  sort,
-  authorId,
-  likedUserId,
-  tagId
-}) => (
-  <Query
-    query={GET_POSTS}
-    fetchPolicy="network-only"
-    variables={{
-      page,
+@inject('store')
+@observer
+class Posts extends Component<IProps> {
+  public limit: number = 25;
+  public page: number = 0;
+  public loadLock: boolean = false;
+
+  constructor(props) {
+    super(props);
+  }
+
+  public render() {
+    const {
       sort,
       authorId,
       likedUserId,
-      tagId
-    }}
-  >
-    {({ loading, error, data }) => {
-      if (loading) {
-        return null;
-      }
+      tagId,
+      title,
+      noMore,
+      rows,
+      store,
+      router,
+      titleLink
+    } = this.props;
 
-      if (error) {
-        return error;
-      }
+    return (
+      <Box gridWidth={store.gridWidth}>
+        <Query
+          query={GET_POSTS}
+          fetchPolicy="cache-and-network"
+          variables={{
+            sort,
+            authorId,
+            likedUserId,
+            tagId,
+            offset: 0,
+            limit: this.limit
+          }}
+        >
+          {({ loading, error, data, fetchMore }) => {
+            if (error || !data || !data.posts) {
+              return null;
+            }
 
-      return (
-        <>
-          {data.posts.posts.length === 0 && (
-            <NoPosts>
-              <NoPostsText>Тут пока нет постов</NoPostsText>
-              <Emoji name="BibleThump" />
-            </NoPosts>
-          )}
-          {data.posts.posts.map((post, index) => (
-            <PostContainer key={post.id}>
-              <Post {...post} withPreview orderPlay={page * 10 + index} />
-            </PostContainer>
-          ))}
-          {data.posts.posts.length !== 0 && (
-            <Pagination
-              page={page}
-              rowsCount={data.posts.count}
-              setPage={n => setPage(n)}
-            />
-          )}
-        </>
-      );
-    }}
-  </Query>
-);
+            let posts = data.posts.posts;
 
-export default Posts;
+            if (rows > 0) {
+              posts = posts.slice(0, rows * store.gridCountOnRow);
+            }
+
+            const currentCount = posts.length;
+
+            if (currentCount === 0) {
+              return null;
+            }
+
+            const hasMore = data.posts.count - currentCount > 0;
+
+            if (store.gridWidth === 0) {
+              return null;
+            }
+
+            return (
+              <>
+                {title && !titleLink && <SectionTitle>{title}</SectionTitle>}
+                {title && titleLink && (
+                  <SectionTitle>
+                    <Link href={titleLink} passHref>
+                      <a>{title}</a>
+                    </Link>
+                  </SectionTitle>
+                )}
+                <PostsView
+                  posts={posts}
+                  loading={loading}
+                  hasMore={hasMore && !rows && !noMore}
+                  onPlay={id => {
+                    router.push(
+                      {
+                        pathname: router.route,
+                        query: {
+                          postId: id,
+                          postAroudSort: sort,
+                          postAroudAuthorId: authorId,
+                          postAroudLikedUserId: likedUserId,
+                          postAroudTagId: tagId,
+                          backPath: router.asPath,
+                          ...router.query
+                        }
+                      },
+                      {
+                        pathname: '/post',
+                        query: { id }
+                      },
+                      {
+                        shallow: true
+                      }
+                    );
+                  }}
+                  loadMore={() =>
+                    fetchMore({
+                      variables: {
+                        offset: currentCount
+                      },
+                      updateQuery: (prev, { fetchMoreResult }) => {
+                        if (!fetchMoreResult) {
+                          return prev;
+                        }
+
+                        return {
+                          ...prev,
+                          posts: {
+                            ...prev.posts,
+                            posts: [
+                              ...prev.posts.posts,
+                              ...fetchMoreResult.posts.posts
+                            ]
+                          }
+                        };
+                      }
+                    })
+                  }
+                />
+              </>
+            );
+          }}
+        </Query>
+      </Box>
+    );
+  }
+}
+
+export default withRouter(Posts);

@@ -2,10 +2,10 @@ import gql from 'graphql-tag';
 import * as React from 'react';
 import { Mutation } from 'react-apollo';
 import posed from 'react-pose';
-import styled from '../../theme';
+import styled from 'styled-components';
+import { Access } from '../../helpers/Access';
 import { Icon } from '../../ui/Icon';
 import { changeURLParams } from '../../utils/url';
-import Access from '../Access';
 
 const SET_LIKE_STATE = gql`
   mutation($postId: ID!) {
@@ -69,7 +69,7 @@ export default class PostLike extends React.Component<IProps> {
         denyContent={
           <LikeBox onClick={() => changeURLParams({ set: { auth: 1 } })}>
             <LikeButton active={liked}>
-              <Icon type={liked ? 'favorite' : 'favorite-outline'} />
+              <Icon type="thumb-up" />
             </LikeButton>
             {likesCount > 0 && (
               <LikesCount active={liked}>{likesCount}</LikesCount>
@@ -90,7 +90,7 @@ export default class PostLike extends React.Component<IProps> {
                   })
                 }
               >
-                <Icon type={liked ? 'favorite' : 'favorite-outline'} />
+                <Icon type="thumb-up" />
               </LikeButton>
               {likesCount > 0 && (
                 <LikesCount active={liked}>{likesCount}</LikesCount>

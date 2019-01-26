@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Router from 'next/router';
 import { FC } from 'react';
-import styled from '../../theme';
+import styled from 'styled-components';
 import { Icon } from '../../ui/Icon';
 import Comments from '../Comments';
 import PostHelper from '../PostHelper';

@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 import * as React from 'react';
 import { Query } from 'react-apollo';
-import styled from '../../theme';
+import styled from 'styled-components';
 import Comments from './Comments';
 import MessagesBottom from './MessagesBottom';
 
@@ -90,6 +90,14 @@ export default class extends React.Component<IProps> {
                           return prev;
                         }
                         const newMessage = subscriptionData.data.commentCreated;
+
+                        if (
+                          prev.comments.findIndex(
+                            c => c.id === newMessage.id
+                          ) >= 0
+                        ) {
+                          return prev;
+                        }
 
                         return {
                           ...prev,

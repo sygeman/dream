@@ -1,7 +1,7 @@
 import { lighten } from 'polished';
 import { FC } from 'react';
+import styled from 'styled-components';
 import { auth } from '../lib/auth';
-import styled from '../theme';
 import { Icon } from '../ui/Icon';
 
 const AuthBox = styled.div`

@@ -2,8 +2,8 @@ import gql from 'graphql-tag';
 import { darken, lighten } from 'polished';
 import * as React from 'react';
 import { Mutation } from 'react-apollo';
+import styled from 'styled-components';
 import { connect, disconnect } from '../../../lib/auth';
-import styled from '../../../theme';
 import { Button } from '../../../ui/Button';
 import { SWRow } from '../../../ui/SWRow';
 
@@ -14,8 +14,8 @@ const SET_PROFILE_VISIBLE = gql`
 `;
 
 const IntegrationBox = styled.div`
-  margin: 3px 0;
-  padding: 10px;
+  margin: 20px 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   border-radius: 5px;
 `;
 

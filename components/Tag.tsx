@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 import { rgba } from 'polished';
 import { FC } from 'react';
 import { Query } from 'react-apollo';
-import styled from '../theme';
+import styled from 'styled-components';
 import { Icon } from '../ui/Icon';
 
 const GET_TAG = gql`

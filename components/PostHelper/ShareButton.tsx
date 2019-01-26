@@ -8,7 +8,7 @@ import {
   VKShareButton
 } from 'react-share';
 
-import styled from '../../theme';
+import styled from 'styled-components';
 import { Dropdown } from '../../ui/Dropdown';
 import { Icon } from '../../ui/Icon';
 

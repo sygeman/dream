@@ -1,40 +1,83 @@
-import { Component } from 'react';
-import PostFeedView from './FeedView';
-import PostFullView from './FullView';
+import Head from 'next/head';
+import { FC } from 'react';
+import styled from 'styled-components';
+import Comments from '../Comments';
+import PostHelper from '../PostHelper';
+import SourceView from '../SourceView';
 import { IPost } from './interfaces/Post';
-import NoPost from './NoPost';
 
-interface IProps {
-  post: IPost;
-  full: boolean;
-  meta: boolean;
-  subscribePostRemoved: () => void;
-  subscribePostCommentCountChanged: () => void;
-  subscribePostLikeCountChanged: () => void;
+const Box = styled.div`
+  flex-direction: column;
+  display: flex;
+  flex: 1;
+  background: ${({ theme }) => theme.dark2Color};
+  border-radius: 5px;
+  overflow: hidden;
+`;
+
+const ContentBox = styled.div``;
+
+const EmptyBottom = styled.div`
+  height: 100%;
+  display: flex;
+  flex: 1;
+  ${({ active }) => active && `cursor: pointer;`}
+`;
+
+const CommentsBox = styled.div`
+  display: flex;
+  flex: 1;
+  position: relative;
+  background: ${({ theme }) => theme.dark2Color};
+  border-top: 1px solid #1e1d22;
+  border-radius: 0 0 5px 5px;
+  overflow: hidden;
+`;
+
+interface IProps extends IPost {
+  meta?: boolean;
 }
 
-export default class PostView extends Component<IProps> {
-  public componentDidMount() {
-    this.props.subscribePostRemoved();
-    this.props.subscribePostCommentCountChanged();
-    this.props.subscribePostLikeCountChanged();
-  }
+const PostFeedView: FC<IProps> = ({
+  id,
+  title,
+  liked,
+  cover,
+  likesCount,
+  commentsCount,
+  sourceType,
+  sourceId,
+  createdAt,
+  authorId,
+  pinned
+}) => {
+  return (
+    <Box>
+      <Head>
+        <title>{title}</title>
+      </Head>
+      <ContentBox>
+        <SourceView
+          sourceType={sourceType}
+          sourceId={sourceId}
+          cover={cover}
+          playSourceKey={`${id}full`}
+          autoPlay
+        />
+      </ContentBox>
+      <PostHelper.Bottom>
+        <PostHelper.LikeButton id={id} liked={liked} likesCount={likesCount} />
+        <PostHelper.CommentsButton commentsCount={commentsCount} />
+        <PostHelper.ShareButton id={id} />
+        <PostHelper.Menu id={id} pinned={pinned} authorId={authorId} />
+        <EmptyBottom />
+        <PostHelper.Author createdAt={createdAt} authorId={authorId} />
+      </PostHelper.Bottom>
+      <CommentsBox>
+        <Comments postId={id} />
+      </CommentsBox>
+    </Box>
+  );
+};
 
-  public render() {
-    const { post, full, meta } = this.props;
-
-    if (full) {
-      if (!post) {
-        return <NoPost />;
-      }
-
-      return <PostFullView {...post} />;
-    }
-
-    if (!post) {
-      return null;
-    }
-
-    return <PostFeedView {...post} meta={meta} />;
-  }
-}
+export default PostFeedView;

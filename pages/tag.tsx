@@ -1,14 +1,11 @@
 import gql from 'graphql-tag';
 import Head from 'next/head';
 import { RouterProps, withRouter } from 'next/router';
-import { lighten } from 'polished';
 import * as React from 'react';
 import { Query } from 'react-apollo';
 import Posts from '../components/Posts';
-import RightPanel from '../components/RightPanel';
-import ScrollTopButton from '../components/ScrollTopButton';
-import Streams from '../components/Streams';
-import styled from '../theme';
+import Streams from '../components/Stream';
+import Layout from '../layouts/Main';
 
 const GET_TAG = gql`
   query tag($id: ID!) {
@@ -17,27 +14,6 @@ const GET_TAG = gql`
       title
     }
   }
-`;
-
-const Box = styled.div`
-  display: flex;
-  justify-content: center;
-  margin: 0 auto;
-  padding: 20px 0;
-`;
-
-const TagTitle = styled.div`
-  padding: 10px;
-  margin-bottom: 10px;
-  font-size: 20px;
-  color: ${({ theme }) => lighten(0.3, theme.main1Color)};
-`;
-
-const PostsBox = styled.div`
-  margin: 0 20px;
-  width: 800px;
-  border-radius: 5px;
-  overflow: hidden;
 `;
 
 interface IProps {
@@ -58,17 +34,8 @@ class UserPage extends React.Component<IProps> {
       tagId = router.query.id;
     }
 
-    let page = 0;
-
-    if (
-      this.props.router.query.page &&
-      typeof this.props.router.query.page === 'string'
-    ) {
-      page = parseInt(this.props.router.query.page, 10);
-    }
-
     return (
-      <Box>
+      <Layout>
         <Query query={GET_TAG} variables={{ id: tagId }}>
           {({ loading, error, data }) => {
             if (loading) {
@@ -82,23 +49,15 @@ class UserPage extends React.Component<IProps> {
             return (
               <>
                 <Head>
-                  <title>TwitchRu - {data.tag.title}</title>
+                  <title>#{data.tag.title}</title>
                 </Head>
-                <PostsBox>
-                  <TagTitle>#{data.tag.title}</TagTitle>
-                  <Posts tagId={tagId} sort="new" page={page} />
-                </PostsBox>
-                <RightPanel.Box>
-                  <RightPanel.Block>
-                    <Streams />
-                  </RightPanel.Block>
-                </RightPanel.Box>
+                <Streams />
+                <Posts title={`#${data.tag.title}`} tagId={tagId} sort="new" />
               </>
             );
           }}
         </Query>
-        <ScrollTopButton />
-      </Box>
+      </Layout>
     );
   }
 }

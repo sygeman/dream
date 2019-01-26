@@ -11,18 +11,31 @@ let store: IStore = null as any;
 const Store = types
   .model({
     playSourceKey: '',
-    layoutScrollIsTop: true
+    layoutInLoadArea: false,
+    gridCountOnRow: 0,
+    gridWidth: 0,
+    leftMenuIsOpen: true
   })
   .actions(self => {
     const setPlaySource = playSourceKey => {
       self.playSourceKey = playSourceKey;
     };
 
-    const setLayoutScrollTop = layoutScrollIsTop => {
-      self.layoutScrollIsTop = layoutScrollIsTop;
+    const setLayoutInLoadArea = layoutInLoadArea => {
+      self.layoutInLoadArea = layoutInLoadArea;
     };
 
-    return { setPlaySource, setLayoutScrollTop };
+    const setGridData = (gridCountOnRow, gridWidth) => {
+      self.gridCountOnRow = gridCountOnRow;
+      self.gridWidth = gridWidth;
+    };
+
+    const leftMenuTrigger = (isOpen?: boolean) => {
+      self.leftMenuIsOpen =
+        typeof isOpen === 'boolean' ? isOpen : !self.leftMenuIsOpen;
+    };
+
+    return { setPlaySource, setLayoutInLoadArea, setGridData, leftMenuTrigger };
   });
 
 type IStore = Instance<typeof Store>;

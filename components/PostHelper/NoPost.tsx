@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import styled from '../../theme';
+import styled from 'styled-components';
 
 const Box = styled.div`
   padding: 40px;

@@ -1,8 +1,13 @@
 import * as React from 'react';
-import Manage from '../components/Manage';
+import Dashboard from '../components/Manage/Dashboard';
+import Layout from '../layouts/Manage';
 
 export default class extends React.Component {
   public render() {
-    return <Manage />;
+    return (
+      <Layout>
+        <Dashboard />
+      </Layout>
+    );
   }
 }

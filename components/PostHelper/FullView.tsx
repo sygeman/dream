@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import { FC } from 'react';
-import styled from '../../theme';
+import styled from 'styled-components';
 import Comments from '../Comments';
 import PostHelper from '../PostHelper';
 import SourceView from '../SourceView';
@@ -9,7 +9,7 @@ import { IPost } from './interfaces/Post';
 const Box = styled.div`
   display: flex;
   align-items: stretch;
-  width: 1500px;
+  width: 1300px;
 
   @media (max-width: 1100px) {
     width: 600px;
@@ -18,6 +18,7 @@ const Box = styled.div`
 
 const MainBox = styled.div`
   display: flex;
+  flex-direction: column;
   flex: 1;
   background: ${({ theme }) => theme.dark2Color};
   overflow: hidden;
@@ -79,10 +80,6 @@ const PostFullView: FC<IPost> = ({
   <Box>
     <Head>
       <title>{title}</title>
-      <meta property="og:title" content={title} />
-      <meta property="og:description" content={title} />
-      <meta property="og:image" content={cover} />
-      <meta property="og:url" content={`https://twitchru.com/?postId=${id}`} />
     </Head>
     <MainBox>
       <Left>

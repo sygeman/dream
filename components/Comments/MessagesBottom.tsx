@@ -1,9 +1,9 @@
 import gql from 'graphql-tag';
 import * as React from 'react';
 import { Mutation } from 'react-apollo';
-import styled from '../../theme';
+import styled from 'styled-components';
+import { Access } from '../../helpers/Access';
 import { convertTextToEmojiCode } from '../../utils/emoji';
-import Access from '../Access';
 
 const CREATE_COMMENT = gql`
   mutation($postId: ID!, $text: String!) {

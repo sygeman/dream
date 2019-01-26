@@ -3,10 +3,10 @@ import gql from 'graphql-tag';
 import { lighten } from 'polished';
 import { Component } from 'react';
 import { Mutation } from 'react-apollo';
-import styled from '../../theme';
+import styled from 'styled-components';
+import { Access } from '../../helpers/Access';
 import { Button } from '../../ui/Button';
 import { changeURLParams } from '../../utils/url';
-import Access from '../Access';
 import Bet from './Bet';
 
 const PLACE_BET = gql`

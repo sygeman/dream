@@ -1,7 +1,7 @@
 import { darken, lighten } from 'polished';
 import { FC } from 'react';
 import { Line } from 'react-chartjs-2';
-import styled from '../../theme';
+import styled from 'styled-components';
 import { humanNumbers } from '../../utils/count';
 
 const Box = styled.div`

@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 import { lighten } from 'polished';
 import { FC } from 'react';
 import { Query } from 'react-apollo';
-import styled from '../../theme';
+import styled from 'styled-components';
 
 const GET_USER = gql`
   query($id: ID!) {

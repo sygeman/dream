@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 import { Component } from 'react';
 import { Query } from 'react-apollo';
-import styled from '../../theme';
+import styled from 'styled-components';
 import GameHistory from './GameHistory';
 
 const GET_GAMES_HISTORY = gql`

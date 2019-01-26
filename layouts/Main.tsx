@@ -251,7 +251,7 @@ class MainLayout extends Component<IProps, IState> {
           <Content>
             <ContentInsideBox>
               <Left pose={store.leftMenuIsOpen ? 'open' : 'closed'}>
-                <Scrollbars autoHide>
+                <Scrollbars autoHide universal>
                   <LeftMenu>
                     <LeftMenu.Item
                       route="/"
@@ -341,6 +341,7 @@ class MainLayout extends Component<IProps, IState> {
                 {fixedTopContent}
                 <Scrollbars
                   autoHide
+                  universal
                   onScrollFrame={e => {
                     const offset =
                       e.scrollHeight - e.scrollTop - e.clientHeight;

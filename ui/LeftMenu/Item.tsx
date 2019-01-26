@@ -3,7 +3,7 @@ import { RouterProps, withRouter } from 'next/router';
 import { lighten } from 'polished';
 import { Component } from 'react';
 import styled from 'styled-components';
-import { Icon } from '../../../ui/Icon';
+import { Icon } from '../Icon';
 
 const Item = styled.a`
   font-size: 14px;

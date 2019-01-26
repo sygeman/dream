@@ -3,6 +3,7 @@ import * as React from 'react';
 import RightPanel from '../components/Nav/Right';
 import PostFeedView from '../components/PostHelper/FeedView';
 import Streams from '../components/Streams';
+import Layout from '../layouts/Main';
 import PostProvider from '../providers/Post';
 import styled from '../theme';
 
@@ -39,18 +40,20 @@ class PostPage extends React.Component<IProps> {
     }
 
     return (
-      <Box>
-        <PostBox>
-          <PostProvider id={postId}>
-            {({ post }) => <PostFeedView {...post} meta />}
-          </PostProvider>
-        </PostBox>
-        <RightPanel.Box>
-          <RightPanel.Block>
-            <Streams />
-          </RightPanel.Block>
-        </RightPanel.Box>
-      </Box>
+      <Layout>
+        <Box>
+          <PostBox>
+            <PostProvider id={postId}>
+              {({ post }) => <PostFeedView {...post} meta />}
+            </PostProvider>
+          </PostBox>
+          <RightPanel.Box>
+            <RightPanel.Block>
+              <Streams />
+            </RightPanel.Block>
+          </RightPanel.Box>
+        </Box>
+      </Layout>
     );
   }
 }

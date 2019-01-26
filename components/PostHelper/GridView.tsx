@@ -88,6 +88,8 @@ interface IProps {
 
 export const GridView: FC<IProps> = ({ post, onPlay }) => {
   const date =
+    post &&
+    post.createdAt &&
     distanceInWordsToNow(parseInt(post.createdAt, 10), {
       locale: ruLocale
     }) + ' назад';

@@ -7,6 +7,7 @@ import RightPanel from '../components/Nav/Right';
 import Posts from '../components/Posts';
 import Streams from '../components/Streams';
 import UserPanelProfile from '../components/User/UserPanelProfile';
+import Layout from '../layouts/Main';
 import styled from '../theme';
 
 const GET_USER = gql`
@@ -78,40 +79,42 @@ class UserPage extends React.Component<IProps> {
     }
 
     return (
-      <Box>
-        <Query query={GET_USER} variables={{ id: userId }}>
-          {({ loading, error, data }) => {
-            if (loading || error) {
-              return null;
-            }
+      <Layout>
+        <Box>
+          <Query query={GET_USER} variables={{ id: userId }}>
+            {({ loading, error, data }) => {
+              if (loading || error) {
+                return null;
+              }
 
-            if (!data || !data.user) {
-              return 'User not found';
-            }
+              if (!data || !data.user) {
+                return 'User not found';
+              }
 
-            const user = data.user;
+              const user = data.user;
 
-            return (
-              <>
-                <Head>
-                  <title>{user.mainProfile.name}</title>
-                </Head>
-                <PostsBox>
-                  <Posts authorId={user.id} sort="new" />
-                </PostsBox>
-                <RightPanel.Box>
-                  <RightPanel.Block>
-                    <UserPanelProfile user={user} />
-                  </RightPanel.Block>
-                  <RightPanel.Block>
-                    <Streams />
-                  </RightPanel.Block>
-                </RightPanel.Box>
-              </>
-            );
-          }}
-        </Query>
-      </Box>
+              return (
+                <>
+                  <Head>
+                    <title>{user.mainProfile.name}</title>
+                  </Head>
+                  <PostsBox>
+                    <Posts authorId={user.id} sort="new" />
+                  </PostsBox>
+                  <RightPanel.Box>
+                    <RightPanel.Block>
+                      <UserPanelProfile user={user} />
+                    </RightPanel.Block>
+                    <RightPanel.Block>
+                      <Streams />
+                    </RightPanel.Block>
+                  </RightPanel.Box>
+                </>
+              );
+            }}
+          </Query>
+        </Box>
+      </Layout>
     );
   }
 }

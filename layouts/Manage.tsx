@@ -1,17 +1,13 @@
 import { inject, observer } from 'mobx-react';
-import { RouterProps, withRouter } from 'next/router';
 import { rgba } from 'polished';
 import { Component } from 'react';
 import Scrollbars from 'react-custom-scrollbars';
 import posed from 'react-pose';
-import { YMInitializer } from 'react-yandex-metrika';
 import styled from 'styled-components';
-import PostView from '../components/PostHelper/View';
+import TopNav from '../components/Nav/Top';
+import { Access } from '../helpers/Access';
 import { IStore } from '../lib/store';
-import PostProvider from '../providers/Post';
-import { Modal } from '../ui/Modal';
-import LeftMenu from './Nav/Left';
-import TopNav from './Nav/Top';
+import LeftMenu from '../ui/LeftMenu';
 
 const Box = styled.div`
   display: flex;
@@ -80,7 +76,6 @@ const Overlay = styled.div`
 
 interface IProps {
   store?: IStore;
-  router: RouterProps;
 }
 
 interface IState {
@@ -89,7 +84,7 @@ interface IState {
 
 @inject('store')
 @observer
-class Layout extends Component<IProps, IState> {
+class ManageLayout extends Component<IProps, IState> {
   constructor(props) {
     super(props);
 
@@ -145,62 +140,72 @@ class Layout extends Component<IProps, IState> {
   }
 
   public render() {
-    const { children, store, router } = this.props;
-
-    let postId = null;
-
-    if (typeof router.query.postId === 'string') {
-      postId = router.query.postId;
-    }
+    const { children, store } = this.props;
 
     return (
-      <Box>
-        <Modal minimal isOpen={!!postId} onClose={() => router.back()}>
-          <div style={{ width: '1000px' }}>
-            <PostProvider id={postId}>
-              {({ post }) => <PostView {...post} />}
-            </PostProvider>
-          </div>
-        </Modal>
-        <ContentBox>
-          <TopNav />
-          <Content>
-            <ContentInsideBox>
-              <Left pose={store.leftMenuIsOpen ? 'open' : 'closed'}>
-                <Scrollbars>
-                  <LeftMenu />
-                </Scrollbars>
-              </Left>
-              <PostsBox
-                id="layoutContent"
-                pose={
-                  store.leftMenuIsOpen && !this.state.smallWindow
-                    ? 'paddingLeft'
-                    : 'noPaddingLeft'
-                }
-              >
-                <Scrollbars
-                  onScrollFrame={e => {
-                    const offset =
-                      e.scrollHeight - e.scrollTop - e.clientHeight;
-                    store.setLayoutInLoadArea(offset <= 250);
-                  }}
+      <Access allow={currentUser => currentUser.role === 'admin'}>
+        <Box>
+          <ContentBox>
+            <TopNav />
+            <Content>
+              <ContentInsideBox>
+                <Left pose={store.leftMenuIsOpen ? 'open' : 'closed'}>
+                  <Scrollbars>
+                    <LeftMenu>
+                      <LeftMenu.Item
+                        route="/manage"
+                        equal
+                        icon="chart"
+                        title="Dashboard"
+                      />
+                      <LeftMenu.Item
+                        route="/manage/tags"
+                        icon="tag"
+                        title="Теги"
+                      />
+                      <LeftMenu.Item
+                        route="/manage/streams"
+                        icon="twitch"
+                        title="Стримы"
+                      />
+                      <LeftMenu.Item
+                        route="/manage/posts"
+                        icon="collection-video"
+                        title="Клипы"
+                      />
+                    </LeftMenu>
+                  </Scrollbars>
+                </Left>
+                <PostsBox
+                  id="layoutContent"
+                  pose={
+                    store.leftMenuIsOpen && !this.state.smallWindow
+                      ? 'paddingLeft'
+                      : 'noPaddingLeft'
+                  }
                 >
-                  {children}
-                </Scrollbars>
-              </PostsBox>
-            </ContentInsideBox>
-            {this.state.smallWindow && store.leftMenuIsOpen && (
-              <Overlay
-                onClick={() => this.props.store.leftMenuTrigger(false)}
-              />
-            )}
-          </Content>
-        </ContentBox>
-        <YMInitializer accounts={[51879323]} version="2" />
-      </Box>
+                  <Scrollbars
+                    onScrollFrame={e => {
+                      const offset =
+                        e.scrollHeight - e.scrollTop - e.clientHeight;
+                      store.setLayoutInLoadArea(offset <= 250);
+                    }}
+                  >
+                    {children}
+                  </Scrollbars>
+                </PostsBox>
+              </ContentInsideBox>
+              {this.state.smallWindow && store.leftMenuIsOpen && (
+                <Overlay
+                  onClick={() => this.props.store.leftMenuTrigger(false)}
+                />
+              )}
+            </Content>
+          </ContentBox>
+        </Box>
+      </Access>
     );
   }
 }
 
-export default withRouter(Layout);
+export default ManageLayout;

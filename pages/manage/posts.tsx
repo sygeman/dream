@@ -1,12 +1,12 @@
 import * as React from 'react';
-import TwitchTopClips from '../components/TwitchTopClips';
-import Layout from '../layouts/Main';
+import Posts from '../../components/Manage/Posts';
+import Layout from '../../layouts/Manage';
 
 export default class extends React.Component {
   public render() {
     return (
       <Layout>
-        <TwitchTopClips />
+        <Posts />
       </Layout>
     );
   }

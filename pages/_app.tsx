@@ -7,7 +7,6 @@ import NProgress from 'nprogress';
 import React from 'react';
 import { ApolloProvider } from 'react-apollo';
 import 'simplebar/dist/simplebar.min.css';
-import Layout from '../components/Layout';
 import { initializeStore, IStore } from '../lib/store';
 import withApollo from '../lib/withApollo';
 import { ThemeProvider } from '../theme';
@@ -87,9 +86,7 @@ class MyApp extends App<IProps> {
                     key="viewport"
                   />
                 </Head>
-                <Layout>
-                  <Component {...pageProps} />
-                </Layout>
+                <Component {...pageProps} />
               </React.Fragment>
             </Provider>
           </ThemeProvider>

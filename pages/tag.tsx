@@ -6,6 +6,7 @@ import { Query } from 'react-apollo';
 import RightPanel from '../components/Nav/Right';
 import Posts from '../components/Posts';
 import Streams from '../components/Streams';
+import Layout from '../layouts/Main';
 import styled from '../theme';
 
 const GET_TAG = gql`
@@ -51,39 +52,41 @@ class UserPage extends React.Component<IProps> {
     }
 
     return (
-      <Box>
-        <Query query={GET_TAG} variables={{ id: tagId }}>
-          {({ loading, error, data }) => {
-            if (loading) {
-              return null;
-            }
+      <Layout>
+        <Box>
+          <Query query={GET_TAG} variables={{ id: tagId }}>
+            {({ loading, error, data }) => {
+              if (loading) {
+                return null;
+              }
 
-            if (error || !data || !data.tag) {
-              return null;
-            }
+              if (error || !data || !data.tag) {
+                return null;
+              }
 
-            return (
-              <>
-                <Head>
-                  <title>#{data.tag.title}</title>
-                </Head>
-                <PostsBox>
-                  <Posts
-                    title={`#${data.tag.title}`}
-                    tagId={tagId}
-                    sort="new"
-                  />
-                </PostsBox>
-                <RightPanel.Box>
-                  <RightPanel.Block>
-                    <Streams />
-                  </RightPanel.Block>
-                </RightPanel.Box>
-              </>
-            );
-          }}
-        </Query>
-      </Box>
+              return (
+                <>
+                  <Head>
+                    <title>#{data.tag.title}</title>
+                  </Head>
+                  <PostsBox>
+                    <Posts
+                      title={`#${data.tag.title}`}
+                      tagId={tagId}
+                      sort="new"
+                    />
+                  </PostsBox>
+                  <RightPanel.Box>
+                    <RightPanel.Block>
+                      <Streams />
+                    </RightPanel.Block>
+                  </RightPanel.Box>
+                </>
+              );
+            }}
+          </Query>
+        </Box>
+      </Layout>
     );
   }
 }

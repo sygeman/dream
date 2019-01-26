@@ -2,6 +2,7 @@ import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 import Posts from '../components/Posts';
 import Streams from '../components/Stream';
+import Layout from '../layouts/Main';
 
 const GET_USER = gql`
   query getUser {
@@ -12,26 +13,28 @@ const GET_USER = gql`
 `;
 
 const LikesPage = () => (
-  <Query query={GET_USER}>
-    {({ loading, error, data }) => {
-      if (loading || error) {
-        return null;
-      }
+  <Layout>
+    <Query query={GET_USER}>
+      {({ loading, error, data }) => {
+        if (loading || error) {
+          return null;
+        }
 
-      if (!data || !data.user) {
-        return 'User not found';
-      }
+        if (!data || !data.user) {
+          return 'User not found';
+        }
 
-      const user = data.user;
+        const user = data.user;
 
-      return (
-        <>
-          <Streams />
-          <Posts title="Понравившиеся" likedUserId={user.id} />
-        </>
-      );
-    }}
-  </Query>
+        return (
+          <>
+            <Streams />
+            <Posts title="Понравившиеся" likedUserId={user.id} />
+          </>
+        );
+      }}
+    </Query>
+  </Layout>
 );
 
 export default LikesPage;

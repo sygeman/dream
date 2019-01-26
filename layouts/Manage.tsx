@@ -1,7 +1,7 @@
 import { inject, observer } from 'mobx-react';
 import { rgba } from 'polished';
 import { Component } from 'react';
-import {Scrollbars} from 'react-custom-scrollbars';
+import { Scrollbars } from 'react-custom-scrollbars';
 import posed from 'react-pose';
 import styled from 'styled-components';
 import TopNav from '../components/Nav/Top';

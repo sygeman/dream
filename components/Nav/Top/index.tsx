@@ -104,7 +104,7 @@ class TopNav extends Component<IProps, IState> {
               <TopLink>Клипы</TopLink>
             </Link>
             <Link href="/casino" passHref>
-              <TopLink>Игры</TopLink>
+              <TopLink>Рулетка</TopLink>
             </Link>
             <TopLink href="https://discord.gg/xVprhFC" target="_blank">
               Discord

@@ -145,13 +145,23 @@ class TwitchFollows extends Component<IProps> {
                   );
 
                   const openClip = (clipId: string) => {
-                    router.push({
-                      pathname: router.route,
-                      query: {
-                        ...router.query,
-                        clip: clipId
-                      }
-                    });
+                    router.push(
+                      {
+                        pathname: router.route,
+                        query: {
+                          ...router.query,
+                          clip: clipId
+                        }
+                      },
+                      {
+                        pathname: router.route,
+                        query: {
+                          ...router.query,
+                          clip: clipId
+                        }
+                      },
+                      { shallow: true }
+                    );
                   };
 
                   const clipsCount = data.twitchChannelTopClips.length;
@@ -180,12 +190,21 @@ class TwitchFollows extends Component<IProps> {
                           curretClipIndex < clipsCount - 1 && goNext
                         }
                         onClose={() => {
-                          router.push({
-                            pathname: router.route,
-                            query: {
-                              ...omit(router.query, 'clip')
-                            }
-                          });
+                          router.push(
+                            {
+                              pathname: router.route,
+                              query: {
+                                ...omit(router.query, 'clip')
+                              }
+                            },
+                            {
+                              pathname: router.route,
+                              query: {
+                                ...omit(router.query, 'clip')
+                              }
+                            },
+                            { shallow: true }
+                          );
                         }}
                       >
                         <ClipInModal>

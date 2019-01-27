@@ -6,7 +6,7 @@ export default class extends React.Component {
   public render() {
     return (
       <Layout>
-        <TwitchTopClips />
+        <TwitchTopClips limit={50} />
       </Layout>
     );
   }

@@ -39,7 +39,7 @@ const PostContainer = styled.div`
 const Grid = styled.div`
   width: 100%;
   display: grid;
-  padding: 10px 20px;
+  margin: 10px 20px;
   grid-template-columns: repeat(auto-fit, 280px);
   overflow-y: hidden;
 `;
@@ -53,6 +53,11 @@ const LoadMore = styled.div`
   padding: 10px;
   text-align: center;
   cursor: pointer;
+`;
+
+const Divider = styled.div`
+  border-bottom: 1px solid ${({ theme }) => theme.dark2Color};
+  margin: 10px 30px;
 `;
 
 interface IProps {
@@ -112,6 +117,7 @@ class PostsView extends Component<IProps> {
             <Button onClick={() => loadMore()}>Загрузить еще</Button>
           </LoadMore>
         )}
+        <Divider />
       </>
     );
   }

@@ -2,12 +2,14 @@ import distanceInWordsToNow from 'date-fns/distance_in_words_to_now';
 import ruLocale from 'date-fns/locale/ru';
 import gql from 'graphql-tag';
 import { omit } from 'lodash';
+import { inject, observer } from 'mobx-react';
 import { RouterProps, withRouter } from 'next/router';
 import { lighten } from 'polished';
 import { Component } from 'react';
 import { Query } from 'react-apollo';
 import SimpleBar from 'simplebar-react';
 import styled from 'styled-components';
+import { IStore } from '../lib/store';
 import { Modal } from '../ui/Modal';
 import { humanNumbers } from '../utils/count';
 import GridPreview from './PostHelper/GridPreview';
@@ -31,8 +33,9 @@ const GET_TWITCH_CHANNEL_TOP_CLIPS = gql`
 
 const Box = styled.div`
   display: flex;
-  height: 100%;
+  width: ${({ gridWidth }) => gridWidth}px;
   overflow: hidden;
+  margin: 0 auto;
 `;
 
 const ClipsBox = styled.div`
@@ -99,25 +102,24 @@ const ClipAuthor = styled.a`
   display: flex;
 `;
 
-const ClipInModal = styled.div`
-  width: 1300px;
-`;
-
 interface IProps {
   router: RouterProps;
   limit?: number;
+  store?: IStore;
 }
 
+@inject('store')
+@observer
 class TwitchFollows extends Component<IProps> {
   constructor(props) {
     super(props);
   }
 
   public render() {
-    const { router, limit } = this.props;
+    const { router, limit, store } = this.props;
 
     return (
-      <Box>
+      <Box gridWidth={store.gridWidth}>
         <ClipsBox>
           <SimpleBar>
             <Clips>
@@ -207,7 +209,7 @@ class TwitchFollows extends Component<IProps> {
                           );
                         }}
                       >
-                        <ClipInModal>
+                        <div style={{ width: 1100 }}>
                           <SourceView
                             playSourceKey={`${router.query.clip}top`}
                             sourceType={'twitchClip'}
@@ -215,7 +217,7 @@ class TwitchFollows extends Component<IProps> {
                             autoPlay
                             cover=""
                           />
-                        </ClipInModal>
+                        </div>
                       </Modal>
                       {data.twitchChannelTopClips.length === 0 && (
                         <div>Клипы не найдены</div>
@@ -248,6 +250,7 @@ class TwitchFollows extends Component<IProps> {
                               {clip.title}
                             </ClipTitle>
                             <ClipAuthor
+                              target="_blank"
                               href={`https://www.twitch.tv/${clip.channel}`}
                             >
                               {clip.channel}

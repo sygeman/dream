@@ -60,6 +60,11 @@ const Grid = styled.div`
   overflow-y: hidden;
 `;
 
+const Divider = styled.div`
+  border-bottom: 1px solid ${({ theme }) => theme.dark2Color};
+  margin: 10px 25px;
+`;
+
 interface IProps {
   manage?: boolean;
   store?: IStore;
@@ -78,66 +83,69 @@ const StreamsWithData: FC<IProps> = ({ manage, store }) => (
         }
 
         return (
-          <Grid>
-            <Streams
-              streams={data.streams.slice(0, store.gridCountOnRow)}
-              manage={manage}
-              streamAdded={() =>
-                subscribeToMore({
-                  document: STREAM_ADDED,
-                  updateQuery: (prev, { subscriptionData }) => {
-                    if (!subscriptionData.data) {
-                      return prev;
+          <>
+            <Grid>
+              <Streams
+                streams={data.streams.slice(0, store.gridCountOnRow)}
+                manage={manage}
+                streamAdded={() =>
+                  subscribeToMore({
+                    document: STREAM_ADDED,
+                    updateQuery: (prev, { subscriptionData }) => {
+                      if (!subscriptionData.data) {
+                        return prev;
+                      }
+                      const newStream = subscriptionData.data.streamAdded;
+
+                      return {
+                        ...prev,
+                        streams: [...prev.streams, newStream]
+                      };
                     }
-                    const newStream = subscriptionData.data.streamAdded;
+                  })
+                }
+                streamUpdated={() =>
+                  subscribeToMore({
+                    document: STREAM_UPDATED,
+                    updateQuery: (prev, { subscriptionData }) => {
+                      if (!subscriptionData.data) {
+                        return prev;
+                      }
+                      const stream = subscriptionData.data.streamUpdated;
 
-                    return {
-                      ...prev,
-                      streams: [...prev.streams, newStream]
-                    };
-                  }
-                })
-              }
-              streamUpdated={() =>
-                subscribeToMore({
-                  document: STREAM_UPDATED,
-                  updateQuery: (prev, { subscriptionData }) => {
-                    if (!subscriptionData.data) {
-                      return prev;
+                      return {
+                        ...prev,
+                        streams: prev.streams.map(s => {
+                          if (s.id !== stream.id) {
+                            return s;
+                          }
+
+                          return stream;
+                        })
+                      };
                     }
-                    const stream = subscriptionData.data.streamUpdated;
+                  })
+                }
+                streamRemoved={() =>
+                  subscribeToMore({
+                    document: STREAM_REMOVED,
+                    updateQuery: (prev, { subscriptionData }) => {
+                      if (!subscriptionData.data) {
+                        return prev;
+                      }
+                      const streamId = subscriptionData.data.streamRemoved;
 
-                    return {
-                      ...prev,
-                      streams: prev.streams.map(s => {
-                        if (s.id !== stream.id) {
-                          return s;
-                        }
-
-                        return stream;
-                      })
-                    };
-                  }
-                })
-              }
-              streamRemoved={() =>
-                subscribeToMore({
-                  document: STREAM_REMOVED,
-                  updateQuery: (prev, { subscriptionData }) => {
-                    if (!subscriptionData.data) {
-                      return prev;
+                      return {
+                        ...prev,
+                        streams: prev.streams.filter(s => s.id !== streamId)
+                      };
                     }
-                    const streamId = subscriptionData.data.streamRemoved;
-
-                    return {
-                      ...prev,
-                      streams: prev.streams.filter(s => s.id !== streamId)
-                    };
-                  }
-                })
-              }
-            />
-          </Grid>
+                  })
+                }
+              />
+            </Grid>
+            <Divider />
+          </>
         );
       }}
     </Query>

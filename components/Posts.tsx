@@ -43,6 +43,7 @@ const Box = styled.div`
 const SectionTitle = styled.div`
   display: flex;
   width: 100%;
+  font-size: 18px;
   padding: 15px 25px 0;
 
   a {

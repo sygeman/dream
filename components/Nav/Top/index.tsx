@@ -69,8 +69,11 @@ const LogoLink = styled.a`
 
 const LogoImg = styled.img`
   height: 28px;
-  padding: 0 10px;
+  margin: 0 10px;
+  padding: 5px;
   cursor: pointer;
+  background: ${({ theme }) => lighten(0.05, theme.main1Color)};
+  border-radius: 5px;
 
   @media (max-width: 700px) {
     display: none;
@@ -213,7 +216,7 @@ class TopNav extends Component<IProps> {
           </MenuButton>
           <Link href="/" passHref>
             <LogoLink>
-              <LogoImg src="https://ravepro.ams3.digitaloceanspaces.com/favicons/twitchru.png" />
+              <LogoImg src="https://ravepro.ams3.digitaloceanspaces.com/logo40.svg" />
             </LogoLink>
           </Link>
           <LeftMenu>

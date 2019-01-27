@@ -25,8 +25,8 @@ class Follows extends Component<IProps> {
   constructor(props) {
     super(props);
 
-    this.page = 0;
-    this.pageSize = 50;
+    this.page = 1;
+    this.pageSize = 10;
   }
 
   public render() {
@@ -49,7 +49,12 @@ class Follows extends Component<IProps> {
             return null;
           }
 
-          this.page++;
+          console.log(
+            this.page,
+            this.pageSize,
+            this.page * this.pageSize,
+            data.userTwitchFollows.count
+          );
 
           return children({
             follows: data.userTwitchFollows.follows,

@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { RouterProps, withRouter } from 'next/router';
-import { lighten } from 'polished';
+import { lighten, rgba } from 'polished';
 import { Component } from 'react';
 import styled from 'styled-components';
 import { Icon } from '../Icon';
@@ -16,10 +16,10 @@ const Item = styled.a`
   white-space: nowrap;
   text-overflow: ellipsis;
   background: ${({ active, theme }) =>
-    active && lighten(0.05, theme.dark2Color)};
+    active && rgba(theme.main1Color, .5)};
 
   :hover {
-    background: ${({ theme }) => lighten(0.05, theme.dark2Color)};
+    background: ${({ theme }) => rgba(theme.main1Color, .5)};
   }
 
   i {
@@ -30,7 +30,7 @@ const Item = styled.a`
     align-items: center;
     left: 20px;
     font-size: 19px;
-    color: ${({ theme }) => theme.accent2Color};
+    color: ${({ theme, active }) => active ? lighten(0.2, theme.accent2Color) : theme.accent2Color};
   }
 `;
 

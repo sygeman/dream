@@ -32,9 +32,10 @@ const REMOVE_TAG = gql`
 const Box = styled.div`
   margin: 0 auto;
   width: 800px;
-  margin-top: 30px;
+  margin-top: 70px;
   border-radius: 5px;
   overflow: hidden;
+  background: ${({ theme }) => theme.dark2Color};
 `;
 
 const TagsContainer = styled.div`
@@ -55,7 +56,6 @@ const Tags: FC = () => {
 
   return (
     <Box>
-      <div>Теги</div>
       <Query query={GET_TAGS}>
         {({ loading, error, data }) => {
           if (loading) {

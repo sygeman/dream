@@ -1,10 +1,10 @@
 import gql from 'graphql-tag';
 import { inject, observer } from 'mobx-react';
 import { RouterProps, withRouter } from 'next/router';
-import { rgba } from 'polished';
+import { lighten, rgba } from 'polished';
 import { Component, ReactNode } from 'react';
 import { Query } from 'react-apollo';
-import { Scrollbars } from 'react-custom-scrollbars';
+import Scrollbars from 'react-custom-scrollbars';
 import posed from 'react-pose';
 import { YMInitializer } from 'react-yandex-metrika';
 import styled from 'styled-components';
@@ -40,13 +40,14 @@ const GET_POST_AROUND = gql`
   }
 `;
 
+const LEFT_MENU_WIDTH = 260;
+
 const Box = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
   overflow: hidden;
-  background: ${({ theme }) =>
-    'radial-gradient(' + theme.main1Color + ', ' + theme.dark2Color + ')'};
+  background: ${({ theme }) => theme.dark1Color};
 `;
 
 const Content = styled.div`
@@ -56,14 +57,13 @@ const Content = styled.div`
 `;
 
 const LeftAnim = posed.div({
-  closed: { left: -260 },
+  closed: { left: -LEFT_MENU_WIDTH },
   open: { left: 0 }
 });
 
 const Left = styled(LeftAnim)`
-  border-right: 1px solid ${({ theme }) => rgba(theme.main1Color, 0.5)};
-  background: ${({ theme }) => theme.dark2Color};
-  width: 260px;
+  background: ${({ theme }) => lighten(0.05, theme.dark1Color)};
+  width: ${LEFT_MENU_WIDTH}px;
   position: absolute;
   left: 0;
   top: 0;
@@ -73,13 +73,14 @@ const Left = styled(LeftAnim)`
 
 const PostsBoxAnim = posed.div({
   noPaddingLeft: { 'padding-left': 0 },
-  paddingLeft: { 'padding-left': '260px' }
+  paddingLeft: { 'padding-left': LEFT_MENU_WIDTH + 'px' }
 });
 
 const PostsBox = styled(PostsBoxAnim)`
   display: flex;
   flex-direction: column;
   width: 100%;
+  padding-left: ${LEFT_MENU_WIDTH}px;
 `;
 
 const ContentBox = styled('div')`
@@ -89,6 +90,7 @@ const ContentBox = styled('div')`
   overflow-y: hidden;
   display: flex;
   flex-direction: column;
+  ${({ blured }) => blured && `filter: blur(10px);`}
 `;
 
 const ContentInsideBox = styled.div`
@@ -102,7 +104,7 @@ const Overlay = styled.div`
   top: 0;
   width: 100%;
   height: 100%;
-  background: ${({ theme }) => rgba(theme.dark2Color, 0.7)};
+  background: ${({ theme }) => rgba(theme.dark1Color, 0.95)};
   z-index: 50;
 `;
 
@@ -131,7 +133,7 @@ class MainLayout extends Component<IProps, IState> {
     let width = window.innerWidth;
 
     if (width >= 1000) {
-      width = width - 260;
+      width = width - LEFT_MENU_WIDTH;
     }
 
     const smallWindow = width < 1000;
@@ -142,15 +144,22 @@ class MainLayout extends Component<IProps, IState> {
       this.setState({ smallWindow });
     }
 
-    let countOnRow = Math.floor((width - 60) / 300);
-    let gridWidth = countOnRow * 300 + 60;
+    const GRID_ELEMENT_WIDTH = 280;
+    const GRID_PADDING_ONE = 20;
+    const GRID_PADDING = GRID_PADDING_ONE * 2;
 
-    if (gridWidth < 360) {
-      gridWidth = 360;
-    }
+    let countOnRow = Math.floor((width - GRID_PADDING) / GRID_ELEMENT_WIDTH);
 
     if (countOnRow < 1) {
       countOnRow = 1;
+    } else if (countOnRow > 6) {
+      countOnRow = 6;
+    }
+
+    let gridWidth = countOnRow * GRID_ELEMENT_WIDTH + GRID_PADDING;
+
+    if (gridWidth < GRID_ELEMENT_WIDTH + GRID_PADDING) {
+      gridWidth = GRID_ELEMENT_WIDTH + GRID_PADDING;
     }
 
     return {
@@ -180,6 +189,12 @@ class MainLayout extends Component<IProps, IState> {
 
     if (typeof router.query.postId === 'string') {
       postId = router.query.postId;
+    }
+
+    let backPath = null;
+
+    if (typeof router.query.backPath === 'string') {
+      backPath = router.query.backPath;
     }
 
     return (
@@ -231,7 +246,7 @@ class MainLayout extends Component<IProps, IState> {
                 minimal
                 isOpen={!!postId}
                 onClose={() => {
-                  router.replace(router.query.backPath);
+                  router.replace(backPath);
                 }}
                 onLeftClick={toPrevPost}
                 onRightClick={toNextPost}
@@ -246,7 +261,7 @@ class MainLayout extends Component<IProps, IState> {
           }}
         </Query>
 
-        <ContentBox>
+        <ContentBox blured={store.allBlured}>
           <TopNav />
           <Content>
             <ContentInsideBox>
@@ -259,8 +274,18 @@ class MainLayout extends Component<IProps, IState> {
                       icon="home"
                       title="Главная"
                     />
-                    <LeftMenu.Item route="/hot" icon="fire" title="В тренде" />
-                    <LeftMenu.Item route="/new" icon="flare" title="Новое" />
+                    <LeftMenu.Item
+                      equal
+                      route="/hot"
+                      icon="fire"
+                      title="В тренде"
+                    />
+                    <LeftMenu.Item
+                      equal
+                      route="/new"
+                      icon="flare"
+                      title="Новое"
+                    />
                     <LeftMenu.Item route="/top" icon="trending-up" title="Топ">
                       <LeftMenu.SubItem route="/top/day">День</LeftMenu.SubItem>
                       <LeftMenu.SubItem route="/top/week">

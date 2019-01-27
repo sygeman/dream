@@ -1,11 +1,11 @@
 import gql from 'graphql-tag';
+import Router from 'next/router';
 import * as React from 'react';
 import { Mutation } from 'react-apollo';
 import posed from 'react-pose';
 import styled from 'styled-components';
 import { Access } from '../../helpers/Access';
 import { Icon } from '../../ui/Icon';
-import { changeURLParams } from '../../utils/url';
 
 const SET_LIKE_STATE = gql`
   mutation($postId: ID!) {
@@ -67,7 +67,21 @@ export default class PostLike extends React.Component<IProps> {
     return (
       <Access
         denyContent={
-          <LikeBox onClick={() => changeURLParams({ set: { auth: 1 } })}>
+          <LikeBox
+            onClick={() =>
+              Router.push(
+                {
+                  pathname: Router.route,
+                  query: {
+                    ...Router.query,
+                    authModal: 1
+                  }
+                },
+                `/auth?continue=${Router.asPath}`,
+                { shallow: true }
+              )
+            }
+          >
             <LikeButton active={liked}>
               <Icon type="thumb-up" />
             </LikeButton>

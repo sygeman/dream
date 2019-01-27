@@ -8,7 +8,7 @@ import { Input } from '../ui/Input';
 import { SWRow } from '../ui/SWRow';
 import { parseSource } from '../utils/parseSoruce';
 import SourceView from './SourceView';
-import TagsManage from './TagsManage';
+// import TagsManage from './TagsManage';
 
 const CREATE_POST = gql`
   mutation(
@@ -35,7 +35,7 @@ const Box = styled.div`
 `;
 
 const Bottom = styled.div`
-  margin-top: 10px;
+  margin-top: 20px;
   display: flex;
   justify-content: flex-end;
 `;
@@ -107,14 +107,16 @@ export default class CreatePost extends React.Component<{}, IState> {
               description="Обнажённая натура, гуро, порнография и обсценная лексика"
               onChange={() => this.setState({ nfws: !this.state.nfws })}
               isActive={this.state.nfws}
+              inactiveColor={'#1D1E30'}
             />
             <SWRow
               title="Спойлер"
               description="Информация о сюжете книги, фильма или компьютерной игры, которая, будучи преждевременно раскрытой, лишает некоторых читателей части удовольствия от сюжета."
               onChange={() => this.setState({ spoiler: !this.state.spoiler })}
               isActive={this.state.spoiler}
+              inactiveColor={'#1D1E30'}
             />
-            <TagsManage
+            {/* <TagsManage
               tags={this.state.tags}
               onTagAdded={tagId =>
                 this.setState({ tags: [...this.state.tags, tagId] })
@@ -126,7 +128,7 @@ export default class CreatePost extends React.Component<{}, IState> {
                   })
                 })
               }
-            />
+            /> */}
             <Bottom>
               <Button
                 onClick={() =>

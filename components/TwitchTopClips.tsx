@@ -1,6 +1,7 @@
 import distanceInWordsToNow from 'date-fns/distance_in_words_to_now';
 import ruLocale from 'date-fns/locale/ru';
 import gql from 'graphql-tag';
+import { omit } from 'lodash';
 import { RouterProps, withRouter } from 'next/router';
 import { lighten } from 'polished';
 import { Component } from 'react';
@@ -9,7 +10,6 @@ import SimpleBar from 'simplebar-react';
 import styled from 'styled-components';
 import { Modal } from '../ui/Modal';
 import { humanNumbers } from '../utils/count';
-import { changeURLParams } from '../utils/url';
 import GridPreview from './PostHelper/GridPreview';
 import SourceView from './SourceView';
 
@@ -29,8 +29,8 @@ const ClipsBox = styled.div`
 const Clips = styled.div`
   width: 100%;
   display: grid;
-  padding: 10px 30px;
-  grid-template-columns: repeat(auto-fit, 300px);
+  padding: 10px 20px;
+  grid-template-columns: repeat(auto-fit, 280px);
   overflow-y: hidden;
   justify-content: center;
 `;
@@ -142,21 +142,27 @@ class TwitchFollows extends Component<IProps> {
                     }
                   );
 
+                  const openClip = (clipId: string) => {
+                    router.push({
+                      pathname: router.route,
+                      query: {
+                        ...router.query,
+                        clip: clipId
+                      }
+                    });
+                  };
+
                   const clipsCount = data.twitchChannelTopClips.length;
 
                   const goPrev = () =>
-                    changeURLParams({
-                      set: {
-                        clip: data.twitchChannelTopClips[curretClipIndex - 1].id
-                      }
-                    });
+                    openClip(
+                      data.twitchChannelTopClips[curretClipIndex - 1].id
+                    );
 
                   const goNext = () =>
-                    changeURLParams({
-                      set: {
-                        clip: data.twitchChannelTopClips[curretClipIndex + 1].id
-                      }
-                    });
+                    openClip(
+                      data.twitchChannelTopClips[curretClipIndex + 1].id
+                    );
 
                   const sourceId = router.query.clip
                     ? router.query.clip.toString()
@@ -171,7 +177,14 @@ class TwitchFollows extends Component<IProps> {
                         onRightClick={
                           curretClipIndex < clipsCount - 1 && goNext
                         }
-                        onClose={() => changeURLParams({ remove: ['clip'] })}
+                        onClose={() => {
+                          router.push({
+                            pathname: router.route,
+                            query: {
+                              ...omit(router.query, 'clip')
+                            }
+                          });
+                        }}
                       >
                         <ClipInModal>
                           <SourceView
@@ -192,11 +205,7 @@ class TwitchFollows extends Component<IProps> {
                             <ClipPreviewContent>
                               <GridPreview
                                 key={clip.id}
-                                onClick={() =>
-                                  changeURLParams({
-                                    set: { clip: clip.id }
-                                  })
-                                }
+                                onClick={() => openClip(clip.id)}
                                 cover={clip.thumbnails.small}
                                 date={
                                   distanceInWordsToNow(
@@ -212,9 +221,7 @@ class TwitchFollows extends Component<IProps> {
                           </ClipPreview>
                           <ClipBottom>
                             <ClipTitle
-                              onClick={() =>
-                                changeURLParams({ set: { clip: clip.id } })
-                              }
+                              onClick={() => openClip(clip.id)}
                               title={clip.title}
                             >
                               {clip.title}

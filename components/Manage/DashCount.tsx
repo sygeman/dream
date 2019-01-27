@@ -1,4 +1,4 @@
-import { darken, lighten } from 'polished';
+import { darken } from 'polished';
 import { FC } from 'react';
 import { Line } from 'react-chartjs-2';
 import styled from 'styled-components';
@@ -11,14 +11,10 @@ const Box = styled.div`
   height: 100px;
   text-align: left;
   display: flex;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 `;
 
 const Left = styled.div`
-  background: radial-gradient(
-    ${({ theme }) => lighten(0.02, theme.dark2Color)},
-    ${({ theme }) => darken(0.02, theme.dark2Color)}
-  );
+  background: ${({ theme }) => theme.dark2Color};
   align-items: center;
   min-width: 150px;
   display: flex;
@@ -28,10 +24,7 @@ const Left = styled.div`
 `;
 
 const Right = styled.div`
-  background: radial-gradient(
-    ${({ theme }) => lighten(0.1, theme.main1Color)},
-    ${({ theme }) => darken(0.05, theme.main1Color)}
-  );
+  background: ${({ theme }) => darken(0.05, theme.main1Color)};
   display: flex;
   align-items: center;
   padding: 60px 10px;

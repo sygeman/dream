@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { RouterProps, withRouter } from 'next/router';
-import { darken, lighten } from 'polished';
+import { darken, rgba } from 'polished';
 import { Component } from 'react';
 import styled from 'styled-components';
 
@@ -8,20 +8,20 @@ const SubItem = styled('a')<{
   active?: boolean;
 }>`
   padding: 0 20px 0 70px;
-  height: 32px;
+  height: 30px;
   display: flex;
   align-items: center;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  font-size: 14px;
+  font-size: 13px;
   cursor: pointer;
-  color: ${({ theme }) => darken(0.3, theme.text1Color)};
+  color: ${({ theme }) => darken(0.2, theme.text1Color)};
   background: ${({ theme, active }) =>
-    active ? lighten(0.025, theme.dark2Color) : 'transparent'};
+    active ? rgba(theme.main1Color, .2) : 'transparent'};
 
   :hover {
-    background: ${({ theme }) => lighten(0.025, theme.dark2Color)};
+    background: ${({ theme }) => rgba(theme.main1Color, .2)};
   }
 
   span {

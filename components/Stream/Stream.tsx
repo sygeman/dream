@@ -105,10 +105,10 @@ const StreamData = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
+  justify-content: center;
 `;
 
 const StreamName = styled.a`
-  /* text-transform: uppercase; */
   font-size: 12px;
   overflow: hidden;
   white-space: nowrap;
@@ -116,9 +116,8 @@ const StreamName = styled.a`
 `;
 
 const StreamCategory = styled.a`
-  /* text-transform: uppercase; */
   font-size: 11px;
-  color: ${({ theme }) => lighten(0.25, theme.main1Color)};
+  color: ${({ theme }) => lighten(0.4, theme.dark1Color)};
 `;
 
 const StreamManage = styled.div`

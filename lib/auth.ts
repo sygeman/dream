@@ -2,15 +2,6 @@ import * as Cookies from 'js-cookie';
 import jwt from 'jsonwebtoken';
 import { destroyCookie, parseCookies, setCookie } from 'nookies';
 import config from '../config';
-import { changeURLParams } from '../utils/url';
-
-export const auth = (serviceName: string) => {
-  changeURLParams({ remove: ['auth'] });
-
-  setTimeout(() => {
-    location.href = `${config.apiUrl}auth/${serviceName}`;
-  }, 100);
-};
 
 export const connect = (serviceName: string) => {
   location.href = `${config.apiUrl}auth/connect/${serviceName}`;
@@ -18,13 +9,6 @@ export const connect = (serviceName: string) => {
 
 export const disconnect = (serviceName: string) => {
   location.href = `${config.apiUrl}disconnect/${serviceName}`;
-};
-
-export const logout = () => {
-  changeURLParams({ remove: ['profile'] });
-  setTimeout(() => {
-    location.href = `${config.apiUrl}logout`;
-  }, 100);
 };
 
 export const getAccessToken = (ctx = null) => {

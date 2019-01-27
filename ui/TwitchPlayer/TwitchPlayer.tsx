@@ -94,7 +94,7 @@ export class TwitchPlayer extends Component<IProps> {
         });
 
         setInterval(this.changeQuality, 4000);
-        setInterval(this.triggerPlay, 2000);
+        // setInterval(this.triggerPlay, 2000);
 
         this.player.setQuality('160p30');
       });

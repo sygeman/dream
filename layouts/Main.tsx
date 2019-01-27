@@ -209,6 +209,7 @@ class MainLayout extends Component<IProps, IState> {
             likedUserId: router.query.postAroudLikedUserId,
             sort: router.query.postAroudSort
           }}
+          skip={!postId}
         >
           {({ data }) => {
             let toPrevPost;

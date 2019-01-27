@@ -1,3 +1,4 @@
+import nanoid from 'nanoid';
 import { lighten, rgba } from 'polished';
 import * as React from 'react';
 import styled from 'styled-components';
@@ -67,7 +68,6 @@ const ModalB = styled.div`
   background: ${({ theme }) =>
     theme.dark2Color && lighten(0.01, theme.dark2Color)};
   border-radius: 4px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 `;
 
 const Header = styled.div`
@@ -140,7 +140,13 @@ export class Modal extends React.Component<IProps> {
     onClose: () => undefined
   };
 
+  public modalId: string = null;
+
   public componentDidMount() {
+    this.modalId = nanoid(4);
+
+    console.log('modal m', this.modalId);
+
     window.addEventListener(
       'keydown',
       e => {
@@ -150,6 +156,10 @@ export class Modal extends React.Component<IProps> {
       },
       false
     );
+  }
+
+  public componentWillUnmount() {
+    console.log('modal um', this.modalId);
   }
 
   public render() {

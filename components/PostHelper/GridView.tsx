@@ -112,7 +112,19 @@ export const GridView: FC<IProps> = ({ post, onPlay }) => {
       <Bottom>
         <BottomLeft>
           <Title>{post && post.title}</Title>
-          <Author>{post && <AuthorGrid id={post.authorId} />}</Author>
+          <Author>
+            {post &&
+              (post.channelName ? (
+                <a
+                  href={`https://www.twitch.tv/${post.channelName}`}
+                  target="_blank"
+                >
+                  {post.channelName}
+                </a>
+              ) : (
+                <AuthorGrid id={post.authorId} />
+              ))}
+          </Author>
           <Date />
         </BottomLeft>
         <BottomRight>

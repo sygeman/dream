@@ -62,6 +62,18 @@ export class TwitchPlayer extends Component<IProps> {
     super(props);
   }
 
+  public randomAction = () => {
+    if (this.player) {
+      const quality = this.player.getQuality();
+
+      if (quality === '160p30') {
+        this.player.setQuality('360p30');
+      } else if (quality === '360p30') {
+        this.player.setQuality('160p30');
+      }
+    }
+  };
+
   public componentDidMount() {
     setTimeout(() => {
       getSDK(SDK_URL, SDK_GLOBAL).then(Twitch => {
@@ -73,6 +85,8 @@ export class TwitchPlayer extends Component<IProps> {
           muted: this.props.muted,
           controls: false
         });
+
+        setInterval(this.randomAction, 10000);
 
         this.player.setQuality('160p30');
       });

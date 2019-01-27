@@ -1,12 +1,12 @@
 import format from 'date-fns/format';
 import gql from 'graphql-tag';
+import Router from 'next/router';
 import { lighten } from 'polished';
 import { Component } from 'react';
 import { Mutation } from 'react-apollo';
 import styled from 'styled-components';
 import { Access } from '../../helpers/Access';
 import { Button } from '../../ui/Button';
-import { changeURLParams } from '../../utils/url';
 import Bet from './Bet';
 
 const PLACE_BET = gql`
@@ -145,7 +145,19 @@ class Game extends Component<IProps, IState> {
             <Access
               denyContent={
                 <BetPlaceButton
-                  onClick={() => changeURLParams({ set: { auth: 1 } })}
+                  onClick={() =>
+                    Router.push(
+                      {
+                        pathname: Router.route,
+                        query: {
+                          ...Router.query,
+                          authModal: 1
+                        }
+                      },
+                      `/auth?continue=${Router.asPath}`,
+                      { shallow: true }
+                    )
+                  }
                 >
                   Присоединиться
                   <span>100</span>

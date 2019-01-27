@@ -1,7 +1,7 @@
 import { lighten } from 'polished';
 import { FC } from 'react';
 import styled from 'styled-components';
-import { auth } from '../lib/auth';
+import config from '../config';
 import { Icon } from '../ui/Icon';
 
 const AuthBox = styled.div`
@@ -29,7 +29,7 @@ const SocialForm = styled.div`
   }
 `;
 
-const LoginButton = styled('div')<{
+const LoginButton = styled('a')<{
   cColor: string;
 }>`
   display: flex;
@@ -60,13 +60,13 @@ const Auth: FC = () => (
   <AuthBox>
     <AuthTitle>Выберите наиболее удобную платформу для авторизации</AuthTitle>
     <SocialForm>
-      <LoginButton cColor={'#507299'} onClick={() => auth('vkontakte')}>
+      <LoginButton cColor={'#507299'} href={`${config.apiUrl}auth/vkontakte`}>
         <Icon type="vk" />
       </LoginButton>
-      <LoginButton cColor={'#DB4437'} onClick={() => auth('google')}>
+      <LoginButton cColor={'#DB4437'} href={`${config.apiUrl}auth/google`}>
         <Icon type="youtube-play" />
       </LoginButton>
-      <LoginButton cColor={'#6542a6'} onClick={() => auth('twitch')}>
+      <LoginButton cColor={'#6542a6'} href={`${config.apiUrl}auth/twitch`}>
         <Icon type="twitch" />
       </LoginButton>
     </SocialForm>

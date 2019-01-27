@@ -1,9 +1,9 @@
-import Router from 'next/router';
+import Link from 'next/link';
 import { darken } from 'polished';
 import * as React from 'react';
 import styled from 'styled-components';
+import config from '../../../config';
 import { Access } from '../../../helpers/Access';
-import { logout } from '../../../lib/auth';
 import { Dropdown } from '../../../ui/Dropdown';
 
 const Box = styled.div`
@@ -13,6 +13,8 @@ const Box = styled.div`
 `;
 
 const UserMenu = styled.div`
+  display: flex;
+  flex-direction: column;
   background: ${({ theme }) => theme.main1Color};
   border-radius: 3px;
   overflow: hidden;
@@ -21,7 +23,7 @@ const UserMenu = styled.div`
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 `;
 
-const UserMenuItem = styled.div`
+const UserMenuItem = styled.a`
   font-size: 13px;
   padding: 10px;
   cursor: pointer;
@@ -42,18 +44,20 @@ export default class PostMenu extends React.Component<IProps> {
 
     return (
       <UserMenu>
-        <UserMenuItem onClick={() => Router.push(`/user?id=${user.id}`)}>
-          Профиль
-        </UserMenuItem>
+        <Link href={`/user?id=${user.id}`} passHref>
+          <UserMenuItem>Профиль</UserMenuItem>
+        </Link>
         <Access allow={currentUser => currentUser.role === 'admin'}>
-          <UserMenuItem onClick={() => Router.push('/manage')}>
-            Панель управления
-          </UserMenuItem>
+          <Link href="/manage" passHref>
+            <UserMenuItem>Панель управления</UserMenuItem>
+          </Link>
         </Access>
-        <UserMenuItem onClick={() => Router.push('/settings')}>
-          Настройки
-        </UserMenuItem>
-        <UserMenuItem onClick={() => logout()}>Выход</UserMenuItem>
+        <Link href="/settings" passHref>
+          <UserMenuItem>Настройки</UserMenuItem>
+        </Link>
+        <Link href={`${config.apiUrl}logout`} passHref>
+          <UserMenuItem>Выход</UserMenuItem>
+        </Link>
       </UserMenu>
     );
   };

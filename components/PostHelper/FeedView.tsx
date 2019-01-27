@@ -121,15 +121,6 @@ const PostFeedView: FC<IProps> = ({
   pinned,
   meta
 }) => {
-  const toPost = no => {
-    if (no) {
-      return;
-    }
-    // Router.push();
-    window.open(`/post?id=${id}`, '_blank');
-    // changeURLParams({ set: { postId: id } });
-  };
-
   return (
     <Box>
       {meta && (
@@ -146,7 +137,7 @@ const PostFeedView: FC<IProps> = ({
       )}
       <Top>
         <TitleBox>
-          <Title active={!meta} onClick={() => toPost(meta)}>
+          <Title active={!meta}>
             {pinned && (
               <PinPostIcon>
                 <Icon type="money" />
@@ -189,18 +180,10 @@ const PostFeedView: FC<IProps> = ({
       </ContentBox>
       <PostHelper.Bottom>
         <PostHelper.LikeButton id={id} liked={liked} likesCount={likesCount} />
-        {!meta ? (
-          <PostHelper.CommentsButton
-            commentsCount={commentsCount}
-            onClick={() => toPost(meta)}
-          />
-        ) : (
-          <PostHelper.CommentsButton commentsCount={commentsCount} />
-        )}
-
+        <PostHelper.CommentsButton commentsCount={commentsCount} />
         <PostHelper.ShareButton id={id} />
         <PostHelper.Menu id={id} pinned={pinned} authorId={authorId} />
-        <EmptyBottom active={!meta} onClick={() => toPost(meta)} />
+        <EmptyBottom active={!meta} />
         <PostHelper.Author createdAt={createdAt} authorId={authorId} />
       </PostHelper.Bottom>
       <CommentsBox>

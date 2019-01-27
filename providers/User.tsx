@@ -7,6 +7,7 @@ const GET_USER = gql`
     user(id: $id) {
       id
       points
+      balance
       mainProfile {
         id
         name

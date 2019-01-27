@@ -258,7 +258,7 @@ class TopNav extends Component<IProps> {
                       </Points>
                       <Points>
                         <PointsIconPepega />
-                        <PointsCount>{humanNumbers(0)}</PointsCount>
+                        <PointsCount>{humanNumbers(user.balance)}</PointsCount>
                       </Points>
                     </PointsBox>
                     <Menu user={user}>

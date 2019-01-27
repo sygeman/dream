@@ -26,7 +26,7 @@ class Follows extends Component<IProps> {
     super(props);
 
     this.page = 1;
-    this.pageSize = 10;
+    this.pageSize = 50;
   }
 
   public render() {
@@ -48,13 +48,6 @@ class Follows extends Component<IProps> {
           if (error || !data || !data.userTwitchFollows) {
             return null;
           }
-
-          console.log(
-            this.page,
-            this.pageSize,
-            this.page * this.pageSize,
-            data.userTwitchFollows.count
-          );
 
           return children({
             follows: data.userTwitchFollows.follows,

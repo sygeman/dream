@@ -26,7 +26,7 @@ class Follows extends Component<IProps> {
     super(props);
 
     this.page = 0;
-    this.pageSize = 20;
+    this.pageSize = 50;
   }
 
   public render() {

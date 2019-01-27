@@ -13,6 +13,22 @@ import { humanNumbers } from '../utils/count';
 import GridPreview from './PostHelper/GridPreview';
 import SourceView from './SourceView';
 
+const GET_TWITCH_CHANNEL_TOP_CLIPS = gql`
+  query twitchChannelTopClips($channel: String, $game: String, $limit: Int) {
+    twitchChannelTopClips(channel: $channel, game: $game, limit: $limit) {
+      id
+      channel
+      title
+      createdAt
+      thumbnails {
+        small
+        tiny
+      }
+      viewsCount
+    }
+  }
+`;
+
 const Box = styled.div`
   display: flex;
   height: 100%;
@@ -87,24 +103,9 @@ const ClipInModal = styled.div`
   width: 1300px;
 `;
 
-const GET_TWITCH_CHANNEL_TOP_CLIPS = gql`
-  query twitchChannelTopClips($channel: String, $game: String) {
-    twitchChannelTopClips(channel: $channel, game: $game) {
-      id
-      channel
-      title
-      createdAt
-      thumbnails {
-        small
-        tiny
-      }
-      viewsCount
-    }
-  }
-`;
-
 interface IProps {
   router: RouterProps;
+  limit?: number;
 }
 
 class TwitchFollows extends Component<IProps> {
@@ -113,7 +114,7 @@ class TwitchFollows extends Component<IProps> {
   }
 
   public render() {
-    const { router } = this.props;
+    const { router, limit } = this.props;
 
     return (
       <Box>
@@ -124,7 +125,8 @@ class TwitchFollows extends Component<IProps> {
                 query={GET_TWITCH_CHANNEL_TOP_CLIPS}
                 variables={{
                   channel: router.query.channel,
-                  game: router.query.game
+                  game: router.query.game,
+                  limit
                 }}
               >
                 {({ loading, error, data }) => {

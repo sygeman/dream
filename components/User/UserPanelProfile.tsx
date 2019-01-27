@@ -1,5 +1,5 @@
 import { inject, observer } from 'mobx-react';
-import { rgba } from 'polished';
+import { darken, lighten } from 'polished';
 import { FC } from 'react';
 import styled from 'styled-components';
 import { IStore } from '../../lib/store';
@@ -8,14 +8,14 @@ import { shortNumbers } from '../../utils/count';
 
 const Box = styled.div`
   display: flex;
-  background: ${({ theme }) => theme.main1Color};
+  background: ${({ theme }) => darken(0.01, theme.dark2Color)};
   height: 50px;
 `;
 
 const Container = styled.div`
   width: ${({ gridWidth }) => gridWidth}px;
   height: 100%;
-  padding: 0 30px;
+  padding: 0 20px;
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -47,6 +47,7 @@ const UserData = styled.div`
   height: 100%;
   display: flex;
   align-items: center;
+  padding: 0 10px;
 `;
 
 const SocialLinks = styled.div`
@@ -74,6 +75,7 @@ const MenuItem = styled.div`
   align-items: center;
   padding: 0 5px;
   font-size: 12px;
+  color: ${({ theme }) => lighten(0.6, theme.dark2Color)};
 `;
 
 const MenuItemTitle = styled.div`
@@ -88,7 +90,7 @@ const MenuItemCount = styled.div`
   align-items: center;
   justify-content: center;
   padding: 0 5px;
-  color: ${({ theme }) => rgba(theme.text1Color, 0.5)};
+  color: ${({ theme }) => lighten(0.45, theme.dark2Color)};
 `;
 
 const MenuLeft = styled.div`

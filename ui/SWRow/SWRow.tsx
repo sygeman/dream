@@ -7,7 +7,7 @@ const Box = styled.div`
   display: flex;
   width: 100%;
   padding: 10px 0;
-  border-bottom: 1px solid ${({ theme }) => theme.dark1Color};
+  /* border-bottom: 1px solid ${({ theme }) => theme.dark1Color}; */
   align-items: center;
 
   &:last-child {
@@ -51,7 +51,8 @@ interface IProps {
   description?: string;
   isActive?: boolean;
   onChange?: () => void;
-  bgColor?: string;
+  activeColor?: string;
+  inactiveColor?: string;
 }
 
 export const SWRow: FC<IProps> = ({
@@ -59,7 +60,8 @@ export const SWRow: FC<IProps> = ({
   description,
   isActive,
   onChange,
-  bgColor
+  activeColor,
+  inactiveColor
 }) => (
   <Box>
     <SRowLeft>
@@ -70,7 +72,8 @@ export const SWRow: FC<IProps> = ({
       <SRowSwitch>
         <Switch
           checked={isActive}
-          activeColor={bgColor}
+          activeColor={activeColor}
+          inactiveColor={inactiveColor}
           onChange={() => onChange()}
         />
       </SRowSwitch>

@@ -15,7 +15,7 @@ const SET_PROFILE_VISIBLE = gql`
 
 const IntegrationBox = styled.div`
   margin: 20px 0;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  /* box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); */
   border-radius: 5px;
 `;
 
@@ -111,7 +111,7 @@ class Integration extends React.Component<IProps> {
                       variables: { id: profile.id, visible: !profile.visible }
                     })
                   }
-                  bgColor={lighten(0.1, bgColor)}
+                  activeColor={lighten(0.1, bgColor)}
                 />
               )}
             </Mutation>

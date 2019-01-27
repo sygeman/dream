@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 import { inject, observer } from 'mobx-react';
 import { RouterProps, withRouter } from 'next/router';
-import { rgba, lighten } from 'polished';
+import { lighten, rgba } from 'polished';
 import { Component, ReactNode } from 'react';
 import { Query } from 'react-apollo';
 import Scrollbars from 'react-custom-scrollbars';
@@ -90,6 +90,7 @@ const ContentBox = styled('div')`
   overflow-y: hidden;
   display: flex;
   flex-direction: column;
+  ${({ blured }) => blured && `filter: blur(10px);`}
 `;
 
 const ContentInsideBox = styled.div`
@@ -103,7 +104,7 @@ const Overlay = styled.div`
   top: 0;
   width: 100%;
   height: 100%;
-  background: ${({ theme }) => rgba(theme.dark2Color, 0.95)};
+  background: ${({ theme }) => rgba(theme.dark1Color, 0.95)};
   z-index: 50;
 `;
 
@@ -148,14 +149,17 @@ class MainLayout extends Component<IProps, IState> {
     const GRID_PADDING = GRID_PADDING_ONE * 2;
 
     let countOnRow = Math.floor((width - GRID_PADDING) / GRID_ELEMENT_WIDTH);
+
+    if (countOnRow < 1) {
+      countOnRow = 1;
+    } else if (countOnRow > 6) {
+      countOnRow = 6;
+    }
+
     let gridWidth = countOnRow * GRID_ELEMENT_WIDTH + GRID_PADDING;
 
     if (gridWidth < GRID_ELEMENT_WIDTH + GRID_PADDING) {
       gridWidth = GRID_ELEMENT_WIDTH + GRID_PADDING;
-    }
-
-    if (countOnRow < 1) {
-      countOnRow = 1;
     }
 
     return {
@@ -257,7 +261,7 @@ class MainLayout extends Component<IProps, IState> {
           }}
         </Query>
 
-        <ContentBox>
+        <ContentBox blured={store.allBlured}>
           <TopNav />
           <Content>
             <ContentInsideBox>
@@ -270,8 +274,18 @@ class MainLayout extends Component<IProps, IState> {
                       icon="home"
                       title="Главная"
                     />
-                    <LeftMenu.Item equal route="/hot" icon="fire" title="В тренде" />
-                    <LeftMenu.Item equal route="/new" icon="flare" title="Новое" />
+                    <LeftMenu.Item
+                      equal
+                      route="/hot"
+                      icon="fire"
+                      title="В тренде"
+                    />
+                    <LeftMenu.Item
+                      equal
+                      route="/new"
+                      icon="flare"
+                      title="Новое"
+                    />
                     <LeftMenu.Item route="/top" icon="trending-up" title="Топ">
                       <LeftMenu.SubItem route="/top/day">День</LeftMenu.SubItem>
                       <LeftMenu.SubItem route="/top/week">

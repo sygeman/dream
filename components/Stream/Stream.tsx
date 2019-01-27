@@ -117,7 +117,7 @@ const StreamName = styled.a`
 
 const StreamCategory = styled.a`
   font-size: 11px;
-  color: ${({ theme }) => lighten(0.25, theme.main1Color)};
+  color: ${({ theme }) => lighten(0.4, theme.dark1Color)};
 `;
 
 const StreamManage = styled.div`

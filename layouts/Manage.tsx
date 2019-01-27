@@ -1,5 +1,5 @@
 import { inject, observer } from 'mobx-react';
-import { rgba } from 'polished';
+import { lighten, rgba } from 'polished';
 import { Component, ReactNode } from 'react';
 import Scrollbars from 'react-custom-scrollbars';
 import posed from 'react-pose';
@@ -9,7 +9,6 @@ import { Access } from '../helpers/Access';
 import { IStore } from '../lib/store';
 import LeftMenu from '../ui/LeftMenu';
 
-
 const LEFT_MENU_WIDTH = 260;
 
 const Box = styled.div`
@@ -17,8 +16,7 @@ const Box = styled.div`
   flex-direction: column;
   height: 100%;
   overflow: hidden;
-  background: ${({ theme }) =>
-    'radial-gradient(' + theme.main1Color + ', ' + theme.dark2Color + ')'};
+  background: ${({ theme }) => theme.dark1Color};
 `;
 
 const Content = styled.div`
@@ -33,8 +31,7 @@ const LeftAnim = posed.div({
 });
 
 const Left = styled(LeftAnim)`
-  /* border-right: 1px solid ${({ theme }) => rgba(theme.main1Color, 0.5)}; */
-  /* background: ${({ theme }) => theme.dark2Color}; */
+  background: ${({ theme }) => lighten(0.05, theme.dark1Color)};
   width: ${LEFT_MENU_WIDTH}px;
   position: absolute;
   left: 0;

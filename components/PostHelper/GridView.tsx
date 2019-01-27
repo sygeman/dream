@@ -33,8 +33,8 @@ const PreviewContent = styled.div`
 
 const Bottom = styled.div`
   display: flex;
-  font-size: 11.5px;
-  color: ${({ theme }) => lighten(0.25, theme.main1Color)};
+  font-size: 11px;
+  color: ${({ theme }) => lighten(0.4, theme.dark1Color)};
   width: 100%;
 `;
 
@@ -66,8 +66,8 @@ const Rating = styled.div`
   justify-content: center;
   height: 30px;
   font-size: 12px;
-  color: ${({ theme }) => lighten(0.4, theme.main1Color)};
-  background: ${({ theme }) => lighten(0.05, theme.dark2Color)};
+  color: ${({ theme }) => lighten(0.5, theme.dark2Color)};
+  background: ${({ theme }) => theme.dark2Color};
   font-weight: 500;
 `;
 

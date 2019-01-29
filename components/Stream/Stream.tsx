@@ -109,15 +109,15 @@ const StreamData = styled.div`
 `;
 
 const StreamName = styled.a`
-  font-size: 12px;
+  font-size: 13.5px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 `;
 
 const StreamCategory = styled.a`
-  font-size: 11px;
-  color: ${({ theme }) => lighten(0.4, theme.dark1Color)};
+  font-size: 11.5px;
+  color: ${({ theme }) => darken(0.4, theme.text1Color)};
 `;
 
 const StreamManage = styled.div`

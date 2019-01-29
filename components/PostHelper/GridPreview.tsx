@@ -87,7 +87,7 @@ const PreviewBlurText = styled.div`
   padding: 4px 8px;
   background: #0000005e;
   border-radius: 3px;
-  font-size: 12px;
+  font-size: 12.5px;
   margin-left: 5px;
 `;
 
@@ -114,7 +114,7 @@ const Date = styled.div`
   bottom: 0;
   display: flex;
   margin: 10px;
-  font-size: 11px;
+  font-size: 11.5px;
   color: ${({ theme }) => rgba(theme.text1Color, 0.9)};
 `;
 

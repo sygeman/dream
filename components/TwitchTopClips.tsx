@@ -4,7 +4,7 @@ import gql from 'graphql-tag';
 import { omit } from 'lodash';
 import { inject, observer } from 'mobx-react';
 import { RouterProps, withRouter } from 'next/router';
-import { lighten } from 'polished';
+import { darken } from 'polished';
 import { Component } from 'react';
 import { Query } from 'react-apollo';
 import SimpleBar from 'simplebar-react';
@@ -81,14 +81,14 @@ const ClipBottom = styled.div`
   display: flex;
   flex-direction: column;
   font-size: 11.5px;
-  color: ${({ theme }) => lighten(0.25, theme.main1Color)};
+  color: ${({ theme }) => darken(0.4, theme.text1Color)};
   width: 100%;
   line-height: 16px;
   padding: 4px 8px 4px 0;
 `;
 
 const ClipTitle = styled.div`
-  font-size: 13px;
+  font-size: 13.5px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;

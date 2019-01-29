@@ -101,7 +101,7 @@ class Posts extends Component<IProps> {
             likedUserId,
             tagId,
             offset: 0,
-            limit: this.limit
+            limit: rows ? rows * 6 : this.limit
           }}
         >
           {({ loading, error, data, fetchMore }) => {

@@ -1,6 +1,6 @@
 import distanceInWordsToNow from 'date-fns/distance_in_words_to_now';
 import ruLocale from 'date-fns/locale/ru';
-import { lighten } from 'polished';
+import { lighten, darken } from 'polished';
 import { FC } from 'react';
 import styled from 'styled-components';
 import { Icon } from '../../ui/Icon';
@@ -33,8 +33,8 @@ const PreviewContent = styled.div`
 
 const Bottom = styled.div`
   display: flex;
-  font-size: 11px;
-  color: ${({ theme }) => lighten(0.4, theme.dark1Color)};
+  font-size: 11.5px;
+  color: ${({ theme }) => darken(0.4, theme.text1Color)};
   width: 100%;
 `;
 
@@ -49,7 +49,7 @@ const BottomLeft = styled.div`
 const BottomRight = styled.div``;
 
 const Title = styled.div`
-  font-size: 13px;
+  font-size: 13.5px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;

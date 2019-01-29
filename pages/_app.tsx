@@ -6,7 +6,6 @@ import Router from 'next/router';
 import NProgress from 'nprogress';
 import React from 'react';
 import { ApolloProvider } from 'react-apollo';
-import 'simplebar/dist/simplebar.min.css';
 import { initializeStore, IStore } from '../lib/store';
 import withApollo from '../lib/withApollo';
 import { ThemeProvider } from '../theme';

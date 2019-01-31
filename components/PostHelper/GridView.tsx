@@ -1,6 +1,6 @@
 import distanceInWordsToNow from 'date-fns/distance_in_words_to_now';
 import ruLocale from 'date-fns/locale/ru';
-import { lighten, darken } from 'polished';
+import { darken, lighten } from 'polished';
 import { FC } from 'react';
 import styled from 'styled-components';
 import { Icon } from '../../ui/Icon';
@@ -130,9 +130,11 @@ export const GridView: FC<IProps> = ({ post, onPlay }) => {
         <BottomRight>
           <Rating>
             <IconBox>
-              <Icon type="thumb-up" />
+              <Icon
+                type={post && post.rating < 0 ? 'thumb-down' : 'thumb-up'}
+              />
             </IconBox>
-            {shortNumbers(post ? post.likesCount : 0)}
+            {shortNumbers(post ? post.rating : 0)}
           </Rating>
         </BottomRight>
       </Bottom>

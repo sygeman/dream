@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Comments from '../Comments';
 import PostHelper from '../PostHelper';
 import SourceView from '../SourceView';
-import { IPost } from './interfaces/Post';
+import { IPost, PostReactionType } from './interfaces/Post';
 
 const Box = styled.div`
   flex-direction: column;
@@ -41,9 +41,10 @@ interface IProps extends IPost {
 const PostFeedView: FC<IProps> = ({
   id,
   title,
-  liked,
   cover,
-  likesCount,
+  likes,
+  dislikes,
+  reaction,
   commentsCount,
   sourceType,
   sourceId,
@@ -66,7 +67,20 @@ const PostFeedView: FC<IProps> = ({
         />
       </ContentBox>
       <PostHelper.Bottom>
-        <PostHelper.LikeButton id={id} liked={liked} likesCount={likesCount} />
+        <PostHelper.ReactionButton
+          id={id}
+          type="like"
+          state={reaction === PostReactionType.like}
+          count={likes}
+          icon="thumb-up"
+        />
+        <PostHelper.ReactionButton
+          id={id}
+          type="dislike"
+          state={reaction === PostReactionType.dislike}
+          count={dislikes}
+          icon="thumb-down"
+        />
         <PostHelper.CommentsButton commentsCount={commentsCount} />
         <PostHelper.ShareButton id={id} />
         <PostHelper.Menu id={id} pinned={pinned} authorId={authorId} />

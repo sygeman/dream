@@ -13,8 +13,10 @@ export const GET_POST = gql`
       sourceId
       cover
       sourceType
-      liked
-      likesCount
+      likes
+      dislikes
+      rating
+      reaction
       commentsCount
       createdAt
       channelName
@@ -40,12 +42,14 @@ const POST_COMMENT_COUNT_CHANGED = gql`
   }
 `;
 
-const POST_LIKE_COUNT_CHANGED = gql`
-  subscription postLikeCountChanged($id: ID!) {
-    postLikeCountChanged(id: $id) {
-      count
+const POST_REACTION_CHANGED = gql`
+  subscription postReactionChanged($id: ID!) {
+    postReactionChanged(id: $id) {
+      likes
+      dislikes
+      rating
+      reaction
       userId
-      liked
     }
   }
 `;
@@ -54,7 +58,7 @@ interface IPropsInner {
   post: any;
   subscribePostRemoved: () => void;
   subscribePostCommentCountChanged: () => void;
-  subscribePostLikeCountChanged: () => void;
+  subscribePostReactionChanged: () => void;
   children: any;
 }
 
@@ -62,7 +66,7 @@ class PostProviderInner extends Component<IPropsInner> {
   public componentDidMount() {
     this.props.subscribePostRemoved();
     this.props.subscribePostCommentCountChanged();
-    this.props.subscribePostLikeCountChanged();
+    this.props.subscribePostReactionChanged();
   }
 
   public render() {
@@ -129,9 +133,9 @@ const PostProvider: FC<IProps> = ({ children, id }) => {
                 }
               });
             }}
-            subscribePostLikeCountChanged={() => {
+            subscribePostReactionChanged={() => {
               subscribeToMore({
-                document: POST_LIKE_COUNT_CHANGED,
+                document: POST_REACTION_CHANGED,
                 variables: { id },
                 updateQuery: (prev, { subscriptionData }) => {
                   if (!subscriptionData.data) {
@@ -146,17 +150,20 @@ const PostProvider: FC<IProps> = ({ children, id }) => {
                     currentId = JSON.parse(atob(token.split('.')[1])).userId;
                   }
 
-                  const likeData = subscriptionData.data.postLikeCountChanged;
+                  const reactionData =
+                    subscriptionData.data.postReactionChanged;
 
                   return {
                     ...prev,
                     post: {
                       ...prev.post,
-                      liked:
-                        likeData.userId === currentId
-                          ? likeData.liked
-                          : prev.post.liked,
-                      likesCount: likeData.count
+                      reaction:
+                        reactionData.userId === currentId
+                          ? reactionData.reaction
+                          : prev.post.reaction,
+                      likes: reactionData.likes,
+                      dislikes: reactionData.dislikes,
+                      rating: reactionData.rating
                     }
                   };
                 }

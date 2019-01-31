@@ -3,6 +3,12 @@ export interface ITag {
   title?: string;
 }
 
+export enum PostReactionType {
+  like = 'like',
+  dislike = 'dislike',
+  none = 'none'
+}
+
 export interface IPost {
   id?: string;
   title?: string;
@@ -12,10 +18,13 @@ export interface IPost {
   cover?: string;
   sourceType?: string;
   liked?: boolean;
-  likesCount?: number;
+  likes?: number;
+  dislikes?: number;
+  rating?: number;
   commentsCount?: number;
   createdAt?: string;
   channelName?: string;
+  reaction?: PostReactionType;
   authorId?: string;
   tags?: ITag[];
   pinned?: boolean;

@@ -1,5 +1,6 @@
 import gql from 'graphql-tag';
 import Router from 'next/router';
+import { lighten } from 'polished';
 import * as React from 'react';
 import { Mutation } from 'react-apollo';
 import posed from 'react-pose';
@@ -7,16 +8,13 @@ import styled from 'styled-components';
 import { Access } from '../../helpers/Access';
 import { Icon } from '../../ui/Icon';
 
-const SET_LIKE_STATE = gql`
-  mutation($postId: ID!) {
-    setLikeState(postId: $postId) {
-      count
-      liked
-    }
+const SET_POST_REACTION = gql`
+  mutation setPostReaction($postId: ID!, $type: PostReaction!) {
+    setPostReaction(postId: $postId, type: $type)
   }
 `;
 
-const LikeBox = styled.div`
+const Box = styled.div`
   height: 100%;
   padding: 0 16px;
   align-items: center;
@@ -43,12 +41,14 @@ const LikeButton = styled(LikeButtonAnim)<ILikeButton>`
 
   i {
     font-size: 21px;
-    color: ${({ theme, active }) => (active ? '#cc2939' : theme.accent2Color)};
+    color: ${({ theme, active }) =>
+      active ? lighten(0.15, theme.main1Color) : theme.accent2Color};
   }
 `;
 
 const LikesCount = styled('div')<ILikeButton>`
-  color: ${({ theme, active }) => (active ? '#cc2939' : theme.accent2Color)};
+  color: ${({ theme, active }) =>
+    active ? lighten(0.15, theme.main1Color) : theme.accent2Color};
   margin-left: 10px;
   font-weight: 500;
   user-select: none;
@@ -56,18 +56,20 @@ const LikesCount = styled('div')<ILikeButton>`
 
 interface IProps {
   id: string;
-  liked: boolean;
-  likesCount: number;
+  icon: string;
+  type: string;
+  state: boolean;
+  count: number;
 }
 
-export default class PostLike extends React.Component<IProps> {
+export default class PostReaction extends React.Component<IProps> {
   public render() {
-    const { id, liked, likesCount } = this.props;
+    const { id, type, icon, state, count } = this.props;
 
     return (
       <Access
         denyContent={
-          <LikeBox
+          <Box
             onClick={() =>
               Router.push(
                 {
@@ -82,34 +84,31 @@ export default class PostLike extends React.Component<IProps> {
               )
             }
           >
-            <LikeButton active={liked}>
-              <Icon type="thumb-up" />
+            <LikeButton active={state}>
+              <Icon type={icon} />
             </LikeButton>
-            {likesCount > 0 && (
-              <LikesCount active={liked}>{likesCount}</LikesCount>
-            )}
-          </LikeBox>
+            {count > 0 && <LikesCount active={state}>{count}</LikesCount>}
+          </Box>
         }
       >
-        <Mutation mutation={SET_LIKE_STATE}>
-          {setLikeState => (
-            <LikeBox>
+        <Mutation mutation={SET_POST_REACTION}>
+          {setPostReaction => (
+            <Box>
               <LikeButton
-                active={liked}
+                active={state}
                 onClick={() =>
-                  setLikeState({
+                  setPostReaction({
                     variables: {
-                      postId: id
+                      postId: id,
+                      type: state ? 'none' : type
                     }
                   })
                 }
               >
-                <Icon type="thumb-up" />
+                <Icon type={icon} />
               </LikeButton>
-              {likesCount > 0 && (
-                <LikesCount active={liked}>{likesCount}</LikesCount>
-              )}
-            </LikeBox>
+              {count > 0 && <LikesCount active={state}>{count}</LikesCount>}
+            </Box>
           )}
         </Mutation>
       </Access>

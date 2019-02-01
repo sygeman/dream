@@ -26,7 +26,8 @@
       "pages/*": ["pages/*"],
       "theme/*": ["theme/*"],
       "utils/*": ["utils/*"],
-      "store/*": ["lib/store/*"]
+      "ui/*": ["ui/*"],
+      "lib/*": ["lib/*"]
     },
     "typeRoots": ["./node_modules/@types"],
     "lib": ["es2017", "dom", "esnext"]

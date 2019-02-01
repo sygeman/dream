@@ -32,7 +32,7 @@
     "typeRoots": ["./node_modules/@types"],
     "lib": ["es2017", "dom", "esnext"]
   },
-  "include": ["pages", "layouts"],
+  "include": ["components/*", "layouts/*", "pages/*", "theme/*", "utils/*", "ui/*", "lib/*"],
   "exclude": [
     "node_modules",
     "**/*.spec.ts",

@@ -1914,10 +1914,10 @@
     "@types/react" "*"
     "@types/react-loadable" "*"
 
-"@types/next@7.0.7":
-  version "7.0.7"
-  resolved "https://registry.yarnpkg.com/@types/next/-/next-7.0.7.tgz#53a489e25b73a657c2ad760dd60358fa30a7dc44"
-  integrity sha512-RXCxhnYnhWlal0Ihlyif+Gq3rZmC1smXBb7btaxfpo1byo3sAyud69Sa0h3ef5fXA7H9XHxfxFLeUuVE0b2Vgg==
+"@types/next@7.0.8":
+  version "7.0.8"
+  resolved "https://registry.yarnpkg.com/@types/next/-/next-7.0.8.tgz#f7d92b9cc8bc6914a52700b455dd79a532796e11"
+  integrity sha512-k9rznM9ebpna8n9g71iljRew5c0FNiG3QQ3/iU6Y75se8dXp52bGv2srf8VmPHpiHDmTCZZ/iMz14E/lD6HEIQ==
   dependencies:
     "@types/next-server" "*"
     "@types/node" "*"
@@ -1936,10 +1936,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-10.9.4.tgz#0f4cb2dc7c1de6096055357f70179043c33e9897"
   integrity sha512-fCHV45gS+m3hH17zgkgADUSi2RR1Vht6wOZ0jyHP8rjiQra9f+mIcgwPQHllmDocYOstIEbKlxbFDYlgrTPYqw==
 
-"@types/node@10.12.20":
-  version "10.12.20"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.12.20.tgz#f79f959acd3422d0889bd1ead1664bd2d17cd367"
-  integrity sha512-9spv6SklidqxevvZyOUGjZVz4QRXGu2dNaLyXIFzFYZW0AGDykzPRIUFJXTlQXyfzAucddwTcGtJNim8zqSOPA==
+"@types/node@10.12.21":
+  version "10.12.21"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.12.21.tgz#7e8a0c34cf29f4e17a36e9bd0ea72d45ba03908e"
+  integrity sha512-CBgLNk4o3XMnqMc0rhb6lc77IwShMEglz05deDcn2lQxyXEZivfwgYJu7SMha9V5XcrP6qZuevTHV/QrN2vjKQ==
 
 "@types/node@^10.0.5":
   version "10.12.18"
@@ -11454,10 +11454,10 @@ typescript-template-language-service-decorator@^2.0.0:
   resolved "https://registry.yarnpkg.com/typescript-template-language-service-decorator/-/typescript-template-language-service-decorator-2.0.0.tgz#7433fdc464f07034d951dea9a5e76fab6e558f57"
   integrity sha512-wbrje6G8t+h/xBRP+gyAXYpR0+U7the2YnfsF59SKz//gdLnpL+cSFhIuW61I07XXDyU68yMBFqUzm0Hg1Xpcg==
 
-typescript@3.2.4:
-  version "3.2.4"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.2.4.tgz#c585cb952912263d915b462726ce244ba510ef3d"
-  integrity sha512-0RNDbSdEokBeEAkgNbxJ+BLwSManFy9TeXz8uW+48j/xhEXv1ePME60olyzw2XzUqUBNAYFeJadIqAgNqIACwg==
+typescript@3.3.1:
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.3.1.tgz#6de14e1db4b8a006ac535e482c8ba018c55f750b"
+  integrity sha512-cTmIDFW7O0IHbn1DPYjkiebHxwtCMU+eTy30ZtJNBPF9j2O1ITu5XH2YnBeVRKWHqF+3JQwWJv0Q0aUgX8W7IA==
 
 ua-parser-js@^0.7.18:
   version "0.7.18"

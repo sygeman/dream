@@ -69,8 +69,8 @@
     "@types/jest": "23.3.13",
     "@types/js-cookie": "2.2.0",
     "@types/lodash": "4.14.120",
-    "@types/next": "7.0.7",
-    "@types/node": "10.12.20",
+    "@types/next": "7.0.8",
+    "@types/node": "10.12.21",
     "@types/react": "16.7.22",
     "@types/react-custom-scrollbars": "4.0.5",
     "@types/react-dom": "16.0.11",
@@ -95,7 +95,7 @@
     "tslint-config-prettier": "1.17.0",
     "tslint-plugin-prettier": "2.0.1",
     "tslint-react": "3.6.0",
-    "typescript": "3.2.4",
+    "typescript": "3.3.1",
     "typescript-styled-plugin": "0.13.0"
   }
 }

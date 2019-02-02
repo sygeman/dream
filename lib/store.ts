@@ -3,10 +3,15 @@ import {
   Instance,
   SnapshotIn,
   SnapshotOut,
-  types
+  types,
+  unprotect
 } from 'mobx-state-tree';
 
 let store: IStore = null as any;
+
+const Modal = types.model({
+  id: types.string
+});
 
 const Store = types
   .model({
@@ -15,7 +20,8 @@ const Store = types
     gridCountOnRow: 0,
     gridWidth: 0,
     leftMenuIsOpen: true,
-    allBlured: false
+    allBlured: false,
+    modals: types.map(Modal)
   })
   .actions(self => {
     const setPlaySource = playSourceKey => {
@@ -63,6 +69,9 @@ const initializeStore = (isServer, snapshot = null) => {
   if (snapshot) {
     applySnapshot(store, snapshot);
   }
+
+  unprotect(store);
+
   return store;
 };
 

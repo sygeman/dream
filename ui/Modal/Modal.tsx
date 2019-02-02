@@ -123,20 +123,22 @@ const Content = styled('div')<{
   display: flex;
 `;
 
-interface IProps {
-  onClose: () => void;
+export interface IModalProps {
+  onOpen?: (modalId: string) => void;
+  onClose: (modalId: string) => void;
   onLeftClick?: () => void;
   onRightClick?: () => void;
-  title: string;
-  isOpen: boolean;
+  title?: string;
+  visible: boolean;
   minimal?: boolean;
 }
 
-export class Modal extends React.Component<IProps> {
-  public static defaultProps: IProps = {
+export class Modal extends React.Component<IModalProps> {
+  public static defaultProps: IModalProps = {
     minimal: false,
-    isOpen: false,
+    visible: false,
     title: '',
+    onOpen: () => undefined,
     onClose: () => undefined
   };
 
@@ -145,47 +147,50 @@ export class Modal extends React.Component<IProps> {
   public componentDidMount() {
     this.modalId = nanoid(4);
 
-    console.log('modal m', this.modalId);
-
     window.addEventListener(
       'keydown',
       e => {
         if (e.keyCode === 27) {
-          this.props.onClose();
+          this.props.onClose(this.modalId);
         }
       },
       false
     );
   }
 
-  public componentWillUnmount() {
-    console.log('modal um', this.modalId);
+  public componentDidUpdate(prevProps) {
+    if (!prevProps.visible && this.props.visible) {
+      this.props.onOpen(this.modalId);
+    }
+  }
+
+  public close() {
+    this.props.onClose(this.modalId);
   }
 
   public render() {
     const {
-      isOpen,
+      visible,
       children,
       title,
-      onClose,
       onLeftClick,
       onRightClick,
       minimal
     } = this.props;
 
-    if (!isOpen) {
+    if (!visible) {
       return null;
     }
 
     return (
       <Portal selector="root-modal">
         <BG>
-          <BGOut onClick={() => onClose()} />
+          <BGOut onClick={() => this.close()} />
           <BoxW>
             <Box minimal={minimal}>
               {minimal && (
                 <BoxNav
-                  onClick={() => (onLeftClick ? onLeftClick() : onClose())}
+                  onClick={() => (onLeftClick ? onLeftClick() : this.close())}
                 >
                   {onLeftClick && <Icon type="chevron-left" />}
                 </BoxNav>
@@ -194,7 +199,7 @@ export class Modal extends React.Component<IProps> {
                 {!minimal && (
                   <Header>
                     <Title>{title}</Title>
-                    <Close onClick={() => onClose()}>
+                    <Close onClick={() => this.close()}>
                       <i className="zmdi zmdi-close" />
                     </Close>
                   </Header>
@@ -202,13 +207,13 @@ export class Modal extends React.Component<IProps> {
                 <Content minimal={minimal}>{children}</Content>
               </ModalB>
               {minimal && (
-                <CloseOut onClick={() => onClose()}>
+                <CloseOut onClick={() => this.close()}>
                   <i className="zmdi zmdi-close" />
                 </CloseOut>
               )}
               {minimal && (
                 <BoxNav
-                  onClick={() => (onRightClick ? onRightClick() : onClose())}
+                  onClick={() => (onRightClick ? onRightClick() : this.close())}
                 >
                   {onRightClick && <Icon type="chevron-right" />}
                 </BoxNav>

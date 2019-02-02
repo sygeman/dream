@@ -29,7 +29,7 @@ interface IProps {
 
 const PostCommentsButton: FC<IProps> = ({ commentsCount, onClick }) => (
   <CommentsBox active={!!onClick} onClick={() => onClick && onClick()}>
-    <Icon type="comment-outline" />
+    <Icon type="comment-text" />
     {commentsCount > 0 && <CommentsCount>{commentsCount}</CommentsCount>}
   </CommentsBox>
 );

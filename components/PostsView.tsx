@@ -111,7 +111,7 @@ class PostsView extends Component<IProps> {
             </PostContainer>
           ))}
         </Grid>
-        {loading && <Loading>Загрузка...</Loading>}
+        {loading && <Loading />}
         {!loading && hasMore && (
           <LoadMore>
             <Button onClick={() => loadMore()}>Загрузить еще</Button>

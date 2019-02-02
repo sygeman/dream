@@ -8,10 +8,10 @@ import { darken } from 'polished';
 import { Component } from 'react';
 import { Query } from 'react-apollo';
 import styled from 'styled-components';
+import { Modal } from '../helpers/Modal';
 import { IStore } from '../lib/store';
-import { Modal } from '../ui/Modal';
+import { VideoPreview } from '../ui/VideoPreview';
 import { humanNumbers } from '../utils/count';
-import GridPreview from './PostHelper/GridPreview';
 import SourceView from './SourceView';
 
 const GET_TWITCH_CHANNEL_TOP_CLIPS = gql`
@@ -167,14 +167,10 @@ class TwitchFollows extends Component<IProps> {
                 const clipsCount = data.twitchChannelTopClips.length;
 
                 const goPrev = () =>
-                  openClip(
-                    data.twitchChannelTopClips[curretClipIndex - 1].id
-                  );
+                  openClip(data.twitchChannelTopClips[curretClipIndex - 1].id);
 
                 const goNext = () =>
-                  openClip(
-                    data.twitchChannelTopClips[curretClipIndex + 1].id
-                  );
+                  openClip(data.twitchChannelTopClips[curretClipIndex + 1].id);
 
                 const sourceId = router.query.clip
                   ? router.query.clip.toString()
@@ -183,12 +179,10 @@ class TwitchFollows extends Component<IProps> {
                 return (
                   <>
                     <Modal
-                      isOpen={!!router.query.clip}
+                      visible={!!router.query.clip}
                       minimal
                       onLeftClick={curretClipIndex > 0 && goPrev}
-                      onRightClick={
-                        curretClipIndex < clipsCount - 1 && goNext
-                      }
+                      onRightClick={curretClipIndex < clipsCount - 1 && goNext}
                       onClose={() => {
                         router.push(
                           {
@@ -224,7 +218,7 @@ class TwitchFollows extends Component<IProps> {
                       <Clip key={clip.id}>
                         <ClipPreview>
                           <ClipPreviewContent>
-                            <GridPreview
+                            <VideoPreview
                               key={clip.id}
                               onClick={() => openClip(clip.id)}
                               cover={clip.thumbnails.small}

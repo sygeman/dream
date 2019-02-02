@@ -11,13 +11,13 @@ import styled from 'styled-components';
 import TopNav from '../components/Nav/Top';
 import PostView from '../components/PostHelper/View';
 import { Access } from '../helpers/Access';
+import { Modal } from '../helpers/Modal';
 import { IStore } from '../lib/store';
 import CategoriesProvider from '../providers/Categories';
 import FollowsProvider from '../providers/Follows';
 import PostProvider from '../providers/Post';
 import { Icon } from '../ui/Icon';
 import LeftMenu from '../ui/LeftMenu';
-import { Modal } from '../ui/Modal';
 
 const GET_POST_AROUND = gql`
   query postAround(
@@ -83,14 +83,15 @@ const PostsBox = styled(PostsBoxAnim)`
   padding-left: ${LEFT_MENU_WIDTH}px;
 `;
 
-const ContentBox = styled('div')`
+const ContentBox = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
   overflow-y: hidden;
   display: flex;
   flex-direction: column;
-  ${({ blured }) => blured && `filter: blur(10px);`}
+  ${({ blured }) => blured && 'filter: blur(10px);'};
+  transition: 0.1s filter linear;
 `;
 
 const ContentInsideBox = styled.div`
@@ -244,8 +245,8 @@ class MainLayout extends Component<IProps, IState> {
 
             return (
               <Modal
+                visible={!!postId}
                 minimal
-                isOpen={!!postId}
                 onClose={() => {
                   router.replace(backPath);
                 }}
@@ -262,7 +263,7 @@ class MainLayout extends Component<IProps, IState> {
           }}
         </Query>
 
-        <ContentBox blured={store.allBlured}>
+        <ContentBox blured={store.modals.size > 0}>
           <TopNav />
           <Content>
             <ContentInsideBox>

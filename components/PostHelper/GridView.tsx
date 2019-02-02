@@ -4,9 +4,9 @@ import { darken, lighten } from 'polished';
 import { FC } from 'react';
 import styled from 'styled-components';
 import { Icon } from '../../ui/Icon';
+import { VideoPreview } from '../../ui/VideoPreview';
 import { shortNumbers } from '../../utils/count';
 import AuthorGrid from './AuthorGrid';
-import GridPreview from './GridPreview';
 import { IPost } from './interfaces/Post';
 
 const Box = styled.div`
@@ -99,7 +99,7 @@ export const GridView: FC<IProps> = ({ post, onPlay }) => {
       <Preview>
         <PreviewContent>
           {post && (
-            <GridPreview
+            <VideoPreview
               onClick={() => onPlay()}
               nsfw={post.nfws}
               spoiler={post.spoiler}

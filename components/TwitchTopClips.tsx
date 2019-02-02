@@ -10,8 +10,8 @@ import { Query } from 'react-apollo';
 import styled from 'styled-components';
 import { Modal } from '../helpers/Modal';
 import { IStore } from '../lib/store';
+import { VideoPreview } from '../ui/VideoPreview';
 import { humanNumbers } from '../utils/count';
-import GridPreview from './PostHelper/GridPreview';
 import SourceView from './SourceView';
 
 const GET_TWITCH_CHANNEL_TOP_CLIPS = gql`
@@ -218,7 +218,7 @@ class TwitchFollows extends Component<IProps> {
                       <Clip key={clip.id}>
                         <ClipPreview>
                           <ClipPreviewContent>
-                            <GridPreview
+                            <VideoPreview
                               key={clip.id}
                               onClick={() => openClip(clip.id)}
                               cover={clip.thumbnails.small}

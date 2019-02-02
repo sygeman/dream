@@ -86,9 +86,6 @@ const PostsBox = styled(PostsBoxAnim)`
 const ContentBoxAnim = posed.div({
   noblur: { filter: 'blur(0px)' },
   blur: { filter: 'blur(10px)' }
-  // transition: {
-  //   delay: 50
-  // }
 });
 
 const ContentBox = styled(ContentBoxAnim)`

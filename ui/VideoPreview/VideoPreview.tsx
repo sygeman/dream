@@ -141,13 +141,13 @@ export class VideoPreview extends Component<IProps, IState> {
     super(props);
 
     this.state = {
-      width: 0
+      width: 300
     };
   }
 
   public componentDidMount() {
-    this.setState({ width: this.box.current.clientWidth });
-    console.log(this.box.current.clientWidth);
+    // this.setState({ width: this.box.current.clientWidth });
+    // console.log(this.box.current.clientWidth);
   }
 
   public render() {

@@ -8,7 +8,7 @@ import { Button, ButtonGroup } from '../../Button';
 storiesOf('UI/Modal', module).add('Modal', () => (
   <Modal
     title={text('Title', 'Title')}
-    isOpen={boolean('Open', true)}
+    visible={boolean('Visible', true)}
     minimal={boolean('Minimal', false)}
   >
     <div>

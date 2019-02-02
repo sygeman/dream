@@ -4,11 +4,11 @@ import { withRouter } from 'next/router';
 import { darken, lighten } from 'polished';
 import { Component } from 'react';
 import styled from 'styled-components';
+import { Modal } from '../../../helpers/Modal';
 import { IStore } from '../../../lib/store';
 import UserProvider from '../../../providers/User';
 import { Avatar } from '../../../ui/Avatar';
 import { Icon } from '../../../ui/Icon';
-import { Modal } from '../../../ui/Modal';
 import { humanNumbers } from '../../../utils/count';
 import Auth from '../../Auth';
 import CreatePost from '../../CreatePost';
@@ -198,14 +198,14 @@ class TopNav extends Component<IProps> {
       <Box>
         <Modal
           minimal
-          isOpen={this.props.router.query.authModal === '1'}
+          visible={this.props.router.query.authModal === '1'}
           onClose={() => this.props.router.back()}
         >
           <Auth />
         </Modal>
         <Modal
           title="Новый пост"
-          isOpen={this.props.router.query.newPost === '1'}
+          visible={this.props.router.query.newPost === '1'}
           onClose={() => this.props.router.back()}
         >
           <CreatePost />

@@ -83,18 +83,15 @@ const PostsBox = styled(PostsBoxAnim)`
   padding-left: ${LEFT_MENU_WIDTH}px;
 `;
 
-const ContentBoxAnim = posed.div({
-  noblur: { filter: 'blur(0px)' },
-  blur: { filter: 'blur(10px)' }
-});
-
-const ContentBox = styled(ContentBoxAnim)`
+const ContentBox = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
   overflow-y: hidden;
   display: flex;
   flex-direction: column;
+  ${({ blured }) => blured && 'filter: blur(10px);'};
+  transition: 0.1s filter linear;
 `;
 
 const ContentInsideBox = styled.div`
@@ -266,7 +263,7 @@ class MainLayout extends Component<IProps, IState> {
           }}
         </Query>
 
-        <ContentBox pose={store.modals.size > 0 ? 'blur' : 'noblur'}>
+        <ContentBox blured={store.modals.size > 0}>
           <TopNav />
           <Content>
             <ContentInsideBox>

@@ -163,11 +163,13 @@ export class VideoPreview extends Component<IProps, IState> {
               {nsfw && <PreviewBlurText>NSWF</PreviewBlurText>}
               {spoiler && <PreviewBlurText>Спойлер</PreviewBlurText>}
             </PreviewTags>
-            <PreviewPlay shadowBottom={date || views}>
-              <PreviewPlayBox width={width}>
-                <Icon type="play" />
-              </PreviewPlayBox>
-            </PreviewPlay>
+            {cover && (
+              <PreviewPlay shadowBottom={date || views}>
+                <PreviewPlayBox width={width}>
+                  <Icon type="play" />
+                </PreviewPlayBox>
+              </PreviewPlay>
+            )}
             <Bottom width={width}>
               {views && (
                 <Views width={width}>

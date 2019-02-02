@@ -20,7 +20,7 @@ storiesOf('UI/VideoPreview', module).add('Basic', () => (
 ));
 
 storiesOf('UI/VideoPreview', module).add('No Data', () => (
-  <div style={{ width: number('Width', 400) }}>
+  <div style={{ width: number('Width', 400), background: '#444' }}>
     <VideoPreview />
   </div>
 ));

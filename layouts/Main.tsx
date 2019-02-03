@@ -353,6 +353,11 @@ class MainLayout extends Component<IProps, IState> {
                           )}
                         </FollowsProvider>
                       </LeftMenu.Item>
+                      <LeftMenu.Item
+                        route="/settings"
+                        icon="settings"
+                        title="Настройки"
+                      />
                     </Access>
                   </LeftMenu>
                 </Scrollbars>

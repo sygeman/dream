@@ -104,7 +104,7 @@ class Integration extends React.Component<IProps> {
             <Mutation mutation={SET_PROFILE_VISIBLE}>
               {setUserProfileVisible => (
                 <SWRow
-                  isActive={profile.visible}
+                  active={profile.visible}
                   title="Показывать в профиле"
                   onChange={() =>
                     setUserProfileVisible({

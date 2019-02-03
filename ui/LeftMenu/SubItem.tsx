@@ -18,10 +18,10 @@ const SubItem = styled('a')<{
   cursor: pointer;
   color: ${({ theme }) => darken(0.2, theme.text1Color)};
   background: ${({ theme, active }) =>
-    active ? rgba(theme.main1Color, .2) : 'transparent'};
+    active ? rgba(theme.main1Color, 0.2) : 'transparent'};
 
   :hover {
-    background: ${({ theme }) => rgba(theme.main1Color, .2)};
+    background: ${({ theme }) => rgba(theme.main1Color, 0.2)};
   }
 
   span {
@@ -35,7 +35,7 @@ const SubItem = styled('a')<{
 interface IProps {
   router: RouterProps;
   route: string;
-  active: boolean;
+  active?: boolean;
 }
 
 class SubItemMenu extends Component<IProps> {

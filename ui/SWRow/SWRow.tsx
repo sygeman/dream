@@ -49,7 +49,7 @@ const SRowSwitch = styled.div`
 interface IProps {
   title: string;
   description?: string;
-  isActive?: boolean;
+  active?: boolean;
   onChange?: () => void;
   activeColor?: string;
   inactiveColor?: string;
@@ -58,7 +58,7 @@ interface IProps {
 export const SWRow: FC<IProps> = ({
   title,
   description,
-  isActive,
+  active,
   onChange,
   activeColor,
   inactiveColor
@@ -71,7 +71,7 @@ export const SWRow: FC<IProps> = ({
     <SRowRight>
       <SRowSwitch>
         <Switch
-          checked={isActive}
+          checked={active}
           activeColor={activeColor}
           inactiveColor={inactiveColor}
           onChange={() => onChange()}

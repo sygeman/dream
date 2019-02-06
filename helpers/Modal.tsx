@@ -1,7 +1,8 @@
 import { inject, observer } from 'mobx-react';
 import { FC } from 'react';
 import { IStore } from '../lib/store';
-import { IModalProps, Modal as ModalUI } from '../ui/Modal';
+import { Modal as ModalUI } from '../ui/Modal';
+import { IModalProps } from '../ui/Modal/Modal';
 
 interface IProps extends IModalProps {
   store?: IStore;

@@ -12,6 +12,7 @@
     "object-literal-sort-keys": false,
     "no-console": false,
     "jsx-no-lambda": false,
+    "ban-comma-operator": false,
     "jsx-boolean-value": [
       true,
       "never"

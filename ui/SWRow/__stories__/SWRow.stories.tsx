@@ -9,9 +9,9 @@ storiesOf('UI', module).add('SWRow', () => (
     <SWRow
       title={text('Title', 'Title')}
       description={text('Description', 'Description')}
-      isActive={boolean('Active', true)}
+      active={boolean('Active', true)}
       onChange={() => undefined}
-      bgColor={color('Color', '#633EA4')}
+      activeColor={color('Color', '#633EA4')}
     />
   </div>
 ));

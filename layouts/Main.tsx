@@ -353,6 +353,21 @@ class MainLayout extends Component<IProps, IState> {
                           )}
                         </FollowsProvider>
                       </LeftMenu.Item>
+                      <LeftMenu.Item
+                        route="/settings"
+                        icon="settings"
+                        title="Настройки"
+                      >
+                        <LeftMenu.SubItem route={`/settings`}>
+                          Учетная запись
+                        </LeftMenu.SubItem>
+                        <LeftMenu.SubItem route={`/settings/appearance`}>
+                          Внешний вид
+                        </LeftMenu.SubItem>
+                        <LeftMenu.SubItem route={`/settings/integrations`}>
+                          Интеграции
+                        </LeftMenu.SubItem>
+                      </LeftMenu.Item>
                     </Access>
                   </LeftMenu>
                 </Scrollbars>

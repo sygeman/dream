@@ -1,6 +1,6 @@
 import nanoid from 'nanoid';
 import { lighten, rgba } from 'polished';
-import * as React from 'react';
+import { FC, useEffect } from 'react';
 import styled from 'styled-components';
 import { Icon } from '../Icon';
 import { Portal } from '../Portal';
@@ -133,95 +133,73 @@ export interface IModalProps {
   minimal?: boolean;
 }
 
-export class Modal extends React.Component<IModalProps> {
-  public static defaultProps: IModalProps = {
-    minimal: false,
-    visible: false,
-    title: '',
-    onOpen: () => undefined,
-    onClose: () => undefined
-  };
+export const Modal: FC<IModalProps> = ({
+  visible,
+  children,
+  title,
+  onLeftClick,
+  onRightClick,
+  minimal,
+  onOpen,
+  onClose
+}) => {
+  const modalId = nanoid(4);
 
-  public modalId: string = null;
-
-  public componentDidMount() {
-    this.modalId = nanoid(4);
-
-    window.addEventListener(
-      'keydown',
-      e => {
-        if (e.keyCode === 27) {
-          this.props.onClose(this.modalId);
-        }
-      },
-      false
-    );
-  }
-
-  public componentDidUpdate(prevProps) {
-    if (!prevProps.visible && this.props.visible) {
-      this.props.onOpen(this.modalId);
+  useEffect(() => {
+    if (visible) {
+      onOpen(modalId);
     }
+  }, [visible]);
+
+  const close = () => onClose(modalId);
+
+  if (!visible) {
+    return null;
   }
 
-  public close() {
-    this.props.onClose(this.modalId);
-  }
-
-  public render() {
-    const {
-      visible,
-      children,
-      title,
-      onLeftClick,
-      onRightClick,
-      minimal
-    } = this.props;
-
-    if (!visible) {
-      return null;
-    }
-
-    return (
-      <Portal selector="root-modal">
-        <BG>
-          <BGOut onClick={() => this.close()} />
-          <BoxW>
-            <Box minimal={minimal}>
-              {minimal && (
-                <BoxNav
-                  onClick={() => (onLeftClick ? onLeftClick() : this.close())}
-                >
-                  {onLeftClick && <Icon type="chevron-left" />}
-                </BoxNav>
+  return (
+    <Portal selector="root-modal">
+      <BG>
+        <BGOut onClick={close} />
+        <BoxW>
+          <Box minimal={minimal}>
+            {minimal && (
+              <BoxNav onClick={() => (onLeftClick ? onLeftClick() : close())}>
+                {onLeftClick && <Icon type="chevron-left" />}
+              </BoxNav>
+            )}
+            <ModalB>
+              {!minimal && (
+                <Header>
+                  <Title>{title}</Title>
+                  <Close onClick={close}>
+                    <Icon type="close" />
+                  </Close>
+                </Header>
               )}
-              <ModalB>
-                {!minimal && (
-                  <Header>
-                    <Title>{title}</Title>
-                    <Close onClick={() => this.close()}>
-                      <i className="zmdi zmdi-close" />
-                    </Close>
-                  </Header>
-                )}
-                <Content minimal={minimal}>{children}</Content>
-              </ModalB>
-              {minimal && (
-                <CloseOut onClick={() => this.close()}>
-                  <i className="zmdi zmdi-close" />
-                </CloseOut>
-              )}
-              {minimal && (
-                <BoxNav
-                  onClick={() => (onRightClick ? onRightClick() : this.close())}
-                >
-                  {onRightClick && <Icon type="chevron-right" />}
-                </BoxNav>
-              )}
-            </Box>
-          </BoxW>
-        </BG>
-      </Portal>
-    );
-  }
-}
+              <Content minimal={minimal}>{children}</Content>
+            </ModalB>
+            {minimal && (
+              <CloseOut onClick={close}>
+                <Icon type="close" />
+              </CloseOut>
+            )}
+            {minimal && (
+              <BoxNav onClick={() => (onRightClick ? onRightClick() : close())}>
+                {onRightClick && <Icon type="chevron-right" />}
+              </BoxNav>
+            )}
+          </Box>
+        </BoxW>
+      </BG>
+    </Portal>
+  );
+};
+
+Modal.defaultProps = {
+  minimal: false,
+  visible: false,
+  title: '',
+  onOpen: () => undefined,
+  onClose: () => undefined
+};

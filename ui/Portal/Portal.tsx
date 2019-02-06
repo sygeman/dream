@@ -1,33 +1,26 @@
-import { Component } from 'react';
-import ReactDOM from 'react-dom';
+import { FC, useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 
 interface IProps {
   selector: string;
 }
 
-export class Portal extends Component<IProps> {
-  public element: any;
+export const Portal: FC<IProps> = ({ selector, children }) => {
+  const [element, setElement] = useState(null);
 
-  public componentDidMount() {
+  useEffect(() => {
     if (!document) {
       return;
     }
 
-    if (!document.querySelector(`#${this.props.selector}`)) {
+    if (!document.querySelector(`#${selector}`)) {
       const p = document.createElement('div');
-      p.id = this.props.selector;
+      p.id = selector;
       document.body.appendChild(p);
     }
 
-    this.element = document.querySelector(`#${this.props.selector}`);
-    this.forceUpdate();
-  }
+    setElement(document.querySelector(`#${selector}`));
+  }, [selector]);
 
-  public render() {
-    if (this.element === undefined) {
-      return null;
-    }
-
-    return ReactDOM.createPortal(this.props.children, this.element);
-  }
-}
+  return element ? createPortal(children, element) : null;
+};

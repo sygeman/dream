@@ -24,7 +24,7 @@ const ShareButton = styled.div`
   i {
     transform: scaleX(-1);
     font-size: 21px;
-    color: ${({ theme, active }) => (active ? '#cc2939' : theme.accent2Color)};
+    color: ${({ theme }) => theme.accent2Color};
   }
 `;
 

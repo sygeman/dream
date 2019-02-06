@@ -33,7 +33,7 @@ export const GET_POSTS = gql`
   }
 `;
 
-const Box = styled.div`
+const Box = styled.div<{ gridWidth: number }>`
   display: flex;
   flex-direction: column;
   width: ${({ gridWidth }) => gridWidth}px;

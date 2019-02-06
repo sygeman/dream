@@ -5,7 +5,7 @@ import { Component } from 'react';
 import styled from 'styled-components';
 import { Icon } from '../Icon';
 
-const Item = styled.a`
+const Item = styled.a<{ active: boolean }>`
   font-size: 14px;
   position: relative;
   height: 38px;
@@ -15,11 +15,10 @@ const Item = styled.a`
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  background: ${({ active, theme }) =>
-    active && rgba(theme.main1Color, .5)};
+  background: ${({ active, theme }) => active && rgba(theme.main1Color, 0.5)};
 
   :hover {
-    background: ${({ theme }) => rgba(theme.main1Color, .5)};
+    background: ${({ theme }) => rgba(theme.main1Color, 0.5)};
   }
 
   i {
@@ -30,7 +29,8 @@ const Item = styled.a`
     align-items: center;
     left: 20px;
     font-size: 19px;
-    color: ${({ theme, active }) => active ? lighten(0.2, theme.accent2Color) : theme.accent2Color};
+    color: ${({ theme, active }) =>
+      active ? lighten(0.2, theme.accent2Color) : theme.accent2Color};
   }
 `;
 

@@ -2,7 +2,7 @@ import { FC } from 'react';
 import styled from 'styled-components';
 import { Icon } from '../../ui/Icon';
 
-const CommentsBox = styled.div`
+const CommentsBox = styled.div<{ active: boolean }>`
   height: 100%;
   padding: 0 16px;
   align-items: center;

@@ -34,7 +34,7 @@ const TitleBox = styled.div`
   align-items: center;
 `;
 
-const Title = styled.div`
+const Title = styled.div<{ active: boolean }>`
   display: flex;
   flex: 1;
   ${({ active }) => active && `cursor: pointer;`}
@@ -55,7 +55,7 @@ const TagsBox = styled.div`
   font-size: 14px;
 `;
 
-const EmptyBottom = styled.div`
+const EmptyBottom = styled.div<{ active: boolean }>`
   height: 100%;
   display: flex;
   flex: 1;

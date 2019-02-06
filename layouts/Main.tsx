@@ -17,7 +17,7 @@ import CategoriesProvider from '../providers/Categories';
 import FollowsProvider from '../providers/Follows';
 import PostProvider from '../providers/Post';
 import { Icon } from '../ui/Icon';
-import LeftMenu from '../ui/LeftMenu';
+import * as LeftMenu from '../ui/LeftMenu';
 
 const GET_POST_AROUND = gql`
   query postAround(
@@ -267,7 +267,7 @@ class MainLayout extends Component<IProps, IState> {
             <ContentInsideBox>
               <Left pose={store.leftMenuIsOpen ? 'open' : 'closed'}>
                 <Scrollbars autoHide universal>
-                  <LeftMenu>
+                  <LeftMenu.Box>
                     <LeftMenu.Item
                       route="/"
                       equal
@@ -367,7 +367,7 @@ class MainLayout extends Component<IProps, IState> {
                         </LeftMenu.SubItem>
                       </LeftMenu.Item> */}
                     </Access>
-                  </LeftMenu>
+                  </LeftMenu.Box>
                 </Scrollbars>
               </Left>
               <PostsBox

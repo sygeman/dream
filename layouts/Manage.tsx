@@ -7,7 +7,7 @@ import styled from 'styled-components';
 import TopNav from '../components/Nav/Top';
 import { Access } from '../helpers/Access';
 import { IStore } from '../lib/store';
-import LeftMenu from '../ui/LeftMenu';
+import * as LeftMenu from '../ui/LeftMenu';
 
 const LEFT_MENU_WIDTH = 260;
 
@@ -158,7 +158,7 @@ class ManageLayout extends Component<IProps, IState> {
               <ContentInsideBox>
                 <Left pose={store.leftMenuIsOpen ? 'open' : 'closed'}>
                   <Scrollbars autoHide universal>
-                    <LeftMenu>
+                    <LeftMenu.Box>
                       <LeftMenu.Item
                         route="/manage"
                         equal
@@ -180,7 +180,7 @@ class ManageLayout extends Component<IProps, IState> {
                         icon="collection-video"
                         title="Клипы"
                       />
-                    </LeftMenu>
+                    </LeftMenu.Box>
                   </Scrollbars>
                 </Left>
                 <PostsBox

@@ -1,8 +1,8 @@
 import Link from 'next/link';
-import { RouterProps, withRouter } from 'next/router';
 import { darken, rgba } from 'polished';
-import { Component } from 'react';
+import { FC } from 'react';
 import styled from 'styled-components';
+import useRouter from '../../hooks/useRouter';
 
 const SubItem = styled('a')<{
   active?: boolean;
@@ -33,27 +33,18 @@ const SubItem = styled('a')<{
 `;
 
 interface IProps {
-  router: RouterProps;
   route: string;
   active?: boolean;
 }
 
-class SubItemMenu extends Component<IProps> {
-  constructor(props) {
-    super(props);
-  }
+export const SubItemMenu: FC<IProps> = ({ route, active, children }) => {
+  const router = useRouter();
 
-  public render() {
-    const { router, route, active, children } = this.props;
-
-    return (
-      <Link href={route} shallow passHref>
-        <SubItem active={active || router.route === route}>
-          <span>{children}</span>
-        </SubItem>
-      </Link>
-    );
-  }
-}
-
-export default withRouter(SubItemMenu);
+  return (
+    <Link href={route} shallow passHref>
+      <SubItem active={active || router.route === route}>
+        <span>{children}</span>
+      </SubItem>
+    </Link>
+  );
+};

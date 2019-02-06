@@ -1,5 +1,5 @@
 import nanoid from 'nanoid';
-import { FC, useEffect } from 'react';
+import { FC, useEffect, useState } from 'react';
 import useInterval from '../../hooks/useInterval';
 import { randomInt } from '../../utils/random';
 import { getSDK } from './getSDK';
@@ -10,17 +10,9 @@ interface IProps {
   channel: string;
 }
 
-export const TwitchPlayer: FC<IProps> = ({ autoplay, muted, channel }) => {
+export const TwitchPlayerInner: FC<IProps> = ({ autoplay, muted, channel }) => {
   const playerID = nanoid();
   let player;
-
-  useInterval(() => {
-    if (player) {
-      player.setChannel();
-      player.setChannel(channel);
-      player.setQuality('160p30');
-    }
-  }, randomInt(15e3, 25e3));
 
   useEffect(() => {
     getSDK().then(Twitch => {
@@ -46,4 +38,20 @@ export const TwitchPlayer: FC<IProps> = ({ autoplay, muted, channel }) => {
       id={playerID}
     />
   );
+};
+
+export const TwitchPlayer: FC<IProps> = props => {
+  const [visible, setVisible] = useState(true);
+  const delay = randomInt(15e3, 25e3);
+
+  useInterval(() => {
+    setVisible(false);
+    setVisible(true);
+  }, delay);
+
+  if (!visible) {
+    return null;
+  }
+
+  return <TwitchPlayerInner {...props} />;
 };

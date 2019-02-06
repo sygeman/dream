@@ -12,7 +12,7 @@ const Box = styled.div`
   height: 50px;
 `;
 
-const Container = styled.div`
+const Container = styled.div<{ gridWidth: number }>`
   width: ${({ gridWidth }) => gridWidth}px;
   height: 100%;
   padding: 0 20px;

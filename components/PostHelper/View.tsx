@@ -21,7 +21,6 @@ const EmptyBottom = styled.div`
   height: 100%;
   display: flex;
   flex: 1;
-  ${({ active }) => active && `cursor: pointer;`}
 `;
 
 const CommentsBox = styled.div`

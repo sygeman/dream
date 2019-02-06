@@ -90,8 +90,6 @@ const ContentBox = styled.div`
   overflow-y: hidden;
   display: flex;
   flex-direction: column;
-  /* ${({ blured }) => blured && 'filter: blur(10px);'}; */
-  /* transition: 0.1s filter linear; */
 `;
 
 const ContentInsideBox = styled.div`
@@ -263,7 +261,7 @@ class MainLayout extends Component<IProps, IState> {
           }}
         </Query>
 
-        <ContentBox blured={store.modals.size > 0}>
+        <ContentBox>
           <TopNav />
           <Content>
             <ContentInsideBox>

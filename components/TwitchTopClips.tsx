@@ -30,7 +30,7 @@ const GET_TWITCH_CHANNEL_TOP_CLIPS = gql`
   }
 `;
 
-const Box = styled.div`
+const Box = styled.div<{ gridWidth: number }>`
   display: flex;
   width: ${({ gridWidth }) => gridWidth}px;
   overflow: hidden;

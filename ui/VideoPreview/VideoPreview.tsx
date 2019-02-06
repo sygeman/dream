@@ -1,7 +1,7 @@
 import { rgba } from 'polished';
 import { FC, useRef } from 'react';
 import styled from 'styled-components';
-import useMeasure from '../../hooks/useMeasure';
+// import useMeasure from '../../hooks/useMeasure';
 import { Icon } from '../Icon';
 
 const PLAY_SIZE = 28;
@@ -41,7 +41,7 @@ const PreviewImg = styled('div')<IPreviewImg>`
   ${({ blur }) => blur && 'filter: blur(20px);'}
 `;
 
-const PreviewPlay = styled.div`
+const PreviewPlay = styled.div<{ shadowBottom: boolean }>`
   position: absolute;
   width: 100%;
   height: 100%;
@@ -55,7 +55,7 @@ const PreviewPlay = styled.div`
     'background:linear-gradient(0deg, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75) 10%, transparent 50%);'}
 `;
 
-const PreviewPlayBox = styled.div`
+const PreviewPlayBox = styled.div<{ width: number }>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -76,7 +76,7 @@ const PreviewPlayBox = styled.div`
   }
 `;
 
-const PreviewTags = styled.div`
+const PreviewTags = styled.div<{ width: number }>`
   position: absolute;
   right: 0;
   top: 0;
@@ -92,7 +92,7 @@ const PreviewBlurText = styled.div`
   margin-left: 5px;
 `;
 
-const Views = styled.div`
+const Views = styled.div<{ width: number }>`
   display: flex;
 
   i {
@@ -106,7 +106,7 @@ const Date = styled.div`
   display: flex;
 `;
 
-const Bottom = styled.div`
+const Bottom = styled.div<{ width: number }>`
   position: absolute;
   left: 0;
   bottom: 0;
@@ -140,7 +140,9 @@ export const VideoPreview: FC<IProps> = ({
   views
 }) => {
   const box = useRef(null);
-  const { width } = useMeasure(box)[0];
+  // const { width } = useMeasure(box)[0];
+  // console.log(width);
+  const width = 300;
 
   return (
     <Box ref={box}>
@@ -152,7 +154,7 @@ export const VideoPreview: FC<IProps> = ({
             {spoiler && <PreviewBlurText>Спойлер</PreviewBlurText>}
           </PreviewTags>
           {cover && (
-            <PreviewPlay shadowBottom={date || views}>
+            <PreviewPlay shadowBottom={!!(date || views)}>
               <PreviewPlayBox width={width}>
                 <Icon type="play" />
               </PreviewPlayBox>

@@ -1,5 +1,5 @@
 import { rgba } from 'polished';
-import { FC, useEffect, useRef, useState } from 'react';
+import { FC, useRef } from 'react';
 import styled from 'styled-components';
 import useMeasure from '../../hooks/useMeasure';
 import { Icon } from '../Icon';
@@ -139,10 +139,11 @@ export const VideoPreview: FC<IProps> = ({
   date,
   views
 }) => {
-  const [bind, { width }]: any = useMeasure();
+  const box = useRef(null);
+  const { width } = useMeasure(box)[0];
 
   return (
-    <Box {...bind}>
+    <Box ref={box}>
       <ContentBox>
         <PreviewBox onClick={onClick}>
           <PreviewImg url={cover} blur={nsfw || spoiler} />

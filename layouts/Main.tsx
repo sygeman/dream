@@ -353,7 +353,7 @@ class MainLayout extends Component<IProps, IState> {
                           )}
                         </FollowsProvider>
                       </LeftMenu.Item>
-                      <LeftMenu.Item
+                      {/* <LeftMenu.Item
                         route="/settings"
                         icon="settings"
                         title="Настройки"
@@ -367,7 +367,7 @@ class MainLayout extends Component<IProps, IState> {
                         <LeftMenu.SubItem route={`/settings/integrations`}>
                           Интеграции
                         </LeftMenu.SubItem>
-                      </LeftMenu.Item>
+                      </LeftMenu.Item> */}
                     </Access>
                   </LeftMenu>
                 </Scrollbars>

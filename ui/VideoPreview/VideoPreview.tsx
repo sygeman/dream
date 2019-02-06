@@ -1,6 +1,7 @@
 import { rgba } from 'polished';
-import { Component, createRef } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
+import useMeasure from '../../hooks/useMeasure';
 import { Icon } from '../Icon';
 
 const PLAY_SIZE = 28;
@@ -130,58 +131,42 @@ interface IProps {
   views?: string;
 }
 
-interface IState {
-  width: number;
-}
+export const VideoPreview: FC<IProps> = ({
+  onClick,
+  cover,
+  nsfw,
+  spoiler,
+  date,
+  views
+}) => {
+  const [bind, { width }]: any = useMeasure();
 
-export class VideoPreview extends Component<IProps, IState> {
-  public box = createRef<HTMLDivElement>();
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      width: 300
-    };
-  }
-
-  public componentDidMount() {
-    if (this.box.current.clientWidth !== this.state.width) {
-      this.setState({ width: this.box.current.clientWidth });
-    }
-  }
-
-  public render() {
-    const { onClick, cover, nsfw, spoiler, date, views } = this.props;
-    const { width } = this.state;
-
-    return (
-      <Box ref={this.box}>
-        <ContentBox>
-          <PreviewBox onClick={onClick}>
-            <PreviewImg url={cover} blur={nsfw || spoiler} />
-            <PreviewTags width={width}>
-              {nsfw && <PreviewBlurText>NSWF</PreviewBlurText>}
-              {spoiler && <PreviewBlurText>Спойлер</PreviewBlurText>}
-            </PreviewTags>
-            {cover && (
-              <PreviewPlay shadowBottom={date || views}>
-                <PreviewPlayBox width={width}>
-                  <Icon type="play" />
-                </PreviewPlayBox>
-              </PreviewPlay>
+  return (
+    <Box {...bind}>
+      <ContentBox>
+        <PreviewBox onClick={onClick}>
+          <PreviewImg url={cover} blur={nsfw || spoiler} />
+          <PreviewTags width={width}>
+            {nsfw && <PreviewBlurText>NSWF</PreviewBlurText>}
+            {spoiler && <PreviewBlurText>Спойлер</PreviewBlurText>}
+          </PreviewTags>
+          {cover && (
+            <PreviewPlay shadowBottom={date || views}>
+              <PreviewPlayBox width={width}>
+                <Icon type="play" />
+              </PreviewPlayBox>
+            </PreviewPlay>
+          )}
+          <Bottom width={width}>
+            {views && (
+              <Views width={width}>
+                <Icon type="eye" /> {views}
+              </Views>
             )}
-            <Bottom width={width}>
-              {views && (
-                <Views width={width}>
-                  <Icon type="eye" /> {views}
-                </Views>
-              )}
-              <BottomRight>{date && <Date>{date}</Date>}</BottomRight>
-            </Bottom>
-          </PreviewBox>
-        </ContentBox>
-      </Box>
-    );
-  }
-}
+            <BottomRight>{date && <Date>{date}</Date>}</BottomRight>
+          </Bottom>
+        </PreviewBox>
+      </ContentBox>
+    </Box>
+  );
+};

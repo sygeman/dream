@@ -227,7 +227,7 @@ const Stream: FC<IProps> = ({ stream, manage }) => {
             <Box pose={isShowPlayer ? 'open' : 'closed'}>
               <StreamBox>
                 {process.browser && isShowPlayer && (
-                  <TwitchPlayer muted playing channel={channel} />
+                  <TwitchPlayer muted autoplay channel={channel} />
                 )}
               </StreamBox>
               <StreamOverLink

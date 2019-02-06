@@ -234,7 +234,7 @@ const Stream: FC<IProps> = ({ stream, manage }) => {
                   <StreamPreview src={data.stream.channel.video_banner} />
                 )}
                 {process.browser && isShowPlayer && (
-                  <TwitchPlayer muted playing channel={channel} />
+                  <TwitchPlayer muted autoplay channel={channel} />
                 )}
               </StreamBox>
               <StreamOverLink

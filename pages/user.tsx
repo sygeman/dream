@@ -1,11 +1,11 @@
 import gql from 'graphql-tag';
 import Head from 'next/head';
-import { RouterProps, withRouter } from 'next/router';
 import * as React from 'react';
 import { Query } from 'react-apollo';
 import Posts from '../components/Posts';
 import Streams from '../components/Stream';
 import UserPanelProfile from '../components/User/UserPanelProfile';
+import useRouter from '../hooks/useRouter';
 import Layout from '../layouts/Main';
 import styled from '../theme';
 
@@ -51,55 +51,45 @@ const PostsBox = styled.div`
   overflow: hidden;
 `;
 
-interface IProps {
-  router: RouterProps;
-}
+const UserPage = () => {
+  const router = useRouter();
 
-class UserPage extends React.Component<IProps> {
-  constructor(props) {
-    super(props);
+  let userId;
+
+  if (typeof router.query.id === 'string') {
+    userId = router.query.id;
   }
 
-  public render() {
-    const { router } = this.props;
+  return (
+    <Query query={GET_USER} variables={{ id: userId }}>
+      {({ loading, error, data }) => {
+        if (loading || error) {
+          return null;
+        }
 
-    let userId;
+        if (!data || !data.user) {
+          return 'User not found';
+        }
 
-    if (typeof router.query.id === 'string') {
-      userId = router.query.id;
-    }
+        const user = data.user;
 
-    return (
-      <Query query={GET_USER} variables={{ id: userId }}>
-        {({ loading, error, data }) => {
-          if (loading || error) {
-            return null;
-          }
+        return (
+          <Layout fixedTopContent={<UserPanelProfile user={user} />}>
+            <Box>
+              <Head>
+                <title>{user.mainProfile.name}</title>
+              </Head>
 
-          if (!data || !data.user) {
-            return 'User not found';
-          }
+              <PostsBox>
+                <Streams />
+                <Posts title="Клипы" authorId={user.id} sort="new" />
+              </PostsBox>
+            </Box>
+          </Layout>
+        );
+      }}
+    </Query>
+  );
+};
 
-          const user = data.user;
-
-          return (
-            <Layout fixedTopContent={<UserPanelProfile user={user} />}>
-              <Box>
-                <Head>
-                  <title>{user.mainProfile.name}</title>
-                </Head>
-
-                <PostsBox>
-                  <Streams />
-                  <Posts title="Клипы" authorId={user.id} sort="new" />
-                </PostsBox>
-              </Box>
-            </Layout>
-          );
-        }}
-      </Query>
-    );
-  }
-}
-
-export default withRouter(UserPage);
+export default UserPage;

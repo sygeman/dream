@@ -1,10 +1,10 @@
 import gql from 'graphql-tag';
 import Head from 'next/head';
-import { RouterProps, withRouter } from 'next/router';
 import * as React from 'react';
 import { Query } from 'react-apollo';
 import Posts from '../components/Posts';
 import Streams from '../components/Stream';
+import useRouter from '../hooks/useRouter';
 import Layout from '../layouts/Main';
 
 const GET_TAG = gql`
@@ -16,50 +16,40 @@ const GET_TAG = gql`
   }
 `;
 
-interface IProps {
-  router: RouterProps;
-}
+const TagPage = () => {
+  const router = useRouter();
 
-class UserPage extends React.Component<IProps> {
-  constructor(props) {
-    super(props);
+  let tagId;
+
+  if (typeof router.query.id === 'string') {
+    tagId = router.query.id;
   }
 
-  public render() {
-    const { router } = this.props;
+  return (
+    <Layout>
+      <Query query={GET_TAG} variables={{ id: tagId }}>
+        {({ loading, error, data }) => {
+          if (loading) {
+            return null;
+          }
 
-    let tagId;
+          if (error || !data || !data.tag) {
+            return null;
+          }
 
-    if (typeof router.query.id === 'string') {
-      tagId = router.query.id;
-    }
+          return (
+            <>
+              <Head>
+                <title>#{data.tag.title}</title>
+              </Head>
+              <Streams />
+              <Posts title={`#${data.tag.title}`} tagId={tagId} sort="new" />
+            </>
+          );
+        }}
+      </Query>
+    </Layout>
+  );
+};
 
-    return (
-      <Layout>
-        <Query query={GET_TAG} variables={{ id: tagId }}>
-          {({ loading, error, data }) => {
-            if (loading) {
-              return null;
-            }
-
-            if (error || !data || !data.tag) {
-              return null;
-            }
-
-            return (
-              <>
-                <Head>
-                  <title>#{data.tag.title}</title>
-                </Head>
-                <Streams />
-                <Posts title={`#${data.tag.title}`} tagId={tagId} sort="new" />
-              </>
-            );
-          }}
-        </Query>
-      </Layout>
-    );
-  }
-}
-
-export default withRouter(UserPage);
+export default TagPage;

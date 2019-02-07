@@ -1,7 +1,6 @@
 import gql from 'graphql-tag';
-import { FC } from 'react';
+import { Component, FC } from 'react';
 import { Query } from 'react-apollo';
-import Streams from './Streams';
 
 const GET_STREAMS = gql`
   query streams {
@@ -42,25 +41,42 @@ const STREAM_REMOVED = gql`
   }
 `;
 
-interface IProps {
-  manage?: boolean;
+interface IPropsInner {
+  streams: any;
+  streamAdded: () => void;
+  streamUpdated: () => void;
+  streamRemoved: () => void;
+  children: any;
 }
 
-const StreamsWithData: FC<IProps> = ({ manage }) => (
+class StreamsProviderInner extends Component<IPropsInner> {
+  public componentDidMount() {
+    this.props.streamAdded();
+    this.props.streamUpdated();
+    this.props.streamRemoved();
+  }
+
+  public render() {
+    return this.props.children({
+      streams: this.props.streams
+    });
+  }
+}
+
+const StreamsProvider: FC = ({ children }) => (
   <Query query={GET_STREAMS}>
-    {({ subscribeToMore, loading, error, data }) => {
+    {({ loading, error, data, subscribeToMore }) => {
       if (loading) {
         return null;
       }
 
-      if (error || !data.streams) {
+      if (error) {
         return null;
       }
 
       return (
-        <Streams
+        <StreamsProviderInner
           streams={data.streams}
-          manage={manage}
           streamAdded={() =>
             subscribeToMore({
               document: STREAM_ADDED,
@@ -115,10 +131,12 @@ const StreamsWithData: FC<IProps> = ({ manage }) => (
               }
             })
           }
-        />
+        >
+          {children}
+        </StreamsProviderInner>
       );
     }}
   </Query>
 );
 
-export default StreamsWithData;
+export default StreamsProvider;

@@ -6,6 +6,7 @@ import Router, { withRouter } from 'next/router';
 import NProgress from 'nprogress';
 import React from 'react';
 import { ApolloProvider } from 'react-apollo';
+import 'resize-observer-polyfill';
 import { RouterContext } from '../hooks/useRouter';
 import { initializeStore, IStore } from '../lib/store';
 import withApollo from '../lib/withApollo';

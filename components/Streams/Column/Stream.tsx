@@ -4,8 +4,8 @@ import { FC } from 'react';
 import { Mutation, Query } from 'react-apollo';
 import posed from 'react-pose';
 import styled from 'styled-components';
-import { Icon } from '../../ui/Icon';
-import { TwitchPlayer } from '../../ui/TwitchPlayer';
+import { Icon } from '../../../ui/Icon';
+import { TwitchPlayer } from '../../../ui/TwitchPlayer';
 
 interface IProcess {
   browser: boolean;

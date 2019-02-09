@@ -62,7 +62,7 @@ const LoadMore = styled.div`
 
 const Divider = styled.div`
   border-bottom: 1px solid ${({ theme }) => theme.dark2Color};
-  margin: 10px 30px;
+  margin: 10px;
 `;
 
 interface IProps {

@@ -100,6 +100,7 @@ const Posts: FC<IProps> = ({
               titleLink={titleLink}
               posts={posts}
               loading={loading}
+              rows={rows}
               hasMore={hasMore && !rows && !noMore}
               onPlay={id => {
                 router.push(

@@ -71,6 +71,7 @@ interface IProps {
   hasMore: boolean;
   title?: string;
   titleLink?: string;
+  rows?: number;
   store?: IStore;
   loadMore: () => Promise<any>;
   onPlay: (id: string) => void;
@@ -108,6 +109,7 @@ class PostsView extends Component<IProps> {
       loadMore,
       onPlay,
       title,
+      rows,
       titleLink
     } = this.props;
 
@@ -128,6 +130,7 @@ class PostsView extends Component<IProps> {
             )}
           </>
         }
+        maxRows={rows}
         items={posts}
         elementWidth={280}
         itemRender={({ id }) => (

@@ -142,7 +142,7 @@ export const VideoPreview: FC<IProps> = ({
   const box = useRef(null);
   // const { width } = useMeasure(box)[0];
   // console.log(width);
-  const width = 300;
+  const width = 270;
 
   return (
     <Box ref={box}>

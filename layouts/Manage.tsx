@@ -2,7 +2,6 @@ import { inject, observer } from 'mobx-react';
 import { lighten, rgba } from 'polished';
 import { Component, ReactNode } from 'react';
 import Scrollbars from 'react-custom-scrollbars';
-import posed from 'react-pose';
 import styled from 'styled-components';
 import TopNav from '../components/Nav/Top';
 import { Access } from '../helpers/Access';
@@ -25,12 +24,7 @@ const Content = styled.div`
   position: relative;
 `;
 
-const LeftAnim = posed.div({
-  closed: { left: -LEFT_MENU_WIDTH },
-  open: { left: 0 }
-});
-
-const Left = styled(LeftAnim)`
+const Left = styled.div<{ isOpen: boolean }>`
   background: ${({ theme }) => lighten(0.05, theme.dark1Color)};
   width: ${LEFT_MENU_WIDTH}px;
   position: absolute;
@@ -38,21 +32,26 @@ const Left = styled(LeftAnim)`
   top: 0;
   height: 100%;
   z-index: 100;
+  transition: 0.3s;
+
+  @media (max-width: 700px) {
+    left: ${({ isOpen }) => (isOpen ? 0 : -LEFT_MENU_WIDTH)}px;
+  }
 `;
 
-const PostsBoxAnim = posed.div({
-  noPaddingLeft: { 'padding-left': 0 },
-  paddingLeft: { 'padding-left': LEFT_MENU_WIDTH + 'px' }
-});
-
-const PostsBox = styled(PostsBoxAnim)`
+const PostsBox = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding-left: ${LEFT_MENU_WIDTH}px;
+  padding-left: 0;
+  transition: 0.3s;
+
+  @media (min-width: 700px) {
+    padding-left: ${LEFT_MENU_WIDTH}px;
+  }
 `;
 
-const ContentBox = styled('div')`
+const ContentBox = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
@@ -66,14 +65,19 @@ const ContentInsideBox = styled.div`
   display: flex;
 `;
 
-const Overlay = styled.div`
+const Overlay = styled.div<{ leftMenuIsOpen: boolean }>`
+  display: none;
   position: absolute;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  background: ${({ theme }) => rgba(theme.dark2Color, 0.95)};
+  background: ${({ theme }) => rgba(theme.dark1Color, 0.95)};
   z-index: 50;
+
+  @media (max-width: 700px) {
+    ${({ leftMenuIsOpen }) => leftMenuIsOpen && 'display: block;'}
+  }
 `;
 
 interface IProps {
@@ -82,7 +86,7 @@ interface IProps {
 }
 
 interface IState {
-  smallWindow: boolean;
+  leftMenuIsOpen: boolean;
 }
 
 @inject('store')
@@ -92,58 +96,8 @@ class ManageLayout extends Component<IProps, IState> {
     super(props);
 
     this.state = {
-      smallWindow: true
+      leftMenuIsOpen: false
     };
-  }
-
-  public getCalcCountOnRow = () => {
-    let width = window.innerWidth;
-
-    if (width >= 1000) {
-      width = width - LEFT_MENU_WIDTH;
-    }
-
-    const smallWindow = width < 1000;
-
-    if (smallWindow !== this.state.smallWindow) {
-      this.props.store.leftMenuTrigger(!smallWindow);
-
-      this.setState({ smallWindow });
-    }
-
-    const GRID_ELEMENT_WIDTH = 280;
-    const GRID_PADDING_ONE = 20;
-    const GRID_PADDING = GRID_PADDING_ONE * 2;
-
-    let countOnRow = Math.floor((width - GRID_PADDING) / GRID_ELEMENT_WIDTH);
-    let gridWidth = countOnRow * GRID_ELEMENT_WIDTH + GRID_PADDING;
-
-    if (gridWidth < GRID_ELEMENT_WIDTH + GRID_PADDING) {
-      gridWidth = GRID_ELEMENT_WIDTH + GRID_PADDING;
-    }
-
-    if (countOnRow < 1) {
-      countOnRow = 1;
-    }
-
-    return {
-      countOnRow,
-      gridWidth
-    };
-  };
-
-  public calcCountOnRow = () => {
-    const { countOnRow, gridWidth } = this.getCalcCountOnRow();
-    this.props.store.setGridData(countOnRow, gridWidth);
-  };
-
-  public componentDidMount() {
-    this.calcCountOnRow();
-    window.addEventListener('resize', this.calcCountOnRow);
-  }
-
-  public componentWillUnmount() {
-    window.removeEventListener('resize', this.calcCountOnRow);
   }
 
   public render() {
@@ -153,10 +107,14 @@ class ManageLayout extends Component<IProps, IState> {
       <Access allow={currentUser => currentUser.role === 'admin'}>
         <Box>
           <ContentBox>
-            <TopNav />
+            <TopNav
+              leftMenuTrigger={() =>
+                this.setState({ leftMenuIsOpen: !this.state.leftMenuIsOpen })
+              }
+            />
             <Content>
               <ContentInsideBox>
-                <Left pose={store.leftMenuIsOpen ? 'open' : 'closed'}>
+                <Left isOpen={this.state.leftMenuIsOpen}>
                   <Scrollbars autoHide universal>
                     <LeftMenu.Box>
                       <LeftMenu.Item
@@ -183,14 +141,7 @@ class ManageLayout extends Component<IProps, IState> {
                     </LeftMenu.Box>
                   </Scrollbars>
                 </Left>
-                <PostsBox
-                  id="layoutContent"
-                  pose={
-                    store.leftMenuIsOpen && !this.state.smallWindow
-                      ? 'paddingLeft'
-                      : 'noPaddingLeft'
-                  }
-                >
+                <PostsBox id="layoutContent">
                   <Scrollbars
                     autoHide
                     universal
@@ -204,11 +155,10 @@ class ManageLayout extends Component<IProps, IState> {
                   </Scrollbars>
                 </PostsBox>
               </ContentInsideBox>
-              {this.state.smallWindow && store.leftMenuIsOpen && (
-                <Overlay
-                  onClick={() => this.props.store.leftMenuTrigger(false)}
-                />
-              )}
+              <Overlay
+                leftMenuIsOpen={this.state.leftMenuIsOpen}
+                onClick={() => this.setState({ leftMenuIsOpen: false })}
+              />
             </Content>
           </ContentBox>
         </Box>

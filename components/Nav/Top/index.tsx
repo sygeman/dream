@@ -4,11 +4,11 @@ import { withRouter } from 'next/router';
 import { darken, lighten } from 'polished';
 import { Component } from 'react';
 import styled from 'styled-components';
-import { Modal } from '../../../helpers/Modal';
 import { IStore } from '../../../lib/store';
 import UserProvider from '../../../providers/User';
 import { Avatar } from '../../../ui/Avatar';
 import { Icon } from '../../../ui/Icon';
+import { Modal } from '../../../ui/Modal';
 import { humanNumbers } from '../../../utils/count';
 import Auth from '../../Auth';
 import CreatePost from '../../CreatePost';
@@ -59,6 +59,10 @@ const MenuButton = styled.div`
   font-size: 20px;
   color: ${({ theme }) => lighten(0.3, theme.main1Color)};
   cursor: pointer;
+
+  @media (min-width: 700px) {
+    display: none;
+  }
 `;
 
 const LogoLink = styled.a`
@@ -184,6 +188,7 @@ const UserCaratBox = styled.div`
 interface IProps {
   store?: IStore;
   router: any;
+  leftMenuTrigger: () => void;
 }
 
 @inject('store')
@@ -211,7 +216,7 @@ class TopNav extends Component<IProps> {
           <CreatePost />
         </Modal>
         <Left>
-          <MenuButton onClick={() => this.props.store.leftMenuTrigger()}>
+          <MenuButton onClick={() => this.props.leftMenuTrigger()}>
             <Icon type="menu" />
           </MenuButton>
           <Link href="/" passHref>

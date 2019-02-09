@@ -4,8 +4,8 @@ import { FC } from 'react';
 import { Mutation, Query } from 'react-apollo';
 import posed from 'react-pose';
 import styled from 'styled-components';
-import { Icon } from '../../ui/Icon';
-import { TwitchPlayer } from '../../ui/TwitchPlayer';
+import { Icon } from '../../../ui/Icon';
+import { TwitchPlayer } from '../../../ui/TwitchPlayer';
 
 interface IProcess {
   browser: boolean;
@@ -41,6 +41,7 @@ const BoxAnim = posed.div({
 });
 
 const Box = styled(BoxAnim)`
+  width: 100%;
   position: relative;
   padding-bottom: 56.25%;
   background: radial-gradient(
@@ -143,6 +144,8 @@ const StreamPreview = styled.img`
   position: absolute;
   width: 100%;
   height: 100%;
+  left: 0;
+  top: 0;
 `;
 
 interface IPropsStreamInfo {

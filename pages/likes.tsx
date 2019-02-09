@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 import Posts from '../components/Posts';
-import Streams from '../components/Stream';
+import Streams from '../components/Streams/Grid';
 import Layout from '../layouts/Main';
 
 const GET_USER = gql`

@@ -3,7 +3,7 @@ import { createRef, FC } from 'react';
 import { Mutation } from 'react-apollo';
 import styled from 'styled-components';
 import { Input } from '../../ui/Input';
-import Streams from '../Streams';
+import Streams from '../Streams/Column';
 
 const ADD_STREAM = gql`
   mutation addStream($channel: String!) {

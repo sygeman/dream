@@ -1,8 +1,6 @@
-import { inject, observer } from 'mobx-react';
 import { darken, lighten } from 'polished';
 import { FC } from 'react';
 import styled from 'styled-components';
-import { IStore } from '../../lib/store';
 import { Icon } from '../../ui/Icon';
 import { shortNumbers } from '../../utils/count';
 
@@ -12,8 +10,8 @@ const Box = styled.div`
   height: 50px;
 `;
 
-const Container = styled.div<{ gridWidth: number }>`
-  width: ${({ gridWidth }) => gridWidth}px;
+const Container = styled.div`
+  width: 100%;
   height: 100%;
   padding: 0 20px;
   margin: 0 auto;
@@ -132,13 +130,12 @@ const SocialLinkOne = ({ profile }) => {
 };
 
 interface IProps {
-  store?: IStore;
   user: any;
 }
 
-export const PanelProfile: FC<IProps> = ({ user, store }) => (
+export const PanelProfile: FC<IProps> = ({ user }) => (
   <Box>
-    <Container gridWidth={store.gridWidth}>
+    <Container>
       <UserData>
         <UserAvatar>
           <UserAvatarImg src={user.mainProfile.avatar} />
@@ -164,4 +161,4 @@ export const PanelProfile: FC<IProps> = ({ user, store }) => (
   </Box>
 );
 
-export default inject('store')(observer(PanelProfile));
+export default PanelProfile;

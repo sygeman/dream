@@ -78,9 +78,11 @@ class PostProviderInner extends Component<IPropsInner> {
 
 interface IProps {
   id?: string;
+  noRealtime?: boolean;
+  children: any;
 }
 
-const PostProvider: FC<IProps> = ({ children, id }) => {
+const PostProvider: FC<IProps> = ({ children, id, noRealtime }) => {
   return (
     <Query query={GET_POST} variables={{ id }}>
       {({ subscribeToMore, loading, error, data }) => {
@@ -90,6 +92,12 @@ const PostProvider: FC<IProps> = ({ children, id }) => {
 
         if (error) {
           return null;
+        }
+
+        if (noRealtime) {
+          return children({
+            post: data.post
+          });
         }
 
         return (

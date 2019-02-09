@@ -1,10 +1,12 @@
 import gql from 'graphql-tag';
 import { inject, observer } from 'mobx-react';
+import Link from 'next/link';
 import { Component } from 'react';
 import styled from 'styled-components';
 import { IStore } from '../lib/store';
 import PostProvider from '../providers/Post';
 import { Button } from '../ui/Button';
+import { Grid } from '../ui/Grid';
 import PostGridView from './PostHelper/GridView';
 
 export const GET_POSTS = gql`
@@ -32,16 +34,19 @@ export const GET_POSTS = gql`
   }
 `;
 
-const PostContainer = styled.div`
-  padding: 5px;
+const SectionTitle = styled.div`
+  display: flex;
+  width: 100%;
+  font-size: 18px;
+  padding: 15px 0;
+
+  a {
+    cursor: pointer;
+  }
 `;
 
-const Grid = styled.div`
-  width: 100%;
-  display: grid;
-  margin: 10px 20px;
-  grid-template-columns: repeat(auto-fit, 280px);
-  overflow-y: hidden;
+const PostContainer = styled.div`
+  padding: 5px;
 `;
 
 const Loading = styled.div`
@@ -57,13 +62,16 @@ const LoadMore = styled.div`
 
 const Divider = styled.div`
   border-bottom: 1px solid ${({ theme }) => theme.dark2Color};
-  margin: 10px 30px;
+  margin: 10px;
 `;
 
 interface IProps {
   posts: any;
   loading: boolean;
   hasMore: boolean;
+  title?: string;
+  titleLink?: string;
+  rows?: number;
   store?: IStore;
   loadMore: () => Promise<any>;
   onPlay: (id: string) => void;
@@ -93,32 +101,59 @@ class PostsView extends Component<IProps> {
   }
 
   public render() {
-    const { posts, store, loading, hasMore, loadMore, onPlay } = this.props;
+    const {
+      posts,
+      store,
+      loading,
+      hasMore,
+      loadMore,
+      onPlay,
+      title,
+      rows,
+      titleLink
+    } = this.props;
 
     /* tslint:disable */
     store.layoutInLoadArea;
 
     return (
-      <>
-        <Grid>
-          {posts.map(({ id }) => (
-            <PostContainer key={id}>
-              <PostProvider id={id}>
-                {({ post }) => (
-                  <PostGridView post={post} onPlay={() => onPlay(post.id)} />
-                )}
-              </PostProvider>
-            </PostContainer>
-          ))}
-        </Grid>
-        {loading && <Loading />}
-        {!loading && hasMore && (
-          <LoadMore>
-            <Button onClick={() => loadMore()}>Загрузить еще</Button>
-          </LoadMore>
+      <Grid
+        beforeRender={
+          <>
+            {title && !titleLink && <SectionTitle>{title}</SectionTitle>}
+            {title && titleLink && (
+              <SectionTitle>
+                <Link href={titleLink} passHref>
+                  <a>{title}</a>
+                </Link>
+              </SectionTitle>
+            )}
+          </>
+        }
+        maxRows={rows}
+        items={posts}
+        elementWidth={280}
+        itemRender={({ id }) => (
+          <PostContainer key={id}>
+            <PostProvider id={id}>
+              {({ post }) => (
+                <PostGridView post={post} onPlay={() => onPlay(post.id)} />
+              )}
+            </PostProvider>
+          </PostContainer>
         )}
-        <Divider />
-      </>
+        afterRedner={
+          <>
+            {loading && <Loading />}
+            {!loading && hasMore && (
+              <LoadMore>
+                <Button onClick={() => loadMore()}>Загрузить еще</Button>
+              </LoadMore>
+            )}
+            <Divider />
+          </>
+        }
+      />
     );
   }
 }

@@ -2,14 +2,13 @@ import distanceInWordsToNow from 'date-fns/distance_in_words_to_now';
 import ruLocale from 'date-fns/locale/ru';
 import gql from 'graphql-tag';
 import { omit } from 'lodash';
-import { inject, observer } from 'mobx-react';
-import { RouterProps, withRouter } from 'next/router';
 import { darken } from 'polished';
-import { Component } from 'react';
+import { FC } from 'react';
 import { Query } from 'react-apollo';
 import styled from 'styled-components';
-import { Modal } from '../helpers/Modal';
-import { IStore } from '../lib/store';
+import useRouter from '../hooks/useRouter';
+import { Grid } from '../ui/Grid';
+import { Modal } from '../ui/Modal';
 import { VideoPreview } from '../ui/VideoPreview';
 import { humanNumbers } from '../utils/count';
 import SourceView from './SourceView';
@@ -30,27 +29,11 @@ const GET_TWITCH_CHANNEL_TOP_CLIPS = gql`
   }
 `;
 
-const Box = styled.div<{ gridWidth: number }>`
+const Box = styled.div`
   display: flex;
-  width: ${({ gridWidth }) => gridWidth}px;
-  overflow: hidden;
-  margin: 0 auto;
-`;
-
-const ClipsBox = styled.div`
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  text-align: center;
-`;
-
-const Clips = styled.div`
   width: 100%;
-  display: grid;
+  overflow: hidden;
   padding: 10px 20px;
-  grid-template-columns: repeat(auto-fit, 280px);
-  overflow-y: hidden;
-  justify-content: center;
 `;
 
 const Clip = styled.div`
@@ -102,163 +85,152 @@ const ClipAuthor = styled.a`
 `;
 
 interface IProps {
-  router: RouterProps;
   limit?: number;
-  store?: IStore;
 }
 
-@inject('store')
-@observer
-class TwitchFollows extends Component<IProps> {
-  constructor(props) {
-    super(props);
-  }
+const TwitchFollows: FC<IProps> = ({ limit }) => {
+  const router = useRouter();
 
-  public render() {
-    const { router, limit, store } = this.props;
+  return (
+    <Box>
+      <Query
+        query={GET_TWITCH_CHANNEL_TOP_CLIPS}
+        variables={{
+          channel: router.query.channel,
+          game: router.query.game,
+          limit
+        }}
+      >
+        {({ loading, error, data }) => {
+          if (error || !data || !data.twitchChannelTopClips) {
+            return null;
+          }
 
-    return (
-      <Box gridWidth={store.gridWidth}>
-        <ClipsBox>
-          <Clips>
-            <Query
-              query={GET_TWITCH_CHANNEL_TOP_CLIPS}
-              variables={{
-                channel: router.query.channel,
-                game: router.query.game,
-                limit
-              }}
-            >
-              {({ loading, error, data }) => {
-                if (loading) {
-                  return <div>Загрузка...</div>;
+          const curretClipIndex = data.twitchChannelTopClips.findIndex(
+            ({ id }) => {
+              return router.query.clip === id;
+            }
+          );
+
+          const openClip = (clipId: string) => {
+            router.push(
+              {
+                pathname: router.route,
+                query: {
+                  ...router.query,
+                  clip: clipId
                 }
-
-                if (error || !data || !data.twitchChannelTopClips) {
-                  return null;
+              },
+              {
+                pathname: router.route,
+                query: {
+                  ...router.query,
+                  clip: clipId
                 }
+              },
+              { shallow: true }
+            );
+          };
 
-                const curretClipIndex = data.twitchChannelTopClips.findIndex(
-                  ({ id }) => {
-                    return router.query.clip === id;
-                  }
-                );
+          const clipsCount = data.twitchChannelTopClips.length;
 
-                const openClip = (clipId: string) => {
+          const goPrev = () =>
+            openClip(data.twitchChannelTopClips[curretClipIndex - 1].id);
+
+          const goNext = () =>
+            openClip(data.twitchChannelTopClips[curretClipIndex + 1].id);
+
+          const sourceId = router.query.clip
+            ? router.query.clip.toString()
+            : null;
+
+          return (
+            <>
+              <Modal
+                visible={!!router.query.clip}
+                minimal
+                onLeftClick={curretClipIndex > 0 && goPrev}
+                onRightClick={curretClipIndex < clipsCount - 1 && goNext}
+                onClose={() => {
                   router.push(
                     {
                       pathname: router.route,
                       query: {
-                        ...router.query,
-                        clip: clipId
+                        ...omit(router.query, 'clip')
                       }
                     },
                     {
                       pathname: router.route,
                       query: {
-                        ...router.query,
-                        clip: clipId
+                        ...omit(router.query, 'clip')
                       }
                     },
                     { shallow: true }
                   );
-                };
+                }}
+              >
+                <div style={{ width: 1100 }}>
+                  <SourceView
+                    playSourceKey={`${router.query.clip}top`}
+                    sourceType={'twitchClip'}
+                    sourceId={sourceId}
+                    autoPlay
+                    cover=""
+                  />
+                </div>
+              </Modal>
 
-                const clipsCount = data.twitchChannelTopClips.length;
-
-                const goPrev = () =>
-                  openClip(data.twitchChannelTopClips[curretClipIndex - 1].id);
-
-                const goNext = () =>
-                  openClip(data.twitchChannelTopClips[curretClipIndex + 1].id);
-
-                const sourceId = router.query.clip
-                  ? router.query.clip.toString()
-                  : null;
-
-                return (
-                  <>
-                    <Modal
-                      visible={!!router.query.clip}
-                      minimal
-                      onLeftClick={curretClipIndex > 0 && goPrev}
-                      onRightClick={curretClipIndex < clipsCount - 1 && goNext}
-                      onClose={() => {
-                        router.push(
-                          {
-                            pathname: router.route,
-                            query: {
-                              ...omit(router.query, 'clip')
-                            }
-                          },
-                          {
-                            pathname: router.route,
-                            query: {
-                              ...omit(router.query, 'clip')
-                            }
-                          },
-                          { shallow: true }
-                        );
-                      }}
-                    >
-                      <div style={{ width: 1100 }}>
-                        <SourceView
-                          playSourceKey={`${router.query.clip}top`}
-                          sourceType={'twitchClip'}
-                          sourceId={sourceId}
-                          autoPlay
-                          cover=""
+              <Grid
+                items={data.twitchChannelTopClips}
+                itemRender={clip => (
+                  <Clip key={clip.id}>
+                    <ClipPreview>
+                      <ClipPreviewContent>
+                        <VideoPreview
+                          key={clip.id}
+                          onClick={() => openClip(clip.id)}
+                          cover={clip.thumbnails.small}
+                          date={
+                            distanceInWordsToNow(+new Date(clip.createdAt), {
+                              locale: ruLocale
+                            }) + ' назад'
+                          }
+                          views={humanNumbers(clip.viewsCount)}
                         />
-                      </div>
-                    </Modal>
+                      </ClipPreviewContent>
+                    </ClipPreview>
+                    <ClipBottom>
+                      <ClipTitle
+                        onClick={() => openClip(clip.id)}
+                        title={clip.title}
+                      >
+                        {clip.title}
+                      </ClipTitle>
+                      <ClipAuthor
+                        target="_blank"
+                        href={`https://www.twitch.tv/${clip.channel}`}
+                      >
+                        {clip.channel}
+                      </ClipAuthor>
+                    </ClipBottom>
+                  </Clip>
+                )}
+                elementWidth={280}
+                afterRedner={
+                  <>
                     {data.twitchChannelTopClips.length === 0 && (
                       <div>Клипы не найдены</div>
                     )}
-                    {data.twitchChannelTopClips.map(clip => (
-                      <Clip key={clip.id}>
-                        <ClipPreview>
-                          <ClipPreviewContent>
-                            <VideoPreview
-                              key={clip.id}
-                              onClick={() => openClip(clip.id)}
-                              cover={clip.thumbnails.small}
-                              date={
-                                distanceInWordsToNow(
-                                  +new Date(clip.createdAt),
-                                  {
-                                    locale: ruLocale
-                                  }
-                                ) + ' назад'
-                              }
-                              views={humanNumbers(clip.viewsCount)}
-                            />
-                          </ClipPreviewContent>
-                        </ClipPreview>
-                        <ClipBottom>
-                          <ClipTitle
-                            onClick={() => openClip(clip.id)}
-                            title={clip.title}
-                          >
-                            {clip.title}
-                          </ClipTitle>
-                          <ClipAuthor
-                            target="_blank"
-                            href={`https://www.twitch.tv/${clip.channel}`}
-                          >
-                            {clip.channel}
-                          </ClipAuthor>
-                        </ClipBottom>
-                      </Clip>
-                    ))}
+                    {loading && <div>Загрузка...</div>}
                   </>
-                );
-              }}
-            </Query>
-          </Clips>
-        </ClipsBox>
-      </Box>
-    );
-  }
-}
+                }
+              />
+            </>
+          );
+        }}
+      </Query>
+    </Box>
+  );
+};
 
-export default withRouter(TwitchFollows);
+export default TwitchFollows;

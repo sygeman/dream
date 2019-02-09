@@ -1,44 +1,21 @@
-import gql from 'graphql-tag';
 import { inject, observer } from 'mobx-react';
 import { RouterProps, withRouter } from 'next/router';
 import { lighten, rgba } from 'polished';
 import { Component, ReactNode } from 'react';
-import { Query } from 'react-apollo';
 import Scrollbars from 'react-custom-scrollbars';
-import posed from 'react-pose';
 import { YMInitializer } from 'react-yandex-metrika';
 import styled from 'styled-components';
+
 import TopNav from '../components/Nav/Top';
 import PostView from '../components/PostHelper/View';
 import { Access } from '../helpers/Access';
-import { Modal } from '../helpers/Modal';
 import { IStore } from '../lib/store';
 import CategoriesProvider from '../providers/Categories';
 import FollowsProvider from '../providers/Follows';
 import PostProvider from '../providers/Post';
 import { Icon } from '../ui/Icon';
 import * as LeftMenu from '../ui/LeftMenu';
-
-const GET_POST_AROUND = gql`
-  query postAround(
-    $id: ID!
-    $authorId: ID
-    $tagId: ID
-    $likedUserId: ID
-    $sort: SortType
-  ) {
-    postAround(
-      id: $id
-      authorId: $authorId
-      tagId: $tagId
-      likedUserId: $likedUserId
-      sort: $sort
-    ) {
-      prevId
-      nextId
-    }
-  }
-`;
+import { Modal } from '../ui/Modal';
 
 const LEFT_MENU_WIDTH = 260;
 
@@ -56,12 +33,7 @@ const Content = styled.div`
   position: relative;
 `;
 
-const LeftAnim = posed.div({
-  closed: { left: -LEFT_MENU_WIDTH },
-  open: { left: 0 }
-});
-
-const Left = styled(LeftAnim)`
+const Left = styled.div<{ isOpen: boolean }>`
   background: ${({ theme }) => lighten(0.05, theme.dark1Color)};
   width: ${LEFT_MENU_WIDTH}px;
   position: absolute;
@@ -69,18 +41,23 @@ const Left = styled(LeftAnim)`
   top: 0;
   height: 100%;
   z-index: 100;
+  transition: 0.3s;
+
+  @media (max-width: 700px) {
+    left: ${({ isOpen }) => (isOpen ? 0 : -LEFT_MENU_WIDTH)}px;
+  }
 `;
 
-const PostsBoxAnim = posed.div({
-  noPaddingLeft: { 'padding-left': 0 },
-  paddingLeft: { 'padding-left': LEFT_MENU_WIDTH + 'px' }
-});
-
-const PostsBox = styled(PostsBoxAnim)`
+const PostsBox = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding-left: ${LEFT_MENU_WIDTH}px;
+  padding-left: 0;
+  transition: 0.3s;
+
+  @media (min-width: 700px) {
+    padding-left: ${LEFT_MENU_WIDTH}px;
+  }
 `;
 
 const ContentBox = styled.div`
@@ -97,7 +74,8 @@ const ContentInsideBox = styled.div`
   display: flex;
 `;
 
-const Overlay = styled.div`
+const Overlay = styled.div<{ leftMenuIsOpen: boolean }>`
+  display: none;
   position: absolute;
   left: 0;
   top: 0;
@@ -105,6 +83,10 @@ const Overlay = styled.div`
   height: 100%;
   background: ${({ theme }) => rgba(theme.dark1Color, 0.95)};
   z-index: 50;
+
+  @media (max-width: 700px) {
+    ${({ leftMenuIsOpen }) => leftMenuIsOpen && 'display: block;'}
+  }
 `;
 
 interface IProps {
@@ -114,7 +96,7 @@ interface IProps {
 }
 
 interface IState {
-  smallWindow: boolean;
+  leftMenuIsOpen: boolean;
 }
 
 @inject('store')
@@ -124,61 +106,8 @@ class MainLayout extends Component<IProps, IState> {
     super(props);
 
     this.state = {
-      smallWindow: true
+      leftMenuIsOpen: false
     };
-  }
-
-  public getCalcCountOnRow = () => {
-    let width = window.innerWidth;
-
-    if (width >= 1000) {
-      width = width - LEFT_MENU_WIDTH;
-    }
-
-    const smallWindow = width < 1000;
-
-    if (smallWindow !== this.state.smallWindow) {
-      this.props.store.leftMenuTrigger(!smallWindow);
-
-      this.setState({ smallWindow });
-    }
-
-    const GRID_ELEMENT_WIDTH = 280;
-    const GRID_PADDING_ONE = 20;
-    const GRID_PADDING = GRID_PADDING_ONE * 2;
-
-    let countOnRow = Math.floor((width - GRID_PADDING) / GRID_ELEMENT_WIDTH);
-
-    if (countOnRow < 1) {
-      countOnRow = 1;
-    } else if (countOnRow > 6) {
-      countOnRow = 6;
-    }
-
-    let gridWidth = countOnRow * GRID_ELEMENT_WIDTH + GRID_PADDING;
-
-    if (gridWidth < GRID_ELEMENT_WIDTH + GRID_PADDING) {
-      gridWidth = GRID_ELEMENT_WIDTH + GRID_PADDING;
-    }
-
-    return {
-      countOnRow,
-      gridWidth
-    };
-  };
-
-  public calcCountOnRow = () => {
-    const { countOnRow, gridWidth } = this.getCalcCountOnRow();
-    this.props.store.setGridData(countOnRow, gridWidth);
-  };
-
-  public componentDidMount() {
-    this.calcCountOnRow();
-    window.addEventListener('resize', this.calcCountOnRow);
-  }
-
-  public componentWillUnmount() {
-    window.removeEventListener('resize', this.calcCountOnRow);
   }
 
   public render() {
@@ -198,74 +127,27 @@ class MainLayout extends Component<IProps, IState> {
 
     return (
       <Box>
-        <Query
-          query={GET_POST_AROUND}
-          fetchPolicy="network-only"
-          variables={{
-            id: postId,
-            authorId: router.query.postAroudAuthorId,
-            tagId: router.query.postAroudTagId,
-            likedUserId: router.query.postAroudLikedUserId,
-            sort: router.query.postAroudSort
-          }}
-          skip={!postId}
+        <Modal
+          visible={!!postId}
+          minimal
+          onClose={() => router.replace(backPath)}
         >
-          {({ data }) => {
-            let toPrevPost;
-            let toNextPost;
-
-            const toPost = (id: string) => {
-              router.push(
-                {
-                  pathname: router.route,
-                  query: {
-                    ...router.query,
-                    postId: id
-                  }
-                },
-                {
-                  pathname: '/post',
-                  query: { id }
-                },
-                {
-                  shallow: true
-                }
-              );
-            };
-
-            if (data && data.postAround && data.postAround.prevId) {
-              toPrevPost = () => toPost(data.postAround.prevId);
-            }
-
-            if (data && data.postAround && data.postAround.nextId) {
-              toNextPost = () => toPost(data.postAround.nextId);
-            }
-
-            return (
-              <Modal
-                visible={!!postId}
-                minimal
-                onClose={() => {
-                  router.replace(backPath);
-                }}
-                onLeftClick={toPrevPost}
-                onRightClick={toNextPost}
-              >
-                <div style={{ width: '1000px' }}>
-                  <PostProvider id={postId}>
-                    {({ post }) => <PostView {...post} />}
-                  </PostProvider>
-                </div>
-              </Modal>
-            );
-          }}
-        </Query>
+          <div style={{ width: '1000px' }}>
+            <PostProvider id={postId}>
+              {({ post }) => <PostView {...post} />}
+            </PostProvider>
+          </div>
+        </Modal>
 
         <ContentBox>
-          <TopNav />
+          <TopNav
+            leftMenuTrigger={() =>
+              this.setState({ leftMenuIsOpen: !this.state.leftMenuIsOpen })
+            }
+          />
           <Content>
             <ContentInsideBox>
-              <Left pose={store.leftMenuIsOpen ? 'open' : 'closed'}>
+              <Left isOpen={this.state.leftMenuIsOpen}>
                 <Scrollbars autoHide universal>
                   <LeftMenu.Box>
                     <LeftMenu.Item
@@ -370,14 +252,7 @@ class MainLayout extends Component<IProps, IState> {
                   </LeftMenu.Box>
                 </Scrollbars>
               </Left>
-              <PostsBox
-                id="layoutContent"
-                pose={
-                  store.leftMenuIsOpen && !this.state.smallWindow
-                    ? 'paddingLeft'
-                    : 'noPaddingLeft'
-                }
-              >
+              <PostsBox id="layoutContent">
                 {fixedTopContent}
                 <Scrollbars
                   autoHide
@@ -392,11 +267,10 @@ class MainLayout extends Component<IProps, IState> {
                 </Scrollbars>
               </PostsBox>
             </ContentInsideBox>
-            {this.state.smallWindow && store.leftMenuIsOpen && (
-              <Overlay
-                onClick={() => this.props.store.leftMenuTrigger(false)}
-              />
-            )}
+            <Overlay
+              leftMenuIsOpen={this.state.leftMenuIsOpen}
+              onClick={() => this.setState({ leftMenuIsOpen: false })}
+            />
           </Content>
         </ContentBox>
         <YMInitializer accounts={[51879323]} version="2" />

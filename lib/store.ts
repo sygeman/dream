@@ -9,19 +9,10 @@ import {
 
 let store: IStore = null as any;
 
-const Modal = types.model({
-  id: types.string
-});
-
 const Store = types
   .model({
     playSourceKey: '',
-    layoutInLoadArea: false,
-    gridCountOnRow: 0,
-    gridWidth: 0,
-    leftMenuIsOpen: true,
-    allBlured: false,
-    modals: types.map(Modal)
+    layoutInLoadArea: false
   })
   .actions(self => {
     const setPlaySource = playSourceKey => {
@@ -32,26 +23,9 @@ const Store = types
       self.layoutInLoadArea = layoutInLoadArea;
     };
 
-    const setGridData = (gridCountOnRow, gridWidth) => {
-      self.gridCountOnRow = gridCountOnRow;
-      self.gridWidth = gridWidth;
-    };
-
-    const leftMenuTrigger = (isOpen?: boolean) => {
-      self.leftMenuIsOpen =
-        typeof isOpen === 'boolean' ? isOpen : !self.leftMenuIsOpen;
-    };
-
-    const setAllBlured = (allBlured: boolean) => {
-      self.allBlured = allBlured;
-    };
-
     return {
       setPlaySource,
-      setLayoutInLoadArea,
-      setGridData,
-      leftMenuTrigger,
-      setAllBlured
+      setLayoutInLoadArea
     };
   });
 

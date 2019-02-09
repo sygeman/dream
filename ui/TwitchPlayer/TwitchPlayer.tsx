@@ -1,5 +1,5 @@
-import nanoid from 'nanoid';
 import { FC, useEffect, useState } from 'react';
+
 import useInterval from '../../hooks/useInterval';
 import { randomInt } from '../../utils/random';
 import { getSDK } from './getSDK';
@@ -11,7 +11,7 @@ interface IProps {
 }
 
 export const TwitchPlayerInner: FC<IProps> = ({ autoplay, muted, channel }) => {
-  const playerID = nanoid();
+  const playerID = `twstream-${channel}`;
   let player;
 
   useEffect(() => {

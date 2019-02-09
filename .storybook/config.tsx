@@ -29,7 +29,7 @@ addDecorator(
 
 addDecorator(withGlobalStyles);
 addDecorator(withKnobs);
-addDecorator(centered);
+// addDecorator(centered);
 
 addDecorator(
   withThemesProvider([

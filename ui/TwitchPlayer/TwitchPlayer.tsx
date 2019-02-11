@@ -10,7 +10,7 @@ interface IProps {
   channel: string;
 }
 
-export const TwitchPlayerInner: FC<IProps> = ({ autoplay, muted, channel }) => {
+export const TwitchPlayerInner: FC<IProps> = ({ muted, channel }) => {
   const playerID = `twstream-${channel}`;
   let player;
 

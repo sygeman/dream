@@ -135,7 +135,7 @@ class PostsView extends Component<IProps> {
         elementWidth={280}
         itemRender={({ id }) => (
           <PostContainer key={id}>
-            <PostProvider id={id}>
+            <PostProvider id={id} noRealtime>
               {({ post }) => (
                 <PostGridView post={post} onPlay={() => onPlay(post.id)} />
               )}

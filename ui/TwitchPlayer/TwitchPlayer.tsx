@@ -20,12 +20,20 @@ export const TwitchPlayerInner: FC<IProps> = ({ autoplay, muted, channel }) => {
         channel,
         height: '100%',
         width: '100%',
-        autoplay,
+        autoplay: true,
         muted,
         controls: false
       });
 
-      player.setQuality('160p30');
+      player.addEventListener(Twitch.Player.PLAYING, () => {
+        const qualities = player.getQualities();
+
+        if (qualities[qualities.length - 1].group !== '160p30') {
+          player.pause();
+        } else {
+          player.setQuality('160p30');
+        }
+      });
     });
   }, []);
 

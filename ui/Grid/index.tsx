@@ -1,4 +1,5 @@
 import { FC, ReactNode, useEffect, useRef, useState } from 'react';
+import ResizeObserver from 'resize-observer-polyfill';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -52,7 +53,6 @@ export const Grid: FC<IProps> = ({
   }
 
   useEffect(() => {
-    // @ts-ignore
     const resizeObserver = new ResizeObserver(([entry]) => {
       const containerWidth = entry.contentRect.width;
 

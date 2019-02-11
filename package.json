@@ -1,6 +1,6 @@
 {
   "name": "twitchru-client",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "main": "index.js",
   "repository": "https://github.com/BanditDev/twitchru-client.git",
   "author": "Sygeman <sygeman@gmail.com>",
@@ -13,7 +13,6 @@
     "storybook": "start-storybook -p 9001 -c .storybook"
   },
   "dependencies": {
-    "@rehooks/component-size": "1.0.2",
     "@zeit/next-css": "1.0.1",
     "apollo-cache-inmemory": "1.4.2",
     "apollo-client": "2.4.12",
@@ -36,8 +35,8 @@
     "mobx-react-lite": "1.0.0",
     "mobx-state-tree": "3.10.2",
     "nanoid": "2.0.1",
-    "next": "7.0.2",
-    "nodemon": "1.18.9",
+    "next": "7.0.3",
+    "nodemon": "1.18.10",
     "nookies": "2.0.1",
     "nprogress": "0.2.0",
     "polished": "2.3.3",
@@ -50,7 +49,6 @@
     "react-copy-to-clipboard": "5.0.1",
     "react-custom-scrollbars": "4.2.1",
     "react-dom": "16.8.1",
-    "react-player": "1.9.3",
     "react-pose": "4.0.6",
     "react-share": "2.4.0",
     "react-virtualized": "9.21.0",
@@ -69,12 +67,12 @@
     "@storybook/addon-options": "4.1.11",
     "@storybook/components": "4.1.11",
     "@storybook/react": "4.1.11",
-    "@types/enzyme": "3.1.16",
+    "@types/enzyme": "3.1.17",
     "@types/jest": "24.0.0",
     "@types/js-cookie": "2.2.0",
     "@types/lodash": "4.14.120",
     "@types/next": "7.0.9",
-    "@types/node": "10.12.21",
+    "@types/node": "10.12.24",
     "@types/react": "16.8.2",
     "@types/react-custom-scrollbars": "4.0.5",
     "@types/react-dom": "16.8.0",
@@ -99,7 +97,7 @@
     "tslint-config-prettier": "1.18.0",
     "tslint-plugin-prettier": "2.0.1",
     "tslint-react": "3.6.0",
-    "typescript": "3.3.1",
+    "typescript": "3.3.3",
     "typescript-styled-plugin": "0.13.0"
   }
 }

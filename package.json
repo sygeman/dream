@@ -1,6 +1,6 @@
 {
   "name": "twitchru-client",
-  "version": "4.0.3",
+  "version": "5.0.0",
   "main": "index.js",
   "repository": "https://github.com/BanditDev/twitchru-client.git",
   "author": "Sygeman <sygeman@gmail.com>",

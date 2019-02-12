@@ -7,21 +7,12 @@ import PostsView from './PostsView';
 
 export const GET_POSTS = gql`
   query getPosts(
-    $authorId: ID
-    $likedUserId: ID
-    $tagId: ID
-    $sort: SortType
-    $offset: Int
-    $limit: Int
+    $where: PostWhereInput
+    $order: PostOrderInput
+    $skip: Int
+    $first: Int
   ) {
-    posts(
-      authorId: $authorId
-      likedUserId: $likedUserId
-      tagId: $tagId
-      sort: $sort
-      offset: $offset
-      limit: $limit
-    ) {
+    posts(where: $where, order: $order, skip: $skip, first: $first) {
       count
       posts {
         id
@@ -61,19 +52,103 @@ const Posts: FC<IProps> = ({
   const limit: number = 25;
   const router = useRouter();
 
+  let variables: any = {
+    where: {},
+    order: {},
+    skip: 0,
+    first: rows ? rows * 6 : limit
+  };
+
+  if (authorId) {
+    variables.where.authorId = authorId;
+  }
+
+  if (likedUserId) {
+    variables.where.reactions = {
+      userId: likedUserId,
+      type: 'like'
+    };
+  }
+
+  if (tagId) {
+    variables.where.tags = {
+      id: tagId
+    };
+  }
+
+  const sorts = {
+    new: {
+      order: {
+        createdAt: 'DESC'
+      }
+    },
+    hot: {
+      where: {
+        createdAt: {
+          limit: '24h'
+        },
+        rating: {
+          more: 5
+        }
+      },
+      order: {
+        createdAt: 'DESC'
+      }
+    },
+    topDay: {
+      where: {
+        createdAt: {
+          limit: '1d'
+        }
+      },
+      order: {
+        rating: 'DESC',
+        createdAt: 'DESC'
+      }
+    },
+    topWeek: {
+      where: {
+        createdAt: {
+          limit: '7d'
+        }
+      },
+      order: {
+        rating: 'DESC',
+        createdAt: 'DESC'
+      }
+    },
+    topMonth: {
+      where: {
+        createdAt: {
+          limit: '30d'
+        }
+      },
+      order: {
+        rating: 'DESC',
+        createdAt: 'DESC'
+      }
+    },
+    topAll: {
+      order: {
+        rating: 'DESC',
+        createdAt: 'DESC'
+      }
+    }
+  };
+
+  if (sort) {
+    variables = {
+      ...variables,
+      ...sorts[sort]
+    };
+  }
+
   return (
     <Box style={{ padding: '0 20px' }}>
       <Query
         query={GET_POSTS}
         fetchPolicy="cache-and-network"
-        variables={{
-          sort,
-          authorId,
-          likedUserId,
-          tagId,
-          offset: 0,
-          limit: rows ? rows * 6 : limit
-        }}
+        variables={variables}
       >
         {({ loading, error, data, fetchMore }) => {
           if (error || !data || !data.posts) {
@@ -124,7 +199,7 @@ const Posts: FC<IProps> = ({
               loadMore={() =>
                 fetchMore({
                   variables: {
-                    offset: currentCount
+                    skip: currentCount
                   },
                   updateQuery: (prev, { fetchMoreResult }) => {
                     if (!fetchMoreResult) {

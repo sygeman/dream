@@ -11,22 +11,8 @@ import SourceView from './SourceView';
 // import TagsManage from './TagsManage';
 
 const CREATE_POST = gql`
-  mutation(
-    $title: String!
-    $sourceUrl: String!
-    $channelLink: String
-    $nfws: Boolean
-    $spoiler: Boolean
-    $tags: [ID!]
-  ) {
-    createPost(
-      title: $title
-      sourceUrl: $sourceUrl
-      channelLink: $channelLink
-      nfws: $nfws
-      spoiler: $spoiler
-      tags: $tags
-    )
+  mutation($input: CreatePostInput!) {
+    createPost(input: $input)
   }
 `;
 
@@ -134,12 +120,14 @@ export default class CreatePost extends React.Component<{}, IState> {
                 onClick={() =>
                   createPost({
                     variables: {
-                      title: this.state.title,
-                      sourceUrl: this.state.sourceUrl,
-                      channelLink: this.state.channelLink,
-                      nfws: this.state.nfws,
-                      spoiler: this.state.spoiler,
-                      tags: this.state.tags
+                      input: {
+                        title: this.state.title,
+                        sourceUrl: this.state.sourceUrl,
+                        channelLink: this.state.channelLink,
+                        nfws: this.state.nfws,
+                        spoiler: this.state.spoiler,
+                        tags: this.state.tags
+                      }
                     }
                   })
                 }

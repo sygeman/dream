@@ -72,7 +72,7 @@ export const setTokens = (
 };
 
 export const removeTokens = (ctx = null) => {
-  console.log('removeTokens', !!ctx);
+  // console.log('removeTokens', !!ctx);
 
   destroyCookie(ctx, 'accessToken', config.cookieOptions);
   destroyCookie(ctx, 'refreshToken', config.cookieOptions);
@@ -117,8 +117,8 @@ const gqlQuery = async (query, variables) => {
 };
 
 const refreshQuery = async refreshToken => {
-  const qId = +new Date();
-  console.log('start refreshQuery', qId);
+  // const qId = +new Date();
+  // console.log('start refreshQuery', qId);
 
   const query = await gqlQuery(REFRESH_QUERY, {
     refreshToken
@@ -128,7 +128,7 @@ const refreshQuery = async refreshToken => {
     console.error(query.errors);
   }
 
-  console.log('end refreshQuery', qId, refreshToken);
+  // console.log('end refreshQuery', qId, refreshToken);
 
   return query.data.refresh;
 };
@@ -147,7 +147,7 @@ class TokenRefresh {
 
   public async refresh(refreshToken) {
     if (!this.fetching) {
-      console.log('start refresh', refreshToken);
+      // console.log('start refresh', refreshToken);
       this.fetching = true;
       this.refreshToken = refreshToken;
     }
@@ -218,7 +218,7 @@ export const getAccessTokenAsync = async ctx => {
     return '';
   }
 
-  console.log('need refresh token', refreshToken);
+  // console.log('need refresh token', refreshToken);
 
   return promiseTimeout(3000, refresh(refreshToken, ctx))
     .then(newToken => {

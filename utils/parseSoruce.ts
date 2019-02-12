@@ -37,27 +37,8 @@ const isTwitchClip = (sourceUrl: string) => {
   return result;
 };
 
-const isYoutbeVideo = (sourceUrl: string) => {
-  const regexpResult = sourceUrl.match(
-    /(?:http|https|)(?::\/\/|)(?:www.|)(?:youtu\.be\/|youtube\.com(?:\/embed\/|\/v\/|\/watch\?v=|\/ytscreeningroom\?v=|\/feeds\/api\/videos\/|\/user\S*[^\w\-\s]|\S*[^\w\-\s]))([\w\-]{11})[a-z0-9;:@#?&%=+\/\$_.-]*/
-  );
-
-  if (regexpResult && regexpResult[1]) {
-    return {
-      type: 'youtubeVideo',
-      payload: {
-        sourceId: regexpResult[1],
-        sourceType: 'youtubeVideo'
-      }
-    };
-  }
-
-  return null;
-};
-
 const allMethods = {
-  isTwitchClip,
-  isYoutbeVideo
+  isTwitchClip
 };
 
 export const parseSource = (sourceUrl: string): ISource => {

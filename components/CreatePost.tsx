@@ -8,7 +8,6 @@ import { Input } from '../ui/Input';
 import { SWRow } from '../ui/SWRow';
 import { parseSource } from '../utils/parseSoruce';
 import SourceView from './SourceView';
-// import TagsManage from './TagsManage';
 
 const CREATE_POST = gql`
   mutation($input: CreatePostInput!) {
@@ -29,10 +28,8 @@ const Bottom = styled.div`
 interface IState {
   title: string;
   sourceUrl: string;
-  channelLink: string;
   nfws: boolean;
   spoiler: boolean;
-  tags: string[];
 }
 
 export default class CreatePost extends React.Component<{}, IState> {
@@ -42,10 +39,8 @@ export default class CreatePost extends React.Component<{}, IState> {
     this.state = {
       title: '',
       sourceUrl: '',
-      channelLink: '',
       nfws: false,
-      spoiler: false,
-      tags: []
+      spoiler: false
     };
   }
 
@@ -69,15 +64,9 @@ export default class CreatePost extends React.Component<{}, IState> {
               onChange={e => this.setState({ title: e.target.value })}
             />
             <Input
-              placeholder="Ссылка на Twitch клип или видео YouTube"
+              placeholder="Ссылка на Twitch клип"
               onChange={e => this.setState({ sourceUrl: e.target.value })}
             />
-            {soruceData && soruceData.payload.sourceType !== 'twitchClip' && (
-              <Input
-                placeholder="Ссылка на Twitch канал"
-                onChange={e => this.setState({ channelLink: e.target.value })}
-              />
-            )}
             {soruceData && (
               <SourceView
                 autoPlay
@@ -102,19 +91,6 @@ export default class CreatePost extends React.Component<{}, IState> {
               active={this.state.spoiler}
               inactiveColor={'#1D1E30'}
             />
-            {/* <TagsManage
-              tags={this.state.tags}
-              onTagAdded={tagId =>
-                this.setState({ tags: [...this.state.tags, tagId] })
-              }
-              onTagRemoved={tagId =>
-                this.setState({
-                  tags: this.state.tags.filter(tId => {
-                    return tId !== tagId;
-                  })
-                })
-              }
-            /> */}
             <Bottom>
               <Button
                 onClick={() =>
@@ -123,10 +99,8 @@ export default class CreatePost extends React.Component<{}, IState> {
                       input: {
                         title: this.state.title,
                         sourceUrl: this.state.sourceUrl,
-                        channelLink: this.state.channelLink,
                         nfws: this.state.nfws,
-                        spoiler: this.state.spoiler,
-                        tags: this.state.tags
+                        spoiler: this.state.spoiler
                       }
                     }
                   })

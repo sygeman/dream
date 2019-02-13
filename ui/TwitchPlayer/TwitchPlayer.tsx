@@ -27,8 +27,9 @@ export const TwitchPlayerInner: FC<IProps> = ({ muted, channel }) => {
 
       player.addEventListener(Twitch.Player.PLAYING, () => {
         const qualities = player.getQualities();
+        const lowQuality = qualities[qualities.length - 1];
 
-        if (qualities[qualities.length - 1].group !== '160p30') {
+        if (lowQuality && lowQuality.group !== '160p30') {
           player.pause();
         } else {
           player.setQuality('160p30');

@@ -1,12 +1,10 @@
 import Head from 'next/head';
-import Router from 'next/router';
 import { FC } from 'react';
 import styled from 'styled-components';
 import { Icon } from '../../ui/Icon';
 import Comments from '../Comments';
 import PostHelper from '../PostHelper';
 import SourceView from '../SourceView';
-import Tag from '../Tag';
 import { IPost, PostReactionType } from './interfaces/Post';
 
 const Box = styled.div`
@@ -49,11 +47,6 @@ const Title = styled.div<{ active: boolean }>`
 `;
 
 const ContentBox = styled.div``;
-
-const TagsBox = styled.div`
-  margin-top: 5px;
-  font-size: 14px;
-`;
 
 const EmptyBottom = styled.div<{ active: boolean }>`
   height: 100%;
@@ -116,7 +109,6 @@ const PostFeedView: FC<IProps> = ({
   sourceId,
   createdAt,
   authorId,
-  tags,
   nfws,
   spoiler,
   pinned,

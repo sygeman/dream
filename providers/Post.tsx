@@ -22,10 +22,6 @@ export const GET_POST = gql`
       channelName
       authorId
       pinned
-      tags {
-        id
-        title
-      }
     }
   }
 `;

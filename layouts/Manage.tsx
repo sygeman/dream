@@ -124,19 +124,9 @@ class ManageLayout extends Component<IProps, IState> {
                         title="Dashboard"
                       />
                       <LeftMenu.Item
-                        route="/manage/tags"
-                        icon="tag"
-                        title="Теги"
-                      />
-                      <LeftMenu.Item
                         route="/manage/streams"
                         icon="twitch"
                         title="Стримы"
-                      />
-                      <LeftMenu.Item
-                        route="/manage/posts"
-                        icon="collection-video"
-                        title="Клипы"
                       />
                     </LeftMenu.Box>
                   </Scrollbars>

@@ -156,18 +156,6 @@ const PostFeedView: FC<IProps> = ({
             </ChannelLink>
           )}
         </TitleBox>
-
-        {tags.length > 0 && (
-          <TagsBox>
-            {tags.map(tag => (
-              <Tag
-                key={tag.id}
-                id={tag.id}
-                onClick={() => Router.push(`/tag?id=${tag.id}`)}
-              />
-            ))}
-          </TagsBox>
-        )}
       </Top>
       <ContentBox>
         <SourceView

@@ -9,7 +9,7 @@ variables:
   DOCKER_DRIVER: overlay2
 
 stages:
-  - test
+  # - test
   - build
   - deploy
 
@@ -31,15 +31,15 @@ build:
   only:
     - master
 
-test:
-  image: node:alpine
-  stage: test
-  variables:
-    NODE_ENV: test
-  before_script:
-    - yarn
-  script:
-    - yarn test
+# test:
+#   image: node:alpine
+#   stage: test
+#   variables:
+#     NODE_ENV: test
+#   before_script:
+#     - yarn
+#   script:
+#     - yarn test
 
 deploy:
   stage: deploy

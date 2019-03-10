@@ -7,10 +7,10 @@ metadata:
 spec:
   tls:
     - hosts:
-        - client.twitchru.com
+        - twitchru.com
       secretName: twitchru-tls
   rules:
-    - host: client.twitchru.com
+    - host: twitchru.com
       http:
         paths:
           - backend:

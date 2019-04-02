@@ -7,6 +7,10 @@ import {
   unprotect
 } from 'mobx-state-tree';
 
+export type IStore = Instance<typeof Store>;
+export type IStoreSnapshotIn = SnapshotIn<typeof Store>;
+export type IStoreSnapshotOut = SnapshotOut<typeof Store>;
+
 let store: IStore = null as any;
 
 const Store = types
@@ -29,11 +33,7 @@ const Store = types
     };
   });
 
-type IStore = Instance<typeof Store>;
-type IStoreSnapshotIn = SnapshotIn<typeof Store>;
-type IStoreSnapshotOut = SnapshotOut<typeof Store>;
-
-const initializeStore = (isServer, snapshot = null) => {
+export const initializeStore = (isServer, snapshot = null) => {
   if (isServer) {
     store = Store.create({});
   }
@@ -48,5 +48,3 @@ const initializeStore = (isServer, snapshot = null) => {
 
   return store;
 };
-
-export { initializeStore, IStore, IStoreSnapshotIn, IStoreSnapshotOut };

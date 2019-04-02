@@ -58,14 +58,14 @@ export default class CreatePost extends React.Component<{}, IState> {
         {createPost => (
           <Box>
             <Input
-              placeholder="Название"
               autoFocus
-              maxLength={100}
-              onChange={e => this.setState({ title: e.target.value })}
-            />
-            <Input
               placeholder="Ссылка на Twitch клип"
               onChange={e => this.setState({ sourceUrl: e.target.value })}
+            />
+            <Input
+              placeholder="Название"
+              maxLength={100}
+              onChange={e => this.setState({ title: e.target.value })}
             />
             {soruceData && (
               <SourceView

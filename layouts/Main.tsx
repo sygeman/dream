@@ -158,12 +158,6 @@ class MainLayout extends Component<IProps, IState> {
                     />
                     <LeftMenu.Item
                       equal
-                      route="/hot"
-                      icon="fire"
-                      title="В тренде"
-                    />
-                    <LeftMenu.Item
-                      equal
                       route="/new"
                       icon="flare"
                       title="Новое"

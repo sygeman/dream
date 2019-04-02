@@ -226,12 +226,9 @@ class TopNav extends Component<IProps> {
           </Link>
           <LeftMenu>
             <Links>
-              <Link href="/" passHref>
+              {/* <Link href="/" passHref>
                 <TopLink>Клипы</TopLink>
-              </Link>
-              <Link href="/casino" passHref>
-                <TopLink>Рулетка</TopLink>
-              </Link>
+              </Link> */}
               <TopLink href="https://discord.gg/xVprhFC" target="_blank">
                 Discord
               </TopLink>

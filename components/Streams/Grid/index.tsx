@@ -19,7 +19,7 @@ const Streams: FC<IProps> = ({ manage }) => (
     {({ streams }) => (
       <div style={{ padding: '10px 20px' }}>
         <Grid
-          elementWidth={280}
+          elementWidth={300}
           maxRows={1}
           items={streams}
           itemRender={stream => (

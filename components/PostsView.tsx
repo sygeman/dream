@@ -132,7 +132,7 @@ class PostsView extends Component<IProps> {
         }
         maxRows={rows}
         items={posts}
-        elementWidth={280}
+        elementWidth={300}
         itemRender={({ id }) => (
           <PostContainer key={id}>
             <PostProvider id={id} noRealtime>

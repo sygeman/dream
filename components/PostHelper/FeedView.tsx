@@ -102,7 +102,6 @@ const PostFeedView: FC<IProps> = ({
   cover,
   likes,
   dislikes,
-  commentsCount,
   sourceType,
   channelName,
   reaction,
@@ -174,7 +173,6 @@ const PostFeedView: FC<IProps> = ({
           count={dislikes}
           icon="thumb-down"
         />
-        <PostHelper.CommentsButton commentsCount={commentsCount} />
         <PostHelper.ShareButton id={id} />
         <PostHelper.Menu id={id} pinned={pinned} authorId={authorId} />
         <EmptyBottom active={!meta} />

@@ -1,11 +1,9 @@
 import { rgba } from 'polished';
-import { FC, useRef } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
+import ResizeObserver from 'resize-observer-polyfill';
 import styled from 'styled-components';
-// import useMeasure from '../../hooks/useMeasure';
+import { humanNumbers } from '../../utils/count';
 import { Icon } from '../Icon';
-
-const PLAY_SIZE = 28;
-const PLAY_SCALE_SIZE = PLAY_SIZE + 4;
 
 const Box = styled.div`
   position: relative;
@@ -41,59 +39,29 @@ const PreviewImg = styled('div')<IPreviewImg>`
   ${({ blur }) => blur && 'filter: blur(20px);'}
 `;
 
-const PreviewPlay = styled.div<{ shadowBottom: boolean }>`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  left: 0;
-  top: 0;
-  ${({ shadowBottom }) =>
-    shadowBottom &&
-    'background:linear-gradient(0deg, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75) 10%, transparent 50%);'}
-`;
-
-const PreviewPlayBox = styled.div<{ width: number }>`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #000000a3;
-  height: ${() => PLAY_SIZE}%;
-  width: ${() => (56.25 * PLAY_SIZE) / 100}%;
-  border-radius: 100%;
-  transition: all 0.1s ease-out;
-
-  ${Box}:hover & {
-    height: ${() => PLAY_SCALE_SIZE}%;
-    width: ${() => (56.25 * PLAY_SCALE_SIZE) / 100}%;
-  }
-
-  i {
-    margin-left: ${({ width }) => width * (1 / 52)}px;
-    font-size: ${({ width }) => width * (1 / 8)}px;
-  }
-`;
-
 const PreviewTags = styled.div<{ width: number }>`
   position: absolute;
   right: 0;
   top: 0;
   display: flex;
   margin: 10px;
-  font-size: ${({ width }) => width * (1 / 24)}px;
+  font-size: ${({ width }) => width * (1 / 27)}px;
 `;
 
 const PreviewBlurText = styled.div`
   padding: 4px 8px;
-  background: #0000005e;
+  background: #000000a3;
+  color: ${({ theme }) => rgba(theme.text1Color, 0.8)};
   border-radius: 3px;
   margin-left: 5px;
 `;
 
 const Views = styled.div<{ width: number }>`
   display: flex;
+  background: #000000a3;
+  color: ${({ theme }) => rgba(theme.text1Color, 0.8)};
+  padding: 5px 10px;
+  border-radius: 5px;
 
   i {
     display: flex;
@@ -104,6 +72,10 @@ const Views = styled.div<{ width: number }>`
 
 const Date = styled.div`
   display: flex;
+  background: #000000a3;
+  color: ${({ theme }) => rgba(theme.text1Color, 0.8)};
+  padding: 5px 10px;
+  border-radius: 5px;
 `;
 
 const Bottom = styled.div<{ width: number }>`
@@ -113,8 +85,8 @@ const Bottom = styled.div<{ width: number }>`
   display: flex;
   padding: ${({ width }) => width * (1 / 40)}px;
   width: 100%;
-  font-size: ${({ width }) => width * (1 / 24)}px;
-  color: ${({ theme }) => rgba(theme.text1Color, 0.9)};
+  font-size: ${({ width }) => width * (1 / 27)}px;
+  color: ${({ theme }) => rgba(theme.text1Color, 0.8)};
 `;
 
 const BottomRight = styled.div`
@@ -128,7 +100,7 @@ interface IProps {
   nsfw?: boolean;
   spoiler?: boolean;
   date?: string;
-  views?: string;
+  views?: number;
 }
 
 export const VideoPreview: FC<IProps> = ({
@@ -139,13 +111,24 @@ export const VideoPreview: FC<IProps> = ({
   date,
   views
 }) => {
-  const box = useRef(null);
-  // const { width } = useMeasure(box)[0];
-  // console.log(width);
-  const width = 270;
+  const [width, setWidth] = useState(0);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const resizeObserver = new ResizeObserver(([entry]) => {
+      const containerWidth = entry.contentRect.width;
+      setWidth(containerWidth);
+    });
+
+    if (ref.current) {
+      resizeObserver.observe(ref.current);
+    }
+
+    return () => resizeObserver.disconnect();
+  }, [ref.current]);
 
   return (
-    <Box ref={box}>
+    <Box ref={ref}>
       <ContentBox>
         <PreviewBox onClick={onClick}>
           <PreviewImg url={cover} blur={nsfw || spoiler} />
@@ -153,17 +136,10 @@ export const VideoPreview: FC<IProps> = ({
             {nsfw && <PreviewBlurText>NSWF</PreviewBlurText>}
             {spoiler && <PreviewBlurText>Спойлер</PreviewBlurText>}
           </PreviewTags>
-          {cover && (
-            <PreviewPlay shadowBottom={!!(date || views)}>
-              <PreviewPlayBox width={width}>
-                <Icon type="play" />
-              </PreviewPlayBox>
-            </PreviewPlay>
-          )}
           <Bottom width={width}>
             {views && (
               <Views width={width}>
-                <Icon type="eye" /> {views}
+                <Icon type="eye" /> {humanNumbers(views)}
               </Views>
             )}
             <BottomRight>{date && <Date>{date}</Date>}</BottomRight>

@@ -35,10 +35,10 @@ const Store = types
 
 export const initializeStore = (isServer, snapshot = null) => {
   if (isServer) {
-    store = Store.create({});
+    store = Store.create({ playSourceKey: '', layoutInLoadArea: false });
   }
   if ((store as any) === null) {
-    store = Store.create({});
+    store = Store.create({ playSourceKey: '', layoutInLoadArea: false });
   }
   if (snapshot) {
     applySnapshot(store, snapshot);

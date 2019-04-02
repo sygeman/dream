@@ -1,6 +1,6 @@
 import { inject, observer } from 'mobx-react';
 import { RouterProps, withRouter } from 'next/router';
-import { lighten, rgba } from 'polished';
+import { rgba } from 'polished';
 import { Component, ReactNode } from 'react';
 import Scrollbars from 'react-custom-scrollbars';
 import { YMInitializer } from 'react-yandex-metrika';

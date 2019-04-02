@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { darken, rgba } from 'polished';
+import { darken, lighten } from 'polished';
 import { FC } from 'react';
 import styled from 'styled-components';
 import useRouter from '../../hooks/useRouter';
@@ -7,7 +7,10 @@ import useRouter from '../../hooks/useRouter';
 const SubItem = styled('a')<{
   active?: boolean;
 }>`
-  padding: 0 20px 0 70px;
+  border-left: 4px solid transparent;
+  border-color: ${({ active, theme }) =>
+    active && darken(0.15, theme.main1Color)};
+  padding: 0 20px 0 74px;
   height: 30px;
   display: flex;
   align-items: center;
@@ -16,12 +19,12 @@ const SubItem = styled('a')<{
   text-overflow: ellipsis;
   font-size: 13px;
   cursor: pointer;
-  color: ${({ theme }) => darken(0.2, theme.text1Color)};
+  color: ${({ theme, active }) => darken(active ? 0 : 0.2, theme.text1Color)};
   background: ${({ theme, active }) =>
-    active ? rgba(theme.main1Color, 0.2) : 'transparent'};
+    active ? lighten(0.04, theme.dark1Color) : 'transparent'};
 
   :hover {
-    background: ${({ theme }) => rgba(theme.main1Color, 0.2)};
+    background: ${({ theme }) => lighten(0.04, theme.dark1Color)};
   }
 
   span {

@@ -1,11 +1,14 @@
 import Link from 'next/link';
-import { lighten, rgba } from 'polished';
+import { darken, lighten } from 'polished';
 import { FC } from 'react';
 import styled from 'styled-components';
 import useRouter from '../../hooks/useRouter';
 import { Icon } from '../Icon';
 
 const Item = styled.a<{ active: boolean }>`
+  border-left: 4px solid transparent;
+  border-color: ${({ active, theme }) =>
+    active && darken(0.1, theme.main1Color)};
   font-size: 14px;
   position: relative;
   height: 38px;
@@ -15,10 +18,11 @@ const Item = styled.a<{ active: boolean }>`
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  background: ${({ active, theme }) => active && rgba(theme.main1Color, 0.5)};
+  background: ${({ active, theme }) =>
+    active && lighten(0.06, theme.dark1Color)};
 
   :hover {
-    background: ${({ theme }) => rgba(theme.main1Color, 0.5)};
+    background: ${({ theme }) => lighten(0.06, theme.dark1Color)};
   }
 
   i {
@@ -30,7 +34,7 @@ const Item = styled.a<{ active: boolean }>`
     left: 20px;
     font-size: 19px;
     color: ${({ theme, active }) =>
-      active ? lighten(0.2, theme.accent2Color) : theme.accent2Color};
+      active ? lighten(0.7, theme.accent2Color) : theme.accent2Color};
   }
 `;
 

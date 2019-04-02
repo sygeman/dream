@@ -1,6 +1,7 @@
 import gql from 'graphql-tag';
 import { inject, observer } from 'mobx-react';
 import Link from 'next/link';
+import { darken } from 'polished';
 import { Component } from 'react';
 import styled from 'styled-components';
 import { IStore } from '../lib/store';
@@ -34,15 +35,25 @@ export const GET_POSTS = gql`
   }
 `;
 
+const SectionBox = styled.div`
+  padding: 30px 5px 10px;
+`;
+
 const SectionTitle = styled.div`
   display: flex;
   width: 100%;
-  font-size: 18px;
-  padding: 15px 0;
+  font-size: 16px;
 
   a {
     cursor: pointer;
   }
+`;
+
+const SectionDescription = styled.div`
+  display: flex;
+  width: 100%;
+  font-size: 12px;
+  color: ${({ theme }) => darken(0.4, theme.text1Color)};
 `;
 
 const PostContainer = styled.div`
@@ -70,6 +81,7 @@ interface IProps {
   loading: boolean;
   hasMore: boolean;
   title?: string;
+  description?: string;
   titleLink?: string;
   rows?: number;
   store?: IStore;
@@ -109,6 +121,7 @@ class PostsView extends Component<IProps> {
       loadMore,
       onPlay,
       title,
+      description,
       rows,
       titleLink
     } = this.props;
@@ -120,13 +133,25 @@ class PostsView extends Component<IProps> {
       <Grid
         beforeRender={
           <>
-            {title && !titleLink && <SectionTitle>{title}</SectionTitle>}
+            {title && !titleLink && (
+              <SectionBox>
+                <SectionTitle>{title}</SectionTitle>
+                {description && (
+                  <SectionDescription>{description}</SectionDescription>
+                )}
+              </SectionBox>
+            )}
             {title && titleLink && (
-              <SectionTitle>
-                <Link href={titleLink} passHref>
-                  <a>{title}</a>
-                </Link>
-              </SectionTitle>
+              <SectionBox>
+                <SectionTitle>
+                  <Link href={titleLink} passHref>
+                    <a>{title}</a>
+                  </Link>
+                </SectionTitle>
+                {description && (
+                  <SectionDescription>{description}</SectionDescription>
+                )}
+              </SectionBox>
             )}
           </>
         }

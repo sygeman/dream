@@ -33,6 +33,7 @@ interface IProps {
   likedUserId?: string;
   tagId?: string;
   title?: string;
+  description?: string;
   rows?: number;
   limit?: number;
   noMore?: boolean;
@@ -45,6 +46,7 @@ const Posts: FC<IProps> = ({
   likedUserId,
   tagId,
   title,
+  description,
   noMore,
   rows,
   titleLink
@@ -172,6 +174,7 @@ const Posts: FC<IProps> = ({
           return (
             <PostsView
               title={title}
+              description={description}
               titleLink={titleLink}
               posts={posts}
               loading={loading}

@@ -10,7 +10,6 @@ import useRouter from '../hooks/useRouter';
 import { Grid } from '../ui/Grid';
 import { Modal } from '../ui/Modal';
 import { VideoPreview } from '../ui/VideoPreview';
-import { humanNumbers } from '../utils/count';
 import SourceView from './SourceView';
 
 const GET_TWITCH_CHANNEL_TOP_CLIPS = gql`
@@ -195,7 +194,7 @@ const TwitchFollows: FC<IProps> = ({ limit }) => {
                               locale: ruLocale
                             }) + ' назад'
                           }
-                          views={humanNumbers(clip.viewsCount)}
+                          views={clip.viewsCount}
                         />
                       </ClipPreviewContent>
                     </ClipPreview>

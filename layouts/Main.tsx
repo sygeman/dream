@@ -193,11 +193,11 @@ class MainLayout extends Component<IProps, IState> {
                       </CategoriesProvider>
                     </LeftMenu.Item>
                     <Access>
-                      <LeftMenu.Item
+                      {/* <LeftMenu.Item
                         route="/likes"
                         icon="thumb-up"
                         title="Понравившиеся"
-                      />
+                      /> */}
                       <LeftMenu.Item
                         route="/follows"
                         icon="favorite"

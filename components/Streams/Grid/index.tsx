@@ -1,14 +1,7 @@
 import { FC } from 'react';
-import styled from 'styled-components';
-
 import StreamsProvider from '../../../providers/Streams';
 import { Grid } from '../../../ui/Grid';
 import Stream from './Stream';
-
-const Divider = styled.div`
-  border-bottom: 1px solid ${({ theme }) => theme.dark2Color};
-  margin: 10px;
-`;
 
 interface IProps {
   manage?: boolean;

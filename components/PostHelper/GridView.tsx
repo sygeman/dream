@@ -42,7 +42,7 @@ const BottomLeft = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
-  padding: 4px 8px 4px 0;
+  padding: 8px 8px 8px 0;
   line-height: 16px;
 `;
 

@@ -36,7 +36,7 @@ export const GET_POSTS = gql`
 `;
 
 const SectionBox = styled.div`
-  padding: 30px 5px 10px;
+  padding: 40px 5px 10px;
 `;
 
 const SectionTitle = styled.div`
@@ -69,11 +69,6 @@ const LoadMore = styled.div`
   padding: 10px;
   text-align: center;
   cursor: pointer;
-`;
-
-const Divider = styled.div`
-  border-bottom: 1px solid ${({ theme }) => theme.dark2Color};
-  margin: 10px;
 `;
 
 interface IProps {

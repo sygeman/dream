@@ -147,7 +147,11 @@ class MainLayout extends Component<IProps, IState> {
           <Content>
             <ContentInsideBox>
               <Left isOpen={this.state.leftMenuIsOpen}>
-                <Scrollbars autoHide universal>
+                <Scrollbars
+                  autoHide
+                  universal
+                  renderView={props => <div {...props} id="mainScroll" />}
+                >
                   <LeftMenu.Box>
                     <LeftMenu.Item
                       route="/"

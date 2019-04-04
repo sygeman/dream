@@ -70,7 +70,7 @@ const StreamLink = styled.div`
   display: flex;
   justify-content: center;
   min-height: 40px;
-  padding: 8px 0;
+  padding: 10px 5px;
   width: 100%;
   position: relative;
   text-align: left;

@@ -27,7 +27,6 @@ const Streams: FC<IProps> = ({ manage }) => (
               <Stream stream={stream} manage={manage} />
             </div>
           )}
-          afterRedner={<Divider />}
         />
       </div>
     )}

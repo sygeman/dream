@@ -175,7 +175,6 @@ class PostsView extends Component<IProps> {
                 <Button onClick={() => loadMore()}>Загрузить еще</Button>
               </LoadMore>
             )}
-            <Divider />
           </>
         }
       />

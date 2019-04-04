@@ -21,12 +21,6 @@ const GlobalStyle = `
   @import url('https://fonts.googleapis.com/css?family=Orbitron:500|Roboto:300,400,500&subset=cyrillic-ext');
   @import url('https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css');
 
-
-  img {
-    opacity: 1;
-    animation: fadeIn 1s ease;
-  }
-
   @keyframes fadeIn{
     0%{
       opacity: 0;
@@ -83,7 +77,7 @@ const GlobalStyle = `
   }
 
   #nprogress .bar {
-    background: #fff;
+    background: #6441A4;
     position: fixed;
     z-index: 1031;
     top: 0;

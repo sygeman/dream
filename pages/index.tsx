@@ -17,19 +17,6 @@ const IndexPage = () => (
       description="Самые последние предложенные клипы"
       titleLink="/new"
       sort="new"
-      rows={6}
-    />
-    <div
-      style={{
-        opacity: 0.5,
-        display: 'flex',
-        justifyContent: 'center',
-        padding: 20
-      }}
-      dangerouslySetInnerHTML={{
-        __html:
-          '<a href="//www.free-kassa.ru/"><img src="//www.free-kassa.ru/img/fk_btn/15.png" title="Прием платежей на сайте"></a>'
-      }}
     />
   </Layout>
 );

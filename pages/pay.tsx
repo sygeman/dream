@@ -3,7 +3,7 @@ import Layout from '../layouts/Main';
 
 const PayPage = () => (
   <Layout>
-    <a href={`${config.apiUrl}robokassa/pay/100`}>Pay 100</a>
+    <a href={`${config.apiUrl}robokassa/buy/real/100`}>Купить 100 RealCoin</a>
   </Layout>
 );
 

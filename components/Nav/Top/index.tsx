@@ -6,11 +6,14 @@ import { Component } from 'react';
 import styled from 'styled-components';
 import { IStore } from '../../../lib/store';
 import UserProvider from '../../../providers/User';
+import WalletProvider from '../../../providers/Wallet';
 import { Avatar } from '../../../ui/Avatar';
+import { CoinIconGold, CoinIconGreen } from '../../../ui/CoinIcon';
 import { Icon } from '../../../ui/Icon';
 import { Modal } from '../../../ui/Modal';
 import { humanNumbers } from '../../../utils/count';
 import Auth from '../../Auth';
+import { BuyCoins } from '../../BuyCoins';
 import CreatePost from '../../CreatePost';
 import Menu from './Menu';
 
@@ -63,6 +66,13 @@ const MenuButton = styled.div`
   @media (min-width: 700px) {
     display: none;
   }
+`;
+
+const PointsCount = styled.div`
+  color: ${({ theme }) => lighten(0.4, theme.main1Color)};
+  font-size: 12px;
+  font-weight: 500;
+  display: flex;
 `;
 
 const LogoLink = styled.a`
@@ -139,31 +149,19 @@ const Points = styled.div`
   }
 `;
 
-const PointsIcon = styled.div`
-  height: 10px;
-  width: 10px;
-  border-radius: 100%;
-  background: transparent;
-  border: 2px solid;
-  margin: 0 10px 0 0;
-  font-size: 10px;
+const BuyCoinsLink = styled.a`
+  margin-left: 10px;
+  color: ${({ theme }) => lighten(0.5, theme.dark2Color)};
   display: flex;
   align-items: center;
   justify-content: center;
-`;
+  text-align: center;
 
-const PointsIconGold = styled(PointsIcon)`
-  border-color: #a48b3f;
-`;
+  cursor: pointer;
 
-const PointsIconPepega = styled(PointsIcon)`
-  border-color: #3fa447;
-`;
-
-const PointsCount = styled.div`
-  color: ${({ theme }) => lighten(0.4, theme.main1Color)};
-  font-size: 12px;
-  font-weight: 500;
+  i {
+    font-size: 15px;
+  }
 `;
 
 const UserNameBox = styled.div`
@@ -201,6 +199,13 @@ class TopNav extends Component<IProps> {
   public render() {
     return (
       <Box>
+        <Modal
+          title="Купить RealCoin"
+          visible={this.props.router.query.payModal === '1'}
+          onClose={() => this.props.router.back()}
+        >
+          <BuyCoins />
+        </Modal>
         <Modal
           minimal
           visible={this.props.router.query.authModal === '1'}
@@ -258,12 +263,39 @@ class TopNav extends Component<IProps> {
                     </Links>
                     <PointsBox>
                       <Points>
-                        <PointsIconGold />
-                        <PointsCount>{humanNumbers(user.points)}</PointsCount>
+                        <CoinIconGold />
+                        <PointsCount>
+                          <WalletProvider where={{ currency: 'coin' }}>
+                            {({ data }) =>
+                              humanNumbers(data ? data.balance : 0)
+                            }
+                          </WalletProvider>
+                        </PointsCount>
                       </Points>
                       <Points>
-                        <PointsIconPepega />
-                        <PointsCount>{humanNumbers(user.balance)}</PointsCount>
+                        <CoinIconGreen />
+                        <PointsCount>
+                          <WalletProvider where={{ currency: 'real' }}>
+                            {({ data }) =>
+                              humanNumbers(data ? data.balance : 0)
+                            }
+                          </WalletProvider>
+                          <Link
+                            as={`/pay`}
+                            href={{
+                              pathname: this.props.router.route,
+                              query: {
+                                ...this.props.router.query,
+                                payModal: 1
+                              }
+                            }}
+                            passHref
+                          >
+                            <BuyCoinsLink>
+                              <Icon type="plus-circle" />
+                            </BuyCoinsLink>
+                          </Link>
+                        </PointsCount>
                       </Points>
                     </PointsBox>
                     <Menu user={user}>

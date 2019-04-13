@@ -1,9 +1,21 @@
-import config from '../config';
+import styled from 'styled-components';
+import { BuyCoins } from '../components/BuyCoins';
 import Layout from '../layouts/Main';
+
+const Box = styled.div`
+  display: flex;
+  max-width: 500px;
+  margin: 40px auto;
+  border-radius: 6px;
+  padding: 10px 20px;
+  background: ${({ theme }) => theme.dark2Color};
+`;
 
 const PayPage = () => (
   <Layout>
-    <a href={`${config.apiUrl}robokassa/buy/real/100`}>Купить 100 RealCoin</a>
+    <Box>
+      <BuyCoins />
+    </Box>
   </Layout>
 );
 

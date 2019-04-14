@@ -1,10 +1,13 @@
 import { inject, observer } from 'mobx-react';
 import { RouterProps, withRouter } from 'next/router';
-import { rgba } from 'polished';
+import { lighten, rgba } from 'polished';
 import { Component, ReactNode } from 'react';
 import Scrollbars from 'react-custom-scrollbars';
 import { YMInitializer } from 'react-yandex-metrika';
 import styled from 'styled-components';
+import Auth from '../components/Auth';
+import { BuyCoins } from '../components/BuyCoins';
+import CreatePost from '../components/CreatePost';
 import TopNav from '../components/Nav/Top';
 import PostView from '../components/PostHelper/View';
 import { Access } from '../helpers/Access';
@@ -33,7 +36,7 @@ const Content = styled.div`
 `;
 
 const Left = styled.div<{ isOpen: boolean }>`
-  background: ${({ theme }) => theme.dark1Color};
+  background: ${({ theme }) => lighten(0.01, theme.dark1Color)};
   width: ${LEFT_MENU_WIDTH}px;
   position: absolute;
   left: 0;
@@ -136,6 +139,27 @@ class MainLayout extends Component<IProps, IState> {
               {({ post }) => <PostView {...post} />}
             </PostProvider>
           </div>
+        </Modal>
+        <Modal
+          title="Купить PepeCoin"
+          visible={router.query.buyCoinsModal === '1'}
+          onClose={() => router.back()}
+        >
+          <BuyCoins />
+        </Modal>
+        <Modal
+          minimal
+          visible={router.query.authModal === '1'}
+          onClose={() => router.back()}
+        >
+          <Auth />
+        </Modal>
+        <Modal
+          title="Новый пост"
+          visible={router.query.newPost === '1'}
+          onClose={() => router.back()}
+        >
+          <CreatePost />
         </Modal>
 
         <ContentBox>

@@ -10,12 +10,11 @@ import WalletProvider from '../../../providers/Wallet';
 import { Avatar } from '../../../ui/Avatar';
 import { CoinIconGold, CoinIconGreen } from '../../../ui/CoinIcon';
 import { Icon } from '../../../ui/Icon';
-import { Modal } from '../../../ui/Modal';
 import { humanNumbers } from '../../../utils/count';
-import Auth from '../../Auth';
-import { BuyCoins } from '../../BuyCoins';
-import CreatePost from '../../CreatePost';
 import Menu from './Menu';
+
+const logo = 'https://ravepro.ams3.digitaloceanspaces.com/logo40.svg';
+const discord = 'https://discord.gg/xVprhFC';
 
 const Box = styled.div`
   height: 50px;
@@ -151,7 +150,7 @@ const Points = styled.div`
 
 const BuyCoinsLink = styled.a`
   margin-left: 10px;
-  color: ${({ theme }) => lighten(0.5, theme.dark2Color)};
+  color: ${({ theme }) => lighten(0.3, theme.main1Color)};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -199,42 +198,21 @@ class TopNav extends Component<IProps> {
   public render() {
     return (
       <Box>
-        <Modal
-          title="Купить RealCoin"
-          visible={this.props.router.query.payModal === '1'}
-          onClose={() => this.props.router.back()}
-        >
-          <BuyCoins />
-        </Modal>
-        <Modal
-          minimal
-          visible={this.props.router.query.authModal === '1'}
-          onClose={() => this.props.router.back()}
-        >
-          <Auth />
-        </Modal>
-        <Modal
-          title="Новый пост"
-          visible={this.props.router.query.newPost === '1'}
-          onClose={() => this.props.router.back()}
-        >
-          <CreatePost />
-        </Modal>
         <Left>
           <MenuButton onClick={() => this.props.leftMenuTrigger()}>
             <Icon type="menu" />
           </MenuButton>
           <Link href="/" passHref>
             <LogoLink>
-              <LogoImg src="https://ravepro.ams3.digitaloceanspaces.com/logo40.svg" />
+              <LogoImg src={logo} />
             </LogoLink>
           </Link>
           <LeftMenu>
             <Links>
-              {/* <Link href="/" passHref>
+              <Link href="/" passHref>
                 <TopLink>Клипы</TopLink>
-              </Link> */}
-              <TopLink href="https://discord.gg/xVprhFC" target="_blank">
+              </Link>
+              <TopLink href={discord} target="_blank">
                 Discord
               </TopLink>
             </Links>
@@ -281,12 +259,12 @@ class TopNav extends Component<IProps> {
                             }
                           </WalletProvider>
                           <Link
-                            as={`/pay`}
+                            as={`/buycoins`}
                             href={{
                               pathname: this.props.router.route,
                               query: {
                                 ...this.props.router.query,
-                                payModal: 1
+                                buyCoinsModal: 1
                               }
                             }}
                             passHref

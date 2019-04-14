@@ -6,8 +6,6 @@ const GET_USER = gql`
   query getUser($id: ID) {
     user(id: $id) {
       id
-      points
-      balance
       mainProfile {
         id
         name
@@ -32,23 +30,15 @@ const USER_PROFILE_VISIBLE_CHANGED = gql`
   }
 `;
 
-const USER_POINTS_CHANGED = gql`
-  subscription userPointsChanged {
-    userPointsChanged
-  }
-`;
-
 interface IPropsInner {
   user: any;
   userProfileVisibleChanged: () => void;
-  userPointsChanged: () => void;
   children: any;
 }
 
 class UserProviderInner extends Component<IPropsInner> {
   public componentDidMount() {
     this.props.userProfileVisibleChanged();
-    this.props.userPointsChanged();
   }
 
   public render() {
@@ -102,23 +92,6 @@ const UserProvider: FC<IProps> = ({ children, id }) => (
                       return profile;
                     })
                   }
-                };
-              }
-            })
-          }
-          userPointsChanged={() =>
-            subscribeToMore({
-              document: USER_POINTS_CHANGED,
-              updateQuery: (prev, { subscriptionData }) => {
-                if (!subscriptionData.data) {
-                  return prev;
-                }
-
-                const newCount = subscriptionData.data.userPointsChanged;
-
-                return {
-                  ...prev,
-                  user: { ...prev.user, points: newCount }
                 };
               }
             })

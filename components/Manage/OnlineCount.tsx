@@ -20,18 +20,14 @@ class OnlineCount extends Component<IProps> {
   }
 
   public render() {
-    const dates = this.props.history.map(r => r.date);
-    const counts = this.props.history.map(r => r.count);
-    const counts2 = this.props.history.map(r => r.usersCount);
+    const { history, count, count2 } = this.props;
 
     return (
       <DashCount
         title="В сети"
-        count={this.props.count}
-        count2={this.props.count2}
-        xData={dates}
-        yData={counts}
-        y2Data={counts2}
+        history={history.map(d => ({ ...d, name: d.date })).slice(-10)}
+        count={count}
+        count2={count2}
         chart
       />
     );

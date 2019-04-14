@@ -1,6 +1,6 @@
 import { darken } from 'polished';
 import { FC } from 'react';
-import { Line } from 'react-chartjs-2';
+import { Line, LineChart } from 'recharts';
 import styled from 'styled-components';
 import { humanNumbers } from '../../utils/count';
 
@@ -53,9 +53,7 @@ interface IProps {
   count: number;
   count2?: number;
   chart?: boolean;
-  xData?: any[];
-  yData?: any[];
-  y2Data?: any[];
+  history?: any[];
 }
 
 export const DashCount: FC<IProps> = ({
@@ -63,9 +61,7 @@ export const DashCount: FC<IProps> = ({
   count,
   count2,
   chart,
-  xData,
-  yData,
-  y2Data
+  history
 }) => (
   <Box>
     <Left>
@@ -75,68 +71,22 @@ export const DashCount: FC<IProps> = ({
     </Left>
     {chart && (
       <Right>
-        <Line
-          data={{
-            labels: xData,
-            datasets: [
-              {
-                label: 'All Online',
-                data: yData,
-                type: 'line',
-                pointRadius: 2,
-                borderColor: '#fff',
-                pointBorderColor: 'transparent',
-                backgroundColor: 'transparent',
-                borderWidth: 2
-              },
-              {
-                label: 'Users Online',
-                data: y2Data,
-                pointRadius: 2,
-                type: 'line',
-                borderColor: '#888',
-                pointBorderColor: 'transparent',
-                backgroundColor: 'transparent',
-                borderWidth: 2
-              }
-            ]
-          }}
-          legend={{
-            display: false
-          }}
-          options={{
-            elements: {
-              backgroundColor: 'transparent'
-            },
-            responsive: true,
-            scales: {
-              xAxes: [
-                {
-                  type: 'time',
-                  distribution: 'series',
-                  display: false,
-                  gridLines: {
-                    display: false
-                  },
-                  ticks: {
-                    display: false
-                  }
-                }
-              ],
-              yAxes: [
-                {
-                  display: false,
-                  gridLines: {
-                    display: false
-                  },
-                  ticks: {
-                    display: false
-                  }
-                }
-              ]
-            }
-          }}
-        />
+        <LineChart width={150} height={100} data={history}>
+          <Line
+            type="monotone"
+            dataKey="count"
+            stroke="#fff"
+            strokeWidth={2}
+            dot={false}
+          />
+          <Line
+            type="monotone"
+            dataKey="usersCount"
+            stroke="#888"
+            strokeWidth={2}
+            dot={false}
+          />
+        </LineChart>
       </Right>
     )}
   </Box>

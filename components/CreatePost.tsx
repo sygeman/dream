@@ -79,14 +79,20 @@ export default class CreatePost extends React.Component<{}, IState> {
             )}
             <SWRow
               title="NSFW"
-              description="Обнажённая натура, гуро, порнография и обсценная лексика"
+              description={`
+                Обнажённая натура, гуро,порнография и обсценная лексика
+              `}
               onChange={() => this.setState({ nfws: !this.state.nfws })}
               active={this.state.nfws}
               inactiveColor={'#1D1E30'}
             />
             <SWRow
               title="Спойлер"
-              description="Информация о сюжете книги, фильма или компьютерной игры, которая, будучи преждевременно раскрытой, лишает некоторых читателей части удовольствия от сюжета."
+              description={`
+                Информация о сюжете книги, фильма или компьютерной игры,
+                которая, будучи преждевременно раскрытой,
+                лишает некоторых читателей части удовольствия от сюжета.
+              `}
               onChange={() => this.setState({ spoiler: !this.state.spoiler })}
               active={this.state.spoiler}
               inactiveColor={'#1D1E30'}

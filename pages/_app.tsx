@@ -12,6 +12,9 @@ import { initializeStore, IStore } from '../lib/store';
 import withApollo from '../lib/withApollo';
 import { ThemeProvider } from '../theme';
 
+const logo =
+  'https://ravepro.ams3.digitaloceanspaces.com/favicons/twitchru.png';
+
 Router.events.on('routeChangeStart', () => NProgress.start());
 Router.events.on('routeChangeComplete', () => NProgress.done());
 Router.events.on('routeChangeError', () => NProgress.done());
@@ -68,6 +71,8 @@ class MyApp extends App<IProps> {
           <ApolloProvider client={apolloClient}>
             <ThemeProvider
               theme={{
+                primary: '',
+                secondary: '',
                 dark1Color: '#1D1E31',
                 dark2Color: '#262841',
                 accent2Color: '#968a9d',
@@ -78,11 +83,7 @@ class MyApp extends App<IProps> {
               <Provider store={this.store}>
                 <React.Fragment>
                   <Head>
-                    <link
-                      rel="icon"
-                      type="image/png"
-                      href="https://ravepro.ams3.digitaloceanspaces.com/favicons/twitchru.png"
-                    />
+                    <link rel="icon" type="image/png" href={logo} />
                     <title>TwitchRu</title>
                     <meta property="og:locale" content="ru_RU" />
                     <meta property="og:type" content="website" />

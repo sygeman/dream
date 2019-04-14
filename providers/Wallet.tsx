@@ -46,17 +46,14 @@ class ProviderInner extends Component<IPropsInner> {
 
 interface IProps {
   where?: any;
+  children: any;
 }
 
 const Provider: FC<IProps> = ({ children, where }) => (
   <Query query={GET} variables={{ where }}>
     {({ loading, error, data, subscribeToMore }) => {
-      if (loading) {
-        return null;
-      }
-
-      if (error) {
-        return null;
+      if (loading || error || !data || !data.wallet) {
+        return children({ data: null });
       }
 
       return (

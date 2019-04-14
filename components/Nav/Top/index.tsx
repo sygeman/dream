@@ -240,7 +240,7 @@ class TopNav extends Component<IProps> {
                       </Link>
                     </Links>
                     <PointsBox>
-                      <Points>
+                      {/* <Points>
                         <CoinIconGold />
                         <PointsCount>
                           <WalletProvider where={{ currency: 'coin' }}>
@@ -249,7 +249,7 @@ class TopNav extends Component<IProps> {
                             }
                           </WalletProvider>
                         </PointsCount>
-                      </Points>
+                      </Points> */}
                       <Points>
                         <CoinIconGreen />
                         <PointsCount>

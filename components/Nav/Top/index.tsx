@@ -8,7 +8,7 @@ import { IStore } from '../../../lib/store';
 import UserProvider from '../../../providers/User';
 import WalletProvider from '../../../providers/Wallet';
 import { Avatar } from '../../../ui/Avatar';
-import { CoinIconGold, CoinIconGreen } from '../../../ui/CoinIcon';
+import { CoinIconGreen } from '../../../ui/CoinIcon';
 import { Icon } from '../../../ui/Icon';
 import { humanNumbers } from '../../../utils/count';
 import Menu from './Menu';

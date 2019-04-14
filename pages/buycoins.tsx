@@ -11,7 +11,7 @@ const Box = styled.div`
   background: ${({ theme }) => theme.dark2Color};
 `;
 
-const PayPage = () => (
+const BuyCoinsPage = () => (
   <Layout>
     <Box>
       <BuyCoins />
@@ -19,4 +19,4 @@ const PayPage = () => (
   </Layout>
 );
 
-export default PayPage;
+export default BuyCoinsPage;

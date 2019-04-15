@@ -6,8 +6,8 @@ import styled from 'styled-components';
 import { Button } from '../ui/Button';
 import { Input } from '../ui/Input';
 import { SWRow } from '../ui/SWRow';
+import { TwitchClipPlayer } from '../ui/TwitchClipPlayer';
 import { parseSource } from '../utils/parseSoruce';
-import SourceView from './SourceView';
 
 const CREATE_POST = gql`
   mutation($input: CreatePostInput!) {
@@ -68,14 +68,7 @@ export default class CreatePost extends React.Component<{}, IState> {
               onChange={e => this.setState({ title: e.target.value })}
             />
             {soruceData && (
-              <SourceView
-                autoPlay
-                cover={''}
-                preload
-                sourceId={soruceData.payload.sourceId}
-                sourceType={soruceData.payload.sourceType}
-                playSourceKey={'newpostsource'}
-              />
+              <TwitchClipPlayer sourceId={soruceData.payload.sourceId} />
             )}
             <SWRow
               title="NSFW"

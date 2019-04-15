@@ -25,7 +25,7 @@ const Content = styled.div`
 `;
 
 const Left = styled.div<{ isOpen: boolean }>`
-  background: ${({ theme }) => lighten(0.05, theme.dark1Color)};
+  background: ${({ theme }) => lighten(0.03, theme.dark1Color)};
   width: ${LEFT_MENU_WIDTH}px;
   position: absolute;
   left: 0;

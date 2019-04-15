@@ -15,30 +15,24 @@ let store: IStore = null as any;
 
 const Store = types
   .model({
-    playSourceKey: '',
     layoutInLoadArea: false
   })
   .actions(self => {
-    const setPlaySource = playSourceKey => {
-      self.playSourceKey = playSourceKey;
-    };
-
     const setLayoutInLoadArea = layoutInLoadArea => {
       self.layoutInLoadArea = layoutInLoadArea;
     };
 
     return {
-      setPlaySource,
       setLayoutInLoadArea
     };
   });
 
 export const initializeStore = (isServer, snapshot = null) => {
   if (isServer) {
-    store = Store.create({ playSourceKey: '', layoutInLoadArea: false });
+    store = Store.create({ layoutInLoadArea: false });
   }
   if ((store as any) === null) {
-    store = Store.create({ playSourceKey: '', layoutInLoadArea: false });
+    store = Store.create({ layoutInLoadArea: false });
   }
   if (snapshot) {
     applySnapshot(store, snapshot);

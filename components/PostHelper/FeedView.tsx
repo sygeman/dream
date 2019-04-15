@@ -2,9 +2,9 @@ import Head from 'next/head';
 import { FC } from 'react';
 import styled from 'styled-components';
 import { Icon } from '../../ui/Icon';
+import { TwitchClipPlayer } from '../../ui/TwitchClipPlayer';
 import Comments from '../Comments';
 import PostHelper from '../PostHelper';
-import SourceView from '../SourceView';
 import { IPost, PostReactionType } from './interfaces/Post';
 
 const Box = styled.div`
@@ -102,14 +102,11 @@ const PostFeedView: FC<IProps> = ({
   cover,
   likes,
   dislikes,
-  sourceType,
   channelName,
   reaction,
   sourceId,
   createdAt,
   authorId,
-  nfws,
-  spoiler,
   pinned,
   meta
 }) => {
@@ -149,14 +146,7 @@ const PostFeedView: FC<IProps> = ({
         </TitleBox>
       </Top>
       <ContentBox>
-        <SourceView
-          playSourceKey={`${id}feed`}
-          sourceType={sourceType}
-          sourceId={sourceId}
-          nsfw={nfws}
-          spoiler={spoiler}
-          cover={cover}
-        />
+        <TwitchClipPlayer sourceId={sourceId} />
       </ContentBox>
       <PostHelper.Bottom>
         <PostHelper.ReactionButton

@@ -71,8 +71,15 @@ class MyApp extends App<IProps> {
           <ApolloProvider client={apolloClient}>
             <ThemeProvider
               theme={{
-                primary: '',
-                secondary: '',
+                primary: '#6441a4',
+                primaryLight: '#956dd6',
+                primaryDark: '#331774',
+                primaryText: '#fff',
+                secondary: '#1d1e31',
+                secondaryLight: '#45455a',
+                secondaryDark: '#000009',
+                secondaryText: '#fff',
+
                 dark1Color: '#1D1E31',
                 dark2Color: '#262841',
                 accent2Color: '#968a9d',

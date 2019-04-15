@@ -1,10 +1,8 @@
-import { inject, observer } from 'mobx-react';
 import Link from 'next/link';
 import { withRouter } from 'next/router';
 import { darken, lighten } from 'polished';
 import { Component } from 'react';
 import styled from 'styled-components';
-import { IStore } from '../../../lib/store';
 import UserProvider from '../../../providers/User';
 import WalletProvider from '../../../providers/Wallet';
 import { Avatar } from '../../../ui/Avatar';
@@ -183,13 +181,10 @@ const UserCaratBox = styled.div`
 `;
 
 interface IProps {
-  store?: IStore;
   router: any;
   leftMenuTrigger: () => void;
 }
 
-@inject('store')
-@observer
 class TopNav extends Component<IProps> {
   constructor(props) {
     super(props);

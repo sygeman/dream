@@ -9,8 +9,8 @@ import styled from 'styled-components';
 import useRouter from '../hooks/useRouter';
 import { Grid } from '../ui/Grid';
 import { Modal } from '../ui/Modal';
+import { TwitchClipPlayer } from '../ui/TwitchClipPlayer';
 import { VideoPreview } from '../ui/VideoPreview';
-import SourceView from './SourceView';
 
 const GET_TWITCH_CHANNEL_TOP_CLIPS = gql`
   query twitchChannelTopClips($channel: String, $game: String, $limit: Int) {
@@ -169,13 +169,7 @@ const TwitchFollows: FC<IProps> = ({ limit }) => {
                 }}
               >
                 <div style={{ width: 1100 }}>
-                  <SourceView
-                    playSourceKey={`${router.query.clip}top`}
-                    sourceType={'twitchClip'}
-                    sourceId={sourceId}
-                    autoPlay
-                    cover=""
-                  />
+                  <TwitchClipPlayer sourceId={sourceId} autoPlay />
                 </div>
               </Modal>
 

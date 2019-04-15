@@ -56,17 +56,17 @@
     "resize-observer-polyfill": "1.5.1",
     "styled-components": "4.2.0",
     "subscriptions-transport-ws": "0.9.16",
-    "ts-node": "8.0.3"
+    "ts-node": "8.1.0"
   },
   "devDependencies": {
     "@babel/core": "7.4.3",
     "@babel/plugin-proposal-class-properties": "7.4.0",
     "@babel/plugin-proposal-decorators": "7.4.0",
-    "@storybook/addon-centered": "5.0.7",
-    "@storybook/addon-knobs": "5.0.7",
-    "@storybook/addon-options": "5.0.7",
-    "@storybook/components": "5.0.7",
-    "@storybook/react": "5.0.7",
+    "@storybook/addon-centered": "5.0.8",
+    "@storybook/addon-knobs": "5.0.8",
+    "@storybook/addon-options": "5.0.8",
+    "@storybook/components": "5.0.8",
+    "@storybook/react": "5.0.8",
     "@types/enzyme": "3.9.1",
     "@types/jest": "24.0.11",
     "@types/js-cookie": "2.2.2",

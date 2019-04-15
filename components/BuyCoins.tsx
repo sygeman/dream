@@ -43,12 +43,12 @@ const BuyLink = styled.a`
 
 const realCoinPacks = {
   10: 0,
-  100: 3,
-  500: 5,
-  1000: 10,
-  5000: 20,
-  10000: 30,
-  25000: 50
+  100: 10,
+  500: 15,
+  1000: 20,
+  5000: 30,
+  10000: 40,
+  25000: 60
 };
 
 const BuyCoinsPack = ({ packKey }) => {

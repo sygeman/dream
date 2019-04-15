@@ -62,7 +62,7 @@ const BuyCoinsPack = ({ packKey }) => {
       <CoinIconGreen />
       <Amount>{humanNumbers(amount)}</Amount>
       <Sale>{sale > 0 && `Скидка ${sale}%`}</Sale>
-      <BuyLink href={link}>
+      <BuyLink href={link} target="_blank">
         <Button>{humanNumbers(sum)} ₽</Button>
       </BuyLink>
     </CoinPackBox>

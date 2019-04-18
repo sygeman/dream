@@ -7,10 +7,10 @@ import useRouter from '../../hooks/useRouter';
 const SubItem = styled('a')<{
   active?: boolean;
 }>`
+  margin-right: 14px;
+  border-radius: 0 10px 10px 0;
   border-left: 4px solid transparent;
-  border-color: ${({ active, theme }) =>
-    active && darken(0.15, theme.main1Color)};
-  padding: 0 20px 0 74px;
+  padding: 0 20px 0 60px;
   height: 30px;
   display: flex;
   align-items: center;
@@ -19,12 +19,12 @@ const SubItem = styled('a')<{
   text-overflow: ellipsis;
   font-size: 13px;
   cursor: pointer;
-  color: ${({ theme, active }) => darken(active ? 0 : 0.2, theme.text1Color)};
+  color: ${({ theme, active }) => darken(active ? 0 : 0.3, theme.text1Color)};
   background: ${({ theme, active }) =>
-    active ? lighten(0.04, theme.dark1Color) : 'transparent'};
+    active ? lighten(0.05, theme.dark1Color) : 'transparent'};
 
   :hover {
-    background: ${({ theme }) => lighten(0.04, theme.dark1Color)};
+    background: ${({ theme }) => lighten(0.05, theme.dark1Color)};
   }
 
   span {

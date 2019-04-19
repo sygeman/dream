@@ -15,7 +15,7 @@ const logo = 'https://ravepro.ams3.digitaloceanspaces.com/logo40.svg';
 const discord = 'https://discord.gg/xVprhFC';
 
 const Box = styled.div`
-  height: 50px;
+  height: 46px;
   display: flex;
   z-index: 100;
   padding: 0 10px;
@@ -41,7 +41,6 @@ const Links = styled.div`
   align-items: center;
   flex: 1;
   height: 100%;
-  font-size: 13px;
 `;
 
 const Right = styled.div`
@@ -101,7 +100,7 @@ const UserBox = styled.div`
 const TopLink = styled.a`
   padding: 0 10px;
   color: ${({ theme }) => lighten(0.3, theme.main1Color)};
-  font-size: 12px;
+  font-size: 11.7px;
   display: flex;
   height: 100%;
   align-items: center;

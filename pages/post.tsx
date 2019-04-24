@@ -1,7 +1,4 @@
-import * as React from 'react';
-import RightPanel from '../components/Nav/Right';
 import PostFeedView from '../components/PostHelper/FeedView';
-import Streams from '../components/Streams/Column';
 import useRouter from '../hooks/useRouter';
 import Layout from '../layouts/Main';
 import PostProvider from '../providers/Post';
@@ -37,11 +34,6 @@ const PostPage = () => {
             {({ post }) => <PostFeedView {...post} meta />}
           </PostProvider>
         </PostBox>
-        <RightPanel.Box>
-          <RightPanel.Block>
-            <Streams />
-          </RightPanel.Block>
-        </RightPanel.Box>
       </Box>
     </Layout>
   );

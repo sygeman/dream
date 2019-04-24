@@ -1,10 +1,8 @@
 import Posts from '../components/Posts';
-import Streams from '../components/Streams/Grid';
 import Layout from '../layouts/Main';
 
 const TopPage = () => (
-  <Layout>
-    <Streams />
+  <Layout streams>
     <Posts title="Топ за день" titleLink="/top/day" sort="topDay" rows={1} />
     <Posts
       title="Топ за неделю"

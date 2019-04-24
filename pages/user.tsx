@@ -3,7 +3,6 @@ import Head from 'next/head';
 import * as React from 'react';
 import { Query } from 'react-apollo';
 import Posts from '../components/Posts';
-import Streams from '../components/Streams/Grid';
 import UserPanelProfile from '../components/User/UserPanelProfile';
 import useRouter from '../hooks/useRouter';
 import Layout from '../layouts/Main';
@@ -81,7 +80,6 @@ const UserPage = () => {
               </Head>
 
               <PostsBox>
-                <Streams />
                 <Posts title="Клипы" authorId={user.id} sort="new" />
               </PostsBox>
             </Box>

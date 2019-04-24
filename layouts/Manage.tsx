@@ -14,7 +14,6 @@ const ManageLayout: FC<IProps> = ({ children, fixedTopContent }) => (
       <Access allow={currentUser => currentUser.role === 'admin'}>
         <LeftMenu.Box>
           <LeftMenu.Item route="/manage" equal icon="chart" title="Dashboard" />
-          <LeftMenu.Item route="/manage/streams" icon="twitch" title="Стримы" />
         </LeftMenu.Box>
       </Access>
     }

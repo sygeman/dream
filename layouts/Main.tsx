@@ -6,12 +6,14 @@ import { Icon } from '../ui/Icon';
 import * as LeftMenu from '../ui/LeftMenu';
 import BaseLayout from './Base';
 import useRouter from '../hooks/useRouter';
+import Streams from '../components/Streams';
 
 interface IProps {
   fixedTopContent?: ReactNode;
+  streams?: boolean;
 }
 
-const MainLayout: FC<IProps> = ({ children, fixedTopContent }) => {
+const MainLayout: FC<IProps> = ({ children, fixedTopContent, streams }) => {
   const router = useRouter();
 
   return (
@@ -74,7 +76,10 @@ const MainLayout: FC<IProps> = ({ children, fixedTopContent }) => {
         </LeftMenu.Box>
       }
     >
-      {children}
+      <>
+        {streams && <Streams />}
+        {children}
+      </>
     </BaseLayout>
   );
 };

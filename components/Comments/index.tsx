@@ -1,5 +1,5 @@
 import gql from 'graphql-tag';
-import * as React from 'react';
+import { Component } from 'react';
 import { Query } from 'react-apollo';
 import styled from 'styled-components';
 import Comments from './Comments';
@@ -57,7 +57,7 @@ interface IProps {
   postId: string;
 }
 
-export default class extends React.Component<IProps> {
+export default class extends Component<IProps> {
   public render() {
     const { postId } = this.props;
     const limit = 100;

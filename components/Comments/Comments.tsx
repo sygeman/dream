@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { Component } from 'react';
 import styled from 'styled-components';
 import Comment from './Comment';
 
@@ -22,7 +22,7 @@ interface IState {
   fixBottom: boolean;
 }
 
-export default class extends React.Component<IProps, IState> {
+export default class extends Component<IProps, IState> {
   constructor(props) {
     super(props);
 

@@ -13,15 +13,10 @@ const GET_USER = gql`
   query($id: ID!) {
     user(id: $id) {
       id
+      name
+      avatar
       role
       banned
-      mainProfile {
-        id
-        name
-        avatar
-        serviceId
-        serviceName
-      }
     }
   }
 `;
@@ -343,14 +338,10 @@ export default class extends React.Component<IProps, {}> {
           <Header>
             <Dropdown overlay={this.renderUserMenu(user)}>
               <Avatar>
-                {user.mainProfile.avatar ? (
-                  <AvatarImg src={user.mainProfile.avatar} />
-                ) : (
-                  <AvatarNone />
-                )}
+                {user.avatar ? <AvatarImg src={user.avatar} /> : <AvatarNone />}
               </Avatar>
             </Dropdown>
-            <Username userColor={userColor}>{user.mainProfile.name}</Username>
+            <Username userColor={userColor}>{user.name}</Username>
             <Date />
           </Header>
         )}
@@ -398,7 +389,7 @@ export default class extends React.Component<IProps, {}> {
             return <div />;
           }
 
-          if (error || !data.user || !data.user.mainProfile) {
+          if (error || !data.user || !data.user) {
             return null;
           }
 

@@ -6,8 +6,8 @@ import { Access } from '../../helpers/Access';
 import { convertTextToEmojiCode } from '../../utils/emoji';
 
 const CREATE_COMMENT = gql`
-  mutation($postId: ID!, $text: String!) {
-    createComment(postId: $postId, text: $text)
+  mutation($input: CommentCreateInput!) {
+    createComment(input: $input)
   }
 `;
 
@@ -78,7 +78,7 @@ export default class extends React.Component<IProps> {
                     if (e.key === 'Enter' && !this.lock && text.length > 0) {
                       this.lock = true;
                       createComment({
-                        variables: { postId, text }
+                        variables: { input: { postId, text } }
                       });
                     }
                   }}

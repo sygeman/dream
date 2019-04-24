@@ -4,12 +4,12 @@ exports[`Switch should render correctly 1`] = `
 initialize {
   "0": Object {
     "attribs": Object {
-      "class": "Switch__Box-sc-3fp1kt-0 kPamNh",
+      "class": "Switch__Box-rm528d-0 ilSdxZ",
     },
     "children": Array [
       Object {
         "attribs": Object {
-          "class": "Switch__Slider-sc-3fp1kt-1 gSDdFV",
+          "class": "Switch__Slider-rm528d-1 VAvPx",
         },
         "children": Array [],
         "name": "div",

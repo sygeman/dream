@@ -3,7 +3,11 @@ import Layout from '../../layouts/Main';
 
 const TopWeekPage = () => (
   <Layout streams>
-    <Posts title="Топ за неделю" sort="topWeek" />
+    <Posts
+      title="Топ за неделю"
+      description="Клипы за неделю с самым высоким рейтингом"
+      sort="topWeek"
+    />
   </Layout>
 );
 

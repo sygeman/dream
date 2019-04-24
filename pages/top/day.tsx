@@ -3,7 +3,11 @@ import Layout from '../../layouts/Main';
 
 const TopDayPage = () => (
   <Layout streams>
-    <Posts title="Топ за день" sort="topDay" />
+    <Posts
+      title="Топ за день"
+      description="Клипы за 24 часа с самым высоким рейтингом"
+      sort="topDay"
+    />
   </Layout>
 );
 

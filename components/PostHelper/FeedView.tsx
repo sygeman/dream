@@ -71,17 +71,6 @@ const ChannelLink = styled.a`
   }
 `;
 
-const PinPostIcon = styled.div`
-  width: 20px;
-  height: 20px;
-  background: ${({ theme }) => theme.main1Color};
-  border-radius: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 10px;
-`;
-
 const CommentsBox = styled.div`
   display: flex;
   flex: 1;
@@ -127,11 +116,6 @@ const PostFeedView: FC<IProps> = ({
       <Top>
         <TitleBox>
           <Title active={!meta}>
-            {pinned && (
-              <PinPostIcon>
-                <Icon type="money" />
-              </PinPostIcon>
-            )}
             <span>{title}</span>
           </Title>
           {channelName && (

@@ -14,18 +14,6 @@ const REMOVE_POST = gql`
   }
 `;
 
-const PIN_POST = gql`
-  mutation($id: ID!) {
-    pinPost(id: $id)
-  }
-`;
-
-const UNPIN_POST = gql`
-  mutation($id: ID!) {
-    unpinPost(id: $id)
-  }
-`;
-
 const Box = styled.div`
   height: 100%;
   align-items: center;
@@ -77,25 +65,6 @@ export default class PostMenu extends React.Component<IProps> {
               </UserMenuItem>
             )}
           </Mutation>
-        </Access>
-        <Access allow={currentUser => currentUser.role === 'admin'}>
-          {pinned ? (
-            <Mutation mutation={UNPIN_POST}>
-              {unpinPost => (
-                <UserMenuItem onClick={() => unpinPost({ variables: { id } })}>
-                  Открепить
-                </UserMenuItem>
-              )}
-            </Mutation>
-          ) : (
-            <Mutation mutation={PIN_POST}>
-              {pinPost => (
-                <UserMenuItem onClick={() => pinPost({ variables: { id } })}>
-                  Закрепить
-                </UserMenuItem>
-              )}
-            </Mutation>
-          )}
         </Access>
       </UserMenu>
     );

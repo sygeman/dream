@@ -13,8 +13,8 @@ import { TwitchClipPlayer } from '../ui/TwitchClipPlayer';
 import { VideoPreview } from '../ui/VideoPreview';
 
 const GET_TWITCH_CHANNEL_TOP_CLIPS = gql`
-  query twitchChannelTopClips($channel: String, $game: String, $limit: Int) {
-    twitchChannelTopClips(channel: $channel, game: $game, limit: $limit) {
+  query twitchTopClips($channel: String, $game: String, $limit: Int) {
+    twitchTopClips(channel: $channel, game: $game, limit: $limit) {
       id
       channel
       title
@@ -101,11 +101,11 @@ const TwitchFollows: FC<IProps> = ({ limit }) => {
         }}
       >
         {({ loading, error, data }) => {
-          if (error || !data || !data.twitchChannelTopClips) {
+          if (error || !data || !data.twitchTopClips) {
             return null;
           }
 
-          const curretClipIndex = data.twitchChannelTopClips.findIndex(
+          const curretClipIndex = data.twitchTopClips.findIndex(
             ({ id }) => {
               return router.query.clip === id;
             }
@@ -131,13 +131,13 @@ const TwitchFollows: FC<IProps> = ({ limit }) => {
             );
           };
 
-          const clipsCount = data.twitchChannelTopClips.length;
+          const clipsCount = data.twitchTopClips.length;
 
           const goPrev = () =>
-            openClip(data.twitchChannelTopClips[curretClipIndex - 1].id);
+            openClip(data.twitchTopClips[curretClipIndex - 1].id);
 
           const goNext = () =>
-            openClip(data.twitchChannelTopClips[curretClipIndex + 1].id);
+            openClip(data.twitchTopClips[curretClipIndex + 1].id);
 
           const sourceId = router.query.clip
             ? router.query.clip.toString()
@@ -174,7 +174,7 @@ const TwitchFollows: FC<IProps> = ({ limit }) => {
               </Modal>
 
               <Grid
-                items={data.twitchChannelTopClips}
+                items={data.twitchTopClips}
                 itemRender={clip => (
                   <Clip key={clip.id}>
                     <ClipPreview>
@@ -211,7 +211,7 @@ const TwitchFollows: FC<IProps> = ({ limit }) => {
                 elementWidth={300}
                 afterRedner={
                   <>
-                    {data.twitchChannelTopClips.length === 0 && (
+                    {data.twitchTopClips.length === 0 && (
                       <div>Клипы не найдены</div>
                     )}
                     {loading && <div>Загрузка...</div>}

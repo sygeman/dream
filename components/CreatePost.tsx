@@ -10,7 +10,7 @@ import { TwitchClipPlayer } from '../ui/TwitchClipPlayer';
 import { parseSource } from '../utils/parseSoruce';
 
 const CREATE_POST = gql`
-  mutation($input: CreatePostInput!) {
+  mutation($input: PostCreateInput!) {
     createPost(input: $input)
   }
 `;

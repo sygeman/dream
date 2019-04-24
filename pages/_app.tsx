@@ -91,7 +91,7 @@ class MyApp extends App<IProps> {
                 <React.Fragment>
                   <Head>
                     <link rel="icon" type="image/png" href={logo} />
-                    <title>TwitchRu</title>
+                    <title>PepegaCom</title>
                     <meta property="og:locale" content="ru_RU" />
                     <meta property="og:type" content="website" />
                     <meta

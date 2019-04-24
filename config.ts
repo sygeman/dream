@@ -1,5 +1,6 @@
 const commonConfig = {
-  emojiUrl: `https://ravepro.ams3.digitaloceanspaces.com/emojis/`
+  emojiUrl: `https://ravepro.ams3.digitaloceanspaces.com/emojis/`,
+  yandexMetrikaId: 51879323
 };
 
 const devConfig = {

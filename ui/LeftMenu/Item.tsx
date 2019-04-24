@@ -10,7 +10,7 @@ const Item = styled.a<{ active: boolean }>`
    border-left: 4px solid transparent;
   border-color: ${({ active, theme }) =>
     active && darken(0.1, theme.main1Color)}; 
-  border-radius: 0 10px 10px 0;
+  border-radius: 0 16px 16px 0;
   font-size: 13px;
   position: relative;
   height: 34px;

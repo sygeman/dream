@@ -9,5 +9,18 @@ export const humanNumbers = (value: number): string => {
  * 3000 -> 3K
  */
 export const shortNumbers = (value: number): string => {
-  return value > 999 ? (value / 1000).toFixed(1) + 'K' : value.toString();
+  let tmpValue = value;
+
+  if (value < 0) {
+    tmpValue = value * -1;
+  }
+
+  let result =
+    tmpValue > 999 ? (tmpValue / 1000).toFixed(1) + 'K' : tmpValue.toString();
+
+  if (value < 0) {
+    result = `-${result}`;
+  }
+
+  return result;
 };

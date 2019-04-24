@@ -74,14 +74,14 @@ export const DashCount: FC<IProps> = ({
         <LineChart width={150} height={100} data={history}>
           <Line
             type="monotone"
-            dataKey="count"
+            dataKey="unique"
             stroke="#fff"
             strokeWidth={2}
             dot={false}
           />
           <Line
             type="monotone"
-            dataKey="usersCount"
+            dataKey="users"
             stroke="#888"
             strokeWidth={2}
             dot={false}

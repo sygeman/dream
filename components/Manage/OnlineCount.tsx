@@ -1,37 +1,39 @@
-import { Component } from 'react';
+import { FC, useEffect, useState } from 'react';
 import DashCount from './DashCount';
 
-interface IHistoryRow {
-  count: number;
-  usersCount: number;
-  date: number;
-}
-
 interface IProps {
-  subscribeToOnlineCount: () => void;
-  count: number;
-  count2: number;
-  history: IHistoryRow[];
+  unique?: number;
+  users?: number;
 }
 
-class OnlineCount extends Component<IProps> {
-  public componentDidMount() {
-    this.props.subscribeToOnlineCount();
-  }
+export const OnlineCount: FC<IProps> = ({ unique, users }) => {
+  const [onlineHistory, setOnlineHistory] = useState([]);
 
-  public render() {
-    const { history, count, count2 } = this.props;
+  useEffect(() => {
+    if (typeof unique === 'number' && typeof users === 'number') {
+      setOnlineHistory([
+        ...onlineHistory,
+        {
+          unique,
+          users,
+          date: Date.now()
+        }
+      ]);
+    }
+  }, [unique, users]);
 
-    return (
-      <DashCount
-        title="В сети"
-        history={history.map(d => ({ ...d, name: d.date })).slice(-10)}
-        count={count}
-        count2={count2}
-        chart
-      />
-    );
-  }
-}
+  const historyCount = onlineHistory.length;
+  const lastHistoryRow = onlineHistory[historyCount - 1];
+  const currentCount1 = historyCount > 0 ? lastHistoryRow.unique : 0;
+  const currentCount2 = historyCount > 0 ? lastHistoryRow.users : 0;
 
-export default OnlineCount;
+  return (
+    <DashCount
+      title="В сети"
+      history={onlineHistory.map(d => ({ ...d, name: d.date })).slice(-10)}
+      count={currentCount1}
+      count2={currentCount2}
+      chart
+    />
+  );
+};

@@ -3,31 +3,16 @@ import { FC } from 'react';
 import { Query } from 'react-apollo';
 import styled from 'styled-components';
 import DashCount from './DashCount';
-import OnlineCount from './OnlineCount';
+import { OnlineCount } from './OnlineCount';
 
 const GET_CONNECTIONS_COUNT = gql`
   query connectionsCount {
     connectionsCount {
-      uniq
-      usersCount
-      history {
-        date
-        usersCount
-        count
-      }
+      unique
+      users
     }
   }
 `;
-
-const ONLINE_COUNT_SUBSCRIPTION = gql`
-  subscription onlineCountChanged {
-    onlineCountChanged {
-      uniq
-      usersCount
-    }
-  }
-`;
-
 const GET_USERS_COUNT = gql`
   query usersCount {
     usersCount
@@ -56,50 +41,14 @@ const Box = styled.div`
 const Dashboard: FC = () => {
   return (
     <Box>
-      <Query query={GET_CONNECTIONS_COUNT}>
-        {({ subscribeToMore, loading, error, data }) => {
-          const count = loading || error ? 0 : data.connectionsCount.uniq;
-          const usersCount =
-            loading || error ? 0 : data.connectionsCount.usersCount;
-          const history = loading || error ? [] : data.connectionsCount.history;
+      <Query query={GET_CONNECTIONS_COUNT} pollInterval={3000}>
+        {({ loading, error, data }) => {
+          const unique =
+            loading || error ? undefined : data.connectionsCount.unique;
+          const users =
+            loading || error ? undefined : data.connectionsCount.users;
 
-          return (
-            <OnlineCount
-              subscribeToOnlineCount={() =>
-                subscribeToMore({
-                  document: ONLINE_COUNT_SUBSCRIPTION,
-                  updateQuery: (prev, { subscriptionData }) => {
-                    if (!subscriptionData.data) {
-                      return prev;
-                    }
-
-                    const newStats = subscriptionData.data.onlineCountChanged;
-
-                    return {
-                      ...prev,
-                      connectionsCount: {
-                        ...prev.connectionsCount,
-                        uniq: newStats.uniq,
-                        usersCount: newStats.usersCount,
-                        history: [
-                          ...prev.connectionsCount.history.slice(-20),
-                          {
-                            __typename: 'ConnectionsCount',
-                            date: Date.now(),
-                            usersCount: newStats.usersCount,
-                            count: newStats.uniq
-                          }
-                        ]
-                      }
-                    };
-                  }
-                })
-              }
-              count={count}
-              count2={usersCount}
-              history={history}
-            />
-          );
+          return <OnlineCount unique={unique} users={users} />;
         }}
       </Query>
       <Query query={GET_USERS_COUNT} pollInterval={10000}>

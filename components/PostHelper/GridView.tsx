@@ -61,14 +61,16 @@ const Title = styled.div`
 
 const Rating = styled.div`
   min-width: 50px;
+  padding: 0 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 30px;
+  height: 34px;
   font-size: 12px;
   color: ${({ theme }) => lighten(0.5, theme.dark2Color)};
   background: ${({ theme }) => theme.dark2Color};
   font-weight: 500;
+  border-radius: 0 0 5px 5px;
 `;
 
 const Author = styled.div``;

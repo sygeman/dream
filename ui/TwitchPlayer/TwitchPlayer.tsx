@@ -2,7 +2,6 @@ import { FC, useEffect } from 'react';
 import { getSDK } from './getSDK';
 
 interface IProps {
-  autoplay: boolean;
   muted: boolean;
   channel: string;
 }

@@ -5,24 +5,9 @@ import { Query } from 'react-apollo';
 const GET_TWITCH_TOP_GAMES = gql`
   query twitchTopGames {
     twitchTopGames {
-      channels
-      viewers
-      game {
-        _id
-        name
-        popularity
-        giantbomb_id
-        box {
-          large
-          medium
-          small
-        }
-        logo {
-          large
-          medium
-          small
-        }
-      }
+      id
+      name
+      box_art_url
     }
   }
 `;
@@ -31,7 +16,7 @@ interface IProps {
   children: any;
 }
 
-const CategoriesProvider: FC<IProps> = ({ children }) => (
+const Provider: FC<IProps> = ({ children }) => (
   <Query query={GET_TWITCH_TOP_GAMES}>
     {({ loading, error, data }) => {
       if (loading) {
@@ -49,4 +34,4 @@ const CategoriesProvider: FC<IProps> = ({ children }) => (
   </Query>
 );
 
-export default CategoriesProvider;
+export default Provider;

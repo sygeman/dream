@@ -43,12 +43,11 @@ const UserMenuItem = styled.div`
 
 interface IProps {
   id: string;
-  pinned: boolean;
   authorId: string;
 }
 
 export default class PostMenu extends React.Component<IProps> {
-  public renderMenu = (id: string, pinned: boolean, authorId: string) => {
+  public renderMenu = (id: string, authorId: string) => {
     return (
       <UserMenu>
         <Access
@@ -71,7 +70,7 @@ export default class PostMenu extends React.Component<IProps> {
   };
 
   public render() {
-    const { id, pinned, authorId } = this.props;
+    const { id, authorId } = this.props;
 
     return (
       <Access
@@ -82,7 +81,7 @@ export default class PostMenu extends React.Component<IProps> {
         }
       >
         <Box>
-          <Dropdown overlay={this.renderMenu(id, pinned, authorId)}>
+          <Dropdown overlay={this.renderMenu(id, authorId)}>
             <ButtonFlat>
               <Icon type="more-vert" />
             </ButtonFlat>

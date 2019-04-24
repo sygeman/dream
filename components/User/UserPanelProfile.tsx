@@ -138,9 +138,9 @@ export const PanelProfile: FC<IProps> = ({ user }) => (
     <Container>
       <UserData>
         <UserAvatar>
-          <UserAvatarImg src={user.mainProfile.avatar} />
+          <UserAvatarImg src={user.avatar} />
         </UserAvatar>
-        <UserName>{user.mainProfile.name}</UserName>
+        <UserName>{user.name}</UserName>
       </UserData>
       <Menu>
         <MenuLeft>

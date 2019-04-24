@@ -7,10 +7,7 @@ const GET_USER = gql`
   query($id: ID!) {
     user(id: $id) {
       id
-      mainProfile {
-        id
-        name
-      }
+      name
     }
   }
 `;
@@ -30,13 +27,11 @@ export default class PostAuthor extends React.Component<IProps> {
             return <div />;
           }
 
-          if (error || !data.user || !data.user.mainProfile) {
+          if (error || !data.user) {
             return null;
           }
 
-          return (
-            <Link href={`user?id=${id}`}>{data.user.mainProfile.name}</Link>
-          );
+          return <Link href={`user?id=${id}`}>{data.user.name}</Link>;
         }}
       </Query>
     );

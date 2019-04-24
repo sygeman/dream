@@ -13,11 +13,8 @@ const GET_USER = gql`
     user(id: $id) {
       id
       role
-      mainProfile {
-        id
-        name
-        avatar
-      }
+      name
+      avatar
     }
   }
 `;
@@ -77,7 +74,7 @@ export default class PostAuthor extends React.Component<IProps> {
             return <div />;
           }
 
-          if (error || !data.user || !data.user.mainProfile) {
+          if (error || !data.user || !data.user) {
             return null;
           }
 
@@ -85,15 +82,12 @@ export default class PostAuthor extends React.Component<IProps> {
             <AuthorBox>
               {metaDescription && (
                 <Head>
-                  <meta
-                    property="og:description"
-                    content={data.user.mainProfile.name}
-                  />
+                  <meta property="og:description" content={data.user.name} />
                 </Head>
               )}
               <AuthorData>
                 <Link href={`user?id=${authorId}`}>
-                  <AuthorName>{data.user.mainProfile.name}</AuthorName>
+                  <AuthorName>{data.user.name}</AuthorName>
                 </Link>
                 <DateBox>
                   {distanceInWordsToNow(parseInt(createdAt, 10), {
@@ -104,7 +98,7 @@ export default class PostAuthor extends React.Component<IProps> {
               </AuthorData>
               <AuthorAvatarBox>
                 <Link href={`user?id=${authorId}`}>
-                  <Avatar avatar={data.user.mainProfile.avatar} />
+                  <Avatar avatar={data.user.avatar} />
                 </Link>
               </AuthorAvatarBox>
             </AuthorBox>

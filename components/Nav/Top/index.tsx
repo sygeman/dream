@@ -272,9 +272,9 @@ class TopNav extends Component<IProps> {
                     </PointsBox>
                     <Menu user={user}>
                       <UserDataBox>
-                        <UserNameBox>{user.mainProfile.name}</UserNameBox>
+                        <UserNameBox>{user.name}</UserNameBox>
                         <AvatarBox>
-                          <Avatar avatar={user.mainProfile.avatar} />
+                          <Avatar avatar={user.avatar} />
                         </AvatarBox>
                         <UserCaratBox>
                           <Icon type="caret-down" />

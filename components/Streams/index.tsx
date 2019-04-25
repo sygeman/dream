@@ -35,7 +35,7 @@ const Streams: FC = () => (
         <Grid
           elementWidth={300}
           maxRows={1}
-          items={data.channelsTop || []}
+          items={(data && data.channelsTop) || []}
           itemRender={(channel, index) => (
             <StreamBox key={`${channel.id}-${channel.cost}`}>
               <Stream {...channel} livePreview={index < 2} />

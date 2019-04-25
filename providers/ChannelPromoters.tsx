@@ -49,7 +49,7 @@ interface IProps {
   children: any;
 }
 
-const Provider: FC<IProps> = ({ where, orderBy, children, limit }) => (
+const Provider: FC<IProps> = ({ where, children, limit }) => (
   <Query query={GET_CHANNEL_PROMOTERS}>
     {({ subscribeToMore, loading, error, data }) => {
       if (loading || error || !data || !data.channelPromoters) {

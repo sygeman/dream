@@ -1,5 +1,5 @@
 import gql from 'graphql-tag';
-import { darken, lighten } from 'polished';
+import { lighten } from 'polished';
 import { FC } from 'react';
 import { Mutation } from 'react-apollo';
 import styled, { keyframes } from 'styled-components';

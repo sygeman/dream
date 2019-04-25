@@ -1,5 +1,5 @@
 import { darken } from 'polished';
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 import styled from 'styled-components';
 import { Switch } from '../Switch';
 
@@ -47,7 +47,7 @@ const SRowSwitch = styled.div`
 `;
 
 interface IProps {
-  title: string;
+  title: string | ReactNode;
   description?: string;
   active?: boolean;
   onChange?: () => void;

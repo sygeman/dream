@@ -43,7 +43,7 @@ interface IProps {
   livePreview: boolean;
 }
 
-const Stream: FC<IProps> = ({ id, cost, name, title, avatar, livePreview }) => {
+const Stream: FC<IProps> = ({ cost, name, title, avatar, livePreview }) => {
   let Media = null;
   const descriptionLink = `https://www.twitch.tv/${name}`;
 

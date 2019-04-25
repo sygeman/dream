@@ -21,11 +21,8 @@ export interface IPost {
   likes?: number;
   dislikes?: number;
   rating?: number;
-  commentsCount?: number;
   createdAt?: string;
   channelName?: string;
   reaction?: PostReactionType;
   authorId?: string;
-  tags?: ITag[];
-  pinned?: boolean;
 }

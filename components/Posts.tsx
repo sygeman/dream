@@ -31,7 +31,6 @@ interface IProps {
   sort?: string;
   authorId?: string;
   likedUserId?: string;
-  tagId?: string;
   title?: string;
   description?: string;
   rows?: number;
@@ -44,7 +43,6 @@ const Posts: FC<IProps> = ({
   sort,
   authorId,
   likedUserId,
-  tagId,
   title,
   description,
   noMore,
@@ -69,12 +67,6 @@ const Posts: FC<IProps> = ({
     variables.where.reactions = {
       userId: likedUserId,
       type: 'like'
-    };
-  }
-
-  if (tagId) {
-    variables.where.tags = {
-      id: tagId
     };
   }
 

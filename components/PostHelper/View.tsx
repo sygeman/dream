@@ -45,8 +45,7 @@ const PostFeedView: FC<IProps> = ({
   reaction,
   sourceId,
   createdAt,
-  authorId,
-  pinned
+  authorId
 }) => {
   return (
     <Box>
@@ -72,7 +71,7 @@ const PostFeedView: FC<IProps> = ({
           icon="thumb-down"
         />
         <PostHelper.ShareButton id={id} />
-        <PostHelper.Menu id={id} pinned={pinned} authorId={authorId} />
+        <PostHelper.Menu id={id} authorId={authorId} />
         <EmptyBottom />
         <PostHelper.Author createdAt={createdAt} authorId={authorId} />
       </PostHelper.Bottom>

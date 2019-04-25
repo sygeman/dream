@@ -7,7 +7,13 @@ interface IProps {
 }
 
 export const OnlineCount: FC<IProps> = ({ unique, users }) => {
-  const [onlineHistory, setOnlineHistory] = useState([]);
+  const [onlineHistory, setOnlineHistory] = useState([
+    {
+      unique,
+      users,
+      date: Date.now()
+    }
+  ]);
 
   useEffect(() => {
     if (typeof unique === 'number' && typeof users === 'number') {

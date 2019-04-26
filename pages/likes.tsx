@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
-import Posts from '../components/Posts';
+import Posts from '../components/Post/Posts';
 import Layout from '../layouts/Main';
 
 const GET_USER = gql`

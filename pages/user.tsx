@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 import Head from 'next/head';
 import * as React from 'react';
 import { Query } from 'react-apollo';
-import Posts from '../components/Posts';
+import Posts from '../components/Post/Posts';
 import UserPanelProfile from '../components/User/UserPanelProfile';
 import useRouter from '../hooks/useRouter';
 import Layout from '../layouts/Main';

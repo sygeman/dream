@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { Icon } from '../../ui/Icon';
 import { TwitchClipPlayer } from '../../ui/TwitchClipPlayer';
 import Comments from '../Comments';
-import PostHelper from '../PostHelper';
+import PostHelper from '../Post';
 import { IPost, PostReactionType } from './interfaces/Post';
 
 const Box = styled.div`

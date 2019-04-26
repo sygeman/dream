@@ -1,4 +1,4 @@
-import Posts from '../components/Posts';
+import Posts from '../components/Post/Posts';
 import Layout from '../layouts/Main';
 
 const TopPage = () => (

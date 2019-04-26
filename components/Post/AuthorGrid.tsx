@@ -4,7 +4,7 @@ import * as React from 'react';
 import { Query } from 'react-apollo';
 
 const GET_USER = gql`
-  query($id: ID!) {
+  query getUser($id: ID!) {
     user(id: $id) {
       id
       name

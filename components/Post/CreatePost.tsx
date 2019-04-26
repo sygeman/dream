@@ -3,11 +3,11 @@ import Router from 'next/router';
 import * as React from 'react';
 import { Mutation } from 'react-apollo';
 import styled from 'styled-components';
-import { Button } from '../ui/Button';
-import { Input } from '../ui/Input';
-import { SWRow } from '../ui/SWRow';
-import { TwitchClipPlayer } from '../ui/TwitchClipPlayer';
-import { parseSource } from '../utils/parseSoruce';
+import { Button } from '../../ui/Button';
+import { Input } from '../../ui/Input';
+import { SWRow } from '../../ui/SWRow';
+import { TwitchClipPlayer } from '../../ui/TwitchClipPlayer';
+import { parseSource } from '../../utils/parseSoruce';
 
 const CREATE_POST = gql`
   mutation($input: PostCreateInput!) {

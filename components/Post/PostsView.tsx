@@ -4,11 +4,11 @@ import Link from 'next/link';
 import { darken } from 'polished';
 import { Component } from 'react';
 import styled from 'styled-components';
-import { IStore } from '../lib/store';
-import PostProvider from '../providers/Post';
-import { Button } from '../ui/Button';
-import { Grid } from '../ui/Grid';
-import PostGridView from './PostHelper/GridView';
+import { IStore } from '../../lib/store';
+import PostProvider from '../../providers/Post';
+import { Button } from '../../ui/Button';
+import { Grid } from '../../ui/Grid';
+import PostGridView from './GridView';
 
 export const GET_POSTS = gql`
   query getPosts(

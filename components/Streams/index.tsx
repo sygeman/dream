@@ -19,7 +19,7 @@ const GET_CHANNELS_TOP = gql`
 `;
 
 const StreamsBox = styled.div`
-  padding: 20px 10px 0;
+  padding: 20px 20px 0;
 `;
 
 const StreamBox = styled.div`
@@ -29,7 +29,7 @@ const StreamBox = styled.div`
 `;
 
 const Streams: FC = () => (
-  <Query query={GET_CHANNELS_TOP}>
+  <Query query={GET_CHANNELS_TOP} pollInterval={10000}>
     {({ data }) => (
       <StreamsBox>
         <Grid

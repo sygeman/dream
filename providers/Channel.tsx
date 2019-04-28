@@ -7,6 +7,8 @@ const GET = gql`
     channel(where: $where) {
       id
       name
+      title
+      avatar
       live
       cost
     }
@@ -14,14 +16,14 @@ const GET = gql`
 `;
 
 const UPDATED = gql`
-  subscription channel($where: ChannelSubscriptionWhereInput) {
-    channel(where: $where) {
-      node {
-        id
-        name
-        live
-        cost
-      }
+  subscription channel($id: ID!) {
+    channel(id: $id) {
+      id
+      name
+      title
+      avatar
+      live
+      cost
     }
   }
 `;
@@ -55,15 +57,13 @@ const Provider: FC<IProps> = ({ children, id = '' }) => (
         return null;
       }
 
-      const subWhere: any = { node: { id } };
-
       return (
         <ProviderInner
           channel={data.channel}
           updated={() => {
             subscribeToMore({
               document: UPDATED,
-              variables: { where: subWhere },
+              variables: { id },
               updateQuery: (prev, { subscriptionData }) => {
                 if (!subscriptionData.data) {
                   return prev;
@@ -73,7 +73,7 @@ const Provider: FC<IProps> = ({ children, id = '' }) => (
                   ...prev,
                   channel: {
                     ...prev.channel,
-                    ...subscriptionData.data.channel.node
+                    ...subscriptionData.data.channel
                   }
                 };
               }

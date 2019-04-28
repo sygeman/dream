@@ -10,29 +10,33 @@ const GET_CHANNEL_PROMOTERS = gql`
   }
 `;
 
-const CHANNEL_SUPPORTER_SUB = gql`
-  subscription channelSupporter($where: channelPromotersubscriptionWhereInput) {
-    channelSupporter(where: $where) {
-      mutation
-      previousValues {
-        id
-      }
-      node {
-        id
-      }
+const CHANNEL_PROMOTER_CREATED = gql`
+  subscription channelPromoterCreated {
+    channelPromoterCreated {
+      id
+    }
+  }
+`;
+
+const CHANNEL_PROMOTER_DELETED = gql`
+  subscription channelPromoterDeleted {
+    channelPromoterDeleted {
+      id
     }
   }
 `;
 
 interface IPropsInner {
-  subscribeNew: () => void;
+  created: () => void;
+  deleted: () => void;
   channelPromoters: any;
   children: any;
 }
 
 class Inner extends Component<IPropsInner> {
   public componentDidMount() {
-    this.props.subscribeNew();
+    this.props.created();
+    this.props.deleted();
   }
 
   public render() {
@@ -49,61 +53,59 @@ interface IProps {
   children: any;
 }
 
-const Provider: FC<IProps> = ({ where, children, limit }) => (
+const Provider: FC<IProps> = ({ children, limit }) => (
   <Query query={GET_CHANNEL_PROMOTERS}>
     {({ subscribeToMore, loading, error, data }) => {
       if (loading || error || !data || !data.channelPromoters) {
         return null;
       }
 
-      const subVariables: any = {
-        where: { node: where }
-      };
-
       return (
         <Inner
           channelPromoters={data.channelPromoters}
-          subscribeNew={() => {
+          created={() => {
             subscribeToMore({
-              document: CHANNEL_SUPPORTER_SUB,
-              variables: subVariables,
+              document: CHANNEL_PROMOTER_CREATED,
               updateQuery: (prev, { subscriptionData }) => {
                 if (!subscriptionData.data) {
                   return prev;
                 }
 
-                const {
-                  mutation,
-                  node,
-                  previousValues
-                } = subscriptionData.data.channelSupporter;
+                const channelPromoter =
+                  subscriptionData.data.channelPromoterCreated;
 
-                switch (mutation) {
-                  case 'CREATED':
-                    if (
-                      prev.channelPromoters.findIndex(c => c.id === node.id) < 0
-                    ) {
-                      return {
-                        ...prev,
-                        channelPromoters: [
-                          ...prev.channelPromoters.slice(-limit),
-                          node
-                        ]
-                      };
-                    }
-                    break;
-                  case 'DELETED':
-                    return {
-                      ...prev,
-                      channelPromoters: [
-                        ...prev.channelPromoters.filter(
-                          c => c.id !== previousValues.id
-                        )
-                      ]
-                    };
-                  default:
-                    return prev;
+                if (
+                  prev.channelPromoters.findIndex(
+                    c => c.id === channelPromoter.id
+                  ) < 0
+                ) {
+                  return {
+                    ...prev,
+                    channelPromoters: [
+                      ...prev.channelPromoters.slice(-limit),
+                      channelPromoter
+                    ]
+                  };
                 }
+              }
+            });
+          }}
+          deleted={() => {
+            subscribeToMore({
+              document: CHANNEL_PROMOTER_DELETED,
+              updateQuery: (prev, { subscriptionData }) => {
+                if (!subscriptionData.data) {
+                  return prev;
+                }
+
+                const { id } = subscriptionData.data.channelPromoterDeleted;
+
+                return {
+                  ...prev,
+                  channelPromoters: [
+                    ...prev.channelPromoters.filter(c => c.id !== id)
+                  ]
+                };
               }
             });
           }}

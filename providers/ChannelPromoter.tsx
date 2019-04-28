@@ -7,19 +7,19 @@ const GET = gql`
     channelPromoter(where: $where) {
       id
       active
+      cost
       channelId
     }
   }
 `;
 
 const UPDATED = gql`
-  subscription channelPromoter($where: ChannelPromoterSubscriptionWhereInput) {
-    channelPromoter(where: $where) {
-      node {
-        id
-        active
-        channelId
-      }
+  subscription channelPromoter($id: ID!) {
+    channelPromoter(id: $id) {
+      id
+      active
+      cost
+      channelId
     }
   }
 `;
@@ -53,15 +53,13 @@ const Provider: FC<IProps> = ({ children, id = '' }) => (
         return null;
       }
 
-      const subWhere: any = { node: { id } };
-
       return (
         <ProviderInner
           channelPromoter={data.channelPromoter}
           updated={() => {
             subscribeToMore({
               document: UPDATED,
-              variables: { where: subWhere },
+              variables: { id },
               updateQuery: (prev, { subscriptionData }) => {
                 if (!subscriptionData.data) {
                   return prev;
@@ -71,7 +69,7 @@ const Provider: FC<IProps> = ({ children, id = '' }) => (
                   ...prev,
                   channelPromoter: {
                     ...prev.channelPromoter,
-                    ...subscriptionData.data.channelPromoter.node
+                    ...subscriptionData.data.channelPromoter
                   }
                 };
               }

@@ -16,7 +16,7 @@ const SET_CHANNEL_PROMOTER_ACTIVE = gql`
 
 const DELETE_CHANNEL_PROMOTER = gql`
   mutation deleteChannelPromoter($id: ID!) {
-    deleteChannelPromoter(where: { id: $id }) {
+    deleteChannelPromoter(id: $id) {
       id
     }
   }

@@ -3,7 +3,7 @@ import Layout from '../layouts/Main';
 
 const FollowsPage = () => (
   <Layout>
-    <TwitchTopClips />
+    <TwitchTopClips limit={50} />
   </Layout>
 );
 

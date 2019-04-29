@@ -67,6 +67,8 @@ const MainLayout: FC<IProps> = ({ children, fixedTopContent, streams }) => {
                 )}
               </FollowsProvider>
             </LeftMenu.Item>
+          </Access>
+          <Access allow={({ role }) => role === 'admin'}>
             <LeftMenu.Item
               route={`/promoter`}
               icon="n-1-square"

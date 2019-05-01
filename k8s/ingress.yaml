@@ -7,10 +7,10 @@ metadata:
 spec:
   tls:
     - hosts:
-        - twitchru.com
-      secretName: twitchru-tls
+        - pepega.com
+      secretName: pepegacom-tls
   rules:
-    - host: twitchru.com
+    - host: pepega.com
       http:
         paths:
           - backend:

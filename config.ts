@@ -11,11 +11,11 @@ const devConfig = {
 };
 
 const prodConfig = {
-  apiUrl: 'https://api.twitchru.com/',
-  gqlUrl: 'https://api.twitchru.com/graphql',
-  wsgqlUrl: 'wss://api.twitchru.com/graphql',
+  apiUrl: 'https://api.pepega.com/',
+  gqlUrl: 'https://api.pepega.com/graphql',
+  wsgqlUrl: 'wss://api.pepega.com/graphql',
   cookieOptions: {
-    domain: '.twitchru.com'
+    domain: '.pepega.com'
   }
 };
 

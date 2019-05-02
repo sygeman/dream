@@ -13,23 +13,8 @@ const GET_USER = gql`
     user(id: $id) {
       id
       role
-      postsCount
-      mainProfile {
-        id
-        name
-        avatar
-        serviceName
-        serviceId
-        visible
-      }
-      profiles {
-        id
-        name
-        avatar
-        serviceName
-        serviceId
-        visible
-      }
+      name
+      avatar
     }
   }
 `;
@@ -76,7 +61,7 @@ const UserPage = () => {
           <Layout fixedTopContent={<UserPanelProfile user={user} />}>
             <Box>
               <Head>
-                <title>{user.mainProfile.name}</title>
+                <title>{user.name}</title>
               </Head>
 
               <PostsBox>

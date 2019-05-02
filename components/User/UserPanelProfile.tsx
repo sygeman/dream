@@ -146,14 +146,13 @@ export const PanelProfile: FC<IProps> = ({ user }) => (
         <MenuLeft>
           <MenuItem>
             <MenuItemTitle>Клипы</MenuItemTitle>
-            <MenuItemCount>{shortNumbers(user.postsCount)}</MenuItemCount>
           </MenuItem>
         </MenuLeft>
         <MenuRight>
           <SocialLinks>
-            {user.profiles.map(profile => (
+            {/* {user.profiles.map(profile => (
               <SocialLinkOne key={profile.id} profile={profile} />
-            ))}
+            ))} */}
           </SocialLinks>
         </MenuRight>
       </Menu>

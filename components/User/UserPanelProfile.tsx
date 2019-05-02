@@ -2,7 +2,7 @@ import { darken, lighten } from 'polished';
 import { FC } from 'react';
 import styled from 'styled-components';
 import { Icon } from '../../ui/Icon';
-import { shortNumbers } from '../../utils/count';
+// import { shortNumbers } from '../../utils/count';
 
 const Box = styled.div`
   display: flex;
@@ -83,13 +83,13 @@ const MenuItemTitle = styled.div`
   text-transform: uppercase;
 `;
 
-const MenuItemCount = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 5px;
-  color: ${({ theme }) => lighten(0.45, theme.dark2Color)};
-`;
+// const MenuItemCount = styled.div`
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   padding: 0 5px;
+//   color: ${({ theme }) => lighten(0.45, theme.dark2Color)};
+// `;
 
 const MenuLeft = styled.div`
   display: flex;
@@ -150,9 +150,9 @@ export const PanelProfile: FC<IProps> = ({ user }) => (
         </MenuLeft>
         <MenuRight>
           <SocialLinks>
-            {/* {user.profiles.map(profile => (
+            {[].map(profile => (
               <SocialLinkOne key={profile.id} profile={profile} />
-            ))} */}
+            ))}
           </SocialLinks>
         </MenuRight>
       </Menu>

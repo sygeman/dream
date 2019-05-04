@@ -7,6 +7,7 @@ import ChannelProvider from '../../../providers/Channel';
 import { Button } from '../../../ui/Button';
 import { Input } from '../../../ui/Input';
 import { SWRow } from '../../../ui/SWRow';
+import { Icon } from '../../../ui/Icon';
 
 const SET_CHANNEL_PROMOTER_ACTIVE = gql`
   mutation setChannelPromoterActive($id: ID!, $active: Boolean!) {
@@ -123,6 +124,10 @@ const ChannelPromoterLogo = styled.div`
 
 const ChannelPromoterHeaderActions = styled.div`
   margin-left: auto;
+
+  i {
+    font-size: 14px;
+  }
 `;
 
 const ChannelPromoterContent = styled('div')`
@@ -157,7 +162,7 @@ export const ChannelPromoter: FC<IProps> = ({ channelPromoter }) => (
                     })
                   }
                 >
-                  Удалить
+                  <Icon type="delete" />
                 </Button>
               )}
             </Mutation>

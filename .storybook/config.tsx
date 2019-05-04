@@ -1,31 +1,28 @@
-import centered from '@storybook/addon-centered/dist/react';
 import { withKnobs } from '@storybook/addon-knobs';
-import { withOptions } from '@storybook/addon-options';
-import { themes } from '@storybook/components';
-import { addDecorator, configure } from '@storybook/react';
+import { addDecorator, configure, addParameters } from '@storybook/react';
 import React from 'react';
 import { withThemesProvider } from 'storybook-addon-styled-component-theme';
 import { createGlobalStyle } from 'styled-components';
 import { GlobalStyle } from '../theme';
+import { themes } from '@storybook/theming';
 
-const GlStyle = createGlobalStyle`${GlobalStyle}`;
+// const GlStyle = createGlobalStyle`${GlobalStyle}`;
 
 function withGlobalStyles(storyFn) {
   return (
     <>
-      <GlStyle />
+      {/* <GlStyle /> */}
       {storyFn()}
     </>
   );
 }
 
-addDecorator(
-  withOptions({
-    name: 'TwitchRu',
-    theme: themes.dark,
-    downPanelInRight: true
-  })
-);
+addParameters({
+  options: {
+    name: 'PepegaCom',
+    theme: themes.dark
+  }
+});
 
 addDecorator(withGlobalStyles);
 addDecorator(withKnobs);

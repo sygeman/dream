@@ -19,7 +19,7 @@ const Item = ({ children }) => (
   </div>
 );
 
-storiesOf('UI/Grid', module).add('Grid', () => {
+storiesOf('UI', module).add('Grid', () => {
   const items = [
     ...new Array(
       number('Элементов', 30, { min: 1, max: 100, step: 1, range: true })

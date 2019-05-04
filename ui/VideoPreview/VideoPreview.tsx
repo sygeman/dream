@@ -26,17 +26,9 @@ const PreviewBox = styled.div`
   overflow: hidden;
 `;
 
-interface IPreviewImg {
-  url: string;
-  blur?: boolean;
-}
-
-const PreviewImg = styled('div')<IPreviewImg>`
-  background: url("${({ url }) => url}") no-repeat center center;
-  background-size: cover;
+const PreviewImg = styled.div`
   width: 100%;
   height: 100%;
-  ${({ blur }) => blur && 'filter: blur(20px);'}
 `;
 
 const PreviewTags = styled.div<{ width: number }>`
@@ -131,7 +123,12 @@ export const VideoPreview: FC<IProps> = ({
     <Box ref={ref}>
       <ContentBox>
         <PreviewBox onClick={onClick}>
-          <PreviewImg url={cover} blur={nsfw || spoiler} />
+          <PreviewImg
+            style={{
+              background: `url("${cover}") no-repeat center center / cover`,
+              filter: nsfw || spoiler ? `blur(20px)` : 'none'
+            }}
+          />
           <PreviewTags width={width}>
             {nsfw && <PreviewBlurText>NSWF</PreviewBlurText>}
             {spoiler && <PreviewBlurText>Спойлер</PreviewBlurText>}

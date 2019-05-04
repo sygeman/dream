@@ -1,13 +1,14 @@
 import distanceInWordsToNow from 'date-fns/distance_in_words_to_now';
 import ruLocale from 'date-fns/locale/ru';
 import { darken, lighten } from 'polished';
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import styled from 'styled-components';
 import { Icon } from '../../ui/Icon';
 import { VideoPreview } from '../../ui/VideoPreview';
 import { shortNumbers } from '../../utils/count';
 import AuthorGrid from './AuthorGrid';
 import { IPost } from './interfaces/Post';
+import { isEqual } from 'lodash';
 
 const Box = styled.div`
   display: flex;
@@ -88,60 +89,65 @@ interface IProps {
   onPlay: () => void;
 }
 
-export const GridView: FC<IProps> = ({ post, onPlay }) => {
-  const date =
-    post &&
-    post.createdAt &&
-    distanceInWordsToNow(parseInt(post.createdAt, 10), {
-      locale: ruLocale
-    }) + ' назад';
+export const GridView: FC<IProps> = memo(
+  ({ post, onPlay }) => {
+    const date =
+      post &&
+      post.createdAt &&
+      distanceInWordsToNow(parseInt(post.createdAt, 10), {
+        locale: ruLocale
+      }) + ' назад';
 
-  return (
-    <Box>
-      <Preview>
-        <PreviewContent>
-          {post && (
-            <VideoPreview
-              onClick={() => onPlay()}
-              nsfw={post.nfws}
-              spoiler={post.spoiler}
-              cover={post.cover}
-              date={date}
-            />
-          )}
-        </PreviewContent>
-      </Preview>
-      <Bottom>
-        <BottomLeft>
-          <Title>{post && post.title}</Title>
-          <Author>
-            {post &&
-              (post.channelName ? (
-                <a
-                  href={`https://www.twitch.tv/${post.channelName}`}
-                  target="_blank"
-                >
-                  {post.channelName}
-                </a>
-              ) : (
-                <AuthorGrid id={post.authorId} />
-              ))}
-          </Author>
-          <Date />
-        </BottomLeft>
-        <BottomRight>
-          <Rating>
-            <IconBox>
-              <Icon
-                type={post && post.rating < 0 ? 'thumb-down' : 'thumb-up'}
+    return (
+      <Box>
+        <Preview>
+          <PreviewContent>
+            {post && (
+              <VideoPreview
+                onClick={() => onPlay()}
+                nsfw={post.nfws}
+                spoiler={post.spoiler}
+                cover={post.cover}
+                date={date}
               />
-            </IconBox>
-            {shortNumbers(post ? post.rating : 0)}
-          </Rating>
-        </BottomRight>
-      </Bottom>
-    </Box>
-  );
-};
+            )}
+          </PreviewContent>
+        </Preview>
+        <Bottom>
+          <BottomLeft>
+            <Title>{post && post.title}</Title>
+            <Author>
+              {post &&
+                (post.channelName ? (
+                  <a
+                    href={`https://www.twitch.tv/${post.channelName}`}
+                    target="_blank"
+                  >
+                    {post.channelName}
+                  </a>
+                ) : (
+                  <AuthorGrid id={post.authorId} />
+                ))}
+            </Author>
+            <Date />
+          </BottomLeft>
+          <BottomRight>
+            <Rating>
+              <IconBox>
+                <Icon
+                  type={post && post.rating < 0 ? 'thumb-down' : 'thumb-up'}
+                />
+              </IconBox>
+              {shortNumbers(post ? post.rating : 0)}
+            </Rating>
+          </BottomRight>
+        </Bottom>
+      </Box>
+    );
+  },
+  (prevProps, nextProps) => {
+    return isEqual(prevProps.post, nextProps.post);
+  }
+);
 
 export default GridView;

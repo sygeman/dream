@@ -18,7 +18,7 @@ const CREATE_CHANNEL = gql`
 
 const Box = styled.div`
   margin: 0 auto;
-  width: 800px;
+  max-width: 800px;
   margin-top: 10px;
 `;
 

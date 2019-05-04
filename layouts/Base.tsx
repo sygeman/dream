@@ -1,7 +1,6 @@
-import { inject, observer } from 'mobx-react';
 import { RouterProps, withRouter } from 'next/router';
 import { lighten, rgba } from 'polished';
-import { Component, ReactNode } from 'react';
+import { PureComponent, ReactNode } from 'react';
 import Scrollbars from 'react-custom-scrollbars';
 import { YMInitializer } from 'react-yandex-metrika';
 import styled from 'styled-components';
@@ -10,7 +9,6 @@ import { BuyCoins } from '../components/BuyCoins';
 import CreatePost from '../components/Post/CreatePost';
 import TopNav from '../components/Nav/Top';
 import PostView from '../components/Post/View';
-import { IStore } from '../lib/store';
 import PostProvider from '../providers/Post';
 import { Modal } from '../ui/Modal';
 import config from '../config';
@@ -87,7 +85,6 @@ const Overlay = styled.div<{ leftMenuIsOpen: boolean }>`
 `;
 
 interface IProps {
-  store?: IStore;
   router: RouterProps;
   fixedTopContent?: ReactNode;
   leftMenu?: ReactNode;
@@ -97,9 +94,7 @@ interface IState {
   leftMenuIsOpen: boolean;
 }
 
-@inject('store')
-@observer
-class BaseLayout extends Component<IProps, IState> {
+class BaseLayout extends PureComponent<IProps, IState> {
   constructor(props) {
     super(props);
 
@@ -109,7 +104,7 @@ class BaseLayout extends Component<IProps, IState> {
   }
 
   public render() {
-    const { children, store, router, fixedTopContent, leftMenu } = this.props;
+    const { children, router, fixedTopContent, leftMenu } = this.props;
 
     let postId = null;
 
@@ -167,11 +162,7 @@ class BaseLayout extends Component<IProps, IState> {
           <Content>
             <ContentInsideBox>
               <Left isOpen={this.state.leftMenuIsOpen}>
-                <Scrollbars
-                  autoHide
-                  universal
-                  renderView={props => <div {...props} id="mainScroll" />}
-                >
+                <Scrollbars autoHide universal>
                   {leftMenu}
                 </Scrollbars>
               </Left>
@@ -180,11 +171,7 @@ class BaseLayout extends Component<IProps, IState> {
                 <Scrollbars
                   autoHide
                   universal
-                  onScrollFrame={e => {
-                    const offset =
-                      e.scrollHeight - e.scrollTop - e.clientHeight;
-                    store.setLayoutInLoadArea(offset <= 250);
-                  }}
+                  renderView={props => <div {...props} id="mainScroll" />}
                 >
                   {children}
                 </Scrollbars>

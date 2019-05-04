@@ -1,5 +1,3 @@
-import { Provider } from 'mobx-react';
-import { getSnapshot } from 'mobx-state-tree';
 import App, { Container } from 'next/app';
 import Head from 'next/head';
 import Router, { withRouter } from 'next/router';
@@ -8,7 +6,6 @@ import React from 'react';
 import { ApolloProvider } from 'react-apollo';
 import 'resize-observer-polyfill';
 import { RouterContext } from '../hooks/useRouter';
-import { initializeStore, IStore } from '../lib/store';
 import withApollo from '../lib/withApollo';
 import { ThemeProvider } from '../theme';
 
@@ -21,7 +18,6 @@ Router.events.on('routeChangeError', () => NProgress.done());
 
 interface IProps {
   isServer: boolean;
-  initialState: IStore;
   apolloClient: any;
 }
 
@@ -33,33 +29,20 @@ const InjectRouterContext = withRouter(({ router, children }) => {
 
 class MyApp extends App<IProps> {
   public static async getInitialProps({ Component, ctx }) {
-    //
-    // Use getInitialProps as a step in the lifecycle when
-    // we can initialize our store
-    //
     const isServer = typeof window === 'undefined';
-    const store = initializeStore(isServer);
 
-    //
-    // Check whether the page being rendered by the App has a
-    // static getInitialProps method and if so call it
-    //
     let pageProps = {};
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps(ctx);
     }
     return {
-      initialState: getSnapshot(store),
       isServer,
       pageProps
     };
   }
 
-  private store: IStore;
-
   constructor(props) {
     super(props);
-    this.store = initializeStore(props.isServer, props.initialState) as IStore;
   }
 
   public render() {
@@ -87,22 +70,20 @@ class MyApp extends App<IProps> {
                 text1Color: '#eee'
               }}
             >
-              <Provider store={this.store}>
-                <React.Fragment>
-                  <Head>
-                    <link rel="icon" type="image/png" href={logo} />
-                    <title>PepegaCom</title>
-                    <meta property="og:locale" content="ru_RU" />
-                    <meta property="og:type" content="website" />
-                    <meta
-                      name="viewport"
-                      content="initial-scale=1.0, width=device-width"
-                      key="viewport"
-                    />
-                  </Head>
-                  <Component {...pageProps} />
-                </React.Fragment>
-              </Provider>
+              <React.Fragment>
+                <Head>
+                  <link rel="icon" type="image/png" href={logo} />
+                  <title>PepegaCom</title>
+                  <meta property="og:locale" content="ru_RU" />
+                  <meta property="og:type" content="website" />
+                  <meta
+                    name="viewport"
+                    content="initial-scale=1.0, width=device-width"
+                    key="viewport"
+                  />
+                </Head>
+                <Component {...pageProps} />
+              </React.Fragment>
             </ThemeProvider>
           </ApolloProvider>
         </InjectRouterContext>

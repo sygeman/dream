@@ -1,28 +1,11 @@
 import distanceInWordsToNow from 'date-fns/distance_in_words_to_now';
 import ruLocale from 'date-fns/locale/ru';
-import { darken, lighten } from 'polished';
 import { FC, memo } from 'react';
 import styled from 'styled-components';
-import { Icon } from '../../ui/Icon';
 import { VideoPreview } from '../../ui/VideoPreview';
-import { shortNumbers } from '../../utils/count';
-import AuthorGrid from './AuthorGrid';
 import { IPost } from './interfaces/Post';
 import { isEqual } from 'lodash';
-
-const Box = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 10px;
-`;
-
-const Preview = styled.div`
-  position: relative;
-  padding-bottom: 56.25%;
-  width: 100%;
-  background: ${({ theme }) => theme.dark2Color};
-`;
+import { CardMedia } from '../../ui/CardMedia';
 
 const PreviewContent = styled.div`
   position: absolute;
@@ -30,58 +13,6 @@ const PreviewContent = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-`;
-
-const Bottom = styled.div`
-  display: flex;
-  font-size: 11.5px;
-  color: ${({ theme }) => darken(0.4, theme.text1Color)};
-  width: 100%;
-`;
-
-const BottomLeft = styled.div`
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  padding: 8px 8px 8px 0;
-  line-height: 16px;
-`;
-
-const BottomRight = styled.div``;
-
-const Title = styled.div`
-  font-size: 13.5px;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  width: 100%;
-  text-align: left;
-  cursor: pointer;
-  color: ${({ theme }) => theme.text1Color};
-`;
-
-const Rating = styled.div`
-  min-width: 50px;
-  padding: 0 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 34px;
-  font-size: 12px;
-  color: ${({ theme }) => lighten(0.5, theme.dark2Color)};
-  background: ${({ theme }) => theme.dark2Color};
-  font-weight: 500;
-  border-radius: 0 0 5px 5px;
-`;
-
-const Author = styled.div``;
-
-const IconBox = styled.div`
-  margin-right: 8px;
-`;
-
-const Date = styled.div`
-  display: flex;
 `;
 
 interface IProps {
@@ -99,8 +30,8 @@ export const GridView: FC<IProps> = memo(
       }) + ' назад';
 
     return (
-      <Box>
-        <Preview>
+      <CardMedia
+        media={
           <PreviewContent>
             {post && (
               <VideoPreview
@@ -112,37 +43,13 @@ export const GridView: FC<IProps> = memo(
               />
             )}
           </PreviewContent>
-        </Preview>
-        <Bottom>
-          <BottomLeft>
-            <Title>{post && post.title}</Title>
-            <Author>
-              {post &&
-                (post.channelName ? (
-                  <a
-                    href={`https://www.twitch.tv/${post.channelName}`}
-                    target="_blank"
-                  >
-                    {post.channelName}
-                  </a>
-                ) : (
-                  <AuthorGrid id={post.authorId} />
-                ))}
-            </Author>
-            <Date />
-          </BottomLeft>
-          <BottomRight>
-            <Rating>
-              <IconBox>
-                <Icon
-                  type={post && post.rating < 0 ? 'thumb-down' : 'thumb-up'}
-                />
-              </IconBox>
-              {shortNumbers(post ? post.rating : 0)}
-            </Rating>
-          </BottomRight>
-        </Bottom>
-      </Box>
+        }
+        title={post && post.title}
+        description={post.channelName}
+        descriptionLink={`https://www.twitch.tv/${post.channelName}`}
+        count={post ? post.rating : 0}
+        countIcon={post && post.rating < 0 ? 'thumb-down' : 'thumb-up'}
+      />
     );
   },
   (prevProps, nextProps) => {

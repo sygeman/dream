@@ -54,7 +54,9 @@ const SectionDescription = styled.div`
 `;
 
 const PostContainer = styled.div`
-  padding: 5px;
+  margin: 6px;
+  border-radius: 4px;
+  overflow: hidden;
 `;
 
 interface IProps {

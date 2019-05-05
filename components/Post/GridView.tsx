@@ -9,6 +9,7 @@ import { shortNumbers } from '../../utils/count';
 import AuthorGrid from './AuthorGrid';
 import { IPost } from './interfaces/Post';
 import { isEqual } from 'lodash';
+import { CardMedia } from '../../ui/CardMedia';
 
 const Box = styled.div`
   display: flex;
@@ -99,8 +100,8 @@ export const GridView: FC<IProps> = memo(
       }) + ' назад';
 
     return (
-      <Box>
-        <Preview>
+      <CardMedia
+        media={
           <PreviewContent>
             {post && (
               <VideoPreview
@@ -112,37 +113,13 @@ export const GridView: FC<IProps> = memo(
               />
             )}
           </PreviewContent>
-        </Preview>
-        <Bottom>
-          <BottomLeft>
-            <Title>{post && post.title}</Title>
-            <Author>
-              {post &&
-                (post.channelName ? (
-                  <a
-                    href={`https://www.twitch.tv/${post.channelName}`}
-                    target="_blank"
-                  >
-                    {post.channelName}
-                  </a>
-                ) : (
-                  <AuthorGrid id={post.authorId} />
-                ))}
-            </Author>
-            <Date />
-          </BottomLeft>
-          <BottomRight>
-            <Rating>
-              <IconBox>
-                <Icon
-                  type={post && post.rating < 0 ? 'thumb-down' : 'thumb-up'}
-                />
-              </IconBox>
-              {shortNumbers(post ? post.rating : 0)}
-            </Rating>
-          </BottomRight>
-        </Bottom>
-      </Box>
+        }
+        title={post && post.title}
+        description={post.channelName}
+        descriptionLink={`https://www.twitch.tv/${post.channelName}`}
+        count={post ? post.rating : 0}
+        countIcon={post && post.rating < 0 ? 'thumb-down' : 'thumb-up'}
+      />
     );
   },
   (prevProps, nextProps) => {

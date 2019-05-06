@@ -43,10 +43,11 @@ const Dashboard: FC = () => {
     <Box>
       <Query query={GET_CONNECTIONS_COUNT} pollInterval={3000}>
         {({ loading, error, data }) => {
-          const unique =
-            loading || error ? undefined : data.connectionsCount.unique;
-          const users =
-            loading || error ? undefined : data.connectionsCount.users;
+          if (loading || error || !data) {
+            return null;
+          }
+
+          const { unique, users } = data.connectionsCount;
 
           return <OnlineCount unique={unique} users={users} />;
         }}

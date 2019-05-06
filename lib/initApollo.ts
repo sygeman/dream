@@ -27,14 +27,14 @@ if (!process.browser) {
   global.fetch = fetch;
 }
 
-function create(initialState, { ctx }) {
+function create(initialState) {
   const httpLink = new BatchHttpLink({
     uri: config.gqlUrl,
     credentials: 'same-origin'
   });
 
   const authLink = setContext(async (_, { headers }) => {
-    const accessToken = await getAccessTokenAsync(ctx);
+    const accessToken = await getAccessTokenAsync();
 
     return {
       headers: {
@@ -50,7 +50,7 @@ function create(initialState, { ctx }) {
         options: {
           reconnect: true,
           connectionParams: async () => {
-            const accessToken = await getAccessTokenAsync(ctx);
+            const accessToken = await getAccessTokenAsync();
 
             return {
               accessToken
@@ -81,16 +81,16 @@ function create(initialState, { ctx }) {
   });
 }
 
-export default function initApollo(initialState, options) {
+export default function initApollo(initialState) {
   // Make sure to create a new client for every server-side request so that data
   // isn't shared between connections (which would be bad)
   if (!process.browser) {
-    return create(initialState, options);
+    return create(initialState);
   }
 
   // Reuse client on the client-side
   if (!apolloClient) {
-    apolloClient = create(initialState, options);
+    apolloClient = create(initialState);
   }
 
   return apolloClient;

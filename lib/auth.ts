@@ -1,6 +1,5 @@
 import * as Cookies from 'js-cookie';
 import jwt from 'jsonwebtoken';
-import { destroyCookie, parseCookies, setCookie } from 'nookies';
 import config from '../config';
 
 export const connect = (serviceName: string) => {
@@ -11,79 +10,38 @@ export const disconnect = (serviceName: string) => {
   location.href = `${config.apiUrl}disconnect/${serviceName}`;
 };
 
-export const getAccessToken = (ctx = null) => {
-  if (ctx) {
-    if (typeof ctx.ssrAccessTokenHook === 'string') {
-      return ctx.ssrAccessTokenHook;
-    }
-
-    const cookieParsed = parseCookies(ctx);
-    return cookieParsed.accessToken;
-  }
-
+export const getAccessToken = () => {
   return Cookies.get('accessToken') || '';
 };
 
-export const getRefreshToken = (ctx = null) => {
-  if (ctx) {
-    if (typeof ctx.ssrRefreshTokenHook === 'string') {
-      return ctx.ssrRefreshTokenHook;
-    }
-
-    const cookieParsed = parseCookies(ctx);
-    return cookieParsed.refreshToken;
-  }
-
+export const getRefreshToken = () => {
   return Cookies.get('refreshToken') || '';
 };
 
-export const getTokens = (ctx = null) => {
+export const getTokens = () => {
   return {
-    accessToken: getAccessToken(ctx),
-    refreshToken: getRefreshToken(ctx)
+    accessToken: getAccessToken(),
+    refreshToken: getRefreshToken()
   };
 };
 
-export const setAccessToken = (accessToken: string, ctx = null) => {
-  if (ctx) {
-    setCookie(ctx, 'accessToken', accessToken, config.cookieOptions);
-    ctx.ssrAccessTokenHook = accessToken;
-  } else {
-    Cookies.set('accessToken', accessToken, config.cookieOptions);
-  }
+export const setAccessToken = (accessToken: string) => {
+  Cookies.set('accessToken', accessToken, config.cookieOptions);
 };
 
-export const setRefreshToken = (refreshToken: string, ctx = null) => {
-  if (ctx) {
-    setCookie(ctx, 'refreshToken', refreshToken, config.cookieOptions);
-    ctx.ssrRefreshTokenHook = refreshToken;
-  } else {
-    Cookies.set('refreshToken', refreshToken, config.cookieOptions);
-  }
+export const setRefreshToken = (refreshToken: string) => {
+  Cookies.set('refreshToken', refreshToken, config.cookieOptions);
 };
 
-export const setTokens = (
-  accessToken: string,
-  refreshToken: string,
-  ctx = null
-) => {
-  setAccessToken(accessToken, ctx);
-  setRefreshToken(refreshToken, ctx);
+export const setTokens = (accessToken: string, refreshToken: string) => {
+  setAccessToken(accessToken);
+  setRefreshToken(refreshToken);
 };
 
-export const removeTokens = (ctx = null) => {
-  // console.log('removeTokens', !!ctx);
-
-  destroyCookie(ctx, 'accessToken', config.cookieOptions);
-  destroyCookie(ctx, 'refreshToken', config.cookieOptions);
-
-  if (ctx) {
-    ctx.ssrAccessTokenHook = '';
-    ctx.ssrRefreshTokenHook = '';
-  } else {
-    Cookies.remove('accessToken', config.cookieOptions);
-    Cookies.remove('refreshToken', config.cookieOptions);
-  }
+export const removeTokens = () => {
+  // console.log('removeTokens');
+  Cookies.remove('accessToken', config.cookieOptions);
+  Cookies.remove('refreshToken', config.cookieOptions);
 };
 
 export const accessTokenIsValid = token => {
@@ -178,16 +136,16 @@ class TokenRefresh {
 
 const tokenRefresh = new TokenRefresh();
 
-const refresh = async (refreshToken, ctx) => {
+const refresh = async refreshToken => {
   const refreshData: any = await tokenRefresh.refresh(refreshToken);
 
   if (refreshData) {
-    setTokens(refreshData.accessToken, refreshData.refreshToken, ctx);
+    setTokens(refreshData.accessToken, refreshData.refreshToken);
     console.log('tokens refreshed');
     return refreshData.accessToken;
   }
 
-  removeTokens(ctx);
+  removeTokens();
 
   return '';
 };
@@ -206,27 +164,27 @@ const promiseTimeout = (ms: number, promise) => {
   return Promise.race([promise, timeout]);
 };
 
-export const getAccessTokenAsync = async ctx => {
-  const { accessToken, refreshToken } = getTokens(ctx);
+export const getAccessTokenAsync = async () => {
+  const { accessToken, refreshToken } = getTokens();
 
   if (!accessToken || accessTokenIsValid(accessToken)) {
     return accessToken;
   }
 
   if (!refreshToken) {
-    removeTokens(ctx);
+    removeTokens();
     return '';
   }
 
   // console.log('need refresh token', refreshToken);
 
-  return promiseTimeout(3000, refresh(refreshToken, ctx))
+  return promiseTimeout(3000, refresh(refreshToken))
     .then(newToken => {
       return newToken;
     })
     .catch(() => {
       console.log('refresh token timeout', refreshToken);
-      removeTokens(ctx);
+      removeTokens();
       return '';
     });
 };

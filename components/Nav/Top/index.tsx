@@ -10,6 +10,7 @@ import { CoinIconGold, CoinIconGreen } from '../../../ui/CoinIcon';
 import { Icon } from '../../../ui/Icon';
 import { humanNumbers } from '../../../utils/count';
 import Menu from './Menu';
+import { Access } from '../../../helpers/Access';
 
 const logo = 'https://ravepro.ams3.digitaloceanspaces.com/logo40.svg';
 const discord = 'https://discord.gg/xVprhFC';
@@ -214,62 +215,89 @@ class TopNav extends Component<IProps> {
         </Left>
         <Right>
           <UserBox>
-            <UserProvider>
-              {({ user }) =>
-                user ? (
-                  <>
-                    <Links>
+            <Access
+              denyContent={
+                <Links>
+                  <Link
+                    as={`/auth?continue=/newPost`}
+                    href={{
+                      pathname: this.props.router.route,
+                      query: {
+                        ...this.props.router.query,
+                        authModal: 1
+                      }
+                    }}
+                    passHref
+                  >
+                    <TopLink>Закинуть клип</TopLink>
+                  </Link>
+                  <Link
+                    as={`/auth?continue=${this.props.router.asPath}`}
+                    href={{
+                      pathname: this.props.router.route,
+                      query: {
+                        ...this.props.router.query,
+                        authModal: 1
+                      }
+                    }}
+                    passHref
+                  >
+                    <TopLink>Войти</TopLink>
+                  </Link>
+                </Links>
+              }
+            >
+              <>
+                <Links>
+                  <Link
+                    as={`/newPost`}
+                    href={{
+                      pathname: this.props.router.route,
+                      query: {
+                        ...this.props.router.query,
+                        newPost: 1
+                      }
+                    }}
+                    passHref
+                  >
+                    <TopLink>Закинуть клип</TopLink>
+                  </Link>
+                </Links>
+                <PointsBox>
+                  <Points>
+                    <CoinIconGold />
+                    <PointsCount>
+                      <WalletProvider where={{ currency: 'coin' }}>
+                        {({ data }) => humanNumbers(data ? data.balance : 0)}
+                      </WalletProvider>
+                    </PointsCount>
+                  </Points>
+                  <Points>
+                    <CoinIconGreen />
+                    <PointsCount>
+                      <WalletProvider where={{ currency: 'real' }}>
+                        {({ data }) => humanNumbers(data ? data.balance : 0)}
+                      </WalletProvider>
                       <Link
-                        as={`/newPost`}
+                        as={`/buycoins`}
                         href={{
                           pathname: this.props.router.route,
                           query: {
                             ...this.props.router.query,
-                            newPost: 1
+                            buyCoinsModal: 1
                           }
                         }}
                         passHref
                       >
-                        <TopLink>Закинуть клип</TopLink>
+                        <BuyCoinsLink>
+                          <Icon type="plus-circle" />
+                        </BuyCoinsLink>
                       </Link>
-                    </Links>
-                    <PointsBox>
-                      <Points>
-                        <CoinIconGold />
-                        <PointsCount>
-                          <WalletProvider where={{ currency: 'coin' }}>
-                            {({ data }) =>
-                              humanNumbers(data ? data.balance : 0)
-                            }
-                          </WalletProvider>
-                        </PointsCount>
-                      </Points>
-                      <Points>
-                        <CoinIconGreen />
-                        <PointsCount>
-                          <WalletProvider where={{ currency: 'real' }}>
-                            {({ data }) =>
-                              humanNumbers(data ? data.balance : 0)
-                            }
-                          </WalletProvider>
-                          <Link
-                            as={`/buycoins`}
-                            href={{
-                              pathname: this.props.router.route,
-                              query: {
-                                ...this.props.router.query,
-                                buyCoinsModal: 1
-                              }
-                            }}
-                            passHref
-                          >
-                            <BuyCoinsLink>
-                              <Icon type="plus-circle" />
-                            </BuyCoinsLink>
-                          </Link>
-                        </PointsCount>
-                      </Points>
-                    </PointsBox>
+                    </PointsCount>
+                  </Points>
+                </PointsBox>
+                <UserProvider>
+                  {({ user }) => (
                     <Menu user={user}>
                       <UserDataBox>
                         <UserNameBox>{user.name}</UserNameBox>
@@ -281,39 +309,10 @@ class TopNav extends Component<IProps> {
                         </UserCaratBox>
                       </UserDataBox>
                     </Menu>
-                  </>
-                ) : (
-                  <Links>
-                    <Link
-                      as={`/auth?continue=/newPost`}
-                      href={{
-                        pathname: this.props.router.route,
-                        query: {
-                          ...this.props.router.query,
-                          authModal: 1
-                        }
-                      }}
-                      passHref
-                    >
-                      <TopLink>Закинуть клип</TopLink>
-                    </Link>
-                    <Link
-                      as={`/auth?continue=${this.props.router.asPath}`}
-                      href={{
-                        pathname: this.props.router.route,
-                        query: {
-                          ...this.props.router.query,
-                          authModal: 1
-                        }
-                      }}
-                      passHref
-                    >
-                      <TopLink>Войти</TopLink>
-                    </Link>
-                  </Links>
-                )
-              }
-            </UserProvider>
+                  )}
+                </UserProvider>
+              </>
+            </Access>
           </UserBox>
         </Right>
       </Box>

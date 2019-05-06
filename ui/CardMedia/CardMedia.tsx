@@ -9,6 +9,8 @@ const Box = styled.div`
   flex-direction: column;
   align-items: center;
   overflow: hidden;
+  border-radius: 4px;
+  overflow: hidden;
 `;
 
 const Media = styled.div`
@@ -63,7 +65,7 @@ const DataBox = styled.div`
 `;
 
 const Title = styled.div`
-  font-size: 12px;
+  font-size: 13px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -141,14 +143,16 @@ export const CardMedia: FC<IProps> = ({
             </Description>
           </DataBox>
         </Data>
-        <Count>
-          <span>
-            <IconBox>
-              <Icon type={countIcon} />
-            </IconBox>
-            {typeof count === 'number' ? shortNumbers(count) : 0}
-          </span>
-        </Count>
+        {typeof count === 'number' && (
+          <Count>
+            <span>
+              <IconBox>
+                <Icon type={countIcon} />
+              </IconBox>
+              {shortNumbers(count)}
+            </span>
+          </Count>
+        )}
       </Content>
     </Box>
   );

@@ -20,12 +20,7 @@ export default App => {
         ctx: { res }
       } = ctx;
 
-      const apollo = initApollo(
-        {},
-        {
-          ctx: ctx.ctx
-        }
-      );
+      const apollo = initApollo({});
 
       ctx.ctx.apolloClient = apollo;
 
@@ -77,11 +72,7 @@ export default App => {
 
     constructor(props) {
       super(props);
-      // `getDataFromTree` renders the component first, the client is passed off as a property.
-      // After that rendering is done using Next's normal rendering pipeline
-      this.apolloClient = initApollo(props.apolloState, {
-        ctx: null
-      });
+      this.apolloClient = initApollo(props.apolloState);
     }
 
     public render() {

@@ -34,7 +34,7 @@
     "nodemon": "1.19.0",
     "nookies": "2.0.5",
     "nprogress": "0.2.0",
-    "polished": "3.2.0",
+    "polished": "3.3.0",
     "query-string": "6.5.0",
     "rc-dropdown": "2.4.1",
     "rc-slider": "8.6.9",
@@ -48,6 +48,7 @@
     "react-yandex-metrika": "2.5.1",
     "recharts": "1.5.0",
     "resize-observer-polyfill": "1.5.1",
+    "rxjs": "6.5.1",
     "styled-components": "4.2.0",
     "subscriptions-transport-ws": "0.9.16",
     "ts-node": "8.1.0"

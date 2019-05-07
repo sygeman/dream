@@ -44,31 +44,25 @@ interface IProps {
 }
 
 const Stream: FC<IProps> = ({ cost, name, title, avatar, livePreview }) => {
-  let Media = null;
   const descriptionLink = `https://www.twitch.tv/${name}`;
-
-  if (livePreview) {
-    Media = (
-      <>
-        <StreamBox>
-          {process.browser && <TwitchPlayer muted channel={name} />}
-        </StreamBox>
-        <StreamOverLink href={descriptionLink} target="_blank" />
-      </>
-    );
-  } else {
-    const previewImg = `https://static-cdn.jtvnw.net/previews-ttv/live_user_${name}-${290}x${163}.jpg`;
-
-    Media = (
-      <PreviewContent>
-        <VideoPreview cover={previewImg} />
-      </PreviewContent>
-    );
-  }
+  const previewImg = `https://static-cdn.jtvnw.net/previews-ttv/live_user_${name}-${290}x${163}.jpg`;
 
   return (
     <CardMedia
-      media={Media}
+      media={
+        <>
+          {livePreview ? (
+            <StreamBox>
+              {process.browser && <TwitchPlayer muted channel={name} />}
+            </StreamBox>
+          ) : (
+            <PreviewContent>
+              <VideoPreview cover={previewImg} />
+            </PreviewContent>
+          )}
+          <StreamOverLink href={descriptionLink} target="_blank" />
+        </>
+      }
       avatar={avatar}
       title={title}
       description={name}

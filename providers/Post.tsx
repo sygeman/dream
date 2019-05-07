@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 import { Component, FC } from 'react';
 import { Query } from 'react-apollo';
-import { getAccessToken } from '../lib/auth';
+import { getTokens } from '../lib/auth';
 
 export const GET_POST = gql`
   query getPost($id: ID!) {
@@ -115,7 +115,7 @@ const PostProvider: FC<IProps> = ({ children, id, noRealtime }) => {
                   }
 
                   // TODO: rethink
-                  const token = getAccessToken();
+                  const token = getTokens().accessToken;
                   let currentId = null;
 
                   if (token) {

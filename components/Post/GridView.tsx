@@ -6,6 +6,7 @@ import { VideoPreview } from '../../ui/VideoPreview';
 import { IPost } from './interfaces/Post';
 import { isEqual } from 'lodash';
 import { CardMedia } from '../../ui/CardMedia';
+import { Icon } from '../../ui/Icon';
 
 const PreviewContent = styled.div`
   position: absolute;
@@ -13,6 +14,22 @@ const PreviewContent = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
+`;
+
+const PostDeleted = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  color: ${({ theme }) => theme.accent2Color};
+  text-transform: uppercase;
+  font-size: 12px;
+
+  i {
+    font-size: 25px;
+    padding: 20px 0;
+  }
 `;
 
 interface IProps {
@@ -43,6 +60,18 @@ export const GridView: FC<IProps> = memo(
               />
             )}
           </PreviewContent>
+        }
+        overlay={
+          post.deleted && (
+            <>
+              <PostDeleted>
+                <div>
+                  <Icon type="delete" />
+                </div>
+                <div>Клип был удален</div>
+              </PostDeleted>
+            </>
+          )
         }
         title={post && post.title}
         description={post.channelName}

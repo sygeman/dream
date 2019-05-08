@@ -1,8 +1,3 @@
-export interface ITag {
-  id?: string;
-  title?: string;
-}
-
 export enum PostReactionType {
   like = 'like',
   dislike = 'dislike',
@@ -23,6 +18,6 @@ export interface IPost {
   rating?: number;
   createdAt?: string;
   channelName?: string;
-  reaction?: PostReactionType;
+  deleted?: boolean;
   authorId?: string;
 }

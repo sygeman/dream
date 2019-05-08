@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import { FC } from 'react';
+import { darken } from 'polished';
 import styled from 'styled-components';
 import { Icon } from '../../ui/Icon';
 import { TwitchClipPlayer } from '../../ui/TwitchClipPlayer';
@@ -45,7 +46,9 @@ const Title = styled.div<{ active: boolean }>`
   }
 `;
 
-const ContentBox = styled.div``;
+const ContentBox = styled.div`
+  background: ${({ theme }) => darken(0.1, theme.dark2Color)};
+`;
 
 const EmptyBottom = styled.div<{ active: boolean }>`
   height: 100%;

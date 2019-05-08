@@ -1,10 +1,9 @@
 import gql from 'graphql-tag';
 import { Component, FC } from 'react';
 import { Query } from 'react-apollo';
-import { getTokens } from '../lib/auth';
 
 export const GET_POST = gql`
-  query getPost($id: ID!) {
+  query post($id: ID!) {
     post(id: $id) {
       id
       title
@@ -16,7 +15,7 @@ export const GET_POST = gql`
       likes
       dislikes
       rating
-      reaction
+      deleted
       createdAt
       channelName
       authorId
@@ -24,35 +23,36 @@ export const GET_POST = gql`
   }
 `;
 
-const POST_REMOVED = gql`
-  subscription postRemoved($id: ID!) {
-    postRemoved(id: $id)
-  }
-`;
-
-const POST_REACTION_CHANGED = gql`
-  subscription postReactionChanged($id: ID!) {
-    postReactionChanged(id: $id) {
+const UPDATED = gql`
+  subscription post($id: ID!) {
+    post(id: $id) {
+      id
+      title
+      nfws
+      spoiler
+      sourceId
+      cover
+      sourceType
       likes
       dislikes
       rating
-      reaction
-      userId
+      deleted
+      createdAt
+      channelName
+      authorId
     }
   }
 `;
 
 interface IPropsInner {
   post: any;
-  subscribePostRemoved: () => void;
-  subscribePostReactionChanged: () => void;
+  updated: () => void;
   children: any;
 }
 
 class PostProviderInner extends Component<IPropsInner> {
   public componentDidMount() {
-    this.props.subscribePostRemoved();
-    this.props.subscribePostReactionChanged();
+    this.props.updated();
   }
 
   public render() {
@@ -89,53 +89,20 @@ const PostProvider: FC<IProps> = ({ children, id, noRealtime }) => {
         return (
           <PostProviderInner
             post={data.post}
-            subscribePostRemoved={() => {
+            updated={() => {
               subscribeToMore({
-                document: POST_REMOVED,
+                document: UPDATED,
                 variables: { id },
                 updateQuery: (prev, { subscriptionData }) => {
                   if (!subscriptionData.data) {
                     return prev;
                   }
-
-                  return {
-                    ...prev,
-                    post: null
-                  };
-                }
-              });
-            }}
-            subscribePostReactionChanged={() => {
-              subscribeToMore({
-                document: POST_REACTION_CHANGED,
-                variables: { id },
-                updateQuery: (prev, { subscriptionData }) => {
-                  if (!subscriptionData.data) {
-                    return prev;
-                  }
-
-                  // TODO: rethink
-                  const token = getTokens().accessToken;
-                  let currentId = null;
-
-                  if (token) {
-                    currentId = JSON.parse(atob(token.split('.')[1])).userId;
-                  }
-
-                  const reactionData =
-                    subscriptionData.data.postReactionChanged;
 
                   return {
                     ...prev,
                     post: {
                       ...prev.post,
-                      reaction:
-                        reactionData.userId === currentId
-                          ? reactionData.reaction
-                          : prev.post.reaction,
-                      likes: reactionData.likes,
-                      dislikes: reactionData.dislikes,
-                      rating: reactionData.rating
+                      ...subscriptionData.data.post
                     }
                   };
                 }

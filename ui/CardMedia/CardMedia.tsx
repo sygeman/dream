@@ -11,6 +11,7 @@ const Box = styled.div`
   overflow: hidden;
   border-radius: 4px;
   overflow: hidden;
+  position: relative;
 `;
 
 const Media = styled.div`
@@ -103,12 +104,22 @@ const IconBox = styled.div`
   margin-right: 8px;
 `;
 
+const Overlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: ${({ theme }) => darken(0.1, theme.dark2Color)};
+  width: 100%;
+  height: 100%;
+`;
+
 interface IProps {
   media?: ReactNode;
   avatar?: string;
   title?: string;
   description?: string;
   descriptionLink?: string;
+  overlay?: ReactNode;
   count?: number;
   countIcon?: string;
 }
@@ -119,6 +130,7 @@ export const CardMedia: FC<IProps> = ({
   title,
   description,
   descriptionLink,
+  overlay,
   count,
   countIcon
 }) => {
@@ -154,6 +166,7 @@ export const CardMedia: FC<IProps> = ({
           </Count>
         )}
       </Content>
+      {overlay && <Overlay>{overlay}</Overlay>}
     </Box>
   );
 };

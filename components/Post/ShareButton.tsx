@@ -63,7 +63,7 @@ interface IProps {
 
 export default class extends React.Component<IProps> {
   public renderMenu = (id: string) => {
-    const url = `https://twitchru.com/post?id=${id}`;
+    const url = `https://pepega.com/post?id=${id}`;
 
     return (
       <ShareMenu>

@@ -27,7 +27,11 @@ const StreamBox = styled.div`
 `;
 
 const Streams: FC = () => (
-  <Query query={GET_CHANNELS_TOP} pollInterval={10000}>
+  <Query
+    query={GET_CHANNELS_TOP}
+    fetchPolicy="network-only"
+    pollInterval={10000}
+  >
     {({ data }) => (
       <StreamsBox>
         <Grid

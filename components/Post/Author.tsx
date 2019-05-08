@@ -1,5 +1,3 @@
-import distanceInWordsToNow from 'date-fns/distance_in_words_to_now';
-import ruLocale from 'date-fns/locale/ru';
 import gql from 'graphql-tag';
 import Head from 'next/head';
 import Link from 'next/link';
@@ -7,6 +5,7 @@ import * as React from 'react';
 import { Query } from 'react-apollo';
 import styled from 'styled-components';
 import { Avatar } from '../../ui/Avatar';
+import { dateDistanceInWordsToNow } from '../../utils/date';
 
 const GET_USER = gql`
   query($id: ID!) {
@@ -89,12 +88,7 @@ export default class PostAuthor extends React.Component<IProps> {
                 <Link href={`user?id=${authorId}`}>
                   <AuthorName>{data.user.name}</AuthorName>
                 </Link>
-                <DateBox>
-                  {distanceInWordsToNow(parseInt(createdAt, 10), {
-                    locale: ruLocale
-                  })}
-                  {' назад'}
-                </DateBox>
+                <DateBox>{dateDistanceInWordsToNow(createdAt)}</DateBox>
               </AuthorData>
               <AuthorAvatarBox>
                 <Link href={`user?id=${authorId}`}>

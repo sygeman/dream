@@ -1,5 +1,3 @@
-import distanceInWordsToNow from 'date-fns/distance_in_words_to_now';
-import ruLocale from 'date-fns/locale/ru';
 import { FC, memo } from 'react';
 import styled from 'styled-components';
 import { VideoPreview } from '../../ui/VideoPreview';
@@ -7,6 +5,7 @@ import { IPost } from './interfaces/Post';
 import { isEqual } from 'lodash';
 import { CardMedia } from '../../ui/CardMedia';
 import { Icon } from '../../ui/Icon';
+import { dateDistanceInWordsToNow } from '../../utils/date';
 
 const PreviewContent = styled.div`
   position: absolute;
@@ -40,11 +39,7 @@ interface IProps {
 export const GridView: FC<IProps> = memo(
   ({ post, onPlay }) => {
     const date =
-      post &&
-      post.createdAt &&
-      distanceInWordsToNow(parseInt(post.createdAt, 10), {
-        locale: ruLocale
-      }) + ' назад';
+      post && post.createdAt && dateDistanceInWordsToNow(post.createdAt);
 
     return (
       <CardMedia
@@ -63,14 +58,12 @@ export const GridView: FC<IProps> = memo(
         }
         overlay={
           post.deleted && (
-            <>
-              <PostDeleted>
-                <div>
-                  <Icon type="delete" />
-                </div>
-                <div>Клип был удален</div>
-              </PostDeleted>
-            </>
+            <PostDeleted>
+              <div>
+                <Icon type="delete" />
+              </div>
+              <div>Клип был удален</div>
+            </PostDeleted>
           )
         }
         title={post && post.title}

@@ -1,5 +1,3 @@
-import distanceInWordsToNow from 'date-fns/distance_in_words_to_now';
-import ruLocale from 'date-fns/locale/ru';
 import gql from 'graphql-tag';
 import { omit } from 'lodash';
 import { FC } from 'react';
@@ -12,6 +10,7 @@ import { Modal } from '../ui/Modal';
 import { TwitchClipPlayer } from '../ui/TwitchClipPlayer';
 import { VideoPreview } from '../ui/VideoPreview';
 import { CardMedia } from '../ui/CardMedia';
+import { dateDistanceInWordsToNow } from '../utils/date';
 
 const GET_TWITCH_CHANNEL_TOP_CLIPS = gql`
   query twitchTopClips($channel: String, $game: String, $limit: Int) {
@@ -182,11 +181,7 @@ const TwitchFollows: FC<IProps> = ({ limit }) => {
                             key={clip.id}
                             onClick={() => openClip(clip.id)}
                             cover={clip.thumbnails.small}
-                            date={
-                              distanceInWordsToNow(+new Date(clip.createdAt), {
-                                locale: ruLocale
-                              }) + ' назад'
-                            }
+                            date={dateDistanceInWordsToNow(clip.createdAt)}
                             views={clip.viewsCount}
                           />
                         </ClipPreviewContent>

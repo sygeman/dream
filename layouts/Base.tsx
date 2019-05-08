@@ -8,7 +8,7 @@ import Auth from '../components/Auth';
 import { BuyCoins } from '../components/BuyCoins';
 import CreatePost from '../components/Post/CreatePost';
 import TopNav from '../components/Nav/Top';
-import PostView from '../components/Post/View';
+import PostView from '../components/Post/FeedView';
 import PostProvider from '../providers/Post';
 import { Modal } from '../ui/Modal';
 import config from '../config';
@@ -127,7 +127,7 @@ class BaseLayout extends PureComponent<IProps, IState> {
         >
           <div style={{ width: '1000px' }}>
             <PostProvider id={postId}>
-              {({ post }) => <PostView {...post} />}
+              {({ post }) => <PostView {...post} autoPlay />}
             </PostProvider>
           </div>
         </Modal>

@@ -6,16 +6,15 @@ import { TwitchClipPlayer } from '../../ui/TwitchClipPlayer';
 import Comments from '../Comments';
 import PostHelper from '../Post';
 import { IPost, PostReactionType } from './interfaces/Post';
+import PostReactionProvider from '../../providers/PostReaction';
 
 const Box = styled.div`
   flex-direction: column;
   display: flex;
   flex: 1;
   background: ${({ theme }) => theme.dark2Color};
-  margin-bottom: 20px;
   border-radius: 5px;
   overflow: hidden;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 `;
 
 const Top = styled.div`
@@ -81,8 +80,26 @@ const CommentsBox = styled.div`
   overflow: hidden;
 `;
 
+const PostDeleted = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  color: ${({ theme }) => theme.accent2Color};
+  text-transform: uppercase;
+  font-size: 13px;
+
+  i {
+    font-size: 35px;
+    padding: 20px 0;
+  }
+`;
+
 interface IProps extends IPost {
   meta?: boolean;
+  header?: boolean;
+  autoPlay?: boolean;
 }
 
 const PostFeedView: FC<IProps> = ({
@@ -92,60 +109,90 @@ const PostFeedView: FC<IProps> = ({
   likes,
   dislikes,
   channelName,
-  reaction,
   sourceId,
   createdAt,
   authorId,
-  meta
+  deleted,
+  meta,
+  header,
+  autoPlay
 }) => {
+  if (deleted) {
+    return (
+      <Box>
+        <PostDeleted>
+          <div>
+            <Icon type="delete" />
+          </div>
+          <div>Клип был удален</div>
+        </PostDeleted>
+      </Box>
+    );
+  }
+
   return (
     <Box>
-      {meta && (
-        <Head>
-          <title>{title}</title>
-          <meta property="og:title" content={title} />
-          <meta property="og:description" content={title} />
-          <meta property="og:image" content={cover} />
-          <meta
-            property="og:url"
-            content={`https://twitchru.com/post?id=${id}`}
-          />
-        </Head>
+      <Head>
+        <title>{title}</title>
+        {meta && (
+          <>
+            <meta property="og:title" content={title} />
+            <meta property="og:description" content={title} />
+            <meta property="og:image" content={cover} />
+            <meta
+              property="og:url"
+              content={`https://pepega.com/post?id=${id}`}
+            />
+          </>
+        )}
+      </Head>
+      {header && (
+        <Top>
+          <TitleBox>
+            <Title active={!meta}>
+              <span>{title}</span>
+            </Title>
+            {channelName && (
+              <ChannelLink
+                href={`https://twitch.tv/${channelName}`}
+                target="_blank"
+              >
+                <Icon type="twitch" />
+                {channelName}
+              </ChannelLink>
+            )}
+          </TitleBox>
+        </Top>
       )}
-      <Top>
-        <TitleBox>
-          <Title active={!meta}>
-            <span>{title}</span>
-          </Title>
-          {channelName && (
-            <ChannelLink
-              href={`https://twitch.tv/${channelName}`}
-              target="_blank"
-            >
-              <Icon type="twitch" />
-              {channelName}
-            </ChannelLink>
-          )}
-        </TitleBox>
-      </Top>
       <ContentBox>
-        <TwitchClipPlayer sourceId={sourceId} />
+        <TwitchClipPlayer sourceId={sourceId} autoPlay={autoPlay} />
       </ContentBox>
       <PostHelper.Bottom>
-        <PostHelper.ReactionButton
-          id={id}
-          type="like"
-          state={reaction === PostReactionType.like}
-          count={likes}
-          icon="thumb-up"
-        />
-        <PostHelper.ReactionButton
-          id={id}
-          type="dislike"
-          state={reaction === PostReactionType.dislike}
-          count={dislikes}
-          icon="thumb-down"
-        />
+        <PostReactionProvider postId={id}>
+          {({ postReaction }) => {
+            const reaction = postReaction ? postReaction.type : 'none';
+
+            return (
+              <>
+                <PostHelper.ReactionButton
+                  id={id}
+                  type="like"
+                  state={reaction === PostReactionType.like}
+                  count={likes}
+                  icon="thumb-up"
+                />
+                <PostHelper.ReactionButton
+                  id={id}
+                  type="dislike"
+                  state={reaction === PostReactionType.dislike}
+                  count={dislikes}
+                  icon="thumb-down"
+                />
+              </>
+            );
+          }}
+        </PostReactionProvider>
+
         <PostHelper.ShareButton id={id} />
         <PostHelper.Menu id={id} authorId={authorId} />
         <EmptyBottom active={!meta} />

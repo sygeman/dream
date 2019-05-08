@@ -31,7 +31,7 @@ const PostPage = () => {
       <Box>
         <PostBox>
           <PostProvider id={postId}>
-            {({ post }) => <PostFeedView {...post} meta />}
+            {({ post }) => <PostFeedView {...post} header meta />}
           </PostProvider>
         </PostBox>
       </Box>

@@ -16,6 +16,14 @@ export const GET_POSTS = gql`
       count
       posts {
         id
+        nfws
+        spoiler
+        cover
+        title
+        channelName
+        rating
+        deleted
+        createdAt
       }
     }
   }

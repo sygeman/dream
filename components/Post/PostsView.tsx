@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { darken } from 'polished';
 import { PureComponent } from 'react';
 import styled from 'styled-components';
-import PostProvider from '../../providers/Post';
 import { Grid } from '../../ui/Grid';
 import PostGridView from './GridView';
 
@@ -161,13 +160,9 @@ class PostsView extends PureComponent<IProps, IState> {
         maxRows={rows}
         items={posts}
         elementWidth={300}
-        itemRender={({ id }) => (
-          <PostContainer key={id}>
-            <PostProvider id={id} noRealtime>
-              {({ post }) => (
-                <PostGridView post={post} onPlay={() => onPlay(post.id)} />
-              )}
-            </PostProvider>
+        itemRender={post => (
+          <PostContainer key={post.id}>
+            <PostGridView post={post} onPlay={() => onPlay(post.id)} />
           </PostContainer>
         )}
       />

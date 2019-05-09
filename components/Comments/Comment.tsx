@@ -2,24 +2,12 @@ import gql from 'graphql-tag';
 import Link from 'next/link';
 import { darken, lighten } from 'polished';
 import * as React from 'react';
-import { Mutation, Query } from 'react-apollo';
+import { Mutation } from 'react-apollo';
 import styled from 'styled-components';
 import { Access } from '../../helpers/Access';
 import { Dropdown } from '../../ui/Dropdown';
 import { Emoji } from '../../ui/Emoji';
 import { splitTextToEmojiArray } from '../../utils/emoji';
-
-const GET_USER = gql`
-  query($id: ID!) {
-    user(id: $id) {
-      id
-      name
-      avatar
-      role
-      banned
-    }
-  }
-`;
 
 const SET_USER_ROLE_MOD = gql`
   mutation setUserRoleMod($id: ID!) {
@@ -177,27 +165,27 @@ const UserMenuItem = styled.div`
   }
 `;
 
+const renderMessageText = (text: string) => {
+  return splitTextToEmojiArray(text).map((elm, index) => {
+    if (elm.type === 'text') {
+      return <React.Fragment key={index}>{elm.value}</React.Fragment>;
+    }
+
+    if (elm.type === 'emoji') {
+      return <Emoji key={index} name={elm.name} />;
+    }
+  });
+};
+
 interface IProps {
   id: string;
   text: string;
   compact: boolean;
+  author: any;
   authorId: string;
 }
 
-export default class extends React.Component<IProps, {}> {
-  public renderContent = () => {
-    const { text } = this.props;
-    return splitTextToEmojiArray(text).map((elm, index) => {
-      if (elm.type === 'text') {
-        return <React.Fragment key={index}>{elm.value}</React.Fragment>;
-      }
-
-      if (elm.type === 'emoji') {
-        return <Emoji key={index} name={elm.name} />;
-      }
-    });
-  };
-
+export default class extends React.Component<IProps> {
   public renderUserMenu(user) {
     return (
       <UserMenu>
@@ -320,34 +308,37 @@ export default class extends React.Component<IProps, {}> {
     );
   }
 
-  public renderMessage(user) {
-    const { compact } = this.props;
+  public render() {
+    const { id, text, compact, author } = this.props;
 
     const usernameColors = {
       admin: 'rgb(194, 121, 121)',
       mod: 'rgb(124, 194, 121)'
     };
 
-    const userColor = usernameColors[user.role]
-      ? usernameColors[user.role]
+    const userColor = usernameColors[author.role]
+      ? usernameColors[author.role]
       : undefined;
 
     return (
       <Message>
         {!compact && (
           <Header>
-            <Dropdown overlay={this.renderUserMenu(user)}>
+            <Dropdown overlay={this.renderUserMenu(author)}>
               <Avatar>
-                {user.avatar ? <AvatarImg src={user.avatar} /> : <AvatarNone />}
+                {author.avatar ? (
+                  <AvatarImg src={author.avatar} />
+                ) : (
+                  <AvatarNone />
+                )}
               </Avatar>
             </Dropdown>
-            <Username userColor={userColor}>{user.name}</Username>
+            <Username userColor={userColor}>{author.name}</Username>
             <Date />
           </Header>
         )}
         <Content>
-          <Text>{this.renderContent()}</Text>
-          {/* <Access name="manageMessage"> */}
+          <Text>{renderMessageText(text)}</Text>
           <ManageMenu>
             <Access
               allow={currentUser => {
@@ -359,13 +350,7 @@ export default class extends React.Component<IProps, {}> {
               <Mutation mutation={REMOVE_MESSAGE}>
                 {removeMessage => (
                   <ManageItem
-                    onClick={() =>
-                      removeMessage({
-                        variables: {
-                          id: this.props.id
-                        }
-                      })
-                    }
+                    onClick={() => removeMessage({ variables: { id } })}
                   >
                     <i className="zmdi zmdi-close" />
                   </ManageItem>
@@ -373,29 +358,8 @@ export default class extends React.Component<IProps, {}> {
               </Mutation>
             </Access>
           </ManageMenu>
-          {/* </Access> */}
         </Content>
       </Message>
-    );
-  }
-
-  public render() {
-    const { authorId } = this.props;
-
-    return (
-      <Query query={GET_USER} variables={{ id: authorId }}>
-        {({ loading, error, data }) => {
-          if (loading) {
-            return <div />;
-          }
-
-          if (error || !data.user || !data.user) {
-            return null;
-          }
-
-          return this.renderMessage(data.user);
-        }}
-      </Query>
     );
   }
 }

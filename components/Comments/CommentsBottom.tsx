@@ -1,5 +1,5 @@
 import gql from 'graphql-tag';
-import * as React from 'react';
+import { Component } from 'react';
 import { Mutation } from 'react-apollo';
 import styled from 'styled-components';
 import { Access } from '../../helpers/Access';
@@ -11,7 +11,7 @@ const CREATE_COMMENT = gql`
   }
 `;
 
-const MessagesBottom = styled.div`
+const CommentsBottom = styled.div`
   height: 60px;
   display: flex;
   position: relative;
@@ -34,7 +34,7 @@ interface IProps {
   postId: string;
 }
 
-export default class extends React.Component<IProps> {
+export default class extends Component<IProps> {
   public textInput: any;
   public lock: boolean = false;
 
@@ -42,7 +42,7 @@ export default class extends React.Component<IProps> {
     const { postId } = this.props;
 
     return (
-      <MessagesBottom>
+      <CommentsBottom>
         <Access
           denyContent={
             <input
@@ -62,32 +62,30 @@ export default class extends React.Component<IProps> {
             }}
           >
             {createComment => (
-              <>
-                <input
-                  ref={input => {
-                    this.textInput = input;
-                  }}
-                  maxLength={500}
-                  type="text"
-                  placeholder="Написать комментарий..."
-                  onKeyPress={e => {
-                    const text = convertTextToEmojiCode(
-                      this.textInput.value.trim()
-                    );
+              <input
+                ref={input => {
+                  this.textInput = input;
+                }}
+                maxLength={500}
+                type="text"
+                placeholder="Написать комментарий..."
+                onKeyPress={e => {
+                  const text = convertTextToEmojiCode(
+                    this.textInput.value.trim()
+                  );
 
-                    if (e.key === 'Enter' && !this.lock && text.length > 0) {
-                      this.lock = true;
-                      createComment({
-                        variables: { input: { postId, text } }
-                      });
-                    }
-                  }}
-                />
-              </>
+                  if (e.key === 'Enter' && !this.lock && text.length > 0) {
+                    this.lock = true;
+                    createComment({
+                      variables: { input: { postId, text } }
+                    });
+                  }
+                }}
+              />
             )}
           </Mutation>
         </Access>
-      </MessagesBottom>
+      </CommentsBottom>
     );
   }
 }

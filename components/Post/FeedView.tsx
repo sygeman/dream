@@ -4,7 +4,7 @@ import { darken } from 'polished';
 import styled from 'styled-components';
 import { Icon } from '../../ui/Icon';
 import { TwitchClipPlayer } from '../../ui/TwitchClipPlayer';
-import Comments from '../Comments';
+import { Comments } from '../Comments';
 import PostHelper from '../Post';
 import { IPost, PostReactionType } from './interfaces/Post';
 import PostReactionProvider from '../../providers/PostReaction';

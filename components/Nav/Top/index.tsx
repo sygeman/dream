@@ -11,9 +11,7 @@ import { Icon } from '../../../ui/Icon';
 import { humanNumbers } from '../../../utils/count';
 import Menu from './Menu';
 import { Access } from '../../../helpers/Access';
-
-const logo = 'https://ravepro.ams3.digitaloceanspaces.com/logo40.svg';
-const discord = 'https://discord.gg/xVprhFC';
+import config from '../../../config';
 
 const Box = styled.div`
   height: 46px;
@@ -199,7 +197,7 @@ class TopNav extends Component<IProps> {
           </MenuButton>
           <Link href="/" passHref>
             <LogoLink>
-              <LogoImg src={logo} />
+              <LogoImg src={`${config.cdnUrl}logo.svg`} />
             </LogoLink>
           </Link>
           <LeftMenu>
@@ -207,7 +205,7 @@ class TopNav extends Component<IProps> {
               <Link href="/" passHref>
                 <TopLink>Клипы</TopLink>
               </Link>
-              <TopLink href={discord} target="_blank">
+              <TopLink href={config.discordInvite} target="_blank">
                 Discord
               </TopLink>
             </Links>

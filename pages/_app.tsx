@@ -8,9 +8,7 @@ import 'resize-observer-polyfill';
 import { RouterContext } from '../hooks/useRouter';
 import withApollo from '../lib/withApollo';
 import { ThemeProvider } from '../theme';
-
-const logo =
-  'https://ravepro.ams3.digitaloceanspaces.com/favicons/twitchru.png';
+import config from '../config';
 
 Router.events.on('routeChangeStart', () => NProgress.start());
 Router.events.on('routeChangeComplete', () => NProgress.done());
@@ -72,7 +70,11 @@ class MyApp extends App<IProps> {
             >
               <React.Fragment>
                 <Head>
-                  <link rel="icon" type="image/png" href={logo} />
+                  <link
+                    rel="icon"
+                    type="image/png"
+                    href={`${config.cdnUrl}favicon.png`}
+                  />
                   <title>PepegaCom</title>
                   <meta property="og:locale" content="ru_RU" />
                   <meta property="og:type" content="website" />

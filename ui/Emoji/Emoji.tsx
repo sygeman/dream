@@ -20,6 +20,6 @@ interface IProps {
 export const Emoji: FC<IProps> = ({ name, id }) => (
   <EmojiImg
     alt={name}
-    src={`${config.emojiUrl}${id ? id : name.toLowerCase()}.png`}
+    src={`${config.cdnUrl}emojis/${id ? id : name.toLowerCase()}.png`}
   />
 );

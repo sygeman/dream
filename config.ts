@@ -1,5 +1,6 @@
 const commonConfig = {
-  emojiUrl: `https://ravepro.ams3.digitaloceanspaces.com/emojis/`,
+  cdnUrl: 'https://cdn.pepega.com/',
+  discordInvite: 'https://discord.gg/xVprhFC',
   yandexMetrikaId: 51879323
 };
 

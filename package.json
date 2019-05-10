@@ -47,7 +47,7 @@
     "react-yandex-metrika": "2.5.1",
     "recharts": "1.5.0",
     "resize-observer-polyfill": "1.5.1",
-    "rxjs": "6.5.1",
+    "rxjs": "6.5.2",
     "styled-components": "4.2.0",
     "subscriptions-transport-ws": "0.9.16",
     "ts-node": "8.1.0"

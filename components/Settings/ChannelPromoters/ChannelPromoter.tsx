@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 import { lighten } from 'polished';
 import { FC } from 'react';
 import { Mutation } from 'react-apollo';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import ChannelProvider from '../../../providers/Channel';
 import { Button } from '../../../ui/Button';
 import { Input } from '../../../ui/Input';

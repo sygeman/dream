@@ -82,7 +82,7 @@ export const ChannelPromotersManage: FC = () => {
                     <Input
                       autoFocus
                       ref={textInput}
-                      placeholder={`Введите название Twitch канала и нажмите Enter`}
+                      placeholder={`Название или ссылка на twitch канал`}
                       onKeyPress={e => {
                         const channelName = textInput.current.value.trim();
 

@@ -23,38 +23,6 @@ const DELETE_CHANNEL_PROMOTER = gql`
   }
 `;
 
-const fadeIn = keyframes`
-  0% {
-    opacity: 0.3;
-  }
-  100% {
-    opacity: 1;
-  }
-`;
-
-const LiveBox = styled.div`
-  height: 10px;
-  width: 10px;
-  border-radius: 100%;
-  background: ${({ theme }) => theme.dark1Color};
-  margin: 0 10px 0 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 10px;
-`;
-
-const LiveDot = styled.div`
-  height: 10px;
-  width: 10px;
-  border-radius: 100%;
-  background: #d54141;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  animation: 0.7s ${fadeIn} infinite alternate;
-`;
-
 const PointsIcon = styled.div`
   height: 10px;
   width: 10px;
@@ -80,7 +48,35 @@ const ChannelHeaderInfo = styled('div')`
   align-items: center;
 `;
 
-const ChannelName = styled.div``;
+const ChannelAvatar = styled.div`
+  height: 32px;
+  width: 32px;
+  margin-right: 16px;
+  position: relative;
+`;
+
+const LiveDot = styled.div`
+  position: absolute;
+  right: -2px;
+  bottom: -2px;
+  height: 10px;
+  width: 10px;
+  border-radius: 4px;
+  border: 2px solid ${({ theme }) => lighten(0.1, theme.dark2Color)};
+  background: #d54141;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const ChannelAvatarImg = styled.img`
+  height: 100%;
+  width: 100%;
+  border-radius: 4px;
+  overflow: hidden;
+`;
+
+const ChannelName = styled.a``;
 
 const ChannelCost = styled.div`
   padding: 0 10px;
@@ -114,19 +110,11 @@ const ChannelPromoterHeader = styled('div')`
   background: ${({ theme }) => lighten(0.1, theme.dark2Color)};
 `;
 
-const ChannelPromoterLogo = styled.div`
-  font-size: 18px;
-  width: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
 const ChannelPromoterHeaderActions = styled.div`
   margin-left: auto;
 
   i {
-    font-size: 14px;
+    font-size: 16px;
   }
 `;
 
@@ -144,25 +132,31 @@ export const ChannelPromoter: FC<IProps> = ({ channelPromoter }) => (
     {({ channel }) => (
       <ChannelPromoterBox>
         <ChannelPromoterHeader>
-          <ChannelPromoterLogo>
-            <LiveBox>{channel.cost > 0 && channel.live && <LiveDot />}</LiveBox>
-          </ChannelPromoterLogo>
           <ChannelHeaderInfo>
-            <ChannelName>{channel.name}</ChannelName>
+            <ChannelAvatar>
+              <ChannelAvatarImg src={channel.avatar} />
+              {channel.cost > 0 && channel.live && <LiveDot />}
+            </ChannelAvatar>
+            <ChannelName
+              target="_blank"
+              href={`https://www.twitch.tv/${channel.name}`}
+            >
+              {channel.name}
+            </ChannelName>
             <ChannelCost>{channel.cost}</ChannelCost>
           </ChannelHeaderInfo>
           <ChannelPromoterHeaderActions>
             <Mutation mutation={DELETE_CHANNEL_PROMOTER}>
               {deleteChannelPromoter => (
                 <Button
-                  mainColor="#4d517f"
+                  mainColor="#393C61"
                   onClick={() =>
                     deleteChannelPromoter({
                       variables: { id: channelPromoter.id }
                     })
                   }
                 >
-                  <Icon type="delete" />
+                  <Icon type="close" />
                 </Button>
               )}
             </Mutation>

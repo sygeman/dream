@@ -29,6 +29,13 @@ const MainLayout: FC<IProps> = ({ children, fixedTopContent, streams }) => {
             <LeftMenu.SubItem route="/top/month">Месяц</LeftMenu.SubItem>
             <LeftMenu.SubItem route="/top/all">Все время</LeftMenu.SubItem>
           </LeftMenu.Item>
+          <Access>
+            <LeftMenu.Item
+              route={`/promoter`}
+              icon="n-1-square"
+              title="Продвижение"
+            />
+          </Access>
           <LeftMenu.Item route="/categories" icon="apps" title="Категории">
             <CategoriesProvider>
               {({ categories }) =>
@@ -67,13 +74,6 @@ const MainLayout: FC<IProps> = ({ children, fixedTopContent, streams }) => {
                 )}
               </FollowsProvider>
             </LeftMenu.Item>
-          </Access>
-          <Access>
-            <LeftMenu.Item
-              route={`/promoter`}
-              icon="n-1-square"
-              title="Продвижение"
-            />
           </Access>
         </LeftMenu.Box>
       }

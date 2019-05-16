@@ -47,10 +47,10 @@ class ProviderInner extends Component<IPropsInner> {
 }
 
 interface IProps {
-  id?: string;
+  id: string;
 }
 
-const Provider: FC<IProps> = ({ children, id = '' }) => (
+const Provider: FC<IProps> = ({ children, id }) => (
   <Query query={GET} variables={{ where: { id } }}>
     {({ loading, error, data, subscribeToMore }) => {
       if (loading || error) {

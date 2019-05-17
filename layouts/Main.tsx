@@ -6,7 +6,7 @@ import { Icon } from '../ui';
 import * as LeftMenu from '../ui/LeftMenu';
 import BaseLayout from './Base';
 import useRouter from '../hooks/useRouter';
-import Streams from '../components/Streams';
+import { TopStreams } from '../components/TopStreams';
 
 interface IProps {
   fixedTopContent?: ReactNode;
@@ -77,7 +77,7 @@ const MainLayout: FC<IProps> = ({ children, fixedTopContent, streams }) => {
       }
     >
       <>
-        {streams && <Streams />}
+        {streams && <TopStreams />}
         {children}
       </>
     </BaseLayout>

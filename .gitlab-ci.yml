@@ -9,7 +9,6 @@ variables:
   DOCKER_DRIVER: overlay2
 
 stages:
-  # - test
   - build
   - deploy
 
@@ -24,22 +23,11 @@ before_script:
 build:
   stage: build
   script:
-    - docker pull $CONTAINER_IMAGE:latest || true
-    - docker build --cache-from $CONTAINER_IMAGE:latest --tag $CONTAINER_IMAGE:$CI_BUILD_REF --tag $CONTAINER_IMAGE:latest ./
+    - docker build --tag $CONTAINER_IMAGE:$CI_BUILD_REF --tag $CONTAINER_IMAGE:latest ./
     - docker push $CONTAINER_IMAGE:$CI_BUILD_REF
     - docker push $CONTAINER_IMAGE:latest
   only:
     - master
-
-# test:
-#   image: node:alpine
-#   stage: test
-#   variables:
-#     NODE_ENV: test
-#   before_script:
-#     - yarn
-#   script:
-#     - yarn test
 
 deploy:
   stage: deploy

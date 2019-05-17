@@ -6,12 +6,12 @@ import Layout from '../layouts/Main';
 const PromoterPage = () => (
   <Layout>
     <Settings.Box>
-      <Access>
-        <Settings.Title>Продвижение</Settings.Title>
-        <Settings.Content>
+      <Settings.Title>Продвижение</Settings.Title>
+      <Settings.Content>
+        <Access>
           <ChannelPromotersManage />
-        </Settings.Content>
-      </Access>
+        </Access>
+      </Settings.Content>
     </Settings.Box>
   </Layout>
 );

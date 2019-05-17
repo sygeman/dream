@@ -15,3 +15,4 @@ export * from './SWRow';
 export * from './TwitchClipPlayer';
 export * from './TwitchPlayer';
 export * from './VideoPreview';
+export * from './Rectangle169';

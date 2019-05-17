@@ -7,6 +7,7 @@ import ChannelPromoterProvider from '../../../providers/ChannelPromoter';
 import ChannelPromotersProvider from '../../../providers/ChannelPromoters';
 import { Input } from '../../../ui/Input';
 import ChannelPromoter from './ChannelPromoter';
+import { parseTwitchChannelName } from '../../../utils/parseTwitchChannelName';
 
 const CREATE_CHANNEL = gql`
   mutation createChannelPromoter($channelName: String!) {
@@ -84,7 +85,9 @@ export const ChannelPromotersManage: FC = () => {
                       ref={textInput}
                       placeholder={`Название или ссылка на twitch канал`}
                       onKeyPress={e => {
-                        const channelName = textInput.current.value.trim();
+                        const channelName = parseTwitchChannelName(
+                          textInput.current.value.trim()
+                        );
 
                         if (e.key === 'Enter' && channelName.length > 0) {
                           createChannelPromoter({

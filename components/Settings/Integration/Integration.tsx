@@ -4,8 +4,7 @@ import * as React from 'react';
 import { Mutation } from 'react-apollo';
 import styled from 'styled-components';
 import { connect, disconnect } from '../../../lib/auth';
-import { Button } from '../../../ui/Button';
-import { SWRow } from '../../../ui/SWRow';
+import { Button, SWRow } from '../../../ui';
 
 const SET_PROFILE_VISIBLE = gql`
   mutation setUserProfileVisible($id: ID!, $visible: Boolean!) {

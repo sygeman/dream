@@ -2,7 +2,7 @@ import { lighten } from 'polished';
 import { FC } from 'react';
 import styled from 'styled-components';
 import config from '../config';
-import { Icon } from '../ui/Icon';
+import { Icon } from '../ui';
 
 const AuthBox = styled.div`
   display: flex;

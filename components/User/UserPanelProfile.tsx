@@ -1,8 +1,7 @@
 import { darken, lighten } from 'polished';
 import { FC } from 'react';
 import styled from 'styled-components';
-import { Icon } from '../../ui/Icon';
-// import { shortNumbers } from '../../utils/count';
+import { Icon } from '../../ui';
 
 const Box = styled.div`
   display: flex;

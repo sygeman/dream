@@ -1,8 +1,7 @@
 import { darken, lighten } from 'polished';
 import styled from 'styled-components';
 import config from '../config';
-import { Button } from '../ui/Button';
-import { CoinIconGreen } from '../ui/CoinIcon';
+import { Button, CoinIconGreen } from '../ui';
 import { humanNumbers } from '../utils/count';
 
 const Box = styled.div`

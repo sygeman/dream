@@ -5,7 +5,7 @@ import { Mutation } from 'react-apollo';
 import styled from 'styled-components';
 import ChannelPromoterProvider from '../../../providers/ChannelPromoter';
 import ChannelPromotersProvider from '../../../providers/ChannelPromoters';
-import { Input } from '../../../ui/Input';
+import { Input, Button } from '../../../ui';
 import ChannelPromoter from './ChannelPromoter';
 import { parseTwitchChannelName } from '../../../utils/parseTwitchChannelName';
 
@@ -54,6 +54,10 @@ const AddStreamForm = styled.div`
   align-items: center;
   border-radius: 4px;
   overflow: hidden;
+
+  input {
+    margin-right: 20px;
+  }
 `;
 
 export const ChannelPromotersManage: FC = () => {
@@ -77,29 +81,41 @@ export const ChannelPromotersManage: FC = () => {
               ))}
             </ChannelsBox>
             {channelPromoters.length < 6 && (
-              <AddStreamForm>
-                <Mutation mutation={CREATE_CHANNEL}>
-                  {createChannelPromoter => (
-                    <Input
-                      autoFocus
-                      ref={textInput}
-                      placeholder={`Название или ссылка на twitch канал`}
-                      onKeyPress={e => {
-                        const channelName = parseTwitchChannelName(
-                          textInput.current.value.trim()
-                        );
+              <Mutation mutation={CREATE_CHANNEL}>
+                {createChannelPromoter => {
+                  const addChannel = () => {
+                    const channelName = parseTwitchChannelName(
+                      textInput.current.value.trim()
+                    );
 
-                        if (e.key === 'Enter' && channelName.length > 0) {
-                          createChannelPromoter({
-                            variables: { channelName }
-                          });
-                          textInput.current.value = '';
-                        }
-                      }}
-                    />
-                  )}
-                </Mutation>
-              </AddStreamForm>
+                    if (channelName.length <= 0) {
+                      return;
+                    }
+
+                    createChannelPromoter({
+                      variables: { channelName }
+                    });
+
+                    textInput.current.value = '';
+                  };
+
+                  return (
+                    <AddStreamForm>
+                      <Input
+                        autoFocus
+                        ref={textInput}
+                        placeholder={`Название или ссылка на twitch канал`}
+                        onKeyPress={e => {
+                          if (e.key === 'Enter') {
+                            addChannel();
+                          }
+                        }}
+                      />
+                      <Button onClick={addChannel}>Добавить</Button>
+                    </AddStreamForm>
+                  );
+                }}
+              </Mutation>
             )}
           </>
         )}

@@ -4,10 +4,7 @@ import { FC } from 'react';
 import { Mutation } from 'react-apollo';
 import styled from 'styled-components';
 import ChannelProvider from '../../../providers/Channel';
-import { Button } from '../../../ui/Button';
-import { Input } from '../../../ui/Input';
-import { SWRow } from '../../../ui/SWRow';
-import { Icon } from '../../../ui/Icon';
+import { Button, Input, SWRow, Icon } from '../../../ui';
 
 const SET_CHANNEL_PROMOTER_ACTIVE = gql`
   mutation setChannelPromoterActive($id: ID!, $active: Boolean!) {

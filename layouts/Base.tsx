@@ -10,7 +10,7 @@ import CreatePost from '../components/Post/CreatePost';
 import TopNav from '../components/Nav/Top';
 import PostView from '../components/Post/FeedView';
 import PostProvider from '../providers/Post';
-import { Modal } from '../ui/Modal';
+import { Modal } from '../ui';
 import config from '../config';
 const LEFT_MENU_WIDTH = 260;
 

@@ -1,8 +1,6 @@
 import { FC } from 'react';
 import styled from 'styled-components';
-import { CardMedia } from '../../ui/CardMedia';
-import { TwitchPlayer } from '../../ui/TwitchPlayer';
-import { VideoPreview } from '../../ui/VideoPreview';
+import { CardMedia, TwitchPlayer, VideoPreview } from '../../ui';
 
 interface IProcess {
   browser: boolean;

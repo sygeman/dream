@@ -2,8 +2,7 @@ import gql from 'graphql-tag';
 import { FC } from 'react';
 import { Query } from 'react-apollo';
 import styled from 'styled-components';
-
-import { Grid } from '../../ui/Grid';
+import { Grid } from '../../ui';
 import Stream from './Stream';
 
 const GET_CHANNELS_TOP = gql`

@@ -5,8 +5,7 @@ import * as React from 'react';
 import { Mutation } from 'react-apollo';
 import styled from 'styled-components';
 import { Access } from '../../helpers/Access';
-import { Dropdown } from '../../ui/Dropdown';
-import { Emoji } from '../../ui/Emoji';
+import { Dropdown, Emoji } from '../../ui';
 import { splitTextToEmojiArray } from '../../utils/emoji';
 
 const SET_USER_ROLE_MOD = gql`

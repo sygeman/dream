@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { darken } from 'polished';
 import { PureComponent } from 'react';
 import styled from 'styled-components';
-import { Grid } from '../../ui/Grid';
+import { Grid } from '../../ui';
 import PostGridView from './GridView';
 
 export const GET_POSTS = gql`

@@ -5,11 +5,7 @@ import { Query } from 'react-apollo';
 import styled from 'styled-components';
 import useRouter from '../hooks/useRouter';
 import { darken } from 'polished';
-import { Grid } from '../ui/Grid';
-import { Modal } from '../ui/Modal';
-import { TwitchClipPlayer } from '../ui/TwitchClipPlayer';
-import { VideoPreview } from '../ui/VideoPreview';
-import { CardMedia } from '../ui/CardMedia';
+import { Grid, Modal, TwitchClipPlayer, VideoPreview, CardMedia } from '../ui';
 import { dateDistanceInWordsToNow } from '../utils/date';
 
 const GET_TWITCH_CHANNEL_TOP_CLIPS = gql`

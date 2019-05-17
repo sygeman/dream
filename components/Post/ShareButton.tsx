@@ -7,10 +7,8 @@ import {
   VKIcon,
   VKShareButton
 } from 'react-share';
-
 import styled from 'styled-components';
-import { Dropdown } from '../../ui/Dropdown';
-import { Icon } from '../../ui/Icon';
+import { Dropdown, Icon } from '../../ui';
 
 const ShareButton = styled.div`
   height: 100%;

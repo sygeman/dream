@@ -4,7 +4,7 @@ import Link from 'next/link';
 import * as React from 'react';
 import { Query } from 'react-apollo';
 import styled from 'styled-components';
-import { Avatar } from '../../ui/Avatar';
+import { Avatar } from '../../ui';
 import { dateDistanceInWordsToNow } from '../../utils/date';
 
 const GET_USER = gql`

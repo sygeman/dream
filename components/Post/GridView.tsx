@@ -1,10 +1,8 @@
 import { FC, memo } from 'react';
 import styled from 'styled-components';
-import { VideoPreview } from '../../ui/VideoPreview';
+import { VideoPreview, CardMedia, Icon } from '../../ui';
 import { IPost } from './interfaces/Post';
 import { isEqual } from 'lodash';
-import { CardMedia } from '../../ui/CardMedia';
-import { Icon } from '../../ui/Icon';
 import { dateDistanceInWordsToNow } from '../../utils/date';
 
 const PreviewContent = styled.div`

@@ -41,7 +41,13 @@ interface IProps {
   livePreview: boolean;
 }
 
-const Stream: FC<IProps> = ({ cost, name, title, avatar, livePreview }) => {
+export const Stream: FC<IProps> = ({
+  cost,
+  name,
+  title,
+  avatar,
+  livePreview
+}) => {
   const descriptionLink = `https://www.twitch.tv/${name}`;
   const previewImg = `https://static-cdn.jtvnw.net/previews-ttv/live_user_${name}-${290}x${163}.jpg`;
 
@@ -70,5 +76,3 @@ const Stream: FC<IProps> = ({ cost, name, title, avatar, livePreview }) => {
     />
   );
 };
-
-export default Stream;

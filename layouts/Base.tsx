@@ -13,7 +13,7 @@ import PostProvider from '../providers/Post';
 import { PromoterHelp } from '../components/Help/Promoter';
 import { Modal } from '../ui';
 import config from '../config';
-const LEFT_MENU_WIDTH = 260;
+const LEFT_MENU_WIDTH = 240;
 
 const Box = styled.div`
   display: flex;

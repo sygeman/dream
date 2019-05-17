@@ -26,7 +26,7 @@ const StreamMockBox = styled.div`
 `;
 
 const HelpText = styled.p`
-  font-size: 14px;
+  font-size: 13px;
   padding: 10px 0;
   color: ${({ theme }) => lighten(0.5, theme.dark2Color)};
 `;
@@ -39,8 +39,8 @@ const StreamMockContent = styled.div`
   align-items: center;
   justify-content: center;
   text-align: center;
-  font-size: 14px;
-  padding: 10px;
+  font-size: 13px;
+  padding: 0 16px;
 `;
 
 const StreamMock = ({ children }) => (

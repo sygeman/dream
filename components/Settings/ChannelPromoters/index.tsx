@@ -1,10 +1,8 @@
 import gql from 'graphql-tag';
-import Link from 'next/link';
 import { lighten } from 'polished';
 import { createRef, FC } from 'react';
 import { Mutation } from 'react-apollo';
 import styled from 'styled-components';
-import useRouter from '../../../hooks/useRouter';
 import ChannelPromoterProvider from '../../../providers/ChannelPromoter';
 import ChannelPromotersProvider from '../../../providers/ChannelPromoters';
 import { Input, Button } from '../../../ui';
@@ -12,6 +10,7 @@ import ChannelPromoter from './ChannelPromoter';
 import { TopStreams } from '../../TopStreams';
 import { parseTwitchChannelName } from '../../../utils/parseTwitchChannelName';
 import { Access } from '../../../helpers/Access';
+import { HowTo } from './HowTo';
 
 const CREATE_CHANNEL = gql`
   mutation createChannelPromoter($channelName: String!) {
@@ -30,8 +29,6 @@ const Box = styled.div`
 
 const Left = styled.div`
   flex: 1;
-  /* max-width: 800px;
-  width: 800px; */
   padding: 0 20px;
 `;
 
@@ -78,39 +75,6 @@ const AddStreamForm = styled.div`
   input {
     margin-right: 20px;
   }
-`;
-
-const HowTo = styled.div`
-  background: ${({ theme }) => theme.main1Color};
-  margin-bottom: 10px;
-  border-radius: 4px;
-  height: 60px;
-  display: flex;
-`;
-
-const HowToLeft = styled.div`
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  justify-content: center;
-  padding: 0 20px;
-`;
-
-const HowToRight = styled.div`
-  display: flex;
-  align-items: center;
-  padding: 0 20px;
-`;
-
-const HowToTitle = styled.div`
-  color: ${({ theme }) => lighten(0.5, theme.main1Color)};
-  text-transform: uppercase;
-  font-size: 14px;
-`;
-
-const HowToDescription = styled.div`
-  color: ${({ theme }) => lighten(0.3, theme.main1Color)};
-  font-size: 12px;
 `;
 
 const ChannelPromotersList = ({ channelPromoters }) => {
@@ -182,46 +146,20 @@ const ChannelPromotersList = ({ channelPromoters }) => {
   );
 };
 
-export const ChannelPromotersManage: FC = () => {
-  const router = useRouter();
-
-  return (
-    <Box>
-      <Left>
-        <HowTo>
-          <HowToLeft>
-            <HowToTitle>Как это работает?</HowToTitle>
-            <HowToDescription>
-              Размещение, позиция, списание и другое
-            </HowToDescription>
-          </HowToLeft>
-          <HowToRight>
-            <Link
-              as={`/help/promoter`}
-              href={{
-                pathname: router.route,
-                query: {
-                  ...router.query,
-                  howToPromoter: 1
-                }
-              }}
-              passHref
-            >
-              <Button mainColor={'#956dd6'}>Почитать</Button>
-            </Link>
-          </HowToRight>
-        </HowTo>
-        <Access denyContent={<ChannelPromotersList channelPromoters={[]} />}>
-          <ChannelPromotersProvider>
-            {({ channelPromoters }) => (
-              <ChannelPromotersList channelPromoters={channelPromoters} />
-            )}
-          </ChannelPromotersProvider>
-        </Access>
-      </Left>
-      <Right>
-        <TopStreams position="column" max={3} />
-      </Right>
-    </Box>
-  );
-};
+export const ChannelPromotersManage: FC = () => (
+  <Box>
+    <Left>
+      <HowTo />
+      <Access denyContent={<ChannelPromotersList channelPromoters={[]} />}>
+        <ChannelPromotersProvider>
+          {({ channelPromoters }) => (
+            <ChannelPromotersList channelPromoters={channelPromoters} />
+          )}
+        </ChannelPromotersProvider>
+      </Access>
+    </Left>
+    <Right>
+      <TopStreams position="column" max={3} />
+    </Right>
+  </Box>
+);

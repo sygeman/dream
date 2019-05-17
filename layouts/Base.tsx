@@ -10,6 +10,7 @@ import CreatePost from '../components/Post/CreatePost';
 import TopNav from '../components/Nav/Top';
 import PostView from '../components/Post/FeedView';
 import PostProvider from '../providers/Post';
+import { PromoterHelp } from '../components/Help/Promoter';
 import { Modal } from '../ui';
 import config from '../config';
 const LEFT_MENU_WIDTH = 260;
@@ -151,6 +152,14 @@ class BaseLayout extends PureComponent<IProps, IState> {
           onClose={() => router.back()}
         >
           <CreatePost />
+        </Modal>
+        <Modal
+          minimal
+          title="Как работает продвижение"
+          visible={router.query.howToPromoter === '1'}
+          onClose={() => router.back()}
+        >
+          <PromoterHelp />
         </Modal>
 
         <ContentBox>

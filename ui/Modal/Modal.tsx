@@ -125,6 +125,7 @@ const Close = styled.div`
 const CloseOut = styled.div`
   display: flex;
   position: absolute;
+  top: 10px;
   right: 0;
   background: none;
   border: none;
@@ -206,16 +207,16 @@ export const Modal: FC<IModalProps> = ({
               <Content minimal={minimal}>{children}</Content>
             </ModalB>
             {minimal && (
-              <CloseOut onClick={close}>
-                <Icon type="close" />
-              </CloseOut>
-            )}
-            {minimal && (
               <BoxNav onClick={() => (onRightClick ? onRightClick() : close())}>
                 {onRightClick && <Icon type="chevron-right" />}
               </BoxNav>
             )}
           </Box>
+          {minimal && (
+              <CloseOut onClick={close}>
+                <Icon type="close" />
+              </CloseOut>
+            )}
         </BoxW>
       </BG>
     </Portal>

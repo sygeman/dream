@@ -1,16 +1,16 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: twitchru-client
+  name: pepega-client
 spec:
   template:
     metadata:
       labels:
-        app: twitchru-client
+        app: pepega-client
     spec:
       containers:
-        - name: twitchru-client
-          image: registry.gitlab.com/twitchru/twitchru-client:latest
+        - name: pepega-client
+          image: registry.gitlab.com/twitchru/pepega-client:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 5000

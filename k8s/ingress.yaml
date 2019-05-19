@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: twitchru-client-ingress
+  name: pepega-client-ingress
   annotations:
     kubernetes.io/ingress.allow-http: 'false'
 spec:
@@ -14,5 +14,5 @@ spec:
       http:
         paths:
           - backend:
-              serviceName: twitchru-client
+              serviceName: pepega-client
               servicePort: 80

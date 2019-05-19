@@ -38,6 +38,6 @@ deploy:
     - kubectl rollout status "deployment/$APP_NAME"
   environment:
     name: production
-    url: $PROD_URL
+    url: $KUBE_URL
   only:
     - master

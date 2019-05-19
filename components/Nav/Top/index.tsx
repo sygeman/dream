@@ -197,6 +197,9 @@ const TopNav: FC<IProps> = ({ leftMenuTrigger }) => {
         </Link>
         <LeftMenu>
           <Links>
+            <Link href="/" passHref>
+              <TopLink>Клипы</TopLink>
+            </Link>
             <Link href="/promoter" passHref>
               <TopLink>Продвижение</TopLink>
             </Link>

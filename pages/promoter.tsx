@@ -1,5 +1,5 @@
 import { ChannelPromotersManage } from '../components/Settings/ChannelPromoters';
-import Layout from '../layouts/Main';
+import Layout from '../layouts/NoLeftMenu';
 
 const PromoterPage = () => (
   <Layout>

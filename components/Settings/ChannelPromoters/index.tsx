@@ -34,6 +34,7 @@ const Left = styled.div`
 
 const Right = styled.div`
   width: 320px;
+  margin-right: 10px;
 
   @media (max-width: 1000px) {
     display: none;

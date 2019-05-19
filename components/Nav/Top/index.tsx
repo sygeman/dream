@@ -1,21 +1,21 @@
 import Link from 'next/link';
-import { withRouter } from 'next/router';
 import { darken, lighten } from 'polished';
-import { Component } from 'react';
+import { FC } from 'react';
 import styled from 'styled-components';
 import UserProvider from '../../../providers/User';
 import WalletProvider from '../../../providers/Wallet';
 import { Avatar, Icon, CoinIconGold, CoinIconGreen } from '../../../ui';
 import { humanNumbers } from '../../../utils/count';
 import Menu from './Menu';
+import useRouter from '../../../hooks/useRouter';
 import { Access } from '../../../helpers/Access';
 import config from '../../../config';
 
 const Box = styled.div`
   height: 46px;
   display: flex;
-  z-index: 100;
   padding: 0 10px;
+  z-index: 100;
   background: ${({ theme }) => darken(0.1, theme.main1Color)};
 `;
 
@@ -33,11 +33,11 @@ const LeftMenu = styled.div`
 `;
 
 const Links = styled.div`
-  padding: 0 5px;
   display: flex;
   align-items: center;
   flex: 1;
   height: 100%;
+  padding: 0 5px;
 `;
 
 const Right = styled.div`
@@ -49,9 +49,10 @@ const Right = styled.div`
 
 const MenuButton = styled.div`
   height: 100%;
+  width: 70px;
   display: flex;
   align-items: center;
-  padding: 0 20px;
+  justify-content: center;
   font-size: 20px;
   color: ${({ theme }) => lighten(0.3, theme.main1Color)};
   cursor: pointer;
@@ -177,143 +178,138 @@ const UserCaratBox = styled.div`
 `;
 
 interface IProps {
-  router: any;
   leftMenuTrigger: () => void;
 }
 
-class TopNav extends Component<IProps> {
-  constructor(props) {
-    super(props);
-  }
+const TopNav: FC<IProps> = ({ leftMenuTrigger }) => {
+  const router = useRouter();
 
-  public render() {
-    return (
-      <Box>
-        <Left>
-          <MenuButton onClick={() => this.props.leftMenuTrigger()}>
-            <Icon type="menu" />
-          </MenuButton>
-          <Link href="/" passHref>
-            <LogoLink>
-              <LogoImg src={`${config.cdnUrl}logo.svg`} />
-            </LogoLink>
-          </Link>
-          <LeftMenu>
-            <Links>
-              <Link href="/" passHref>
-                <TopLink>Клипы</TopLink>
-              </Link>
-              <TopLink href={config.discordInvite} target="_blank">
-                Discord
-              </TopLink>
-            </Links>
-          </LeftMenu>
-        </Left>
-        <Right>
-          <UserBox>
-            <Access
-              denyContent={
-                <Links>
-                  <Link
-                    as={`/auth?continue=/newPost`}
-                    href={{
-                      pathname: this.props.router.route,
-                      query: {
-                        ...this.props.router.query,
-                        authModal: 1
-                      }
-                    }}
-                    passHref
-                  >
-                    <TopLink>Закинуть клип</TopLink>
-                  </Link>
-                  <Link
-                    as={`/auth?continue=${this.props.router.asPath}`}
-                    href={{
-                      pathname: this.props.router.route,
-                      query: {
-                        ...this.props.router.query,
-                        authModal: 1
-                      }
-                    }}
-                    passHref
-                  >
-                    <TopLink>Войти</TopLink>
-                  </Link>
-                </Links>
-              }
-            >
-              <>
-                <Links>
-                  <Link
-                    as={`/newPost`}
-                    href={{
-                      pathname: this.props.router.route,
-                      query: {
-                        ...this.props.router.query,
-                        newPost: 1
-                      }
-                    }}
-                    passHref
-                  >
-                    <TopLink>Закинуть клип</TopLink>
-                  </Link>
-                </Links>
-                <PointsBox>
-                  <Points>
-                    <CoinIconGold />
-                    <PointsCount>
-                      <WalletProvider where={{ currency: 'coin' }}>
-                        {({ data }) => humanNumbers(data ? data.balance : 0)}
-                      </WalletProvider>
-                    </PointsCount>
-                  </Points>
-                  <Points>
-                    <CoinIconGreen />
-                    <PointsCount>
-                      <WalletProvider where={{ currency: 'real' }}>
-                        {({ data }) => humanNumbers(data ? data.balance : 0)}
-                      </WalletProvider>
-                      <Link
-                        as={`/buycoins`}
-                        href={{
-                          pathname: this.props.router.route,
-                          query: {
-                            ...this.props.router.query,
-                            buyCoinsModal: 1
-                          }
-                        }}
-                        passHref
-                      >
-                        <BuyCoinsLink>
-                          <Icon type="plus-circle" />
-                        </BuyCoinsLink>
-                      </Link>
-                    </PointsCount>
-                  </Points>
-                </PointsBox>
-                <UserProvider>
-                  {({ user }) => (
-                    <Menu user={user}>
-                      <UserDataBox>
-                        <UserNameBox>{user.name}</UserNameBox>
-                        <AvatarBox>
-                          <Avatar avatar={user.avatar} />
-                        </AvatarBox>
-                        <UserCaratBox>
-                          <Icon type="caret-down" />
-                        </UserCaratBox>
-                      </UserDataBox>
-                    </Menu>
-                  )}
-                </UserProvider>
-              </>
-            </Access>
-          </UserBox>
-        </Right>
-      </Box>
-    );
-  }
+  return (
+    <Box>
+      <Left>
+        <MenuButton onClick={() => leftMenuTrigger()}>
+          <Icon type="menu" />
+        </MenuButton>
+        <Link href="/" passHref>
+          <LogoLink>
+            <LogoImg src={`${config.cdnUrl}logo.svg`} />
+          </LogoLink>
+        </Link>
+        <LeftMenu>
+          <Links>
+            <Link href="/promoter" passHref>
+              <TopLink>Продвижение</TopLink>
+            </Link>
+            <TopLink href={config.discordInvite} target="_blank">
+              Discord
+            </TopLink>
+          </Links>
+        </LeftMenu>
+      </Left>
+      <Right>
+        <UserBox>
+          <Access
+            denyContent={
+              <Links>
+                <Link
+                  as={`/auth?continue=/newPost`}
+                  href={{
+                    pathname: router.route,
+                    query: {
+                      ...router.query,
+                      authModal: 1
+                    }
+                  }}
+                  passHref
+                >
+                  <TopLink>Закинуть клип</TopLink>
+                </Link>
+                <Link
+                  as={`/auth?continue=${router.asPath}`}
+                  href={{
+                    pathname: router.route,
+                    query: {
+                      ...router.query,
+                      authModal: 1
+                    }
+                  }}
+                  passHref
+                >
+                  <TopLink>Войти</TopLink>
+                </Link>
+              </Links>
+            }
+          >
+            <>
+              <Links>
+                <Link
+                  as={`/newPost`}
+                  href={{
+                    pathname: router.route,
+                    query: {
+                      ...router.query,
+                      newPost: 1
+                    }
+                  }}
+                  passHref
+                >
+                  <TopLink>Закинуть клип</TopLink>
+                </Link>
+              </Links>
+              <PointsBox>
+                <Points>
+                  <CoinIconGold />
+                  <PointsCount>
+                    <WalletProvider where={{ currency: 'coin' }}>
+                      {({ data }) => humanNumbers(data ? data.balance : 0)}
+                    </WalletProvider>
+                  </PointsCount>
+                </Points>
+                <Points>
+                  <CoinIconGreen />
+                  <PointsCount>
+                    <WalletProvider where={{ currency: 'real' }}>
+                      {({ data }) => humanNumbers(data ? data.balance : 0)}
+                    </WalletProvider>
+                    <Link
+                      as={`/buycoins`}
+                      href={{
+                        pathname: router.route,
+                        query: {
+                          ...router.query,
+                          buyCoinsModal: 1
+                        }
+                      }}
+                      passHref
+                    >
+                      <BuyCoinsLink>
+                        <Icon type="plus-circle" />
+                      </BuyCoinsLink>
+                    </Link>
+                  </PointsCount>
+                </Points>
+              </PointsBox>
+              <UserProvider>
+                {({ user }) => (
+                  <Menu user={user}>
+                    <UserDataBox>
+                      <UserNameBox>{user.name}</UserNameBox>
+                      <AvatarBox>
+                        <Avatar avatar={user.avatar} />
+                      </AvatarBox>
+                      <UserCaratBox>
+                        <Icon type="caret-down" />
+                      </UserCaratBox>
+                    </UserDataBox>
+                  </Menu>
+                )}
+              </UserProvider>
+            </>
+          </Access>
+        </UserBox>
+      </Right>
+    </Box>
+  );
 }
 
-export default withRouter(TopNav);
+export default TopNav;

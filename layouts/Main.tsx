@@ -23,17 +23,7 @@ const MainLayout: FC<IProps> = ({ children, fixedTopContent, streams }) => {
         <LeftMenu.Box>
           <LeftMenu.Item route="/" equal icon="home" title="Главная" />
           <LeftMenu.Item equal route="/new" icon="flare" title="Новое" />
-          <LeftMenu.Item route="/top" icon="trending-up" title="Топ">
-            <LeftMenu.SubItem route="/top/day">День</LeftMenu.SubItem>
-            <LeftMenu.SubItem route="/top/week">Неделя</LeftMenu.SubItem>
-            <LeftMenu.SubItem route="/top/month">Месяц</LeftMenu.SubItem>
-            <LeftMenu.SubItem route="/top/all">Все время</LeftMenu.SubItem>
-          </LeftMenu.Item>
-          <LeftMenu.Item
-            route={`/promoter`}
-            icon="n-1-square"
-            title="Продвижение"
-          />
+          <LeftMenu.Item route="/top" icon="trending-up" title="Топ"></LeftMenu.Item>
           <LeftMenu.Item route="/categories" icon="apps" title="Категории">
             <CategoriesProvider>
               {({ categories }) =>

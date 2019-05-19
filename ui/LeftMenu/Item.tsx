@@ -29,7 +29,7 @@ const Item = styled.a<{ active: boolean }>`
 
   i {
     height: 100%;
-    width: 60px;
+    width: 56px;
     display: flex;
     justify-content: center;
     align-items: center;

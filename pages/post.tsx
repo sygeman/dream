@@ -7,39 +7,24 @@ import { TopStreams } from '../components/TopStreams';
 
 const Box = styled.div`
   margin: 0 auto;
-  margin-top: 40px;
+  margin-top: 20px;
   display: flex;
   max-width: 1200px;
 `;
 
 const Left = styled.div`
   flex: 1;
-  /* max-width: 800px;
-  width: 800px; */
   padding: 0 20px;
 `;
 
 const Right = styled.div`
   width: 320px;
+  margin-right: 10px;
 
   @media (max-width: 1000px) {
     display: none;
   }
 `;
-
-// const Box = styled.div`
-//   display: flex;
-//   justify-content: center;
-//   margin: 0 auto;
-//   padding: 20px 0;
-// `;
-
-// const PostBox = styled.div`
-//   margin: 0 20px;
-//   width: 800px;
-//   border-radius: 5px;
-//   overflow: hidden;
-// `;
 
 const PostPage = () => {
   const router = useRouter();

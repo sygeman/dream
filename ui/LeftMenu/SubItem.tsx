@@ -10,7 +10,7 @@ const SubItem = styled('a')<{
   margin-right: 14px;
   border-radius: 0 16px 16px 0;
   border-left: 4px solid transparent;
-  padding: 0 20px 0 60px;
+  padding: 0 20px 0 56px;
   height: 30px;
   display: flex;
   align-items: center;

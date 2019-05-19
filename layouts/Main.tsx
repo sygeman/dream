@@ -23,7 +23,7 @@ const MainLayout: FC<IProps> = ({ children, fixedTopContent, streams }) => {
         <LeftMenu.Box>
           <LeftMenu.Item route="/" equal icon="home" title="Главная" />
           <LeftMenu.Item equal route="/new" icon="flare" title="Новое" />
-          <LeftMenu.Item route="/top" icon="trending-up" title="Топ"></LeftMenu.Item>
+          <LeftMenu.Item route="/top" icon="trending-up" title="Топ" />
           <LeftMenu.Item route="/categories" icon="apps" title="Категории">
             <CategoriesProvider>
               {({ categories }) =>

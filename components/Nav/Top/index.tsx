@@ -298,7 +298,7 @@ const TopNav: FC<IProps> = ({ leftMenuTrigger }) => {
                     <UserDataBox>
                       <UserNameBox>{user.name}</UserNameBox>
                       <AvatarBox>
-                        <Avatar avatar={user.avatar} />
+                        <Avatar dot avatar={user.avatar} />
                       </AvatarBox>
                       <UserCaratBox>
                         <Icon type="caret-down" />
@@ -313,6 +313,6 @@ const TopNav: FC<IProps> = ({ leftMenuTrigger }) => {
       </Right>
     </Box>
   );
-}
+};
 
 export default TopNav;

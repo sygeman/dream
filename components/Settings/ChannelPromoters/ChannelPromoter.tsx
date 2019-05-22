@@ -4,11 +4,17 @@ import { FC } from 'react';
 import { Mutation } from 'react-apollo';
 import styled from 'styled-components';
 import ChannelProvider from '../../../providers/Channel';
-import { Button, Input, SWRow, Icon } from '../../../ui';
+import { Button, SWRow, Icon, Avatar } from '../../../ui';
 
 const SET_CHANNEL_PROMOTER_ACTIVE = gql`
   mutation setChannelPromoterActive($id: ID!, $active: Boolean!) {
     setChannelPromoterActive(id: $id, active: $active)
+  }
+`;
+
+const SET_CHANNEL_PROMOTER_COST = gql`
+  mutation setChannelPromoterCost($id: ID!, $cost: Int!) {
+    setChannelPromoterCost(id: $id, cost: $cost)
   }
 `;
 
@@ -52,27 +58,6 @@ const ChannelAvatar = styled.div`
   position: relative;
 `;
 
-const LiveDot = styled.div`
-  position: absolute;
-  right: -2px;
-  bottom: -2px;
-  height: 10px;
-  width: 10px;
-  border-radius: 4px;
-  border: 2px solid ${({ theme }) => lighten(0.1, theme.dark2Color)};
-  background: #d54141;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const ChannelAvatarImg = styled.img`
-  height: 100%;
-  width: 100%;
-  border-radius: 4px;
-  overflow: hidden;
-`;
-
 const ChannelName = styled.a``;
 
 const ChannelCost = styled.div`
@@ -87,14 +72,34 @@ const CostBox = styled.div`
   color: ${({ theme }) => lighten(0.5, theme.dark2Color)};
 `;
 
-const CostInputBox = styled.div`
-  width: 50px;
+const CostNumberBox = styled.div`
+  display: flex;
+  align-items: center;
+  background: ${({ theme }) => lighten(0.1, theme.dark1Color)};
+  border-radius: 10px;
+`;
 
-  input {
-    text-align: center;
-    padding: 8px;
-    font-size: 12px;
+const CostChangeButton = styled.div`
+  width: 30px;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+
+  i {
+    font-size: 14px;
   }
+`;
+
+const CostDown = styled(CostChangeButton)``;
+
+const CostUp = styled(CostChangeButton)``;
+
+const CostCurrent = styled.div`
+  width: 50px;
+  text-align: center;
+  padding: 8px;
+  background: ${({ theme }) => theme.dark1Color};
+  border-radius: 10px;
 `;
 
 const ChannelPromoterBox = styled('div')``;
@@ -131,8 +136,11 @@ export const ChannelPromoter: FC<IProps> = ({ channelPromoter }) => (
         <ChannelPromoterHeader>
           <ChannelHeaderInfo>
             <ChannelAvatar>
-              <ChannelAvatarImg src={channel.avatar} />
-              {channel.cost > 0 && channel.live && <LiveDot />}
+              <Avatar
+                avatar={channel.avatar}
+                dot={channel.cost > 0 && channel.live}
+                dotColor="#d54141"
+              />
             </ChannelAvatar>
             <ChannelName
               target="_blank"
@@ -166,12 +174,44 @@ export const ChannelPromoter: FC<IProps> = ({ channelPromoter }) => (
                 activeColor={lighten(0.05, '#4d517f')}
                 active={channelPromoter.active}
                 title={
-                  <CostBox>
-                    <CostInputBox>
-                      <Input defaultValue="1" maxLength={100} disabled />
-                    </CostInputBox>
-                    <PointsIconReal />в минуту
-                  </CostBox>
+                  <Mutation mutation={SET_CHANNEL_PROMOTER_COST}>
+                    {setChannelPromoterCost => (
+                      <CostBox>
+                        <CostNumberBox>
+                          <CostDown
+                            onClick={() =>
+                              setChannelPromoterCost({
+                                variables: {
+                                  id: channelPromoter.id,
+                                  cost: channelPromoter.cost - 1
+                                }
+                              })
+                            }
+                          >
+                            {channelPromoter.cost > 1 && (
+                              <Icon type="minus-circle" />
+                            )}
+                          </CostDown>
+                          <CostCurrent>{channelPromoter.cost}</CostCurrent>
+                          <CostUp
+                            onClick={() =>
+                              setChannelPromoterCost({
+                                variables: {
+                                  id: channelPromoter.id,
+                                  cost: channelPromoter.cost + 1
+                                }
+                              })
+                            }
+                          >
+                            {channelPromoter.cost < 50 && (
+                              <Icon type="plus-circle" />
+                            )}
+                          </CostUp>
+                        </CostNumberBox>
+                        <PointsIconReal />в минуту
+                      </CostBox>
+                    )}
+                  </Mutation>
                 }
                 onChange={() =>
                   setChannelPromoterActive({

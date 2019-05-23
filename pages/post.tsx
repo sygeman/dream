@@ -1,6 +1,6 @@
 import PostFeedView from '../components/Post/FeedView';
 import useRouter from '../hooks/useRouter';
-import Layout from '../layouts/NoLeftMenu';
+import Layout from '../layouts/Main';
 import PostProvider from '../providers/Post';
 import styled from 'styled-components';
 import { TopStreams } from '../components/TopStreams';

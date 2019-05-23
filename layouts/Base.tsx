@@ -30,7 +30,7 @@ const Content = styled.div`
 `;
 
 const Left = styled.div<{ isOpen: boolean }>`
-  border-right: 1px solid ${({ theme }) => lighten(0.03, theme.dark1Color)};
+  background: ${({ theme }) => lighten(0.03, theme.dark1Color)};
   width: ${LEFT_MENU_WIDTH}px;
   position: absolute;
   left: 0;
@@ -52,7 +52,7 @@ const PostsBox = styled.div<{ noLeftMenu?: boolean }>`
   transition: 0.3s;
 
   @media (min-width: 700px) {
-    padding-left: ${({ noLeftMenu }) => noLeftMenu ? 0 : LEFT_MENU_WIDTH}px;
+    padding-left: ${({ noLeftMenu }) => (noLeftMenu ? 0 : LEFT_MENU_WIDTH)}px;
   }
 `;
 
@@ -170,11 +170,13 @@ class BaseLayout extends PureComponent<IProps, IState> {
           />
           <Content>
             <ContentInsideBox>
-              {leftMenu && <Left isOpen={this.state.leftMenuIsOpen}>
-                <Scrollbars autoHide universal>
-                  {leftMenu}
-                </Scrollbars>
-              </Left>}
+              {leftMenu && (
+                <Left isOpen={this.state.leftMenuIsOpen}>
+                  <Scrollbars autoHide universal>
+                    {leftMenu}
+                  </Scrollbars>
+                </Left>
+              )}
               <PostsBox id="layoutContent" noLeftMenu={!leftMenu}>
                 {fixedTopContent}
                 <Scrollbars

@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import Auth from '../components/Auth';
 import { BuyCoins } from '../components/BuyCoins';
 import CreatePost from '../components/Post/CreatePost';
+import { CreateCommunity } from '../components/Community/Create';
 import TopNav from '../components/Nav/Top';
 import PostView from '../components/Post/FeedView';
 import PostProvider from '../providers/Post';
@@ -152,6 +153,13 @@ class BaseLayout extends PureComponent<IProps, IState> {
           onClose={() => router.back()}
         >
           <CreatePost />
+        </Modal>
+        <Modal
+          title="Новое сообщество"
+          visible={router.query.newCommunity === '1'}
+          onClose={() => router.back()}
+        >
+          <CreateCommunity />
         </Modal>
         <Modal
           minimal

@@ -72,7 +72,6 @@ const Title = styled.div`
   text-overflow: ellipsis;
   width: 100%;
   text-align: left;
-  cursor: pointer;
   color: ${({ theme }) => theme.text1Color};
 `;
 

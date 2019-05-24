@@ -73,6 +73,7 @@ const LogoLink = styled.a`
   display: flex;
   align-items: center;
   height: 100%;
+  min-width: 48px;
 `;
 
 const LogoImg = styled.img`
@@ -199,6 +200,9 @@ const TopNav: FC<IProps> = ({ leftMenuTrigger }) => {
           <Links>
             <Link href="/" passHref>
               <TopLink>Клипы</TopLink>
+            </Link>
+            <Link href="/communities" passHref>
+              <TopLink>Сообщества</TopLink>
             </Link>
             <Link href="/promoter" passHref>
               <TopLink>Продвижение</TopLink>

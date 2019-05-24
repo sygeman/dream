@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { lighten } from 'polished';
 import ChatMessagesProvider from '../../providers/ChatMessages';
 import { Chat } from '../Chat';
+import { Rectangle169 } from '../../ui';
 
 const Box = styled.div`
   display: flex;
@@ -11,6 +12,13 @@ const Box = styled.div`
 const ContentBox = styled.div`
   display: flex;
   flex: 1;
+  padding: 20px;
+`;
+
+const PlayerBox = styled.div`
+  background: ${({ theme }) => lighten(0.03, theme.dark1Color)};
+  height: 100%;
+  width: 100%;
 `;
 
 const ChatBox = styled.div`
@@ -18,10 +26,24 @@ const ChatBox = styled.div`
   background: ${({ theme }) => lighten(0.03, theme.dark1Color)};
 `;
 
-export const Community = ({ name, mainChatId }) => {
+const PlayerIframe = styled.iframe`
+  height: 100%;
+  width: 100%;
+  border: none;
+`;
+
+export const Community = ({ mainChatId }) => {
   return (
     <Box>
-      <ContentBox>{name}</ContentBox>
+      <ContentBox>
+        <div style={{ width: '100%' }}>
+          <Rectangle169>
+            <PlayerBox>
+              <PlayerIframe src="https://www.youtube.com/embed/Z4OhbzSFpnk?autoplay=1&loop=1&playlist=Z4OhbzSFpnk" />
+            </PlayerBox>
+          </Rectangle169>
+        </div>
+      </ContentBox>
       <ChatBox>
         <ChatMessagesProvider chatId={mainChatId}>
           {({ chatMessages }) => (

@@ -1,17 +1,12 @@
 import Link from 'next/link';
+import { darken } from 'polished';
 import styled from 'styled-components';
 import useRouter from '../../hooks/useRouter';
 import { Button, Grid, CardMedia } from '../../ui';
+import { Access } from '../../helpers/Access';
 
 const Box = styled.div`
   padding: 10px 20px;
-`;
-
-const Header = styled.div`
-  min-height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
 `;
 
 const PreviewContent = styled.div`
@@ -28,9 +23,41 @@ const CommunityAvatar = styled.div`
   height: 100%;
 `;
 
+const SectionBox = styled.div`
+  padding: 40px 5px 10px;
+  display: flex;
+`;
+
+const SectionLeft = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+`;
+
+const SectionRight = styled.div``;
+
+const SectionTitle = styled.div`
+  display: flex;
+  width: 100%;
+  font-size: 16px;
+
+  a {
+    cursor: pointer;
+  }
+`;
+
+const SectionDescription = styled.div`
+  display: flex;
+  width: 100%;
+  font-size: 12px;
+  color: ${({ theme }) => darken(0.4, theme.text1Color)};
+`;
+
 const CommunitiesBox = styled.div``;
 
-const CommunityBox = styled.div``;
+const CommunityBox = styled.div`
+  margin: 6px;
+`;
 
 export const Communities = ({ communities }) => {
   const router = useRouter();
@@ -40,21 +67,35 @@ export const Communities = ({ communities }) => {
       <CommunitiesBox>
         <Grid
           beforeRender={
-            <Header>
-              <Link
-                as={`/newCommunity`}
-                href={{
-                  pathname: router.route,
-                  query: {
-                    ...router.query,
-                    newCommunity: 1
-                  }
-                }}
-                passHref
-              >
-                <Button>Создать сообщество</Button>
-              </Link>
-            </Header>
+            <SectionBox>
+              <SectionLeft>
+                <SectionTitle>Сообщества</SectionTitle>
+                <SectionDescription>Продам гараж</SectionDescription>
+              </SectionLeft>
+              <SectionRight>
+                <Access
+                  allow={currentUser => {
+                    return (
+                      currentUser.role === 'mod' || currentUser.role === 'admin'
+                    );
+                  }}
+                >
+                  <Link
+                    as={`/newCommunity`}
+                    href={{
+                      pathname: router.route,
+                      query: {
+                        ...router.query,
+                        newCommunity: 1
+                      }
+                    }}
+                    passHref
+                  >
+                    <Button>Создать сообщество</Button>
+                  </Link>
+                </Access>
+              </SectionRight>
+            </SectionBox>
           }
           items={communities}
           elementWidth={300}
@@ -78,7 +119,7 @@ export const Communities = ({ communities }) => {
                 }
                 title={community.name}
                 description={community.description}
-                count={228}
+                count={0}
                 countIcon={'accounts'}
               />
             </CommunityBox>

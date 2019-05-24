@@ -4,7 +4,7 @@ import CommunitiesProvider from '../providers/Communities';
 
 const CommunitiesPage = () => {
   return (
-    <Layout>
+    <Layout streams>
       <CommunitiesProvider>
         {({ communities }) => <Communities communities={communities} />}
       </CommunitiesProvider>

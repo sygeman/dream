@@ -18,7 +18,7 @@ const ChatBox = styled.div`
   background: ${({ theme }) => lighten(0.03, theme.dark1Color)};
 `;
 
-export const Community = ({ id, name, mainChatId, avatar }) => {
+export const Community = ({ name, mainChatId }) => {
   return (
     <Box>
       <ContentBox>{name}</ContentBox>

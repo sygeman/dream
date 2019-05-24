@@ -1,33 +1,9 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import { lighten } from 'polished';
-import { ChatMessage } from './Message';
 import { ChatMessages } from './Messages';
 import { ChatMessagesBottom } from './Bottom';
 import { Icon } from '../../ui';
-
-const compactMessages = messages => {
-  const compactInterval = 90e3; // 1,5 min
-
-  return messages.map((message, index, array) => {
-    let compact = false;
-
-    if (index > 0) {
-      const diff =
-        parseInt(message.createdAt, 10) -
-        parseInt(array[index - 1].createdAt, 10);
-
-      if (
-        diff < compactInterval &&
-        message.authorId === array[index - 1].authorId
-      ) {
-        compact = true;
-      }
-    }
-
-    return { ...message, compact };
-  });
-};
 
 const Box = styled.div`
   display: flex;
@@ -67,16 +43,16 @@ const TabBox = styled.div`
   font-size: 14px;
 `;
 
-const ConnectionsCount = styled.div`
-  display: flex;
-  align-content: center;
-  font-size: 12px;
-  margin-left: 8px;
-  height: 100%;
-  min-width: 30px;
-  font-weight: 500;
-  justify-content: center;
-`;
+// const ConnectionsCount = styled.div`
+//   display: flex;
+//   align-content: center;
+//   font-size: 12px;
+//   margin-left: 8px;
+//   height: 100%;
+//   min-width: 30px;
+//   font-weight: 500;
+//   justify-content: center;
+// `;
 
 const TabsContent = styled.div`
   height: 100%;
@@ -89,7 +65,7 @@ const TabContent = styled.div`
   overflow: hidden;
 `;
 
-const MessageContainer = styled.div``;
+// const MessageContainer = styled.div``;
 
 export const Chat = ({ id, messages }) => {
   const [tabActive, setActiveTab] = useState('messages');

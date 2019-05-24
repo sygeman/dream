@@ -7,6 +7,7 @@ const GET = gql`
     community(id: $id) {
       id
       name
+      description
       avatar
       mainChatId
     }
@@ -19,6 +20,7 @@ const UPDATED = gql`
       id
       name
       avatar
+      description
       mainChatId
     }
   }

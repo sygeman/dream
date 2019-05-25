@@ -160,7 +160,7 @@ export const ChannelPromotersManage: FC = () => (
       </Access>
     </Left>
     <Right>
-      <TopStreams position="column" max={3} />
+      <TopStreams position="column" max={3} noAddStream />
     </Right>
   </Box>
 );

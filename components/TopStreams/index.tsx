@@ -67,6 +67,7 @@ interface IProps {
   live?: number;
   position?: StreamsPosition;
   interval?: number;
+  noAddStream?: boolean;
 }
 
 const StreamAdd = () => (
@@ -78,7 +79,13 @@ const StreamAdd = () => (
   </Link>
 );
 
-export const TopStreams: FC<IProps> = ({ max, live, position, interval }) => (
+export const TopStreams: FC<IProps> = ({
+  max,
+  live,
+  position,
+  interval,
+  noAddStream
+}) => (
   <Query query={GET_CHANNELS_TOP} pollInterval={interval}>
     {({ data }) => {
       let channels = ((data && data.channelsTop) || []).slice(0, max);
@@ -86,7 +93,7 @@ export const TopStreams: FC<IProps> = ({ max, live, position, interval }) => (
 
       console.log(channelsCount);
 
-      if (channelsCount < max) {
+      if (!noAddStream && channelsCount < max) {
         channels = [...channels, null];
       }
 

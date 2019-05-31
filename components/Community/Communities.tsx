@@ -98,7 +98,7 @@ export const Communities = ({ communities }) => {
             </SectionBox>
           }
           items={communities}
-          elementWidth={300}
+          elementWidth={320}
           itemRender={community => (
             <CommunityBox key={community.id}>
               <CardMedia

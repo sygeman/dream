@@ -101,7 +101,7 @@ export const TopStreams: FC<IProps> = ({
         return (
           <StreamsLineBox>
             <Grid
-              elementWidth={300}
+              elementWidth={320}
               maxRows={1}
               items={channels}
               itemRender={(channel, index) => {

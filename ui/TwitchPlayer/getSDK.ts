@@ -28,8 +28,10 @@ export function getSDK(
     };
     if (sdkReady) {
       const previousOnReady = window[sdkReady];
+      //@ts-ignore
       window[sdkReady] = () => {
         if (previousOnReady) {
+          //@ts-ignore
           previousOnReady();
         }
         onLoaded(window[sdkGlobal]);

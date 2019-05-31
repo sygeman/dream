@@ -159,7 +159,7 @@ class PostsView extends PureComponent<IProps, IState> {
         }
         maxRows={rows}
         items={posts}
-        elementWidth={300}
+        elementWidth={320}
         itemRender={post => (
           <PostContainer key={post.id}>
             <PostGridView post={post} onPlay={() => onPlay(post.id)} />

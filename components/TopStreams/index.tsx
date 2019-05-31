@@ -91,8 +91,6 @@ export const TopStreams: FC<IProps> = ({
       let channels = ((data && data.channelsTop) || []).slice(0, max);
       const channelsCount = channels.length;
 
-      console.log(channelsCount);
-
       if (!noAddStream && channelsCount < max) {
         channels = [...channels, null];
       }
@@ -101,7 +99,7 @@ export const TopStreams: FC<IProps> = ({
         return (
           <StreamsLineBox>
             <Grid
-              elementWidth={300}
+              elementWidth={320}
               maxRows={1}
               items={channels}
               itemRender={(channel, index) => {

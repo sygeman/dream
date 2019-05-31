@@ -189,7 +189,7 @@ const TwitchFollows: FC<IProps> = ({ limit }) => {
                     />
                   </ClipContainer>
                 )}
-                elementWidth={300}
+                elementWidth={320}
                 afterRedner={
                   <>
                     {!loading && data.twitchTopClips.length === 0 && (

@@ -1,6 +1,6 @@
 {
   "name": "pepega-client",
-  "version": "8.1.4",
+  "version": "8.1.5",
   "main": "index.js",
   "repository": "https://github.com/BanditDev/pepega-client.git",
   "author": "Sygeman <sygeman@gmail.com>",
@@ -34,7 +34,7 @@
     "nodemon": "1.19.1",
     "nprogress": "0.2.0",
     "polished": "3.4.0",
-    "query-string": "6.6.0",
+    "query-string": "6.7.0",
     "rc-dropdown": "2.4.1",
     "rc-slider": "8.6.12",
     "react": "16.8.6",

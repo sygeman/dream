@@ -13,11 +13,11 @@ const Box = styled.div`
 
 const Container = styled.div`
   padding: 10px;
+  border-radius: 4px;
   background: ${({ theme }) =>
     theme.dark2Color && lighten(0.01, theme.dark2Color)};
   display: flex;
   flex-direction: column;
-  width: 640px;
 `;
 
 const AuthPage: FC = () => (

@@ -49,11 +49,10 @@ const ContentBox = styled.div`
   background: ${({ theme }) => darken(0.1, theme.dark2Color)};
 `;
 
-const EmptyBottom = styled.div<{ active: boolean }>`
+const EmptyBottom = styled.div`
   height: 100%;
   display: flex;
   flex: 1;
-  ${({ active }) => active && `cursor: pointer;`}
 `;
 
 const ChannelLink = styled.a`
@@ -197,7 +196,7 @@ const PostFeedView: FC<IProps> = ({
 
         <PostHelper.ShareButton id={id} />
         <PostHelper.Menu id={id} authorId={authorId} />
-        <EmptyBottom active={!meta} />
+        <EmptyBottom />
         <PostHelper.Author createdAt={createdAt} authorId={authorId} />
       </PostHelper.Bottom>
       <CommentsBox>

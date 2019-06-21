@@ -11,7 +11,6 @@ export interface IPost {
   spoiler?: boolean;
   sourceId?: string;
   cover?: string;
-  sourceType?: string;
   liked?: boolean;
   likes?: number;
   dislikes?: number;

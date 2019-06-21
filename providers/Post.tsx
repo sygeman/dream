@@ -11,7 +11,6 @@ export const GET_POST = gql`
       spoiler
       sourceId
       cover
-      sourceType
       likes
       dislikes
       rating
@@ -32,7 +31,6 @@ const UPDATED = gql`
       spoiler
       sourceId
       cover
-      sourceType
       likes
       dislikes
       rating

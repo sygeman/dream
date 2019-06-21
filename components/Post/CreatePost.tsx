@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 import Router from 'next/router';
-import * as React from 'react';
+import { Component } from 'react';
 import { Mutation } from 'react-apollo';
 import styled from 'styled-components';
 import { Button, Input, SWRow, TwitchClipPlayer } from '../../ui';
@@ -25,25 +25,37 @@ const Bottom = styled.div`
 interface IState {
   title: string;
   sourceUrl: string;
+  clipId: string;
   nfws: boolean;
   spoiler: boolean;
 }
 
-export default class CreatePost extends React.Component<{}, IState> {
+export default class CreatePost extends Component<{}, IState> {
   constructor(props) {
     super(props);
 
     this.state = {
       title: '',
       sourceUrl: '',
+      clipId: '',
       nfws: false,
       spoiler: false
     };
   }
 
-  public render() {
-    const soruceData = parseSource(this.state.sourceUrl);
+  setSourceData = e => {
+    let clipId = '';
+    const sourceUrl = e.target.value;
+    const soruceData = parseSource(sourceUrl);
 
+    if (soruceData) {
+      clipId = soruceData.payload.sourceId;
+    }
+
+    this.setState({ sourceUrl, clipId });
+  };
+
+  public render() {
     return (
       <Mutation
         mutation={CREATE_POST}
@@ -57,15 +69,15 @@ export default class CreatePost extends React.Component<{}, IState> {
             <Input
               autoFocus
               placeholder="Ссылка на Twitch клип"
-              onChange={e => this.setState({ sourceUrl: e.target.value })}
+              onChange={this.setSourceData}
             />
             <Input
               placeholder="Название"
               maxLength={100}
               onChange={e => this.setState({ title: e.target.value })}
             />
-            {soruceData && (
-              <TwitchClipPlayer sourceId={soruceData.payload.sourceId} />
+            {this.state.clipId && (
+              <TwitchClipPlayer sourceId={this.state.clipId} />
             )}
             <SWRow
               title="NSFW"
@@ -94,7 +106,7 @@ export default class CreatePost extends React.Component<{}, IState> {
                     variables: {
                       input: {
                         title: this.state.title,
-                        sourceUrl: this.state.sourceUrl,
+                        clipId: this.state.clipId,
                         nfws: this.state.nfws,
                         spoiler: this.state.spoiler
                       }

@@ -40,28 +40,49 @@ const MainLayout: FC<IProps> = ({ children, fixedTopContent, streams }) => {
             </CategoriesProvider>
           </LeftMenu.Item>
           <Access>
-            <LeftMenu.Item route="/follows" icon="favorite" title="Подписки">
-              <FollowsProvider>
-                {({ follows, moreFollows, hasMore }) => (
-                  <>
-                    {follows.map(channel => (
-                      <LeftMenu.SubItem
-                        route={`/follows?channel=${channel.name}`}
-                        active={router.query.channel === channel.name}
-                        key={channel.name}
-                      >
-                        {channel.title}
-                      </LeftMenu.SubItem>
-                    ))}
-                    {hasMore && (
-                      <LeftMenu.LoadMore onClick={() => moreFollows()}>
-                        <Icon type="chevron-down" />
-                      </LeftMenu.LoadMore>
-                    )}
-                  </>
-                )}
-              </FollowsProvider>
-            </LeftMenu.Item>
+            <FollowsProvider>
+              {({
+                follows,
+                total,
+                moreFollows,
+                hasMore,
+                hasLess,
+                loading,
+                refetch
+              }) => (
+                <LeftMenu.Item
+                  route="/channel"
+                  icon="favorite"
+                  title="Подписки"
+                  badge={total}
+                  noClick
+                  showContentAlways
+                >
+                  {follows.map(channel => (
+                    <LeftMenu.SubItem
+                      route={`/channel?id=${channel.to_id}`}
+                      active={
+                        router.route === '/channel' &&
+                        router.query.id === channel.to_id
+                      }
+                      key={channel.to_id}
+                    >
+                      {channel.to_name}
+                    </LeftMenu.SubItem>
+                  ))}
+                  {hasMore && (
+                    <LeftMenu.LoadMore onClick={() => moreFollows()}>
+                      {loading ? 'Загрузка...' : <Icon type="chevron-down" />}
+                    </LeftMenu.LoadMore>
+                  )}
+                  {hasLess && (
+                    <LeftMenu.LoadMore onClick={() => refetch()}>
+                      <Icon type="chevron-up" />
+                    </LeftMenu.LoadMore>
+                  )}
+                </LeftMenu.Item>
+              )}
+            </FollowsProvider>
           </Access>
         </LeftMenu.Box>
       }

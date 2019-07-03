@@ -1,87 +1,81 @@
 import gql from 'graphql-tag';
-import { Component } from 'react';
+import { FC } from 'react';
 import { Query } from 'react-apollo';
 
 const GET_USER_TWITCH_FOLLOWS = gql`
-	query twitchFollows($limit: Int, $offset: Int) {
-		twitchFollows(offset: $offset, limit: $limit) {
-			count
-			follows {
-				title
-				name
-			}
-		}
-	}
+  query($after: String, $first: Int, $id: String) {
+    twitchFollowsFrom(after: $after, first: $first, id: $id) {
+      total
+      data {
+        to_name
+        to_id
+      }
+      pagination {
+        cursor
+      }
+    }
+  }
 `;
 
 interface IProps {
-	children: any;
+  children: any;
 }
 
-class Follows extends Component<IProps> {
-	public page: number;
-	public pageSize: number;
+const FIRST_SIZE = 10;
+const PAGE_SIZE = 50;
 
-	constructor(props) {
-		super(props);
+const Follows: FC<IProps> = ({ children }) => (
+  <Query
+    query={GET_USER_TWITCH_FOLLOWS}
+    variables={{
+      first: FIRST_SIZE
+    }}
+  >
+    {({ loading, error, data, fetchMore, refetch }) => {
+      if (error || !data || !data.twitchFollowsFrom) {
+        return null;
+      }
 
-		this.page = 1;
-		this.pageSize = 50;
-	}
+      const totalCount = data.twitchFollowsFrom.total;
+      const currentCount = data.twitchFollowsFrom.data.length;
+      const hasMore = totalCount - currentCount > 0;
 
-	public render() {
-		const { children } = this.props;
+      const hasLess =
+        !hasMore && totalCount > FIRST_SIZE && currentCount > FIRST_SIZE;
 
-		return (
-			<Query
-				query={GET_USER_TWITCH_FOLLOWS}
-				variables={{
-					limit: this.pageSize,
-					offset: 0
-				}}
-			>
-				{({ loading, error, data, fetchMore }) => {
-					if (loading) {
-						return null;
-					}
+      return children({
+        follows: data.twitchFollowsFrom.data,
+        total: data.twitchFollowsFrom.total,
+        hasMore,
+        hasLess,
+        loading,
+        refetch,
+        moreFollows: () => {
+          fetchMore({
+            variables: {
+              after: data.twitchFollowsFrom.pagination.cursor,
+              first: PAGE_SIZE
+            },
+            updateQuery: (prev, { fetchMoreResult }) => {
+              if (!fetchMoreResult) {
+                return prev;
+              }
 
-					if (error || !data || !data.twitchFollows) {
-						return null;
-					}
-
-					return children({
-						follows: data.twitchFollows.follows,
-						hasMore: this.page * this.pageSize <= data.twitchFollows.count,
-						moreFollows: () => {
-							fetchMore({
-								variables: {
-									offset: this.page * this.pageSize
-								},
-								updateQuery: (prev, { fetchMoreResult }) => {
-									if (!fetchMoreResult) {
-										return prev;
-									}
-
-									this.page++;
-
-									return {
-										...prev,
-										twitchFollows: {
-											...prev.twitchFollows,
-											follows: [
-												...prev.twitchFollows.follows,
-												...fetchMoreResult.twitchFollows.follows
-											]
-										}
-									};
-								}
-							});
-						}
-					});
-				}}
-			</Query>
-		);
-	}
-}
+              return {
+                twitchFollowsFrom: {
+                  ...fetchMoreResult.twitchFollowsFrom,
+                  data: [
+                    ...prev.twitchFollowsFrom.data,
+                    ...fetchMoreResult.twitchFollowsFrom.data
+                  ]
+                }
+              };
+            }
+          });
+        }
+      });
+    }}
+  </Query>
+);
 
 export default Follows;

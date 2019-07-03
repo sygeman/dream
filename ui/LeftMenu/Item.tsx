@@ -40,6 +40,19 @@ const Item = styled.a<{ active: boolean }>`
   }
 `;
 
+const ItemIcon = styled.div``;
+
+const ItemTitle = styled.div`
+  display: flex;
+  flex: 1;
+`;
+
+const ItemBadge = styled.div<{ active: boolean }>`
+  padding: 0 15px;
+  color: ${({ theme, active }) =>
+    active ? lighten(0.2, theme.accent2Color) : theme.accent2Color};
+`;
+
 const SubItemMenuBox = styled.div``;
 
 interface IProps {
@@ -47,6 +60,9 @@ interface IProps {
   title: string;
   icon: string;
   equal?: boolean;
+  showContentAlways?: boolean;
+  noClick?: boolean;
+  badge?: any;
 }
 
 export const MenuItem: FC<IProps> = ({
@@ -54,7 +70,10 @@ export const MenuItem: FC<IProps> = ({
   title,
   icon,
   children,
-  equal
+  equal,
+  showContentAlways,
+  noClick,
+  badge
 }) => {
   const router = useRouter();
 
@@ -64,12 +83,18 @@ export const MenuItem: FC<IProps> = ({
 
   return (
     <>
-      <Link href={route} shallow passHref>
+      <Link href={noClick ? undefined : route} shallow passHref>
         <Item active={active}>
-          <Icon type={icon} /> {title}
+          <ItemIcon>
+            <Icon type={icon} />
+          </ItemIcon>
+          <ItemTitle>{title}</ItemTitle>
+          {badge && <ItemBadge active={active}>{badge}</ItemBadge>}
         </Item>
       </Link>
-      {active && <SubItemMenuBox>{children}</SubItemMenuBox>}
+      {(showContentAlways || active) && (
+        <SubItemMenuBox>{children}</SubItemMenuBox>
+      )}
     </>
   );
 };

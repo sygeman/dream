@@ -24,22 +24,23 @@ const MainLayout: FC<IProps> = ({ children, fixedTopContent, streams }) => {
           <LeftMenu.Item route="/" equal icon="home" title="Главная" />
           <LeftMenu.Item equal route="/new" icon="flare" title="Новое" />
           <LeftMenu.Item route="/top" icon="trending-up" title="Топ" />
-          <LeftMenu.Item route="/categories" icon="apps" title="Категории">
-            <CategoriesProvider>
-              {({ categories }) =>
-                categories.map(game => (
-                  <LeftMenu.SubItem
-                    route={`/categories?game=${game.name}`}
-                    active={router.query.game === game.name}
-                    key={game.id}
-                  >
-                    {game.name}
-                  </LeftMenu.SubItem>
-                ))
-              }
-            </CategoriesProvider>
-          </LeftMenu.Item>
           <Access>
+            <LeftMenu.Item route="/categories" icon="apps" title="Категории">
+              <CategoriesProvider>
+                {({ categories }) =>
+                  categories.map(game => (
+                    <LeftMenu.SubItem
+                      route={`/categories?game=${game.name}`}
+                      active={router.query.game === game.name}
+                      key={game.id}
+                    >
+                      {game.name}
+                    </LeftMenu.SubItem>
+                  ))
+                }
+              </CategoriesProvider>
+            </LeftMenu.Item>
+
             <FollowsProvider>
               {({
                 follows,

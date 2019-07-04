@@ -213,7 +213,13 @@ const ChannelClips = ({ userId }) => {
                     let avatar = null;
                     let title = null;
 
-                    if (!loading && !error && data && data.twitchUser.data) {
+                    if (
+                      !loading &&
+                      !error &&
+                      data &&
+                      data.twitchUser.data &&
+                      data.twitchUser.data.length > 0
+                    ) {
                       const user = data.twitchUser.data[0];
 
                       avatar = user.profile_image_url;

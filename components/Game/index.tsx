@@ -3,10 +3,16 @@ import { omit } from 'lodash';
 import { FC } from 'react';
 import { Query } from 'react-apollo';
 import styled from 'styled-components';
-import useRouter from '../hooks/useRouter';
+import useRouter from '../../hooks/useRouter';
 import { darken } from 'polished';
-import { Grid, Modal, TwitchClipPlayer, VideoPreview, CardMedia } from '../ui';
-import { dateDistanceInWordsToNow } from '../utils/date';
+import {
+  Grid,
+  Modal,
+  TwitchClipPlayer,
+  VideoPreview,
+  CardMedia
+} from '../../ui';
+import { dateDistanceInWordsToNow } from '../../utils/date';
 import queryString from 'query-string';
 
 const GET_TWITCH_CHANNEL_TOP_CLIPS = gql`
@@ -103,7 +109,7 @@ interface IProps {
   limit?: number;
 }
 
-const TwitchFollows: FC<IProps> = ({ limit }) => {
+const TwitchGame: FC<IProps> = ({ limit }) => {
   const router = useRouter();
 
   return (
@@ -239,4 +245,4 @@ const TwitchFollows: FC<IProps> = ({ limit }) => {
   );
 };
 
-export default TwitchFollows;
+export default TwitchGame;

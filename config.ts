@@ -8,8 +8,7 @@ const devConfig = {
   apiUrl: 'http://localhost:3000/',
   gqlUrl: 'http://localhost:3000/graphql',
   wsgqlUrl: 'ws://localhost:3000/graphql',
-  cookieOptions: {},
-  twitchClientId: 'd3s8jbd7x97yf78bxx0q9bfbrjw7bt'
+  cookieOptions: {}
 };
 
 const prodConfig = {
@@ -18,8 +17,7 @@ const prodConfig = {
   wsgqlUrl: 'wss://api.pepega.com/graphql',
   cookieOptions: {
     domain: '.pepega.com'
-  },
-  twitchClientId: 'gooocfjmqkdf6ollwhhymxkoci4b7x'
+  }
 };
 
 const isProduction = process.env.NODE_ENV === 'production';

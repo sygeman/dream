@@ -4,16 +4,10 @@ import { Query } from 'react-apollo';
 
 const GET_TWITCH_TOP_GAMES = gql`
   query twitchTopGames($first: Int) {
-    twitchTopGames(first: $first)
-      @rest(type: "TwitchGames", path: "games/top?first={args.first}") {
-      data @type(name: "TwitchGame") {
-        id
-        name
-        box_art_url
-      }
-      pagination @type(name: "TwitchPagination") {
-        cursor
-      }
+    twitchTopGames(first: $first) {
+      id
+      name
+      box_art_url
     }
   }
 `;
@@ -29,12 +23,12 @@ const Provider: FC<IProps> = ({ children }) => (
         return null;
       }
 
-      if (error || !data || !data.twitchTopGames || !data.twitchTopGames.data) {
+      if (error || !data || !data.twitchTopGames || !data.twitchTopGames) {
         return null;
       }
 
       return children({
-        categories: data.twitchTopGames.data
+        categories: data.twitchTopGames
       });
     }}
   </Query>

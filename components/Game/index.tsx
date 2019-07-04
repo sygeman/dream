@@ -13,42 +13,23 @@ import {
   CardMedia
 } from '../../ui';
 import { dateDistanceInWordsToNow } from '../../utils/date';
-import queryString from 'query-string';
 
 const GET_TWITCH_CHANNEL_TOP_CLIPS = gql`
-  query twitchTopClips(
-    $game: String
-    $limit: Int
-    $language: String
-    $period: String
-    $pathBuilder: any
-  ) {
-    twitchTopClips(
-      game: $game
-      limit: $limit
-      language: $language
-      period: $period
-    )
-      @rest(
-        type: "TwitchClipsOld"
-        endpoint: "kraken"
-        pathBuilder: $pathBuilder
-      ) {
-      clips @type(name: "TwitchClipOld") {
-        slug
-        title
-        views
-        created_at
-        broadcaster @type(name: "TwitchClipBroadcasterOld") {
-          display_name
-          logo
-          channel_url
-        }
-        thumbnails @type(name: "TwitchClipThumbnailsOld") {
-          small
-        }
+  query twitchTopClips($channel: String, $game: String, $limit: Int) {
+    twitchTopClips(channel: $channel, game: $game, limit: $limit) {
+      id
+      channel
+      title
+      createdAt
+      thumbnails {
+        small
+        tiny
       }
-      _cursor
+      broadcaster {
+        display_name
+        logo
+      }
+      viewsCount
     }
   }
 `;
@@ -117,31 +98,15 @@ const TwitchGame: FC<IProps> = ({ limit }) => {
       <Query
         query={GET_TWITCH_CHANNEL_TOP_CLIPS}
         variables={{
-          game: router.query.game || '',
-          language: 'ru',
-          period: 'day',
-          limit,
-          pathBuilder: ({ args }) => {
-            const params: any = {
-              limit: args.limit,
-              language: args.language,
-              period: args.period
-            };
-
-            if (args.game) {
-              params.game = args.game;
-            }
-
-            return `clips/top?${queryString.stringify(params)}`;
-          }
+          channel: router.query.channel,
+          game: router.query.game,
+          limit
         }}
       >
         {({ loading, error, data }) => {
           if (error || !data || !data.twitchTopClips) {
             return null;
           }
-
-          const { clips } = data.twitchTopClips;
 
           const openClip = (clipId: string) => {
             router.push(
@@ -198,7 +163,9 @@ const TwitchGame: FC<IProps> = ({ limit }) => {
                   <>
                     <SectionBox>
                       <SectionTitle>
-                        {router.query.game || 'Все категории и каналы'}
+                        {router.query.channel ||
+                          router.query.game ||
+                          'Все категории и каналы'}
                       </SectionTitle>
                       <SectionDescription>
                         Клипы за 24 часа по количеству просмотров
@@ -206,32 +173,32 @@ const TwitchGame: FC<IProps> = ({ limit }) => {
                     </SectionBox>
                   </>
                 }
-                items={clips}
+                items={data.twitchTopClips}
                 itemRender={clip => (
-                  <ClipContainer key={clip.slug}>
+                  <ClipContainer key={clip.id}>
                     <CardMedia
                       media={
                         <ClipPreviewContent>
                           <VideoPreview
-                            key={clip.slug}
-                            onClick={() => openClip(clip.slug)}
+                            key={clip.id}
+                            onClick={() => openClip(clip.id)}
                             cover={clip.thumbnails.small}
-                            date={dateDistanceInWordsToNow(clip.created_at)}
-                            views={clip.views}
+                            date={dateDistanceInWordsToNow(clip.createdAt)}
+                            views={clip.viewsCount}
                           />
                         </ClipPreviewContent>
                       }
                       avatar={clip.broadcaster.logo}
                       title={clip.title}
                       description={clip.broadcaster.display_name}
-                      descriptionLink={clip.broadcaster.channel_url}
+                      descriptionLink={`https://www.twitch.tv/${clip.channel}`}
                     />
                   </ClipContainer>
                 )}
                 elementWidth={320}
                 afterRedner={
                   <>
-                    {!loading && clips.length === 0 && (
+                    {!loading && data.twitchTopClips.length === 0 && (
                       <NoClips>Клипы не найдены :(</NoClips>
                     )}
                   </>

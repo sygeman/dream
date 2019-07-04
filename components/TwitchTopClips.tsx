@@ -7,23 +7,42 @@ import useRouter from '../hooks/useRouter';
 import { darken } from 'polished';
 import { Grid, Modal, TwitchClipPlayer, VideoPreview, CardMedia } from '../ui';
 import { dateDistanceInWordsToNow } from '../utils/date';
+import queryString from 'query-string';
 
 const GET_TWITCH_CHANNEL_TOP_CLIPS = gql`
-  query twitchTopClips($channel: String, $game: String, $limit: Int) {
-    twitchTopClips(channel: $channel, game: $game, limit: $limit) {
-      id
-      channel
-      title
-      createdAt
-      thumbnails {
-        small
-        tiny
+  query twitchTopClips(
+    $game: String
+    $limit: Int
+    $language: String
+    $period: String
+    $pathBuilder: any
+  ) {
+    twitchTopClips(
+      game: $game
+      limit: $limit
+      language: $language
+      period: $period
+    )
+      @rest(
+        type: "TwitchClipsOld"
+        endpoint: "kraken"
+        pathBuilder: $pathBuilder
+      ) {
+      clips @type(name: "TwitchClipOld") {
+        slug
+        title
+        views
+        created_at
+        broadcaster @type(name: "TwitchClipBroadcasterOld") {
+          display_name
+          logo
+          channel_url
+        }
+        thumbnails @type(name: "TwitchClipThumbnailsOld") {
+          small
+        }
       }
-      broadcaster {
-        display_name
-        logo
-      }
-      viewsCount
+      _cursor
     }
   }
 `;
@@ -92,15 +111,31 @@ const TwitchFollows: FC<IProps> = ({ limit }) => {
       <Query
         query={GET_TWITCH_CHANNEL_TOP_CLIPS}
         variables={{
-          channel: router.query.channel,
-          game: router.query.game,
-          limit
+          game: router.query.game || '',
+          language: 'ru',
+          period: 'day',
+          limit,
+          pathBuilder: ({ args }) => {
+            const params: any = {
+              limit: args.limit,
+              language: args.language,
+              period: args.period
+            };
+
+            if (args.game) {
+              params.game = args.game;
+            }
+
+            return `clips/top?${queryString.stringify(params)}`;
+          }
         }}
       >
         {({ loading, error, data }) => {
           if (error || !data || !data.twitchTopClips) {
             return null;
           }
+
+          const { clips } = data.twitchTopClips;
 
           const openClip = (clipId: string) => {
             router.push(
@@ -157,9 +192,7 @@ const TwitchFollows: FC<IProps> = ({ limit }) => {
                   <>
                     <SectionBox>
                       <SectionTitle>
-                        {router.query.channel ||
-                          router.query.game ||
-                          'Все категории и каналы'}
+                        {router.query.game || 'Все категории и каналы'}
                       </SectionTitle>
                       <SectionDescription>
                         Клипы за 24 часа по количеству просмотров
@@ -167,32 +200,32 @@ const TwitchFollows: FC<IProps> = ({ limit }) => {
                     </SectionBox>
                   </>
                 }
-                items={data.twitchTopClips}
+                items={clips}
                 itemRender={clip => (
-                  <ClipContainer key={clip.id}>
+                  <ClipContainer key={clip.slug}>
                     <CardMedia
                       media={
                         <ClipPreviewContent>
                           <VideoPreview
-                            key={clip.id}
-                            onClick={() => openClip(clip.id)}
+                            key={clip.slug}
+                            onClick={() => openClip(clip.slug)}
                             cover={clip.thumbnails.small}
-                            date={dateDistanceInWordsToNow(clip.createdAt)}
-                            views={clip.viewsCount}
+                            date={dateDistanceInWordsToNow(clip.created_at)}
+                            views={clip.views}
                           />
                         </ClipPreviewContent>
                       }
                       avatar={clip.broadcaster.logo}
                       title={clip.title}
                       description={clip.broadcaster.display_name}
-                      descriptionLink={`https://www.twitch.tv/${clip.channel}`}
+                      descriptionLink={clip.broadcaster.channel_url}
                     />
                   </ClipContainer>
                 )}
                 elementWidth={320}
                 afterRedner={
                   <>
-                    {!loading && data.twitchTopClips.length === 0 && (
+                    {!loading && clips.length === 0 && (
                       <NoClips>Клипы не найдены :(</NoClips>
                     )}
                   </>

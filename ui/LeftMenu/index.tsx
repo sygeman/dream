@@ -14,11 +14,11 @@ export const LoadMore = styled.div`
   height: 30px;
   font-size: 13px;
   color: ${({ theme }) => theme.accent2Color};
-  background: ${({ theme }) => lighten(0.03, theme.dark2Color)};
+  background: ${({ theme }) => lighten(0.001, theme.dark2Color)};
   cursor: pointer;
 
   :hover {
-    background: ${({ theme }) => lighten(0.05, theme.dark2Color)};
+    background: ${({ theme }) => lighten(0.01, theme.dark2Color)};
   }
 
   i {

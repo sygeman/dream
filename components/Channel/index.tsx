@@ -5,6 +5,7 @@ import { Query } from 'react-apollo';
 import styled from 'styled-components';
 import useRouter from '../../hooks/useRouter';
 import { darken } from 'polished';
+import subDays from 'date-fns/sub_days';
 import {
   Grid,
   Modal,
@@ -15,32 +16,41 @@ import {
 import { dateDistanceInWordsToNow } from '../../utils/date';
 
 const GET_TWITCH_USER = gql`
-  query($userId: String!) {
-    twitchUser(userId: $userId) {
-      id
-      login
-      display_name
-      profile_image_url
+  query twitchUser($userId: String!) {
+    twitchUser(userId: $userId)
+      @rest(type: "TwitchUsers", path: "/users?id={args.userId}") {
+      data @type(name: "TwitchUser") {
+        id
+        login
+        display_name
+        profile_image_url
+      }
     }
   }
 `;
 
-const GET_TWITCH_CHANNEL_TOP_CLIPS = gql`
-  query twitchTopClips($channel: String, $game: String, $limit: Int) {
-    twitchTopClips(channel: $channel, game: $game, limit: $limit) {
-      id
-      channel
-      title
-      createdAt
-      thumbnails {
-        small
-        tiny
+const GET_TWITCH_CHANNEL_CLIPS = gql`
+  query twitchClips($broadcaster_id: String, $started_at: String, $first: Int) {
+    twitchClips(
+      broadcaster_id: $broadcaster_id
+      started_at: $started_at
+      first: $first
+    )
+      @rest(
+        type: "TwitchClips"
+        path: "/clips?broadcaster_id={args.broadcaster_id}&first={args.first}&started_at={args.started_at}"
+      ) {
+      pagination @type(name: "TwitchPagination") {
+        cursor
       }
-      broadcaster {
-        display_name
-        logo
+      data @type(name: "TwitchClip") {
+        id
+        broadcaster_name
+        title
+        created_at
+        thumbnail_url
+        view_count
       }
-      viewsCount
     }
   }
 `;
@@ -66,8 +76,9 @@ const ClipPreviewContent = styled.div`
 `;
 
 const SectionBox = styled.div`
-  padding: 20px 5px 20px;
+  padding: 0 5px;
   display: flex;
+  min-height: 80px;
 `;
 
 const SectionAvatar = styled.div`
@@ -76,9 +87,16 @@ const SectionAvatar = styled.div`
   justify-content: center;
 `;
 
-const ChannelAvatar = styled.img`
+const ChannelAvatar = styled.div`
   height: 40px;
+  width: 40px;
   border-radius: 100%;
+  overflow: hidden;
+`;
+
+const ChannelAvatarImg = styled.img`
+  height: 100%;
+  width: 100%;
 `;
 
 const SectionData = styled.div`
@@ -120,19 +138,21 @@ interface IProps {
   userId: string;
 }
 
-const ChannelClips = ({ channel }) => {
+const ChannelClips = ({ userId }) => {
   const router = useRouter();
+  const started_at = new Date(subDays(new Date(), 1)).toISOString();
 
   return (
     <Query
-      query={GET_TWITCH_CHANNEL_TOP_CLIPS}
+      query={GET_TWITCH_CHANNEL_CLIPS}
       variables={{
-        channel: channel.login,
-        limit: 50
+        broadcaster_id: userId,
+        started_at,
+        first: 50
       }}
     >
       {({ loading, error, data }) => {
-        if (error || !data || !data.twitchTopClips) {
+        if (error || !data || !data.twitchClips) {
           return null;
         }
 
@@ -188,21 +208,39 @@ const ChannelClips = ({ channel }) => {
 
             <Grid
               beforeRender={
-                <>
-                  <SectionBox>
-                    <SectionAvatar>
-                      <ChannelAvatar src={channel.profile_image_url} />
-                    </SectionAvatar>
-                    <SectionData>
-                      <SectionTitle>{channel.display_name}</SectionTitle>
-                      <SectionDescription>
-                        Клипы за 24 часа по количеству просмотров
-                      </SectionDescription>
-                    </SectionData>
-                  </SectionBox>
-                </>
+                <Query query={GET_TWITCH_USER} variables={{ userId }}>
+                  {({ loading, error, data }) => {
+                    let avatar = null;
+                    let title = null;
+
+                    if (!loading && !error && data && data.twitchUser.data) {
+                      const user = data.twitchUser.data[0];
+
+                      avatar = user.profile_image_url;
+                      title = user.display_name;
+                    }
+
+                    return (
+                      <SectionBox>
+                        <SectionAvatar>
+                          <ChannelAvatar>
+                            {avatar && <ChannelAvatarImg src={avatar} />}
+                          </ChannelAvatar>
+                        </SectionAvatar>
+                        {title && (
+                          <SectionData>
+                            <SectionTitle>{title}</SectionTitle>
+                            <SectionDescription>
+                              Клипы за 24 часа по количеству просмотров
+                            </SectionDescription>
+                          </SectionData>
+                        )}
+                      </SectionBox>
+                    );
+                  }}
+                </Query>
               }
-              items={data.twitchTopClips}
+              items={data.twitchClips.data}
               itemRender={clip => (
                 <ClipContainer key={clip.id}>
                   <CardMedia
@@ -211,22 +249,22 @@ const ChannelClips = ({ channel }) => {
                         <VideoPreview
                           key={clip.id}
                           onClick={() => openClip(clip.id)}
-                          cover={clip.thumbnails.small}
-                          date={dateDistanceInWordsToNow(clip.createdAt)}
-                          views={clip.viewsCount}
+                          cover={clip.thumbnail_url}
+                          date={dateDistanceInWordsToNow(clip.created_at)}
+                          views={clip.view_count}
                         />
                       </ClipPreviewContent>
                     }
                     title={clip.title}
-                    description={clip.broadcaster.display_name}
-                    descriptionLink={`https://www.twitch.tv/${clip.channel}`}
+                    description={clip.broadcaster_name}
+                    descriptionLink={`https://www.twitch.tv/${clip.broadcaster_name}`}
                   />
                 </ClipContainer>
               )}
               elementWidth={320}
               afterRedner={
                 <>
-                  {!loading && data.twitchTopClips.length === 0 && (
+                  {!loading && data.twitchClips.data.length === 0 && (
                     <NoClips>Клипы не найдены :(</NoClips>
                   )}
                 </>
@@ -242,15 +280,7 @@ const ChannelClips = ({ channel }) => {
 const Channel: FC<IProps> = ({ userId }) => {
   return (
     <Box>
-      <Query query={GET_TWITCH_USER} variables={{ userId }}>
-        {({ loading, error, data }) => {
-          if (loading || error || !data) {
-            return null;
-          }
-
-          return <ChannelClips channel={data.twitchUser} />;
-        }}
-      </Query>
+      <ChannelClips userId={userId}></ChannelClips>
     </Box>
   );
 };

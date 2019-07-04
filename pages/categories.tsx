@@ -1,9 +1,9 @@
-import TwitchTopClips from '../components/TwitchTopClips';
+import Game from '../components/Game';
 import Layout from '../layouts/Main';
 
 const CategoriesPage = () => (
   <Layout>
-    <TwitchTopClips limit={50} />
+    <Game limit={50} />
   </Layout>
 );
 

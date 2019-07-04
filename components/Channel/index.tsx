@@ -135,6 +135,10 @@ const ChannelClips = ({ userId }) => {
   const router = useRouter();
   const started_at = new Date(subDays(new Date(), 1)).toISOString();
 
+  if (!userId) {
+    return null;
+  }
+
   return (
     <Query
       query={GET_TWITCH_CHANNEL_CLIPS}

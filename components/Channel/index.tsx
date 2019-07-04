@@ -17,14 +17,11 @@ import { dateDistanceInWordsToNow } from '../../utils/date';
 
 const GET_TWITCH_USER = gql`
   query twitchUser($userId: String!) {
-    twitchUser(userId: $userId)
-      @rest(type: "TwitchUsers", path: "/users?id={args.userId}") {
-      data @type(name: "TwitchUser") {
-        id
-        login
-        display_name
-        profile_image_url
-      }
+    twitchUser(userId: $userId) {
+      id
+      login
+      display_name
+      profile_image_url
     }
   }
 `;
@@ -35,15 +32,11 @@ const GET_TWITCH_CHANNEL_CLIPS = gql`
       broadcaster_id: $broadcaster_id
       started_at: $started_at
       first: $first
-    )
-      @rest(
-        type: "TwitchClips"
-        path: "/clips?broadcaster_id={args.broadcaster_id}&first={args.first}&started_at={args.started_at}"
-      ) {
-      pagination @type(name: "TwitchPagination") {
+    ) {
+      pagination {
         cursor
       }
-      data @type(name: "TwitchClip") {
+      data {
         id
         broadcaster_name
         title
@@ -213,14 +206,8 @@ const ChannelClips = ({ userId }) => {
                     let avatar = null;
                     let title = null;
 
-                    if (
-                      !loading &&
-                      !error &&
-                      data &&
-                      data.twitchUser.data &&
-                      data.twitchUser.data.length > 0
-                    ) {
-                      const user = data.twitchUser.data[0];
+                    if (!loading && !error && data && data.twitchUser) {
+                      const user = data.twitchUser;
 
                       avatar = user.profile_image_url;
                       title = user.display_name;

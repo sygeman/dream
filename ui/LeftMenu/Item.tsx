@@ -81,9 +81,26 @@ export const MenuItem: FC<IProps> = ({
     ? router.route === route
     : router.route.search(`${route}`) >= 0;
 
+  if (noClick) {
+    return (
+      <>
+        <Item active={active}>
+          <ItemIcon>
+            <Icon type={icon} />
+          </ItemIcon>
+          <ItemTitle>{title}</ItemTitle>
+          {badge && <ItemBadge active={active}>{badge}</ItemBadge>}
+        </Item>
+        {(showContentAlways || active) && (
+          <SubItemMenuBox>{children}</SubItemMenuBox>
+        )}
+      </>
+    );
+  }
+
   return (
     <>
-      <Link href={noClick ? undefined : route} shallow passHref>
+      <Link href={route} shallow passHref>
         <Item active={active}>
           <ItemIcon>
             <Icon type={icon} />

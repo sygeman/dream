@@ -148,8 +148,8 @@ const ChannelClips = ({ userId }) => {
         first: 50
       }}
     >
-      {({ loading, error, data }) => {
-        if (error || !data || !data.twitchClips) {
+      {({ loading, data }) => {
+        if (!data || !data.twitchClips) {
           return null;
         }
 

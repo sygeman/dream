@@ -25,13 +25,15 @@ const MainLayout: FC<IProps> = ({ children, fixedTopContent, streams }) => {
           <LeftMenu.Item equal route="/new" icon="flare" title="Новое" />
           <LeftMenu.Item route="/top" icon="trending-up" title="Топ" />
           <Access>
-            <LeftMenu.Item route="/categories" icon="apps" title="Категории">
+            <LeftMenu.Item route="/game" icon="apps" title="Категории">
               <CategoriesProvider>
                 {({ categories }) =>
                   categories.map(game => (
                     <LeftMenu.SubItem
-                      route={`/categories?game=${game.name}`}
-                      active={router.query.game === game.name}
+                      route={`/game?id=${game.id}`}
+                      active={
+                        router.route === '/game' && router.query.id === game.id
+                      }
                       key={game.id}
                     >
                       {game.name}

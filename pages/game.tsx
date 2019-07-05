@@ -1,18 +1,19 @@
-import Channel from '../components/Channel';
+import Game from '../components/Game';
 import Layout from '../layouts/Main';
 import useRouter from '../hooks/useRouter';
 import { Access } from '../helpers/Access';
 
-const ChannelPage = () => {
+const GamePage = () => {
   const router = useRouter();
+  const gameId = router.query.id;
 
   return (
     <Layout>
       <Access>
-        <Channel userId={router.query.id} />
+        <Game gameId={gameId} />
       </Access>
     </Layout>
   );
 };
 
-export default ChannelPage;
+export default GamePage;

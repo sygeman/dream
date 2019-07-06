@@ -7,7 +7,7 @@ const ChannelPage = () => {
   const router = useRouter();
 
   return (
-    <Layout>
+    <Layout streams>
       <Access>
         <Channel userId={router.query.id} />
       </Access>

@@ -8,7 +8,7 @@ const GamePage = () => {
   const gameId = router.query.id;
 
   return (
-    <Layout>
+    <Layout streams>
       <Access>
         <Game gameId={gameId} />
       </Access>

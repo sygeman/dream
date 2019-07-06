@@ -1,18 +1,11 @@
 import gql from 'graphql-tag';
-import { omit } from 'lodash';
 import { FC } from 'react';
 import { Query } from 'react-apollo';
 import styled from 'styled-components';
 import useRouter from '../../hooks/useRouter';
 import { darken } from 'polished';
 import subDays from 'date-fns/sub_days';
-import {
-  Grid,
-  Modal,
-  TwitchClipPlayer,
-  VideoPreview,
-  CardMedia
-} from '../../ui';
+import { Grid, VideoPreview, CardMedia } from '../../ui';
 import { dateDistanceInWordsToNow } from '../../utils/date';
 
 const GET_TWITCH_USER = gql`
@@ -87,6 +80,12 @@ const ChannelAvatar = styled.div`
   overflow: hidden;
 `;
 
+const ChannelAvatarMock = styled.div`
+  height: 100%;
+  width: 100%;
+  background: ${({ theme }) => theme.dark2Color};
+`;
+
 const ChannelAvatarImg = styled.img`
   height: 100%;
   width: 100%;
@@ -101,8 +100,10 @@ const SectionData = styled.div`
 
 const SectionTitle = styled.div`
   display: flex;
+  align-items: center;
   width: 100%;
   font-size: 16px;
+  height: 21px;
   text-transform: uppercase;
 
   a {
@@ -110,11 +111,25 @@ const SectionTitle = styled.div`
   }
 `;
 
+const SectionTitleMock = styled.div`
+  background: ${({ theme }) => theme.dark2Color};
+  width: 100px;
+  height: 16px;
+`;
+
 const SectionDescription = styled.div`
   display: flex;
+  align-items: center;
   width: 100%;
   font-size: 12px;
+  height: 16px;
   color: ${({ theme }) => darken(0.4, theme.text1Color)};
+`;
+
+const SectionDescriptionMock = styled.div`
+  background: ${({ theme }) => theme.dark2Color};
+  width: 150px;
+  height: 11px;
 `;
 
 const NoClips = styled.div`
@@ -131,78 +146,52 @@ interface IProps {
   userId: string;
 }
 
-const ChannelClips = ({ userId }) => {
+const Channel: FC<IProps> = ({ userId }) => {
   const router = useRouter();
-  const started_at = new Date(subDays(new Date(), 1)).toISOString();
+  const now = new Date();
+  now.setHours(0, 0, 0, 0);
+  const started_at = new Date(subDays(now, 1)).toISOString();
 
   if (!userId) {
     return null;
   }
 
   return (
-    <Query
-      query={GET_TWITCH_CHANNEL_CLIPS}
-      variables={{
-        broadcaster_id: userId,
-        started_at,
-        first: 50
-      }}
-    >
-      {({ loading, data }) => {
-        if (!data || !data.twitchClips) {
-          return null;
-        }
+    <Box>
+      <Query
+        query={GET_TWITCH_CHANNEL_CLIPS}
+        variables={{
+          broadcaster_id: userId,
+          started_at,
+          first: 50
+        }}
+      >
+        {({ loading, data }) => {
+          if (!data || !data.twitchClips) {
+            return null;
+          }
 
-        const openClip = (clipId: string) => {
-          router.push(
-            {
-              pathname: router.route,
-              query: {
-                ...router.query,
-                clip: clipId
+          const openClip = (clipId: string) => {
+            router.push(
+              {
+                pathname: router.route,
+                query: {
+                  clipId,
+                  backPath: router.asPath,
+                  ...router.query
+                }
+              },
+              {
+                pathname: '/clip',
+                query: { id: clipId }
+              },
+              {
+                shallow: true
               }
-            },
-            {
-              pathname: router.route,
-              query: {
-                ...router.query,
-                clip: clipId
-              }
-            },
-            { shallow: true }
-          );
-        };
+            );
+          };
 
-        const closeClip = () => {
-          router.push(
-            {
-              pathname: router.route,
-              query: {
-                ...omit(router.query, 'clip')
-              }
-            },
-            {
-              pathname: router.route,
-              query: {
-                ...omit(router.query, 'clip')
-              }
-            },
-            { shallow: true }
-          );
-        };
-
-        const sourceId = router.query.clip
-          ? router.query.clip.toString()
-          : null;
-
-        return (
-          <>
-            <Modal visible={!!router.query.clip} minimal onClose={closeClip}>
-              <div style={{ width: 1100 }}>
-                <TwitchClipPlayer sourceId={sourceId} autoPlay />
-              </div>
-            </Modal>
-
+          return (
             <Grid
               beforeRender={
                 <Query query={GET_TWITCH_USER} variables={{ userId }}>
@@ -221,17 +210,25 @@ const ChannelClips = ({ userId }) => {
                       <SectionBox>
                         <SectionAvatar>
                           <ChannelAvatar>
-                            {avatar && <ChannelAvatarImg src={avatar} />}
+                            {avatar ? (
+                              <ChannelAvatarImg src={avatar} />
+                            ) : (
+                              <ChannelAvatarMock />
+                            )}
                           </ChannelAvatar>
                         </SectionAvatar>
-                        {title && (
-                          <SectionData>
-                            <SectionTitle>{title}</SectionTitle>
-                            <SectionDescription>
-                              Клипы за 24 часа по количеству просмотров
-                            </SectionDescription>
-                          </SectionData>
-                        )}
+                        <SectionData>
+                          <SectionTitle>
+                            {title ? title : <SectionTitleMock />}
+                          </SectionTitle>
+                          <SectionDescription>
+                            {title ? (
+                              'Клипы за 24 часа по количеству просмотров'
+                            ) : (
+                              <SectionDescriptionMock />
+                            )}
+                          </SectionDescription>
+                        </SectionData>
                       </SectionBox>
                     );
                   }}
@@ -267,17 +264,9 @@ const ChannelClips = ({ userId }) => {
                 </>
               }
             />
-          </>
-        );
-      }}
-    </Query>
-  );
-};
-
-const Channel: FC<IProps> = ({ userId }) => {
-  return (
-    <Box>
-      <ChannelClips userId={userId}></ChannelClips>
+          );
+        }}
+      </Query>
     </Box>
   );
 };

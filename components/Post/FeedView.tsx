@@ -147,7 +147,7 @@ const PostFeedView: FC<IProps> = ({
           </>
         )}
       </Head>
-      {header && (
+      {header && id && (
         <Top>
           <TitleBox>
             <Title active={!meta}>
@@ -168,40 +168,44 @@ const PostFeedView: FC<IProps> = ({
       <ContentBox>
         <TwitchClipPlayer sourceId={sourceId} autoPlay={autoPlay} />
       </ContentBox>
-      <PostHelper.Bottom>
-        <PostReactionProvider postId={id}>
-          {({ postReaction }) => {
-            const reaction = postReaction ? postReaction.type : 'none';
+      {id && (
+        <PostHelper.Bottom>
+          <PostReactionProvider postId={id}>
+            {({ postReaction }) => {
+              const reaction = postReaction ? postReaction.type : 'none';
 
-            return (
-              <>
-                <PostHelper.ReactionButton
-                  id={id}
-                  type="like"
-                  state={reaction === PostReactionType.like}
-                  count={likes}
-                  icon="thumb-up"
-                />
-                <PostHelper.ReactionButton
-                  id={id}
-                  type="dislike"
-                  state={reaction === PostReactionType.dislike}
-                  count={dislikes}
-                  icon="thumb-down"
-                />
-              </>
-            );
-          }}
-        </PostReactionProvider>
+              return (
+                <>
+                  <PostHelper.ReactionButton
+                    id={id}
+                    type="like"
+                    state={reaction === PostReactionType.like}
+                    count={likes}
+                    icon="thumb-up"
+                  />
+                  <PostHelper.ReactionButton
+                    id={id}
+                    type="dislike"
+                    state={reaction === PostReactionType.dislike}
+                    count={dislikes}
+                    icon="thumb-down"
+                  />
+                </>
+              );
+            }}
+          </PostReactionProvider>
 
-        <PostHelper.ShareButton id={id} />
-        <PostHelper.Menu id={id} authorId={authorId} />
-        <EmptyBottom />
-        <PostHelper.Author createdAt={createdAt} authorId={authorId} />
-      </PostHelper.Bottom>
-      <CommentsBox>
-        <Comments postId={id} />
-      </CommentsBox>
+          <PostHelper.ShareButton id={id} />
+          <PostHelper.Menu id={id} authorId={authorId} />
+          <EmptyBottom />
+          <PostHelper.Author createdAt={createdAt} authorId={authorId} />
+        </PostHelper.Bottom>
+      )}
+      {id && (
+        <CommentsBox>
+          <Comments postId={id} />
+        </CommentsBox>
+      )}
     </Box>
   );
 };

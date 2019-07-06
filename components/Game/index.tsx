@@ -1,17 +1,10 @@
 import gql from 'graphql-tag';
-import { omit } from 'lodash';
 import { FC } from 'react';
 import { Query } from 'react-apollo';
 import styled from 'styled-components';
 import useRouter from '../../hooks/useRouter';
 import { darken } from 'polished';
-import {
-  Grid,
-  Modal,
-  TwitchClipPlayer,
-  VideoPreview,
-  CardMedia
-} from '../../ui';
+import { Grid, VideoPreview, CardMedia } from '../../ui';
 import { dateDistanceInWordsToNow } from '../../utils/date';
 
 const GET_TWITCH_GAME = gql`
@@ -32,7 +25,7 @@ const GET_TWITCH_CHANNEL_TOP_CLIPS = gql`
       title
       createdAt
       thumbnails {
-        small
+        medium
       }
       broadcaster {
         display_name
@@ -137,7 +130,7 @@ const TwitchGameClips = ({ game }) => {
     <Query
       query={GET_TWITCH_CHANNEL_TOP_CLIPS}
       variables={{
-        game: game ? title : '',
+        game: game ? title : undefined,
         limit: 50
       }}
     >
@@ -151,101 +144,71 @@ const TwitchGameClips = ({ game }) => {
             {
               pathname: router.route,
               query: {
-                ...router.query,
-                clip: clipId
+                clipId,
+                backPath: router.asPath,
+                ...router.query
               }
             },
             {
-              pathname: router.route,
-              query: {
-                ...router.query,
-                clip: clipId
-              }
+              pathname: '/clip',
+              query: { id: clipId }
             },
-            { shallow: true }
+            {
+              shallow: true
+            }
           );
         };
-
-        const closeClip = () => {
-          router.push(
-            {
-              pathname: router.route,
-              query: {
-                ...omit(router.query, 'clip')
-              }
-            },
-            {
-              pathname: router.route,
-              query: {
-                ...omit(router.query, 'clip')
-              }
-            },
-            { shallow: true }
-          );
-        };
-
-        const sourceId = router.query.clip
-          ? router.query.clip.toString()
-          : null;
 
         return (
-          <>
-            <Modal visible={!!router.query.clip} minimal onClose={closeClip}>
-              <div style={{ width: 1100 }}>
-                <TwitchClipPlayer sourceId={sourceId} autoPlay />
-              </div>
-            </Modal>
-
-            <Grid
-              beforeRender={
-                <SectionBox>
-                  <SectionAvatar>
-                    <ChannelAvatar>
-                      {avatar && <ChannelAvatarImg src={avatar} />}
-                    </ChannelAvatar>
-                  </SectionAvatar>
-                  {title && (
-                    <SectionData>
-                      <SectionTitle>{title}</SectionTitle>
-                      <SectionDescription>
-                        Клипы за 24 часа по количеству просмотров
-                      </SectionDescription>
-                    </SectionData>
-                  )}
-                </SectionBox>
-              }
-              items={data.twitchTopClips}
-              itemRender={clip => (
-                <ClipContainer key={clip.id}>
-                  <CardMedia
-                    media={
-                      <ClipPreviewContent>
-                        <VideoPreview
-                          key={clip.id}
-                          onClick={() => openClip(clip.id)}
-                          cover={clip.thumbnails.small}
-                          date={dateDistanceInWordsToNow(clip.createdAt)}
-                          views={clip.viewsCount}
-                        />
-                      </ClipPreviewContent>
-                    }
-                    avatar={clip.broadcaster.logo}
-                    title={clip.title}
-                    description={clip.broadcaster.display_name}
-                    descriptionLink={`https://www.twitch.tv/${clip.channel}`}
-                  />
-                </ClipContainer>
-              )}
-              elementWidth={320}
-              afterRedner={
-                <>
-                  {!loading && data.twitchTopClips.length === 0 && (
-                    <NoClips>Клипы не найдены :(</NoClips>
-                  )}
-                </>
-              }
-            />
-          </>
+          <Grid
+            beforeRender={
+              <SectionBox>
+                <SectionAvatar>
+                  <ChannelAvatar>
+                    {avatar && <ChannelAvatarImg src={avatar} />}
+                  </ChannelAvatar>
+                </SectionAvatar>
+                {title && (
+                  <SectionData>
+                    <SectionTitle>{title}</SectionTitle>
+                    <SectionDescription>
+                      Клипы за 24 часа по количеству просмотров
+                    </SectionDescription>
+                  </SectionData>
+                )}
+              </SectionBox>
+            }
+            items={data.twitchTopClips}
+            itemRender={clip => (
+              <ClipContainer key={clip.id}>
+                <CardMedia
+                  media={
+                    <ClipPreviewContent>
+                      <VideoPreview
+                        key={clip.id}
+                        onClick={() => openClip(clip.id)}
+                        cover={clip.thumbnails.medium}
+                        date={dateDistanceInWordsToNow(clip.createdAt)}
+                        views={clip.viewsCount}
+                      />
+                    </ClipPreviewContent>
+                  }
+                  avatar={clip.broadcaster.logo}
+                  title={clip.title}
+                  description={clip.broadcaster.display_name}
+                  descriptionLink={`https://www.twitch.tv/${clip.channel}`}
+                />
+              </ClipContainer>
+            )}
+            elementWidth={320}
+            afterRedner={
+              <>
+                {!loading && data.twitchTopClips.length === 0 && (
+                  <NoClips>Клипы не найдены :(</NoClips>
+                )}
+              </>
+            }
+          />
         );
       }}
     </Query>

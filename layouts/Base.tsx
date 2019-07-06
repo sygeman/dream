@@ -12,7 +12,7 @@ import TopNav from '../components/Nav/Top';
 import PostView from '../components/Post/FeedView';
 import PostProvider from '../providers/Post';
 import { PromoterHelp } from '../components/Help/Promoter';
-import { Modal } from '../ui';
+import { Modal, TwitchClipPlayer } from '../ui';
 import config from '../config';
 const LEFT_MENU_WIDTH = 240;
 
@@ -108,6 +108,12 @@ class BaseLayout extends PureComponent<IProps, IState> {
   public render() {
     const { children, router, fixedTopContent, leftMenu } = this.props;
 
+    let clipId = null;
+
+    if (typeof router.query.clipId === 'string') {
+      clipId = router.query.clipId;
+    }
+
     let postId = null;
 
     if (typeof router.query.postId === 'string') {
@@ -122,6 +128,20 @@ class BaseLayout extends PureComponent<IProps, IState> {
 
     return (
       <Box>
+        <Modal
+          visible={!!clipId}
+          minimal
+          onClose={() => router.replace(backPath)}
+        >
+          <div style={{ width: '1000px' }}>
+            {/* <PostProvider id={clipId}>
+              {({ post }) => <PostView {...post} autoPlay />}
+            </PostProvider> */}
+            <div style={{ width: 1100 }}>
+              <TwitchClipPlayer sourceId={clipId} autoPlay />
+            </div>
+          </div>
+        </Modal>
         <Modal
           visible={!!postId}
           minimal

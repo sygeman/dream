@@ -3,7 +3,7 @@ import { FC } from 'react';
 import { darken } from 'polished';
 import styled from 'styled-components';
 import { Icon, TwitchClipPlayer } from '../../ui';
-import { Comments } from '../Comments';
+import { ClipComments } from '../Clip/Comments';
 import PostHelper from '../Post';
 import { IPost, PostReactionType } from './interfaces/Post';
 import PostReactionProvider from '../../providers/PostReaction';
@@ -203,7 +203,7 @@ const PostFeedView: FC<IProps> = ({
       )}
       {id && (
         <CommentsBox>
-          <Comments postId={id} />
+          <ClipComments clipId={sourceId} />
         </CommentsBox>
       )}
     </Box>

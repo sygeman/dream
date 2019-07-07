@@ -1,8 +1,7 @@
-import PostFeedView from '../components/Post/FeedView';
+import styled from 'styled-components';
+import { Clip } from '../components/Clip/Clip';
 import useRouter from '../hooks/useRouter';
 import Layout from '../layouts/Main';
-// import PostProvider from '../providers/Post';
-import styled from 'styled-components';
 import { TopStreams } from '../components/TopStreams';
 
 const Box = styled.div`
@@ -38,10 +37,7 @@ const ClipPage = () => {
     <Layout>
       <Box>
         <Left>
-          <PostFeedView sourceId={clipId} header meta />
-          {/* <PostProvider id={clipId}>
-            {({ post }) => <PostFeedView {...post} header meta />}
-          </PostProvider> */}
+          <Clip clipId={clipId} />
         </Left>
         <Right>
           <TopStreams position="column" max={3} />

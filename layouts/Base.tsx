@@ -12,7 +12,8 @@ import TopNav from '../components/Nav/Top';
 import PostView from '../components/Post/FeedView';
 import PostProvider from '../providers/Post';
 import { PromoterHelp } from '../components/Help/Promoter';
-import { Modal, TwitchClipPlayer } from '../ui';
+import { Modal } from '../ui';
+import { ClipModal } from '../components/Clip/ClipModal';
 import config from '../config';
 const LEFT_MENU_WIDTH = 240;
 
@@ -133,13 +134,9 @@ class BaseLayout extends PureComponent<IProps, IState> {
           minimal
           onClose={() => router.replace(backPath)}
         >
-          <div style={{ width: '1000px' }}>
-            {/* <PostProvider id={clipId}>
-              {({ post }) => <PostView {...post} autoPlay />}
-            </PostProvider> */}
-            <TwitchClipPlayer sourceId={clipId} autoPlay />
-          </div>
+          <ClipModal clipId={clipId} />
         </Modal>
+
         <Modal
           visible={!!postId}
           minimal
@@ -151,6 +148,7 @@ class BaseLayout extends PureComponent<IProps, IState> {
             </PostProvider>
           </div>
         </Modal>
+
         <Modal
           title="Купить PepeCoin"
           visible={router.query.buyCoinsModal === '1'}
@@ -158,6 +156,7 @@ class BaseLayout extends PureComponent<IProps, IState> {
         >
           <BuyCoins />
         </Modal>
+
         <Modal
           minimal
           visible={router.query.authModal === '1'}
@@ -179,6 +178,7 @@ class BaseLayout extends PureComponent<IProps, IState> {
         >
           <CreateCommunity />
         </Modal>
+
         <Modal
           minimal
           title="Как работает продвижение"

@@ -137,9 +137,7 @@ class BaseLayout extends PureComponent<IProps, IState> {
             {/* <PostProvider id={clipId}>
               {({ post }) => <PostView {...post} autoPlay />}
             </PostProvider> */}
-            <div style={{ width: 1100 }}>
-              <TwitchClipPlayer sourceId={clipId} autoPlay />
-            </div>
+            <TwitchClipPlayer sourceId={clipId} autoPlay />
           </div>
         </Modal>
         <Modal

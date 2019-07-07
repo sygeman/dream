@@ -130,7 +130,7 @@ export const VideoPreview: FC<IProps> = ({
             }}
           />
           <PreviewTags width={width}>
-            {nsfw && <PreviewBlurText>NSWF</PreviewBlurText>}
+            {nsfw && <PreviewBlurText>NSFW</PreviewBlurText>}
             {spoiler && <PreviewBlurText>Спойлер</PreviewBlurText>}
           </PreviewTags>
           <Bottom width={width}>

@@ -24,20 +24,15 @@ const AuthTitle = styled.div`
 const SocialForm = styled.div`
   display: flex;
   width: 100%;
-
-  @media (max-width: 700px) {
-    flex-direction: column;
-  }
+  flex-direction: column;
 `;
 
 const LoginButton = styled('a')<{
   cColor: string;
 }>`
   display: flex;
-  flex: 1;
   align-items: center;
   justify-content: center;
-  height: 44px;
   font-size: 17px;
   margin: 5px;
   text-align: center;
@@ -48,13 +43,29 @@ const LoginButton = styled('a')<{
   background: ${props => props.cColor};
 
   :hover {
-    background: ${props => lighten(0.2, props.cColor)};
+    background: ${props => lighten(0.1, props.cColor)};
   }
+`;
 
-  i {
-    margin-bottom: 2px;
-    font-size: 20px;
-  }
+const SocialIcon = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 62px;
+  font-size: 20px;
+  height: 100%;
+`;
+
+const SocialTitle = styled.div`
+  opacity: 0.85;
+  font-size: 13px;
+  height: 40px;
+  padding-right: 62px;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 2px;
 `;
 
 const Auth: FC = () => (
@@ -62,13 +73,22 @@ const Auth: FC = () => (
     <AuthTitle>Выберите наиболее удобную для Вас платформу</AuthTitle>
     <SocialForm>
       <LoginButton cColor={'#507299'} href={`${config.apiUrl}auth/vkontakte`}>
-        <Icon type="vk" />
+        <SocialIcon>
+          <Icon type="vk" />
+        </SocialIcon>
+        <SocialTitle>VK</SocialTitle>
       </LoginButton>
       <LoginButton cColor={'#DB4437'} href={`${config.apiUrl}auth/google`}>
-        <Icon type="google" />
+        <SocialIcon>
+          <Icon type="google" />
+        </SocialIcon>
+        <SocialTitle>GOOGLE</SocialTitle>
       </LoginButton>
       <LoginButton cColor={'#6542a6'} href={`${config.apiUrl}auth/twitch`}>
-        <Icon type="twitch" />
+        <SocialIcon>
+          <Icon type="twitch" />
+        </SocialIcon>
+        <SocialTitle>TWITCH</SocialTitle>
       </LoginButton>
     </SocialForm>
   </AuthBox>

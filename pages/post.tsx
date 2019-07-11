@@ -1,4 +1,4 @@
-import PostFeedView from '../components/Post/FeedView';
+import PostFeedView from '../components/Post/Post';
 import useRouter from '../hooks/useRouter';
 import Layout from '../layouts/Main';
 import PostProvider from '../providers/Post';

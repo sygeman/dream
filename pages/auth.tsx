@@ -1,7 +1,7 @@
 import { lighten } from 'polished';
 import { FC } from 'react';
 import styled from 'styled-components';
-import Auth from '../components/Auth';
+import { Auth } from '../components/Auth';
 import Layout from '../layouts/Main';
 
 const Box = styled.div`

@@ -68,30 +68,32 @@ const SocialTitle = styled.div`
   letter-spacing: 2px;
 `;
 
-const Auth: FC = () => (
+const SocialButton = ({ bgColor, path, icon, title }) => (
+  <LoginButton cColor={bgColor} href={`${config.apiUrl}auth/${path}`}>
+    <SocialIcon>
+      <Icon type={icon} />
+    </SocialIcon>
+    <SocialTitle>{title}</SocialTitle>
+  </LoginButton>
+);
+
+export const Auth: FC = () => (
   <AuthBox>
     <AuthTitle>Выберите наиболее удобную для Вас платформу</AuthTitle>
     <SocialForm>
-      <LoginButton cColor={'#507299'} href={`${config.apiUrl}auth/vkontakte`}>
-        <SocialIcon>
-          <Icon type="vk" />
-        </SocialIcon>
-        <SocialTitle>VK</SocialTitle>
-      </LoginButton>
-      <LoginButton cColor={'#DB4437'} href={`${config.apiUrl}auth/google`}>
-        <SocialIcon>
-          <Icon type="google" />
-        </SocialIcon>
-        <SocialTitle>GOOGLE</SocialTitle>
-      </LoginButton>
-      <LoginButton cColor={'#6542a6'} href={`${config.apiUrl}auth/twitch`}>
-        <SocialIcon>
-          <Icon type="twitch" />
-        </SocialIcon>
-        <SocialTitle>TWITCH</SocialTitle>
-      </LoginButton>
+      <SocialButton bgColor={'#507299'} path="vkontakte" icon="vk" title="VK" />
+      <SocialButton
+        bgColor={'#DB4437'}
+        path="google"
+        icon="google"
+        title="GOOGLE"
+      />
+      <SocialButton
+        bgColor={'#6542a6'}
+        path="twitch"
+        icon="twitch"
+        title="TWITCH"
+      />
     </SocialForm>
   </AuthBox>
 );
-
-export default Auth;

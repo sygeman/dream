@@ -65,7 +65,7 @@ interface IProps {
   titleLink?: string;
   rows?: number;
   loadMore: () => Promise<any>;
-  onPlay: (id: string) => void;
+  onPlay: (id: any) => void;
 }
 
 interface IState {
@@ -162,7 +162,7 @@ class PostsView extends PureComponent<IProps, IState> {
         elementWidth={320}
         itemRender={post => (
           <PostContainer key={post.id}>
-            <PostGridView post={post} onPlay={() => onPlay(post.id)} />
+            <PostGridView post={post} onPlay={() => onPlay(post)} />
           </PostContainer>
         )}
       />

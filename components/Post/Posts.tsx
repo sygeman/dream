@@ -22,6 +22,7 @@ export const GET_POSTS = gql`
         title
         channelName
         rating
+        sourceId
         deleted
         createdAt
       }
@@ -180,20 +181,17 @@ const Posts: FC<IProps> = ({
               loading={loading}
               rows={rows}
               hasMore={hasMore && !rows && !noMore}
-              onPlay={id => {
+              onPlay={post => {
                 router.push(
                   {
                     pathname: router.route,
                     query: {
-                      postId: id,
+                      clipId: post.sourceId,
                       backPath: router.asPath,
                       ...router.query
                     }
                   },
-                  {
-                    pathname: '/post',
-                    query: { id }
-                  },
+                  `/clip/${post.sourceId}`,
                   {
                     shallow: true
                   }

@@ -4,9 +4,11 @@ import { darken } from 'polished';
 import styled from 'styled-components';
 import { Icon, TwitchClipPlayer } from '../../ui';
 import { ClipComments } from '../Clip/Comments';
-import PostHelper from '../Post';
-import { IPost, PostReactionType } from './interfaces/Post';
-import PostReactionProvider from '../../providers/PostReaction';
+import PostHelper from '.';
+import { IPost } from './interfaces/Post';
+import { ClipReactionType } from '../Clip/types/ClipReactionType';
+import ClipReactionProvider from '../../providers/ClipReaction';
+import { ClipReactionButton } from '../Clip/ClipReactionButton';
 
 const Box = styled.div`
   flex-direction: column;
@@ -170,30 +172,30 @@ const PostFeedView: FC<IProps> = ({
       </ContentBox>
       {id && (
         <PostHelper.Bottom>
-          <PostReactionProvider postId={id}>
-            {({ postReaction }) => {
-              const reaction = postReaction ? postReaction.type : 'none';
+          <ClipReactionProvider clipId={sourceId}>
+            {({ clipReaction }) => {
+              const reaction = clipReaction ? clipReaction.type : 'none';
 
               return (
                 <>
-                  <PostHelper.ReactionButton
-                    id={id}
+                  <ClipReactionButton
+                    id={sourceId}
                     type="like"
-                    state={reaction === PostReactionType.like}
+                    state={reaction === ClipReactionType.like}
                     count={likes}
                     icon="thumb-up"
                   />
-                  <PostHelper.ReactionButton
-                    id={id}
+                  <ClipReactionButton
+                    id={sourceId}
                     type="dislike"
-                    state={reaction === PostReactionType.dislike}
+                    state={reaction === ClipReactionType.dislike}
                     count={dislikes}
                     icon="thumb-down"
                   />
                 </>
               );
             }}
-          </PostReactionProvider>
+          </ClipReactionProvider>
 
           <PostHelper.ShareButton id={id} />
           <PostHelper.Menu id={id} authorId={authorId} />

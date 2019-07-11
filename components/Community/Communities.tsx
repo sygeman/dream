@@ -103,14 +103,12 @@ export const Communities = ({ communities }) => {
             <CommunityBox key={community.id}>
               <CardMedia
                 media={
-                  <Link href={`/community?id=${community.id}`} passHref>
+                  <Link href={`/community/${community.id}`} passHref>
                     <PreviewContent>
                       {community.avatar && (
                         <CommunityAvatar
                           style={{
-                            background: `url("${
-                              community.avatar
-                            }") no-repeat center center / cover`
+                            background: `url("${community.avatar}") no-repeat center center / cover`
                           }}
                         />
                       )}

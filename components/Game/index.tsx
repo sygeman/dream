@@ -149,13 +149,8 @@ const TwitchGameClips = ({ game }) => {
                 ...router.query
               }
             },
-            {
-              pathname: '/clip',
-              query: { id: clipId }
-            },
-            {
-              shallow: true
-            }
+            `/clip/${clipId}`,
+            { shallow: true }
           );
         };
 

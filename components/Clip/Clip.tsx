@@ -4,9 +4,11 @@ import { darken } from 'polished';
 import styled from 'styled-components';
 import { TwitchClipPlayer } from '../../ui';
 import { ClipComments } from './Comments';
-// import PostHelper from '../Post';
-// import { IPost, PostReactionType } from './interfaces/Post';
-// import PostReactionProvider from '../../providers/PostReaction';
+import PostHelper from '../Post';
+import { ClipReactionButton } from './ClipReactionButton';
+import { ClipShareButton } from './ClipShareButton';
+import ClipReactionProvider from '../../providers/ClipReaction';
+import { ClipReactionType } from './types/ClipReactionType';
 
 const Box = styled.div`
   flex-direction: column;
@@ -154,43 +156,39 @@ export const Clip: FC<IProps> = ({ clipId, autoPlay }) => {
         <TwitchClipPlayer sourceId={clipId} autoPlay={autoPlay} />
       </ContentBox>
 
-      {/* <PostHelper.Bottom>
-        <PostReactionProvider postId={id}>
-            {({ postReaction }) => {
-              const reaction = postReaction ? postReaction.type : 'none';
+      <PostHelper.Bottom>
+        <ClipReactionProvider clipId={clipId}>
+          {({ clipReaction }) => {
+            const reaction = clipReaction ? clipReaction.type : 'none';
 
-              return (
-                <>
-                  <PostHelper.ReactionButton
-                    id={id}
-                    type="like"
-                    state={reaction === PostReactionType.like}
-                    count={likes}
-                    icon="thumb-up"
-                  />
-                  <PostHelper.ReactionButton
-                    id={id}
-                    type="dislike"
-                    state={reaction === PostReactionType.dislike}
-                    count={dislikes}
-                    icon="thumb-down"
-                  />
-                </>
-              );
-            }}
-          </PostReactionProvider>
+            return (
+              <>
+                <ClipReactionButton
+                  id={clipId}
+                  type="like"
+                  state={reaction === ClipReactionType.like}
+                  count={0}
+                  icon="thumb-up"
+                />
+                <ClipReactionButton
+                  id={clipId}
+                  type="dislike"
+                  state={reaction === ClipReactionType.dislike}
+                  count={0}
+                  icon="thumb-down"
+                />
+              </>
+            );
+          }}
+        </ClipReactionProvider>
 
-        <PostHelper.ShareButton id={id} />
-        <PostHelper.Menu id={id} authorId={authorId} />
-        <EmptyBottom />
-        <PostHelper.Author createdAt={createdAt} authorId={authorId} />
-      </PostHelper.Bottom> */}
+        <ClipShareButton id={clipId} />
+        {/* <PostHelper.Menu id={id} authorId={authorId} /> */}
+      </PostHelper.Bottom>
 
-      {/* {id && ( */}
       <CommentsBox>
         <ClipComments clipId={clipId} />
       </CommentsBox>
-      {/* )} */}
     </Box>
   );
 };

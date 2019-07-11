@@ -6,9 +6,12 @@ import styled from 'styled-components';
 import { Button, Input, SWRow, TwitchClipPlayer } from '../../ui';
 import { parseSource } from '../../utils/parseSoruce';
 
-const CREATE_POST = gql`
-  mutation($input: PostCreateInput!) {
-    createPost(input: $input)
+const CREATE_COMMUNITY_CLIP = gql`
+  mutation createCommunityClip($input: CommunityClipCreateInput!) {
+    createCommunityClip(input: $input) {
+      id
+      clipId
+    }
   }
 `;
 
@@ -23,11 +26,12 @@ const Bottom = styled.div`
 `;
 
 interface IState {
-  title: string;
-  sourceUrl: string;
+  communityId: string;
   clipId: string;
+  title: string;
   nfws: boolean;
   spoiler: boolean;
+  sourceUrl: string;
 }
 
 export default class CreatePost extends Component<{}, IState> {
@@ -35,11 +39,12 @@ export default class CreatePost extends Component<{}, IState> {
     super(props);
 
     this.state = {
-      title: '',
-      sourceUrl: '',
+      communityId: '5fd4ff46-3fd6-4313-b801-53212e1dc1f0',
       clipId: '',
+      title: '',
       nfws: false,
-      spoiler: false
+      spoiler: false,
+      sourceUrl: ''
     };
   }
 
@@ -58,13 +63,13 @@ export default class CreatePost extends Component<{}, IState> {
   public render() {
     return (
       <Mutation
-        mutation={CREATE_POST}
+        mutation={CREATE_COMMUNITY_CLIP}
         onCompleted={data => {
-          const postId = data.createPost;
-          Router.push(`/post?id=${postId}`);
+          const { clipId } = data.createCommunityClip;
+          Router.push(`/clip?id=${clipId}`);
         }}
       >
-        {createPost => (
+        {createCommunityClip => (
           <Box>
             <Input
               autoFocus
@@ -72,7 +77,7 @@ export default class CreatePost extends Component<{}, IState> {
               onChange={this.setSourceData}
             />
             <Input
-              placeholder="Название"
+              placeholder="Название (необязательно)"
               maxLength={100}
               onChange={e => this.setState({ title: e.target.value })}
             />
@@ -102,11 +107,12 @@ export default class CreatePost extends Component<{}, IState> {
             <Bottom>
               <Button
                 onClick={() =>
-                  createPost({
+                  createCommunityClip({
                     variables: {
                       input: {
-                        title: this.state.title,
+                        communityId: this.state.communityId,
                         clipId: this.state.clipId,
+                        title: this.state.title,
                         nfws: this.state.nfws,
                         spoiler: this.state.spoiler
                       }

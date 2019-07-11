@@ -31,7 +31,7 @@ export default class PostAuthor extends React.Component<IProps> {
             return null;
           }
 
-          return <Link href={`user?id=${id}`}>{data.user.name}</Link>;
+          return <Link href={`user/${id}`}>{data.user.name}</Link>;
         }}
       </Query>
     );

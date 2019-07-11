@@ -1,7 +1,7 @@
 import { lighten } from 'polished';
 import { FC } from 'react';
 import styled from 'styled-components';
-import CreatePost from '../components/Post/CreatePost';
+import { CreateCommunityClip } from '../components/Community/CreateClip';
 import Layout from '../layouts/Main';
 
 const Box = styled.div`
@@ -24,7 +24,7 @@ const NewPostPage: FC = () => (
   <Layout>
     <Box>
       <Container>
-        <CreatePost />
+        <CreateCommunityClip />
       </Container>
     </Box>
   </Layout>

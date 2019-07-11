@@ -4,7 +4,6 @@ import { darken } from 'polished';
 import styled from 'styled-components';
 import { TwitchClipPlayer } from '../../ui';
 import { ClipComments } from './Comments';
-import PostHelper from '../Post';
 import { ClipReactionButton } from './ClipReactionButton';
 import { ClipShareButton } from './ClipShareButton';
 import ClipReactionProvider from '../../providers/ClipReaction';
@@ -99,6 +98,12 @@ const CommentsBox = styled.div`
 //   }
 // `;
 
+const Bottom = styled.div`
+  height: 50px;
+  display: flex;
+  align-items: center;
+`;
+
 interface IProps {
   clipId?: string;
   autoPlay?: boolean;
@@ -156,7 +161,7 @@ export const Clip: FC<IProps> = ({ clipId, autoPlay }) => {
         <TwitchClipPlayer sourceId={clipId} autoPlay={autoPlay} />
       </ContentBox>
 
-      <PostHelper.Bottom>
+      <Bottom>
         <ClipReactionProvider clipId={clipId}>
           {({ clipReaction }) => {
             const reaction = clipReaction ? clipReaction.type : 'none';
@@ -183,8 +188,8 @@ export const Clip: FC<IProps> = ({ clipId, autoPlay }) => {
         </ClipReactionProvider>
 
         <ClipShareButton id={clipId} />
-        {/* <PostHelper.Menu id={id} authorId={authorId} /> */}
-      </PostHelper.Bottom>
+        {/* <Menu id={id} authorId={authorId} /> */}
+      </Bottom>
 
       <CommentsBox>
         <ClipComments clipId={clipId} />

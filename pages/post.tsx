@@ -1,28 +1,10 @@
-import PostFeedView from '../components/Post/Post';
+import { Query } from 'react-apollo';
+import gql from 'graphql-tag';
 import useRouter from '../hooks/useRouter';
-import Layout from '../layouts/Main';
-import PostProvider from '../providers/Post';
-import styled from 'styled-components';
-import { TopStreams } from '../components/TopStreams';
 
-const Box = styled.div`
-  margin: 0 auto;
-  margin-top: 20px;
-  display: flex;
-  max-width: 1200px;
-`;
-
-const Left = styled.div`
-  flex: 1;
-  padding: 0 20px;
-`;
-
-const Right = styled.div`
-  width: 320px;
-  margin-right: 10px;
-
-  @media (max-width: 1000px) {
-    display: none;
+const CLIP_ID_BY_POST_ID = gql`
+  query clipIdByPostId($postId: ID!) {
+    clipIdByPostId(postId: $postId)
   }
 `;
 
@@ -35,18 +17,19 @@ const PostPage = () => {
   }
 
   return (
-    <Layout>
-      <Box>
-        <Left>
-          <PostProvider id={postId}>
-            {({ post }) => <PostFeedView {...post} header meta />}
-          </PostProvider>
-        </Left>
-        <Right>
-          <TopStreams position="column" max={3} />
-        </Right>
-      </Box>
-    </Layout>
+    <Query query={CLIP_ID_BY_POST_ID} variables={{ postId }} ssr={false}>
+      {({ loading, error, data }) => {
+        if (loading) {
+          return null;
+        } else if (error) {
+          router.push(`/`);
+          return null;
+        }
+
+        router.push(`/clip/${data.clipIdByPostId}`);
+        return null;
+      }}
+    </Query>
   );
 };
 

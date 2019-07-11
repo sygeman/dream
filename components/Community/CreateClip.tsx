@@ -34,7 +34,7 @@ interface IState {
   sourceUrl: string;
 }
 
-export default class CreatePost extends Component<{}, IState> {
+export class CreateCommunityClip extends Component<{}, IState> {
   constructor(props) {
     super(props);
 

@@ -4,10 +4,8 @@ import { darken } from 'polished';
 import styled from 'styled-components';
 import { TwitchClipPlayer } from '../../ui';
 import { ClipComments } from './Comments';
-import { ClipReactionButton } from './ClipReactionButton';
+import { ClipReactions } from './ClipReactions';
 import { ClipShareButton } from './ClipShareButton';
-import ClipReactionProvider from '../../providers/ClipReaction';
-import { ClipReactionType } from './types/ClipReactionType';
 
 const Box = styled.div`
   flex-direction: column;
@@ -162,31 +160,7 @@ export const Clip: FC<IProps> = ({ clipId, autoPlay }) => {
       </ContentBox>
 
       <Bottom>
-        <ClipReactionProvider clipId={clipId}>
-          {({ clipReaction }) => {
-            const reaction = clipReaction ? clipReaction.type : 'none';
-
-            return (
-              <>
-                <ClipReactionButton
-                  id={clipId}
-                  type="like"
-                  state={reaction === ClipReactionType.like}
-                  count={0}
-                  icon="thumb-up"
-                />
-                <ClipReactionButton
-                  id={clipId}
-                  type="dislike"
-                  state={reaction === ClipReactionType.dislike}
-                  count={0}
-                  icon="thumb-down"
-                />
-              </>
-            );
-          }}
-        </ClipReactionProvider>
-
+        <ClipReactions clipId={clipId} />
         <ClipShareButton id={clipId} />
         {/* <Menu id={id} authorId={authorId} /> */}
       </Bottom>

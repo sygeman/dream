@@ -8,6 +8,7 @@
   "scripts": {
     "start:dev": "next -p 7000",
     "build": "next build",
+    "be": "next build && next export",
     "start": "next start -p 5000",
     "test": "jest -u",
     "storybook": "start-storybook -p 9001 -c .storybook"
@@ -28,7 +29,7 @@
     "js-cookie": "2.2.0",
     "jsonwebtoken": "8.5.1",
     "load-script": "1.0.0",
-    "lodash": "4.17.14",
+    "lodash": "4.17.15",
     "nanoid": "2.0.3",
     "next": "9.0.2",
     "nodemon": "1.19.1",
@@ -52,11 +53,11 @@
     "styled-components": "5.0.0-beta.8",
     "subscriptions-transport-ws": "0.9.16",
     "ts-node": "8.3.0",
-    "webpack": "4.36.1"
+    "webpack": "4.37.0"
   },
   "devDependencies": {
-    "@babel/core": "7.5.4",
-    "@babel/plugin-proposal-class-properties": "7.5.0",
+    "@babel/core": "7.5.5",
+    "@babel/plugin-proposal-class-properties": "7.5.5",
     "@babel/plugin-proposal-decorators": "7.4.4",
     "@storybook/addon-centered": "5.1.9",
     "@storybook/addon-knobs": "5.1.9",
@@ -72,7 +73,7 @@
     "@types/node": "12.6.8",
     "@types/react": "16.8.23",
     "@types/react-custom-scrollbars": "4.0.5",
-    "@types/react-dom": "16.8.4",
+    "@types/react-dom": "16.8.5",
     "@types/recharts": "1.1.20",
     "@types/storybook__react": "4.0.2",
     "@types/styled-components": "4.1.18",
@@ -87,7 +88,7 @@
     "prettier": "1.18.2",
     "react-addons-test-utils": "15.6.2",
     "react-test-renderer": "16.8.6",
-    "storybook-addon-styled-component-theme": "1.2.3",
+    "storybook-addon-styled-component-theme": "1.2.4",
     "tslint": "5.18.0",
     "tslint-config-prettier": "1.18.0",
     "tslint-plugin-prettier": "2.0.1",

@@ -24,20 +24,15 @@ const AuthTitle = styled.div`
 const SocialForm = styled.div`
   display: flex;
   width: 100%;
-
-  @media (max-width: 700px) {
-    flex-direction: column;
-  }
+  flex-direction: column;
 `;
 
 const LoginButton = styled('a')<{
   cColor: string;
 }>`
   display: flex;
-  flex: 1;
   align-items: center;
   justify-content: center;
-  height: 44px;
   font-size: 17px;
   margin: 5px;
   text-align: center;
@@ -48,28 +43,57 @@ const LoginButton = styled('a')<{
   background: ${props => props.cColor};
 
   :hover {
-    background: ${props => lighten(0.2, props.cColor)};
-  }
-
-  i {
-    margin-bottom: 2px;
-    font-size: 20px;
+    background: ${props => lighten(0.1, props.cColor)};
   }
 `;
 
-const Auth: FC = () => (
+const SocialIcon = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 62px;
+  font-size: 20px;
+  height: 100%;
+`;
+
+const SocialTitle = styled.div`
+  opacity: 0.85;
+  font-size: 13px;
+  height: 40px;
+  padding-right: 62px;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 2px;
+`;
+
+const SocialButton = ({ bgColor, path, icon, title }) => (
+  <LoginButton cColor={bgColor} href={`${config.apiUrl}auth/${path}`}>
+    <SocialIcon>
+      <Icon type={icon} />
+    </SocialIcon>
+    <SocialTitle>{title}</SocialTitle>
+  </LoginButton>
+);
+
+export const Auth: FC = () => (
   <AuthBox>
     <AuthTitle>Выберите наиболее удобную для Вас платформу</AuthTitle>
     <SocialForm>
-      <LoginButton cColor={'#507299'} href={`${config.apiUrl}auth/vkontakte`}>
-        <Icon type="vk" />
-      </LoginButton>
-      <LoginButton cColor={'#DB4437'} href={`${config.apiUrl}auth/google`}>
-        <Icon type="google" />
-      </LoginButton>
-      <LoginButton cColor={'#6542a6'} href={`${config.apiUrl}auth/twitch`}>
-        <Icon type="twitch" />
-      </LoginButton>
+      <SocialButton bgColor={'#507299'} path="vkontakte" icon="vk" title="VK" />
+      <SocialButton
+        bgColor={'#DB4437'}
+        path="google"
+        icon="google"
+        title="GOOGLE"
+      />
+      <SocialButton
+        bgColor={'#6542a6'}
+        path="twitch"
+        icon="twitch"
+        title="TWITCH"
+      />
     </SocialForm>
   </AuthBox>
 );

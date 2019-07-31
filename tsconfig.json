@@ -16,23 +16,57 @@
     "preserveConstEnums": true,
     "sourceMap": true,
     "skipLibCheck": true,
-    "plugins": [{
-      "name": "typescript-styled-plugin"
-    }],
+    "plugins": [
+      {
+        "name": "typescript-styled-plugin"
+      }
+    ],
     "baseUrl": ".",
     "paths": {
-      "components/*": ["components/*"],
-      "layouts/*": ["layouts/*"],
-      "pages/*": ["pages/*"],
-      "theme/*": ["theme/*"],
-      "utils/*": ["utils/*"],
-      "ui/*": ["ui/*"],
-      "lib/*": ["lib/*"]
+      "components/*": [
+        "components/*"
+      ],
+      "layouts/*": [
+        "layouts/*"
+      ],
+      "pages/*": [
+        "pages/*"
+      ],
+      "theme/*": [
+        "theme/*"
+      ],
+      "utils/*": [
+        "utils/*"
+      ],
+      "ui/*": [
+        "ui/*"
+      ],
+      "lib/*": [
+        "lib/*"
+      ]
     },
-    "typeRoots": ["./node_modules/@types"],
-    "lib": ["es2017", "dom", "esnext"]
+    "typeRoots": [
+      "./node_modules/@types"
+    ],
+    "lib": [
+      "es2017",
+      "dom",
+      "esnext"
+    ],
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "isolatedModules": true
   },
-  "include": ["components/*", "layouts/*", "pages/*", "theme/*", "utils/*", "ui/*", "lib/*"],
+  "include": [
+    "components/*",
+    "layouts/*",
+    "pages/*",
+    "theme/*",
+    "utils/*",
+    "ui/*",
+    "lib/*"
+  ],
   "exclude": [
     "node_modules",
     "**/*.spec.ts",

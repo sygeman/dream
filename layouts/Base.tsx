@@ -1,6 +1,6 @@
-import { RouterProps, withRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import { lighten, rgba } from 'polished';
-import { PureComponent, ReactNode } from 'react';
+import { ReactNode, useState, FC } from 'react';
 import Scrollbars from 'react-custom-scrollbars';
 import { YMInitializer } from 'react-yandex-metrika';
 import styled from 'styled-components';
@@ -88,142 +88,127 @@ const Overlay = styled.div<{ leftMenuIsOpen: boolean }>`
 `;
 
 interface IProps {
-  router: RouterProps;
   fixedTopContent?: ReactNode;
   leftMenu?: ReactNode;
 }
 
-interface IState {
-  leftMenuIsOpen: boolean;
-}
+const BaseLayout: FC<IProps> = ({ children, fixedTopContent, leftMenu }) => {
+  const router = useRouter();
 
-class BaseLayout extends PureComponent<IProps, IState> {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      leftMenuIsOpen: false
-    };
+  if (!router) {
+    return null;
   }
 
-  public render() {
-    const { children, router, fixedTopContent, leftMenu } = this.props;
+  const [leftMenuIsOpen, setLeftMenuIsOpen] = useState(false);
 
-    let clipId = null;
+  let clipId = null;
+  let postId = null;
+  let backPath = null;
 
-    if (typeof router.query.clipId === 'string') {
-      clipId = router.query.clipId;
-    }
+  if (typeof router.query.clipId === 'string') {
+    clipId = router.query.clipId;
+  }
 
-    let postId = null;
+  if (typeof router.query.postId === 'string') {
+    postId = router.query.postId;
+  }
 
-    if (typeof router.query.postId === 'string') {
-      postId = router.query.postId;
-    }
+  if (typeof router.query.backPath === 'string') {
+    backPath = router.query.backPath;
+  }
 
-    let backPath = null;
+  return (
+    <Box>
+      <Modal
+        visible={!!clipId}
+        minimal
+        onClose={() => router.replace(backPath)}
+      >
+        <ClipModal clipId={clipId} />
+      </Modal>
 
-    if (typeof router.query.backPath === 'string') {
-      backPath = router.query.backPath;
-    }
+      <Modal
+        visible={!!postId}
+        minimal
+        onClose={() => router.replace(backPath)}
+      >
+        <div style={{ width: '1000px' }}>
+          <PostProvider id={postId}>
+            {({ post }) => <PostView {...post} autoPlay />}
+          </PostProvider>
+        </div>
+      </Modal>
 
-    return (
-      <Box>
-        <Modal
-          visible={!!clipId}
-          minimal
-          onClose={() => router.replace(backPath)}
-        >
-          <ClipModal clipId={clipId} />
-        </Modal>
+      <Modal
+        title="Купить PepeCoin"
+        visible={router.query.buyCoinsModal === '1'}
+        onClose={() => router.back()}
+      >
+        <BuyCoins />
+      </Modal>
 
-        <Modal
-          visible={!!postId}
-          minimal
-          onClose={() => router.replace(backPath)}
-        >
-          <div style={{ width: '1000px' }}>
-            <PostProvider id={postId}>
-              {({ post }) => <PostView {...post} autoPlay />}
-            </PostProvider>
-          </div>
-        </Modal>
+      <Modal
+        minimal
+        visible={router.query.authModal === '1'}
+        onClose={() => router.back()}
+      >
+        <Auth />
+      </Modal>
+      <Modal
+        title="Новый клип"
+        visible={router.query.newPost === '1'}
+        onClose={() => router.back()}
+      >
+        <CreatePost />
+      </Modal>
+      <Modal
+        title="Новое сообщество"
+        visible={router.query.newCommunity === '1'}
+        onClose={() => router.back()}
+      >
+        <CreateCommunity />
+      </Modal>
 
-        <Modal
-          title="Купить PepeCoin"
-          visible={router.query.buyCoinsModal === '1'}
-          onClose={() => router.back()}
-        >
-          <BuyCoins />
-        </Modal>
+      <Modal
+        minimal
+        title="Как работает продвижение"
+        visible={router.query.howToPromoter === '1'}
+        onClose={() => router.back()}
+      >
+        <PromoterHelp />
+      </Modal>
 
-        <Modal
-          minimal
-          visible={router.query.authModal === '1'}
-          onClose={() => router.back()}
-        >
-          <Auth />
-        </Modal>
-        <Modal
-          title="Новый пост"
-          visible={router.query.newPost === '1'}
-          onClose={() => router.back()}
-        >
-          <CreatePost />
-        </Modal>
-        <Modal
-          title="Новое сообщество"
-          visible={router.query.newCommunity === '1'}
-          onClose={() => router.back()}
-        >
-          <CreateCommunity />
-        </Modal>
-
-        <Modal
-          minimal
-          title="Как работает продвижение"
-          visible={router.query.howToPromoter === '1'}
-          onClose={() => router.back()}
-        >
-          <PromoterHelp />
-        </Modal>
-
-        <ContentBox>
-          <TopNav
-            leftMenuTrigger={() =>
-              this.setState({ leftMenuIsOpen: !this.state.leftMenuIsOpen })
-            }
-          />
-          <Content>
-            <ContentInsideBox>
-              {leftMenu && (
-                <Left isOpen={this.state.leftMenuIsOpen}>
-                  <Scrollbars autoHide universal>
-                    {leftMenu}
-                  </Scrollbars>
-                </Left>
-              )}
-              <PostsBox id="layoutContent" noLeftMenu={!leftMenu}>
-                {fixedTopContent}
-                <Scrollbars
-                  autoHide
-                  universal
-                  renderView={props => <div {...props} id="mainScroll" />}
-                >
-                  {children}
+      <ContentBox>
+        <TopNav leftMenuTrigger={() => setLeftMenuIsOpen(!leftMenuIsOpen)} />
+        <Content>
+          <ContentInsideBox>
+            {leftMenu && (
+              <Left isOpen={leftMenuIsOpen}>
+                <Scrollbars autoHide universal>
+                  {leftMenu}
                 </Scrollbars>
-              </PostsBox>
-            </ContentInsideBox>
-            <Overlay
-              leftMenuIsOpen={this.state.leftMenuIsOpen}
-              onClick={() => this.setState({ leftMenuIsOpen: false })}
-            />
-          </Content>
-        </ContentBox>
-        <YMInitializer accounts={[config.yandexMetrikaId]} version="2" />
-      </Box>
-    );
-  }
-}
+              </Left>
+            )}
+            <PostsBox id="layoutContent" noLeftMenu={!leftMenu}>
+              {fixedTopContent}
+              <Scrollbars
+                autoHide
+                universal
+                renderView={props => <div {...props} id="mainScroll" />}
+              >
+                {children}
+              </Scrollbars>
+            </PostsBox>
+          </ContentInsideBox>
+          <Overlay
+            leftMenuIsOpen={leftMenuIsOpen}
+            onClick={() => setLeftMenuIsOpen(false)}
+          />
+        </Content>
+      </ContentBox>
+      <YMInitializer accounts={[config.yandexMetrikaId]} version="2" />
+    </Box>
+  );
+};
 
-export default withRouter(BaseLayout);
+export default BaseLayout;

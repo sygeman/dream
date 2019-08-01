@@ -30,7 +30,7 @@
     "load-script": "1.0.0",
     "lodash": "4.17.15",
     "nanoid": "2.0.3",
-    "next": "9.0.2",
+    "next": "9.0.3",
     "nodemon": "1.19.1",
     "nprogress": "0.2.0",
     "polished": "3.4.1",

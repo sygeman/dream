@@ -43,23 +43,6 @@ const InjectRouterContext = withRouter(({ router, children }) => {
 });
 
 class MyApp extends App<IProps> {
-  public static async getInitialProps({ Component, ctx }) {
-    const isServer = typeof window === 'undefined';
-
-    let pageProps = {};
-    if (Component.getInitialProps) {
-      pageProps = await Component.getInitialProps(ctx);
-    }
-    return {
-      isServer,
-      pageProps
-    };
-  }
-
-  constructor(props) {
-    super(props);
-  }
-
   public render() {
     const { Component, pageProps, apolloClient } = this.props;
 

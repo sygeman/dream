@@ -1,21 +1,7 @@
 import { withKnobs } from '@storybook/addon-knobs';
 import { addDecorator, configure, addParameters } from '@storybook/react';
-import React from 'react';
 import { withThemesProvider } from 'storybook-addon-styled-component-theme';
-import { createGlobalStyle } from 'styled-components';
-import { GlobalStyle } from '../theme';
 import { themes } from '@storybook/theming';
-
-// const GlStyle = createGlobalStyle`${GlobalStyle}`;
-
-function withGlobalStyles(storyFn) {
-  return (
-    <>
-      {/* <GlStyle /> */}
-      {storyFn()}
-    </>
-  );
-}
 
 addParameters({
   options: {
@@ -24,9 +10,7 @@ addParameters({
   }
 });
 
-addDecorator(withGlobalStyles);
 addDecorator(withKnobs);
-// addDecorator(centered);
 
 addDecorator(
   withThemesProvider([

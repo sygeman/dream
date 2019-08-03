@@ -1,7 +1,7 @@
 import { isEqual } from 'lodash';
 import * as React from 'react';
 import Scrollbars from 'react-custom-scrollbars';
-import styled from '../../theme';
+import styled from 'styled-components';
 import { ChatMessage } from './Message';
 
 const Messages = styled.div`

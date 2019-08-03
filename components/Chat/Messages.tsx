@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from '../../theme';
+import styled from 'styled-components';
 import MessagesWithScroll from './MessagesWithScroll';
 
 const Messages = styled.div`

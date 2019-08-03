@@ -84,7 +84,6 @@
     "enzyme": "3.10.0",
     "enzyme-adapter-react-16": "1.14.0",
     "enzyme-to-json": "3.3.5",
-    "fork-ts-checker-webpack-plugin": "1.4.3",
     "jest": "24.8.0",
     "prettier": "1.18.2",
     "react-addons-test-utils": "15.6.2",

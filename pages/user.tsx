@@ -6,7 +6,7 @@ import Posts from '../components/Post/Posts';
 import UserPanelProfile from '../components/User/UserPanelProfile';
 import useRouter from '../lib/useRouter';
 import Layout from '../layouts/Main';
-import styled from '../theme';
+import styled from 'styled-components';
 
 const GET_USER = gql`
   query getUser($id: ID) {

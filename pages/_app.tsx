@@ -7,8 +7,25 @@ import { ApolloProvider } from 'react-apollo';
 import 'resize-observer-polyfill';
 import { RouterContext } from '../lib/useRouter';
 import withApollo from '../lib/withApollo';
-import { ThemeProvider } from '../theme';
+import { ThemeProvider } from 'styled-components';
 import config from '../config';
+
+const theme = {
+  // primary: '#6441a4',
+  // primaryLight: '#956dd6',
+  // primaryDark: '#331774',
+  // primaryText: '#fff',
+  // secondary: '#1d1e31',
+  // secondaryLight: '#45455a',
+  // secondaryDark: '#000009',
+  // secondaryText: '#fff',
+
+  dark1Color: '#1D1E31',
+  dark2Color: '#262841',
+  accent2Color: '#968a9d',
+  main1Color: '#6441A4',
+  text1Color: '#eee'
+};
 
 Router.events.on('routeChangeStart', () => NProgress.start());
 Router.events.on('routeChangeComplete', () => NProgress.done());
@@ -50,24 +67,7 @@ class MyApp extends App<IProps> {
       <Container>
         <InjectRouterContext>
           <ApolloProvider client={apolloClient}>
-            <ThemeProvider
-              theme={{
-                // primary: '#6441a4',
-                // primaryLight: '#956dd6',
-                // primaryDark: '#331774',
-                // primaryText: '#fff',
-                // secondary: '#1d1e31',
-                // secondaryLight: '#45455a',
-                // secondaryDark: '#000009',
-                // secondaryText: '#fff',
-
-                dark1Color: '#1D1E31',
-                dark2Color: '#262841',
-                accent2Color: '#968a9d',
-                main1Color: '#6441A4',
-                text1Color: '#eee'
-              }}
-            >
+            <ThemeProvider theme={theme}>
               <React.Fragment>
                 <Head>
                   <link

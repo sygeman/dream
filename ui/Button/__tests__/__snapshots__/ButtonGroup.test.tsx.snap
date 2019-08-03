@@ -4,12 +4,12 @@ exports[`ButtonGroup should render correctly 1`] = `
 initialize {
   "0": Object {
     "attribs": Object {
-      "class": "ButtonGroup-mlmqc6-0 jcnaec",
+      "class": "ButtonGroup-sc-17e2ndt-0 YwuBG",
     },
     "children": Array [
       Object {
         "attribs": Object {
-          "class": "ButtonCommon-sc-1cv4c9e-0 Button-sc-66tws3-0 yEiRp",
+          "class": "ButtonCommon-sc-1u200qq-0 Button-sc-1elm11u-0 iWHMXI",
         },
         "children": Array [
           Object {
@@ -24,7 +24,7 @@ initialize {
         "namespace": "http://www.w3.org/1999/xhtml",
         "next": Object {
           "attribs": Object {
-            "class": "ButtonCommon-sc-1cv4c9e-0 Button-sc-66tws3-0 yEiRp",
+            "class": "ButtonCommon-sc-1u200qq-0 Button-sc-1elm11u-0 iWHMXI",
           },
           "children": Array [
             Object {
@@ -39,7 +39,7 @@ initialize {
           "namespace": "http://www.w3.org/1999/xhtml",
           "next": Object {
             "attribs": Object {
-              "class": "ButtonCommon-sc-1cv4c9e-0 Button-sc-66tws3-0 yEiRp",
+              "class": "ButtonCommon-sc-1u200qq-0 Button-sc-1elm11u-0 iWHMXI",
             },
             "children": Array [
               Object {
@@ -85,7 +85,7 @@ initialize {
       },
       Object {
         "attribs": Object {
-          "class": "ButtonCommon-sc-1cv4c9e-0 Button-sc-66tws3-0 yEiRp",
+          "class": "ButtonCommon-sc-1u200qq-0 Button-sc-1elm11u-0 iWHMXI",
         },
         "children": Array [
           Object {
@@ -100,7 +100,7 @@ initialize {
         "namespace": "http://www.w3.org/1999/xhtml",
         "next": Object {
           "attribs": Object {
-            "class": "ButtonCommon-sc-1cv4c9e-0 Button-sc-66tws3-0 yEiRp",
+            "class": "ButtonCommon-sc-1u200qq-0 Button-sc-1elm11u-0 iWHMXI",
           },
           "children": Array [
             Object {
@@ -127,7 +127,7 @@ initialize {
         "parent": [Circular],
         "prev": Object {
           "attribs": Object {
-            "class": "ButtonCommon-sc-1cv4c9e-0 Button-sc-66tws3-0 yEiRp",
+            "class": "ButtonCommon-sc-1u200qq-0 Button-sc-1elm11u-0 iWHMXI",
           },
           "children": Array [
             Object {
@@ -161,7 +161,7 @@ initialize {
       },
       Object {
         "attribs": Object {
-          "class": "ButtonCommon-sc-1cv4c9e-0 Button-sc-66tws3-0 yEiRp",
+          "class": "ButtonCommon-sc-1u200qq-0 Button-sc-1elm11u-0 iWHMXI",
         },
         "children": Array [
           Object {
@@ -178,7 +178,7 @@ initialize {
         "parent": [Circular],
         "prev": Object {
           "attribs": Object {
-            "class": "ButtonCommon-sc-1cv4c9e-0 Button-sc-66tws3-0 yEiRp",
+            "class": "ButtonCommon-sc-1u200qq-0 Button-sc-1elm11u-0 iWHMXI",
           },
           "children": Array [
             Object {
@@ -195,7 +195,7 @@ initialize {
           "parent": [Circular],
           "prev": Object {
             "attribs": Object {
-              "class": "ButtonCommon-sc-1cv4c9e-0 Button-sc-66tws3-0 yEiRp",
+              "class": "ButtonCommon-sc-1u200qq-0 Button-sc-1elm11u-0 iWHMXI",
             },
             "children": Array [
               Object {

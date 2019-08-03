@@ -4,17 +4,17 @@ exports[`SWRow should render correctly 1`] = `
 initialize {
   "0": Object {
     "attribs": Object {
-      "class": "SWRow__Box-sc-93mskz-0 etWIcj",
+      "class": "SWRow__Box-sc-1atccaz-0 huaKOo",
     },
     "children": Array [
       Object {
         "attribs": Object {
-          "class": "SWRow__SRowLeft-sc-93mskz-1 cpSxEi",
+          "class": "SWRow__SRowLeft-sc-1atccaz-1 leadox",
         },
         "children": Array [
           Object {
             "attribs": Object {
-              "class": "SWRow__SRowTitle-sc-93mskz-2 jhOhjp",
+              "class": "SWRow__SRowTitle-sc-1atccaz-2 duUbHA",
             },
             "children": Array [
               Object {
@@ -43,22 +43,22 @@ initialize {
         "namespace": "http://www.w3.org/1999/xhtml",
         "next": Object {
           "attribs": Object {
-            "class": "SWRow__SRowRight-sc-93mskz-4 foMRCB",
+            "class": "SWRow__SRowRight-sc-1atccaz-4 hZaBOJ",
           },
           "children": Array [
             Object {
               "attribs": Object {
-                "class": "SWRow__SRowSwitch-sc-93mskz-5 bfWAuG",
+                "class": "SWRow__SRowSwitch-sc-1atccaz-5 faxFnS",
               },
               "children": Array [
                 Object {
                   "attribs": Object {
-                    "class": "Switch__Box-rm528d-0 ilSdxZ",
+                    "class": "Switch__Box-sc-1gdktzj-0 fuQGsd",
                   },
                   "children": Array [
                     Object {
                       "attribs": Object {
-                        "class": "Switch__Slider-rm528d-1 VAvPx",
+                        "class": "Switch__Slider-sc-1gdktzj-1 dZYeBy",
                       },
                       "children": Array [],
                       "name": "div",
@@ -128,22 +128,22 @@ initialize {
       },
       Object {
         "attribs": Object {
-          "class": "SWRow__SRowRight-sc-93mskz-4 foMRCB",
+          "class": "SWRow__SRowRight-sc-1atccaz-4 hZaBOJ",
         },
         "children": Array [
           Object {
             "attribs": Object {
-              "class": "SWRow__SRowSwitch-sc-93mskz-5 bfWAuG",
+              "class": "SWRow__SRowSwitch-sc-1atccaz-5 faxFnS",
             },
             "children": Array [
               Object {
                 "attribs": Object {
-                  "class": "Switch__Box-rm528d-0 ilSdxZ",
+                  "class": "Switch__Box-sc-1gdktzj-0 fuQGsd",
                 },
                 "children": Array [
                   Object {
                     "attribs": Object {
-                      "class": "Switch__Slider-rm528d-1 VAvPx",
+                      "class": "Switch__Slider-sc-1gdktzj-1 dZYeBy",
                     },
                     "children": Array [],
                     "name": "div",
@@ -194,12 +194,12 @@ initialize {
         "parent": [Circular],
         "prev": Object {
           "attribs": Object {
-            "class": "SWRow__SRowLeft-sc-93mskz-1 cpSxEi",
+            "class": "SWRow__SRowLeft-sc-1atccaz-1 leadox",
           },
           "children": Array [
             Object {
               "attribs": Object {
-                "class": "SWRow__SRowTitle-sc-93mskz-2 jhOhjp",
+                "class": "SWRow__SRowTitle-sc-1atccaz-2 duUbHA",
               },
               "children": Array [
                 Object {

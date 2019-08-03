@@ -1,5 +1,5 @@
 import * as Settings from '../components/Settings';
-import { Access } from '../helpers/Access';
+import { Access } from '../providers/Access';
 import Integration from '../components/Settings/Integration';
 import Layout from '../layouts/Main';
 

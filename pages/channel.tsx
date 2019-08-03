@@ -1,7 +1,7 @@
 import Channel from '../components/Channel';
 import Layout from '../layouts/Main';
-import useRouter from '../hooks/useRouter';
-import { Access } from '../helpers/Access';
+import useRouter from '../lib/useRouter';
+import { Access } from '../providers/Access';
 
 const ChannelPage = () => {
   const router = useRouter();

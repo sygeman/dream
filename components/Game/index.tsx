@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 import { FC } from 'react';
 import { Query } from 'react-apollo';
 import styled from 'styled-components';
-import useRouter from '../../hooks/useRouter';
+import useRouter from '../../lib/useRouter';
 import { darken } from 'polished';
 import { Grid, VideoPreview, CardMedia } from '../../ui';
 import { dateDistanceInWordsToNow } from '../../utils/date';

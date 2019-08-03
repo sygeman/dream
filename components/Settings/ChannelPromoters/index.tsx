@@ -9,7 +9,7 @@ import { Input, Button } from '../../../ui';
 import ChannelPromoter from './ChannelPromoter';
 import { TopStreams } from '../../TopStreams';
 import { parseTwitchChannelName } from '../../../utils/parseTwitchChannelName';
-import { Access } from '../../../helpers/Access';
+import { Access } from '../../../providers/Access';
 import { HowTo } from './HowTo';
 
 const CREATE_CHANNEL = gql`

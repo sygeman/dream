@@ -1,7 +1,7 @@
 import Game from '../components/Game';
 import Layout from '../layouts/Main';
-import useRouter from '../hooks/useRouter';
-import { Access } from '../helpers/Access';
+import useRouter from '../lib/useRouter';
+import { Access } from '../providers/Access';
 
 const GamePage = () => {
   const router = useRouter();

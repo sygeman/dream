@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { darken, lighten } from 'polished';
 import { FC } from 'react';
 import styled from 'styled-components';
-import useRouter from '../../hooks/useRouter';
+import useRouter from '../../lib/useRouter';
 
 const SubItem = styled('a')<{
   active?: boolean;

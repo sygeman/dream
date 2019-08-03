@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { lighten } from 'polished';
 import Link from 'next/link';
-import useRouter from '../../../hooks/useRouter';
+import useRouter from '../../../lib/useRouter';
 import { Button } from '../../../ui';
 
 const Box = styled.div`

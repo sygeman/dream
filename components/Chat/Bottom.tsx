@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Component } from 'react';
 import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
-import { Access } from '../../helpers/Access';
+import { Access } from '../../providers/Access';
 import { convertTextToEmojiCode } from '../../utils/emoji';
 
 const CREATE_CHAT_MESSAGE = gql`

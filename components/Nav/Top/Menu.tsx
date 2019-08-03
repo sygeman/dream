@@ -3,7 +3,7 @@ import { darken } from 'polished';
 import * as React from 'react';
 import styled from 'styled-components';
 import config from '../../../config';
-import { Access } from '../../../helpers/Access';
+import { Access } from '../../../providers/Access';
 import { Dropdown } from '../../../ui';
 
 const Box = styled.div`

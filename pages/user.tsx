@@ -4,7 +4,7 @@ import * as React from 'react';
 import { Query } from 'react-apollo';
 import Posts from '../components/Post/Posts';
 import UserPanelProfile from '../components/User/UserPanelProfile';
-import useRouter from '../hooks/useRouter';
+import useRouter from '../lib/useRouter';
 import Layout from '../layouts/Main';
 import styled from '../theme';
 

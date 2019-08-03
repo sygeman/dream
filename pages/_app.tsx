@@ -5,7 +5,7 @@ import NProgress from 'nprogress';
 import React from 'react';
 import { ApolloProvider } from 'react-apollo';
 import 'resize-observer-polyfill';
-import { RouterContext } from '../hooks/useRouter';
+import { RouterContext } from '../lib/useRouter';
 import withApollo from '../lib/withApollo';
 import { ThemeProvider } from '../theme';
 import config from '../config';

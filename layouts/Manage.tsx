@@ -1,5 +1,5 @@
 import { FC, ReactNode } from 'react';
-import { Access } from '../helpers/Access';
+import { Access } from '../providers/Access';
 import * as LeftMenu from '../ui/LeftMenu';
 import BaseLayout from './Base';
 

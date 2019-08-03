@@ -1,11 +1,11 @@
 import { FC, ReactNode } from 'react';
-import { Access } from '../helpers/Access';
+import { Access } from '../providers/Access';
 import CategoriesProvider from '../providers/Categories';
 import FollowsProvider from '../providers/Follows';
 import { Icon } from '../ui';
 import * as LeftMenu from '../ui/LeftMenu';
 import BaseLayout from './Base';
-import useRouter from '../hooks/useRouter';
+import useRouter from '../lib/useRouter';
 import { TopStreams } from '../components/TopStreams';
 
 interface IProps {

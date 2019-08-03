@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import { darken } from 'polished';
 import styled from 'styled-components';
-import useRouter from '../../hooks/useRouter';
+import useRouter from '../../lib/useRouter';
 import { Button, Grid, CardMedia } from '../../ui';
-import { Access } from '../../helpers/Access';
+import { Access } from '../../providers/Access';
 
 const Box = styled.div`
   padding: 10px 20px;
@@ -108,9 +108,7 @@ export const Communities = ({ communities }) => {
                       {community.avatar && (
                         <CommunityAvatar
                           style={{
-                            background: `url("${
-                              community.avatar
-                            }") no-repeat center center / cover`
+                            background: `url("${community.avatar}") no-repeat center center / cover`
                           }}
                         />
                       )}

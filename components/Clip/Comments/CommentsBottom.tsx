@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 import { Component } from 'react';
 import { Mutation } from 'react-apollo';
 import styled from 'styled-components';
-import { Access } from '../../../helpers/Access';
+import { Access } from '../../../providers/Access';
 import { convertTextToEmojiCode } from '../../../utils/emoji';
 
 const CREATE_CLIP_COMMENT = gql`

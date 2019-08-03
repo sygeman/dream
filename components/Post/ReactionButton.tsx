@@ -5,7 +5,7 @@ import * as React from 'react';
 import { Mutation } from 'react-apollo';
 import posed from 'react-pose';
 import styled from 'styled-components';
-import { Access } from '../../helpers/Access';
+import { Access } from '../../providers/Access';
 import { Icon } from '../../ui';
 
 const SET_POST_REACTION = gql`

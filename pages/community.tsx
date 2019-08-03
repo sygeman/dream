@@ -1,4 +1,4 @@
-import useRouter from '../hooks/useRouter';
+import useRouter from '../lib/useRouter';
 import Layout from '../layouts/Main';
 import { Community } from '../components/Community';
 import CommunityProvider from '../providers/Community';

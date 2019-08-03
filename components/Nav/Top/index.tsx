@@ -7,8 +7,8 @@ import WalletProvider from '../../../providers/Wallet';
 import { Avatar, Icon, CoinIconGold, CoinIconGreen } from '../../../ui';
 import { humanNumbers } from '../../../utils/count';
 import Menu from './Menu';
-import useRouter from '../../../hooks/useRouter';
-import { Access } from '../../../helpers/Access';
+import useRouter from '../../../lib/useRouter';
+import { Access } from '../../../providers/Access';
 import config from '../../../config';
 
 const Box = styled.div`

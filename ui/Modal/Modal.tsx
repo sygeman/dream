@@ -174,13 +174,25 @@ export const Modal: FC<IModalProps> = ({
 }) => {
   const modalId = nanoid(4);
 
+  const close = () => onClose(modalId);
+
+  const escapeHandler = e => {
+    if (e.keyCode === 27 && visible) {
+      onClose(modalId);
+    }
+  };
+
   useEffect(() => {
+    document.addEventListener('keyup', escapeHandler);
+
     if (visible) {
       onOpen(modalId);
     }
-  }, [visible]);
 
-  const close = () => onClose(modalId);
+    return () => {
+      document.removeEventListener('keyup', escapeHandler);
+    };
+  }, [visible]);
 
   if (!visible) {
     return null;
@@ -213,10 +225,10 @@ export const Modal: FC<IModalProps> = ({
             )}
           </Box>
           {minimal && (
-              <CloseOut onClick={close}>
-                <Icon type="close" />
-              </CloseOut>
-            )}
+            <CloseOut onClick={close}>
+              <Icon type="close" />
+            </CloseOut>
+          )}
         </BoxW>
       </BG>
     </Portal>

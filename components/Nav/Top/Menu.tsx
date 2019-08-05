@@ -52,9 +52,6 @@ export default class PostMenu extends React.Component<IProps> {
             <UserMenuItem>Панель управления</UserMenuItem>
           </Link>
         </Access>
-        <Link href="/settings" passHref>
-          <UserMenuItem>Настройки</UserMenuItem>
-        </Link>
         <Link href={`${config.apiUrl}logout`} passHref>
           <UserMenuItem>Выход</UserMenuItem>
         </Link>

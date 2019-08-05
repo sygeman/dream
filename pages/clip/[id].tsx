@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import { Clip } from '../components/Clip/Clip';
-import useRouter from '../lib/useRouter';
-import Layout from '../layouts/Main';
-import { TopStreams } from '../components/TopStreams';
+import { Clip } from '../../components/Clip/Clip';
+import useRouter from '../../lib/useRouter';
+import Layout from '../../layouts/Main';
+import { TopStreams } from '../../components/TopStreams';
 
 const Box = styled.div`
   margin: 0 auto;

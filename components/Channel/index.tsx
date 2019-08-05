@@ -181,13 +181,8 @@ const Channel: FC<IProps> = ({ userId }) => {
                   ...router.query
                 }
               },
-              {
-                pathname: '/clip',
-                query: { id: clipId }
-              },
-              {
-                shallow: true
-              }
+              `/clip/${clipId}`,
+              { shallow: true }
             );
           };
 

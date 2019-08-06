@@ -1,35 +1,9 @@
-import gql from 'graphql-tag';
 import Link from 'next/link';
 import { darken } from 'polished';
 import { PureComponent } from 'react';
 import styled from 'styled-components';
 import { Grid } from '../../ui';
 import PostGridView from './GridView';
-
-export const GET_POSTS = gql`
-  query getPosts(
-    $authorId: ID
-    $likedUserId: ID
-    $tagId: ID
-    $sort: SortType
-    $offset: Int
-    $limit: Int
-  ) {
-    posts(
-      authorId: $authorId
-      likedUserId: $likedUserId
-      tagId: $tagId
-      sort: $sort
-      offset: $offset
-      limit: $limit
-    ) {
-      count
-      posts {
-        id
-      }
-    }
-  }
-`;
 
 const SectionBox = styled.div`
   padding: 40px 5px 10px;

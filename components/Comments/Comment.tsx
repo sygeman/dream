@@ -4,33 +4,9 @@ import { darken, lighten } from 'polished';
 import * as React from 'react';
 import { Mutation } from 'react-apollo';
 import styled from 'styled-components';
-import { Access } from '../../helpers/Access';
+import { Access } from '../../providers/Access';
 import { Dropdown, Emoji } from '../../ui';
 import { splitTextToEmojiArray } from '../../utils/emoji';
-
-const SET_USER_ROLE_MOD = gql`
-  mutation setUserRoleMod($id: ID!) {
-    setUserRoleMod(id: $id)
-  }
-`;
-
-const UNSET_USER_ROLE_MOD = gql`
-  mutation unsetUserRoleMod($id: ID!) {
-    unsetUserRoleMod(id: $id)
-  }
-`;
-
-const SET_USER_BAN = gql`
-  mutation setUserBan($id: ID!) {
-    setUserBan(id: $id)
-  }
-`;
-
-const UNSET_USER_BAN = gql`
-  mutation unsetUserBan($id: ID!) {
-    unsetUserBan(id: $id)
-  }
-`;
 
 const REMOVE_MESSAGE = gql`
   mutation removeComment($id: ID!) {
@@ -191,118 +167,6 @@ export default class extends React.Component<IProps> {
         <Link href={`user?id=${user.id}`}>
           <UserMenuItem>Профиль</UserMenuItem>
         </Link>
-
-        <Access
-          name="setUserBan"
-          allow={currentUser => {
-            if (user.banned) {
-              return false;
-            }
-
-            if (currentUser.role !== 'admin' && currentUser.role !== 'mod') {
-              return false;
-            }
-
-            if (
-              user.role === 'admin' ||
-              (user.role === 'mod' && currentUser.role !== 'admin')
-            ) {
-              return false;
-            }
-
-            return true;
-          }}
-        >
-          <Mutation mutation={SET_USER_BAN}>
-            {setUserBan => (
-              <UserMenuItem
-                onClick={() =>
-                  setUserBan({
-                    variables: {
-                      id: user.id
-                    }
-                  })
-                }
-              >
-                Забанить
-              </UserMenuItem>
-            )}
-          </Mutation>
-        </Access>
-
-        <Access
-          allow={currentUser => {
-            if (!user.banned) {
-              return false;
-            }
-
-            if (currentUser.role !== 'admin' && currentUser.role !== 'mod') {
-              return false;
-            }
-
-            return currentUser.role === 'admin' && user.role === 'user';
-          }}
-        >
-          <Mutation mutation={UNSET_USER_BAN}>
-            {unsetUserBan => (
-              <UserMenuItem
-                onClick={() =>
-                  unsetUserBan({
-                    variables: {
-                      id: user.id
-                    }
-                  })
-                }
-              >
-                Разабанить
-              </UserMenuItem>
-            )}
-          </Mutation>
-        </Access>
-
-        <Access
-          allow={currentUser =>
-            currentUser.role === 'admin' && user.role === 'user'
-          }
-        >
-          <Mutation mutation={SET_USER_ROLE_MOD}>
-            {setUserRoleMod => (
-              <UserMenuItem
-                onClick={() =>
-                  setUserRoleMod({
-                    variables: {
-                      id: user.id
-                    }
-                  })
-                }
-              >
-                Назначить модератором
-              </UserMenuItem>
-            )}
-          </Mutation>
-        </Access>
-
-        <Access
-          allow={currentUser =>
-            currentUser.role === 'admin' && user.role === 'mod'
-          }
-        >
-          <Mutation mutation={UNSET_USER_ROLE_MOD}>
-            {unsetUserRoleMod => (
-              <UserMenuItem
-                onClick={() =>
-                  unsetUserRoleMod({
-                    variables: {
-                      id: user.id
-                    }
-                  })
-                }
-              >
-                Разжаловать модератора
-              </UserMenuItem>
-            )}
-          </Mutation>
-        </Access>
       </UserMenu>
     );
   }

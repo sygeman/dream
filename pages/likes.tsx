@@ -1,5 +1,5 @@
 import gql from 'graphql-tag';
-import { Query } from 'react-apollo';
+import { useQuery } from 'react-apollo';
 import Posts from '../components/Post/Posts';
 import Layout from '../layouts/Main';
 
@@ -11,28 +11,18 @@ const GET_USER = gql`
   }
 `;
 
-const LikesPage = () => (
-  <Layout>
-    <Query query={GET_USER}>
-      {({ loading, error, data }) => {
-        if (loading || error) {
-          return null;
-        }
+const LikesPage = () => {
+  const { loading, data } = useQuery(GET_USER);
 
-        if (!data || !data.user) {
-          return 'User not found';
-        }
-
-        const user = data.user;
-
-        return (
-          <>
-            <Posts title="Понравившиеся" likedUserId={user.id} />
-          </>
-        );
-      }}
-    </Query>
-  </Layout>
-);
+  return (
+    <Layout>
+      {loading ? (
+        'Loading'
+      ) : (
+        <Posts title="Понравившиеся" likedUserId={data.user.id} />
+      )}
+    </Layout>
+  );
+};
 
 export default LikesPage;

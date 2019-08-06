@@ -8,7 +8,7 @@ import { Avatar } from '../../ui';
 import { dateDistanceInWordsToNow } from '../../utils/date';
 
 const GET_USER = gql`
-  query($id: ID!) {
+  query getUser($id: ID!) {
     user(id: $id) {
       id
       role

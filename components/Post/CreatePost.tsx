@@ -7,7 +7,7 @@ import { Button, Input, SWRow, TwitchClipPlayer } from '../../ui';
 import { parseSource } from '../../utils/parseSoruce';
 
 const CREATE_POST = gql`
-  mutation($input: PostCreateInput!) {
+  mutation createPost($input: PostCreateInput!) {
     createPost(input: $input)
   }
 `;

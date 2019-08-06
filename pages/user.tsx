@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 import Head from 'next/head';
 import * as React from 'react';
-import { Query } from 'react-apollo';
+import { useQuery } from 'react-apollo';
 import Posts from '../components/Post/Posts';
 import UserPanelProfile from '../components/User/UserPanelProfile';
 import useRouter from '../lib/useRouter';
@@ -44,34 +44,24 @@ const UserPage = () => {
     userId = router.query.id;
   }
 
+  const { loading, data } = useQuery(GET_USER, { variables: { id: userId } });
+
+  if (loading) {
+    return null;
+  }
+
   return (
-    <Query query={GET_USER} variables={{ id: userId }}>
-      {({ loading, error, data }) => {
-        if (loading || error) {
-          return null;
-        }
+    <Layout fixedTopContent={<UserPanelProfile user={data.user} />}>
+      <Box>
+        <Head>
+          <title>{data.user.name}</title>
+        </Head>
 
-        if (!data || !data.user) {
-          return 'User not found';
-        }
-
-        const user = data.user;
-
-        return (
-          <Layout fixedTopContent={<UserPanelProfile user={user} />}>
-            <Box>
-              <Head>
-                <title>{user.name}</title>
-              </Head>
-
-              <PostsBox>
-                <Posts title="Клипы" authorId={user.id} sort="new" />
-              </PostsBox>
-            </Box>
-          </Layout>
-        );
-      }}
-    </Query>
+        <PostsBox>
+          <Posts title="Клипы" authorId={data.user.id} sort="new" />
+        </PostsBox>
+      </Box>
+    </Layout>
   );
 };
 

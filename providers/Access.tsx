@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
-import { FC, ReactNode } from 'react';
-import { Query } from 'react-apollo';
+import { FC } from 'react';
+import { useQuery } from 'react-apollo';
 
 const GET_USER = gql`
   query getUser {
@@ -29,41 +29,39 @@ interface IUser {
 interface IProps {
   name?: string;
   allow?: (currentUser: IUser) => boolean;
-  denyContent?: ReactNode;
+  denyContent?: any;
 }
 
-export const Access: FC<IProps> = ({ allow, children, denyContent }) => (
-  <Query query={GET_USER} ssr={false}>
-    {({ loading, error, data }) => {
-      if (loading) {
-        return null;
-      }
+export const Access: FC<IProps> = ({ allow, children, denyContent }) => {
+  const { loading, error, data } = useQuery(GET_USER, { ssr: false });
 
-      if (error) {
-        if (denyContent) {
-          return denyContent;
-        }
+  if (loading) {
+    return null;
+  }
 
-        return null;
-      }
+  if (error) {
+    if (denyContent) {
+      return denyContent;
+    }
 
-      if (!data.user) {
-        return denyContent || null;
-      }
+    return null;
+  }
 
-      if (typeof allow === 'function' && allow(data.user)) {
-        return children;
-      }
+  if (!data.user) {
+    return denyContent || null;
+  }
 
-      if (typeof allow !== 'function' && !!data.user) {
-        return children;
-      }
+  if (typeof allow === 'function' && allow(data.user)) {
+    return children;
+  }
 
-      if (denyContent) {
-        return denyContent;
-      }
+  if (typeof allow !== 'function' && !!data.user) {
+    return children;
+  }
 
-      return null;
-    }}
-  </Query>
-);
+  if (denyContent) {
+    return denyContent;
+  }
+
+  return null;
+};

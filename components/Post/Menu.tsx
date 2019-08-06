@@ -7,7 +7,7 @@ import { Access } from '../../providers/Access';
 import { ButtonFlat, Dropdown, Icon } from '../../ui';
 
 const REMOVE_POST = gql`
-  mutation($id: ID!) {
+  mutation removePost($id: ID!) {
     removePost(id: $id)
   }
 `;

@@ -5,7 +5,7 @@ import { profilesToObject } from '../../../utils/profile';
 import Integration from './Integration';
 
 const GET_USER = gql`
-  query {
+  query getUser {
     user {
       id
       profiles {

@@ -1,6 +1,6 @@
 import Game from '../components/Game';
 import Layout from '../layouts/Main';
-import useRouter from '../lib/useRouter';
+import { useRouter } from '../hooks/useRouter';
 import { Access } from '../providers/Access';
 
 const GamePage = () => {

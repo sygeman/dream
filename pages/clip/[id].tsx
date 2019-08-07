@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Clip } from '../../components/Clip/Clip';
-import useRouter from '../../lib/useRouter';
+import { useRouter } from '../../hooks/useRouter';
 import Layout from '../../layouts/Main';
 import { TopStreams } from '../../components/TopStreams';
 

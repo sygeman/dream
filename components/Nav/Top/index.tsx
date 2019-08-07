@@ -4,7 +4,7 @@ import { FC } from 'react';
 import styled from 'styled-components';
 import { Icon, CoinIconGold, CoinIconGreen } from '../../../ui';
 import { TopNavMenuUserBlock } from './UserBlock';
-import useRouter from '../../../lib/useRouter';
+import { useRouter } from '../../../hooks/useRouter';
 import { Access } from '../../../providers/Access';
 import config from '../../../config';
 import { WalletBalance } from './WalletBalance';

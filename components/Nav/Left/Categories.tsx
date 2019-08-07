@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 import { FC } from 'react';
 import { useQuery } from 'react-apollo';
-import useRouter from '../../../lib/useRouter';
+import { useRouter } from '../../../hooks/useRouter';
 import * as LeftMenu from '../../../ui/LeftMenu';
 
 const GET_TWITCH_TOP_GAMES = gql`

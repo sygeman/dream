@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 import { FC } from 'react';
 import { useQuery } from 'react-apollo';
 import { Icon } from '../../../ui';
-import useRouter from '../../../lib/useRouter';
+import { useRouter } from '../../../hooks/useRouter';
 import * as LeftMenu from '../../../ui/LeftMenu';
 
 const GET_USER_TWITCH_FOLLOWS = gql`

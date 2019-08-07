@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { darken } from 'polished';
 import styled from 'styled-components';
-import useRouter from '../../lib/useRouter';
+import { useRouter } from '../../hooks/useRouter';
 import { Button, Grid, CardMedia } from '../../ui';
 import { Access } from '../../providers/Access';
 

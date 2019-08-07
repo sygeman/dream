@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { darken, lighten } from 'polished';
 import { FC } from 'react';
 import styled from 'styled-components';
-import useRouter from '../../lib/useRouter';
+import { useRouter } from '../../hooks/useRouter';
 import { Icon } from '../Icon';
 
 const Item = styled.a<{ active: boolean }>`

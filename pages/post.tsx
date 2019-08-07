@@ -1,5 +1,5 @@
 import PostFeedView from '../components/Post/FeedView';
-import useRouter from '../lib/useRouter';
+import { useRouter } from '../hooks/useRouter';
 import Layout from '../layouts/Main';
 import styled from 'styled-components';
 import { TopStreams } from '../components/TopStreams';

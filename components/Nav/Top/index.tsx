@@ -2,11 +2,10 @@ import Link from 'next/link';
 import { darken, lighten } from 'polished';
 import { FC } from 'react';
 import styled from 'styled-components';
-import UserProvider from '../../../providers/User';
 import WalletProvider from '../../../providers/Wallet';
-import { Avatar, Icon, CoinIconGold, CoinIconGreen } from '../../../ui';
+import { Icon, CoinIconGold, CoinIconGreen } from '../../../ui';
 import { humanNumbers } from '../../../utils/count';
-import Menu from './Menu';
+import { TopNavMenuUserBlock } from './UserBlock';
 import useRouter from '../../../lib/useRouter';
 import { Access } from '../../../providers/Access';
 import config from '../../../config';
@@ -112,18 +111,6 @@ const TopLink = styled.a`
   }
 `;
 
-const UserDataBox = styled.div`
-  padding: 0 5px;
-  display: flex;
-  cursor: pointer;
-  align-items: center;
-  height: 100%;
-`;
-
-const AvatarBox = styled.div`
-  padding-left: 14px;
-`;
-
 const PointsBox = styled.div`
   display: flex;
   margin: 0 10px;
@@ -157,25 +144,6 @@ const BuyCoinsLink = styled.a`
   i {
     font-size: 15px;
   }
-`;
-
-const UserNameBox = styled.div`
-  display: flex;
-  align-items: center;
-  font-size: 13px;
-  color: ${({ theme }) => lighten(0.4, theme.main1Color)};
-
-  @media (max-width: 700px) {
-    display: none;
-  }
-`;
-
-const UserCaratBox = styled.div`
-  height: 100%;
-  padding: 0 6px;
-  display: flex;
-  align-items: center;
-  font-size: 17px;
 `;
 
 interface IProps {
@@ -293,21 +261,7 @@ const TopNav: FC<IProps> = ({ leftMenuTrigger }) => {
                   </PointsCount>
                 </Points>
               </PointsBox>
-              <UserProvider>
-                {({ user }) => (
-                  <Menu user={user}>
-                    <UserDataBox>
-                      <UserNameBox>{user.name}</UserNameBox>
-                      <AvatarBox>
-                        <Avatar dot avatar={user.avatar} />
-                      </AvatarBox>
-                      <UserCaratBox>
-                        <Icon type="caret-down" />
-                      </UserCaratBox>
-                    </UserDataBox>
-                  </Menu>
-                )}
-              </UserProvider>
+              <TopNavMenuUserBlock />
             </>
           </Access>
         </UserBox>

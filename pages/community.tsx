@@ -1,7 +1,6 @@
 import useRouter from '../lib/useRouter';
 import Layout from '../layouts/Main';
 import { Community } from '../components/Community';
-import CommunityProvider from '../providers/Community';
 
 const CommunityPage = () => {
   const router = useRouter();
@@ -13,9 +12,7 @@ const CommunityPage = () => {
 
   return (
     <Layout>
-      <CommunityProvider id={communityId}>
-        {({ community }) => <Community {...community} />}
-      </CommunityProvider>
+      <Community id={communityId} />}
     </Layout>
   );
 };

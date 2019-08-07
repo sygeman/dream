@@ -1,10 +1,32 @@
 import gql from 'graphql-tag';
 import { lighten } from 'polished';
-import { FC } from 'react';
-import { Mutation } from 'react-apollo';
+import { FC, useEffect } from 'react';
+import { useQuery, useMutation } from 'react-apollo';
 import styled from 'styled-components';
 import ChannelProvider from '../../../providers/Channel';
 import { Button, SWRow, Icon, Avatar } from '../../../ui';
+
+const GET_CHANNEL_PROMOTER = gql`
+  query channelPromoter($where: ChannelPromoterWhereUniqueInput!) {
+    channelPromoter(where: $where) {
+      id
+      active
+      cost
+      channelId
+    }
+  }
+`;
+
+const UPDATED_CHANNEL_PROMOTER = gql`
+  subscription channelPromoter($id: ID!) {
+    channelPromoter(id: $id) {
+      id
+      active
+      cost
+      channelId
+    }
+  }
+`;
 
 const SET_CHANNEL_PROMOTER_ACTIVE = gql`
   mutation setChannelPromoterActive($id: ID!, $active: Boolean!) {
@@ -126,108 +148,130 @@ const ChannelPromoterContent = styled('div')`
 `;
 
 interface IProps {
-  channelPromoter: any;
+  channelPromoterId: string;
 }
 
-export const ChannelPromoter: FC<IProps> = ({ channelPromoter }) => (
-  <ChannelProvider id={channelPromoter.channelId}>
-    {({ channel }) => (
-      <ChannelPromoterBox>
-        <ChannelPromoterHeader>
-          <ChannelHeaderInfo>
-            <ChannelAvatar>
-              <Avatar
-                avatar={channel.avatar}
-                dot={channel.cost > 0 && channel.live}
-                dotColor="#d54141"
-              />
-            </ChannelAvatar>
-            <ChannelName
-              target="_blank"
-              href={`https://www.twitch.tv/${channel.name}`}
-            >
-              {channel.name}
-            </ChannelName>
-            <ChannelCost>{channel.cost}</ChannelCost>
-          </ChannelHeaderInfo>
-          <ChannelPromoterHeaderActions>
-            <Mutation mutation={DELETE_CHANNEL_PROMOTER}>
-              {deleteChannelPromoter => (
-                <Button
-                  mainColor="#393C61"
-                  onClick={() =>
-                    deleteChannelPromoter({
-                      variables: { id: channelPromoter.id }
-                    })
-                  }
-                >
-                  <Icon type="close" />
-                </Button>
-              )}
-            </Mutation>
-          </ChannelPromoterHeaderActions>
-        </ChannelPromoterHeader>
-        <ChannelPromoterContent>
-          <Mutation mutation={SET_CHANNEL_PROMOTER_ACTIVE}>
-            {setChannelPromoterActive => (
-              <SWRow
-                activeColor={lighten(0.05, '#4d517f')}
-                active={channelPromoter.active}
-                title={
-                  <Mutation mutation={SET_CHANNEL_PROMOTER_COST}>
-                    {setChannelPromoterCost => (
-                      <CostBox>
-                        <CostNumberBox>
-                          <CostDown
-                            onClick={() =>
-                              setChannelPromoterCost({
-                                variables: {
-                                  id: channelPromoter.id,
-                                  cost: channelPromoter.cost - 1
-                                }
-                              })
-                            }
-                          >
-                            {channelPromoter.cost > 1 && (
-                              <Icon type="minus-circle" />
-                            )}
-                          </CostDown>
-                          <CostCurrent>{channelPromoter.cost}</CostCurrent>
-                          <CostUp
-                            onClick={() =>
-                              setChannelPromoterCost({
-                                variables: {
-                                  id: channelPromoter.id,
-                                  cost: channelPromoter.cost + 1
-                                }
-                              })
-                            }
-                          >
-                            {channelPromoter.cost < 50 && (
-                              <Icon type="plus-circle" />
-                            )}
-                          </CostUp>
-                        </CostNumberBox>
-                        <PointsIconReal />в минуту
-                      </CostBox>
-                    )}
-                  </Mutation>
-                }
-                onChange={() =>
-                  setChannelPromoterActive({
-                    variables: {
-                      id: channelPromoter.id,
-                      active: !channelPromoter.active
-                    }
+export const ChannelPromoter: FC<IProps> = ({ channelPromoterId }) => {
+  const { loading, error, data, subscribeToMore } = useQuery(
+    GET_CHANNEL_PROMOTER,
+    {
+      variables: { where: { id: channelPromoterId } }
+    }
+  );
+  const [deleteChannelPromoter] = useMutation(DELETE_CHANNEL_PROMOTER);
+  const [setChannelPromoterActive] = useMutation(SET_CHANNEL_PROMOTER_ACTIVE);
+  const [setChannelPromoterCost] = useMutation(SET_CHANNEL_PROMOTER_COST);
+
+  useEffect(() => {
+    subscribeToMore({
+      document: UPDATED_CHANNEL_PROMOTER,
+      variables: { id: channelPromoterId },
+      updateQuery: (prev, { subscriptionData }) => {
+        if (!subscriptionData.data) {
+          return prev;
+        }
+
+        return {
+          ...prev,
+          channelPromoter: {
+            ...prev.channelPromoter,
+            ...subscriptionData.data.channelPromoter
+          }
+        };
+      }
+    });
+  }, []);
+
+  if (loading || error) {
+    return null;
+  }
+
+  const channelPromoter = data.channelPromoter;
+
+  return (
+    <ChannelProvider id={channelPromoter.channelId}>
+      {({ channel }) => (
+        <ChannelPromoterBox>
+          <ChannelPromoterHeader>
+            <ChannelHeaderInfo>
+              <ChannelAvatar>
+                <Avatar
+                  avatar={channel.avatar}
+                  dot={channel.cost > 0 && channel.live}
+                  dotColor="#d54141"
+                />
+              </ChannelAvatar>
+              <ChannelName
+                target="_blank"
+                href={`https://www.twitch.tv/${channel.name}`}
+              >
+                {channel.name}
+              </ChannelName>
+              <ChannelCost>{channel.cost}</ChannelCost>
+            </ChannelHeaderInfo>
+            <ChannelPromoterHeaderActions>
+              <Button
+                mainColor="#393C61"
+                onClick={() =>
+                  deleteChannelPromoter({
+                    variables: { id: channelPromoter.id }
                   })
                 }
-              />
-            )}
-          </Mutation>
-        </ChannelPromoterContent>
-      </ChannelPromoterBox>
-    )}
-  </ChannelProvider>
-);
+              >
+                <Icon type="close" />
+              </Button>
+            </ChannelPromoterHeaderActions>
+          </ChannelPromoterHeader>
+          <ChannelPromoterContent>
+            <SWRow
+              activeColor={lighten(0.05, '#4d517f')}
+              active={channelPromoter.active}
+              title={
+                <CostBox>
+                  <CostNumberBox>
+                    <CostDown
+                      onClick={() =>
+                        setChannelPromoterCost({
+                          variables: {
+                            id: channelPromoter.id,
+                            cost: channelPromoter.cost - 1
+                          }
+                        })
+                      }
+                    >
+                      {channelPromoter.cost > 1 && <Icon type="minus-circle" />}
+                    </CostDown>
+                    <CostCurrent>{channelPromoter.cost}</CostCurrent>
+                    <CostUp
+                      onClick={() =>
+                        setChannelPromoterCost({
+                          variables: {
+                            id: channelPromoter.id,
+                            cost: channelPromoter.cost + 1
+                          }
+                        })
+                      }
+                    >
+                      {channelPromoter.cost < 50 && <Icon type="plus-circle" />}
+                    </CostUp>
+                  </CostNumberBox>
+                  <PointsIconReal />в минуту
+                </CostBox>
+              }
+              onChange={() =>
+                setChannelPromoterActive({
+                  variables: {
+                    id: channelPromoter.id,
+                    active: !channelPromoter.active
+                  }
+                })
+              }
+            />
+          </ChannelPromoterContent>
+        </ChannelPromoterBox>
+      )}
+    </ChannelProvider>
+  );
+};
 
 export default ChannelPromoter;

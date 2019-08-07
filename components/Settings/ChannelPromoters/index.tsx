@@ -3,7 +3,6 @@ import { lighten } from 'polished';
 import { createRef, FC } from 'react';
 import { Mutation } from 'react-apollo';
 import styled from 'styled-components';
-import ChannelPromoterProvider from '../../../providers/ChannelPromoter';
 import ChannelPromotersProvider from '../../../providers/ChannelPromoters';
 import { Input, Button } from '../../../ui';
 import ChannelPromoter from './ChannelPromoter';
@@ -87,11 +86,7 @@ const ChannelPromotersList = ({ channelPromoters }) => {
       <ChannelsBox>
         {channelPromoters.map(({ id }) => (
           <ChannelBox key={id}>
-            <ChannelPromoterProvider id={id}>
-              {({ channelPromoter }) => (
-                <ChannelPromoter channelPromoter={channelPromoter} />
-              )}
-            </ChannelPromoterProvider>
+            <ChannelPromoter channelPromoterId={id} />
           </ChannelBox>
         ))}
       </ChannelsBox>

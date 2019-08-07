@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { lighten } from 'polished';
-import ChatMessagesProvider from '../../providers/ChatMessages';
 import { Chat } from '../Chat';
 import { Rectangle169 } from '../../ui';
 
@@ -45,11 +44,7 @@ export const Community = ({ mainChatId }) => {
         </div>
       </ContentBox>
       <ChatBox>
-        <ChatMessagesProvider chatId={mainChatId}>
-          {({ chatMessages }) => (
-            <Chat id={mainChatId} messages={chatMessages} />
-          )}
-        </ChatMessagesProvider>
+        <Chat id={mainChatId} />
       </ChatBox>
     </Box>
   );

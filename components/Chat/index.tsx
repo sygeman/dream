@@ -1,9 +1,62 @@
-import { useState } from 'react';
+import gql from 'graphql-tag';
+import { useState, FC, useEffect } from 'react';
+import { useQuery } from 'react-apollo';
 import styled from 'styled-components';
 import { lighten } from 'polished';
 import { ChatMessages } from './Messages';
 import { ChatMessagesBottom } from './Bottom';
 import { Icon } from '../../ui';
+
+const GET_CHAT_MESSAGES = gql`
+  query chatMessages($chatId: ID!) {
+    chatMessages(chatId: $chatId) {
+      id
+      content
+      authorId
+      createdAt
+      author {
+        id
+        name
+        avatar
+        role
+      }
+    }
+  }
+`;
+
+const CHAT_MESSAGE_CREATED = gql`
+  subscription chatMessageCreated($chatId: ID!) {
+    chatMessageCreated(chatId: $chatId) {
+      id
+      content
+      authorId
+      createdAt
+      author {
+        id
+        name
+        avatar
+        role
+      }
+    }
+  }
+`;
+
+const CHAT_MESSAGE_DELETED = gql`
+  subscription chatMessageDeleted($chatId: ID!) {
+    chatMessageDeleted(chatId: $chatId) {
+      id
+      content
+      authorId
+      createdAt
+      author {
+        id
+        name
+        avatar
+        role
+      }
+    }
+  }
+`;
 
 const Box = styled.div`
   display: flex;
@@ -43,17 +96,6 @@ const TabBox = styled.div`
   font-size: 14px;
 `;
 
-// const ConnectionsCount = styled.div`
-//   display: flex;
-//   align-content: center;
-//   font-size: 12px;
-//   margin-left: 8px;
-//   height: 100%;
-//   min-width: 30px;
-//   font-weight: 500;
-//   justify-content: center;
-// `;
-
 const TabsContent = styled.div`
   height: 100%;
   overflow: hidden;
@@ -65,10 +107,61 @@ const TabContent = styled.div`
   overflow: hidden;
 `;
 
-// const MessageContainer = styled.div``;
+interface IProps {
+  id: string;
+}
 
-export const Chat = ({ id, messages }) => {
+export const Chat: FC<IProps> = ({ id }) => {
+  const limit = 50;
   const [tabActive, setActiveTab] = useState('messages');
+  const { subscribeToMore, loading, error, data } = useQuery(
+    GET_CHAT_MESSAGES,
+    { variables: { chatId: id }, ssr: false }
+  );
+
+  useEffect(() => {
+    subscribeToMore({
+      document: CHAT_MESSAGE_CREATED,
+      variables: { chatId: id },
+      updateQuery: (prev, { subscriptionData }) => {
+        if (!subscriptionData.data) {
+          return prev;
+        }
+
+        const chatMessage = subscriptionData.data.chatMessageCreated;
+
+        if (prev.chatMessages.findIndex(c => c.id === chatMessage.id) < 0) {
+          return {
+            ...prev,
+            chatMessages: [...prev.chatMessages.slice(-limit), chatMessage]
+          };
+        }
+      }
+    });
+  }, []);
+
+  useEffect(() => {
+    subscribeToMore({
+      document: CHAT_MESSAGE_DELETED,
+      variables: { chatId: id },
+      updateQuery: (prev, { subscriptionData }) => {
+        if (!subscriptionData.data) {
+          return prev;
+        }
+
+        const { id } = subscriptionData.data.chatMessageDeleted;
+
+        return {
+          ...prev,
+          chatMessages: [...prev.chatMessages.filter(c => c.id !== id)]
+        };
+      }
+    });
+  }, []);
+
+  if (loading || error || !data || !data.chatMessages) {
+    return null;
+  }
 
   return (
     <Box>
@@ -87,9 +180,6 @@ export const Chat = ({ id, messages }) => {
         >
           <TabBox>
             <Icon type="accounts" />
-            {/* <ConnectionsCount title={humanNumbers(online)}>
-              {humanNumbers(online)}
-            </ConnectionsCount> */}
           </TabBox>
         </Tab>
       </Tabs>
@@ -98,7 +188,7 @@ export const Chat = ({ id, messages }) => {
         {tabActive === 'messages' && (
           <TabContent>
             <MessagesContainer>
-              <ChatMessages messages={messages} />
+              <ChatMessages messages={data.chatMessages} />
             </MessagesContainer>
             <ChatMessagesBottom chatId={id} />
           </TabContent>

@@ -6,7 +6,7 @@ import { YMInitializer } from 'react-yandex-metrika';
 import styled from 'styled-components';
 import Auth from '../components/Auth';
 import { BuyCoins } from '../components/BuyCoins';
-import CreatePost from '../components/Post/CreatePost';
+import { CreatePost } from '../components/Post/CreatePost';
 import { CreateCommunity } from '../components/Community/Create';
 import TopNav from '../components/Nav/Top';
 import PostView from '../components/Post/FeedView';

@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 import Router from 'next/router';
-import { Component } from 'react';
-import { Mutation } from 'react-apollo';
+import { useState } from 'react';
+import { useMutation } from 'react-apollo';
 import styled from 'styled-components';
 import { Button, Input, SWRow, TwitchClipPlayer } from '../../ui';
 import { parseSource } from '../../utils/parseSoruce';
@@ -22,104 +22,77 @@ const Bottom = styled.div`
   justify-content: flex-end;
 `;
 
-interface IState {
-  title: string;
-  sourceUrl: string;
-  clipId: string;
-  nfws: boolean;
-  spoiler: boolean;
-}
+export const CreatePost = () => {
+  const [title, setTitle] = useState('');
+  const [clipId, setClipId] = useState('');
+  const [nfws, setNfws] = useState(false);
+  const [spoiler, setSpoiler] = useState(false);
+  const [createPost] = useMutation(CREATE_POST, {
+    onCompleted: data => {
+      const postId = data.createPost;
+      Router.push(`/post?id=${postId}`);
+    }
+  });
 
-export default class CreatePost extends Component<{}, IState> {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      title: '',
-      sourceUrl: '',
-      clipId: '',
-      nfws: false,
-      spoiler: false
-    };
-  }
-
-  setSourceData = e => {
-    let clipId = '';
-    const sourceUrl = e.target.value;
-    const soruceData = parseSource(sourceUrl);
+  const setSourceData = e => {
+    const soruceData = parseSource(e.target.value);
 
     if (soruceData) {
-      clipId = soruceData.payload.sourceId;
+      setClipId(soruceData.payload.sourceId);
     }
-
-    this.setState({ sourceUrl, clipId });
   };
 
-  public render() {
-    return (
-      <Mutation
-        mutation={CREATE_POST}
-        onCompleted={data => {
-          const postId = data.createPost;
-          Router.push(`/post?id=${postId}`);
-        }}
-      >
-        {createPost => (
-          <Box>
-            <Input
-              autoFocus
-              placeholder="Ссылка на Twitch клип"
-              onChange={this.setSourceData}
-            />
-            <Input
-              placeholder="Название"
-              maxLength={100}
-              onChange={e => this.setState({ title: e.target.value })}
-            />
-            {this.state.clipId && (
-              <TwitchClipPlayer sourceId={this.state.clipId} />
-            )}
-            <SWRow
-              title="NSFW"
-              description={`
-                Обнажённая натура, гуро,порнография и обсценная лексика
-              `}
-              onChange={() => this.setState({ nfws: !this.state.nfws })}
-              active={this.state.nfws}
-              inactiveColor={'#1D1E30'}
-            />
-            <SWRow
-              title="Спойлер"
-              description={`
-                Информация о сюжете книги, фильма или компьютерной игры,
-                которая, будучи преждевременно раскрытой,
-                лишает некоторых читателей части удовольствия от сюжета.
-              `}
-              onChange={() => this.setState({ spoiler: !this.state.spoiler })}
-              active={this.state.spoiler}
-              inactiveColor={'#1D1E30'}
-            />
-            <Bottom>
-              <Button
-                onClick={() =>
-                  createPost({
-                    variables: {
-                      input: {
-                        title: this.state.title,
-                        clipId: this.state.clipId,
-                        nfws: this.state.nfws,
-                        spoiler: this.state.spoiler
-                      }
-                    }
-                  })
+  return (
+    <Box>
+      <Input
+        autoFocus
+        placeholder="Ссылка на Twitch клип"
+        onChange={setSourceData}
+      />
+      <Input
+        placeholder="Название"
+        maxLength={100}
+        onChange={e => setTitle(e.target.value)}
+      />
+      {clipId && <TwitchClipPlayer sourceId={clipId} />}
+      <SWRow
+        title="NSFW"
+        description={`
+              Обнажённая натура, гуро,порнография и обсценная лексика
+            `}
+        onChange={() => setNfws(!nfws)}
+        active={nfws}
+        inactiveColor={'#1D1E30'}
+      />
+      <SWRow
+        title="Спойлер"
+        description={`
+              Информация о сюжете книги, фильма или компьютерной игры,
+              которая, будучи преждевременно раскрытой,
+              лишает некоторых читателей части удовольствия от сюжета.
+            `}
+        onChange={() => setSpoiler(!spoiler)}
+        active={spoiler}
+        inactiveColor={'#1D1E30'}
+      />
+      <Bottom>
+        <Button
+          onClick={() =>
+            createPost({
+              variables: {
+                input: {
+                  title,
+                  clipId,
+                  nfws,
+                  spoiler
                 }
-              >
-                Создать
-              </Button>
-            </Bottom>
-          </Box>
-        )}
-      </Mutation>
-    );
-  }
-}
+              }
+            })
+          }
+        >
+          Создать
+        </Button>
+      </Bottom>
+    </Box>
+  );
+};

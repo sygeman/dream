@@ -1,7 +1,7 @@
 import { lighten } from 'polished';
 import { FC } from 'react';
 import styled from 'styled-components';
-import CreatePost from '../components/Post/CreatePost';
+import { CreatePost } from '../components/Post/CreatePost';
 import Layout from '../layouts/Main';
 
 const Box = styled.div`

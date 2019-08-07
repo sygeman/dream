@@ -1,7 +1,6 @@
 import { FC, memo } from 'react';
 import styled from 'styled-components';
 import { VideoPreview, CardMedia, Icon } from '../../ui';
-import { IPost } from './interfaces/Post';
 import { isEqual } from 'lodash';
 import { dateDistanceInWordsToNow } from '../../utils/date';
 
@@ -30,7 +29,7 @@ const PostDeleted = styled.div`
 `;
 
 interface IProps {
-  post: IPost;
+  post: any;
   onPlay: () => void;
 }
 

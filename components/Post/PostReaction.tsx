@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 import { FC, useEffect } from 'react';
 import { useQuery } from 'react-apollo';
 import PostHelper from '../Post';
-import { PostReactionType } from './interfaces/Post';
+import { PostReactionType } from '../../generated/globalTypes';
 
 const GET_POST_REACTION = gql`
   query postReaction($postId: ID!) {

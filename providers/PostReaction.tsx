@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
-import { Component, FC } from 'react';
-import { Query } from 'react-apollo';
+import { FC, useEffect } from 'react';
+import { useQuery } from 'react-apollo';
 
 const GET = gql`
   query postReaction($postId: ID!) {
@@ -24,63 +24,42 @@ const UPDATED = gql`
   }
 `;
 
-interface IPropsInner {
-  postReaction: any;
-  updated: () => void;
+interface IProps {
+  postId: string;
   children: any;
 }
 
-class ProviderInner extends Component<IPropsInner> {
-  public componentDidMount() {
-    this.props.updated();
-  }
+const Provider: FC<IProps> = ({ children, postId }) => {
+  const { loading, error, data, subscribeToMore } = useQuery(GET, {
+    variables: { postId },
+    ssr: false
+  });
 
-  public render() {
-    return this.props.children({
-      postReaction: this.props.postReaction
-    });
-  }
-}
+  useEffect(() => {
+    subscribeToMore({
+      document: UPDATED,
+      variables: { postId },
+      updateQuery: (prev, { subscriptionData }) => {
+        if (!subscriptionData.data) {
+          return prev;
+        }
 
-interface IProps {
-  postId: string;
-}
-
-const Provider: FC<IProps> = ({ children, postId }) => (
-  <Query query={GET} variables={{ postId }} ssr={false}>
-    {({ loading, error, data, subscribeToMore }) => {
-      if (loading || error || !data) {
-        return null;
+        return {
+          ...prev,
+          postReaction: {
+            ...prev.postReaction,
+            ...subscriptionData.data.postReaction
+          }
+        };
       }
+    });
+  }, []);
 
-      return (
-        <ProviderInner
-          postReaction={data.postReaction}
-          updated={() => {
-            subscribeToMore({
-              document: UPDATED,
-              variables: { postId },
-              updateQuery: (prev, { subscriptionData }) => {
-                if (!subscriptionData.data) {
-                  return prev;
-                }
+  if (loading || error || !data) {
+    return null;
+  }
 
-                return {
-                  ...prev,
-                  postReaction: {
-                    ...prev.postReaction,
-                    ...subscriptionData.data.postReaction
-                  }
-                };
-              }
-            });
-          }}
-        >
-          {children}
-        </ProviderInner>
-      );
-    }}
-  </Query>
-);
+  return children({ postReaction: data.postReaction });
+};
 
 export default Provider;

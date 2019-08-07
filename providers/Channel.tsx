@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
-import { Component, FC } from 'react';
-import { Query } from 'react-apollo';
+import { FC, useEffect } from 'react';
+import { useQuery } from 'react-apollo';
 
 const GET = gql`
   query channel($where: ChannelWhereUniqueInput!) {
@@ -28,63 +28,41 @@ const UPDATED = gql`
   }
 `;
 
-interface IPropsInner {
-  channel: any;
-  updated: () => void;
+interface IProps {
+  id: string;
   children: any;
 }
 
-class ProviderInner extends Component<IPropsInner> {
-  public componentDidMount() {
-    this.props.updated();
-  }
+const Provider: FC<IProps> = ({ children, id }) => {
+  const { loading, error, data, subscribeToMore } = useQuery(GET, {
+    variables: { where: { id } }
+  });
 
-  public render() {
-    return this.props.children({
-      channel: this.props.channel
-    });
-  }
-}
+  useEffect(() => {
+    subscribeToMore({
+      document: UPDATED,
+      variables: { id },
+      updateQuery: (prev, { subscriptionData }) => {
+        if (!subscriptionData.data) {
+          return prev;
+        }
 
-interface IProps {
-  id: string;
-}
-
-const Provider: FC<IProps> = ({ children, id }) => (
-  <Query query={GET} variables={{ where: { id } }}>
-    {({ loading, error, data, subscribeToMore }) => {
-      if (loading || error) {
-        return null;
+        return {
+          ...prev,
+          channel: {
+            ...prev.channel,
+            ...subscriptionData.data.channel
+          }
+        };
       }
+    });
+  }, []);
 
-      return (
-        <ProviderInner
-          channel={data.channel}
-          updated={() => {
-            subscribeToMore({
-              document: UPDATED,
-              variables: { id },
-              updateQuery: (prev, { subscriptionData }) => {
-                if (!subscriptionData.data) {
-                  return prev;
-                }
+  if (loading || error) {
+    return null;
+  }
 
-                return {
-                  ...prev,
-                  channel: {
-                    ...prev.channel,
-                    ...subscriptionData.data.channel
-                  }
-                };
-              }
-            });
-          }}
-        >
-          {children}
-        </ProviderInner>
-      );
-    }}
-  </Query>
-);
+  return children({ channel: data.channel });
+};
 
 export default Provider;

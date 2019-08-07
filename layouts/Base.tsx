@@ -10,7 +10,6 @@ import CreatePost from '../components/Post/CreatePost';
 import { CreateCommunity } from '../components/Community/Create';
 import TopNav from '../components/Nav/Top';
 import PostView from '../components/Post/FeedView';
-import PostProvider from '../providers/Post';
 import { PromoterHelp } from '../components/Help/Promoter';
 import { Modal } from '../ui';
 import { ClipModal } from '../components/Clip/ClipModal';
@@ -133,9 +132,7 @@ const BaseLayout: FC<IProps> = ({ children, fixedTopContent, leftMenu }) => {
         onClose={() => router.replace(backPath)}
       >
         <div style={{ width: '1000px' }}>
-          <PostProvider id={postId}>
-            {({ post }) => <PostView {...post} autoPlay />}
-          </PostProvider>
+          <PostView id={postId} autoPlay />
         </div>
       </Modal>
 

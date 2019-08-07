@@ -1,12 +1,54 @@
 import Head from 'next/head';
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { darken } from 'polished';
 import styled from 'styled-components';
 import { Icon, TwitchClipPlayer } from '../../ui';
 import { ClipComments } from '../Clip/Comments';
 import PostHelper from '../Post';
-import { IPost, PostReactionType } from './interfaces/Post';
+import { PostReactionType } from './interfaces/Post';
 import PostReactionProvider from '../../providers/PostReaction';
+import gql from 'graphql-tag';
+import { useQuery } from 'react-apollo';
+
+export const GET_POST = gql`
+  query post($id: ID!) {
+    post(id: $id) {
+      id
+      title
+      nfws
+      spoiler
+      sourceId
+      cover
+      likes
+      dislikes
+      rating
+      deleted
+      createdAt
+      channelName
+      authorId
+    }
+  }
+`;
+
+const UPDATED_POST = gql`
+  subscription post($id: ID!) {
+    post(id: $id) {
+      id
+      title
+      nfws
+      spoiler
+      sourceId
+      cover
+      likes
+      dislikes
+      rating
+      deleted
+      createdAt
+      channelName
+      authorId
+    }
+  }
+`;
 
 const Box = styled.div`
   flex-direction: column;
@@ -97,27 +139,54 @@ const PostDeleted = styled.div`
   }
 `;
 
-interface IProps extends IPost {
+interface IProps {
+  id: string;
   meta?: boolean;
   header?: boolean;
   autoPlay?: boolean;
 }
 
-const PostFeedView: FC<IProps> = ({
-  id,
-  title,
-  cover,
-  likes,
-  dislikes,
-  channelName,
-  sourceId,
-  createdAt,
-  authorId,
-  deleted,
-  meta,
-  header,
-  autoPlay
-}) => {
+const PostFeedView: FC<IProps> = ({ id, meta, header, autoPlay }) => {
+  const { subscribeToMore, loading, error, data } = useQuery(GET_POST, {
+    variables: { id }
+  });
+
+  useEffect(() => {
+    subscribeToMore({
+      document: UPDATED_POST,
+      variables: { id },
+      updateQuery: (prev, { subscriptionData }) => {
+        if (!subscriptionData.data) {
+          return prev;
+        }
+
+        return {
+          ...prev,
+          post: {
+            ...prev.post,
+            ...subscriptionData.data.post
+          }
+        };
+      }
+    });
+  }, []);
+
+  if (loading || error) {
+    return null;
+  }
+
+  const {
+    title,
+    cover,
+    likes,
+    dislikes,
+    channelName,
+    sourceId,
+    createdAt,
+    authorId,
+    deleted
+  } = data.post;
+
   if (deleted) {
     return (
       <Box>

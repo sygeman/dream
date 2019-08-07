@@ -1,7 +1,6 @@
 import PostFeedView from '../components/Post/FeedView';
 import useRouter from '../lib/useRouter';
 import Layout from '../layouts/Main';
-import PostProvider from '../providers/Post';
 import styled from 'styled-components';
 import { TopStreams } from '../components/TopStreams';
 
@@ -38,9 +37,7 @@ const PostPage = () => {
     <Layout>
       <Box>
         <Left>
-          <PostProvider id={postId}>
-            {({ post }) => <PostFeedView {...post} header meta />}
-          </PostProvider>
+          <PostFeedView id={postId} header meta />
         </Left>
         <Right>
           <TopStreams position="column" max={3} />

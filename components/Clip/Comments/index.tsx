@@ -1,8 +1,53 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
+import { useQuery } from 'react-apollo';
+import gql from 'graphql-tag';
 import styled from 'styled-components';
 import Comment from './Comment';
 import CommentsBottom from './CommentsBottom';
-import ClipCommentsProvider from '../../../providers/ClipComments';
+
+const GET_CLIP_COMMENTS = gql`
+  query getClipComments($clipId: ID) {
+    clipComments(clipId: $clipId) {
+      id
+      content
+      clipId
+      authorId
+      author {
+        id
+        name
+        avatar
+        role
+        banned
+      }
+      createdAt
+    }
+  }
+`;
+
+const CLIP_COMMENT_CREATED = gql`
+  subscription clipCommentCreated($clipId: ID!) {
+    clipCommentCreated(clipId: $clipId) {
+      id
+      content
+      clipId
+      authorId
+      author {
+        id
+        name
+        avatar
+        role
+        banned
+      }
+      createdAt
+    }
+  }
+`;
+
+const CLIP_COMMENT_REMOVED = gql`
+  subscription clipCommentRemoved($clipId: ID!) {
+    clipCommentRemoved(clipId: $clipId)
+  }
+`;
 
 const Box = styled.div`
   display: flex;
@@ -51,19 +96,75 @@ interface IProps {
   clipId: string;
 }
 
-export const ClipComments: FC<IProps> = ({ clipId }) => (
-  <Box>
-    <CommentsContainer>
-      <ClipCommentsProvider clipId={clipId}>
-        {({ comments }) => (
-          <CommentsBox>
-            {compactMessages(comments).map(comment => (
-              <Comment key={comment.id} {...comment} />
-            ))}
-          </CommentsBox>
-        )}
-      </ClipCommentsProvider>
-    </CommentsContainer>
-    <CommentsBottom clipId={clipId} />
-  </Box>
-);
+export const ClipComments: FC<IProps> = ({ clipId }) => {
+  const { loading, error, data, subscribeToMore } = useQuery(
+    GET_CLIP_COMMENTS,
+    {
+      variables: { clipId }
+    }
+  );
+
+  useEffect(() => {
+    subscribeToMore({
+      document: CLIP_COMMENT_CREATED,
+      variables: { clipId },
+      updateQuery: (prev, { subscriptionData }) => {
+        if (!subscriptionData.data) {
+          return prev;
+        }
+
+        const newClipComment = subscriptionData.data.clipCommentCreated;
+
+        const isDuplicate =
+          prev.clipComments.findIndex(c => {
+            return c.id === newClipComment.id;
+          }) >= 0;
+
+        if (isDuplicate) {
+          return prev;
+        }
+
+        return {
+          ...prev,
+          clipComments: [...prev.clipComments.slice(-50), newClipComment]
+        };
+      }
+    });
+  }, []);
+
+  useEffect(() => {
+    subscribeToMore({
+      document: CLIP_COMMENT_REMOVED,
+      variables: { clipId },
+      updateQuery: (prev, { subscriptionData }) => {
+        if (!subscriptionData.data) {
+          return prev;
+        }
+        const messageId = subscriptionData.data.clipCommentRemoved;
+        return {
+          ...prev,
+          clipComments: [
+            ...prev.clipComments.filter(message => {
+              return message.id !== messageId;
+            })
+          ]
+        };
+      }
+    });
+  }, []);
+
+  const comments = loading || error || !data ? [] : data.clipComments;
+
+  return (
+    <Box>
+      <CommentsContainer>
+        <CommentsBox>
+          {compactMessages(comments).map(comment => (
+            <Comment key={comment.id} {...comment} />
+          ))}
+        </CommentsBox>
+      </CommentsContainer>
+      <CommentsBottom clipId={clipId} />
+    </Box>
+  );
+};

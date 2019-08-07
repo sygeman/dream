@@ -2,7 +2,7 @@ import { FC, useEffect } from 'react';
 import { useQuery } from 'react-apollo';
 import gql from 'graphql-tag';
 import styled from 'styled-components';
-import Comment from './Comment';
+import { ClipComment } from './Comment';
 import CommentsBottom from './CommentsBottom';
 
 const GET_CLIP_COMMENTS = gql`
@@ -160,7 +160,7 @@ export const ClipComments: FC<IProps> = ({ clipId }) => {
       <CommentsContainer>
         <CommentsBox>
           {compactMessages(comments).map(comment => (
-            <Comment key={comment.id} {...comment} />
+            <ClipComment key={comment.id} {...comment} />
           ))}
         </CommentsBox>
       </CommentsContainer>

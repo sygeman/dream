@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 import Link from 'next/link';
 import { darken, lighten } from 'polished';
-import * as React from 'react';
-import { Mutation } from 'react-apollo';
+import React, { FC } from 'react';
+import { useMutation } from 'react-apollo';
 import styled from 'styled-components';
 import { Access } from '../../../providers/Access';
 import { Dropdown, Emoji } from '../../../ui';
@@ -160,69 +160,59 @@ interface IProps {
   authorId: string;
 }
 
-export default class extends React.Component<IProps> {
-  public renderUserMenu(user) {
-    return (
-      <UserMenu>
-        <Link href={`user?id=${user.id}`}>
-          <UserMenuItem>Профиль</UserMenuItem>
-        </Link>
-      </UserMenu>
-    );
-  }
+export const ClipComment: FC<IProps> = ({ id, content, compact, author }) => {
+  const [removeClipComment] = useMutation(REMOVE_CLIP_COMMENT);
 
-  public render() {
-    const { id, content, compact, author } = this.props;
+  const usernameColors = {
+    admin: 'rgb(194, 121, 121)',
+    mod: 'rgb(124, 194, 121)'
+  };
 
-    const usernameColors = {
-      admin: 'rgb(194, 121, 121)',
-      mod: 'rgb(124, 194, 121)'
-    };
+  const userColor = usernameColors[author.role]
+    ? usernameColors[author.role]
+    : undefined;
 
-    const userColor = usernameColors[author.role]
-      ? usernameColors[author.role]
-      : undefined;
-
-    return (
-      <Message>
-        {!compact && (
-          <Header>
-            <Dropdown overlay={this.renderUserMenu(author)}>
-              <Avatar>
-                {author.avatar ? (
-                  <AvatarImg src={author.avatar} />
-                ) : (
-                  <AvatarNone />
-                )}
-              </Avatar>
-            </Dropdown>
-            <Username userColor={userColor}>{author.name}</Username>
-            <Date />
-          </Header>
-        )}
-        <Content>
-          <Text>{renderMessageText(content)}</Text>
-          <ManageMenu>
-            <Access
-              allow={currentUser => {
-                return (
-                  currentUser.role === 'mod' || currentUser.role === 'admin'
-                );
-              }}
+  return (
+    <Message>
+      {!compact && (
+        <Header>
+          <Dropdown
+            overlay={
+              <UserMenu>
+                <Link href={`user?id=${author.id}`}>
+                  <UserMenuItem>Профиль</UserMenuItem>
+                </Link>
+              </UserMenu>
+            }
+          >
+            <Avatar>
+              {author.avatar ? (
+                <AvatarImg src={author.avatar} />
+              ) : (
+                <AvatarNone />
+              )}
+            </Avatar>
+          </Dropdown>
+          <Username userColor={userColor}>{author.name}</Username>
+          <Date />
+        </Header>
+      )}
+      <Content>
+        <Text>{renderMessageText(content)}</Text>
+        <ManageMenu>
+          <Access
+            allow={currentUser => {
+              return currentUser.role === 'mod' || currentUser.role === 'admin';
+            }}
+          >
+            <ManageItem
+              onClick={() => removeClipComment({ variables: { id } })}
             >
-              <Mutation mutation={REMOVE_CLIP_COMMENT}>
-                {removeClipComment => (
-                  <ManageItem
-                    onClick={() => removeClipComment({ variables: { id } })}
-                  >
-                    <i className="zmdi zmdi-close" />
-                  </ManageItem>
-                )}
-              </Mutation>
-            </Access>
-          </ManageMenu>
-        </Content>
-      </Message>
-    );
-  }
-}
+              <i className="zmdi zmdi-close" />
+            </ManageItem>
+          </Access>
+        </ManageMenu>
+      </Content>
+    </Message>
+  );
+};

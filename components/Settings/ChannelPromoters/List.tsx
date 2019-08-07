@@ -103,7 +103,7 @@ export const ChannelPromotersList: FC<IProps> = ({ channelPromoters }) => {
               }
             }}
           />
-          {isAllow && <Button onClick={addChannel}>Добавить</Button>}>
+          {isAllow && <Button onClick={addChannel}>Добавить</Button>}
         </AddStreamForm>
       )}
     </>

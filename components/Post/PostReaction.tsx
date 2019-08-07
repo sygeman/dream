@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 import { FC, useEffect } from 'react';
 import { useQuery } from 'react-apollo';
-import PostHelper from '../Post';
+import { PostReactionButton } from './ReactionButton';
 import { PostReactionType } from '../../generated/globalTypes';
 
 const GET_POST_REACTION = gql`
@@ -71,14 +71,14 @@ export const PostReaction: FC<IProps> = ({ postId, likes, dislikes }) => {
 
   return (
     <>
-      <PostHelper.ReactionButton
+      <PostReactionButton
         id={postId}
         type="like"
         state={reaction === PostReactionType.like}
         count={likes}
         icon="thumb-up"
       />
-      <PostHelper.ReactionButton
+      <PostReactionButton
         id={postId}
         type="dislike"
         state={reaction === PostReactionType.dislike}

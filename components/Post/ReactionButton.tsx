@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 import Router from 'next/router';
 import { lighten } from 'polished';
-import * as React from 'react';
-import { Mutation } from 'react-apollo';
+import { FC } from 'react';
+import { useMutation } from 'react-apollo';
 import posed from 'react-pose';
 import styled from 'styled-components';
 import { Access } from '../../providers/Access';
@@ -62,56 +62,56 @@ interface IProps {
   count: number;
 }
 
-export default class PostReaction extends React.Component<IProps> {
-  public render() {
-    const { id, type, icon, state, count } = this.props;
+export const PostReactionButton: FC<IProps> = ({
+  id,
+  type,
+  icon,
+  state,
+  count
+}) => {
+  const [setPostReaction] = useMutation(SET_POST_REACTION);
 
-    return (
-      <Access
-        denyContent={
-          <Box
-            onClick={() =>
-              Router.push(
-                {
-                  pathname: Router.route,
-                  query: {
-                    ...Router.query,
-                    authModal: 1
-                  }
-                },
-                `/auth?continue=${Router.asPath}`,
-                { shallow: true }
-              )
-            }
-          >
-            <LikeButton active={state}>
-              <Icon type={icon} />
-            </LikeButton>
-            {count > 0 && <LikesCount active={state}>{count}</LikesCount>}
-          </Box>
-        }
-      >
-        <Mutation mutation={SET_POST_REACTION}>
-          {setPostReaction => (
-            <Box>
-              <LikeButton
-                active={state}
-                onClick={() =>
-                  setPostReaction({
-                    variables: {
-                      postId: id,
-                      type: state ? 'none' : type
-                    }
-                  })
+  return (
+    <Access
+      denyContent={
+        <Box
+          onClick={() =>
+            Router.push(
+              {
+                pathname: Router.route,
+                query: {
+                  ...Router.query,
+                  authModal: 1
                 }
-              >
-                <Icon type={icon} />
-              </LikeButton>
-              {count > 0 && <LikesCount active={state}>{count}</LikesCount>}
-            </Box>
-          )}
-        </Mutation>
-      </Access>
-    );
-  }
-}
+              },
+              `/auth?continue=${Router.asPath}`,
+              { shallow: true }
+            )
+          }
+        >
+          <LikeButton active={state}>
+            <Icon type={icon} />
+          </LikeButton>
+          {count > 0 && <LikesCount active={state}>{count}</LikesCount>}
+        </Box>
+      }
+    >
+      <Box>
+        <LikeButton
+          active={state}
+          onClick={() =>
+            setPostReaction({
+              variables: {
+                postId: id,
+                type: state ? 'none' : type
+              }
+            })
+          }
+        >
+          <Icon type={icon} />
+        </LikeButton>
+        {count > 0 && <LikesCount active={state}>{count}</LikesCount>}
+      </Box>
+    </Access>
+  );
+};

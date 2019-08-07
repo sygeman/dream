@@ -5,8 +5,7 @@ import styled from 'styled-components';
 import { Icon, TwitchClipPlayer } from '../../ui';
 import { ClipComments } from '../Clip/Comments';
 import PostHelper from '../Post';
-import { PostReactionType } from './interfaces/Post';
-import PostReactionProvider from '../../providers/PostReaction';
+import { PostReaction } from './PostReaction';
 import gql from 'graphql-tag';
 import { useQuery } from 'react-apollo';
 
@@ -239,31 +238,7 @@ const PostFeedView: FC<IProps> = ({ id, meta, header, autoPlay }) => {
       </ContentBox>
       {id && (
         <PostHelper.Bottom>
-          <PostReactionProvider postId={id}>
-            {({ postReaction }) => {
-              const reaction = postReaction ? postReaction.type : 'none';
-
-              return (
-                <>
-                  <PostHelper.ReactionButton
-                    id={id}
-                    type="like"
-                    state={reaction === PostReactionType.like}
-                    count={likes}
-                    icon="thumb-up"
-                  />
-                  <PostHelper.ReactionButton
-                    id={id}
-                    type="dislike"
-                    state={reaction === PostReactionType.dislike}
-                    count={dislikes}
-                    icon="thumb-down"
-                  />
-                </>
-              );
-            }}
-          </PostReactionProvider>
-
+          <PostReaction postId={id} likes={likes} dislikes={dislikes} />
           <PostHelper.ShareButton id={id} />
           <PostHelper.Menu id={id} authorId={authorId} />
           <EmptyBottom />

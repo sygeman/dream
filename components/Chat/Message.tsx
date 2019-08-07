@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 import Link from 'next/link';
 import { darken, lighten, rgba } from 'polished';
-import * as React from 'react';
-import { Mutation } from 'react-apollo';
+import React, { FC } from 'react';
+import { useMutation } from 'react-apollo';
 import styled from 'styled-components';
 import { Access } from '../../providers/Access';
 import { Dropdown, Emoji } from '../../ui';
@@ -67,13 +67,11 @@ const Username = styled('div')<{ userColor?: string }>`
     props.userColor
       ? props.userColor
       : lighten('0.15', props.theme.accent2Color)};
-  /* flex: 1; */
 `;
 
 const Date = styled.div`
   color: ${({ theme }) => rgba(theme.accent2Color, 0.5)};
   font-size: 10px;
-  /* text-align: right; */
   padding: 0 8px;
 `;
 
@@ -163,69 +161,65 @@ interface IProps {
   authorId: string;
 }
 
-export class ChatMessage extends React.Component<IProps> {
-  public renderUserMenu(user) {
-    return (
-      <UserMenu>
-        <Link href={`user?id=${user.id}`}>
-          <UserMenuItem>Профиль</UserMenuItem>
-        </Link>
-      </UserMenu>
-    );
-  }
+export const ChatMessage: FC<IProps> = ({
+  id,
+  content,
+  compact,
+  author,
+  createdAt
+}) => {
+  const [deleteChatMessage] = useMutation(DELETE_CHAT_MESSAGE);
 
-  public render() {
-    const { id, content, compact, author, createdAt } = this.props;
+  const usernameColors = {
+    admin: 'rgb(194, 121, 121)',
+    mod: 'rgb(124, 194, 121)'
+  };
 
-    const usernameColors = {
-      admin: 'rgb(194, 121, 121)',
-      mod: 'rgb(124, 194, 121)'
-    };
+  const userColor = usernameColors[author.role]
+    ? usernameColors[author.role]
+    : undefined;
 
-    const userColor = usernameColors[author.role]
-      ? usernameColors[author.role]
-      : undefined;
-
-    return (
-      <Box>
-        {!compact && (
-          <Header>
-            <Dropdown overlay={this.renderUserMenu(author)}>
-              <Avatar>
-                {author.avatar ? (
-                  <AvatarImg src={author.avatar} />
-                ) : (
-                  <AvatarNone />
-                )}
-              </Avatar>
-            </Dropdown>
-            <Username userColor={userColor}>{author.name}</Username>
-            <Date>{dateDistanceInWordsToNow(createdAt)}</Date>
-          </Header>
-        )}
-        <Content>
-          <Text>{renderMessageText(content)}</Text>
-          <ManageMenu>
-            <Access
-              allow={currentUser => {
-                return (
-                  currentUser.role === 'mod' || currentUser.role === 'admin'
-                );
-              }}
+  return (
+    <Box>
+      {!compact && (
+        <Header>
+          <Dropdown
+            overlay={
+              <UserMenu>
+                <Link href={`user?id=${author.id}`}>
+                  <UserMenuItem>Профиль</UserMenuItem>
+                </Link>
+              </UserMenu>
+            }
+          >
+            <Avatar>
+              {author.avatar ? (
+                <AvatarImg src={author.avatar} />
+              ) : (
+                <AvatarNone />
+              )}
+            </Avatar>
+          </Dropdown>
+          <Username userColor={userColor}>{author.name}</Username>
+          <Date>{dateDistanceInWordsToNow(createdAt)}</Date>
+        </Header>
+      )}
+      <Content>
+        <Text>{renderMessageText(content)}</Text>
+        <ManageMenu>
+          <Access
+            allow={currentUser => {
+              return currentUser.role === 'mod' || currentUser.role === 'admin';
+            }}
+          >
+            <ManageItem
+              onClick={() => deleteChatMessage({ variables: { id } })}
             >
-              <Mutation mutation={DELETE_CHAT_MESSAGE}>
-                {deleteChatMessage => (
-                  <ManageItem
-                    onClick={() => deleteChatMessage({ variables: { id } })}
-                  >
-                    <i className="zmdi zmdi-close" />
-                  </ManageItem>
-                )}
-              </Mutation>
-            </Access>
-          </ManageMenu>
-        </Content>
-      </Box>
-    );
-  }
-}
+              <i className="zmdi zmdi-close" />
+            </ManageItem>
+          </Access>
+        </ManageMenu>
+      </Content>
+    </Box>
+  );
+};

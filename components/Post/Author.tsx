@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 import Head from 'next/head';
 import Link from 'next/link';
-import * as React from 'react';
-import { Query } from 'react-apollo';
+import React, { FC } from 'react';
+import { useQuery } from 'react-apollo';
 import styled from 'styled-components';
 import { Avatar } from '../../ui';
 import { dateDistanceInWordsToNow } from '../../utils/date';
@@ -62,43 +62,43 @@ interface IProps {
   metaDescription?: boolean;
 }
 
-export default class PostAuthor extends React.Component<IProps> {
-  public render() {
-    const { createdAt, authorId, metaDescription } = this.props;
+export const PostAuthor: FC<IProps> = ({
+  createdAt,
+  authorId,
+  metaDescription
+}) => {
+  const { loading, error, data } = useQuery(GET_USER, {
+    variables: { id: authorId }
+  });
 
-    return (
-      <Query query={GET_USER} variables={{ id: authorId }}>
-        {({ loading, error, data }) => {
-          if (loading) {
-            return <div />;
-          }
-
-          if (error || !data.user || !data.user) {
-            return null;
-          }
-
-          return (
-            <AuthorBox>
-              {metaDescription && (
-                <Head>
-                  <meta property="og:description" content={data.user.name} />
-                </Head>
-              )}
-              <AuthorData>
-                <Link href={`user?id=${authorId}`}>
-                  <AuthorName>{data.user.name}</AuthorName>
-                </Link>
-                <DateBox>{dateDistanceInWordsToNow(createdAt)}</DateBox>
-              </AuthorData>
-              <AuthorAvatarBox>
-                <Link href={`user?id=${authorId}`}>
-                  <Avatar avatar={data.user.avatar} />
-                </Link>
-              </AuthorAvatarBox>
-            </AuthorBox>
-          );
-        }}
-      </Query>
-    );
+  if (loading) {
+    return <div />;
   }
-}
+
+  if (error || !data.user || !data.user) {
+    return null;
+  }
+
+  return (
+    <AuthorBox>
+      {metaDescription && (
+        <Head>
+          <meta property="og:description" content={data.user.name} />
+        </Head>
+      )}
+      <AuthorData>
+        <Link href={`user?id=${authorId}`} passHref>
+          <AuthorName>{data.user.name}</AuthorName>
+        </Link>
+        <DateBox>{dateDistanceInWordsToNow(createdAt)}</DateBox>
+      </AuthorData>
+      <AuthorAvatarBox>
+        <Link href={`user?id=${authorId}`} passHref>
+          <>
+            <Avatar avatar={data.user.avatar} />
+          </>
+        </Link>
+      </AuthorAvatarBox>
+    </AuthorBox>
+  );
+};

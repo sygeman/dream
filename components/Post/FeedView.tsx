@@ -7,6 +7,7 @@ import { ClipComments } from '../Clip/Comments';
 import PostHelper from '../Post';
 import { PostReaction } from './PostReaction';
 import { PostMenu } from './Menu';
+import { PostAuthor } from './Author';
 import gql from 'graphql-tag';
 import { useQuery } from 'react-apollo';
 
@@ -243,7 +244,7 @@ const PostFeedView: FC<IProps> = ({ id, meta, header, autoPlay }) => {
           <PostHelper.ShareButton id={id} />
           <PostMenu id={id} authorId={authorId} />
           <EmptyBottom />
-          <PostHelper.Author createdAt={createdAt} authorId={authorId} />
+          <PostAuthor createdAt={createdAt} authorId={authorId} />
         </PostHelper.Bottom>
       )}
       {id && (

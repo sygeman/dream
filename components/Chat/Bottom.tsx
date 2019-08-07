@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import { Component } from 'react';
+import { FC, useRef } from 'react';
 import gql from 'graphql-tag';
-import { Mutation } from 'react-apollo';
-import { Access } from '../../providers/Access';
+import { useMutation } from 'react-apollo';
+import { useAccess } from '../../hooks/useAccess';
 import { convertTextToEmojiCode } from '../../utils/emoji';
 
 const CREATE_CHAT_MESSAGE = gql`
@@ -35,59 +35,40 @@ interface IProps {
   chatId: string;
 }
 
-export class ChatMessagesBottom extends Component<IProps> {
-  public textInput: any;
-  public lock: boolean = false;
+export const ChatMessagesBottom: FC<IProps> = ({ chatId }) => {
+  const textInput = useRef<HTMLInputElement>(null);
+  const isAllow = useAccess();
+  let lock = false;
 
-  public render() {
-    const { chatId } = this.props;
+  const [createChatMessage] = useMutation(CREATE_CHAT_MESSAGE, {
+    onCompleted: data => {
+      if (data.createChatMessage) {
+        textInput.current.value = '';
+        lock = false;
+      }
+    }
+  });
 
-    return (
-      <Box>
-        <Access
-          denyContent={
-            <input
-              disabled
-              type="text"
-              placeholder="Войдите чтобы писать сообщения"
-            />
+  return (
+    <Box>
+      <input
+        autoFocus
+        disabled={!isAllow}
+        ref={textInput}
+        maxLength={500}
+        type="text"
+        placeholder="Написать сообщение..."
+        onKeyPress={e => {
+          const text = convertTextToEmojiCode(textInput.current.value.trim());
+
+          if (e.key === 'Enter' && !lock && text.length > 0) {
+            lock = true;
+            createChatMessage({
+              variables: { input: { chatId, text } }
+            });
           }
-        >
-          <Mutation
-            mutation={CREATE_CHAT_MESSAGE}
-            onCompleted={({ createChatMessage }) => {
-              if (createChatMessage) {
-                this.textInput.value = '';
-                this.lock = false;
-              }
-            }}
-          >
-            {createChatMessage => (
-              <input
-                autoFocus
-                ref={input => {
-                  this.textInput = input;
-                }}
-                maxLength={500}
-                type="text"
-                placeholder="Написать сообщение..."
-                onKeyPress={e => {
-                  const text = convertTextToEmojiCode(
-                    this.textInput.value.trim()
-                  );
-
-                  if (e.key === 'Enter' && !this.lock && text.length > 0) {
-                    this.lock = true;
-                    createChatMessage({
-                      variables: { input: { chatId, text } }
-                    });
-                  }
-                }}
-              />
-            )}
-          </Mutation>
-        </Access>
-      </Box>
-    );
-  }
-}
+        }}
+      />
+    </Box>
+  );
+};

@@ -3,7 +3,7 @@ import { darken } from 'polished';
 import styled from 'styled-components';
 import { useRouter } from '../../hooks/useRouter';
 import { Button, Grid, CardMedia } from '../../ui';
-import { Access } from '../../providers/Access';
+import { useAccess } from '../../hooks/useAccess';
 
 const Box = styled.div`
   padding: 10px 20px;
@@ -73,13 +73,11 @@ export const Communities = ({ communities }) => {
                 <SectionDescription>Продам гараж</SectionDescription>
               </SectionLeft>
               <SectionRight>
-                <Access
-                  allow={currentUser => {
-                    return (
-                      currentUser.role === 'mod' || currentUser.role === 'admin'
-                    );
-                  }}
-                >
+                {useAccess(currentUser => {
+                  return (
+                    currentUser.role === 'mod' || currentUser.role === 'admin'
+                  );
+                }) && (
                   <Link
                     as={`/newCommunity`}
                     href={{
@@ -93,7 +91,7 @@ export const Communities = ({ communities }) => {
                   >
                     <Button>Создать сообщество</Button>
                   </Link>
-                </Access>
+                )}
               </SectionRight>
             </SectionBox>
           }

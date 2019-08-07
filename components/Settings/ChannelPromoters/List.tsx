@@ -1,12 +1,12 @@
 import gql from 'graphql-tag';
 import { lighten } from 'polished';
-import { createRef, FC } from 'react';
+import { FC, useRef } from 'react';
 import { useMutation } from 'react-apollo';
 import styled from 'styled-components';
 import { Input, Button } from '../../../ui';
 import ChannelPromoter from './ChannelPromoter';
 import { parseTwitchChannelName } from '../../../utils/parseTwitchChannelName';
-import { Access } from '../../../providers/Access';
+import { useAccess } from '../../../hooks/useAccess';
 
 const CREATE_CHANNEL = gql`
   mutation createChannelPromoter($channelName: String!) {
@@ -58,8 +58,9 @@ interface IProps {
 }
 
 export const ChannelPromotersList: FC<IProps> = ({ channelPromoters }) => {
-  const textInput = createRef<HTMLInputElement>();
+  const textInput = useRef<HTMLInputElement>();
   const [createChannelPromoter] = useMutation(CREATE_CHANNEL);
+  const isAllow = useAccess();
 
   const addChannel = () => {
     const channelName = parseTwitchChannelName(textInput.current.value.trim());
@@ -87,28 +88,22 @@ export const ChannelPromotersList: FC<IProps> = ({ channelPromoters }) => {
       </ChannelsBox>
       {channelPromoters.length < 6 && (
         <AddStreamForm>
-          <Access
-            denyContent={
-              <Input
-                disabled
-                placeholder={`Войдите чтобы добавить канал для продвижения`}
-              />
+          <Input
+            autoFocus={isAllow}
+            disabled={!isAllow}
+            ref={textInput}
+            placeholder={
+              isAllow
+                ? `Название или ссылка на twitch канал`
+                : `Войдите чтобы добавить канал для продвижения`
             }
-          >
-            <>
-              <Input
-                autoFocus
-                ref={textInput}
-                placeholder={`Название или ссылка на twitch канал`}
-                onKeyPress={e => {
-                  if (e.key === 'Enter') {
-                    addChannel();
-                  }
-                }}
-              />
-              <Button onClick={addChannel}>Добавить</Button>
-            </>
-          </Access>
+            onKeyPress={e => {
+              if (e.key === 'Enter') {
+                addChannel();
+              }
+            }}
+          />
+          {isAllow && <Button onClick={addChannel}>Добавить</Button>}>
         </AddStreamForm>
       )}
     </>

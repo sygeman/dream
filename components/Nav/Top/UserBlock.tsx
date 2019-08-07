@@ -5,7 +5,7 @@ import gql from 'graphql-tag';
 import styled from 'styled-components';
 import { Avatar, Icon } from '../../../ui';
 import config from '../../../config';
-import { Access } from '../../../providers/Access';
+import { useAccess } from '../../../hooks/useAccess';
 import { Dropdown } from '../../../ui';
 
 const GET_USER = gql`
@@ -78,6 +78,7 @@ const UserCaratBox = styled.div`
 `;
 
 export const TopNavMenuUserBlock = () => {
+  const isAdmin = useAccess(currentUser => currentUser.role === 'admin');
   const { loading, error, data } = useQuery(GET_USER);
 
   if (loading || error) {
@@ -94,11 +95,11 @@ export const TopNavMenuUserBlock = () => {
             <Link href={`/user?id=${user.id}`} passHref>
               <UserMenuItem>Профиль</UserMenuItem>
             </Link>
-            <Access allow={currentUser => currentUser.role === 'admin'}>
+            {isAdmin && (
               <Link href="/manage" passHref>
                 <UserMenuItem>Панель управления</UserMenuItem>
               </Link>
-            </Access>
+            )}
             <Link href={`${config.apiUrl}logout`} passHref>
               <UserMenuItem>Выход</UserMenuItem>
             </Link>

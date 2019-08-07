@@ -5,7 +5,7 @@ import { FC } from 'react';
 import { useMutation } from 'react-apollo';
 import posed from 'react-pose';
 import styled from 'styled-components';
-import { Access } from '../../providers/Access';
+import { useAccess } from '../../hooks/useAccess';
 import { Icon } from '../../ui';
 
 const SET_POST_REACTION = gql`
@@ -71,47 +71,47 @@ export const PostReactionButton: FC<IProps> = ({
 }) => {
   const [setPostReaction] = useMutation(SET_POST_REACTION);
 
-  return (
-    <Access
-      denyContent={
-        <Box
-          onClick={() =>
-            Router.push(
-              {
-                pathname: Router.route,
-                query: {
-                  ...Router.query,
-                  authModal: 1
-                }
-              },
-              `/auth?continue=${Router.asPath}`,
-              { shallow: true }
-            )
-          }
-        >
-          <LikeButton active={state}>
-            <Icon type={icon} />
-          </LikeButton>
-          {count > 0 && <LikesCount active={state}>{count}</LikesCount>}
-        </Box>
-      }
-    >
-      <Box>
-        <LikeButton
-          active={state}
-          onClick={() =>
-            setPostReaction({
-              variables: {
-                postId: id,
-                type: state ? 'none' : type
+  if (!useAccess()) {
+    return (
+      <Box
+        onClick={() =>
+          Router.push(
+            {
+              pathname: Router.route,
+              query: {
+                ...Router.query,
+                authModal: 1
               }
-            })
-          }
-        >
+            },
+            `/auth?continue=${Router.asPath}`,
+            { shallow: true }
+          )
+        }
+      >
+        <LikeButton active={state}>
           <Icon type={icon} />
         </LikeButton>
         {count > 0 && <LikesCount active={state}>{count}</LikesCount>}
       </Box>
-    </Access>
+    );
+  }
+
+  return (
+    <Box>
+      <LikeButton
+        active={state}
+        onClick={() =>
+          setPostReaction({
+            variables: {
+              postId: id,
+              type: state ? 'none' : type
+            }
+          })
+        }
+      >
+        <Icon type={icon} />
+      </LikeButton>
+      {count > 0 && <LikesCount active={state}>{count}</LikesCount>}
+    </Box>
   );
 };

@@ -1,5 +1,4 @@
 import gql from 'graphql-tag';
-import { FC } from 'react';
 import { useQuery } from 'react-apollo';
 
 const GET_USER = gql`
@@ -26,42 +25,20 @@ interface IUser {
   profiles: IProfile[];
 }
 
-interface IProps {
-  name?: string;
-  allow?: (currentUser: IUser) => boolean;
-  denyContent?: any;
-}
-
-export const Access: FC<IProps> = ({ allow, children, denyContent }) => {
+export function useAccess(allow?: (currentUser: IUser) => boolean) {
   const { loading, error, data } = useQuery(GET_USER, { ssr: false });
 
-  if (loading) {
-    return null;
-  }
-
-  if (error) {
-    if (denyContent) {
-      return denyContent;
-    }
-
-    return null;
-  }
-
-  if (!data.user) {
-    return denyContent || null;
+  if (loading || error || !data.user) {
+    return false;
   }
 
   if (typeof allow === 'function' && allow(data.user)) {
-    return children;
+    return true;
   }
 
   if (typeof allow !== 'function' && !!data.user) {
-    return children;
+    return true;
   }
 
-  if (denyContent) {
-    return denyContent;
-  }
-
-  return null;
-};
+  return false;
+}

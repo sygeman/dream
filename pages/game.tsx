@@ -1,19 +1,13 @@
 import Game from '../components/Game';
 import Layout from '../layouts/Main';
 import { useRouter } from '../hooks/useRouter';
-import { Access } from '../providers/Access';
+import { useAccess } from '../hooks/useAccess';
 
 const GamePage = () => {
   const router = useRouter();
   const gameId = router.query.id;
 
-  return (
-    <Layout streams>
-      <Access>
-        <Game gameId={gameId} />
-      </Access>
-    </Layout>
-  );
+  return <Layout streams>{useAccess() && <Game gameId={gameId} />}</Layout>;
 };
 
 export default GamePage;

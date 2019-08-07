@@ -1,9 +1,9 @@
 import gql from 'graphql-tag';
 import { darken } from 'polished';
-import * as React from 'react';
-import { Mutation } from 'react-apollo';
+import { FC } from 'react';
+import { useMutation } from 'react-apollo';
 import styled from 'styled-components';
-import { Access } from '../../providers/Access';
+import { useAccess } from '../../hooks/useAccess';
 import { ButtonFlat, Dropdown, Icon } from '../../ui';
 
 const REMOVE_POST = gql`
@@ -44,48 +44,35 @@ interface IProps {
   authorId: string;
 }
 
-export default class PostMenu extends React.Component<IProps> {
-  public renderMenu = (id: string, authorId: string) => {
-    return (
-      <UserMenu>
-        <Access
-          allow={currentUser =>
-            currentUser.role === 'admin' ||
-            currentUser.role === 'mod' ||
-            (currentUser.id && authorId === currentUser.id)
-          }
-        >
-          <Mutation mutation={REMOVE_POST}>
-            {removePost => (
-              <UserMenuItem onClick={() => removePost({ variables: { id } })}>
-                Удалить
-              </UserMenuItem>
-            )}
-          </Mutation>
-        </Access>
-      </UserMenu>
-    );
-  };
+export const PostMenu: FC<IProps> = ({ id, authorId }) => {
+  const [removePost] = useMutation(REMOVE_POST);
 
-  public render() {
-    const { id, authorId } = this.props;
+  const isStaffOrAuthor = useAccess(
+    currentUser =>
+      currentUser.role === 'admin' ||
+      currentUser.role === 'mod' ||
+      (currentUser.id && authorId === currentUser.id)
+  );
 
-    return (
-      <Access
-        allow={currentUser =>
-          currentUser.role === 'admin' ||
-          currentUser.role === 'mod' ||
-          (currentUser.id && authorId === currentUser.id)
+  if (!isStaffOrAuthor) {
+    return null;
+  }
+
+  return (
+    <Box>
+      <Dropdown
+        overlay={
+          <UserMenu>
+            <UserMenuItem onClick={() => removePost({ variables: { id } })}>
+              Удалить
+            </UserMenuItem>
+          </UserMenu>
         }
       >
-        <Box>
-          <Dropdown overlay={this.renderMenu(id, authorId)}>
-            <ButtonFlat>
-              <Icon type="more-vert" />
-            </ButtonFlat>
-          </Dropdown>
-        </Box>
-      </Access>
-    );
-  }
-}
+        <ButtonFlat>
+          <Icon type="more-vert" />
+        </ButtonFlat>
+      </Dropdown>
+    </Box>
+  );
+};

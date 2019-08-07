@@ -4,7 +4,7 @@ import { darken, lighten } from 'polished';
 import React, { FC } from 'react';
 import { useMutation } from 'react-apollo';
 import styled from 'styled-components';
-import { Access } from '../../../providers/Access';
+import { useAccess } from '../../../hooks/useAccess';
 import { Dropdown, Emoji } from '../../../ui';
 import { splitTextToEmojiArray } from '../../../utils/emoji';
 
@@ -200,17 +200,15 @@ export const ClipComment: FC<IProps> = ({ id, content, compact, author }) => {
       <Content>
         <Text>{renderMessageText(content)}</Text>
         <ManageMenu>
-          <Access
-            allow={currentUser => {
-              return currentUser.role === 'mod' || currentUser.role === 'admin';
-            }}
-          >
+          {useAccess(currentUser => {
+            return currentUser.role === 'mod' || currentUser.role === 'admin';
+          }) && (
             <ManageItem
               onClick={() => removeClipComment({ variables: { id } })}
             >
               <i className="zmdi zmdi-close" />
             </ManageItem>
-          </Access>
+          )}
         </ManageMenu>
       </Content>
     </Message>

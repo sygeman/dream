@@ -3,7 +3,7 @@ import { useQuery } from 'react-apollo';
 import gql from 'graphql-tag';
 import styled from 'styled-components';
 import { ClipComment } from './Comment';
-import CommentsBottom from './CommentsBottom';
+import { ClipCommentBottom } from './CommentsBottom';
 
 const GET_CLIP_COMMENTS = gql`
   query getClipComments($clipId: ID) {
@@ -164,7 +164,7 @@ export const ClipComments: FC<IProps> = ({ clipId }) => {
           ))}
         </CommentsBox>
       </CommentsContainer>
-      <CommentsBottom clipId={clipId} />
+      <ClipCommentBottom clipId={clipId} />
     </Box>
   );
 };

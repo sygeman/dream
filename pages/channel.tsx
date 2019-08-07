@@ -1,16 +1,14 @@
 import Channel from '../components/Channel';
 import Layout from '../layouts/Main';
 import { useRouter } from '../hooks/useRouter';
-import { Access } from '../providers/Access';
+import { useAccess } from '../hooks/useAccess';
 
 const ChannelPage = () => {
   const router = useRouter();
 
   return (
     <Layout streams>
-      <Access>
-        <Channel userId={router.query.id} />
-      </Access>
+      {useAccess() && <Channel userId={router.query.id} />}
     </Layout>
   );
 };

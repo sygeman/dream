@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
-import { Component } from 'react';
-import { Mutation } from 'react-apollo';
+import { FC, useRef } from 'react';
+import { useMutation } from 'react-apollo';
 import styled from 'styled-components';
-import { Access } from '../../../providers/Access';
+import { useAccess } from '../../../hooks/useAccess';
 import { convertTextToEmojiCode } from '../../../utils/emoji';
 
 const CREATE_CLIP_COMMENT = gql`
@@ -34,58 +34,45 @@ interface IProps {
   clipId: string;
 }
 
-export default class extends Component<IProps> {
-  public textInput: any;
-  public lock: boolean = false;
+export const ClipCommentBottom: FC<IProps> = ({ clipId }) => {
+  const textInput = useRef<HTMLInputElement>(null);
+  const isAllow = useAccess();
+  let lock = false;
 
-  public render() {
-    const { clipId } = this.props;
+  const [createClipComment] = useMutation(CREATE_CLIP_COMMENT, {
+    onCompleted: data => {
+      if (data.createClipComment) {
+        textInput.current.value = '';
+        lock = false;
+      }
+    }
+  });
 
-    return (
-      <CommentsBottom>
-        <Access
-          denyContent={
-            <input
-              disabled
-              type="text"
-              placeholder="Войдите чтобы писать комментарии"
-            />
+  return (
+    <CommentsBottom>
+      <input
+        disabled={!isAllow}
+        ref={textInput}
+        maxLength={500}
+        type="text"
+        placeholder={
+          isAllow
+            ? 'Написать комментарий...'
+            : 'Войдите чтобы писать комментарии'
+        }
+        onKeyPress={e => {
+          const content = convertTextToEmojiCode(
+            textInput.current.value.trim()
+          );
+
+          if (e.key === 'Enter' && !lock && content.length > 0) {
+            lock = true;
+            createClipComment({
+              variables: { input: { clipId, content } }
+            });
           }
-        >
-          <Mutation
-            mutation={CREATE_CLIP_COMMENT}
-            onCompleted={({ createClipComment }) => {
-              if (createClipComment) {
-                this.textInput.value = '';
-                this.lock = false;
-              }
-            }}
-          >
-            {createClipComment => (
-              <input
-                ref={input => {
-                  this.textInput = input;
-                }}
-                maxLength={500}
-                type="text"
-                placeholder="Написать комментарий..."
-                onKeyPress={e => {
-                  const content = convertTextToEmojiCode(
-                    this.textInput.value.trim()
-                  );
-
-                  if (e.key === 'Enter' && !this.lock && content.length > 0) {
-                    this.lock = true;
-                    createClipComment({
-                      variables: { input: { clipId, content } }
-                    });
-                  }
-                }}
-              />
-            )}
-          </Mutation>
-        </Access>
-      </CommentsBottom>
-    );
-  }
-}
+        }}
+      />
+    </CommentsBottom>
+  );
+};

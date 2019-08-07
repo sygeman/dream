@@ -1,5 +1,5 @@
 import { FC, ReactNode } from 'react';
-import { Access } from '../providers/Access';
+import { useAccess } from '../hooks/useAccess';
 import * as LeftMenu from '../ui/LeftMenu';
 import BaseLayout from './Base';
 import { TopStreams } from '../components/TopStreams';
@@ -19,10 +19,8 @@ const MainLayout: FC<IProps> = ({ children, fixedTopContent, streams }) => (
         <LeftMenu.Item route="/" equal icon="home" title="Главная" />
         <LeftMenu.Item equal route="/new" icon="flare" title="Новое" />
         <LeftMenu.Item route="/top" icon="trending-up" title="Топ" />
-        <Access>
-          <Categories />
-          <Follows />
-        </Access>
+        {useAccess() && <Categories />}
+        {useAccess() && <Follows />}
       </LeftMenu.Box>
     }
   >

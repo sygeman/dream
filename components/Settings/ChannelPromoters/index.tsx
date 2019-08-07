@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import styled from 'styled-components';
 import { TopStreams } from '../../TopStreams';
-import { Access } from '../../../providers/Access';
+import { useAccess } from '../../../hooks/useAccess';
 import { HowTo } from './HowTo';
 import { ChannelPromotersList } from './List';
 import { ChannelPromotersWithData } from './WIthData';
@@ -32,9 +32,11 @@ export const ChannelPromotersManage: FC = () => {
     <Box>
       <Left>
         <HowTo />
-        <Access denyContent={<ChannelPromotersList channelPromoters={[]} />}>
+        {!useAccess() ? (
+          <ChannelPromotersList channelPromoters={[]} />
+        ) : (
           <ChannelPromotersWithData />
-        </Access>
+        )}
       </Left>
       <Right>
         <TopStreams position="column" max={3} noAddStream />

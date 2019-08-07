@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { Icon, CoinIconGold, CoinIconGreen } from '../../../ui';
 import { TopNavMenuUserBlock } from './UserBlock';
 import { useRouter } from '../../../hooks/useRouter';
-import { Access } from '../../../providers/Access';
+import { useAccess } from '../../../hooks/useAccess';
 import config from '../../../config';
 import { WalletBalance } from './WalletBalance';
 
@@ -179,38 +179,36 @@ const TopNav: FC<IProps> = ({ leftMenuTrigger }) => {
       </Left>
       <Right>
         <UserBox>
-          <Access
-            denyContent={
-              <Links>
-                <Link
-                  as={`/auth?continue=/newPost`}
-                  href={{
-                    pathname: router.route,
-                    query: {
-                      ...router.query,
-                      authModal: 1
-                    }
-                  }}
-                  passHref
-                >
-                  <TopLink>Закинуть клип</TopLink>
-                </Link>
-                <Link
-                  as={`/auth?continue=${router.asPath}`}
-                  href={{
-                    pathname: router.route,
-                    query: {
-                      ...router.query,
-                      authModal: 1
-                    }
-                  }}
-                  passHref
-                >
-                  <TopLink>Войти</TopLink>
-                </Link>
-              </Links>
-            }
-          >
+          {!useAccess() ? (
+            <Links>
+              <Link
+                as={`/auth?continue=/newPost`}
+                href={{
+                  pathname: router.route,
+                  query: {
+                    ...router.query,
+                    authModal: 1
+                  }
+                }}
+                passHref
+              >
+                <TopLink>Закинуть клип</TopLink>
+              </Link>
+              <Link
+                as={`/auth?continue=${router.asPath}`}
+                href={{
+                  pathname: router.route,
+                  query: {
+                    ...router.query,
+                    authModal: 1
+                  }
+                }}
+                passHref
+              >
+                <TopLink>Войти</TopLink>
+              </Link>
+            </Links>
+          ) : (
             <>
               <Links>
                 <Link
@@ -258,7 +256,7 @@ const TopNav: FC<IProps> = ({ leftMenuTrigger }) => {
               </PointsBox>
               <TopNavMenuUserBlock />
             </>
-          </Access>
+          )}
         </UserBox>
       </Right>
     </Box>

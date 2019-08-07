@@ -2,13 +2,12 @@ import Link from 'next/link';
 import { darken, lighten } from 'polished';
 import { FC } from 'react';
 import styled from 'styled-components';
-import WalletProvider from '../../../providers/Wallet';
 import { Icon, CoinIconGold, CoinIconGreen } from '../../../ui';
-import { humanNumbers } from '../../../utils/count';
 import { TopNavMenuUserBlock } from './UserBlock';
 import useRouter from '../../../lib/useRouter';
 import { Access } from '../../../providers/Access';
 import config from '../../../config';
+import { WalletBalance } from './WalletBalance';
 
 const Box = styled.div`
   height: 46px;
@@ -232,17 +231,13 @@ const TopNav: FC<IProps> = ({ leftMenuTrigger }) => {
                 <Points>
                   <CoinIconGold />
                   <PointsCount>
-                    <WalletProvider where={{ currency: 'coin' }}>
-                      {({ data }) => humanNumbers(data ? data.balance : 0)}
-                    </WalletProvider>
+                    <WalletBalance currency="coin" />
                   </PointsCount>
                 </Points>
                 <Points>
                   <CoinIconGreen />
                   <PointsCount>
-                    <WalletProvider where={{ currency: 'real' }}>
-                      {({ data }) => humanNumbers(data ? data.balance : 0)}
-                    </WalletProvider>
+                    <WalletBalance currency="real" />
                     <Link
                       as={`/buycoins`}
                       href={{

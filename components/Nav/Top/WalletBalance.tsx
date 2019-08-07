@@ -1,8 +1,9 @@
 import gql from 'graphql-tag';
-import { FC, useEffect } from 'react';
+import React, { FC, useEffect } from 'react';
 import { useQuery } from 'react-apollo';
+import { humanNumbers } from '../../../utils/count';
 
-const GET = gql`
+const GET_WALLET = gql`
   query getWallet($where: WalletWhereInput!) {
     wallet(where: $where) {
       id
@@ -12,7 +13,7 @@ const GET = gql`
   }
 `;
 
-const UPDATED = gql`
+const UPDATED_WALLET = gql`
   subscription wallet($id: ID!) {
     wallet(id: $id) {
       id
@@ -23,19 +24,18 @@ const UPDATED = gql`
 `;
 
 interface IProps {
-  where?: any;
-  children: any;
+  currency: string;
 }
 
-const Provider: FC<IProps> = ({ children, where }) => {
-  const { loading, error, data, subscribeToMore } = useQuery(GET, {
-    variables: { where }
+export const WalletBalance: FC<IProps> = ({ currency }) => {
+  const { loading, error, data, subscribeToMore } = useQuery(GET_WALLET, {
+    variables: { where: { currency } }
   });
 
   useEffect(() => {
     if (data && data.wallet) {
       subscribeToMore({
-        document: UPDATED,
+        document: UPDATED_WALLET,
         variables: { id: data.wallet.id },
         updateQuery: (prev, { subscriptionData }) => {
           if (!subscriptionData.data) {
@@ -56,9 +56,7 @@ const Provider: FC<IProps> = ({ children, where }) => {
     }
   }, [loading]);
 
-  return children({
-    data: loading || error || !data || !data.wallet ? null : data.wallet
-  });
-};
+  const wallet = loading || error || !data || !data.wallet ? null : data.wallet;
 
-export default Provider;
+  return <>{humanNumbers(wallet ? wallet.balance : 0)}</>;
+};

@@ -11,7 +11,7 @@ export const TwitchPlayer: FC<IProps> = ({ muted, channel }) => {
   let player;
 
   useEffect(() => {
-    getSDK().then(Twitch => {
+    getSDK().then((Twitch: any) => {
       player = new Twitch.Player(playerID, {
         channel,
         height: '100%',
@@ -34,13 +34,5 @@ export const TwitchPlayer: FC<IProps> = ({ muted, channel }) => {
     });
   }, []);
 
-  return (
-    <div
-      style={{
-        width: '100%',
-        height: '100%'
-      }}
-      id={playerID}
-    />
-  );
+  return <div style={{ width: '100%', height: '100%' }} id={playerID} />
 };

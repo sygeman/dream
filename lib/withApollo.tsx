@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import React from 'react';
-import { getDataFromTree } from 'react-apollo';
+import { getDataFromTree } from '@apollo/react-ssr';
 import initApollo from './initApollo';
 
 interface IProcess {

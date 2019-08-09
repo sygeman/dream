@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 import { useState, FC, useEffect } from 'react';
-import { useQuery } from 'react-apollo';
+import { useQuery } from '@apollo/react-hooks';
 import styled from 'styled-components';
 import { lighten } from 'polished';
 import { ChatMessages } from './Messages';
@@ -80,7 +80,7 @@ interface ITab {
   isActive: boolean;
 }
 
-const Tab = styled('div')<ITab>`
+const Tab = styled('div') <ITab>`
   display: flex;
   width: 100%;
   cursor: pointer;

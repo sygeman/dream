@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 import { darken } from 'polished';
 import { FC } from 'react';
-import { useMutation } from 'react-apollo';
+import { useMutation } from '@apollo/react-hooks';
 import styled from 'styled-components';
 import { useAccess } from '../../hooks/useAccess';
 import { ButtonFlat, Dropdown, Icon } from '../../ui';

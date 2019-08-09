@@ -3,7 +3,7 @@ import Head from 'next/head';
 import Router, { withRouter } from 'next/router';
 import NProgress from 'nprogress';
 import React from 'react';
-import { ApolloProvider } from 'react-apollo';
+import { ApolloProvider } from '@apollo/react-hooks';
 import 'resize-observer-polyfill';
 import { RouterContext } from '../hooks/useRouter';
 import withApollo from '../lib/withApollo';

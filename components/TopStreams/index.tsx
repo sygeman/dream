@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 import { FC } from 'react';
-import { Query } from 'react-apollo';
+import { useQuery } from '@apollo/react-hooks';
 import Link from 'next/link';
 import styled from 'styled-components';
 import { darken, lighten } from 'polished';
@@ -85,65 +85,62 @@ export const TopStreams: FC<IProps> = ({
   position,
   interval,
   noAddStream
-}) => (
-  <Query query={GET_CHANNELS_TOP} pollInterval={interval}>
-    {({ data }) => {
-      let channels = ((data && data.channelsTop) || []).slice(0, max);
-      const channelsCount = channels.length;
+}) => {
+  const { data } = useQuery(GET_CHANNELS_TOP, { pollInterval: interval })
+  let channels = ((data && data.channelsTop) || []).slice(0, max);
+  const channelsCount = channels.length;
 
-      if (!noAddStream && channelsCount < max) {
-        channels = [...channels, null];
-      }
+  if (!noAddStream && channelsCount < max) {
+    channels = [...channels, null];
+  }
 
-      if (position === 'line') {
-        return (
-          <StreamsLineBox>
-            <Grid
-              elementWidth={320}
-              maxRows={1}
-              items={channels}
-              itemRender={(channel, index) => {
-                if (!channel) {
-                  return (
-                    <StreamLineBox key={`nochannel`}>
-                      <StreamAdd />
-                    </StreamLineBox>
-                  );
-                }
-
-                return (
-                  <StreamLineBox key={`${channel.id}-${channel.cost}`}>
-                    <Stream {...channel} livePreview={index < live} />
-                  </StreamLineBox>
-                );
-              }}
-            />
-          </StreamsLineBox>
-        );
-      } else {
-        return (
-          <StreamsColumnBox>
-            {channels.map((channel, index) => {
-              if (!channel) {
-                return (
-                  <StreamColumnBox key={`nochannel`}>
-                    <StreamAdd />
-                  </StreamColumnBox>
-                );
-              }
-
+  if (position === 'line') {
+    return (
+      <StreamsLineBox>
+        <Grid
+          elementWidth={320}
+          maxRows={1}
+          items={channels}
+          itemRender={(channel, index) => {
+            if (!channel) {
               return (
-                <StreamColumnBox key={`${channel.id}-${channel.cost}`}>
-                  <Stream {...channel} livePreview={index < live} />
-                </StreamColumnBox>
+                <StreamLineBox key={`nochannel`}>
+                  <StreamAdd />
+                </StreamLineBox>
               );
-            })}
-          </StreamsColumnBox>
+            }
+
+            return (
+              <StreamLineBox key={`${channel.id}-${channel.cost}`}>
+                <Stream {...channel} livePreview={index < live} />
+              </StreamLineBox>
+            );
+          }}
+        />
+      </StreamsLineBox>
+    );
+  }
+
+  return (
+    <StreamsColumnBox>
+      {channels.map((channel, index) => {
+        if (!channel) {
+          return (
+            <StreamColumnBox key={`nochannel`}>
+              <StreamAdd />
+            </StreamColumnBox>
+          );
+        }
+
+        return (
+          <StreamColumnBox key={`${channel.id}-${channel.cost}`}>
+            <Stream {...channel} livePreview={index < live} />
+          </StreamColumnBox>
         );
-      }
-    }}
-  </Query>
-);
+      })}
+    </StreamsColumnBox>
+  );
+};
 
 TopStreams.defaultProps = {
   max: 6,

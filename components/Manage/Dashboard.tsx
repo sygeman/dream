@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 import { FC } from 'react';
-import { Query } from 'react-apollo';
+import { useQuery } from '@apollo/react-hooks';
 import styled from 'styled-components';
 import DashCount from './DashCount';
 import { OnlineCount } from './OnlineCount';
@@ -38,36 +38,39 @@ const Box = styled.div`
   overflow-y: hidden;
 `;
 
-const Dashboard: FC = () => {
-  return (
-    <Box>
-      <Query query={GET_CONNECTIONS_COUNT} pollInterval={3000}>
-        {({ loading, error, data }) => {
-          if (loading || error || !data) {
-            return null;
-          }
+const OnlineStats = () => {
+  const { loading, error, data } = useQuery(GET_CONNECTIONS_COUNT, { pollInterval: 3000 });
 
-          const { unique, users } = data.connectionsCount;
+  if (loading || error || !data) {
+    return null;
+  }
 
-          return <OnlineCount unique={unique} users={users} />;
-        }}
-      </Query>
-      <Query query={GET_USERS_COUNT} pollInterval={10000}>
-        {({ loading, error, data }) => {
-          const count = loading || error ? 0 : data.usersCount;
+  const { unique, users } = data.connectionsCount;
 
-          return <DashCount title="Пользователи" count={count} />;
-        }}
-      </Query>
-      <Query query={GET_CLIPS_COUNT} pollInterval={10000}>
-        {({ loading, error, data }) => {
-          const count = loading || error ? 0 : data.postsCount;
+  return <OnlineCount unique={unique} users={users} />;
+}
 
-          return <DashCount title="Клипы" count={count} />;
-        }}
-      </Query>
-    </Box>
-  );
-};
+const UsersStats = () => {
+  const { loading, error, data } = useQuery(GET_USERS_COUNT, { pollInterval: 10000 });
+  const count = loading || error ? 0 : data.usersCount;
+
+  return <DashCount title="Пользователи" count={count} />;
+}
+
+const ClipsStats = () => {
+  const { loading, error, data } = useQuery(GET_CLIPS_COUNT, { pollInterval: 10000 });
+  const count = loading || error ? 0 : data.postsCount;
+
+  return <DashCount title="Клипы" count={count} />;
+}
+
+const Dashboard: FC = () => (
+  <Box>
+    <OnlineStats />
+    <UsersStats />
+    <ClipsStats />
+  </Box>
+);
+
 
 export default Dashboard;

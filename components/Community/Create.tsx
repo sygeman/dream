@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 import Router from 'next/router';
-import * as React from 'react';
-import { Mutation } from 'react-apollo';
+import { FC, useState } from 'react';
+import { useMutation } from '@apollo/react-hooks';
 import styled from 'styled-components';
 import { Button, Input } from '../../ui';
 
@@ -23,69 +23,50 @@ const Bottom = styled.div`
   justify-content: flex-end;
 `;
 
-interface IState {
-  name: string;
-  description: string;
-  avatar: string;
-}
+export const CreateCommunity: FC = () => {
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const [avatar, setAvatar] = useState('');
 
-export class CreateCommunity extends React.Component<{}, IState> {
-  constructor(props) {
-    super(props);
+  const [createCommunity] = useMutation(CREATE_COMMUNITY, {
+    onCompleted: data => {
+      const communityId = data.createCommunity.id;
+      Router.push(`/community?id=${communityId}`);
+    }
+  });
 
-    this.state = {
-      name: '',
-      description: '',
-      avatar: ''
-    };
-  }
-
-  public render() {
-    return (
-      <Mutation
-        mutation={CREATE_COMMUNITY}
-        onCompleted={data => {
-          const communityId = data.createCommunity.id;
-          Router.push(`/community?id=${communityId}`);
-        }}
-      >
-        {createCommunity => (
-          <Box>
-            <Input
-              autoFocus
-              placeholder="Название"
-              onChange={e => this.setState({ name: e.target.value })}
-            />
-            <Input
-              placeholder="Описание"
-              maxLength={100}
-              onChange={e => this.setState({ description: e.target.value })}
-            />
-            <Input
-              placeholder="Ссылка на аватар"
-              maxLength={100}
-              onChange={e => this.setState({ avatar: e.target.value })}
-            />
-            <Bottom>
-              <Button
-                onClick={() =>
-                  createCommunity({
-                    variables: {
-                      input: {
-                        name: this.state.name,
-                        description: this.state.description,
-                        avatar: this.state.avatar
-                      }
-                    }
-                  })
+  return (
+    <Box>
+      <Input
+        autoFocus
+        placeholder="Название"
+        onChange={e => setName(e.target.value)}
+      />
+      <Input
+        placeholder="Описание"
+        maxLength={100}
+        onChange={e => setDescription(e.target.value)}
+      />
+      <Input
+        placeholder="Ссылка на аватар"
+        maxLength={100}
+        onChange={e => setAvatar(e.target.value)}
+      />
+      <Bottom>
+        <Button
+          onClick={() =>
+            createCommunity({
+              variables: {
+                input: {
+                  name, description, avatar,
                 }
-              >
-                Создать
+              }
+            })
+          }
+        >
+          Создать
               </Button>
-            </Bottom>
-          </Box>
-        )}
-      </Mutation>
-    );
-  }
+      </Bottom>
+    </Box>
+  );
 }

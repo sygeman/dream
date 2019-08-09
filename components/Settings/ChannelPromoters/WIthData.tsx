@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 import { useEffect } from 'react';
-import { useQuery } from 'react-apollo';
+import { useQuery } from '@apollo/react-hooks';
 import { ChannelPromotersList } from './List';
 
 const GET_CHANNEL_PROMOTERS = gql`

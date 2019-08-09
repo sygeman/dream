@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 import Head from 'next/head';
 import * as React from 'react';
-import { useQuery } from 'react-apollo';
+import { useQuery } from '@apollo/react-hooks';
 import Posts from '../components/Post/Posts';
 import UserPanelProfile from '../components/User/UserPanelProfile';
 import { useRouter } from '../hooks/useRouter';

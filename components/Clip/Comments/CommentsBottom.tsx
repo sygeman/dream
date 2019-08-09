@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 import { FC, useRef } from 'react';
-import { useMutation } from 'react-apollo';
+import { useMutation } from '@apollo/react-hooks';
 import styled from 'styled-components';
 import { useAccess } from '../../../hooks/useAccess';
 import { convertTextToEmojiCode } from '../../../utils/emoji';

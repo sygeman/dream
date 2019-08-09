@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 import { FC } from 'react';
-import { Query } from 'react-apollo';
+import { useQuery } from '@apollo/react-hooks';
 import styled from 'styled-components';
 import { useRouter } from '../../hooks/useRouter';
 import PostsView from './PostsView';
@@ -145,87 +145,80 @@ const Posts: FC<IProps> = ({
     };
   }
 
+  const { loading, error, data, fetchMore } = useQuery(GET_POSTS, {
+    fetchPolicy: "cache-and-network",
+    variables
+  });
+
+  if (error || !data || !data.posts) {
+    return null;
+  }
+
+  let posts = data.posts.posts;
+
+  if (rows > 0) {
+    posts = posts.slice(0, rows * 6);
+  }
+
+  const currentCount = posts.length;
+
+  if (currentCount === 0) {
+    return null;
+  }
+
+  const hasMore = data.posts.count - currentCount > 0;
+
   return (
     <Box style={{ padding: '0 20px' }}>
-      <Query
-        query={GET_POSTS}
-        fetchPolicy="cache-and-network"
-        variables={variables}
-      >
-        {({ loading, error, data, fetchMore }) => {
-          if (error || !data || !data.posts) {
-            return null;
-          }
-
-          let posts = data.posts.posts;
-
-          if (rows > 0) {
-            posts = posts.slice(0, rows * 6);
-          }
-
-          const currentCount = posts.length;
-
-          if (currentCount === 0) {
-            return null;
-          }
-
-          const hasMore = data.posts.count - currentCount > 0;
-
-          return (
-            <PostsView
-              title={title}
-              description={description}
-              titleLink={titleLink}
-              posts={posts}
-              loading={loading}
-              rows={rows}
-              hasMore={hasMore && !rows && !noMore}
-              onPlay={id => {
-                router.push(
-                  {
-                    pathname: router.route,
-                    query: {
-                      postId: id,
-                      backPath: router.asPath,
-                      ...router.query
-                    }
-                  },
-                  {
-                    pathname: '/post',
-                    query: { id }
-                  },
-                  {
-                    shallow: true
-                  }
-                );
-              }}
-              loadMore={() =>
-                fetchMore({
-                  variables: {
-                    skip: currentCount
-                  },
-                  updateQuery: (prev, { fetchMoreResult }) => {
-                    if (!fetchMoreResult) {
-                      return prev;
-                    }
-
-                    return {
-                      ...prev,
-                      posts: {
-                        ...prev.posts,
-                        posts: [
-                          ...prev.posts.posts,
-                          ...fetchMoreResult.posts.posts
-                        ]
-                      }
-                    };
-                  }
-                })
+      <PostsView
+        title={title}
+        description={description}
+        titleLink={titleLink}
+        posts={posts}
+        loading={loading}
+        rows={rows}
+        hasMore={hasMore && !rows && !noMore}
+        onPlay={id => {
+          router.push(
+            {
+              pathname: router.route,
+              query: {
+                postId: id,
+                backPath: router.asPath,
+                ...router.query
               }
-            />
+            },
+            {
+              pathname: '/post',
+              query: { id }
+            },
+            { shallow: true }
           );
         }}
-      </Query>
+        loadMore={() =>
+          fetchMore({
+            variables: {
+              skip: currentCount
+            },
+            updateQuery: (prev, { fetchMoreResult }) => {
+              if (!fetchMoreResult) {
+                return prev;
+              }
+
+              return {
+                ...prev,
+                posts: {
+                  ...prev.posts,
+                  posts: [
+                    ...prev.posts.posts,
+                    ...fetchMoreResult.posts.posts
+                  ]
+                }
+              };
+            }
+          })
+        }
+      />
     </Box>
   );
 };

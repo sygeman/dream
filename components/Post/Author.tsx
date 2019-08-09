@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 import Head from 'next/head';
 import Link from 'next/link';
 import React, { FC } from 'react';
-import { useQuery } from 'react-apollo';
+import { useQuery } from '@apollo/react-hooks';
 import styled from 'styled-components';
 import { Avatar } from '../../ui';
 import { dateDistanceInWordsToNow } from '../../utils/date';

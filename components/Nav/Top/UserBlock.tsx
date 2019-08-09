@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { darken, lighten } from 'polished';
-import { useQuery } from 'react-apollo';
+import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import styled from 'styled-components';
 import { Avatar, Icon } from '../../../ui';

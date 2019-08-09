@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 import { useEffect } from 'react';
 import { lighten } from 'polished';
 import styled from 'styled-components';
-import { useQuery, useMutation } from 'react-apollo';
+import { useQuery, useMutation } from '@apollo/react-hooks';
 import { Button, SWRow, Icon, Avatar } from '../../../../ui';
 
 const GET_CHANNEL = gql`

@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 import Router from 'next/router';
 import { useState } from 'react';
-import { useMutation } from 'react-apollo';
+import { useMutation } from '@apollo/react-hooks';
 import styled from 'styled-components';
 import { Button, Input, SWRow, TwitchClipPlayer } from '../../ui';
 import { parseSource } from '../../utils/parseSoruce';

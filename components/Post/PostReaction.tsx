@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 import { FC, useEffect } from 'react';
-import { useQuery } from 'react-apollo';
+import { useQuery } from '@apollo/react-hooks';
 import { PostReactionButton } from './ReactionButton';
 import { PostReactionType } from '../../generated/globalTypes';
 

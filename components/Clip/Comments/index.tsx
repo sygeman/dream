@@ -1,5 +1,5 @@
 import { FC, useEffect } from 'react';
-import { useQuery } from 'react-apollo';
+import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import styled from 'styled-components';
 import { ClipComment } from './Comment';

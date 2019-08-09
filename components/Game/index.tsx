@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 import { FC } from 'react';
-import { Query } from 'react-apollo';
+import { useQuery } from '@apollo/react-hooks';
 import styled from 'styled-components';
 import { useRouter } from '../../hooks/useRouter';
 import { darken } from 'polished';
@@ -126,87 +126,82 @@ const TwitchGameClips = ({ game }) => {
     ? game.box_art_url.replace('{width}', '45').replace('{height}', '60')
     : '';
 
-  return (
-    <Query
-      query={GET_TWITCH_CHANNEL_TOP_CLIPS}
-      variables={{
-        game: game ? title : undefined,
-        limit: 50
-      }}
-    >
-      {({ loading, error, data }) => {
-        if (error || !data || !data.twitchTopClips) {
-          return null;
+  const { loading, error, data } = useQuery(GET_TWITCH_CHANNEL_TOP_CLIPS, {
+    variables: {
+      game: game ? title : undefined,
+      limit: 50
+    }
+  });
+
+  if (error || !data || !data.twitchTopClips) {
+    return null;
+  }
+
+  const openClip = (clipId: string) => {
+    router.push(
+      {
+        pathname: router.route,
+        query: {
+          clipId,
+          backPath: router.asPath,
+          ...router.query
         }
+      },
+      `/clip/${clipId}`,
+      { shallow: true }
+    );
+  };
 
-        const openClip = (clipId: string) => {
-          router.push(
-            {
-              pathname: router.route,
-              query: {
-                clipId,
-                backPath: router.asPath,
-                ...router.query
-              }
-            },
-            `/clip/${clipId}`,
-            { shallow: true }
-          );
-        };
-
-        return (
-          <Grid
-            beforeRender={
-              <SectionBox>
-                <SectionAvatar>
-                  <ChannelAvatar>
-                    {avatar && <ChannelAvatarImg src={avatar} />}
-                  </ChannelAvatar>
-                </SectionAvatar>
-                {title && (
-                  <SectionData>
-                    <SectionTitle>{title}</SectionTitle>
-                    <SectionDescription>
-                      Клипы за 24 часа по количеству просмотров
+  return (
+    <Grid
+      beforeRender={
+        <SectionBox>
+          <SectionAvatar>
+            <ChannelAvatar>
+              {avatar && <ChannelAvatarImg src={avatar} />}
+            </ChannelAvatar>
+          </SectionAvatar>
+          {title && (
+            <SectionData>
+              <SectionTitle>{title}</SectionTitle>
+              <SectionDescription>
+                Клипы за 24 часа по количеству просмотров
                     </SectionDescription>
-                  </SectionData>
-                )}
-              </SectionBox>
-            }
-            items={data.twitchTopClips}
-            itemRender={clip => (
-              <ClipContainer key={clip.id}>
-                <CardMedia
-                  media={
-                    <ClipPreviewContent>
-                      <VideoPreview
-                        key={clip.id}
-                        onClick={() => openClip(clip.id)}
-                        cover={clip.thumbnails.medium}
-                        date={dateDistanceInWordsToNow(clip.createdAt)}
-                        views={clip.viewsCount}
-                      />
-                    </ClipPreviewContent>
-                  }
-                  avatar={clip.broadcaster.logo}
-                  title={clip.title}
-                  description={clip.broadcaster.display_name}
-                  descriptionLink={`https://www.twitch.tv/${clip.channel}`}
+            </SectionData>
+          )}
+        </SectionBox>
+      }
+      items={data.twitchTopClips}
+      itemRender={clip => (
+        <ClipContainer key={clip.id}>
+          <CardMedia
+            media={
+              <ClipPreviewContent>
+                <VideoPreview
+                  key={clip.id}
+                  onClick={() => openClip(clip.id)}
+                  cover={clip.thumbnails.medium}
+                  date={dateDistanceInWordsToNow(clip.createdAt)}
+                  views={clip.viewsCount}
                 />
-              </ClipContainer>
-            )}
-            elementWidth={320}
-            afterRedner={
-              <>
-                {!loading && data.twitchTopClips.length === 0 && (
-                  <NoClips>Клипы не найдены :(</NoClips>
-                )}
-              </>
+              </ClipPreviewContent>
             }
+            avatar={clip.broadcaster.logo}
+            title={clip.title}
+            description={clip.broadcaster.display_name}
+            descriptionLink={`https://www.twitch.tv/${clip.channel}`}
           />
-        );
-      }}
-    </Query>
+        </ClipContainer>
+      )}
+      elementWidth={320}
+      afterRedner={
+        <>
+          {!loading && data.twitchTopClips.length === 0 && (
+            <NoClips>Клипы не найдены :(</NoClips>
+          )}
+        </>
+      }
+    />
   );
 };
 
@@ -219,24 +214,21 @@ const TwitchGame: FC<IProps> = ({ gameId }) => {
     );
   }
 
+  const { error, data } = useQuery(GET_TWITCH_GAME, {
+    variables: {
+      id: gameId
+    }
+  });
+
+  if (error || !data) {
+    return null;
+  }
+
+  const game = data.twitchGame ? data.twitchGame[0] : null;
+
   return (
     <Box>
-      <Query
-        query={GET_TWITCH_GAME}
-        variables={{
-          id: gameId
-        }}
-      >
-        {({ error, data }) => {
-          if (error || !data) {
-            return null;
-          }
-
-          const game = data.twitchGame ? data.twitchGame[0] : null;
-
-          return <TwitchGameClips game={game} />;
-        }}
-      </Query>
+      <TwitchGameClips game={game} />
     </Box>
   );
 };

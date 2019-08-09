@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 import Router from 'next/router';
 import { lighten } from 'polished';
 import { FC } from 'react';
-import { useMutation } from 'react-apollo';
+import { useMutation } from '@apollo/react-hooks';
 import posed from 'react-pose';
 import styled from 'styled-components';
 import { useAccess } from '../../hooks/useAccess';
@@ -33,7 +33,7 @@ const LikeButtonAnim = posed.div({
   pressEnd: { scale: 1 }
 });
 
-const LikeButton = styled(LikeButtonAnim)<ILikeButton>`
+const LikeButton = styled(LikeButtonAnim) <ILikeButton>`
   display: flex;
   justify-content: center;
   padding: 5px;
@@ -42,11 +42,11 @@ const LikeButton = styled(LikeButtonAnim)<ILikeButton>`
   i {
     font-size: 21px;
     color: ${({ theme, active }) =>
-      active ? lighten(0.15, theme.main1Color) : theme.accent2Color};
+    active ? lighten(0.15, theme.main1Color) : theme.accent2Color};
   }
 `;
 
-const LikesCount = styled('div')<ILikeButton>`
+const LikesCount = styled('div') <ILikeButton>`
   color: ${({ theme, active }) =>
     active ? lighten(0.15, theme.main1Color) : theme.accent2Color};
   margin-left: 10px;

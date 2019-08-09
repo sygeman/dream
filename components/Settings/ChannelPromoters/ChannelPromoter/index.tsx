@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 import { FC, useEffect } from 'react';
-import { useQuery } from 'react-apollo';
+import { useQuery } from '@apollo/react-hooks';
 import { ChannelPromoterWithChannel } from './WithChannel';
 
 const GET_CHANNEL_PROMOTER = gql`

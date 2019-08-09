@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 import Link from 'next/link';
 import { darken, lighten, rgba } from 'polished';
 import React, { FC } from 'react';
-import { useMutation } from 'react-apollo';
+import { useMutation } from '@apollo/react-hooks';
 import styled from 'styled-components';
 import { useAccess } from '../../hooks/useAccess';
 import { Dropdown, Emoji } from '../../ui';
@@ -61,7 +61,7 @@ const Header = styled.div`
   padding-top: 10px;
 `;
 
-const Username = styled('div')<{ userColor?: string }>`
+const Username = styled('div') <{ userColor?: string }>`
   font-weight: 500;
   color: ${props =>
     props.userColor
@@ -196,8 +196,8 @@ export const ChatMessage: FC<IProps> = ({
               {author.avatar ? (
                 <AvatarImg src={author.avatar} />
               ) : (
-                <AvatarNone />
-              )}
+                  <AvatarNone />
+                )}
             </Avatar>
           </Dropdown>
           <Username userColor={userColor}>{author.name}</Username>
@@ -210,12 +210,12 @@ export const ChatMessage: FC<IProps> = ({
           {useAccess(currentUser => {
             return currentUser.role === 'mod' || currentUser.role === 'admin';
           }) && (
-            <ManageItem
-              onClick={() => deleteChatMessage({ variables: { id } })}
-            >
-              <i className="zmdi zmdi-close" />
-            </ManageItem>
-          )}
+              <ManageItem
+                onClick={() => deleteChatMessage({ variables: { id } })}
+              >
+                <i className="zmdi zmdi-close" />
+              </ManageItem>
+            )}
         </ManageMenu>
       </Content>
     </Box>

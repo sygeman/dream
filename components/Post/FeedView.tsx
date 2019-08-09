@@ -3,7 +3,7 @@ import { FC, useEffect } from 'react';
 import { darken } from 'polished';
 import styled from 'styled-components';
 import gql from 'graphql-tag';
-import { useQuery } from 'react-apollo';
+import { useQuery } from '@apollo/react-hooks';
 import { Icon, TwitchClipPlayer } from '../../ui';
 import { ClipComments } from '../Clip/Comments';
 import { PostShareButton } from './ShareButton';

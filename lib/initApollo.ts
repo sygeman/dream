@@ -6,8 +6,8 @@ import { setContext } from 'apollo-link-context';
 import { WebSocketLink } from 'apollo-link-ws';
 import { getMainDefinition } from 'apollo-utilities';
 import fetch from 'isomorphic-unfetch';
-import config from '../config';
 import { getAccessTokenAsync } from './auth';
+import config from '../config';
 
 let apolloClient = null;
 
@@ -47,18 +47,18 @@ function create(initialState) {
 
   const wsLink = process.browser
     ? new WebSocketLink({
-        uri: config.wsgqlUrl,
-        options: {
-          reconnect: true,
-          connectionParams: async () => {
-            const accessToken = await getAccessTokenAsync();
+      uri: config.wsgqlUrl,
+      options: {
+        reconnect: true,
+        connectionParams: async () => {
+          const accessToken = await getAccessTokenAsync();
 
-            return {
-              accessToken
-            };
-          }
+          return {
+            accessToken
+          };
         }
-      })
+      }
+    })
     : null;
 
   // Check out https://github.com/zeit/next.js/pull/4611 if you want to use the AWSAppSyncClient
@@ -67,22 +67,22 @@ function create(initialState) {
     ssrMode: !process.browser, // Disables forceFetch on the server (so queries are only run once)
     link: process.browser
       ? split(
-          ({ query }) => {
-            // @ts-ignore
-            const { kind, operation } = getMainDefinition(query);
-            return (
-              kind === 'OperationDefinition' && operation === 'subscription'
-            );
-          },
-          wsLink,
-          authLink.concat(httpLink)
-        )
+        ({ query }) => {
+          // @ts-ignore
+          const { kind, operation } = getMainDefinition(query);
+          return (
+            kind === 'OperationDefinition' && operation === 'subscription'
+          );
+        },
+        wsLink,
+        authLink.concat(httpLink)
+      )
       : authLink.concat(httpLink),
     cache: new InMemoryCache().restore(initialState || {})
   });
 }
 
-export default function initApollo(initialState) {
+export default function initApollo(initialState = {}) {
   // Make sure to create a new client for every server-side request so that data
   // isn't shared between connections (which would be bad)
   if (!process.browser) {

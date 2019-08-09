@@ -2,7 +2,6 @@ import { useRouter } from 'next/router';
 import { lighten, rgba } from 'polished';
 import { ReactNode, useState, FC } from 'react';
 import Scrollbars from 'react-custom-scrollbars';
-import { YMInitializer } from 'react-yandex-metrika';
 import styled from 'styled-components';
 import Auth from '../components/Auth';
 import { BuyCoins } from '../components/BuyCoins';
@@ -13,7 +12,6 @@ import PostView from '../components/Post/FeedView';
 import { PromoterHelp } from '../components/Help/Promoter';
 import { Modal } from '../ui';
 import { ClipModal } from '../components/Clip/ClipModal';
-import config from '../config';
 const LEFT_MENU_WIDTH = 240;
 
 const Box = styled.div`
@@ -203,7 +201,6 @@ const BaseLayout: FC<IProps> = ({ children, fixedTopContent, leftMenu }) => {
           />
         </Content>
       </ContentBox>
-      <YMInitializer accounts={[config.yandexMetrikaId]} version="2" />
     </Box>
   );
 };

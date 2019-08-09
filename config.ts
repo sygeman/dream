@@ -1,7 +1,6 @@
 const commonConfig = {
   cdnUrl: 'https://cdn.pepega.com/',
   discordInvite: 'https://discord.gg/xVprhFC',
-  yandexMetrikaId: 51879323
 };
 
 const devConfig = {

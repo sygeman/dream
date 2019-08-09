@@ -59,7 +59,7 @@ interface IProps {
   id: string;
 }
 
-export default class extends React.Component<IProps> {
+export class PostShareButton extends React.Component<IProps> {
   public renderMenu = (id: string) => {
     const url = `https://pepega.com/post?id=${id}`;
 

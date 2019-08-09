@@ -2,14 +2,14 @@ import Head from 'next/head';
 import { FC, useEffect } from 'react';
 import { darken } from 'polished';
 import styled from 'styled-components';
+import gql from 'graphql-tag';
+import { useQuery } from 'react-apollo';
 import { Icon, TwitchClipPlayer } from '../../ui';
 import { ClipComments } from '../Clip/Comments';
-import PostHelper from '../Post';
+import { PostShareButton } from './ShareButton';
 import { PostReaction } from './PostReaction';
 import { PostMenu } from './Menu';
 import { PostAuthor } from './Author';
-import gql from 'graphql-tag';
-import { useQuery } from 'react-apollo';
 
 export const GET_POST = gql`
   query post($id: ID!) {
@@ -140,6 +140,12 @@ const PostDeleted = styled.div`
   }
 `;
 
+const Bottom = styled.div`
+  height: 50px;
+  display: flex;
+  align-items: center;
+`;
+
 interface IProps {
   id: string;
   meta?: boolean;
@@ -239,13 +245,13 @@ const PostFeedView: FC<IProps> = ({ id, meta, header, autoPlay }) => {
         <TwitchClipPlayer sourceId={sourceId} autoPlay={autoPlay} />
       </ContentBox>
       {id && (
-        <PostHelper.Bottom>
+        <Bottom>
           <PostReaction postId={id} likes={likes} dislikes={dislikes} />
-          <PostHelper.ShareButton id={id} />
+          <PostShareButton id={id} />
           <PostMenu id={id} authorId={authorId} />
           <EmptyBottom />
           <PostAuthor createdAt={createdAt} authorId={authorId} />
-        </PostHelper.Bottom>
+        </Bottom>
       )}
       {id && (
         <CommentsBox>

@@ -3,6 +3,7 @@ import Head from 'next/head';
 import Router, { withRouter } from 'next/router';
 import NProgress from 'nprogress';
 import React from 'react';
+import * as Sentry from '@sentry/browser'
 import { ApolloProvider } from '@apollo/react-hooks';
 import 'resize-observer-polyfill';
 import { RouterContext } from '../hooks/useRouter';
@@ -10,16 +11,9 @@ import withApollo from '../lib/withApollo';
 import { ThemeProvider } from 'styled-components';
 import config from '../config';
 
-const theme = {
-  // primary: '#6441a4',
-  // primaryLight: '#956dd6',
-  // primaryDark: '#331774',
-  // primaryText: '#fff',
-  // secondary: '#1d1e31',
-  // secondaryLight: '#45455a',
-  // secondaryDark: '#000009',
-  // secondaryText: '#fff',
+Sentry.init({ dsn: config.sentryDsn });
 
+const theme = {
   dark1Color: '#1D1E31',
   dark2Color: '#262841',
   accent2Color: '#968a9d',
@@ -43,6 +37,18 @@ const InjectRouterContext = withRouter(({ router, children }) => {
 });
 
 class MyApp extends App<IProps> {
+  componentDidCatch(error, errorInfo) {
+    Sentry.withScope(scope => {
+      Object.keys(errorInfo).forEach(key => {
+        scope.setExtra(key, errorInfo[key])
+      })
+
+      Sentry.captureException(error)
+    })
+
+    super.componentDidCatch(error, errorInfo)
+  }
+
   public render() {
     const { Component, pageProps, apolloClient } = this.props;
 

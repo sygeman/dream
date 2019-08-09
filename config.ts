@@ -1,4 +1,5 @@
 const commonConfig = {
+  sentryDsn: 'https://a264c8fe670545b88cfbdb41cd4819f0@sentry.io/1525960',
   cdnUrl: 'https://cdn.pepega.com/',
   discordInvite: 'https://discord.gg/xVprhFC',
 };

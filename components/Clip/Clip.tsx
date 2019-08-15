@@ -2,6 +2,8 @@ import { FC } from 'react';
 import { darken } from 'polished';
 import styled from 'styled-components';
 import { TwitchClipPlayer } from '../../ui';
+import { ClipReaction } from './Reactions';
+import { ClipShare } from './Share';
 import { ClipComments } from './Comments';
 
 const Box = styled.div`
@@ -15,6 +17,12 @@ const Box = styled.div`
 
 const ContentBox = styled.div`
   background: ${({ theme }) => darken(0.1, theme.dark2Color)};
+`;
+
+const Bottom = styled.div`
+  height: 50px;
+  display: flex;
+  align-items: center;
 `;
 
 const CommentsBox = styled.div`
@@ -38,7 +46,10 @@ export const Clip: FC<IProps> = ({ clipId, autoPlay }) => {
       <ContentBox>
         <TwitchClipPlayer sourceId={clipId} autoPlay={autoPlay} />
       </ContentBox>
-
+      <Bottom>
+        <ClipReaction clipId={clipId} />
+        <ClipShare clipId={clipId} />
+      </Bottom>
       <CommentsBox>
         <ClipComments clipId={clipId} />
       </CommentsBox>

@@ -8,7 +8,6 @@ import { BuyCoins } from '../components/BuyCoins';
 import { CreatePost } from '../components/Post/CreatePost';
 import { CreateCommunity } from '../components/Community/Create';
 import TopNav from '../components/Nav/Top';
-import PostView from '../components/Post/Post';
 import { PromoterHelp } from '../components/Help/Promoter';
 import { Modal } from '../ui';
 import { ClipModal } from '../components/Clip/ClipModal';
@@ -99,15 +98,10 @@ const BaseLayout: FC<IProps> = ({ children, fixedTopContent, leftMenu }) => {
   const [leftMenuIsOpen, setLeftMenuIsOpen] = useState(false);
 
   let clipId = null;
-  let postId = null;
   let backPath = null;
 
   if (typeof router.query.clipId === 'string') {
     clipId = router.query.clipId;
-  }
-
-  if (typeof router.query.postId === 'string') {
-    postId = router.query.postId;
   }
 
   if (typeof router.query.backPath === 'string') {
@@ -122,16 +116,6 @@ const BaseLayout: FC<IProps> = ({ children, fixedTopContent, leftMenu }) => {
         onClose={() => router.replace(backPath)}
       >
         <ClipModal clipId={clipId} />
-      </Modal>
-
-      <Modal
-        visible={!!postId}
-        minimal
-        onClose={() => router.replace(backPath)}
-      >
-        <div style={{ width: '1000px' }}>
-          <PostView id={postId} autoPlay />
-        </div>
       </Modal>
 
       <Modal

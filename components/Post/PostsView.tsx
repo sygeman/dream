@@ -136,7 +136,7 @@ class PostsView extends PureComponent<IProps, IState> {
         elementWidth={320}
         itemRender={post => (
           <PostContainer key={post.id}>
-            <PostGridView post={post} onPlay={() => onPlay(post.id)} />
+            <PostGridView post={post} onPlay={() => onPlay(post)} />
           </PostContainer>
         )}
       />

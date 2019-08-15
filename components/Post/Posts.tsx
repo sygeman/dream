@@ -18,6 +18,7 @@ export const GET_POSTS = gql`
         id
         nfws
         spoiler
+        sourceId
         cover
         title
         channelName
@@ -146,7 +147,7 @@ const Posts: FC<IProps> = ({
   }
 
   const { loading, error, data, fetchMore } = useQuery(GET_POSTS, {
-    fetchPolicy: "cache-and-network",
+    fetchPolicy: 'cache-and-network',
     variables
   });
 
@@ -178,20 +179,17 @@ const Posts: FC<IProps> = ({
         loading={loading}
         rows={rows}
         hasMore={hasMore && !rows && !noMore}
-        onPlay={id => {
+        onPlay={(post: any) => {
           router.push(
             {
               pathname: router.route,
               query: {
-                postId: id,
+                clipId: post.sourceId,
                 backPath: router.asPath,
                 ...router.query
               }
             },
-            {
-              pathname: '/post',
-              query: { id }
-            },
+            `/clip/${post.sourceId}`,
             { shallow: true }
           );
         }}
@@ -209,10 +207,7 @@ const Posts: FC<IProps> = ({
                 ...prev,
                 posts: {
                   ...prev.posts,
-                  posts: [
-                    ...prev.posts.posts,
-                    ...fetchMoreResult.posts.posts
-                  ]
+                  posts: [...prev.posts.posts, ...fetchMoreResult.posts.posts]
                 }
               };
             }

@@ -8,7 +8,7 @@ import { BuyCoins } from '../components/BuyCoins';
 import { CreatePost } from '../components/Post/CreatePost';
 import { CreateCommunity } from '../components/Community/Create';
 import TopNav from '../components/Nav/Top';
-import PostView from '../components/Post/FeedView';
+import PostView from '../components/Post/Post';
 import { PromoterHelp } from '../components/Help/Promoter';
 import { Modal } from '../ui';
 import { ClipModal } from '../components/Clip/ClipModal';

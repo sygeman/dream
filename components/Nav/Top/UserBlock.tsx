@@ -79,7 +79,7 @@ const UserCaratBox = styled.div`
 
 export const TopNavMenuUserBlock = () => {
   const isAdmin = useAccess(currentUser => currentUser.role === 'admin');
-  const { loading, error, data } = useQuery(GET_USER);
+  const { loading, error, data } = useQuery(GET_USER, { ssr: false });
 
   if (loading || error) {
     return null;

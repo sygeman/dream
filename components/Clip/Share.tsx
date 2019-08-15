@@ -1,5 +1,5 @@
 import { darken } from 'polished';
-import * as React from 'react';
+import { FC } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import {
   TwitterIcon,
@@ -56,45 +56,39 @@ const CopyLinkButton = styled.div`
 `;
 
 interface IProps {
-  id: string;
+  clipId: string;
 }
 
-export class PostShareButton extends React.Component<IProps> {
-  public renderMenu = (id: string) => {
-    const url = `https://pepega.com/post?id=${id}`;
+export const ClipShare: FC<IProps> = ({ clipId }) => {
+  const url = `https://pepega.com/clip/${clipId}`;
 
-    return (
-      <ShareMenu>
-        <ShareMenuItem>
-          <VKShareButton url={url}>
-            <VKIcon size={32} />
-          </VKShareButton>
-        </ShareMenuItem>
-        <ShareMenuItem>
-          <TwitterShareButton url={url}>
-            <TwitterIcon size={32} />
-          </TwitterShareButton>
-        </ShareMenuItem>
-        <ShareMenuItem>
-          <CopyToClipboard text={url}>
-            <CopyLinkButton>
-              <Icon type="copy" />
-            </CopyLinkButton>
-          </CopyToClipboard>
-        </ShareMenuItem>
-      </ShareMenu>
-    );
-  };
-
-  public render() {
-    const { id } = this.props;
-
-    return (
-      <Dropdown overlay={this.renderMenu(id)}>
-        <ShareButton>
-          <Icon type="mail-reply" />
-        </ShareButton>
-      </Dropdown>
-    );
-  }
-}
+  return (
+    <Dropdown
+      overlay={
+        <ShareMenu>
+          <ShareMenuItem>
+            <VKShareButton url={url}>
+              <VKIcon size={32} />
+            </VKShareButton>
+          </ShareMenuItem>
+          <ShareMenuItem>
+            <TwitterShareButton url={url}>
+              <TwitterIcon size={32} />
+            </TwitterShareButton>
+          </ShareMenuItem>
+          <ShareMenuItem>
+            <CopyToClipboard text={url}>
+              <CopyLinkButton>
+                <Icon type="copy" />
+              </CopyLinkButton>
+            </CopyToClipboard>
+          </ShareMenuItem>
+        </ShareMenu>
+      }
+    >
+      <ShareButton>
+        <Icon type="mail-reply" />
+      </ShareButton>
+    </Dropdown>
+  );
+};

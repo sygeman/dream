@@ -2,8 +2,8 @@ import { FC, useEffect } from 'react';
 // import styled from 'styled-components';
 import gql from 'graphql-tag';
 import { useQuery, useMutation } from '@apollo/react-hooks';
-// import { useAccess } from '../../../hooks/useAccess';
-// import { useRouter } from '../../../hooks/useRouter';
+import { useAccess } from '../../../hooks/useAccess';
+import { useRouter } from '../../../hooks/useRouter';
 import { ClipReactionButton } from './Button';
 
 const GET_CLIP_REACTION_AND_STATS = gql`
@@ -50,8 +50,8 @@ interface IProps {
 }
 
 export const ClipReaction: FC<IProps> = ({ clipId }) => {
-  // const router = useRouter();
-  // const isUser = useAccess();
+  const router = useRouter();
+  const isUser = useAccess();
   const [setClipReaction] = useMutation(SET_CLIP_REACTION);
 
   const { subscribeToMore, loading, error, data } = useQuery(
@@ -112,6 +112,20 @@ export const ClipReaction: FC<IProps> = ({ clipId }) => {
   const likes = data.clipReactionStats ? data.clipReactionStats.likes : 0;
   const dislikes = data.clipReactionStats ? data.clipReactionStats.dislikes : 0;
 
+  const needAuth = () => {
+    router.push(
+      {
+        pathname: router.route,
+        query: {
+          ...router.query,
+          authModal: 1
+        }
+      },
+      `/auth?continue=${router.asPath}`,
+      { shallow: true }
+    );
+  };
+
   const toggleLike = () => {
     setClipReaction({
       variables: {
@@ -133,13 +147,13 @@ export const ClipReaction: FC<IProps> = ({ clipId }) => {
   return (
     <>
       <ClipReactionButton
-        onClick={toggleLike}
+        onClick={isUser ? toggleLike : needAuth}
         active={reactionType === 'like'}
         count={likes}
         icon="thumb-up"
       />
       <ClipReactionButton
-        onClick={toggleDislike}
+        onClick={isUser ? toggleDislike : needAuth}
         active={reactionType === 'dislike'}
         count={dislikes}
         icon="thumb-down"

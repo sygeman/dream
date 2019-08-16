@@ -12,7 +12,7 @@ const CommunityPage = () => {
 
   return (
     <Layout>
-      <Community id={communityId} />}
+      <Community id={communityId} />
     </Layout>
   );
 };

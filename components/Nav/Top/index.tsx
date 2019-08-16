@@ -168,6 +168,11 @@ const TopNav: FC<IProps> = ({ leftMenuTrigger }) => {
             <Link href="/" passHref>
               <TopLink>Клипы</TopLink>
             </Link>
+            {process.env.NODE_ENV !== 'production' && (
+              <Link href="/communities" passHref>
+                <TopLink>Сообщества</TopLink>
+              </Link>
+            )}
             <Link href="/promoter" passHref>
               <TopLink>Продвижение</TopLink>
             </Link>
@@ -222,7 +227,7 @@ const TopNav: FC<IProps> = ({ leftMenuTrigger }) => {
                   }}
                   passHref
                 >
-                  <TopLink>Закинуть клип</TopLink>
+                  <TopLink>Предложить клип</TopLink>
                 </Link>
               </Links>
               <PointsBox>

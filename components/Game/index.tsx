@@ -147,7 +147,7 @@ const TwitchGameClips = ({ game }) => {
           ...router.query
         }
       },
-      `/clip/${clipId}`,
+      `/clip?id=${clipId}`,
       { shallow: true }
     );
   };
@@ -166,7 +166,7 @@ const TwitchGameClips = ({ game }) => {
               <SectionTitle>{title}</SectionTitle>
               <SectionDescription>
                 Клипы за 24 часа по количеству просмотров
-                    </SectionDescription>
+              </SectionDescription>
             </SectionData>
           )}
         </SectionBox>

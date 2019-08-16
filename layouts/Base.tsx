@@ -134,7 +134,7 @@ const BaseLayout: FC<IProps> = ({ children, fixedTopContent, leftMenu }) => {
         <Auth />
       </Modal>
       <Modal
-        title="Новый клип"
+        title="Предложить клип сообществу"
         visible={router.query.newClip === '1'}
         onClose={() => router.back()}
       >

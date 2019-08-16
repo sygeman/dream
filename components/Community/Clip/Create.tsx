@@ -1,10 +1,11 @@
 import gql from 'graphql-tag';
-import Router from 'next/router';
 import { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import styled from 'styled-components';
+import { useRouter } from '../../../hooks/useRouter';
 import { Button, Input, SWRow, TwitchClipPlayer } from '../../../ui';
 import { parseSource } from '../../../utils/parseSoruce';
+import config from '../../../config';
 
 const CREATE_COMMUNITY_CLIP = gql`
   mutation createCommunityClip($input: CommunityClipCreateInput!) {
@@ -26,14 +27,16 @@ const Bottom = styled.div`
 `;
 
 export const CreateCommunityClip = () => {
+  const router = useRouter();
+
   const [title, setTitle] = useState('');
   const [clipId, setClipId] = useState('');
   const [nfws, setNfws] = useState(false);
   const [spoiler, setSpoiler] = useState(false);
   const [createCommunityClip] = useMutation(CREATE_COMMUNITY_CLIP, {
     onCompleted: data => {
-      const postId = data.createCommunityClip;
-      Router.push(`/post?id=${postId}`);
+      const communityClip = data.createCommunityClip;
+      router.push(`/clip?id=${communityClip.clipId}`);
     }
   });
 
@@ -84,7 +87,8 @@ export const CreateCommunityClip = () => {
             createCommunityClip({
               variables: {
                 input: {
-                  communityId: '4dbda3ee-a71e-4640-b98b-be33b23a2097',
+                  communityId:
+                    router.query.communityId || config.defaultCommunityId,
                   clipId,
                   title,
                   nfws,

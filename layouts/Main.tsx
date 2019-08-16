@@ -19,6 +19,9 @@ const MainLayout: FC<IProps> = ({ children, fixedTopContent, streams }) => (
         <LeftMenu.Item route="/" equal icon="home" title="Главная" />
         <LeftMenu.Item equal route="/new" icon="flare" title="Новое" />
         <LeftMenu.Item route="/top" icon="trending-up" title="Топ" />
+        {useAccess() && (
+          <LeftMenu.Item route="/likes" icon="thumb-up" title="Понравившиеся" />
+        )}
         {useAccess() && <Categories />}
         {useAccess() && <Follows />}
       </LeftMenu.Box>

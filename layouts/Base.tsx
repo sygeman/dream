@@ -5,7 +5,7 @@ import Scrollbars from 'react-custom-scrollbars';
 import styled from 'styled-components';
 import Auth from '../components/Auth';
 import { BuyCoins } from '../components/BuyCoins';
-import { CreatePost } from '../components/Post/CreatePost';
+import { CreateCommunityClip } from '../components/Community/Clip/Create';
 import { CreateCommunity } from '../components/Community/Create';
 import TopNav from '../components/Nav/Top';
 import { PromoterHelp } from '../components/Help/Promoter';
@@ -135,10 +135,10 @@ const BaseLayout: FC<IProps> = ({ children, fixedTopContent, leftMenu }) => {
       </Modal>
       <Modal
         title="Новый клип"
-        visible={router.query.newPost === '1'}
+        visible={router.query.newClip === '1'}
         onClose={() => router.back()}
       >
-        <CreatePost />
+        <CreateCommunityClip />
       </Modal>
       <Modal
         title="Новое сообщество"

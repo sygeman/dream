@@ -182,7 +182,7 @@ const TopNav: FC<IProps> = ({ leftMenuTrigger }) => {
           {!useAccess() ? (
             <Links>
               <Link
-                as={`/auth?continue=/newPost`}
+                as={`/auth?continue=/newClip`}
                 href={{
                   pathname: router.route,
                   query: {
@@ -212,12 +212,12 @@ const TopNav: FC<IProps> = ({ leftMenuTrigger }) => {
             <>
               <Links>
                 <Link
-                  as={`/newPost`}
+                  as={`/newClip`}
                   href={{
                     pathname: router.route,
                     query: {
                       ...router.query,
-                      newPost: 1
+                      newClip: 1
                     }
                   }}
                   passHref

@@ -149,7 +149,7 @@ interface IProps {
 const ChannelUser = ({ userId }) => {
   const { loading, error, data } = useQuery(GET_TWITCH_USER, {
     variables: { userId }
-  })
+  });
 
   let avatar = null;
   let title = null;
@@ -165,28 +165,22 @@ const ChannelUser = ({ userId }) => {
     <SectionBox>
       <SectionAvatar>
         <ChannelAvatar>
-          {avatar ? (
-            <ChannelAvatarImg src={avatar} />
-          ) : (
-              <ChannelAvatarMock />
-            )}
+          {avatar ? <ChannelAvatarImg src={avatar} /> : <ChannelAvatarMock />}
         </ChannelAvatar>
       </SectionAvatar>
       <SectionData>
-        <SectionTitle>
-          {title ? title : <SectionTitleMock />}
-        </SectionTitle>
+        <SectionTitle>{title ? title : <SectionTitleMock />}</SectionTitle>
         <SectionDescription>
           {title ? (
             'Клипы за 24 часа по количеству просмотров'
           ) : (
-              <SectionDescriptionMock />
-            )}
+            <SectionDescriptionMock />
+          )}
         </SectionDescription>
       </SectionData>
     </SectionBox>
   );
-}
+};
 
 const Channel: FC<IProps> = ({ userId }) => {
   const router = useRouter();
@@ -220,7 +214,7 @@ const Channel: FC<IProps> = ({ userId }) => {
           ...router.query
         }
       },
-      `/clip/${clipId}`,
+      `/clip?id=${clipId}`,
       { shallow: true }
     );
   };
@@ -228,9 +222,7 @@ const Channel: FC<IProps> = ({ userId }) => {
   return (
     <Box>
       <Grid
-        beforeRender={
-          <ChannelUser userId={userId} />
-        }
+        beforeRender={<ChannelUser userId={userId} />}
         items={data.twitchClips.data}
         itemRender={clip => (
           <ClipContainer key={clip.id}>

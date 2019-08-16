@@ -1,9 +1,9 @@
-import Posts from '../components/Post/Posts';
 import Layout from '../layouts/Main';
+import { Clips } from '../components/Clip/Clips';
 
 const NewPage = () => (
   <Layout streams>
-    <Posts title="Новое" sort={'new'} />
+    <Clips title="Новое" description="Самые последние предложенные клипы" />
   </Layout>
 );
 

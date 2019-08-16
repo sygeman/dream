@@ -1,14 +1,23 @@
-import Posts from '../../components/Post/Posts';
+import subDays from 'date-fns/sub_days';
+import { Clips } from '../../components/Clip/Clips';
 import Layout from '../../layouts/Main';
 
-const TopMonthPage = () => (
-  <Layout streams>
-    <Posts
-      title="Топ за месяц"
-      description="Клипы за месяц с самым высоким рейтингом"
-      sort="topMonth"
-    />
-  </Layout>
-);
+const TopMonthPage = () => {
+  const now = new Date();
+  now.setHours(0, 0, 0, 0);
+  const startedAtMonth = new Date(subDays(now, 30)).toISOString();
+
+  return (
+    <Layout streams>
+      <Clips
+        title="Топ за месяц"
+        description="Клипы за месяц с самым высоким рейтингом"
+        titleLink="/top/month"
+        startedAt={startedAtMonth}
+        orderBy={{ name: 'clipRating', type: 'DESC' }}
+      />
+    </Layout>
+  );
+};
 
 export default TopMonthPage;

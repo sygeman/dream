@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
-import Posts from '../components/Post/Posts';
+import { Clips } from '../components/Clip/Clips';
 import Layout from '../layouts/Main';
 
 const GET_USER = gql`
@@ -12,15 +12,19 @@ const GET_USER = gql`
 `;
 
 const LikesPage = () => {
-  const { loading, data } = useQuery(GET_USER);
+  const { loading, data } = useQuery(GET_USER, { ssr: false });
 
   return (
     <Layout>
       {loading ? (
-        'Loading'
+        ''
       ) : (
-          <Posts title="Понравившиеся" likedUserId={data.user.id} />
-        )}
+        <Clips
+          likedUserId={data.user.id}
+          orderBy={{ name: 'clipReactionUpdatedAt', type: 'DESC' }}
+          title="Понравившиеся"
+        />
+      )}
     </Layout>
   );
 };

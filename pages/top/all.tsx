@@ -1,12 +1,13 @@
-import Posts from '../../components/Post/Posts';
+import { Clips } from '../../components/Clip/Clips';
 import Layout from '../../layouts/Main';
 
 const TopAllPage = () => (
   <Layout streams>
-    <Posts
+    <Clips
       title="Топ за все время"
       description="Клипы за все время с самым высоким рейтингом"
-      sort="topAll"
+      titleLink="/top/all"
+      orderBy={{ name: 'clipRating', type: 'DESC' }}
     />
   </Layout>
 );

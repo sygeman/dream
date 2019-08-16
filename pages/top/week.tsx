@@ -1,14 +1,23 @@
-import Posts from '../../components/Post/Posts';
+import subDays from 'date-fns/sub_days';
+import { Clips } from '../../components/Clip/Clips';
 import Layout from '../../layouts/Main';
 
-const TopWeekPage = () => (
-  <Layout streams>
-    <Posts
-      title="Топ за неделю"
-      description="Клипы за неделю с самым высоким рейтингом"
-      sort="topWeek"
-    />
-  </Layout>
-);
+const TopWeekPage = () => {
+  const now = new Date();
+  now.setHours(0, 0, 0, 0);
+  const startedAtWeek = new Date(subDays(now, 14)).toISOString();
+
+  return (
+    <Layout streams>
+      <Clips
+        title="Топ за неделю"
+        description="Клипы за неделю с самым высоким рейтингом"
+        titleLink="/top/week"
+        startedAt={startedAtWeek}
+        orderBy={{ name: 'clipRating', type: 'DESC' }}
+      />
+    </Layout>
+  );
+};
 
 export default TopWeekPage;

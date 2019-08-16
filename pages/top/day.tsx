@@ -1,14 +1,23 @@
-import Posts from '../../components/Post/Posts';
+import subDays from 'date-fns/sub_days';
+import { Clips } from '../../components/Clip/Clips';
 import Layout from '../../layouts/Main';
 
-const TopDayPage = () => (
-  <Layout streams>
-    <Posts
-      title="Топ за день"
-      description="Клипы за 24 часа с самым высоким рейтингом"
-      sort="topDay"
-    />
-  </Layout>
-);
+const TopDayPage = () => {
+  const now = new Date();
+  now.setHours(0, 0, 0, 0);
+  const startedAtDay = new Date(subDays(now, 1)).toISOString();
+
+  return (
+    <Layout streams>
+      <Clips
+        title="Топ за день"
+        description="Клипы за 24 часа с самым высоким рейтингом"
+        titleLink="/top/day"
+        startedAt={startedAtDay}
+        orderBy={{ name: 'clipRating', type: 'DESC' }}
+      />
+    </Layout>
+  );
+};
 
 export default TopDayPage;

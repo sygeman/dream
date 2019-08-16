@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 import Head from 'next/head';
 import * as React from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import Posts from '../components/Post/Posts';
+import { Clips } from '../components/Clip/Clips';
 import UserPanelProfile from '../components/User/UserPanelProfile';
 import { useRouter } from '../hooks/useRouter';
 import Layout from '../layouts/Main';
@@ -58,7 +58,12 @@ const UserPage = () => {
         </Head>
 
         <PostsBox>
-          <Posts title="Клипы" authorId={data.user.id} sort="new" />
+          <Clips
+            orderBy={{ name: 'communityClipCreatedAt', type: 'DESC' }}
+            communityClipAuthorId={data.user.id}
+            title="Клипы"
+            description="Последние предложенные клипы сообществам"
+          />
         </PostsBox>
       </Box>
     </Layout>

@@ -1,22 +1,30 @@
-import Posts from '../components/Post/Posts';
+import subDays from 'date-fns/sub_days';
+import { Clips } from '../components/Clip/Clips';
 import Layout from '../layouts/Main';
 
-const IndexPage = () => (
-  <Layout streams>
-    <Posts
-      title="Топ за день"
-      description="Клипы за 24 часа с самым высоким рейтингом"
-      titleLink="/top/day"
-      sort="topDay"
-      rows={2}
-    />
-    <Posts
-      title="Новое"
-      description="Самые последние предложенные клипы"
-      titleLink="/new"
-      sort="new"
-    />
-  </Layout>
-);
+const IndexPage = () => {
+  const now = new Date();
+  now.setHours(0, 0, 0, 0);
+  const startedAt = new Date(subDays(now, 1)).toISOString();
+
+  return (
+    <Layout streams>
+      <Clips
+        orderBy={{ name: 'clipRating', type: 'DESC' }}
+        ratingMin={1}
+        startedAt={startedAt}
+        title="Топ за день"
+        description="Клипы за 24 часа с самым высоким рейтингом"
+        titleLink="/top/day"
+        rows={2}
+      />
+      <Clips
+        title="Новое"
+        description="Самые последние предложенные клипы"
+        titleLink="/new"
+      />
+    </Layout>
+  );
+};
 
 export default IndexPage;

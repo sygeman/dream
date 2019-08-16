@@ -27,7 +27,7 @@ const PostPage = () => {
     return null;
   }
 
-  router.push(`/clip/${data.clipIdByPostId}`);
+  router.push(`/clip?id=${data.clipIdByPostId}`);
   return null;
 };
 

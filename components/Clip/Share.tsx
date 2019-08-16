@@ -60,7 +60,7 @@ interface IProps {
 }
 
 export const ClipShare: FC<IProps> = ({ clipId }) => {
-  const url = `https://pepega.com/clip/${clipId}`;
+  const url = `https://pepega.com/clip?id=${clipId}`;
 
   return (
     <Dropdown

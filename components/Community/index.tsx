@@ -3,8 +3,11 @@ import { FC, useEffect } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import styled from 'styled-components';
 import { lighten } from 'polished';
+import Link from 'next/link';
+import { useRouter } from '../../hooks/useRouter';
 import { Chat } from '../Chat';
-import { Rectangle169 } from '../../ui';
+import { Clips } from '../Clip/Clips';
+import { Button } from '../../ui';
 
 const GET_COMMUNITY = gql`
   query community($id: ID!) {
@@ -41,21 +44,9 @@ const ContentBox = styled.div`
   padding: 20px;
 `;
 
-const PlayerBox = styled.div`
-  background: ${({ theme }) => lighten(0.03, theme.dark1Color)};
-  height: 100%;
-  width: 100%;
-`;
-
 const ChatBox = styled.div`
   width: 320px;
   background: ${({ theme }) => lighten(0.03, theme.dark1Color)};
-`;
-
-const PlayerIframe = styled.iframe`
-  height: 100%;
-  width: 100%;
-  border: none;
 `;
 
 interface IProps {
@@ -63,8 +54,11 @@ interface IProps {
 }
 
 export const Community: FC<IProps> = ({ id }) => {
+  const router = useRouter();
+
   const { loading, error, data, subscribeToMore } = useQuery(GET_COMMUNITY, {
-    variables: { id }
+    variables: { id },
+    ssr: false
   });
 
   useEffect(() => {
@@ -97,11 +91,27 @@ export const Community: FC<IProps> = ({ id }) => {
     <Box>
       <ContentBox>
         <div style={{ width: '100%' }}>
-          <Rectangle169>
-            <PlayerBox>
-              <PlayerIframe src="https://www.youtube.com/embed/Z4OhbzSFpnk?autoplay=1&loop=1&playlist=Z4OhbzSFpnk" />
-            </PlayerBox>
-          </Rectangle169>
+          <Link
+            as={`/newClip?communityId=${community.id}`}
+            href={{
+              pathname: router.route,
+              query: {
+                ...router.query,
+                newClip: 1,
+                communityId: community.id
+              }
+            }}
+            passHref
+          >
+            <Button>Предложить клип</Button>
+          </Link>
+
+          <Clips
+            orderBy={{ name: 'communityClipCreatedAt', type: 'DESC' }}
+            communityId={community.id}
+            title="Клипы сообщества"
+            description="Последние предложенные клипы сообществу"
+          />
         </div>
       </ContentBox>
       <ChatBox>

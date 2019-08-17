@@ -7,6 +7,12 @@ export const Box = styled.div`
   padding: 10px 0;
 `;
 
+export const Divider = styled.div`
+  margin: 5px 0;
+  height: 1px;
+  background: ${({ theme }) => theme.dark1Color};
+`;
+
 export const LoadMore = styled.div`
   display: flex;
   align-items: center;

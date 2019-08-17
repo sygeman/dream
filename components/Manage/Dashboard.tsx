@@ -1,10 +1,9 @@
 import gql from 'graphql-tag';
 import { FC } from 'react';
-import { useQuery, useMutation } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/react-hooks';
 import styled from 'styled-components';
 import DashCount from './DashCount';
 import { OnlineCount } from './OnlineCount';
-import config from '../../config';
 
 const GET_CONNECTIONS_COUNT = gql`
   query connectionsCount {
@@ -25,13 +24,6 @@ const GET_CLIPS_COUNT = gql`
     clips {
       count
     }
-    postsCount
-  }
-`;
-
-const MIGRATE_POSTS = gql`
-  mutation migratePosts($communityId: ID!) {
-    migratePosts(communityId: $communityId)
   }
 `;
 
@@ -47,24 +39,6 @@ const Box = styled.div`
   grid-template-columns: repeat(auto-fit, 300px);
   overflow-y: hidden;
 `;
-
-const MigratePosts = () => {
-  const [migratePosts] = useMutation(MIGRATE_POSTS);
-
-  return (
-    <div>
-      <button
-        onClick={() =>
-          migratePosts({
-            variables: { communityId: config.defaultCommunityId }
-          })
-        }
-      >
-        MigratePosts
-      </button>
-    </div>
-  );
-};
 
 const OnlineStats = () => {
   const { loading, error, data } = useQuery(GET_CONNECTIONS_COUNT, {
@@ -94,9 +68,8 @@ const ClipsStats = () => {
     pollInterval: 10000
   });
   const count = loading || error || !data ? 0 : data.clips.count;
-  const count2 = loading || error || !data ? 0 : data.postsCount;
 
-  return <DashCount title="Клипы" count={count} count2={count2} />;
+  return <DashCount title="Клипы" count={count} />;
 };
 
 const Dashboard: FC = () => (
@@ -104,7 +77,6 @@ const Dashboard: FC = () => (
     <OnlineStats />
     <UsersStats />
     <ClipsStats />
-    <MigratePosts />
   </Box>
 );
 

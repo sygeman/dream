@@ -13,6 +13,7 @@ export const GET_CLIPS = gql`
     $likedUserId: String
     $communityId: String
     $communityClipAuthorId: String
+    $historyUserId: String
     $limit: Int
     $offset: Int
   ) {
@@ -23,6 +24,7 @@ export const GET_CLIPS = gql`
       likedUserId: $likedUserId
       communityId: $communityId
       communityClipAuthorId: $communityClipAuthorId
+      historyUserId: $historyUserId
       limit: $limit
       offset: $offset
     ) {
@@ -56,6 +58,7 @@ interface IProps {
   likedUserId?: string;
   communityId?: string;
   communityClipAuthorId?: string;
+  historyUserId?: string;
   title?: string;
   description?: string;
   rows?: number;
@@ -71,6 +74,7 @@ export const Clips: FC<IProps> = ({
   likedUserId,
   communityId,
   communityClipAuthorId,
+  historyUserId,
   title,
   description,
   noMore,
@@ -87,6 +91,7 @@ export const Clips: FC<IProps> = ({
     likedUserId,
     communityId,
     communityClipAuthorId,
+    historyUserId,
     offset: 0,
     limit: rows ? rows * 6 : limit
   };

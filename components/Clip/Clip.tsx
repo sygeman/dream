@@ -1,10 +1,19 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
+import gql from 'graphql-tag';
 import { darken } from 'polished';
 import styled from 'styled-components';
+import { useMutation } from '@apollo/react-hooks';
 import { TwitchClipPlayer } from '../../ui';
 import { ClipReaction } from './Reactions';
 import { ClipShare } from './Share';
 import { ClipComments } from './Comments';
+import { useAccess } from '../../hooks/useAccess';
+
+const SET_CLIP_HISTORY = gql`
+  mutation setClipHistory($clipId: ID!) {
+    setClipHistory(clipId: $clipId)
+  }
+`;
 
 const Box = styled.div`
   flex-direction: column;
@@ -41,6 +50,15 @@ interface IProps {
 }
 
 export const Clip: FC<IProps> = ({ clipId, autoPlay }) => {
+  const [setClipHistory] = useMutation(SET_CLIP_HISTORY);
+  const isUser = useAccess();
+
+  useEffect(() => {
+    if (isUser) {
+      setClipHistory({ variables: { clipId } });
+    }
+  }, [isUser]);
+
   return (
     <Box>
       <ContentBox>

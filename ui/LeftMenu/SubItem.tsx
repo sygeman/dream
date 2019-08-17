@@ -7,8 +7,7 @@ import { useRouter } from '../../hooks/useRouter';
 const SubItem = styled('a')<{
   active?: boolean;
 }>`
-  margin-right: 14px;
-  border-radius: 0 16px 16px 0;
+  border-radius: 0;
   border-left: 4px solid transparent;
   padding: 0 20px 0 56px;
   height: 30px;

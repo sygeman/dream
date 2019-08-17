@@ -8,7 +8,7 @@ export const Box = styled.div`
 `;
 
 export const Divider = styled.div`
-  margin: 5px 0;
+  margin: 8px 0;
   height: 1px;
   background: ${({ theme }) => theme.dark1Color};
 `;

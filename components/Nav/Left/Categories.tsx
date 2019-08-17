@@ -14,7 +14,7 @@ const GET_TWITCH_TOP_GAMES = gql`
   }
 `;
 
-export const Categories: FC = () => {
+const CategoriesInner = () => {
   const router = useRouter();
 
   const { loading, error, data } = useQuery(GET_TWITCH_TOP_GAMES, {
@@ -33,17 +33,21 @@ export const Categories: FC = () => {
 
   const categories = data.twitchTopGames;
 
+  return categories.map(game => (
+    <LeftMenu.SubItem
+      route={`/game?id=${game.id}`}
+      active={router.route === '/game' && router.query.id === game.id}
+      key={game.id}
+    >
+      {game.name}
+    </LeftMenu.SubItem>
+  ));
+};
+
+export const Categories: FC = () => {
   return (
     <LeftMenu.Item route="/game" icon="apps" title="Категории">
-      {categories.map(game => (
-        <LeftMenu.SubItem
-          route={`/game?id=${game.id}`}
-          active={router.route === '/game' && router.query.id === game.id}
-          key={game.id}
-        >
-          {game.name}
-        </LeftMenu.SubItem>
-      ))}
+      <CategoriesInner />
     </LeftMenu.Item>
   );
 };

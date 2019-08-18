@@ -1,9 +1,12 @@
 import gql from 'graphql-tag';
 import { FC } from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import { Icon } from '../../../ui';
+import { Icon, Button } from '../../../ui';
 import { useRouter } from '../../../hooks/useRouter';
+import { useAccess } from '../../../hooks/useAccess';
 import * as LeftMenu from '../../../ui/LeftMenu';
+import styled from 'styled-components';
+import config from '../../../config';
 
 const GET_USER_TWITCH_FOLLOWS = gql`
   query twitchFollows($after: String, $first: Int) {
@@ -20,10 +23,25 @@ const GET_USER_TWITCH_FOLLOWS = gql`
   }
 `;
 
+const FollowsGuest = styled.div`
+  font-size: 13px;
+  text-align: center;
+  padding: 10px 20px;
+  color: ${({ theme }) => theme.accent2Color};
+`;
+
+const FollowsGuestText = styled.div`
+  padding: 5px 0;
+`;
+
+const FollowsGuestAction = styled.div`
+  margin: 10px 0;
+`;
+
 const FIRST_SIZE = 10;
 const PAGE_SIZE = 50;
 
-export const Follows: FC = () => {
+const FollowsInner = () => {
   const router = useRouter();
 
   const { loading, error, data, fetchMore, refetch } = useQuery(
@@ -98,4 +116,34 @@ export const Follows: FC = () => {
       )}
     </LeftMenu.Item>
   );
+};
+
+export const Follows: FC = () => {
+  const isUser = useAccess();
+
+  if (!isUser) {
+    return (
+      <LeftMenu.Item
+        route="/channel"
+        icon="favorite"
+        title="Подписки"
+        badge={0}
+        noClick
+        showContentAlways
+      >
+        <FollowsGuest>
+          <FollowsGuestText>
+            Войдите через Twitch чтобы видеть список своих подписок
+          </FollowsGuestText>
+          <FollowsGuestAction>
+            <a href={`${config.apiUrl}auth/twitch`}>
+              <Button>Войти</Button>
+            </a>
+          </FollowsGuestAction>
+        </FollowsGuest>
+      </LeftMenu.Item>
+    );
+  }
+
+  return <FollowsInner />;
 };

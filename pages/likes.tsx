@@ -1,32 +1,10 @@
-import gql from 'graphql-tag';
-import { useQuery } from '@apollo/react-hooks';
-import { Clips } from '../components/Clip/Clips';
 import Layout from '../layouts/Main';
+import { ClipsLikes } from '../components/Clips/Likes';
 
-const GET_USER = gql`
-  query getUser {
-    user {
-      id
-    }
-  }
-`;
+const ClipLikesPage = () => (
+  <Layout>
+    <ClipsLikes />
+  </Layout>
+);
 
-const LikesPage = () => {
-  const { loading, data } = useQuery(GET_USER, { ssr: false });
-
-  return (
-    <Layout>
-      {loading ? (
-        ''
-      ) : (
-        <Clips
-          likedUserId={data.user.id}
-          orderBy={{ name: 'clipReactionUpdatedAt', type: 'DESC' }}
-          title="Понравившиеся"
-        />
-      )}
-    </Layout>
-  );
-};
-
-export default LikesPage;
+export default ClipLikesPage;

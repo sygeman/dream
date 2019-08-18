@@ -48,7 +48,7 @@ const ItemTitle = styled.div`
 `;
 
 const ItemBadge = styled.div<{ active: boolean }>`
-  padding: 0 15px;
+  padding: 0 20px;
   color: ${({ theme, active }) =>
     active ? lighten(0.2, theme.accent2Color) : theme.accent2Color};
 `;

@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 import { FC } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import styled from 'styled-components';
-import { useRouter } from '../../../hooks/useRouter';
+import { useRouter } from '../../hooks/useRouter';
 import { ClipsView } from './View';
 
 export const GET_CLIPS = gql`
@@ -98,6 +98,7 @@ export const Clips: FC<IProps> = ({
 
   const { loading, error, data, fetchMore } = useQuery(GET_CLIPS, {
     fetchPolicy: 'cache-and-network',
+    ssr: false,
     variables
   });
 

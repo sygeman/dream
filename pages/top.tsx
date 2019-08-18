@@ -1,5 +1,5 @@
 import subDays from 'date-fns/sub_days';
-import { Clips } from '../components/Clip/Clips';
+import { Clips } from '../components/Clips';
 import Layout from '../layouts/Main';
 
 const TopPage = () => {

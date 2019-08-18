@@ -6,7 +6,7 @@ import { lighten } from 'polished';
 import Link from 'next/link';
 import { useRouter } from '../../hooks/useRouter';
 import { Chat } from '../Chat';
-import { Clips } from '../Clip/Clips';
+import { Clips } from '../Clips';
 import { Button } from '../../ui';
 
 const GET_COMMUNITY = gql`

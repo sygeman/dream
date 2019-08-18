@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { darken } from 'polished';
 import { PureComponent } from 'react';
 import styled from 'styled-components';
-import { Grid } from '../../../ui';
+import { Grid } from '../../ui';
 import ClipGridView from './GridView';
 
 const SectionBox = styled.div`

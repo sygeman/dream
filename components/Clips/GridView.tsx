@@ -1,8 +1,8 @@
 import { FC, memo } from 'react';
 import styled from 'styled-components';
-import { VideoPreview, CardMedia } from '../../../ui';
+import { VideoPreview, CardMedia } from '../../ui';
 import { isEqual } from 'lodash';
-import { dateDistanceInWordsToNow } from '../../../utils/date';
+import { dateDistanceInWordsToNow } from '../../utils/date';
 
 const PreviewContent = styled.div`
   position: absolute;

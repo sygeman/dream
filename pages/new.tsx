@@ -1,5 +1,5 @@
 import Layout from '../layouts/Main';
-import { Clips } from '../components/Clip/Clips';
+import { Clips } from '../components/Clips';
 
 const NewPage = () => (
   <Layout streams>

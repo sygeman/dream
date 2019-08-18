@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { useRouter } from '../../hooks/useRouter';
 import { Icon } from '../Icon';
 
-const Item = styled.a<{ active: boolean }>`
+const Item = styled.a<{ active: boolean; noHover: boolean }>`
   border-left: 4px solid transparent;
   border-color: ${({ active, theme }) =>
     active && darken(0.1, theme.main1Color)};
@@ -16,7 +16,7 @@ const Item = styled.a<{ active: boolean }>`
   height: 34px;
   display: flex;
   align-items: center;
-  cursor: pointer;
+  cursor: ${({ noHover }) => (noHover ? 'default' : 'cursor')};
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -24,7 +24,8 @@ const Item = styled.a<{ active: boolean }>`
     active && lighten(0.06, theme.dark1Color)};
 
   :hover {
-    background: ${({ theme }) => lighten(0.06, theme.dark1Color)};
+    background: ${({ theme, noHover }) =>
+      noHover ? 'inherit' : lighten(0.06, theme.dark1Color)};
   }
 
   i {
@@ -84,12 +85,14 @@ export const MenuItem: FC<IProps> = ({
   if (noClick) {
     return (
       <>
-        <Item active={active}>
+        <Item active={active} noHover={noClick}>
           <ItemIcon>
             <Icon type={icon} />
           </ItemIcon>
           <ItemTitle>{title}</ItemTitle>
-          {badge && <ItemBadge active={active}>{badge}</ItemBadge>}
+          {typeof badge !== 'undefined' && (
+            <ItemBadge active={active}>{badge}</ItemBadge>
+          )}
         </Item>
         {(showContentAlways || active) && (
           <SubItemMenuBox>{children}</SubItemMenuBox>
@@ -101,12 +104,14 @@ export const MenuItem: FC<IProps> = ({
   return (
     <>
       <Link href={route} shallow passHref>
-        <Item active={active}>
+        <Item active={active} noHover={noClick}>
           <ItemIcon>
             <Icon type={icon} />
           </ItemIcon>
           <ItemTitle>{title}</ItemTitle>
-          {badge && <ItemBadge active={active}>{badge}</ItemBadge>}
+          {typeof badge !== 'undefined' && (
+            <ItemBadge active={active}>{badge}</ItemBadge>
+          )}
         </Item>
       </Link>
       {(showContentAlways || active) && (

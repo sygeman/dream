@@ -1,32 +1,12 @@
-import gql from 'graphql-tag';
-import { useQuery } from '@apollo/react-hooks';
-import { Clips } from '../components/Clip/Clips';
 import Layout from '../layouts/Main';
+import { ClipsHistory } from '../components/Clips/History';
 
-const GET_USER = gql`
-  query getUser {
-    user {
-      id
-    }
-  }
-`;
-
-const LikesPage = () => {
-  const { loading, data } = useQuery(GET_USER, { ssr: false });
-
+const ClipHistoryPage = () => {
   return (
     <Layout>
-      {loading ? (
-        ''
-      ) : (
-        <Clips
-          historyUserId={data.user.id}
-          orderBy={{ name: 'clipHistoryUpdatedAt', type: 'DESC' }}
-          title="История"
-        />
-      )}
+      <ClipsHistory />
     </Layout>
   );
 };
 
-export default LikesPage;
+export default ClipHistoryPage;

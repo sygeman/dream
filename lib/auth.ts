@@ -66,6 +66,7 @@ const refreshQuery = async (refreshToken: string) => {
 
   if (query.errors) {
     console.error(query.errors);
+    return;
   }
 
   return query.data.refresh;

@@ -31,12 +31,23 @@ const PreviewImg = styled.div`
   height: 100%;
 `;
 
-const PreviewTags = styled.div<{ width: number }>`
+const PreviewLeftTags = styled.div<{ width: number }>`
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  margin: 10px;
+  text-transform: uppercase;
+  font-size: ${({ width }) => width * (1 / 27)}px;
+`;
+
+const PreviewRightTags = styled.div<{ width: number }>`
   position: absolute;
   right: 0;
   top: 0;
   display: flex;
   margin: 10px;
+  text-transform: uppercase;
   font-size: ${({ width }) => width * (1 / 27)}px;
 `;
 
@@ -93,6 +104,7 @@ interface IProps {
   spoiler?: boolean;
   date?: string;
   views?: number;
+  watched?: boolean;
 }
 
 export const VideoPreview: FC<IProps> = ({
@@ -101,6 +113,7 @@ export const VideoPreview: FC<IProps> = ({
   nsfw,
   spoiler,
   date,
+  watched,
   views
 }) => {
   const [width, setWidth] = useState(0);
@@ -129,10 +142,13 @@ export const VideoPreview: FC<IProps> = ({
               filter: nsfw || spoiler ? `blur(20px)` : 'none'
             }}
           />
-          <PreviewTags width={width}>
+          <PreviewLeftTags width={width}>
+            {watched && <PreviewBlurText>Просмотрено</PreviewBlurText>}
+          </PreviewLeftTags>
+          <PreviewRightTags width={width}>
             {nsfw && <PreviewBlurText>NSFW</PreviewBlurText>}
             {spoiler && <PreviewBlurText>Спойлер</PreviewBlurText>}
-          </PreviewTags>
+          </PreviewRightTags>
           <Bottom width={width}>
             {views && (
               <Views width={width}>

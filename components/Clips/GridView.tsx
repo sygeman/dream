@@ -12,22 +12,6 @@ const PreviewContent = styled.div`
   height: 100%;
 `;
 
-// const PostDeleted = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   justify-content: center;
-//   min-height: 200px;
-//   color: ${({ theme }) => theme.accent2Color};
-//   text-transform: uppercase;
-//   font-size: 12px;
-
-//   i {
-//     font-size: 25px;
-//     padding: 20px 0;
-//   }
-// `;
-
 interface IProps {
   clip: any;
   onPlay: () => void;
@@ -47,6 +31,7 @@ export const GridView: FC<IProps> = memo(
                 onClick={() => onPlay()}
                 cover={clip.thumbnail_url}
                 date={date}
+                watched={clip.watched}
               />
             )}
           </PreviewContent>

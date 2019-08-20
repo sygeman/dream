@@ -40,6 +40,7 @@ export const GET_CLIPS = gql`
         reactionStats {
           rating
         }
+        watched
       }
     }
   }
@@ -107,6 +108,8 @@ export const Clips: FC<IProps> = ({
   }
 
   let clips = data.clips.clips;
+
+  console.log(clips);
 
   if (rows > 0) {
     clips = clips.slice(0, rows * 6);

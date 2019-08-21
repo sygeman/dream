@@ -106,8 +106,6 @@ export const ClipReaction: FC<IProps> = ({ clipId }) => {
     return null;
   }
 
-  console.log(data);
-
   const reactionType = data.clipReaction ? data.clipReaction.type : 'none';
   const likes = data.clipReactionStats ? data.clipReactionStats.likes : 0;
   const dislikes = data.clipReactionStats ? data.clipReactionStats.dislikes : 0;

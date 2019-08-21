@@ -1,4 +1,4 @@
-import subDays from 'date-fns/sub_days';
+import subDays from 'date-fns/subDays';
 import { Clips } from '../../components/Clips';
 import Layout from '../../layouts/Main';
 

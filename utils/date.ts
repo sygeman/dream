@@ -1,4 +1,4 @@
-import distanceInWordsToNow from 'date-fns/distance_in_words_to_now';
+import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import locale from 'date-fns/locale/ru';
 import { isNumber, isString, isFinite } from 'lodash';
 
@@ -21,5 +21,5 @@ export const dateDistanceInWordsToNow = date => {
     return 'Ошибка даты';
   }
 
-  return distanceInWordsToNow(numDate, { locale }) + ' назад';
+  return formatDistanceToNow(numDate, { locale }) + ' назад';
 };

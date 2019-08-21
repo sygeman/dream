@@ -4,7 +4,7 @@ import { useQuery } from '@apollo/react-hooks';
 import styled from 'styled-components';
 import { useRouter } from '../../hooks/useRouter';
 import { darken } from 'polished';
-import subDays from 'date-fns/sub_days';
+import subDays from 'date-fns/subDays';
 import { Grid, VideoPreview, CardMedia } from '../../ui';
 import { dateDistanceInWordsToNow } from '../../utils/date';
 

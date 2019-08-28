@@ -148,7 +148,8 @@ interface IProps {
 
 const ChannelUser = ({ userId }) => {
   const { loading, error, data } = useQuery(GET_TWITCH_USER, {
-    variables: { userId }
+    variables: { userId },
+    ssr: false
   });
 
   let avatar = null;
@@ -197,7 +198,8 @@ const Channel: FC<IProps> = ({ userId }) => {
       broadcaster_id: userId,
       started_at,
       first: 50
-    }
+    },
+    ssr: false
   });
 
   if (!data || !data.twitchClips) {

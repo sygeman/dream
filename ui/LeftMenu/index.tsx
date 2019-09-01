@@ -2,6 +2,7 @@ import { lighten } from 'polished';
 import styled from 'styled-components';
 export { MenuItem as Item } from './Item';
 export { SubItemMenu as SubItem } from './SubItem';
+export { SubItemMenuSkeleton as SubItemSkeleton } from './SubItemSkeleton';
 
 export const Box = styled.div`
   padding: 10px 0;

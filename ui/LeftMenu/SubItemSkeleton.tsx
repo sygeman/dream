@@ -1,10 +1,8 @@
 import { lighten } from 'polished';
-import { FC } from 'react';
 import styled from 'styled-components';
-import { random } from 'lodash';
 
 const SubItemSkeleton = styled('a')<{
-  active?: boolean;
+  width: number;
 }>`
   border-radius: 0;
   border-left: 4px solid transparent;
@@ -21,15 +19,15 @@ const SubItemSkeleton = styled('a')<{
   div {
     display: flex;
     background: ${({ theme }) => lighten(0.06, theme.dark1Color)};
-    width: ${() => random(50, 100)}%;
+    width: ${({ width }) => width}%;
     height: 13px;
     border-radius: 20px;
   }
 `;
 
-export const SubItemMenuSkeleton: FC = () => {
+export const SubItemMenuSkeleton = ({ width }) => {
   return (
-    <SubItemSkeleton>
+    <SubItemSkeleton width={width}>
       <div />
     </SubItemSkeleton>
   );

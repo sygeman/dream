@@ -167,7 +167,7 @@ const TopNavUserBox = () => {
           }}
           passHref
         >
-          <TopLink>Закинуть клип</TopLink>
+          <TopLink>Предложить клип</TopLink>
         </Link>
         <Link
           as={`/auth?continue=${router.asPath}`}

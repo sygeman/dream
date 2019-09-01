@@ -122,7 +122,19 @@ export const Follows: FC = () => {
   const [{ allow: isUser, loading }] = useAccess();
 
   if (loading) {
-    return null;
+    return (
+      <LeftMenu.Item
+        route="/channel"
+        icon="favorite"
+        title="Подписки"
+        noClick
+        showContentAlways
+      >
+        {[...new Array(7)].map((...args) => (
+          <LeftMenu.SubItemSkeleton key={args[1]} />
+        ))}
+      </LeftMenu.Item>
+    );
   }
 
   if (!isUser) {

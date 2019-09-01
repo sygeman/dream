@@ -71,9 +71,13 @@ const Box = styled('div')<{
   position: relative;
 `;
 
-const ModalB = styled.div`
-  background: ${({ theme }) =>
-    theme.dark2Color && lighten(0.01, theme.dark2Color)};
+const ModalB = styled('div')<{
+  noBackgroud: boolean;
+}>`
+  background: ${({ theme, noBackgroud }) =>
+    noBackgroud
+      ? 'transparent'
+      : theme.dark2Color && lighten(0.01, theme.dark2Color)};
   border-radius: 4px;
   overflow: hidden;
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -158,6 +162,7 @@ export interface IModalProps {
   title?: string;
   visible: boolean;
   minimal?: boolean;
+  noBackgroud?: boolean;
 }
 
 export const Modal: FC<IModalProps> = ({
@@ -167,6 +172,7 @@ export const Modal: FC<IModalProps> = ({
   onLeftClick,
   onRightClick,
   minimal,
+  noBackgroud,
   onOpen,
   onClose
 }) => {
@@ -205,7 +211,7 @@ export const Modal: FC<IModalProps> = ({
                 {onLeftClick && <Icon type="chevron-left" />}
               </BoxNav>
             )}
-            <ModalB>
+            <ModalB noBackgroud={noBackgroud}>
               <Header minimal={minimal}>
                 <Title>{title}</Title>
                 <Close onClick={close}>

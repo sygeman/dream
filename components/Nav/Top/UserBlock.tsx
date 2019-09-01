@@ -35,7 +35,7 @@ const UserMenu = styled.div`
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 `;
 
-const UserMenuItem = styled.a`
+const UserMenuItem = styled.div`
   font-size: 13px;
   padding: 10px;
   cursor: pointer;
@@ -78,7 +78,9 @@ const UserCaratBox = styled.div`
 `;
 
 export const TopNavMenuUserBlock = () => {
-  const isAdmin = useAccess(currentUser => currentUser.role === 'admin');
+  const [{ allow: isAdmin }] = useAccess(
+    currentUser => currentUser.role === 'admin'
+  );
   const { loading, error, data } = useQuery(GET_USER, { ssr: false });
 
   if (loading || error) {
@@ -100,9 +102,9 @@ export const TopNavMenuUserBlock = () => {
                 <UserMenuItem>Панель управления</UserMenuItem>
               </Link>
             )}
-            <Link href={`${config.apiUrl}logout`} passHref>
+            <a href={`${config.apiUrl}logout`}>
               <UserMenuItem>Выход</UserMenuItem>
-            </Link>
+            </a>
           </UserMenu>
         }
       >

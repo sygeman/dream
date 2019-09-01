@@ -29,16 +29,16 @@ export function useAccess(allow?: (currentUser: IUser) => boolean) {
   const { loading, error, data } = useQuery(GET_USER, { ssr: false });
 
   if (loading || error || !data.user) {
-    return false;
+    return [{ loading, allow: false }];
   }
 
   if (typeof allow === 'function' && allow(data.user)) {
-    return true;
+    return [{ loading, allow: true }];
   }
 
   if (typeof allow !== 'function' && !!data.user) {
-    return true;
+    return [{ loading, allow: true }];
   }
 
-  return false;
+  return [{ loading, allow: false }];
 }

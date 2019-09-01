@@ -59,7 +59,7 @@ const Header = styled.div`
   padding-top: 10px;
 `;
 
-const Username = styled('div') <{ userColor?: string }>`
+const Username = styled('div')<{ userColor?: string }>`
   font-weight: 500;
   color: ${props =>
     props.userColor
@@ -172,6 +172,10 @@ export const ClipComment: FC<IProps> = ({ id, content, compact, author }) => {
     ? usernameColors[author.role]
     : undefined;
 
+  const [{ allow: isAllowRemoveClipComment }] = useAccess(currentUser => {
+    return currentUser.role === 'mod' || currentUser.role === 'admin';
+  });
+
   return (
     <Message>
       {!compact && (
@@ -189,8 +193,8 @@ export const ClipComment: FC<IProps> = ({ id, content, compact, author }) => {
               {author.avatar ? (
                 <AvatarImg src={author.avatar} />
               ) : (
-                  <AvatarNone />
-                )}
+                <AvatarNone />
+              )}
             </Avatar>
           </Dropdown>
           <Username userColor={userColor}>{author.name}</Username>
@@ -200,15 +204,13 @@ export const ClipComment: FC<IProps> = ({ id, content, compact, author }) => {
       <Content>
         <Text>{renderMessageText(content)}</Text>
         <ManageMenu>
-          {useAccess(currentUser => {
-            return currentUser.role === 'mod' || currentUser.role === 'admin';
-          }) && (
-              <ManageItem
-                onClick={() => removeClipComment({ variables: { id } })}
-              >
-                <i className="zmdi zmdi-close" />
-              </ManageItem>
-            )}
+          {isAllowRemoveClipComment && (
+            <ManageItem
+              onClick={() => removeClipComment({ variables: { id } })}
+            >
+              <i className="zmdi zmdi-close" />
+            </ManageItem>
+          )}
         </ManageMenu>
       </Content>
     </Message>

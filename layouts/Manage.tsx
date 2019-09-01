@@ -8,7 +8,9 @@ interface IProps {
 }
 
 const ManageLayout: FC<IProps> = ({ children, fixedTopContent }) => {
-  if (!useAccess()) {
+  const [{ allow: isAllow }] = useAccess();
+
+  if (!isAllow) {
     return null;
   }
 

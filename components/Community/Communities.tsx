@@ -61,6 +61,9 @@ const CommunityBox = styled.div`
 
 export const Communities = ({ communities }) => {
   const router = useRouter();
+  const [{ allow: isStaff }] = useAccess(currentUser => {
+    return currentUser.role === 'mod' || currentUser.role === 'admin';
+  });
 
   return (
     <Box>
@@ -73,11 +76,7 @@ export const Communities = ({ communities }) => {
                 <SectionDescription>Продам гараж</SectionDescription>
               </SectionLeft>
               <SectionRight>
-                {useAccess(currentUser => {
-                  return (
-                    currentUser.role === 'mod' || currentUser.role === 'admin'
-                  );
-                }) && (
+                {isStaff && (
                   <Link
                     as={`/newCommunity`}
                     href={{

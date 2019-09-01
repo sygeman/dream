@@ -37,7 +37,7 @@ interface IProps {
 
 export const ChatMessagesBottom: FC<IProps> = ({ chatId }) => {
   const textInput = useRef<HTMLInputElement>(null);
-  const isAllow = useAccess();
+  const [{ allow: isAllow }] = useAccess();
   let lock = false;
 
   const [createChatMessage] = useMutation(CREATE_CHAT_MESSAGE, {

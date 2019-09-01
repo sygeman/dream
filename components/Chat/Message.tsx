@@ -61,7 +61,7 @@ const Header = styled.div`
   padding-top: 10px;
 `;
 
-const Username = styled('div') <{ userColor?: string }>`
+const Username = styled('div')<{ userColor?: string }>`
   font-weight: 500;
   color: ${props =>
     props.userColor
@@ -179,6 +179,10 @@ export const ChatMessage: FC<IProps> = ({
     ? usernameColors[author.role]
     : undefined;
 
+  const [{ allow: isAllowDeleteChatMessage }] = useAccess(currentUser => {
+    return currentUser.role === 'mod' || currentUser.role === 'admin';
+  });
+
   return (
     <Box>
       {!compact && (
@@ -196,8 +200,8 @@ export const ChatMessage: FC<IProps> = ({
               {author.avatar ? (
                 <AvatarImg src={author.avatar} />
               ) : (
-                  <AvatarNone />
-                )}
+                <AvatarNone />
+              )}
             </Avatar>
           </Dropdown>
           <Username userColor={userColor}>{author.name}</Username>
@@ -207,15 +211,13 @@ export const ChatMessage: FC<IProps> = ({
       <Content>
         <Text>{renderMessageText(content)}</Text>
         <ManageMenu>
-          {useAccess(currentUser => {
-            return currentUser.role === 'mod' || currentUser.role === 'admin';
-          }) && (
-              <ManageItem
-                onClick={() => deleteChatMessage({ variables: { id } })}
-              >
-                <i className="zmdi zmdi-close" />
-              </ManageItem>
-            )}
+          {isAllowDeleteChatMessage && (
+            <ManageItem
+              onClick={() => deleteChatMessage({ variables: { id } })}
+            >
+              <i className="zmdi zmdi-close" />
+            </ManageItem>
+          )}
         </ManageMenu>
       </Content>
     </Box>

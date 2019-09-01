@@ -51,7 +51,7 @@ interface IProps {
 
 export const ClipReaction: FC<IProps> = ({ clipId }) => {
   const router = useRouter();
-  const isUser = useAccess();
+  const [{ allow: isUser }] = useAccess();
   const [setClipReaction] = useMutation(SET_CLIP_REACTION);
 
   const { subscribeToMore, loading, error, data } = useQuery(

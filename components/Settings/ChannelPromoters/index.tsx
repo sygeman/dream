@@ -28,11 +28,13 @@ const Right = styled.div`
 `;
 
 export const ChannelPromotersManage: FC = () => {
+  const [{ allow: isAllow }] = useAccess();
+
   return (
     <Box>
       <Left>
         <HowTo />
-        {!useAccess() ? (
+        {!isAllow ? (
           <ChannelPromotersList channelPromoters={[]} />
         ) : (
           <ChannelPromotersWithData />

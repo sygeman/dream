@@ -36,7 +36,7 @@ interface IProps {
 
 export const ClipCommentBottom: FC<IProps> = ({ clipId }) => {
   const textInput = useRef<HTMLInputElement>(null);
-  const isAllow = useAccess();
+  const [{ allow: isAllow }] = useAccess();
   let lock = false;
 
   const [createClipComment] = useMutation(CREATE_CLIP_COMMENT, {

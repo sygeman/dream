@@ -119,7 +119,11 @@ const FollowsInner = () => {
 };
 
 export const Follows: FC = () => {
-  const isUser = useAccess();
+  const [{ allow: isUser, loading }] = useAccess();
+
+  if (loading) {
+    return null;
+  }
 
   if (!isUser) {
     return (
@@ -127,7 +131,6 @@ export const Follows: FC = () => {
         route="/channel"
         icon="favorite"
         title="Подписки"
-        badge={0}
         noClick
         showContentAlways
       >

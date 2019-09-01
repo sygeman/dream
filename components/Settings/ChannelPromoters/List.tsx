@@ -60,7 +60,7 @@ interface IProps {
 export const ChannelPromotersList: FC<IProps> = ({ channelPromoters }) => {
   const textInput = useRef<HTMLInputElement>();
   const [createChannelPromoter] = useMutation(CREATE_CHANNEL);
-  const isAllow = useAccess();
+  const [{ allow: isAllow }] = useAccess();
 
   const addChannel = () => {
     const channelName = parseTwitchChannelName(textInput.current.value.trim());

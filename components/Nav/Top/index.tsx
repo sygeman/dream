@@ -145,13 +145,103 @@ const BuyCoinsLink = styled.a`
   }
 `;
 
+const TopNavUserBox = () => {
+  const router = useRouter();
+  const [{ allow: isUser, loading }] = useAccess();
+
+  if (loading) {
+    return null;
+  }
+
+  if (!isUser) {
+    return (
+      <Links>
+        <Link
+          as={`/auth?continue=/newClip`}
+          href={{
+            pathname: router.route,
+            query: {
+              ...router.query,
+              authModal: 1
+            }
+          }}
+          passHref
+        >
+          <TopLink>Закинуть клип</TopLink>
+        </Link>
+        <Link
+          as={`/auth?continue=${router.asPath}`}
+          href={{
+            pathname: router.route,
+            query: {
+              ...router.query,
+              authModal: 1
+            }
+          }}
+          passHref
+        >
+          <TopLink>Войти</TopLink>
+        </Link>
+      </Links>
+    );
+  }
+
+  return (
+    <>
+      <Links>
+        <Link
+          as={`/newClip`}
+          href={{
+            pathname: router.route,
+            query: {
+              ...router.query,
+              newClip: 1
+            }
+          }}
+          passHref
+        >
+          <TopLink>Предложить клип</TopLink>
+        </Link>
+      </Links>
+      <PointsBox>
+        <Points>
+          <CoinIconGold />
+          <PointsCount>
+            <WalletBalance currency="coin" />
+          </PointsCount>
+        </Points>
+        <Points>
+          <CoinIconGreen />
+          <PointsCount>
+            <WalletBalance currency="real" />
+            <Link
+              as={`/buycoins`}
+              href={{
+                pathname: router.route,
+                query: {
+                  ...router.query,
+                  buyCoinsModal: 1
+                }
+              }}
+              passHref
+            >
+              <BuyCoinsLink>
+                <Icon type="plus-circle" />
+              </BuyCoinsLink>
+            </Link>
+          </PointsCount>
+        </Points>
+      </PointsBox>
+      <TopNavMenuUserBlock />
+    </>
+  );
+};
+
 interface IProps {
   leftMenuTrigger: () => void;
 }
 
 const TopNav: FC<IProps> = ({ leftMenuTrigger }) => {
-  const router = useRouter();
-
   return (
     <Box>
       <Left>
@@ -184,84 +274,7 @@ const TopNav: FC<IProps> = ({ leftMenuTrigger }) => {
       </Left>
       <Right>
         <UserBox>
-          {!useAccess() ? (
-            <Links>
-              <Link
-                as={`/auth?continue=/newClip`}
-                href={{
-                  pathname: router.route,
-                  query: {
-                    ...router.query,
-                    authModal: 1
-                  }
-                }}
-                passHref
-              >
-                <TopLink>Закинуть клип</TopLink>
-              </Link>
-              <Link
-                as={`/auth?continue=${router.asPath}`}
-                href={{
-                  pathname: router.route,
-                  query: {
-                    ...router.query,
-                    authModal: 1
-                  }
-                }}
-                passHref
-              >
-                <TopLink>Войти</TopLink>
-              </Link>
-            </Links>
-          ) : (
-            <>
-              <Links>
-                <Link
-                  as={`/newClip`}
-                  href={{
-                    pathname: router.route,
-                    query: {
-                      ...router.query,
-                      newClip: 1
-                    }
-                  }}
-                  passHref
-                >
-                  <TopLink>Предложить клип</TopLink>
-                </Link>
-              </Links>
-              <PointsBox>
-                <Points>
-                  <CoinIconGold />
-                  <PointsCount>
-                    <WalletBalance currency="coin" />
-                  </PointsCount>
-                </Points>
-                <Points>
-                  <CoinIconGreen />
-                  <PointsCount>
-                    <WalletBalance currency="real" />
-                    <Link
-                      as={`/buycoins`}
-                      href={{
-                        pathname: router.route,
-                        query: {
-                          ...router.query,
-                          buyCoinsModal: 1
-                        }
-                      }}
-                      passHref
-                    >
-                      <BuyCoinsLink>
-                        <Icon type="plus-circle" />
-                      </BuyCoinsLink>
-                    </Link>
-                  </PointsCount>
-                </Points>
-              </PointsBox>
-              <TopNavMenuUserBlock />
-            </>
-          )}
+          <TopNavUserBox />
         </UserBox>
       </Right>
     </Box>

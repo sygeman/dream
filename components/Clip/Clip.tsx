@@ -51,7 +51,7 @@ interface IProps {
 
 export const Clip: FC<IProps> = ({ clipId, autoPlay }) => {
   const [setClipHistory] = useMutation(SET_CLIP_HISTORY);
-  const isUser = useAccess();
+  const [{ allow: isUser }] = useAccess();
 
   useEffect(() => {
     if (isUser) {

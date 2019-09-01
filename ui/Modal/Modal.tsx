@@ -1,4 +1,3 @@
-import nanoid from 'nanoid';
 import { darken, lighten, rgba } from 'polished';
 import { FC, useEffect } from 'react';
 import styled from 'styled-components';
@@ -23,14 +22,13 @@ const BGOut = styled.div`
   top: 0;
   left: 0;
   background: ${({ theme }) => darken(0.05, theme.dark1Color)};
-  opacity: 0.9;
+  opacity: 0.95;
   z-index: 3000;
 `;
 
 const BoxW = styled.div`
   z-index: 3500;
   margin: auto;
-  /* padding: 50px 0; */
   display: flex;
 
   @media (max-width: 700px) {
@@ -153,8 +151,8 @@ const Content = styled('div')<{
 `;
 
 export interface IModalProps {
-  onOpen?: (modalId: string) => void;
-  onClose: (modalId: string) => void;
+  onOpen?: () => void;
+  onClose: () => void;
   onLeftClick?: () => void;
   onRightClick?: () => void;
   title?: string;
@@ -172,13 +170,11 @@ export const Modal: FC<IModalProps> = ({
   onOpen,
   onClose
 }) => {
-  const modalId = nanoid(4);
-
-  const close = () => onClose(modalId);
+  const close = () => onClose();
 
   const escapeHandler = e => {
     if (e.keyCode === 27 && visible) {
-      onClose(modalId);
+      onClose();
     }
   };
 
@@ -186,7 +182,7 @@ export const Modal: FC<IModalProps> = ({
     document.addEventListener('keyup', escapeHandler);
 
     if (visible) {
-      onOpen(modalId);
+      onOpen();
     }
 
     return () => {

@@ -63,8 +63,6 @@ const FollowsInner = () => {
     { variables: { first: FIRST_SIZE, after: undefined } }
   );
 
-  console.log({ loading, error, data });
-
   let follows = [];
   let total = 0;
   let currentCount = 0;

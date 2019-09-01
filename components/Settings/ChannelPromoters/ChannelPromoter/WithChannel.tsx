@@ -4,6 +4,7 @@ import { lighten } from 'polished';
 import styled from 'styled-components';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { Button, SWRow, Icon, Avatar } from '../../../../ui';
+import { useRouter } from '../../../../hooks/useRouter';
 
 const GET_CHANNEL = gql`
   query channel($where: ChannelWhereUniqueInput!) {
@@ -151,12 +152,28 @@ const ChannelPromoterContent = styled('div')`
 `;
 
 export const ChannelPromoterWithChannel = ({ channelPromoter }) => {
+  const router = useRouter();
+
   const { loading, error, data, subscribeToMore } = useQuery(GET_CHANNEL, {
     variables: { where: { id: channelPromoter.channelId } }
   });
 
   const [deleteChannelPromoter] = useMutation(DELETE_CHANNEL_PROMOTER);
-  const [setChannelPromoterActive] = useMutation(SET_CHANNEL_PROMOTER_ACTIVE);
+  const [setChannelPromoterActive] = useMutation(SET_CHANNEL_PROMOTER_ACTIVE, {
+    onError: () => {
+      router.push(
+        {
+          pathname: router.route,
+          query: {
+            ...router.query,
+            buyCoinsModal: 1
+          }
+        },
+        `/buycoins`,
+        { shallow: true }
+      );
+    }
+  });
   const [setChannelPromoterCost] = useMutation(SET_CHANNEL_PROMOTER_COST);
 
   useEffect(() => {

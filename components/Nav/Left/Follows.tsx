@@ -41,6 +41,20 @@ const FollowsGuestAction = styled.div`
 const FIRST_SIZE = 10;
 const PAGE_SIZE = 50;
 
+const FollowsSkeleton = () => {
+  return (
+    <>
+      <LeftMenu.SubItemSkeleton width={70} />
+      <LeftMenu.SubItemSkeleton width={40} />
+      <LeftMenu.SubItemSkeleton width={50} />
+      <LeftMenu.SubItemSkeleton width={80} />
+      <LeftMenu.SubItemSkeleton width={60} />
+      <LeftMenu.SubItemSkeleton width={90} />
+      <LeftMenu.SubItemSkeleton width={40} />
+    </>
+  );
+};
+
 const FollowsInner = () => {
   const router = useRouter();
 
@@ -49,16 +63,22 @@ const FollowsInner = () => {
     { variables: { first: FIRST_SIZE, after: undefined } }
   );
 
-  if (error || !data || !data.twitchFollows) {
-    return null;
+  console.log({ loading, error, data });
+
+  let follows = [];
+  let total = 0;
+  let currentCount = 0;
+  let hasMore = false;
+  let hasLess = false;
+  const hasData = !!data.twitchFollows;
+
+  if (hasData) {
+    follows = data.twitchFollows.data;
+    total = data.twitchFollows.total;
+    currentCount = data.twitchFollows.data.length;
+    hasMore = total - currentCount > 0;
+    hasLess = !hasMore && total > FIRST_SIZE && currentCount > FIRST_SIZE;
   }
-
-  const follows = data.twitchFollows.data;
-  const total = data.twitchFollows.total;
-  const currentCount = data.twitchFollows.data.length;
-  const hasMore = total - currentCount > 0;
-
-  const hasLess = !hasMore && total > FIRST_SIZE && currentCount > FIRST_SIZE;
 
   const moreFollows = () => {
     fetchMore({
@@ -89,7 +109,7 @@ const FollowsInner = () => {
       route="/channel"
       icon="favorite"
       title="Подписки"
-      badge={total}
+      badge={hasData && total}
       noClick
       showContentAlways
     >
@@ -104,6 +124,7 @@ const FollowsInner = () => {
           {channel.to_name}
         </LeftMenu.SubItem>
       ))}
+      {loading && <FollowsSkeleton />}
       {hasMore && (
         <LeftMenu.LoadMore onClick={() => moreFollows()}>
           {loading ? 'Загрузка...' : <Icon type="chevron-down" />}
@@ -130,9 +151,7 @@ export const Follows: FC = () => {
         noClick
         showContentAlways
       >
-        {[...new Array(7)].map((...args) => (
-          <LeftMenu.SubItemSkeleton key={args[1]} />
-        ))}
+        <FollowsSkeleton />
       </LeftMenu.Item>
     );
   }

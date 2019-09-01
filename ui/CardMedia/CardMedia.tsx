@@ -41,7 +41,7 @@ const Avatar = styled.div`
 const AvatarBox = styled.div`
   width: 30px;
   height: 30px;
-  border-radius: 4px;
+  border-radius: 100%;
   overflow: hidden;
   background: ${({ theme }) => lighten(0.1, theme.dark2Color)};
 `;

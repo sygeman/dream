@@ -1,9 +1,9 @@
-import App, { Container } from 'next/app';
+import App from 'next/app';
 import Head from 'next/head';
 import Router, { withRouter } from 'next/router';
 import NProgress from 'nprogress';
 import React from 'react';
-import * as Sentry from '@sentry/browser'
+import * as Sentry from '@sentry/browser';
 import { ApolloProvider } from '@apollo/react-hooks';
 import 'resize-observer-polyfill';
 import { RouterContext } from '../hooks/useRouter';
@@ -40,45 +40,43 @@ class MyApp extends App<IProps> {
   componentDidCatch(error, errorInfo) {
     Sentry.withScope(scope => {
       Object.keys(errorInfo).forEach(key => {
-        scope.setExtra(key, errorInfo[key])
-      })
+        scope.setExtra(key, errorInfo[key]);
+      });
 
-      Sentry.captureException(error)
-    })
+      Sentry.captureException(error);
+    });
 
-    super.componentDidCatch(error, errorInfo)
+    super.componentDidCatch(error, errorInfo);
   }
 
   public render() {
     const { Component, pageProps, apolloClient } = this.props;
 
     return (
-      <Container>
-        <InjectRouterContext>
-          <ApolloProvider client={apolloClient}>
-            <ThemeProvider theme={theme}>
-              <React.Fragment>
-                <Head>
-                  <link
-                    rel="icon"
-                    type="image/png"
-                    href={`${config.cdnUrl}favicon.png`}
-                  />
-                  <title>PepegaCom</title>
-                  <meta property="og:locale" content="ru_RU" />
-                  <meta property="og:type" content="website" />
-                  <meta
-                    name="viewport"
-                    content="initial-scale=1.0, width=device-width"
-                    key="viewport"
-                  />
-                </Head>
-                <Component {...pageProps} />
-              </React.Fragment>
-            </ThemeProvider>
-          </ApolloProvider>
-        </InjectRouterContext>
-      </Container>
+      <InjectRouterContext>
+        <ApolloProvider client={apolloClient}>
+          <ThemeProvider theme={theme}>
+            <React.Fragment>
+              <Head>
+                <link
+                  rel="icon"
+                  type="image/png"
+                  href={`${config.cdnUrl}favicon.png`}
+                />
+                <title>PepegaCom</title>
+                <meta property="og:locale" content="ru_RU" />
+                <meta property="og:type" content="website" />
+                <meta
+                  name="viewport"
+                  content="initial-scale=1.0, width=device-width"
+                  key="viewport"
+                />
+              </Head>
+              <Component {...pageProps} />
+            </React.Fragment>
+          </ThemeProvider>
+        </ApolloProvider>
+      </InjectRouterContext>
     );
   }
 }

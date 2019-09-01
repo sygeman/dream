@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { darken, lighten } from 'polished';
+import { darken, lighten, rgba } from 'polished';
 import { FC } from 'react';
 import styled from 'styled-components';
 import { Icon, CoinIconGold, CoinIconGreen } from '../../../ui';
@@ -14,7 +14,7 @@ const Box = styled.div`
   display: flex;
   padding: 0 10px;
   z-index: 100;
-  background: ${({ theme }) => darken(0.1, theme.main1Color)};
+  background: ${({ theme }) => rgba(darken(0.1, theme.main1Color), 0.9)};
 `;
 
 const Left = styled.div`

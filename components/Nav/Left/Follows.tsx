@@ -58,12 +58,10 @@ const FollowsSkeleton = () => {
 const FollowsInner = () => {
   const router = useRouter();
 
-  const { loading, error, data, fetchMore, refetch } = useQuery(
+  const { loading, data, fetchMore, refetch } = useQuery(
     GET_USER_TWITCH_FOLLOWS,
     { variables: { first: FIRST_SIZE, after: undefined } }
   );
-
-  console.log({ loading, error, data });
 
   let follows = [];
   let total = 0;

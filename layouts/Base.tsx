@@ -29,12 +29,6 @@ const BoxBG = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: radial-gradient(
-    ${({ theme }) => lighten(0.07, theme.dark2Color)} 30%,
-    transparent 30%
-  );
-  background-position: 0 0, 10px 10px;
-  background-size: 10px 10px;
 `;
 
 const BoxContent = styled.div`

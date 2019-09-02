@@ -24,8 +24,8 @@ const LogoLink = styled.a`
 `;
 
 const LogoImg = styled.img`
-  height: 25px;
-  width: 25px;
+  height: 27px;
+  width: 27px;
   margin-left: 18px;
   padding: 5px;
   cursor: pointer;
@@ -35,7 +35,7 @@ const LogoImg = styled.img`
 
 const LogoTitle = styled.div`
   font-size: 13px;
-  margin-left: 17px;
+  margin-left: 15px;
   color: ${({ theme }) => lighten(0.4, theme.main1Color)};
   letter-spacing: 0.5px;
   font-weight: 500;

@@ -27,12 +27,12 @@ const BoxBG = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background: ${({ theme }) => rgba(theme.dark1Color, 0.99)};
-
-  img {
-    width: 100%;
-    opacity: 0.1;
-  }
+  background-image: radial-gradient(
+    ${({ theme }) => rgba(theme.dark2Color, 0.95)} 20%,
+    transparent 20%
+  );
+  background-position: 0 0, 50px 50px;
+  background-size: 30px 30px;
 `;
 
 const BoxContent = styled.div`
@@ -133,9 +133,7 @@ const BaseLayout: FC<IProps> = ({ children, fixedTopContent, leftMenu }) => {
 
   return (
     <Box>
-      <BoxBG>
-        <img src="https://cdn.pepega.com/logo.svg" />
-      </BoxBG>
+      <BoxBG></BoxBG>
       <BoxContent>
         <Modal
           visible={!!clipId}

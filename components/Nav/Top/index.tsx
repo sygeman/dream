@@ -1,19 +1,17 @@
 import Link from 'next/link';
-import { darken, lighten, rgba } from 'polished';
+import { lighten, rgba } from 'polished';
 import { FC } from 'react';
 import styled from 'styled-components';
-import { Icon, CoinIconGold, CoinIconGreen } from '../../../ui';
-import { TopNavMenuUserBlock } from './UserBlock';
+import { Icon } from '../../../ui';
 import { useRouter } from '../../../hooks/useRouter';
 import { useAccess } from '../../../hooks/useAccess';
-import { WalletBalance } from './WalletBalance';
 
 const Box = styled.div`
   height: 42px;
   min-height: 42px;
   display: flex;
   padding: 0 10px;
-  background: ${({ theme }) => rgba(darken(0.1, theme.main1Color), 0.9)};
+  background: ${({ theme }) => rgba(theme.dark2Color, 0.9)};
 `;
 
 const Left = styled.div`
@@ -59,13 +57,6 @@ const MenuButton = styled.div`
   }
 `;
 
-const PointsCount = styled.div`
-  color: ${({ theme }) => lighten(0.4, theme.main1Color)};
-  font-size: 12px;
-  font-weight: 500;
-  display: flex;
-`;
-
 const UserBox = styled.div`
   height: 100%;
   display: flex;
@@ -73,9 +64,10 @@ const UserBox = styled.div`
   padding: 0 10px;
 `;
 
-const TopLink = styled.a`
-  padding: 0 10px;
-  color: ${({ theme }) => lighten(0.3, theme.main1Color)};
+const NewClipLink = styled.a`
+  padding: 0 14px;
+  background: ${({ theme }) => lighten(0.1, theme.dark2Color)};
+  color: ${({ theme }) => lighten(0.65, theme.dark2Color)};
   font-size: 11.7px;
   display: flex;
   height: 100%;
@@ -85,42 +77,13 @@ const TopLink = styled.a`
   text-transform: uppercase;
 
   :hover {
-    color: ${({ theme }) => lighten(0.6, theme.main1Color)};
+    color: ${({ theme }) => lighten(0.6, theme.accent2Color)};
   }
-`;
-
-const PointsBox = styled.div`
-  display: flex;
-  margin: 0 10px;
-`;
-
-const Points = styled.div`
-  display: flex;
-  align-items: center;
-  margin: 0 5px;
-  font-size: 13px;
-  background: ${({ theme }) => theme.dark2Color};
-  padding: 0 10px;
-  border-radius: 5px;
-  height: 30px;
-
-  @media (max-width: 700px) {
-    display: none;
-  }
-`;
-
-const BuyCoinsLink = styled.a`
-  margin-left: 10px;
-  color: ${({ theme }) => lighten(0.3, theme.main1Color)};
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-
-  cursor: pointer;
 
   i {
-    font-size: 15px;
+    font-size: 17px;
+    margin-right: 8px;
+    color: ${({ theme }) => lighten(0.4, theme.dark2Color)};
   }
 `;
 
@@ -132,87 +95,22 @@ const TopNavUserBox = () => {
     return null;
   }
 
-  if (!isUser) {
-    return (
-      <Links>
-        <Link
-          as={`/auth?continue=/newClip`}
-          href={{
-            pathname: router.route,
-            query: {
-              ...router.query,
-              authModal: 1
-            }
-          }}
-          passHref
-        >
-          <TopLink>Предложить клип</TopLink>
-        </Link>
-        <Link
-          as={`/auth?continue=${router.asPath}`}
-          href={{
-            pathname: router.route,
-            query: {
-              ...router.query,
-              authModal: 1
-            }
-          }}
-          passHref
-        >
-          <TopLink>Войти</TopLink>
-        </Link>
-      </Links>
-    );
-  }
-
   return (
-    <>
-      <Links>
-        <Link
-          as={`/newClip`}
-          href={{
-            pathname: router.route,
-            query: {
-              ...router.query,
-              newClip: 1
-            }
-          }}
-          passHref
-        >
-          <TopLink>Предложить клип</TopLink>
-        </Link>
-      </Links>
-      <PointsBox>
-        <Points>
-          <CoinIconGold />
-          <PointsCount>
-            <WalletBalance currency="coin" />
-          </PointsCount>
-        </Points>
-        <Points>
-          <CoinIconGreen />
-          <PointsCount>
-            <WalletBalance currency="real" />
-            <Link
-              as={`/buycoins`}
-              href={{
-                pathname: router.route,
-                query: {
-                  ...router.query,
-                  buyCoinsModal: 1
-                }
-              }}
-              passHref
-            >
-              <BuyCoinsLink>
-                <Icon type="plus-circle" />
-              </BuyCoinsLink>
-            </Link>
-          </PointsCount>
-        </Points>
-      </PointsBox>
-      <TopNavMenuUserBlock />
-    </>
+    <Links>
+      <Link
+        as={isUser ? `/newClip` : `/auth?continue=/newClip`}
+        href={{
+          pathname: router.route,
+          query: {
+            ...router.query,
+            [isUser ? 'newClip' : 'authModal']: 1
+          }
+        }}
+        passHref
+      >
+        <NewClipLink>Предложить клип</NewClipLink>
+      </Link>
+    </Links>
   );
 };
 

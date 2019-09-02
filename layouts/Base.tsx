@@ -199,10 +199,13 @@ const BaseLayout: FC<IProps> = ({ children, fixedTopContent, leftMenu }) => {
                 </Left>
               )}
               <PostsBox id="layoutContent" noLeftMenu={!leftMenu}>
-                <TopNav
-                  leftMenuTrigger={() => setLeftMenuIsOpen(!leftMenuIsOpen)}
-                />
-                {fixedTopContent}
+                {fixedTopContent ? (
+                  fixedTopContent
+                ) : (
+                  <TopNav
+                    leftMenuTrigger={() => setLeftMenuIsOpen(!leftMenuIsOpen)}
+                  />
+                )}
                 <Scrollbars
                   autoHide
                   universal

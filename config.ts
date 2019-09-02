@@ -8,7 +8,7 @@ const devConfig = {
   apiUrl: 'http://localhost:3000/',
   gqlUrl: 'http://localhost:3000/graphql',
   wsgqlUrl: 'ws://localhost:3000/graphql',
-  defaultCommunityId: '4dbda3ee-a71e-4640-b98b-be33b23a2097',
+  defaultCommunityId: 'b80d3288-de5d-4250-9789-e5e84437e576',
   cookieOptions: {}
 };
 

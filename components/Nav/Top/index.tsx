@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { lighten, rgba } from 'polished';
 import { FC } from 'react';
 import styled from 'styled-components';
-import { Icon } from '../../../ui';
+import { Icon, Button } from '../../../ui';
 import { useRouter } from '../../../hooks/useRouter';
 import { useAccess } from '../../../hooks/useAccess';
 
@@ -64,27 +64,8 @@ const UserBox = styled.div`
   padding: 0 10px;
 `;
 
-const NewClipLink = styled.a`
-  padding: 0 14px;
-  background: ${({ theme }) => lighten(0.1, theme.dark2Color)};
-  color: ${({ theme }) => lighten(0.65, theme.dark2Color)};
-  font-size: 11.7px;
-  display: flex;
-  height: 100%;
-  align-items: center;
-  cursor: pointer;
-  height: 100%;
-  text-transform: uppercase;
-
-  :hover {
-    color: ${({ theme }) => lighten(0.6, theme.accent2Color)};
-  }
-
-  i {
-    font-size: 17px;
-    margin-right: 8px;
-    color: ${({ theme }) => lighten(0.4, theme.dark2Color)};
-  }
+const NewClipButton = styled(Button)`
+  height: 30px;
 `;
 
 const TopNavUserBox = () => {
@@ -108,7 +89,7 @@ const TopNavUserBox = () => {
         }}
         passHref
       >
-        <NewClipLink>Предложить клип</NewClipLink>
+        <NewClipButton>Предложить клип</NewClipButton>
       </Link>
     </Links>
   );

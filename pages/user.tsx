@@ -28,6 +28,7 @@ const Box = styled.div`
 
 const PostsBox = styled.div`
   margin: 0 20px;
+  padding: 20px 0;
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -61,8 +62,6 @@ const UserPage = () => {
           <Clips
             orderBy={{ name: 'communityClipCreatedAt', type: 'DESC' }}
             communityClipAuthorId={data.user.id}
-            title="Клипы"
-            description="Последние предложенные клипы сообществам"
           />
         </PostsBox>
       </Box>

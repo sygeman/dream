@@ -6,7 +6,7 @@ import { Icon } from '../../ui';
 const Box = styled.div`
   display: flex;
   background: ${({ theme }) => darken(0.01, theme.dark2Color)};
-  height: 50px;
+  min-height: 42px;
 `;
 
 const Container = styled.div`

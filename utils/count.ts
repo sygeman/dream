@@ -16,7 +16,9 @@ export const shortNumbers = (value: number): string => {
   }
 
   let result =
-    tmpValue > 999 ? (tmpValue / 1000).toFixed(1) + 'K' : tmpValue.toString();
+    tmpValue > 9999
+      ? (tmpValue / 1000).toFixed(1) + 'K'
+      : humanNumbers(tmpValue);
 
   if (value < 0) {
     result = `-${result}`;

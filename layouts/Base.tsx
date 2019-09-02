@@ -11,6 +11,8 @@ import TopNav from '../components/Nav/Top';
 import { PromoterHelp } from '../components/Help/Promoter';
 import { Modal } from '../ui';
 import { ClipModal } from '../components/Clip/ClipModal';
+import { UserBox } from '../components/Nav/Left/User';
+
 const LEFT_MENU_WIDTH = 240;
 
 const Box = styled.div`
@@ -28,11 +30,11 @@ const BoxBG = styled.div`
   width: 100%;
   height: 100%;
   background-image: radial-gradient(
-    ${({ theme }) => rgba(theme.dark2Color, 0.95)} 20%,
-    transparent 20%
+    ${({ theme }) => lighten(0.07, theme.dark2Color)} 30%,
+    transparent 30%
   );
-  background-position: 0 0, 50px 50px;
-  background-size: 30px 30px;
+  background-position: 0 0, 10px 10px;
+  background-size: 10px 10px;
 `;
 
 const BoxContent = styled.div`
@@ -59,10 +61,17 @@ const Left = styled.div<{ isOpen: boolean }>`
   height: 100%;
   z-index: 100;
   transition: 0.3s;
+  display: flex;
+  flex-direction: column;
 
   @media (max-width: 700px) {
     left: ${({ isOpen }) => (isOpen ? 0 : -LEFT_MENU_WIDTH)}px;
   }
+`;
+
+const LeftNavBox = styled.div`
+  display: flex;
+  flex: 1;
 `;
 
 const PostsBox = styled.div<{ noLeftMenu?: boolean }>`
@@ -133,7 +142,7 @@ const BaseLayout: FC<IProps> = ({ children, fixedTopContent, leftMenu }) => {
 
   return (
     <Box>
-      <BoxBG></BoxBG>
+      <BoxBG />
       <BoxContent>
         <Modal
           visible={!!clipId}
@@ -187,9 +196,12 @@ const BaseLayout: FC<IProps> = ({ children, fixedTopContent, leftMenu }) => {
             <ContentInsideBox>
               {leftMenu && (
                 <Left isOpen={leftMenuIsOpen}>
-                  <Scrollbars autoHide universal>
-                    {leftMenu}
-                  </Scrollbars>
+                  <LeftNavBox>
+                    <Scrollbars autoHide universal>
+                      {leftMenu}
+                    </Scrollbars>
+                  </LeftNavBox>
+                  <UserBox />
                 </Left>
               )}
               <PostsBox id="layoutContent" noLeftMenu={!leftMenu}>

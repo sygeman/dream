@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 import React, { FC, useEffect } from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import { humanNumbers } from '../../../utils/count';
+import { shortNumbers, humanNumbers } from '../../../utils/count';
 
 const GET_WALLET = gql`
   query getWallet($where: WalletWhereInput!) {
@@ -58,5 +58,9 @@ export const WalletBalance: FC<IProps> = ({ currency }) => {
 
   const wallet = loading || error || !data || !data.wallet ? null : data.wallet;
 
-  return <>{humanNumbers(wallet ? wallet.balance : 0)}</>;
+  return (
+    <span title={humanNumbers(wallet ? wallet.balance : 0)}>
+      {shortNumbers(wallet ? wallet.balance : 0)}
+    </span>
+  );
 };

@@ -4,9 +4,7 @@ export { MenuItem as Item } from './Item';
 export { SubItemMenu as SubItem } from './SubItem';
 export { SubItemMenuSkeleton as SubItemSkeleton } from './SubItemSkeleton';
 
-export const Box = styled.div`
-  padding: 10px 0;
-`;
+export const Box = styled.div``;
 
 export const Divider = styled.div`
   margin: 8px 0;

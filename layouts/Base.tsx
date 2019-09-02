@@ -18,7 +18,30 @@ const Box = styled.div`
   flex-direction: column;
   height: 100%;
   overflow: hidden;
-  background: ${({ theme }) => theme.dark1Color};
+  position: relative;
+`;
+
+const BoxBG = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: ${({ theme }) => rgba(theme.dark1Color, 0.99)};
+
+  img {
+    width: 100%;
+    opacity: 0.1;
+  }
+`;
+
+const BoxContent = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: ${({ theme }) => rgba(theme.dark1Color, 0.95)};
 `;
 
 const Content = styled.div`
@@ -110,81 +133,88 @@ const BaseLayout: FC<IProps> = ({ children, fixedTopContent, leftMenu }) => {
 
   return (
     <Box>
-      <Modal
-        visible={!!clipId}
-        minimal
-        onClose={() => router.replace(backPath)}
-      >
-        <ClipModal clipId={clipId} />
-      </Modal>
+      <BoxBG>
+        <img src="https://cdn.pepega.com/logo.svg" />
+      </BoxBG>
+      <BoxContent>
+        <Modal
+          visible={!!clipId}
+          minimal
+          onClose={() => router.replace(backPath)}
+        >
+          <ClipModal clipId={clipId} />
+        </Modal>
 
-      <Modal
-        title="Купить PepeCoin"
-        visible={router.query.buyCoinsModal === '1'}
-        onClose={() => router.back()}
-      >
-        <BuyCoins />
-      </Modal>
+        <Modal
+          title="Купить PepeCoin"
+          visible={router.query.buyCoinsModal === '1'}
+          onClose={() => router.back()}
+        >
+          <BuyCoins />
+        </Modal>
 
-      <Modal
-        minimal
-        visible={router.query.authModal === '1'}
-        onClose={() => router.back()}
-      >
-        <Auth />
-      </Modal>
-      <Modal
-        title="Предложить клип сообществу"
-        visible={router.query.newClip === '1'}
-        onClose={() => router.back()}
-      >
-        <CreateCommunityClip />
-      </Modal>
-      <Modal
-        title="Новое сообщество"
-        visible={router.query.newCommunity === '1'}
-        onClose={() => router.back()}
-      >
-        <CreateCommunity />
-      </Modal>
+        <Modal
+          minimal
+          visible={router.query.authModal === '1'}
+          onClose={() => router.back()}
+        >
+          <Auth />
+        </Modal>
+        <Modal
+          title="Предложить клип сообществу"
+          visible={router.query.newClip === '1'}
+          onClose={() => router.back()}
+        >
+          <CreateCommunityClip />
+        </Modal>
+        <Modal
+          title="Новое сообщество"
+          visible={router.query.newCommunity === '1'}
+          onClose={() => router.back()}
+        >
+          <CreateCommunity />
+        </Modal>
 
-      <Modal
-        minimal
-        title="Как работает продвижение"
-        visible={router.query.howToPromoter === '1'}
-        onClose={() => router.back()}
-      >
-        <PromoterHelp />
-      </Modal>
+        <Modal
+          minimal
+          title="Как работает продвижение"
+          visible={router.query.howToPromoter === '1'}
+          onClose={() => router.back()}
+        >
+          <PromoterHelp />
+        </Modal>
 
-      <ContentBox>
-        <TopNav leftMenuTrigger={() => setLeftMenuIsOpen(!leftMenuIsOpen)} />
-        <Content>
-          <ContentInsideBox>
-            {leftMenu && (
-              <Left isOpen={leftMenuIsOpen}>
-                <Scrollbars autoHide universal>
-                  {leftMenu}
+        <ContentBox>
+          <Content>
+            <ContentInsideBox>
+              {leftMenu && (
+                <Left isOpen={leftMenuIsOpen}>
+                  <Scrollbars autoHide universal>
+                    {leftMenu}
+                  </Scrollbars>
+                </Left>
+              )}
+              <PostsBox id="layoutContent" noLeftMenu={!leftMenu}>
+                <TopNav
+                  leftMenuTrigger={() => setLeftMenuIsOpen(!leftMenuIsOpen)}
+                />
+                {fixedTopContent}
+                <Scrollbars
+                  autoHide
+                  universal
+                  renderView={props => <div {...props} id="mainScroll" />}
+                >
+                  {children}
                 </Scrollbars>
-              </Left>
-            )}
-            <PostsBox id="layoutContent" noLeftMenu={!leftMenu}>
-              {fixedTopContent}
-              <Scrollbars
-                autoHide
-                universal
-                renderView={props => <div {...props} id="mainScroll" />}
-              >
-                {children}
-              </Scrollbars>
-            </PostsBox>
-          </ContentInsideBox>
-          <Overlay
-            leftMenuIsOpen={leftMenuIsOpen}
-            onClick={() => setLeftMenuIsOpen(false)}
-          />
-        </Content>
-      </ContentBox>
+              </PostsBox>
+            </ContentInsideBox>
+            <Overlay
+              leftMenuIsOpen={leftMenuIsOpen}
+              onClick={() => setLeftMenuIsOpen(false)}
+            />
+          </Content>
+        </ContentBox>
+      </BoxContent>
     </Box>
   );
 };

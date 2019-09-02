@@ -1,20 +1,19 @@
 import Link from 'next/link';
-import { darken, lighten } from 'polished';
+import { darken, lighten, rgba } from 'polished';
 import { FC } from 'react';
 import styled from 'styled-components';
 import { Icon, CoinIconGold, CoinIconGreen } from '../../../ui';
 import { TopNavMenuUserBlock } from './UserBlock';
 import { useRouter } from '../../../hooks/useRouter';
 import { useAccess } from '../../../hooks/useAccess';
-import config from '../../../config';
 import { WalletBalance } from './WalletBalance';
 
 const Box = styled.div`
-  height: 46px;
+  height: 42px;
+  min-height: 42px;
   display: flex;
   padding: 0 10px;
-  z-index: 100;
-  background: ${({ theme }) => darken(0.1, theme.main1Color)};
+  background: ${({ theme }) => rgba(darken(0.1, theme.main1Color), 0.9)};
 `;
 
 const Left = styled.div`
@@ -67,26 +66,6 @@ const PointsCount = styled.div`
   display: flex;
 `;
 
-const LogoLink = styled.a`
-  display: flex;
-  align-items: center;
-  height: 100%;
-  min-width: 48px;
-`;
-
-const LogoImg = styled.img`
-  height: 28px;
-  margin: 0 10px;
-  padding: 5px;
-  cursor: pointer;
-  background: ${({ theme }) => lighten(0.05, theme.main1Color)};
-  border-radius: 5px;
-
-  @media (max-width: 700px) {
-    display: none;
-  }
-`;
-
 const UserBox = styled.div`
   height: 100%;
   display: flex;
@@ -123,7 +102,7 @@ const Points = styled.div`
   background: ${({ theme }) => theme.dark2Color};
   padding: 0 10px;
   border-radius: 5px;
-  height: 32px;
+  height: 30px;
 
   @media (max-width: 700px) {
     display: none;
@@ -248,29 +227,7 @@ const TopNav: FC<IProps> = ({ leftMenuTrigger }) => {
         <MenuButton onClick={() => leftMenuTrigger()}>
           <Icon type="menu" />
         </MenuButton>
-        <Link href="/" passHref>
-          <LogoLink>
-            <LogoImg src={`${config.cdnUrl}logo.svg`} />
-          </LogoLink>
-        </Link>
-        <LeftMenu>
-          <Links>
-            <Link href="/" passHref>
-              <TopLink>Клипы</TopLink>
-            </Link>
-            {process.env.NODE_ENV !== 'production' && (
-              <Link href="/communities" passHref>
-                <TopLink>Сообщества</TopLink>
-              </Link>
-            )}
-            <Link href="/promoter" passHref>
-              <TopLink>Продвижение</TopLink>
-            </Link>
-            <TopLink href={config.discordInvite} target="_blank">
-              Discord
-            </TopLink>
-          </Links>
-        </LeftMenu>
+        <LeftMenu></LeftMenu>
       </Left>
       <Right>
         <UserBox>

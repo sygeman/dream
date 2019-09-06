@@ -3,11 +3,8 @@ import { FC, useEffect } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import styled from 'styled-components';
 import { lighten } from 'polished';
-import Link from 'next/link';
-import { useRouter } from '../../hooks/useRouter';
 import { Chat } from '../Chat';
 import { Clips } from '../Clips';
-import { Button } from '../../ui';
 
 const GET_COMMUNITY = gql`
   query community($id: ID!) {
@@ -54,8 +51,6 @@ interface IProps {
 }
 
 export const Community: FC<IProps> = ({ id }) => {
-  const router = useRouter();
-
   const { loading, error, data, subscribeToMore } = useQuery(GET_COMMUNITY, {
     variables: { id },
     ssr: false
@@ -91,21 +86,6 @@ export const Community: FC<IProps> = ({ id }) => {
     <Box>
       <ContentBox>
         <div style={{ width: '100%' }}>
-          <Link
-            as={`/newClip?communityId=${community.id}`}
-            href={{
-              pathname: router.route,
-              query: {
-                ...router.query,
-                newClip: 1,
-                communityId: community.id
-              }
-            }}
-            passHref
-          >
-            <Button>Предложить клип</Button>
-          </Link>
-
           <Clips
             orderBy={{ name: 'communityClipCreatedAt', type: 'DESC' }}
             communityId={community.id}

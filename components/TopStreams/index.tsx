@@ -1,11 +1,10 @@
 import gql from 'graphql-tag';
 import { FC } from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import Link from 'next/link';
 import styled from 'styled-components';
-import { darken, lighten } from 'polished';
-import { Grid, Icon } from '../../ui';
+import { Grid } from '../../ui';
 import { Stream } from './Stream';
+import { StreamAdd } from './StreamAdd';
 
 const GET_CHANNELS_TOP = gql`
   query channelsTop {
@@ -35,31 +34,6 @@ const StreamColumnBox = styled.div`
   margin-bottom: 14px;
 `;
 
-const StreamAddBox = styled.div`
-  cursor: pointer;
-  height: 100%;
-  min-height: 150px;
-  width: 100%;
-  background: ${({ theme }) => darken(0.04, theme.dark1Color)};
-  border-radius: 4px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  i {
-    font-size: 26px;
-    color: ${({ theme }) => lighten(0.5, theme.dark1Color)};
-  }
-`;
-
-const StreamAddText = styled.div`
-  margin-top: 10px;
-  font-size: 13px;
-  color: ${({ theme }) => lighten(0.5, theme.dark1Color)};
-`;
-
 type StreamsPosition = 'line' | 'column';
 
 interface IProps {
@@ -70,15 +44,6 @@ interface IProps {
   noAddStream?: boolean;
 }
 
-const StreamAdd = () => (
-  <Link href={`/promoter`} passHref>
-    <StreamAddBox>
-      <Icon type="plus-circle-o" />
-      <StreamAddText>Разместить стрим</StreamAddText>
-    </StreamAddBox>
-  </Link>
-);
-
 export const TopStreams: FC<IProps> = ({
   max,
   live,
@@ -86,11 +51,10 @@ export const TopStreams: FC<IProps> = ({
   interval,
   noAddStream
 }) => {
-  const { data } = useQuery(GET_CHANNELS_TOP, { pollInterval: interval })
+  const { data } = useQuery(GET_CHANNELS_TOP, { pollInterval: interval });
   let channels = ((data && data.channelsTop) || []).slice(0, max);
-  const channelsCount = channels.length;
 
-  if (!noAddStream && channelsCount < max) {
+  if (!noAddStream && channels.length < max) {
     channels = [...channels, null];
   }
 

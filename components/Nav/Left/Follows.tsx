@@ -68,7 +68,7 @@ const FollowsInner = () => {
   let currentCount = 0;
   let hasMore = false;
   let hasLess = false;
-  const hasData = !!data.twitchFollows;
+  const hasData = !!(data && data.twitchFollows);
 
   if (hasData) {
     follows = data.twitchFollows.data;

@@ -36,7 +36,6 @@ export const GridView: FC<IProps> = memo(
             )}
           </PreviewContent>
         }
-        avatar={clip && clip.channel.avatar}
         title={clip && clip.title}
         description={clip.channel.name}
         descriptionLink={`https://www.twitch.tv/${clip.channel.name}`}

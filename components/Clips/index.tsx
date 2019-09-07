@@ -34,7 +34,6 @@ export const GET_CLIPS = gql`
         title
         channel {
           name
-          avatar
         }
         thumbnail_url
         created_at

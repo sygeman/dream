@@ -64,7 +64,7 @@ export const CreateCommunityClip = () => {
       <SWRow
         title="NSFW"
         description={`
-              Обнажённая натура, гуро,порнография и обсценная лексика
+              Обнажённая натура, гуро, порнография и обсценная лексика
             `}
         onChange={() => setNfws(!nfws)}
         active={nfws}

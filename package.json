@@ -70,7 +70,7 @@
     "@types/react-custom-scrollbars": "4.0.6",
     "@types/react-dom": "16.9.0",
     "@types/recharts": "1.1.21",
-    "@types/styled-components": "4.1.18",
+    "@types/styled-components": "4.1.19",
     "@zeit/next-typescript": "1.1.1",
     "apollo": "2.18.0",
     "babel-core": "6.26.3",

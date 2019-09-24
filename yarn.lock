@@ -27,15 +27,15 @@
   dependencies:
     "@ampproject/toolbox-core" "^1.0.1"
 
-"@apollo/react-common@^3.1.0":
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/@apollo/react-common/-/react-common-3.1.0.tgz#1ca3f2800d1820139b8138263c0a77e6a53ce363"
-  integrity sha512-X8IfSZyvV8oHPJ46163Am4e81Kjl4BbojpYaYEpQtpGFHIA7cZ+MvuG4M6OJNh+SZArTfnwcPvJaCtkY8n3apA==
+"@apollo/react-common@^3.1.0", "@apollo/react-common@^3.1.1":
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/@apollo/react-common/-/react-common-3.1.1.tgz#540619d8276d750ce4f381c9cf8f51a6f657f75d"
+  integrity sha512-lMiczOm4sD16eI9Ai+AUY+Jl3C/FNm4IpoZiAbe35TqMuD7HpZ4OJmXAbT3CzfrAqsKK8+rHgRvTiPI2kQjIWg==
   dependencies:
     ts-invariant "^0.4.4"
     tslib "^1.10.0"
 
-"@apollo/react-hooks@3.1.0", "@apollo/react-hooks@^3.1.0":
+"@apollo/react-hooks@3.1.0":
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/@apollo/react-hooks/-/react-hooks-3.1.0.tgz#47d94949e38262059b1639673072f117a9917653"
   integrity sha512-tbVIAQMemeM6FaMFA7JCV+7hfJzPJSl/r7QAaFc5i8fWmdXZPYzZCeFOI7DdsWyAoLQS+RY14mDH9Ufacaulnw==
@@ -45,13 +45,23 @@
     ts-invariant "^0.4.4"
     tslib "^1.10.0"
 
-"@apollo/react-ssr@3.1.0":
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/@apollo/react-ssr/-/react-ssr-3.1.0.tgz#dc70530c8ce26e5c9e0b0bb31ed0e0100670c8b7"
-  integrity sha512-ZMPq5HxX+8UFpyR5J3Fu+VBkSaSbDyxmETmV94mKXGj4iM54MFwZcg8UT0H1opKfZD9rSOunJKfhOSVTxKsWKQ==
+"@apollo/react-hooks@^3.1.1":
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/@apollo/react-hooks/-/react-hooks-3.1.1.tgz#8e5a0f281a9778aaf17496ad38a178d23375077c"
+  integrity sha512-LwE4olNlKwqh1hl6iHr/igSDGRVs7c6Ik5MYZm9TzGj01f+ebhM1+Pn+UBNLsb3uRuytZsUOsEDBEXMABzC9Tw==
   dependencies:
-    "@apollo/react-common" "^3.1.0"
-    "@apollo/react-hooks" "^3.1.0"
+    "@apollo/react-common" "^3.1.1"
+    "@wry/equality" "^0.1.9"
+    ts-invariant "^0.4.4"
+    tslib "^1.10.0"
+
+"@apollo/react-ssr@3.1.1":
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/@apollo/react-ssr/-/react-ssr-3.1.1.tgz#4952c02c4131334edaaa4af1c2668801ac656471"
+  integrity sha512-Jbh3bpkqmp5k5KGZNcKgpGiChlUB3kVkFxzuqC4Tzx5u1gg47dPuS950j3LeMLD6ZRFhwryMnMtBsLu8iceE/Q==
+  dependencies:
+    "@apollo/react-common" "^3.1.1"
+    "@apollo/react-hooks" "^3.1.1"
     tslib "^1.10.0"
 
 "@apollographql/apollo-tools@0.4.0":

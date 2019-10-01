@@ -33,7 +33,7 @@
     "jsonwebtoken": "8.5.1",
     "load-script": "1.0.0",
     "lodash": "4.17.15",
-    "next": "9.0.5",
+    "next": "9.0.7",
     "nodemon": "1.19.2",
     "nprogress": "0.2.0",
     "polished": "3.4.1",

@@ -13,7 +13,7 @@
     "apollo:generate": "apollo codegen:generate --excludes=node_modules/* --includes=**/*.tsx --endpoint https://api.pepega.com/graphql --target typescript --tagName gql --outputFlat generated"
   },
   "dependencies": {
-    "@apollo/react-hooks": "3.1.0",
+    "@apollo/react-hooks": "3.1.2",
     "@apollo/react-ssr": "3.1.0",
     "@sentry/browser": "5.6.3",
     "@zeit/next-css": "1.0.1",

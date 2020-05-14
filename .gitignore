@@ -6,3 +6,4 @@ dist
 .cache
 .next/
 coverage/
+lerna-debug.log

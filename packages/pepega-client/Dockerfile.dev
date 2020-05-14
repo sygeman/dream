@@ -1,0 +1,9 @@
+FROM mhart/alpine-node
+
+WORKDIR /app
+COPY . .
+
+RUN yarn 
+
+EXPOSE 7000
+CMD [ "yarn", "start:dev" ]

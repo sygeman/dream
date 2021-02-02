@@ -1,0 +1,34 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2017", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@pepega/storybook": ["libs/storybook/src/index.ts"],
+      "@pepega/ui": ["libs/ui/src/index.ts"],
+      "@pepega/ui/*": ["libs/ui/src/lib/*"],
+      "@pepega/prisma": ["libs/prisma/src/index.ts"],
+      "@pepega/containers/*": ["libs/containers/src/lib/*"],
+      "@pepega/utils/*": ["libs/utils/src/lib/*"],
+      "@pepega/chat": ["libs/chat/src/index.ts"],
+      "@pepega/chat-api": ["libs/chat-api/src/index.ts"],
+      "@pepega/community": ["libs/community/src/index.ts"],
+      "@pepega/auth-api": ["libs/auth-api/src/index.ts"],
+      "@pepega/user-api": ["libs/user-api/src/index.ts"],
+      "@pepega/connection-api": ["libs/connection-api/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

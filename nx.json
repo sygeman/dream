@@ -1,0 +1,37 @@
+{
+  "npmScope": "pepega",
+  "affected": { "defaultBase": "master" },
+  "implicitDependencies": {
+    "workspace.json": "*",
+    "package.json": { "dependencies": "*", "devDependencies": "*" },
+    "tsconfig.base.json": "*",
+    "tslint.json": "*",
+    ".eslintrc.json": "*",
+    "nx.json": "*"
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/workspace/tasks-runners/default",
+      "options": { "cacheableOperations": ["build", "lint", "test", "e2e"] }
+    }
+  },
+  "projects": {
+    "ravepro-client": { "tags": [] },
+    "ravepro-client-e2e": {
+      "tags": [],
+      "implicitDependencies": ["ravepro-client"]
+    },
+    "storybook": { "tags": [] },
+    "ui": { "tags": [] },
+    "ravepro-api": { "tags": [] },
+    "prisma": { "tags": [] },
+    "containers": { "tags": [] },
+    "utils": { "tags": [] },
+    "chat": { "tags": [] },
+    "chat-api": { "tags": [] },
+    "community": { "tags": [] },
+    "auth-api": { "tags": [] },
+    "user-api": { "tags": [] },
+    "connection-api": { "tags": [] }
+  }
+}

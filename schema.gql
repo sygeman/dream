@@ -1,0 +1,60 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type AuthTokens {
+  refreshToken: String!
+  accessToken: String!
+}
+
+type Profile {
+  id: String!
+  name: String
+  avatar: String
+}
+
+type User {
+  id: String!
+  name: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  profile: Profile
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type ChatMessage {
+  id: String!
+  content: String!
+  chatId: String!
+  authorId: String!
+  author: User!
+  createdAt: String!
+}
+
+type Query {
+  tokens(authCode: String!): AuthTokens!
+  refresh(refreshToken: String!): String!
+  me: User!
+  spotifyToken: String!
+  chatMessages(chatId: ID!): [ChatMessage!]!
+}
+
+type Mutation {
+  logout(refreshToken: String!): Boolean!
+  refreshSpotifyToken: String!
+  createChatMessage(input: ChatMessageCreateInput!): Boolean!
+}
+
+input ChatMessageCreateInput {
+  text: String!
+  chatId: String!
+}
+
+type Subscription {
+  chatMessageCreated(chatId: ID!): ChatMessage!
+  chatMessageDeleted(chatId: ID!): ChatMessage!
+}

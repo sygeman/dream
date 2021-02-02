@@ -1,0 +1,31 @@
+query chatMessages($chatId: ID!) {
+  chatMessages(chatId: $chatId) {
+    ...ChatMessageFields
+  }
+}
+
+mutation createChatMessage($input: ChatMessageCreateInput!) {
+  createChatMessage(input: $input)
+}
+
+subscription chatMessageCreated($chatId: ID!) {
+  chatMessageCreated(chatId: $chatId) {
+    ...ChatMessageFields
+  }
+}
+
+subscription chatMessageDeleted($chatId: ID!) {
+  chatMessageDeleted(chatId: $chatId) {
+    ...ChatMessageFields
+  }
+}
+
+fragment ChatMessageFields on ChatMessage {
+  id
+  content
+  createdAt
+  author {
+    id
+    name
+  }
+}

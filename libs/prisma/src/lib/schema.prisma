@@ -1,0 +1,118 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("PG_URL")
+}
+
+model Profile {
+  id     String  @default(cuid()) @id
+  userId String  @unique
+  provider String
+  serviceId String
+  name   String?
+  avatar String?
+  email String?
+  accessToken String?
+  refreshToken String?
+  user   User    @relation(fields: [userId], references: [id])
+}
+
+model User {
+  id              String            @default(cuid()) @id
+  name            String?
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt @default(now())
+  profile         Profile?
+  // CommunitySource CommunitySource[]
+}
+
+enum CommunityMode {
+  WAITLIST
+  COLLECTION
+}
+
+model Community {
+  id              String            @default(cuid()) @id
+  name            String            @unique
+  title           String
+  avatar          String?
+  mode            CommunityMode     @default(WAITLIST)
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt @default(now())
+  CommunitySource CommunitySource[]
+}
+
+model Source {
+  id              String            @default(cuid()) @id
+  title           String
+  cover           String?
+  service         String
+  serviceId       String
+  duration        Int               @default(0)
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt @default(now())
+  CommunitySource CommunitySource[]
+}
+
+model CommunitySource {
+  id          String    @default(cuid()) @id
+  communityId String
+  sourceId    String
+  userId      String?
+  playCount   Int       @default(0)
+  lastPlayAt  DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt @default(now())
+  community   Community @relation(fields: [communityId], references: [id])
+  source      Source    @relation(fields: [sourceId], references: [id])
+  user        User?     @relation(fields: [userId], references: [id])
+}
+
+model Token {
+  id          String  @default(cuid()) @id
+  userId      String 
+  code        String?  @default(cuid())
+  accessToken String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt @default(now())
+  user        User    @relation(fields: [userId], references: [id])
+}
+
+model Instance  {
+  id          String    @default(cuid()) @id
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt @default(now())
+}
+
+model Connection {
+  id          String  @default(cuid()) @id
+  instanceId  String
+  userId      String?
+  ipHash      String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt @default(now())
+  instance    Instance  @relation(fields: [instanceId], references: [id])
+  user        User?     @relation(fields: [userId], references: [id])
+}
+
+
+model Chat  {
+  id          String    @default(cuid()) @id
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt @default(now())
+}
+
+model ChatMessage {
+  id          String  @default(cuid()) @id
+  chatId      String
+  userId      String
+  content     String
+  deleted     Boolean @default(false)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt @default(now())
+  chat        Chat  @relation(fields: [chatId], references: [id])
+  author      User     @relation(fields: [userId], references: [id])
+}

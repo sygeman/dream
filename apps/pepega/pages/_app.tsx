@@ -6,7 +6,6 @@ import NProgress from 'nprogress';
 import 'resize-observer-polyfill';
 import { withApollo } from 'src/lib/apollo';
 import { ThemeProvider } from 'styled-components';
-import { version } from '../../package.json';
 import { GlobalStyle, themes } from 'src/themes';
 
 Router.events.on('routeChangeStart', () => NProgress.start());
@@ -19,10 +18,6 @@ interface IProps {
 }
 
 class MyApp extends App<IProps> {
-  componentDidMount() {
-    console.log(`Version: ${version}`);
-  }
-
   public render() {
     const { Component, pageProps } = this.props;
 

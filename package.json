@@ -47,8 +47,9 @@
     "axios": "0.21.1",
     "axios-hooks": "2.3.0",
     "bull": "3.20.1",
+    "class-transformer": "0.3.2",
     "class-validator": "0.13.1",
-    "core-js": "3.6.5",
+    "core-js": "3.8.3",
     "date-fns": "2.17.0",
     "deepmerge": "4.2.2",
     "document-register-element": "1.14.10",
@@ -83,7 +84,7 @@
     "styled-icons": "10.27.0",
     "styled-normalize": "8.0.7",
     "styled-system": "5.1.5",
-    "tslib": "2.0.0"
+    "tslib": "2.1.0"
   },
   "devDependencies": {
     "@babel/core": "7.12.13",
@@ -120,7 +121,7 @@
     "@types/bull": "3.15.0",
     "@types/express-session": "1.17.3",
     "@types/jest": "26.0.20",
-    "@types/node": "14.14.25",
+    "@types/node": "14.14.26",
     "@types/react": "17.0.1",
     "@types/react-dom": "17.0.0",
     "@types/react-is": "17.0.0",

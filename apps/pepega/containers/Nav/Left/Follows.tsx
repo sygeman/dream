@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 import { FC } from 'react';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import { Button } from '@pepega/pepega-ui';
 import { useRouter } from 'next/router';
 import { useAccess } from '../hooks/useAccess';

@@ -1,5 +1,5 @@
 import { FC, useEffect } from 'react';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import gql from 'graphql-tag';
 import styled from 'styled-components';
 import { ClipComment } from './Comment';
@@ -69,7 +69,7 @@ const CommentsBox = styled.div`
   flex: 1;
 `;
 
-const compactMessages = messages => {
+const compactMessages = (messages) => {
   const compactInterval = 90e3; // 1,5 min
 
   return messages.map((message, index, array) => {
@@ -100,7 +100,7 @@ export const ClipComments: FC<IProps> = ({ clipId }) => {
   const { loading, error, data, subscribeToMore } = useQuery(
     GET_CLIP_COMMENTS,
     {
-      variables: { clipId }
+      variables: { clipId },
     }
   );
 
@@ -116,7 +116,7 @@ export const ClipComments: FC<IProps> = ({ clipId }) => {
         const newClipComment = subscriptionData.data.clipCommentCreated;
 
         const isDuplicate =
-          prev.clipComments.findIndex(c => {
+          prev.clipComments.findIndex((c) => {
             return c.id === newClipComment.id;
           }) >= 0;
 
@@ -126,9 +126,9 @@ export const ClipComments: FC<IProps> = ({ clipId }) => {
 
         return {
           ...prev,
-          clipComments: [...prev.clipComments.slice(-50), newClipComment]
+          clipComments: [...prev.clipComments.slice(-50), newClipComment],
         };
-      }
+      },
     });
   }, []);
 
@@ -144,12 +144,12 @@ export const ClipComments: FC<IProps> = ({ clipId }) => {
         return {
           ...prev,
           clipComments: [
-            ...prev.clipComments.filter(message => {
+            ...prev.clipComments.filter((message) => {
               return message.id !== messageId;
-            })
-          ]
+            }),
+          ],
         };
-      }
+      },
     });
   }, []);
 
@@ -159,7 +159,7 @@ export const ClipComments: FC<IProps> = ({ clipId }) => {
     <Box>
       <CommentsContainer>
         <CommentsBox>
-          {compactMessages(comments).map(comment => (
+          {compactMessages(comments).map((comment) => (
             <ClipComment key={comment.id} {...comment} />
           ))}
         </CommentsBox>

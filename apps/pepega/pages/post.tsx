@@ -1,4 +1,4 @@
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import gql from 'graphql-tag';
 import { useRouter } from 'next/router';
 
@@ -13,7 +13,7 @@ const PostPage = () => {
   const postId = router.query.id;
   const { loading, error, data } = useQuery(CLIP_ID_BY_POST_ID, {
     variables: { postId },
-    ssr: false
+    ssr: false,
   });
 
   if (typeof postId !== 'string') {

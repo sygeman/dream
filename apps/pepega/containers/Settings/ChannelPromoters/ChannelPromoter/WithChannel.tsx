@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 import { useEffect } from 'react';
 import { lighten } from 'polished';
 import styled from 'styled-components';
-import { useQuery, useMutation } from '@apollo/react-hooks';
+import { useQuery, useMutation } from '@apollo/client';
 import { Button, SWRow, Avatar } from '@pepega/pepega-ui';
 import { useRouter } from 'next/router';
 import {

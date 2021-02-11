@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 import { FC } from 'react';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import styled from 'styled-components';
 import DashCount from './DashCount';
 import { OnlineCount } from './OnlineCount';
@@ -42,7 +42,7 @@ const Box = styled.div`
 
 const OnlineStats = () => {
   const { loading, error, data } = useQuery(GET_CONNECTIONS_COUNT, {
-    pollInterval: 3000
+    pollInterval: 3000,
   });
 
   if (loading || error || !data) {
@@ -56,7 +56,7 @@ const OnlineStats = () => {
 
 const UsersStats = () => {
   const { loading, error, data } = useQuery(GET_USERS_COUNT, {
-    pollInterval: 10000
+    pollInterval: 10000,
   });
   const count = loading || error ? 0 : data.usersCount;
 
@@ -65,7 +65,7 @@ const UsersStats = () => {
 
 const ClipsStats = () => {
   const { loading, error, data } = useQuery(GET_CLIPS_COUNT, {
-    pollInterval: 10000
+    pollInterval: 10000,
   });
   const count = loading || error || !data ? 0 : data.clips.count;
 

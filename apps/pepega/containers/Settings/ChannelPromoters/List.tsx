@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 import { lighten } from 'polished';
 import { FC, useRef } from 'react';
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/client';
 import styled from 'styled-components';
 import { Input, Button } from '@pepega/pepega-ui';
 import ChannelPromoter from './ChannelPromoter';

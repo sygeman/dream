@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 import { FC, useEffect } from 'react';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import { ChannelPromoterWithChannel } from './WithChannel';
 
 const GET_CHANNEL_PROMOTER = gql`
@@ -33,7 +33,7 @@ export const ChannelPromoter: FC<IProps> = ({ channelPromoterId }) => {
   const { loading, error, data, subscribeToMore } = useQuery(
     GET_CHANNEL_PROMOTER,
     {
-      variables: { where: { id: channelPromoterId } }
+      variables: { where: { id: channelPromoterId } },
     }
   );
 
@@ -50,10 +50,10 @@ export const ChannelPromoter: FC<IProps> = ({ channelPromoterId }) => {
           ...prev,
           channelPromoter: {
             ...prev.channelPromoter,
-            ...subscriptionData.data.channelPromoter
-          }
+            ...subscriptionData.data.channelPromoter,
+          },
         };
-      }
+      },
     });
   }, []);
 

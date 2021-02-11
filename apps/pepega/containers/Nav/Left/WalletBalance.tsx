@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 import React, { FC, useEffect } from 'react';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import { shortNumbers, humanNumbers } from '@pepega/utils/count';
 
 const GET_WALLET = gql`

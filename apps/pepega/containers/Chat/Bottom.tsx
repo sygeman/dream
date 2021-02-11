@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { FC, useRef } from 'react';
 import gql from 'graphql-tag';
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/client';
 import { useAccess } from '../hooks/useAccess';
 import { convertTextToEmojiCode } from '@pepega/utils/emoji';
 

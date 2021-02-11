@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 import { FC } from 'react';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
 import { ClipsView } from './View';
@@ -80,7 +80,7 @@ export const Clips: FC<IProps> = ({
   description,
   noMore,
   rows,
-  titleLink
+  titleLink,
 }) => {
   const limit: number = 25;
   const router = useRouter();
@@ -94,13 +94,13 @@ export const Clips: FC<IProps> = ({
     communityClipAuthorId,
     historyUserId,
     offset: 0,
-    limit: rows ? rows * 6 : limit
+    limit: rows ? rows * 6 : limit,
   };
 
   const { loading, error, data, fetchMore } = useQuery(GET_CLIPS, {
     fetchPolicy: 'cache-and-network',
     ssr: false,
-    variables
+    variables,
   });
 
   if (error || !data || !data.clips) {
@@ -131,15 +131,15 @@ export const Clips: FC<IProps> = ({
         loading={loading}
         rows={rows}
         hasMore={hasMore && !rows && !noMore}
-        onPlay={clipId => {
+        onPlay={(clipId) => {
           router.push(
             {
               pathname: router.route,
               query: {
                 clipId,
                 backPath: router.asPath,
-                ...router.query
-              }
+                ...router.query,
+              },
             },
             `/clip?id=${clipId}`,
             { shallow: true }
@@ -148,7 +148,7 @@ export const Clips: FC<IProps> = ({
         loadMore={() =>
           fetchMore({
             variables: {
-              offset: currentCount
+              offset: currentCount,
             },
             updateQuery: (prev, { fetchMoreResult }) => {
               if (!fetchMoreResult) {
@@ -159,10 +159,10 @@ export const Clips: FC<IProps> = ({
                 ...prev,
                 clips: {
                   ...prev.clips,
-                  clips: [...prev.clips.clips, ...fetchMoreResult.clips.clips]
-                }
+                  clips: [...prev.clips.clips, ...fetchMoreResult.clips.clips],
+                },
               };
-            }
+            },
           })
         }
       />

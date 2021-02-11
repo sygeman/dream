@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 import Link from 'next/link';
 import { darken, lighten } from 'polished';
 import React, { FC } from 'react';
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/client';
 import styled from 'styled-components';
 import { useAccess } from '../hooks/useAccess';
 import { Dropdown, Emoji } from '@pepega/pepega-ui';

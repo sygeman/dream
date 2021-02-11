@@ -1,5 +1,5 @@
 import { FC, ReactNode } from 'react';
-import { useAccess } from '../hooks/useAccess';
+import { useAccess } from '@pepega/utils/useAccess';
 import * as LeftMenu from '@pepega/pepega-ui/LeftMenu';
 import BaseLayout from './Base';
 import { LogoBox } from '../containers/Nav/Left/Logo';

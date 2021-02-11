@@ -1,7 +1,7 @@
 import { FC, useEffect } from 'react';
 import gql from 'graphql-tag';
 import { useQuery, useMutation } from '@apollo/client';
-import { useAccess } from '../hooks/useAccess';
+import { useAccess } from '@pepega/utils/useAccess';
 import { useRouter } from 'next/router';
 import { ClipReactionButton } from './Button';
 import {

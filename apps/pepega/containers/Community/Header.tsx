@@ -4,7 +4,7 @@ import { useQuery } from '@apollo/client';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import { Flex, Button } from '@pepega/pepega-ui';
-import { useAccess } from '../hooks/useAccess';
+import { useAccess } from '@pepega/utils/useAccess';
 import { CommunityFollow } from './Follow';
 
 const Left = styled.div`

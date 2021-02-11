@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import { Input, Button } from '@pepega/pepega-ui';
 import ChannelPromoter from './ChannelPromoter';
 import { parseTwitchChannelName } from '@pepega/utils/parseTwitchChannelName';
-import { useAccess } from '../hooks/useAccess';
+import { useAccess } from '@pepega/utils/useAccess';
 
 const CREATE_CHANNEL = gql`
   mutation createChannelPromoter($channelName: String!) {

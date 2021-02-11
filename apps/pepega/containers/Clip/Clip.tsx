@@ -7,7 +7,7 @@ import { TwitchClipPlayer } from '@pepega/pepega-ui';
 import { ClipReaction } from './Reactions';
 import { ClipShare } from './Share';
 import { ClipComments } from './Comments';
-import { useAccess } from '../hooks/useAccess';
+import { useAccess } from '@pepega/utils/useAccess';
 
 const SET_CLIP_HISTORY = gql`
   mutation setClipHistory($clipId: ID!) {

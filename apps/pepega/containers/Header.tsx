@@ -2,7 +2,7 @@ import Link from 'next/link';
 import styled from 'styled-components';
 import { Button } from '@pepega/pepega-ui';
 import { useRouter } from 'next/router';
-import { useAccess } from '../hooks/useAccess';
+import { useAccess } from '@pepega/utils/useAccess';
 
 const Left = styled.div`
   display: flex;

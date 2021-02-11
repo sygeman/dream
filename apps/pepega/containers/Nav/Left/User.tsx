@@ -3,7 +3,7 @@ import { lighten } from 'polished';
 import styled from 'styled-components';
 import { CoinIconGold, CoinIconGreen } from '@pepega/pepega-ui';
 import { useRouter } from 'next/router';
-import { useAccess } from '../hooks/useAccess';
+import { useAccess } from '@pepega/utils/useAccess';
 import { WalletBalance } from './WalletBalance';
 import { LeftNavMenuUserBlock } from './UserBlock';
 import { AddCircleOutline as AddCircleOutlineIcon } from 'styled-icons/material/AddCircleOutline';

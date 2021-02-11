@@ -4,7 +4,7 @@ import { darken, lighten, rgba } from 'polished';
 import React, { FC } from 'react';
 import { useMutation } from '@apollo/client';
 import styled from 'styled-components';
-import { useAccess } from '../hooks/useAccess';
+import { useAccess } from '@pepega/utils/useAccess';
 import { Dropdown, Emoji } from '@pepega/pepega-ui';
 import { splitTextToEmojiArray } from '@pepega/utils/emoji';
 import { dateDistanceInWordsToNow } from '@pepega/utils/date';

@@ -4,7 +4,7 @@ import { useQuery } from '@apollo/client';
 import gql from 'graphql-tag';
 import styled from 'styled-components';
 import { Avatar, Dropdown } from '@pepega/pepega-ui';
-import { useAccess } from '../hooks/useAccess';
+import { useAccess } from '@pepega/utils/useAccess';
 import { MoreVert as MoreVertIcon } from 'styled-icons/material/MoreVert';
 import getConfig from 'next/config';
 const { publicRuntimeConfig } = getConfig();

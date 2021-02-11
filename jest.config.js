@@ -1,6 +1,6 @@
 module.exports = {
   projects: [
-    '<rootDir>/apps/ravepro-client',
+    '<rootDir>/apps/ravepro',
     '<rootDir>/libs/ui',
     '<rootDir>/apps/api',
     '<rootDir>/libs/prisma',

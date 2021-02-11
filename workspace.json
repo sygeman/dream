@@ -1,17 +1,17 @@
 {
   "version": 1,
   "projects": {
-    "ravepro-client": {
-      "root": "apps/ravepro-client",
-      "sourceRoot": "apps/ravepro-client",
+    "ravepro": {
+      "root": "apps/ravepro",
+      "sourceRoot": "apps/ravepro",
       "projectType": "application",
       "schematics": {},
       "architect": {
         "build": {
           "builder": "@nrwl/next:build",
           "options": {
-            "root": "apps/ravepro-client",
-            "outputPath": "dist/apps/ravepro-client"
+            "root": "apps/ravepro",
+            "outputPath": "dist/apps/ravepro"
           },
           "configurations": {
             "production": {}
@@ -20,12 +20,12 @@
         "serve": {
           "builder": "@nrwl/next:server",
           "options": {
-            "buildTarget": "ravepro-client:build",
+            "buildTarget": "ravepro:build",
             "dev": true
           },
           "configurations": {
             "production": {
-              "buildTarget": "ravepro-client:build:production",
+              "buildTarget": "ravepro:build:production",
               "dev": false
             }
           }
@@ -33,46 +33,46 @@
         "export": {
           "builder": "@nrwl/next:export",
           "options": {
-            "buildTarget": "ravepro-client:build:production"
+            "buildTarget": "ravepro:build:production"
           }
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/ravepro-client/**/*.{ts,tsx}"]
+            "lintFilePatterns": ["apps/ravepro/**/*.{ts,tsx}"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "apps/ravepro-client/jest.config.js",
+            "jestConfig": "apps/ravepro/jest.config.js",
             "passWithNoTests": true
           }
         }
       }
     },
-    "ravepro-client-e2e": {
-      "root": "apps/ravepro-client-e2e",
-      "sourceRoot": "apps/ravepro-client-e2e/src",
+    "ravepro-e2e": {
+      "root": "apps/ravepro-e2e",
+      "sourceRoot": "apps/ravepro-e2e/src",
       "projectType": "application",
       "architect": {
         "e2e": {
           "builder": "@nrwl/cypress:cypress",
           "options": {
-            "cypressConfig": "apps/ravepro-client-e2e/cypress.json",
-            "tsConfig": "apps/ravepro-client-e2e/tsconfig.e2e.json",
-            "devServerTarget": "ravepro-client:serve"
+            "cypressConfig": "apps/ravepro-e2e/cypress.json",
+            "tsConfig": "apps/ravepro-e2e/tsconfig.e2e.json",
+            "devServerTarget": "ravepro:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "ravepro-client:serve:production"
+              "devServerTarget": "ravepro:serve:production"
             }
           }
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/ravepro-client-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": ["apps/ravepro-e2e/**/*.{js,ts}"]
           }
         }
       }
@@ -377,5 +377,5 @@
       }
     }
   },
-  "defaultProject": "ravepro-client"
+  "defaultProject": "ravepro"
 }

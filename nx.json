@@ -16,10 +16,10 @@
     }
   },
   "projects": {
-    "ravepro-client": { "tags": [] },
-    "ravepro-client-e2e": {
+    "ravepro": { "tags": [] },
+    "ravepro-e2e": {
       "tags": [],
-      "implicitDependencies": ["ravepro-client"]
+      "implicitDependencies": ["ravepro"]
     },
     "storybook": { "tags": [] },
     "ui": { "tags": [] },

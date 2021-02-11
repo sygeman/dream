@@ -46,6 +46,7 @@ export const errorLink = onError(({ graphQLErrors, operation, forward }) => {
           } else {
             return fromPromise(
               new Promise((resolve) => {
+                //@ts-ignore
                 addPendingRequest(() => resolve());
               })
             ).flatMap(() => forward(operation));

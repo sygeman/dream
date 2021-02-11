@@ -44,6 +44,11 @@ export class AuthController {
           refreshToken: profile.refreshToken,
           name: profile.name,
           avatar: profile.avatar,
+          user: {
+            update: {
+              name: profile.name,
+            },
+          },
         },
       });
 
@@ -58,7 +63,9 @@ export class AuthController {
           name: profile.name,
           avatar: profile.avatar,
           user: {
-            create: {},
+            create: {
+              name: profile.name,
+            },
           },
         },
       });

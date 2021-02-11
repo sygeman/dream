@@ -1,6 +1,7 @@
+import React from 'react';
 import subDays from 'date-fns/subDays';
-import { Clips } from 'src/containers/Clips';
-import Layout from 'src/layouts/Main';
+import { Clips } from '../containers/Clips';
+import Layout from '../layouts/Main';
 
 const IndexPage = () => {
   const now = new Date();

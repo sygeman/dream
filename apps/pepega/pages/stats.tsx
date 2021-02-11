@@ -1,8 +1,8 @@
 import { lighten } from 'polished';
 import { FC } from 'react';
 import styled from 'styled-components';
-import { Stats } from 'src/containers/Stats';
-import Layout from 'src/layouts/Main';
+import { Stats } from '../containers/Stats';
+import Layout from '../layouts/Main';
 
 const Box = styled.div`
   display: flex;

@@ -1,5 +1,5 @@
-import { Clips } from 'src/containers/Clips';
-import Layout from 'src/layouts/Main';
+import { Clips } from '../containers/Clips';
+import Layout from '../layouts/Main';
 
 const TopAllPage = () => (
   <Layout streams>

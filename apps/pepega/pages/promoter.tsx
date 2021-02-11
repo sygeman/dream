@@ -1,5 +1,5 @@
-import { ChannelPromotersManage } from 'src/containers/Settings/ChannelPromoters';
-import Layout from 'src/layouts/Main';
+import { ChannelPromotersManage } from '../containers/Settings/ChannelPromoters';
+import Layout from '../layouts/Main';
 
 const PromoterPage = () => (
   <Layout>

@@ -17,10 +17,7 @@
   },
   "projects": {
     "ravepro": { "tags": [] },
-    "ravepro-e2e": {
-      "tags": [],
-      "implicitDependencies": ["ravepro"]
-    },
+    "ravepro-e2e": { "tags": [], "implicitDependencies": ["ravepro"] },
     "storybook": { "tags": [] },
     "ui": { "tags": [] },
     "api": { "tags": [] },
@@ -34,6 +31,7 @@
     "user-api": { "tags": [] },
     "connection-api": { "tags": [] },
     "pepega": { "tags": [] },
-    "pepega-e2e": { "tags": [], "implicitDependencies": ["pepega"] }
+    "pepega-e2e": { "tags": [], "implicitDependencies": ["pepega"] },
+    "pepega-ui": { "tags": [] }
   }
 }

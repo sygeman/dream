@@ -1,5 +1,5 @@
-import Dashboard from 'src/containers/Manage/Dashboard';
-import Layout from 'src/layouts/Manage';
+import Dashboard from '../containers/Manage/Dashboard';
+import Layout from '../layouts/Manage';
 
 const ManagePage = () => (
   <Layout>

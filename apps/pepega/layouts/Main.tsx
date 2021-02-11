@@ -5,11 +5,11 @@ import {
   Restore,
   ThumbUp,
   FlashOn,
-  SupervisorAccount
+  SupervisorAccount,
 } from 'styled-icons/material';
 import Scrollbars from 'react-custom-scrollbars';
 import { Hot as HotIcon } from 'styled-icons/boxicons-solid/Hot';
-import * as LeftMenu from '../components/LeftMenu';
+import * as LeftMenu from '@pepega/pepega-ui/LeftMenu';
 import BaseLayout from './Base';
 import { TopStreams } from '../containers/TopStreams';
 import { Categories } from '../containers/Nav/Left/Categories';
@@ -81,7 +81,7 @@ const MainLayout: FC<IProps> = ({ children, fixedTopContent, streams }) => (
     <Scrollbars
       autoHide
       universal
-      renderView={props => <div {...props} id="mainScroll" />}
+      renderView={(props) => <div {...props} id="mainScroll" />}
     >
       <>
         {streams && <TopStreams max={6} live={2} />}

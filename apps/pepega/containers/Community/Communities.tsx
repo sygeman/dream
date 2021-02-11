@@ -2,8 +2,8 @@ import Link from 'next/link';
 import { darken } from 'polished';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
-import { Button, Grid, CardMedia } from 'src/components';
-import { useAccess } from 'src/hooks/useAccess';
+import { Button, Grid, CardMedia } from '@pepega/pepega-ui';
+import { useAccess } from '../hooks/useAccess';
 
 const Box = styled.div`
   padding: 10px 20px;
@@ -84,8 +84,8 @@ export const Communities = ({ communities }) => {
                     pathname: router.route,
                     query: {
                       ...router.query,
-                      [isUser ? 'newCommunity' : 'authModal']: 1
-                    }
+                      [isUser ? 'newCommunity' : 'authModal']: 1,
+                    },
                   }}
                   passHref
                 >
@@ -96,7 +96,7 @@ export const Communities = ({ communities }) => {
           }
           items={communities}
           elementWidth={320}
-          itemRender={community => (
+          itemRender={(community) => (
             <CommunityBox key={community.id}>
               <CardMedia
                 media={
@@ -105,7 +105,7 @@ export const Communities = ({ communities }) => {
                       {community.avatar && (
                         <CommunityAvatar
                           style={{
-                            background: `url("${community.avatar}") no-repeat center center / cover`
+                            background: `url("${community.avatar}") no-repeat center center / cover`,
                           }}
                         />
                       )}

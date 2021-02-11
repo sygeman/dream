@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { lighten } from 'polished';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { Button } from 'src/components';
+import { Button } from '@pepega/pepega-ui';
 
 const Box = styled.div`
   background: ${({ theme }) => theme.colors.primary};
@@ -52,8 +52,8 @@ export const HowTo = () => {
             pathname: router.route,
             query: {
               ...router.query,
-              howToPromoter: 1
-            }
+              howToPromoter: 1,
+            },
           }}
           passHref
         >

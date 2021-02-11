@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { BuyCoins } from 'src/containers/BuyCoins';
-import Layout from 'src/layouts/Main';
+import { BuyCoins } from '../containers/BuyCoins';
+import Layout from '../layouts/Main';
 
 const Box = styled.div`
   display: flex;

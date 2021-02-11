@@ -3,12 +3,12 @@ import { useEffect } from 'react';
 import { lighten } from 'polished';
 import styled from 'styled-components';
 import { useQuery, useMutation } from '@apollo/react-hooks';
-import { Button, SWRow, Avatar } from 'src/components';
+import { Button, SWRow, Avatar } from '@pepega/pepega-ui';
 import { useRouter } from 'next/router';
 import {
   Close as CloseIcon,
   Add as AddIcon,
-  Remove as RemoveIcon
+  Remove as RemoveIcon,
 } from 'styled-icons/material';
 
 const GET_CHANNEL = gql`
@@ -160,7 +160,7 @@ export const ChannelPromoterWithChannel = ({ channelPromoter }) => {
   const router = useRouter();
 
   const { loading, error, data, subscribeToMore } = useQuery(GET_CHANNEL, {
-    variables: { where: { id: channelPromoter.channelId } }
+    variables: { where: { id: channelPromoter.channelId } },
   });
 
   const [deleteChannelPromoter] = useMutation(DELETE_CHANNEL_PROMOTER);
@@ -171,13 +171,13 @@ export const ChannelPromoterWithChannel = ({ channelPromoter }) => {
           pathname: router.route,
           query: {
             ...router.query,
-            buyCoinsModal: 1
-          }
+            buyCoinsModal: 1,
+          },
         },
         `/buycoins`,
         { shallow: true }
       );
-    }
+    },
   });
   const [setChannelPromoterCost] = useMutation(SET_CHANNEL_PROMOTER_COST);
 
@@ -194,10 +194,10 @@ export const ChannelPromoterWithChannel = ({ channelPromoter }) => {
           ...prev,
           channel: {
             ...prev.channel,
-            ...subscriptionData.data.channel
-          }
+            ...subscriptionData.data.channel,
+          },
         };
-      }
+      },
     });
   }, []);
 
@@ -231,7 +231,7 @@ export const ChannelPromoterWithChannel = ({ channelPromoter }) => {
             mainColor="#393C61"
             onClick={() =>
               deleteChannelPromoter({
-                variables: { id: channelPromoter.id }
+                variables: { id: channelPromoter.id },
               })
             }
           >
@@ -251,8 +251,8 @@ export const ChannelPromoterWithChannel = ({ channelPromoter }) => {
                     setChannelPromoterCost({
                       variables: {
                         id: channelPromoter.id,
-                        cost: channelPromoter.cost - 1
-                      }
+                        cost: channelPromoter.cost - 1,
+                      },
                     })
                   }
                 >
@@ -265,8 +265,8 @@ export const ChannelPromoterWithChannel = ({ channelPromoter }) => {
                     setChannelPromoterCost({
                       variables: {
                         id: channelPromoter.id,
-                        cost: channelPromoter.cost + 1
-                      }
+                        cost: channelPromoter.cost + 1,
+                      },
                     })
                   }
                 >
@@ -280,8 +280,8 @@ export const ChannelPromoterWithChannel = ({ channelPromoter }) => {
             setChannelPromoterActive({
               variables: {
                 id: channelPromoter.id,
-                active: !channelPromoter.active
-              }
+                active: !channelPromoter.active,
+              },
             })
           }
         />

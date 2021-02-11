@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import styled from 'styled-components';
-import { TopStreams } from 'src/containers/TopStreams';
-import { useAccess } from 'src/hooks/useAccess';
+import { TopStreams } from '../containers/TopStreams';
+import { useAccess } from '../hooks/useAccess';
 import { HowTo } from './HowTo';
 import { ChannelPromotersList } from './List';
 import { ChannelPromotersWithData } from './WIthData';

@@ -5,10 +5,10 @@ import {
   TwitterIcon,
   TwitterShareButton,
   VKIcon,
-  VKShareButton
+  VKShareButton,
 } from 'react-share';
 import styled from 'styled-components';
-import { Dropdown } from 'src/components';
+import { Dropdown } from '@pepega/pepega-ui';
 import { Share as ShareIcon } from 'styled-icons/material/Share';
 import { FileCopy as CopyIcon } from 'styled-icons/remix-fill/FileCopy';
 

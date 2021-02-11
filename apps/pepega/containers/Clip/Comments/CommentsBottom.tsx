@@ -2,8 +2,8 @@ import gql from 'graphql-tag';
 import { FC, useRef } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import styled from 'styled-components';
-import { useAccess } from 'src/hooks/useAccess';
-import { convertTextToEmojiCode } from 'src/utils/emoji';
+import { useAccess } from '../hooks/useAccess';
+import { convertTextToEmojiCode } from '@pepega/utils/emoji';
 
 const CREATE_CLIP_COMMENT = gql`
   mutation createClipComment($input: ClipCommentCreateInput!) {
@@ -40,12 +40,12 @@ export const ClipCommentBottom: FC<IProps> = ({ clipId }) => {
   let lock = false;
 
   const [createClipComment] = useMutation(CREATE_CLIP_COMMENT, {
-    onCompleted: data => {
+    onCompleted: (data) => {
       if (data.createClipComment && textInput.current) {
         textInput.current.value = '';
         lock = false;
       }
-    }
+    },
   });
 
   return (
@@ -60,7 +60,7 @@ export const ClipCommentBottom: FC<IProps> = ({ clipId }) => {
             ? 'Написать комментарий...'
             : 'Войдите чтобы писать комментарии'
         }
-        onKeyPress={e => {
+        onKeyPress={(e) => {
           if (!textInput.current) {
             return null;
           }
@@ -72,7 +72,7 @@ export const ClipCommentBottom: FC<IProps> = ({ clipId }) => {
           if (e.key === 'Enter' && !lock && content.length > 0) {
             lock = true;
             createClipComment({
-              variables: { input: { clipId, content } }
+              variables: { input: { clipId, content } },
             });
           }
         }}

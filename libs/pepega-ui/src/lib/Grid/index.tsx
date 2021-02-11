@@ -1,4 +1,4 @@
-import { FC, ReactNode, useEffect, useRef, useState } from 'react';
+import React, { FC, ReactNode, useEffect, useRef, useState } from 'react';
 import ResizeObserver from 'resize-observer-polyfill';
 import styled from 'styled-components';
 
@@ -43,7 +43,7 @@ export const Grid: FC<Props> & { defaultProps: Partial<Props> } = ({
   beforeRender,
   afterRedner,
   maxOnRow,
-  elementWidth
+  elementWidth,
 }) => {
   const ref = useRef(null);
   const [innerWidth, setInnerWidth] = useState(0);
@@ -94,5 +94,5 @@ export const Grid: FC<Props> & { defaultProps: Partial<Props> } = ({
 
 Grid.defaultProps = {
   maxOnRow: 6,
-  elementWidth: 100
+  elementWidth: 100,
 };

@@ -1,6 +1,6 @@
 import subDays from 'date-fns/subDays';
-import { Clips } from 'src/containers/Clips';
-import Layout from 'src/layouts/Main';
+import { Clips } from '../containers/Clips';
+import Layout from '../layouts/Main';
 
 const TopWeekPage = () => {
   const now = new Date();

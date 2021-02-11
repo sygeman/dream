@@ -2,10 +2,10 @@ import gql from 'graphql-tag';
 import Head from 'next/head';
 import * as React from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import { Clips } from 'src/containers/Clips';
-import UserPanelProfile from 'src/containers/User/UserPanelProfile';
+import { Clips } from '../containers/Clips';
+import UserPanelProfile from '../containers/User/UserPanelProfile';
 import { useRouter } from 'next/router';
-import Layout from 'src/layouts/Main';
+import Layout from '../layouts/Main';
 import styled from 'styled-components';
 
 const GET_USER = gql`

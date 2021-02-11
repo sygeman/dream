@@ -9,9 +9,9 @@ import {
   Input,
   CoinIconGold,
   SWRow,
-  TwitchClipPlayer
-} from 'src/components';
-import { parseSource } from 'src/utils/parseSoruce';
+  TwitchClipPlayer,
+} from '@pepega/pepega-ui';
+import { parseSource } from '@pepega/utils/parseSoruce';
 import getConfig from 'next/config';
 const { publicRuntimeConfig } = getConfig();
 
@@ -58,7 +58,7 @@ export const CreateCommunityClip = () => {
 
   const { loading, error, data } = useQuery(GET_COMMUNITY, {
     variables: { id: communityId },
-    ssr: false
+    ssr: false,
   });
 
   if (!loading && !error && data && data.community) {
@@ -66,13 +66,13 @@ export const CreateCommunityClip = () => {
   }
 
   const [createCommunityClip] = useMutation(CREATE_COMMUNITY_CLIP, {
-    onCompleted: data => {
+    onCompleted: (data) => {
       const communityClip = data.createCommunityClip;
       router.push(`/clip?id=${communityClip.clipId}`);
-    }
+    },
   });
 
-  const setSourceData = e => {
+  const setSourceData = (e) => {
     const soruceData = parseSource(e.target.value);
 
     if (soruceData && soruceData.payload && soruceData.payload.sourceId) {
@@ -90,7 +90,7 @@ export const CreateCommunityClip = () => {
       <Input
         placeholder="Название"
         maxLength={100}
-        onChange={e => setTitle(e.target.value)}
+        onChange={(e) => setTitle(e.target.value)}
       />
       {clipId && <TwitchClipPlayer sourceId={clipId} />}
       <SWRow
@@ -128,9 +128,9 @@ export const CreateCommunityClip = () => {
                   clipId,
                   title,
                   nfws,
-                  spoiler
-                }
-              }
+                  spoiler,
+                },
+              },
             })
           }
         >

@@ -4,10 +4,10 @@ import { darken, lighten, rgba } from 'polished';
 import React, { FC } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import styled from 'styled-components';
-import { useAccess } from 'src/hooks/useAccess';
-import { Dropdown, Emoji } from 'src/components';
-import { splitTextToEmojiArray } from 'src/utils/emoji';
-import { dateDistanceInWordsToNow } from 'src/utils/date';
+import { useAccess } from '../hooks/useAccess';
+import { Dropdown, Emoji } from '@pepega/pepega-ui';
+import { splitTextToEmojiArray } from '@pepega/utils/emoji';
+import { dateDistanceInWordsToNow } from '@pepega/utils/date';
 
 const DELETE_CHAT_MESSAGE = gql`
   mutation deleteChatMessage($id: ID!) {
@@ -42,7 +42,7 @@ const AvatarImg = styled.img`
   height: 26px;
   border-radius: 100%;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  background: ${props => props.theme.colors.surface};
+  background: ${(props) => props.theme.colors.surface};
 `;
 
 const AvatarNone = styled.div`
@@ -50,7 +50,7 @@ const AvatarNone = styled.div`
   height: 26px;
   border-radius: 100%;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  background: ${props => props.theme.colors.accent};
+  background: ${(props) => props.theme.colors.accent};
 `;
 
 const Header = styled.div`
@@ -63,7 +63,7 @@ const Header = styled.div`
 
 const Username = styled('div')<{ userColor?: string }>`
   font-weight: 500;
-  color: ${props =>
+  color: ${(props) =>
     props.userColor
       ? props.userColor
       : lighten('0.15', props.theme.colors.accent)};
@@ -80,7 +80,7 @@ const Content = styled.div`
 `;
 
 const Text = styled.div`
-  color: ${props => props.theme.colors.accent};
+  color: ${(props) => props.theme.colors.accent};
   padding: 4px 10px 4px 50px;
   overflow: hidden;
   overflow-wrap: break-word;
@@ -105,11 +105,11 @@ const ManageMenu = styled.div`
 
 const ManageItem = styled.div`
   padding: 0 3px;
-  color: ${props => props.theme.colors.accent};
+  color: ${(props) => props.theme.colors.accent};
 
   i {
     font-size: 17px;
-    color: ${props => props.theme.colors.accent};
+    color: ${(props) => props.theme.colors.accent};
   }
 
   :hover {
@@ -166,20 +166,20 @@ export const ChatMessage: FC<IProps> = ({
   content,
   compact,
   author,
-  createdAt
+  createdAt,
 }) => {
   const [deleteChatMessage] = useMutation(DELETE_CHAT_MESSAGE);
 
   const usernameColors = {
     admin: 'rgb(194, 121, 121)',
-    mod: 'rgb(124, 194, 121)'
+    mod: 'rgb(124, 194, 121)',
   };
 
   const userColor = usernameColors[author.role]
     ? usernameColors[author.role]
     : undefined;
 
-  const [{ allow: isAllowDeleteChatMessage }] = useAccess(currentUser => {
+  const [{ allow: isAllowDeleteChatMessage }] = useAccess((currentUser) => {
     return currentUser.role === 'mod' || currentUser.role === 'admin';
   });
 

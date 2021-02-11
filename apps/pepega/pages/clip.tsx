@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
-import { Clip } from 'src/containers/Clip/Clip';
-import Layout from 'src/layouts/Main';
-import { TopStreams } from 'src/containers/TopStreams';
+import { Clip } from '../containers/Clip/Clip';
+import Layout from '../layouts/Main';
+import { TopStreams } from '../containers/TopStreams';
 
 const Box = styled.div`
   margin: 0 auto;

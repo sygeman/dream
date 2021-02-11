@@ -1,7 +1,7 @@
 import * as Cookies from 'js-cookie';
 import jwt from 'jsonwebtoken';
-import { promiseTimeout } from 'src/utils/promiseTimeout';
-import { gqlQuery } from 'src/utils/gqlQuery';
+import { promiseTimeout } from '@pepega/utils/promiseTimeout';
+import { gqlQuery } from '@pepega/utils/gqlQuery';
 import getConfig from 'next/config';
 const { publicRuntimeConfig } = getConfig();
 
@@ -18,7 +18,7 @@ export const disconnect = (serviceName: string) => {
 
 export const getTokens = () => ({
   accessToken: Cookies.get(ACCESS_TOKEN) || '',
-  refreshToken: Cookies.get(REFRESH_TOKEN) || ''
+  refreshToken: Cookies.get(REFRESH_TOKEN) || '',
 });
 
 export const setAccessToken = (accessToken: string) => {
@@ -31,7 +31,7 @@ export const setRefreshToken = (refreshToken: string) => {
 
 export const setTokens = ({
   accessToken,
-  refreshToken
+  refreshToken,
 }: {
   accessToken: string;
   refreshToken: string;
@@ -63,7 +63,7 @@ const REFRESH_QUERY = `
 
 const refreshQuery = async (refreshToken: string) => {
   const query = await gqlQuery(publicRuntimeConfig.gqlUrl, REFRESH_QUERY, {
-    refreshToken
+    refreshToken,
   });
 
   if (query.errors) {
@@ -90,7 +90,7 @@ class TokenRefresh {
       this.refreshToken = refreshToken;
     }
 
-    return new Promise(resolve => this.queue.push(resolve));
+    return new Promise((resolve) => this.queue.push(resolve));
   }
 
   private async runFetchInterval() {
@@ -100,7 +100,7 @@ class TokenRefresh {
 
         const refreshData = await refreshQuery(this.refreshToken);
 
-        this.queue.forEach(resolve => resolve(refreshData));
+        this.queue.forEach((resolve) => resolve(refreshData));
         this.fetchStart = false;
         this.fetching = false;
         this.refreshToken = '';
@@ -137,7 +137,7 @@ export const getAccessTokenAsync = async () => {
   }
 
   return promiseTimeout(3000, refresh(refreshToken))
-    .then(newToken => newToken)
+    .then((newToken) => newToken)
     .catch(() => {
       console.log('refresh token timeout', refreshToken);
       removeTokens();

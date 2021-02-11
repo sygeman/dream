@@ -9,7 +9,7 @@ import { CreateCommunityClip } from '../containers/Community/Clip/Create';
 import { CreateCommunity } from '../containers/Community/Create';
 import TopNav from '../containers/Nav/Top';
 import { PromoterHelp } from '../containers/Help/Promoter';
-import { Modal } from '../components';
+import { Modal } from '@pepega/pepega-ui';
 import { ClipModal } from '../containers/Clip/ClipModal';
 import { UserBox } from '../containers/Nav/Left/User';
 

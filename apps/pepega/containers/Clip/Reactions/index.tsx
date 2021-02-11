@@ -1,12 +1,12 @@
 import { FC, useEffect } from 'react';
 import gql from 'graphql-tag';
 import { useQuery, useMutation } from '@apollo/react-hooks';
-import { useAccess } from 'src/hooks/useAccess';
+import { useAccess } from '../hooks/useAccess';
 import { useRouter } from 'next/router';
 import { ClipReactionButton } from './Button';
 import {
   ThumbUp as ThumbUpIcon,
-  ThumbDown as ThumbDownIcon
+  ThumbDown as ThumbDownIcon,
 } from 'styled-icons/material';
 
 const GET_CLIP_REACTION_AND_STATS = gql`
@@ -61,7 +61,7 @@ export const ClipReaction: FC<IProps> = ({ clipId }) => {
     GET_CLIP_REACTION_AND_STATS,
     {
       variables: { clipId },
-      ssr: false
+      ssr: false,
     }
   );
 
@@ -78,10 +78,10 @@ export const ClipReaction: FC<IProps> = ({ clipId }) => {
           ...prev,
           clipReaction: {
             ...prev.clipReaction,
-            ...subscriptionData.data.clipReaction
-          }
+            ...subscriptionData.data.clipReaction,
+          },
         };
-      }
+      },
     });
   }, []);
 
@@ -98,10 +98,10 @@ export const ClipReaction: FC<IProps> = ({ clipId }) => {
           ...prev,
           clipReactionStats: {
             ...prev.clipReactionStats,
-            ...subscriptionData.data.clipReactionStats
-          }
+            ...subscriptionData.data.clipReactionStats,
+          },
         };
-      }
+      },
     });
   }, []);
 
@@ -119,8 +119,8 @@ export const ClipReaction: FC<IProps> = ({ clipId }) => {
         pathname: router.route,
         query: {
           ...router.query,
-          authModal: 1
-        }
+          authModal: 1,
+        },
       },
       `/auth?continue=${router.asPath}`,
       { shallow: true }
@@ -131,8 +131,8 @@ export const ClipReaction: FC<IProps> = ({ clipId }) => {
     setClipReaction({
       variables: {
         clipId,
-        type: reactionType === 'like' ? 'none' : 'like'
-      }
+        type: reactionType === 'like' ? 'none' : 'like',
+      },
     });
   };
 
@@ -140,8 +140,8 @@ export const ClipReaction: FC<IProps> = ({ clipId }) => {
     setClipReaction({
       variables: {
         clipId,
-        type: reactionType === 'dislike' ? 'none' : 'dislike'
-      }
+        type: reactionType === 'dislike' ? 'none' : 'dislike',
+      },
     });
   };
 

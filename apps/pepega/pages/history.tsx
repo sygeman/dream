@@ -1,5 +1,5 @@
-import Layout from 'src/layouts/Main';
-import { ClipsHistory } from 'src/containers/Clips/History';
+import Layout from '../layouts/Main';
+import { ClipsHistory } from '../containers/Clips/History';
 
 const ClipHistoryPage = () => {
   return (

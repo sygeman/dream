@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
-import CommunityLayout from 'src/layouts/Community';
-import { Community } from 'src/containers/Community';
+import CommunityLayout from '../layouts/Community';
+import { Community } from '../containers/Community';
 
 const CommunityPage = () => {
   const router = useRouter();

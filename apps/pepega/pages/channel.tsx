@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
-import Channel from 'src/containers/Channel';
-import Layout from 'src/layouts/Main';
+import Channel from '../containers/Channel';
+import Layout from '../layouts/Main';
 
 const ChannelPage = () => {
   const router = useRouter();

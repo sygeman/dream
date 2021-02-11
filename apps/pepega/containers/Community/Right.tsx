@@ -7,7 +7,7 @@ import { useQuery } from '@apollo/react-hooks';
 import { Chat as ChatIcon } from 'styled-icons/boxicons-solid/Chat';
 import { Users as UsersIcon } from 'styled-icons/fa-solid/Users';
 import { Chat } from '../Chat';
-import { Flex } from 'src/components';
+import { Flex } from '@pepega/pepega-ui';
 
 const Box = styled.div`
   display: flex;
@@ -61,7 +61,7 @@ const GET_COMMUNITY_FOLLOW_COUNT = gql`
 
 export const CommunityRight: FC<{ chatId: string; communityId: string }> = ({
   chatId,
-  communityId
+  communityId,
 }) => {
   const [tabActive, setActiveTab] = useState('messages');
   const setMessagesTab = () => setActiveTab('messages');
@@ -71,7 +71,7 @@ export const CommunityRight: FC<{ chatId: string; communityId: string }> = ({
 
   const { loading, error, data } = useQuery(GET_COMMUNITY_FOLLOW_COUNT, {
     variables: { communityId },
-    ssr: false
+    ssr: false,
   });
 
   const followsCount =

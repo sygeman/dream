@@ -3,8 +3,8 @@ import Link from 'next/link';
 import { useQuery } from '@apollo/react-hooks';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
-import { Flex, Button } from 'src/components';
-import { useAccess } from 'src/hooks/useAccess';
+import { Flex, Button } from '@pepega/pepega-ui';
+import { useAccess } from '../hooks/useAccess';
 import { CommunityFollow } from './Follow';
 
 const Left = styled.div`
@@ -59,7 +59,7 @@ export const CommunityHeader = () => {
 
   const { loading, error, data } = useQuery(GET_COMMUNITY, {
     variables: { id: communityId },
-    ssr: false
+    ssr: false,
   });
 
   if (loading || error) {
@@ -93,8 +93,8 @@ export const CommunityHeader = () => {
                 pathname: router.route,
                 query: {
                   ...router.query,
-                  [isUser ? 'newClip' : 'authModal']: 1
-                }
+                  [isUser ? 'newClip' : 'authModal']: 1,
+                },
               }}
               passHref
             >

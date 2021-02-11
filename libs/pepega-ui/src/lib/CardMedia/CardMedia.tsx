@@ -1,7 +1,8 @@
+import React from 'react'
 import { darken, lighten } from 'polished';
 import { FC, ReactNode } from 'react';
 import styled from 'styled-components';
-import { shortNumbers } from 'src/utils/count';
+import { shortNumbers } from '@pepega/utils/count';
 
 const Box = styled.div`
   display: flex;
@@ -131,7 +132,7 @@ export const CardMedia: FC<IProps> = ({
   descriptionLink,
   overlay,
   count,
-  countIcon
+  countIcon,
 }) => {
   return (
     <Box>

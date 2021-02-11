@@ -9,7 +9,7 @@ import { setContext } from 'apollo-link-context';
 import { WebSocketLink } from 'apollo-link-ws';
 import { getMainDefinition } from 'apollo-utilities';
 import fetch from 'isomorphic-unfetch';
-import { getAccessTokenAsync } from 'src/lib/auth';
+import { getAccessTokenAsync } from '../lib/auth';
 import getConfig from 'next/config';
 const { publicRuntimeConfig } = getConfig();
 
@@ -49,7 +49,7 @@ export function withApollo(PageComponent, { ssr = true } = {}) {
   }
 
   if (ssr || PageComponent.getInitialProps) {
-    WithApollo.getInitialProps = async ctx => {
+    WithApollo.getInitialProps = async (ctx) => {
       const { AppTree } = ctx;
 
       // Initialize ApolloClient, add it to the ctx object so
@@ -79,7 +79,7 @@ export function withApollo(PageComponent, { ssr = true } = {}) {
               <AppTree
                 pageProps={{
                   ...pageProps,
-                  apolloClient
+                  apolloClient,
                 }}
               />
             );
@@ -101,7 +101,7 @@ export function withApollo(PageComponent, { ssr = true } = {}) {
 
       return {
         ...pageProps,
-        apolloState
+        apolloState,
       };
     };
   }
@@ -140,7 +140,7 @@ function createApolloClient(initialState = {}) {
       typeof window === 'undefined'
         ? publicRuntimeConfig.gqlSSRUrl
         : publicRuntimeConfig.gqlUrl,
-    credentials: 'same-origin'
+    credentials: 'same-origin',
   });
 
   const authLink = setContext(async (_, { headers }) => {
@@ -149,8 +149,8 @@ function createApolloClient(initialState = {}) {
     return {
       headers: {
         ...headers,
-        authorization: accessToken ? `Bearer ${accessToken}` : ''
-      }
+        authorization: accessToken ? `Bearer ${accessToken}` : '',
+      },
     };
   });
 
@@ -176,11 +176,11 @@ function createApolloClient(initialState = {}) {
                 connectionParams: async () => {
                   const accessToken = await getAccessTokenAsync();
                   return { accessToken };
-                }
-              }
+                },
+              },
             }),
             authLink.concat(httpLink)
           ),
-    cache: new InMemoryCache().restore(initialState)
+    cache: new InMemoryCache().restore(initialState),
   });
 }

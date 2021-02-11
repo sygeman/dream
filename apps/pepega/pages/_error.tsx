@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import styled from 'styled-components';
-import Layout from 'src/layouts/Main';
+import Layout from '../layouts/Main';
 
 const ErrorBox = styled.div`
   display: flex;

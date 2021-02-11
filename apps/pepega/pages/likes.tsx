@@ -1,5 +1,5 @@
-import Layout from 'src/layouts/Main';
-import { ClipsLikes } from 'src/containers/Clips/Likes';
+import Layout from '../layouts/Main';
+import { ClipsLikes } from '../containers/Clips/Likes';
 
 const ClipLikesPage = () => (
   <Layout>

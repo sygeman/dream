@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { useRouter } from 'next/router';
-import * as LeftMenu from 'src/components/LeftMenu';
+import * as LeftMenu from '@pepega/pepega-ui/LeftMenu';
 import { Apps } from 'styled-icons/material';
 
 const GET_TWITCH_TOP_GAMES = gql`
@@ -19,7 +19,7 @@ const CategoriesInner = () => {
   const router = useRouter();
 
   const { loading, error, data } = useQuery(GET_TWITCH_TOP_GAMES, {
-    variables: { first: 20 }
+    variables: { first: 20 },
   });
 
   if (
@@ -34,7 +34,7 @@ const CategoriesInner = () => {
 
   const categories = data.twitchTopGames;
 
-  return categories.map(game => (
+  return categories.map((game) => (
     <LeftMenu.SubItem
       route={`/game?id=${game.id}`}
       active={router.route === '/game' && router.query.id === game.id}

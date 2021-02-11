@@ -1,4 +1,4 @@
-import { FC, useEffect, MutableRefObject, useState } from 'react';
+import React, { FC, useEffect, MutableRefObject, useState } from 'react';
 import ResizeObserver from 'resize-observer-polyfill';
 
 type Props = {
@@ -14,7 +14,7 @@ export const GridHelper: FC<Props> & { defaultProps: Partial<Props> } = ({
   maxRows,
   maxOnRow,
   elementWidth,
-  children
+  children,
 }) => {
   const [innerWidth, setInnerWidth] = useState(0);
   const [columnCount, setColumnCount] = useState(0);
@@ -53,11 +53,11 @@ export const GridHelper: FC<Props> & { defaultProps: Partial<Props> } = ({
     maxOnRow,
     elementWidth,
     innerWidth,
-    columnCount
+    columnCount,
   });
 };
 
 GridHelper.defaultProps = {
   maxOnRow: 6,
-  elementWidth: 100
+  elementWidth: 100,
 };

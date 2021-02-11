@@ -1,9 +1,8 @@
 import React from 'react';
-import App from 'next/app';
+import { AppProps } from 'next/app';
 import Head from 'next/head';
-import Router from 'next/router';
-import 'resize-observer-polyfill';
-import { withApollo } from 'src/lib/apollo';
+import { ApolloProvider } from '@apollo/client';
+import { useApollo } from '@pepega/utils/apollo';
 import { ThemeProvider } from 'styled-components';
 import { createGlobalStyle } from 'styled-components';
 
@@ -60,16 +59,14 @@ export const GlobalStyle = createGlobalStyle`
   }
 `;
 
-interface IProps {
-  isServer: boolean;
-  apolloClient: any;
-}
+function CustomApp({ Component, pageProps }: AppProps) {
+  const apolloClient = useApollo({
+    uri: 'https://api.sgmn.dev/graphql',
+    pageProps,
+  });
 
-class MyApp extends App<IProps> {
-  public render() {
-    const { Component, pageProps } = this.props;
-
-    return (
+  return (
+    <ApolloProvider client={apolloClient}>
       <ThemeProvider
         theme={{
           colors: {
@@ -81,16 +78,18 @@ class MyApp extends App<IProps> {
           },
         }}
       >
-        <>
-          <Head>
-            <title>PepegaCom</title>
-          </Head>
-          <Component {...pageProps} />
-          <GlobalStyle />
-        </>
+        <Head>
+          <link rel="preconnect" href="https://fonts.gstatic.com" />
+          <link
+            href="https://fonts.googleapis.com/css?family=Orbitron:500|Roboto:300,400,500&subset=cyrillic-ext"
+            rel="stylesheet"
+          />
+          <title>RavePro</title>
+        </Head>
+        <Component {...pageProps} />
       </ThemeProvider>
-    );
-  }
+    </ApolloProvider>
+  );
 }
 
-export default withApollo(MyApp);
+export default CustomApp;

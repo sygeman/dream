@@ -7,8 +7,6 @@ import { ThemeProvider } from 'styled-components';
 import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css?family=Orbitron:500|Roboto:300,400,500&subset=cyrillic-ext');
-
   @keyframes fadeIn{
     0%{
       opacity: 0;

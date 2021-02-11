@@ -1,26 +1,43 @@
 import React from 'react';
-import { AppProps } from 'next/app';
+import App from 'next/app';
 import Head from 'next/head';
-import { ReactComponent as NxLogo } from '../public/nx-logo-white.svg';
-import './styles.css';
+import Router from 'next/router';
+import NProgress from 'nprogress';
+import 'resize-observer-polyfill';
+import { withApollo } from 'src/lib/apollo';
+import { ThemeProvider } from 'styled-components';
+import { version } from '../../package.json';
+import { GlobalStyle, themes } from 'src/themes';
 
-function CustomApp({ Component, pageProps }: AppProps) {
-  return (
-    <>
-      <Head>
-        <title>Welcome to pepega!</title>
-      </Head>
-      <div className="app">
-        <header className="flex">
-          <NxLogo width="75" height="50" />
-          <h1>Welcome to pepega!</h1>
-        </header>
-        <main>
-          <Component {...pageProps} />
-        </main>
-      </div>
-    </>
-  );
+Router.events.on('routeChangeStart', () => NProgress.start());
+Router.events.on('routeChangeComplete', () => NProgress.done());
+Router.events.on('routeChangeError', () => NProgress.done());
+
+interface IProps {
+  isServer: boolean;
+  apolloClient: any;
 }
 
-export default CustomApp;
+class MyApp extends App<IProps> {
+  componentDidMount() {
+    console.log(`Version: ${version}`);
+  }
+
+  public render() {
+    const { Component, pageProps } = this.props;
+
+    return (
+      <ThemeProvider theme={themes.dark}>
+        <>
+          <Head>
+            <title>PepegaCom</title>
+          </Head>
+          <Component {...pageProps} />
+          <GlobalStyle />
+        </>
+      </ThemeProvider>
+    );
+  }
+}
+
+export default withApollo(MyApp);

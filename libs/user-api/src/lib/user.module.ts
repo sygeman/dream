@@ -1,5 +1,5 @@
 import { HttpModule, Module } from '@nestjs/common';
-import { PrismaModule } from '@pepega/prisma';
+import { PrismaModule } from '@dream/prisma';
 import { UserResolver } from './user.resolver';
 
 @Module({

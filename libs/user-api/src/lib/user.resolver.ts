@@ -1,8 +1,8 @@
 import { Context, Mutation, Query, Resolver } from '@nestjs/graphql';
-import { PrismaService } from '@pepega/prisma';
+import { PrismaService } from '@dream/prisma';
 import { User } from './models/user.model';
 import { HttpService, UseGuards } from '@nestjs/common';
-import { AuthGuard } from '@pepega/auth-api';
+import { AuthGuard } from '@dream/auth-api';
 import { ConfigService } from '@nestjs/config';
 import * as querystring from 'querystring';
 

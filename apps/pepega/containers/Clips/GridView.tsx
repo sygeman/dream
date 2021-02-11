@@ -1,8 +1,8 @@
 import { FC, memo } from 'react';
 import styled from 'styled-components';
-import { VideoPreview, CardMedia } from '@pepega/pepega-ui';
+import { VideoPreview, CardMedia } from '@dream/pepega-ui';
 import { isEqual } from 'lodash';
-import { dateDistanceInWordsToNow } from '@pepega/utils/date';
+import { dateDistanceInWordsToNow } from '@dream/utils/date';
 import { ThumbUp as ThumbUpIcon } from 'styled-icons/material';
 
 const PreviewContent = styled.div`

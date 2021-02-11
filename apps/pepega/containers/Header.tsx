@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import styled from 'styled-components';
-import { Button } from '@pepega/pepega-ui';
+import { Button } from '@dream/pepega-ui';
 import { useRouter } from 'next/router';
-import { useAccess } from '@pepega/utils/useAccess';
+import { useAccess } from '@dream/utils/useAccess';
 
 const Left = styled.div`
   display: flex;

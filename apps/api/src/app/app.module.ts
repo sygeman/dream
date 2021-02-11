@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
-import { AuthModule, AuthService } from '@pepega/auth-api';
-import { UserModule } from '@pepega/user-api';
-import { ChatModule } from '@pepega/chat-api';
-import { ConnectionModule, ConnectionService } from '@pepega/connection-api';
+import { AuthModule, AuthService } from '@dream/auth-api';
+import { UserModule } from '@dream/user-api';
+import { ChatModule } from '@dream/chat-api';
+import { ConnectionModule, ConnectionService } from '@dream/connection-api';
 import { SharedModule } from './shared.module';
 import { ConfigModule } from '@nestjs/config';
 import dbConfig from './config/db.config';

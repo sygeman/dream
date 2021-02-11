@@ -10,8 +10,8 @@ import {
   CoinIconGold,
   SWRow,
   TwitchClipPlayer,
-} from '@pepega/pepega-ui';
-import { parseSource } from '@pepega/utils/parseSoruce';
+} from '@dream/pepega-ui';
+import { parseSource } from '@dream/utils/parseSoruce';
 import getConfig from 'next/config';
 const { publicRuntimeConfig } = getConfig();
 

@@ -1,4 +1,4 @@
-import { PrismaService } from '@pepega/prisma';
+import { PrismaService } from '@dream/prisma';
 import { Injectable, OnModuleInit } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { interval } from 'rxjs';

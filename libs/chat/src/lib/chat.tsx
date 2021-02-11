@@ -4,7 +4,7 @@ import {
   useChatMessagesQuery,
   useChatMessageCreatedSubscription,
 } from './types';
-import { Flex, Typography } from '@pepega/ui';
+import { Flex, Typography } from '@dream/ui';
 import { ChatMessagesBottom } from './Bottom';
 
 const Box = styled.div`

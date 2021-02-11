@@ -5,8 +5,8 @@ import styled from 'styled-components';
 import { useRouter } from 'next/router';
 import { darken } from 'polished';
 import subDays from 'date-fns/subDays';
-import { Grid, VideoPreview, CardMedia } from '@pepega/pepega-ui';
-import { dateDistanceInWordsToNow } from '@pepega/utils/date';
+import { Grid, VideoPreview, CardMedia } from '@dream/pepega-ui';
+import { dateDistanceInWordsToNow } from '@dream/utils/date';
 
 const GET_TWITCH_USER = gql`
   query twitchUser($userId: String!) {

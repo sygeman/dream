@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 import React, { FC, useEffect } from 'react';
 import { useQuery } from '@apollo/client';
-import { shortNumbers, humanNumbers } from '@pepega/utils/count';
+import { shortNumbers, humanNumbers } from '@dream/utils/count';
 
 const GET_WALLET = gql`
   query getWallet($where: WalletWhereInput!) {

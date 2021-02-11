@@ -3,11 +3,11 @@ import gql from 'graphql-tag';
 import { darken } from 'polished';
 import styled from 'styled-components';
 import { useMutation } from '@apollo/client';
-import { TwitchClipPlayer } from '@pepega/pepega-ui';
+import { TwitchClipPlayer } from '@dream/pepega-ui';
 import { ClipReaction } from './Reactions';
 import { ClipShare } from './Share';
 import { ClipComments } from './Comments';
-import { useAccess } from '@pepega/utils/useAccess';
+import { useAccess } from '@dream/utils/useAccess';
 
 const SET_CLIP_HISTORY = gql`
   mutation setClipHistory($clipId: ID!) {

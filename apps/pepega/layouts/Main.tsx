@@ -9,7 +9,7 @@ import {
 } from 'styled-icons/material';
 import Scrollbars from 'react-custom-scrollbars';
 import { Hot as HotIcon } from 'styled-icons/boxicons-solid';
-import * as LeftMenu from '@pepega/pepega-ui/LeftMenu';
+import * as LeftMenu from '@dream/pepega-ui/LeftMenu';
 import BaseLayout from './Base';
 import { TopStreams } from '../containers/TopStreams';
 import { Categories } from '../containers/Nav/Left/Categories';

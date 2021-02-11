@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { lighten } from 'polished';
 import styled from 'styled-components';
 import { useQuery, useMutation } from '@apollo/client';
-import { Button, SWRow, Avatar } from '@pepega/pepega-ui';
+import { Button, SWRow, Avatar } from '@dream/pepega-ui';
 import { useRouter } from 'next/router';
 import {
   Close as CloseIcon,

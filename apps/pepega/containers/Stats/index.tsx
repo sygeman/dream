@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 import { useQuery } from '@apollo/client';
-import { humanNumbers } from '@pepega/utils/count';
+import { humanNumbers } from '@dream/utils/count';
 import { FC } from 'react';
-import { Flex } from '@pepega/pepega-ui';
+import { Flex } from '@dream/pepega-ui';
 import { useRouter } from 'next/router';
 
 const GET_TOP_USERS = gql`

@@ -1,6 +1,6 @@
 import React from 'react';
-import { CurrentPlaying } from '@pepega/containers/RavePro/CurrentPlaying';
-import ravepro from '@pepega/ui/theme/ravepro';
+import { CurrentPlaying } from '@dream/containers/RavePro/CurrentPlaying';
+import ravepro from '@dream/ui/theme/ravepro';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import { normalize } from 'styled-normalize';
 

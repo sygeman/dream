@@ -4,9 +4,9 @@ import { darken, lighten } from 'polished';
 import React, { FC } from 'react';
 import { useMutation } from '@apollo/client';
 import styled from 'styled-components';
-import { useAccess } from '@pepega/utils/useAccess';
-import { Dropdown, Emoji } from '@pepega/pepega-ui';
-import { splitTextToEmojiArray } from '@pepega/utils/emoji';
+import { useAccess } from '@dream/utils/useAccess';
+import { Dropdown, Emoji } from '@dream/pepega-ui';
+import { splitTextToEmojiArray } from '@dream/utils/emoji';
 
 const REMOVE_CLIP_COMMENT = gql`
   mutation removeClipComment($id: ID!) {

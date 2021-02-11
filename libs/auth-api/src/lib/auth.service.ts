@@ -1,5 +1,5 @@
 import * as jwt from 'jsonwebtoken';
-import { PrismaService } from '@pepega/prisma';
+import { PrismaService } from '@dream/prisma';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 

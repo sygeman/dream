@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { lighten } from 'polished';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { Button } from '@pepega/pepega-ui';
+import { Button } from '@dream/pepega-ui';
 
 const Box = styled.div`
   background: ${({ theme }) => theme.colors.primary};

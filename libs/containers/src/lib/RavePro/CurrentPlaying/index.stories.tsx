@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Flex } from '@pepega/ui/base/Flex';
-import { WithApollo } from '@pepega/utils/apollo/WithApollo';
+import { Flex } from '@dream/ui/base/Flex';
+import { WithApollo } from '@dream/utils/apollo/WithApollo';
 import { CurrentPlaying as CurrentPlayingContainer } from './';
 import { TrackInfo as TrackInfoUI } from './TrackInfo';
 

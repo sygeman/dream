@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import { Auth } from '@pepega/containers/RavePro/Auth';
-import { RaveProLayout } from '@pepega/ui';
+import { Auth } from '@dream/containers/RavePro/Auth';
+import { RaveProLayout } from '@dream/ui';
 
 export function AuthSuccess() {
   const rotuer = useRouter();

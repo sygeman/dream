@@ -1,6 +1,6 @@
 import React from 'react';
-import { RaveProLayout } from '@pepega/ui';
-import { Community } from '@pepega/community';
+import { RaveProLayout } from '@dream/ui';
+import { Community } from '@dream/community';
 
 export function Index() {
   return (

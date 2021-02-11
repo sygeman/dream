@@ -1,7 +1,7 @@
 import React from 'react';
-import { WithApollo } from '@pepega/utils/apollo/WithApollo';
+import { WithApollo } from '@dream/utils/apollo/WithApollo';
 import { Auth as AuthContainer } from './';
-import { Flex } from '@pepega/ui';
+import { Flex } from '@dream/ui';
 
 export default {
   title: 'Containers/RavePro',

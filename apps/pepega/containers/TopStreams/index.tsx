@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 import { FC } from 'react';
 import { useQuery } from '@apollo/client';
 import styled from 'styled-components';
-import { Grid } from '@pepega/pepega-ui';
+import { Grid } from '@dream/pepega-ui';
 import { Stream } from './Stream';
 import { StreamAdd } from './StreamAdd';
 

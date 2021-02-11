@@ -1,7 +1,7 @@
 import { addDecorator } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { ThemeProvider } from 'styled-components';
-import raveproTheme from '@pepega/ui/theme/ravepro';
+import raveproTheme from '@dream/ui/theme/ravepro';
 
 addDecorator(withKnobs);
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Flex } from '@pepega/ui/base/Flex';
-import { Typography } from '@pepega/ui/Typography';
+import { Flex } from '@dream/ui/base/Flex';
+import { Typography } from '@dream/ui/Typography';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const COVER_SIZE = 64;

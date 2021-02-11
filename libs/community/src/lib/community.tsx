@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Flex, RaveProLayout } from '@pepega/ui';
-import { UserMenu } from '@pepega/containers/RavePro/UserMenu';
+import { Flex, RaveProLayout } from '@dream/ui';
+import { UserMenu } from '@dream/containers/RavePro/UserMenu';
 import { Logo } from './Logo';
 // import { CurrentPlaying } from '../CurrentPlaying';
-import { Chat } from '@pepega/chat';
+import { Chat } from '@dream/chat';
 
 const Box = styled.div`
   height: 100%;

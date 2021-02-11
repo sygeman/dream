@@ -2,7 +2,7 @@ import { rgba } from 'polished';
 import { FC, useEffect, useRef, useState } from 'react';
 import ResizeObserver from 'resize-observer-polyfill';
 import styled from 'styled-components';
-import { humanNumbers } from '@pepega/utils/count';
+import { humanNumbers } from '@dream/utils/count';
 import { RemoveRedEye } from 'styled-icons/material';
 
 const Box = styled.div`

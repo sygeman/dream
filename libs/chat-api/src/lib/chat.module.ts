@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { PrismaModule } from '@pepega/prisma';
+import { PrismaModule } from '@dream/prisma';
 import { ChatService } from './chat.service';
 import { ChatResolver } from './chat.resolver';
 

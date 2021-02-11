@@ -2,7 +2,7 @@ import { darken } from 'polished';
 import { FC } from 'react';
 import { Line, LineChart } from 'recharts';
 import styled from 'styled-components';
-import { humanNumbers } from '@pepega/utils/count';
+import { humanNumbers } from '@dream/utils/count';
 
 const Box = styled.div`
   border-radius: 5px;

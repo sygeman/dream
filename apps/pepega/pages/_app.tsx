@@ -2,7 +2,7 @@ import React from 'react';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { ApolloProvider } from '@apollo/client';
-import { useApollo } from '@pepega/utils/apollo';
+import { useApollo } from '@dream/utils/apollo';
 import { ThemeProvider } from 'styled-components';
 import { createGlobalStyle } from 'styled-components';
 

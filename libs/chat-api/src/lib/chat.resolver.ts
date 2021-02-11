@@ -13,8 +13,8 @@ import { ChatMessageCreateInput } from './dto/chatMessage.create.input';
 //   import { ChatService } from './chat.service';
 //   import { UsersService } from '../user/user.service';
 import { ChatMessage } from './models/chatMessage';
-import { PrismaService } from '@pepega/prisma';
-import { AuthGuard } from '@pepega/auth-api';
+import { PrismaService } from '@dream/prisma';
+import { AuthGuard } from '@dream/auth-api';
 import { RedisPubSub } from 'graphql-redis-subscriptions';
 
 @Resolver((of) => ChatMessage)

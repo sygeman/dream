@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import useAxios from 'axios-hooks';
-import '@pepega/utils/axios';
+import '@dream/utils/axios';
 import { gql, useQuery } from '@apollo/client';
 import { TrackInfo } from './TrackInfo';
 

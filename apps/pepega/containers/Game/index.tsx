@@ -4,8 +4,8 @@ import { useQuery } from '@apollo/client';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
 import { darken } from 'polished';
-import { Grid, VideoPreview, CardMedia } from '@pepega/pepega-ui';
-import { dateDistanceInWordsToNow } from '@pepega/utils/date';
+import { Grid, VideoPreview, CardMedia } from '@dream/pepega-ui';
+import { dateDistanceInWordsToNow } from '@dream/utils/date';
 
 const GET_TWITCH_GAME = gql`
   query twitchGame($id: String) {

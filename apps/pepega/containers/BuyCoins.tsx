@@ -1,8 +1,8 @@
 import { darken, lighten } from 'polished';
 import styled from 'styled-components';
 import getConfig from 'next/config';
-import { Button, CoinIconGreen } from '@pepega/pepega-ui';
-import { humanNumbers } from '@pepega/utils/count';
+import { Button, CoinIconGreen } from '@dream/pepega-ui';
+import { humanNumbers } from '@dream/utils/count';
 const { publicRuntimeConfig } = getConfig();
 
 const Box = styled.div`

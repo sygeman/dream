@@ -1,7 +1,7 @@
 import { gql, useMutation, useQuery } from '@apollo/client';
-import { Flex, Button, Typography } from '@pepega/ui';
-import { Menu, MenuItem } from '@pepega/ui/Menu';
-import { getRefreshToken } from '@pepega/utils/token';
+import { Flex, Button, Typography } from '@dream/ui';
+import { Menu, MenuItem } from '@dream/ui/Menu';
+import { getRefreshToken } from '@dream/utils/token';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 

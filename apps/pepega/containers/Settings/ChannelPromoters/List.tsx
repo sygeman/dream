@@ -3,10 +3,10 @@ import { lighten } from 'polished';
 import { FC, useRef } from 'react';
 import { useMutation } from '@apollo/client';
 import styled from 'styled-components';
-import { Input, Button } from '@pepega/pepega-ui';
+import { Input, Button } from '@dream/pepega-ui';
 import ChannelPromoter from './ChannelPromoter';
-import { parseTwitchChannelName } from '@pepega/utils/parseTwitchChannelName';
-import { useAccess } from '@pepega/utils/useAccess';
+import { parseTwitchChannelName } from '@dream/utils/parseTwitchChannelName';
+import { useAccess } from '@dream/utils/useAccess';
 
 const CREATE_CHANNEL = gql`
   mutation createChannelPromoter($channelName: String!) {

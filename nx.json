@@ -1,5 +1,5 @@
 {
-  "npmScope": "pepega",
+  "npmScope": "dream",
   "affected": { "defaultBase": "master" },
   "implicitDependencies": {
     "workspace.json": "*",

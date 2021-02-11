@@ -2,8 +2,8 @@ import Link from 'next/link';
 import { darken } from 'polished';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
-import { Button, Grid, CardMedia } from '@pepega/pepega-ui';
-import { useAccess } from '@pepega/utils/useAccess';
+import { Button, Grid, CardMedia } from '@dream/pepega-ui';
+import { useAccess } from '@dream/utils/useAccess';
 
 const Box = styled.div`
   padding: 10px 20px;

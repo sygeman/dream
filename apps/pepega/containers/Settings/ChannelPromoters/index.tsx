@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import styled from 'styled-components';
 import { TopStreams } from '../../TopStreams';
-import { useAccess } from '@pepega/utils/useAccess';
+import { useAccess } from '@dream/utils/useAccess';
 import { HowTo } from './HowTo';
 import { ChannelPromotersList } from './List';
 import { ChannelPromotersWithData } from './WIthData';

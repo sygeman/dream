@@ -8,7 +8,7 @@ import {
   VKShareButton,
 } from 'react-share';
 import styled from 'styled-components';
-import { Dropdown } from '@pepega/pepega-ui';
+import { Dropdown } from '@dream/pepega-ui';
 import { Share as ShareIcon } from 'styled-icons/material';
 import { FileCopy as CopyIcon } from 'styled-icons/remix-fill';
 

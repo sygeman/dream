@@ -1,5 +1,5 @@
 import { Field, ObjectType } from '@nestjs/graphql';
-import { User } from '@pepega/user-api';
+import { User } from '@dream/user-api';
 
 @ObjectType()
 export class ChatMessage {

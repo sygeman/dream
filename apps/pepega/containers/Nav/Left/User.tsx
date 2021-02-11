@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import { lighten } from 'polished';
 import styled from 'styled-components';
-import { CoinIconGold, CoinIconGreen } from '@pepega/pepega-ui';
+import { CoinIconGold, CoinIconGreen } from '@dream/pepega-ui';
 import { useRouter } from 'next/router';
-import { useAccess } from '@pepega/utils/useAccess';
+import { useAccess } from '@dream/utils/useAccess';
 import { WalletBalance } from './WalletBalance';
 import { LeftNavMenuUserBlock } from './UserBlock';
 import { AddCircleOutline as AddCircleOutlineIcon } from 'styled-icons/material';

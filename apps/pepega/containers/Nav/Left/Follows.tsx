@@ -1,10 +1,10 @@
 import gql from 'graphql-tag';
 import { FC } from 'react';
 import { useQuery } from '@apollo/client';
-import { Button } from '@pepega/pepega-ui';
+import { Button } from '@dream/pepega-ui';
 import { useRouter } from 'next/router';
-import { useAccess } from '@pepega/utils/useAccess';
-import * as LeftMenu from '@pepega/pepega-ui/LeftMenu';
+import { useAccess } from '@dream/utils/useAccess';
+import * as LeftMenu from '@dream/pepega-ui/LeftMenu';
 import styled from 'styled-components';
 import {
   Favorite,

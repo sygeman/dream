@@ -3,7 +3,7 @@ import { FC, useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 import Scrollbars from 'react-custom-scrollbars';
 import styled from 'styled-components';
-import { Flex } from '@pepega/pepega-ui';
+import { Flex } from '@dream/pepega-ui';
 import { lighten } from 'polished';
 import { Clips } from '../Clips';
 import { CommunityRight } from './Right';

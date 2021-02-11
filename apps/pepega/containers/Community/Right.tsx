@@ -7,7 +7,7 @@ import { useQuery } from '@apollo/client';
 import { Chat as ChatIcon } from 'styled-icons/boxicons-solid';
 import { Users as UsersIcon } from 'styled-icons/fa-solid';
 import { Chat } from '../Chat';
-import { Flex } from '@pepega/pepega-ui';
+import { Flex } from '@dream/pepega-ui';
 
 const Box = styled.div`
   display: flex;

@@ -3,7 +3,7 @@ import Router from 'next/router';
 import { FC, useState } from 'react';
 import { useMutation } from '@apollo/client';
 import styled from 'styled-components';
-import { Flex, Button, Input, CoinIconGold } from '@pepega/pepega-ui';
+import { Flex, Button, Input, CoinIconGold } from '@dream/pepega-ui';
 
 const CREATE_COMMUNITY = gql`
   mutation createCommunity($input: CommunityCreateInput!) {

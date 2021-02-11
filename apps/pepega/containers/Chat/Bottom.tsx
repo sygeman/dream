@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import { FC, useRef } from 'react';
 import gql from 'graphql-tag';
 import { useMutation } from '@apollo/client';
-import { useAccess } from '@pepega/utils/useAccess';
-import { convertTextToEmojiCode } from '@pepega/utils/emoji';
+import { useAccess } from '@dream/utils/useAccess';
+import { convertTextToEmojiCode } from '@dream/utils/emoji';
 
 const CREATE_CHAT_MESSAGE = gql`
   mutation createChatMessage($input: ChatMessageCreateInput!) {

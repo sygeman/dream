@@ -1,8 +1,8 @@
-import React from 'react'
+import React from 'react';
 import { darken, lighten } from 'polished';
 import { FC, ReactNode } from 'react';
 import styled from 'styled-components';
-import { shortNumbers } from '@pepega/utils/count';
+import { shortNumbers } from '@dream/utils/count';
 
 const Box = styled.div`
   display: flex;

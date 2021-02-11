@@ -1,6 +1,6 @@
 import React from 'react';
-import { Flex } from '@pepega/ui/base/Flex';
-import { Typography } from '@pepega/ui';
+import { Flex } from '@dream/ui/base/Flex';
+import { Typography } from '@dream/ui';
 
 export const Logo: React.FC = React.memo(() => (
   <Flex>

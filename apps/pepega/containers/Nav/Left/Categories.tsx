@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 import React, { FC } from 'react';
 import { useQuery } from '@apollo/client';
 import { useRouter } from 'next/router';
-import * as LeftMenu from '@pepega/pepega-ui/LeftMenu';
+import * as LeftMenu from '@dream/pepega-ui/LeftMenu';
 import { Apps } from 'styled-icons/material';
 
 const GET_TWITCH_TOP_GAMES = gql`

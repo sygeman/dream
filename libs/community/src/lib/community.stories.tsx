@@ -1,5 +1,5 @@
 import React from 'react';
-import { WithApollo } from '@pepega/utils/apollo/WithApollo';
+import { WithApollo } from '@dream/utils/apollo/WithApollo';
 import { Community as CommunityContainer } from './community';
 
 export default {

@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
+import * as depthLimit from 'graphql-depth-limit';
 import { AuthModule, AuthService } from '@dream/auth-api';
 import { UserModule } from '@dream/user-api';
 import { ChatModule } from '@dream/chat-api';
@@ -26,6 +27,7 @@ import authSpotifyConfig from './config/authSpotify.config';
         connectionService: ConnectionService
       ) => ({
         installSubscriptionHandlers: true,
+        validationRules: [depthLimit(10)],
         autoSchemaFile: 'schema.gql',
         context: async ({ req }) => {
           const accessToken = authService.accessTokenFromHeader(

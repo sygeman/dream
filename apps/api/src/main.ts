@@ -1,4 +1,3 @@
-import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import * as session from 'express-session';
 
@@ -11,6 +10,24 @@ async function bootstrap() {
     },
   });
 
+  // const config = app.get('ConfigService');
+
+  // const RedisStore = connectRedis(session);
+
+  // app.use(
+  //   session({
+  //     store: new RedisStore({
+  //       client: new Redis(config.get('db.redisUrl'), {
+  //         keyPrefix: config.get('base.appPrefix'),
+  //       }),
+  //     }),
+  //     secret: config.get('auth.sessionSecret'),
+  //     name: 'appsessions',
+  //     resave: false,
+  //     saveUninitialized: false,
+  //   }),
+  // );
+
   app.use(
     session({
       secret: 'my-secret',
@@ -19,10 +36,8 @@ async function bootstrap() {
     })
   );
 
-  const port = process.env.PORT || 3333;
-  await app.listen(port, () => {
-    Logger.log('Listening at http://localhost:' + port + '/');
-  });
+  await app.startAllMicroservicesAsync();
+  await app.listen(3333);
 }
 
 bootstrap();

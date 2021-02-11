@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { PromoterHelp } from '../containers/Help/Promoter';
-import Layout from '../layouts/Main';
+import { PromoterHelp } from '../../containers/Help/Promoter';
+import Layout from '../../layouts/Main';
 
 const Box = styled.div`
   display: flex;

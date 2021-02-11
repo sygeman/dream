@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import styled from 'styled-components';
 import { CardMedia, TwitchPlayer, VideoPreview } from '@pepega/pepega-ui';
-import { Circle as CircleIcon } from 'styled-icons/boxicons-regular/Circle';
+import { Circle as CircleIcon } from 'styled-icons/boxicons-regular';
 
 interface IProcess {
   browser: boolean;

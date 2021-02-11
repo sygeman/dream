@@ -3,7 +3,7 @@ import { darken } from 'polished';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
 import { Button } from '@pepega/pepega-ui';
-import { Restore as HistoryIcon } from 'styled-icons/material/Restore';
+import { Restore as HistoryIcon } from 'styled-icons/material';
 
 const Box = styled.div`
   padding: 40px;

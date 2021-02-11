@@ -3,7 +3,7 @@ import { darken } from 'polished';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
 import { Button } from '@pepega/pepega-ui';
-import { ThumbUp as ThumbUpIcon } from 'styled-icons/material/ThumbUp';
+import { ThumbUp as ThumbUpIcon } from 'styled-icons/material';
 
 const Box = styled.div`
   padding: 40px;

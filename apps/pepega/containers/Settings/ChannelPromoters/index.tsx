@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import styled from 'styled-components';
-import { TopStreams } from '../containers/TopStreams';
+import { TopStreams } from '../../TopStreams';
 import { useAccess } from '@pepega/utils/useAccess';
 import { HowTo } from './HowTo';
 import { ChannelPromotersList } from './List';

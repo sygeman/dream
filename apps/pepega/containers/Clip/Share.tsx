@@ -9,8 +9,8 @@ import {
 } from 'react-share';
 import styled from 'styled-components';
 import { Dropdown } from '@pepega/pepega-ui';
-import { Share as ShareIcon } from 'styled-icons/material/Share';
-import { FileCopy as CopyIcon } from 'styled-icons/remix-fill/FileCopy';
+import { Share as ShareIcon } from 'styled-icons/material';
+import { FileCopy as CopyIcon } from 'styled-icons/remix-fill';
 
 const ShareButton = styled.div`
   height: 100%;

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { VideoPreview, CardMedia } from '@pepega/pepega-ui';
 import { isEqual } from 'lodash';
 import { dateDistanceInWordsToNow } from '@pepega/utils/date';
-import { ThumbUp as ThumbUpIcon } from 'styled-icons/material/ThumbUp';
+import { ThumbUp as ThumbUpIcon } from 'styled-icons/material';
 
 const PreviewContent = styled.div`
   position: absolute;

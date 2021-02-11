@@ -1,6 +1,6 @@
 import subDays from 'date-fns/subDays';
-import { Clips } from '../containers/Clips';
-import Layout from '../layouts/Main';
+import { Clips } from '../../containers/Clips';
+import Layout from '../../layouts/Main';
 
 const TopMonthPage = () => {
   const now = new Date();

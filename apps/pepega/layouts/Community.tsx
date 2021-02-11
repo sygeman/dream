@@ -7,7 +7,7 @@ import {
   FlashOn,
   SupervisorAccount,
 } from 'styled-icons/material';
-import { Hot as HotIcon } from 'styled-icons/boxicons-solid/Hot';
+import { Hot as HotIcon } from 'styled-icons/boxicons-solid';
 import * as LeftMenu from '@pepega/pepega-ui/LeftMenu';
 import BaseLayout from './Base';
 import { Categories } from '../containers/Nav/Left/Categories';

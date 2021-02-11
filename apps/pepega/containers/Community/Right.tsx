@@ -4,8 +4,8 @@ import styled from 'styled-components';
 import { lighten } from 'polished';
 import gql from 'graphql-tag';
 import { useQuery } from '@apollo/client';
-import { Chat as ChatIcon } from 'styled-icons/boxicons-solid/Chat';
-import { Users as UsersIcon } from 'styled-icons/fa-solid/Users';
+import { Chat as ChatIcon } from 'styled-icons/boxicons-solid';
+import { Users as UsersIcon } from 'styled-icons/fa-solid';
 import { Chat } from '../Chat';
 import { Flex } from '@pepega/pepega-ui';
 

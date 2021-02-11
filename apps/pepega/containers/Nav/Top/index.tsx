@@ -2,7 +2,7 @@ import { lighten, rgba } from 'polished';
 import { FC } from 'react';
 import styled from 'styled-components';
 
-import { Menu as MenuIcon } from 'styled-icons/material/Menu';
+import { Menu as MenuIcon } from 'styled-icons/material';
 
 const Box = styled.div`
   height: 42px;

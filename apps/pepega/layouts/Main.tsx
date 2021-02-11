@@ -8,7 +8,7 @@ import {
   SupervisorAccount,
 } from 'styled-icons/material';
 import Scrollbars from 'react-custom-scrollbars';
-import { Hot as HotIcon } from 'styled-icons/boxicons-solid/Hot';
+import { Hot as HotIcon } from 'styled-icons/boxicons-solid';
 import * as LeftMenu from '@pepega/pepega-ui/LeftMenu';
 import BaseLayout from './Base';
 import { TopStreams } from '../containers/TopStreams';

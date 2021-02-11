@@ -12,5 +12,6 @@ module.exports = {
     '<rootDir>/libs/auth-api',
     '<rootDir>/libs/user-api',
     '<rootDir>/libs/connection-api',
+    '<rootDir>/apps/pepega',
   ],
 };

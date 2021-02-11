@@ -47,7 +47,7 @@
     "axios-hooks": "2.3.0",
     "class-validator": "0.13.1",
     "deepmerge": "4.2.2",
-    "document-register-element": "1.14.10",
+    "document-register-element": "1.13.1",
     "express-session": "1.17.1",
     "framer-motion": "3.3.0",
     "graphql": "15.5.0",
@@ -72,7 +72,8 @@
     "styled-icons": "10.27.0",
     "styled-normalize": "8.0.7",
     "styled-system": "5.1.5",
-    "tslib": "2.1.0"
+    "tslib": "^2.0.0",
+    "core-js": "^3.6.5"
   },
   "devDependencies": {
     "@babel/core": "7.12.13",

@@ -359,6 +359,83 @@
           }
         }
       }
+    },
+    "pepega": {
+      "root": "apps/pepega",
+      "sourceRoot": "apps/pepega",
+      "projectType": "application",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/next:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "root": "apps/pepega",
+            "outputPath": "dist/apps/pepega"
+          },
+          "configurations": {
+            "production": {}
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/next:server",
+          "options": {
+            "buildTarget": "pepega:build",
+            "dev": true
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "pepega:build:production",
+              "dev": false
+            }
+          }
+        },
+        "export": {
+          "builder": "@nrwl/next:export",
+          "options": {
+            "buildTarget": "pepega:build:production"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/pepega/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/pepega"],
+          "options": {
+            "jestConfig": "apps/pepega/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "pepega-e2e": {
+      "root": "apps/pepega-e2e",
+      "sourceRoot": "apps/pepega-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/pepega-e2e/cypress.json",
+            "tsConfig": "apps/pepega-e2e/tsconfig.e2e.json",
+            "devServerTarget": "pepega:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "pepega:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/pepega-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
     }
   },
   "cli": {

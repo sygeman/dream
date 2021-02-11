@@ -35,8 +35,7 @@ export const UserMenu = ({
     const params = new URLSearchParams();
     params.set('code_handler', codeHandler);
     params.set('redirect_uri', redirectUri);
-    const url =
-      'https://ravepro-api.sgmn.dev/auth/spotify?' + params.toString();
+    const url = 'https://api.sgmn.dev/auth/spotify?' + params.toString();
 
     console.log(url);
 

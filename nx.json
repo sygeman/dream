@@ -23,7 +23,7 @@
     },
     "storybook": { "tags": [] },
     "ui": { "tags": [] },
-    "ravepro-api": { "tags": [] },
+    "api": { "tags": [] },
     "prisma": { "tags": [] },
     "containers": { "tags": [] },
     "utils": { "tags": [] },

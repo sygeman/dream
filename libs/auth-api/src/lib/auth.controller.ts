@@ -24,7 +24,7 @@ export class AuthController {
     // Update or create profile and user
     if (!profile) {
       // Redirect with error
-      return res.redirect('https://ravepro-api.sgmn.dev/graphql');
+      return res.redirect('https://api.sgmn.dev/graphql');
     }
 
     const existProfile = await this.prisma.profile.findFirst({
@@ -92,7 +92,7 @@ export class AuthController {
   ) {
     req.session.codeHandler = codeHandler;
     req.session.redirectUri = redirectUri;
-    res.redirect(`https://ravepro-api.sgmn.dev/authwr/spotify`);
+    res.redirect(`https://api.sgmn.dev/authwr/spotify`);
   }
 
   @Get('authwr/spotify')

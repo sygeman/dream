@@ -6,7 +6,7 @@ import { useApollo } from '@pepega/utils/apollo';
 
 function CustomApp({ Component, pageProps }: AppProps) {
   const apolloClient = useApollo({
-    uri: 'https://ravepro-api.sgmn.dev/graphql',
+    uri: 'https://api.sgmn.dev/graphql',
     pageProps,
   });
 

@@ -1,7 +1,7 @@
 import { getRefreshToken, setAccessToken } from '../token';
 
 export const refreshTokens = async () => {
-  const newAccessToken = await fetch('https://ravepro-api.sgmn.dev/graphql', {
+  const newAccessToken = await fetch('https://api.sgmn.dev/graphql', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({

@@ -4,7 +4,7 @@ import { refreshTokens } from './refreshTokens';
 
 export const getWsLink = () =>
   new WebSocketLink({
-    uri: `wss://ravepro-api.sgmn.dev/graphql`,
+    uri: `wss://api.sgmn.dev/graphql`,
     options: {
       reconnect: true,
       connectionParams: async () => {

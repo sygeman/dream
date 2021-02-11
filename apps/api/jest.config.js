@@ -1,5 +1,5 @@
 module.exports = {
-  displayName: 'ravepro-api',
+  displayName: 'api',
   preset: '../../jest.preset.js',
   globals: {
     'ts-jest': {
@@ -10,5 +10,5 @@ module.exports = {
     '^.+\\.[tj]s$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
-  coverageDirectory: '../../coverage/apps/ravepro-api',
+  coverageDirectory: '../../coverage/apps/api',
 };

@@ -14,7 +14,7 @@ export const Auth = () => {
     'https://storybook.sgmn.dev/?path=/story/containers-ravepro--auth&'
   );
   p.set('redirect_uri', 'https://storybook.sgmn.dev/');
-  const url = 'https://ravepro-api.sgmn.dev/auth/spotify?' + p.toString();
+  const url = 'https://api.sgmn.dev/auth/spotify?' + p.toString();
 
   const params = new URL(window.location.href).searchParams;
   const code = params.get('code');

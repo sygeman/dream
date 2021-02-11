@@ -4,7 +4,7 @@ import { useApollo } from './';
 
 export const WithApollo: React.FC = ({ children }) => {
   const apolloClient = useApollo({
-    uri: 'https://ravepro-api.sgmn.dev/graphql',
+    uri: 'https://api.sgmn.dev/graphql',
   });
 
   return <ApolloProvider client={apolloClient}>{children}</ApolloProvider>;

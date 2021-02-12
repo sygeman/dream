@@ -6,7 +6,7 @@ import { AuthGuard } from '@dream/auth-api';
 import { ConfigService } from '@nestjs/config';
 import * as querystring from 'querystring';
 
-@Resolver((of) => User)
+@Resolver(() => User)
 export class UserResolver {
   constructor(
     private prisma: PrismaService,
@@ -15,7 +15,7 @@ export class UserResolver {
   ) {}
 
   @UseGuards(AuthGuard)
-  @Query((returns) => User)
+  @Query(() => User)
   me(@Context('userId') userId): Promise<User> {
     return this.prisma.user.findFirst({
       where: { id: userId },
@@ -26,7 +26,7 @@ export class UserResolver {
   }
 
   @UseGuards(AuthGuard)
-  @Query((returns) => String)
+  @Query(() => String)
   async spotifyToken(@Context('userId') userId): Promise<string> {
     const profile = await this.prisma.profile.findFirst({
       where: { userId },

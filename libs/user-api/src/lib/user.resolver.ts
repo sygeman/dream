@@ -1,4 +1,4 @@
-import { Context, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { Args, Context, ID, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { PrismaService } from '@dream/prisma';
 import { User } from './models/user.model';
 import { HttpService, UseGuards } from '@nestjs/common';
@@ -13,6 +13,23 @@ export class UserResolver {
     private httpService: HttpService,
     private readonly config: ConfigService
   ) {}
+
+  @Query(() => User, { nullable: true })
+  async user(
+    @Args({ name: 'id', type: () => ID, nullable: true })
+    id: string,
+    @Context('userId') userId
+  ) {
+    if (!id) {
+      if (!userId) return null;
+      id = userId;
+    }
+
+    return this.prisma.user.findFirst({
+      where: { id },
+      include: { profile: true },
+    });
+  }
 
   @UseGuards(AuthGuard)
   @Query(() => User)

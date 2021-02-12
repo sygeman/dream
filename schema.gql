@@ -38,6 +38,7 @@ type ChatMessage {
 type Query {
   tokens(authCode: String!): AuthTokens!
   refresh(refreshToken: String!): String!
+  user(id: ID): User
   me: User!
   spotifyToken: String!
   chatMessages(chatId: ID!): [ChatMessage!]!

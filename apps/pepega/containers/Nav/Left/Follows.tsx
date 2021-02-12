@@ -1,5 +1,5 @@
 import gql from 'graphql-tag';
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { useQuery } from '@apollo/client';
 import { Button } from '@dream/pepega-ui';
 import { useRouter } from 'next/router';
@@ -156,6 +156,9 @@ const FollowsInner = () => {
 
 export const Follows: FC = () => {
   const [{ allow: isUser, loading }] = useAccess();
+  const router = useRouter();
+
+  console.log(router);
 
   if (loading) {
     return (
@@ -185,7 +188,7 @@ export const Follows: FC = () => {
             Войдите через Twitch чтобы видеть список своих подписок
           </FollowsGuestText>
           <FollowsGuestAction>
-            <a href={`${publicRuntimeConfig.apiUrl}auth/twitch`}>
+            <a href="https://api.sgmn.dev/auth/twitch">
               <Button>Войти</Button>
             </a>
           </FollowsGuestAction>

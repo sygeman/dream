@@ -1,13 +1,10 @@
 import { lighten } from 'polished';
-import { FC } from 'react';
+import React, { FC } from 'react';
 import styled from 'styled-components';
 import {
   Twitch as TwitchIcon,
-  Vk as VkIcon,
-  Google as GoogleIcon
+  Spotify as SpotifyIcon,
 } from 'styled-icons/fa-brands';
-import getConfig from 'next/config';
-const { publicRuntimeConfig } = getConfig();
 
 const AuthBox = styled.div`
   display: flex;
@@ -45,10 +42,10 @@ const LoginButton = styled('a')<{
   cursor: pointer;
   transition: all 0.3s ease;
   font-weight: 500;
-  background: ${props => props.cColor};
+  background: ${(props) => props.cColor};
 
   :hover {
-    background: ${props => lighten(0.1, props.cColor)};
+    background: ${(props) => lighten(0.1, props.cColor)};
   }
 `;
 
@@ -73,37 +70,37 @@ const SocialTitle = styled.div`
   letter-spacing: 2px;
 `;
 
-const SocialButton = ({ bgColor, path, icon, title }) => (
-  <LoginButton
-    cColor={bgColor}
-    href={`${publicRuntimeConfig.apiUrl}auth/${path}`}
-  >
-    <SocialIcon>{icon}</SocialIcon>
-    <SocialTitle>{title}</SocialTitle>
-  </LoginButton>
-);
+const SocialButton = ({ bgColor, path, icon, title }) => {
+  const clientURL = 'https://pepega.sgmn.dev/';
+
+  const params = new URLSearchParams();
+  params.set('code_handler', `${clientURL}auth/success?`);
+  params.set('redirect_uri', clientURL);
+  const authUrl = `https://api.sgmn.dev/auth/${path}?${params.toString()}`;
+
+  return (
+    <LoginButton cColor={bgColor} href={authUrl}>
+      <SocialIcon>{icon}</SocialIcon>
+      <SocialTitle>{title}</SocialTitle>
+    </LoginButton>
+  );
+};
 
 export const Auth: FC = () => (
   <AuthBox>
     <AuthTitle>Выберите наиболее удобную для Вас платформу</AuthTitle>
     <SocialForm>
       <SocialButton
-        bgColor={'#507299'}
-        path="vkontakte"
-        icon={<VkIcon size="21px" />}
-        title="VK"
-      />
-      <SocialButton
-        bgColor={'#DB4437'}
-        path="google"
-        icon={<GoogleIcon size="18px" />}
-        title="GOOGLE"
-      />
-      <SocialButton
         bgColor={'#6542a6'}
         path="twitch"
         icon={<TwitchIcon size="18px" />}
         title="TWITCH"
+      />
+      <SocialButton
+        bgColor={'#1a9c48'}
+        path="spotify"
+        icon={<SpotifyIcon size="18px" />}
+        title="SPOTIFY"
       />
     </SocialForm>
   </AuthBox>

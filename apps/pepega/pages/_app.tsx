@@ -3,8 +3,7 @@ import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { ApolloProvider } from '@apollo/client';
 import { useApollo } from '@dream/utils/apollo';
-import { ThemeProvider } from 'styled-components';
-import { createGlobalStyle } from 'styled-components';
+import { ThemeProvider, createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
   @keyframes fadeIn{

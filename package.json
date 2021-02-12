@@ -69,6 +69,7 @@
     "next": "10.0.6",
     "passport": "0.4.1",
     "passport-spotify": "2.0.0",
+    "passport-twitch-new": "^0.0.2",
     "pg": "8.5.1",
     "polished": "4.1.0",
     "prisma": "2.16.1",

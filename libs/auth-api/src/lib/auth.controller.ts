@@ -82,7 +82,7 @@ export class AuthController {
     );
   }
 
-  // Spotufy
+  // Spotify
   @Get('auth/spotify')
   authSpotify(
     @Request() req,
@@ -103,6 +103,30 @@ export class AuthController {
   @Get('authend/spotify')
   @UseGuards(AuthGuard('spotify'))
   async authendSpotify(@Request() req, @Response() res) {
+    return this.authend(req, res);
+  }
+
+  // Twitch
+  @Get('auth/twitch')
+  authTwitch(
+    @Request() req,
+    @Response() res,
+    @Query('code_handler') codeHandler,
+    @Query('redirect_uri') redirectUri
+  ) {
+    req.session.codeHandler = codeHandler;
+    req.session.redirectUri = redirectUri;
+    res.redirect(`https://api.sgmn.dev/authwr/twitch`);
+  }
+
+  @Get('authwr/twitch')
+  @UseGuards(AuthGuard('twitch'))
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  authWRTwitch() {}
+
+  @Get('authend/twitch')
+  @UseGuards(AuthGuard('twitch'))
+  async authendTwitch(@Request() req, @Response() res) {
     return this.authend(req, res);
   }
 }

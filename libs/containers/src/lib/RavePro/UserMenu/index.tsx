@@ -31,11 +31,11 @@ export const UserMenu = ({
   const [menuIsOpen, setMenuIsOpen] = useState(false);
   const toggleMenuIsOpen = () => setMenuIsOpen(!menuIsOpen);
 
-  const login = () => {
+  const login = (provider: string) => {
     const params = new URLSearchParams();
     params.set('code_handler', codeHandler);
     params.set('redirect_uri', redirectUri);
-    const url = 'https://api.sgmn.dev/auth/spotify?' + params.toString();
+    const url = `https://api.sgmn.dev/auth/${provider}?` + params.toString();
 
     console.log(url);
 
@@ -59,9 +59,14 @@ export const UserMenu = ({
 
   const GuestMenu = () => {
     return (
-      <Button onClick={login}>
-        <Typography>Login with Spotify</Typography>
-      </Button>
+      <Flex>
+        <Button onClick={() => login('spotify')}>
+          <Typography>Login with Spotify</Typography>
+        </Button>
+        <Button onClick={() => login('twitch')}>
+          <Typography>Login with Twitch</Typography>
+        </Button>
+      </Flex>
     );
   };
 

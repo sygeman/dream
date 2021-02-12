@@ -5,13 +5,20 @@ import { AuthController } from './auth.controller';
 import { AuthResolver } from './auth.resolver';
 import { AuthService } from './auth.service';
 import { SpotifyStrategy } from './strategies/spotify.strategy';
+import { TwitchStrategy } from './strategies/twitch.strategy';
 import { AuthGuard } from './auth.guard';
 
 @Global()
 @Module({
   imports: [PassportModule, PrismaModule],
   controllers: [AuthController],
-  providers: [AuthResolver, AuthService, SpotifyStrategy, AuthGuard],
+  providers: [
+    AuthResolver,
+    AuthService,
+    SpotifyStrategy,
+    TwitchStrategy,
+    AuthGuard,
+  ],
   exports: [AuthService],
 })
 export class AuthModule {}

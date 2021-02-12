@@ -1,7 +1,7 @@
 import { UseGuards, Inject } from '@nestjs/common';
 import { Resolver, Query, Mutation, Args, Context } from '@nestjs/graphql';
 import { ProfileService } from './profile.service';
-import { AuthGuard } from '../../guards';
+import { AuthGuard } from '@dream/auth-api';
 import { RedisPubSub } from 'graphql-redis-subscriptions';
 import { Profile } from './models/profile';
 import { ID } from '@nestjs/graphql';

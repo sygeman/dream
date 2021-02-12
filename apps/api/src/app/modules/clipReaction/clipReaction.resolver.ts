@@ -7,7 +7,7 @@ import {
   Args,
   Context,
 } from '@nestjs/graphql';
-import { AuthGuard } from '../../guards';
+import { AuthGuard } from '@dream/auth-api';
 import { ClipReactionService } from './clipReaction.service';
 import { RedisPubSub } from 'graphql-redis-subscriptions';
 import { ID } from '@nestjs/graphql';

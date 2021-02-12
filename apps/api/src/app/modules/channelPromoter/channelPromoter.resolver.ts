@@ -7,7 +7,7 @@ import {
   Context,
 } from '@nestjs/graphql';
 import { UseGuards, Inject } from '@nestjs/common';
-import { AuthGuard } from '../../guards/auth.guard';
+import { AuthGuard } from '@dream/auth-api';
 import { ChannelPromoterArgs } from './dto/channelPromoter.args';
 import { CreateChannelPromoterArgs } from './dto/createChannelPromoter.args';
 import { DeleteChannelPromoterArgs } from './dto/deleteChannelPromoter.args';

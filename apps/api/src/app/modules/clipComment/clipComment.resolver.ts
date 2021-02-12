@@ -10,7 +10,7 @@ import {
 import { RedisPubSub } from 'graphql-redis-subscriptions';
 import { ID } from '@nestjs/graphql';
 
-import { AuthGuard, ModGuard } from '../../guards';
+import { AuthGuard, ModGuard } from '@dream/auth-api';
 import { ClipCommentService } from './clipComment.service';
 import { ClipService } from '../clip/clip.service';
 import { ClipComment } from './models/clipComment';

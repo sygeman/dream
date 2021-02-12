@@ -2,13 +2,13 @@ import { UseGuards } from '@nestjs/common';
 import { Query, Resolver } from '@nestjs/graphql';
 import { ConnectionsService } from './connection.service';
 import { ConnectionsCount } from './models/connectionsCount';
-import { AuthGuard, AdminGuard } from '../../guards';
+import { AuthGuard, AdminGuard } from '@dream/auth-api';
 
 @Resolver()
 export class ConnectionsResolvers {
   constructor(private readonly connectionsService: ConnectionsService) {}
 
-  @Query(returns => ConnectionsCount)
+  @Query((returns) => ConnectionsCount)
   @UseGuards(AuthGuard, AdminGuard)
   async connectionsCount() {
     const [unique, users] = await Promise.all([

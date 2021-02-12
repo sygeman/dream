@@ -7,7 +7,7 @@ import {
   Subscription,
   Mutation,
 } from '@nestjs/graphql';
-import { AuthGuard, AdminGuard } from '../../guards';
+import { AuthGuard, AdminGuard } from '@dream/auth-api';
 import { WalletService } from './wallet.service';
 import { RedisPubSub } from 'graphql-redis-subscriptions';
 import { WalletArgs } from './dto/wallet.args';

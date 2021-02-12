@@ -1,7 +1,7 @@
 import { UseGuards } from '@nestjs/common';
 import { Query, Resolver, Args, Context } from '@nestjs/graphql';
 import { UsersService } from './user.service';
-import { AuthGuard, AdminGuard } from '../../guards';
+import { AuthGuard, AdminGuard } from '@dream/auth-api';
 import { User } from './models/user';
 import { UserTop } from './models/userTop';
 import { ID, Int } from '@nestjs/graphql';

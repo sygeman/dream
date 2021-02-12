@@ -9,7 +9,7 @@ import {
   Parent,
 } from '@nestjs/graphql';
 import { UseGuards, Inject } from '@nestjs/common';
-import { AuthGuard, ModGuard } from '../../guards';
+import { AuthGuard, ModGuard } from '@dream/auth-api';
 import { ChatMessageCreateInput } from './dto/chatMessage.create.input';
 import { ChatService } from './chat.service';
 import { UsersService } from '../user/user.service';

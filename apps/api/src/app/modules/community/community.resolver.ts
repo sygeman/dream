@@ -7,7 +7,7 @@ import {
   Args,
   Context,
 } from '@nestjs/graphql';
-import { AuthGuard } from '../../guards';
+import { AuthGuard } from '@dream/auth-api';
 import { CommunityService } from './community.service';
 import { ChatService } from '../chat/chat.service';
 import { WalletService } from '../wallet/wallet.service';

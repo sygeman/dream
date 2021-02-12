@@ -2,7 +2,7 @@ import { UseGuards } from '@nestjs/common';
 import { Mutation, Resolver, Args, Context } from '@nestjs/graphql';
 import { ID } from '@nestjs/graphql';
 
-import { AuthGuard } from '../../guards';
+import { AuthGuard } from '@dream/auth-api';
 import { ClipHistoryService } from './clipHistory.service';
 import { ClipHistory } from './models/clipHistory';
 

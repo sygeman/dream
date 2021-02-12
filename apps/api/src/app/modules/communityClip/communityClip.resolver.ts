@@ -10,7 +10,7 @@ import {
   Context,
 } from '@nestjs/graphql';
 
-import { AuthGuard } from '../../guards';
+import { AuthGuard } from '@dream/auth-api';
 
 import { CommunityClip } from './models/communityClip';
 import { CommunityClipCreateInput } from './dto/communityClip.create.input';

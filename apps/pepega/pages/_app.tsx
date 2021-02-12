@@ -6,7 +6,7 @@ import { useApollo } from '@dream/utils/apollo';
 import { ThemeProvider } from 'styled-components';
 import { createGlobalStyle } from 'styled-components';
 
-export const GlobalStyle = createGlobalStyle`
+const GlobalStyle = createGlobalStyle`
   @keyframes fadeIn{
     0%{
       opacity: 0;
@@ -85,6 +85,7 @@ function CustomApp({ Component, pageProps }: AppProps) {
           <title>RavePro</title>
         </Head>
         <Component {...pageProps} />
+        <GlobalStyle />
       </ThemeProvider>
     </ApolloProvider>
   );

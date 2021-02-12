@@ -3,9 +3,8 @@ import { useQuery } from '@apollo/client';
 
 const GET_USER = gql`
   query getUser {
-    user {
+    me {
       id
-      role
     }
   }
 `;

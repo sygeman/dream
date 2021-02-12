@@ -20,12 +20,12 @@ export class TwitchResolvers {
     private readonly profile: ProfileService
   ) {}
 
-  @Query((returns) => TwitchClipOld)
+  @Query(() => TwitchClipOld)
   async twitchClip(@Args('id') id: string) {
     return await this.twitch.clip(id);
   }
 
-  @Query((returns) => TwitchFollows)
+  @Query(() => TwitchFollows)
   async twitchFollows(
     @Args({ name: 'from_id', type: () => String, nullable: true })
     from_id: string,
@@ -55,7 +55,7 @@ export class TwitchResolvers {
     return await this.twitch.follows({ from_id, first, after });
   }
 
-  @Query((returns) => TwitchClips)
+  @Query(() => TwitchClips)
   async twitchClips(
     @Args({ name: 'id', nullable: true, type: () => String }) id?: string,
     @Args({ name: 'broadcaster_id', nullable: true, type: () => String })
@@ -82,13 +82,13 @@ export class TwitchResolvers {
     return data;
   }
 
-  @Query((returns) => [TwitchGame])
+  @Query(() => [TwitchGame])
   async twitchGame(@Args() args: TwitchGameArgs) {
     const games = await this.twitch.game(args);
     return games.data;
   }
 
-  @Query((returns) => [TwitchGame])
+  @Query(() => [TwitchGame])
   async twitchTopGames(
     @Args({ name: 'first', type: () => Int, nullable: true }) first: number
   ) {
@@ -96,7 +96,7 @@ export class TwitchResolvers {
     return games.data;
   }
 
-  @Query((returns) => [TwitchClipOld])
+  @Query(() => [TwitchClipOld])
   async twitchTopClips(@Args() args: TwitchTopClipsArgs) {
     const { channel, game, limit } = args;
 
@@ -115,12 +115,12 @@ export class TwitchResolvers {
     }
   }
 
-  @Query((returns) => TwitchStream, { nullable: true })
+  @Query(() => TwitchStream, { nullable: true })
   async twitchStream(@Args() args: TwitchStreamArgs) {
     return this.twitch.stream(args);
   }
 
-  @Query((returns) => TwitchUser)
+  @Query(() => TwitchUser)
   async twitchUser(@Args('userId') userId: string) {
     return this.twitch.user({ id: userId });
   }

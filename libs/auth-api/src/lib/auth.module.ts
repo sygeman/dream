@@ -6,7 +6,7 @@ import { AuthResolver } from './auth.resolver';
 import { AuthService } from './auth.service';
 import { SpotifyStrategy } from './strategies/spotify.strategy';
 import { TwitchStrategy } from './strategies/twitch.strategy';
-import { AuthGuard } from './auth.guard';
+import { AuthGuard } from './guards/auth.guard';
 
 @Global()
 @Module({

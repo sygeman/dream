@@ -1,22 +1,19 @@
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
+import { ConfigModule } from '@nestjs/config';
 import * as depthLimit from 'graphql-depth-limit';
 import { AuthModule, AuthService } from '@dream/auth-api';
 import { UserModule } from '@dream/user-api';
 import { ChatModule } from '@dream/chat-api';
 import { ConnectionModule, ConnectionService } from '@dream/connection-api';
 import { SharedModule } from './shared.module';
-import { ConfigModule } from '@nestjs/config';
-import dbConfig from './config/db.config';
-import baseConfig from './config/base.config';
-import authConfig from './config/auth.config';
-import authSpotifyConfig from './config/authSpotify.config';
+import { config } from './config';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      load: [dbConfig, baseConfig, authConfig, authSpotifyConfig],
+      load: config,
     }),
     SharedModule,
     GraphQLModule.forRootAsync({

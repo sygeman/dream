@@ -19,6 +19,9 @@ module.exports = {
         '240px': '240px',
         '320px': '320px',
       },
+      fontFamily: {
+        sans: 'Roboto',
+      },
     },
   },
   variants: {

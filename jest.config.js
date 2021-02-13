@@ -15,5 +15,6 @@ module.exports = {
     '<rootDir>/apps/pepega',
     '<rootDir>/libs/pepega-ui',
     '<rootDir>/apps/dream',
+    '<rootDir>/libs/components',
   ],
 };

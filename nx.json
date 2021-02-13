@@ -34,6 +34,7 @@
     "pepega-e2e": { "tags": [], "implicitDependencies": ["pepega"] },
     "pepega-ui": { "tags": [] },
     "dream": { "tags": [] },
-    "dream-e2e": { "tags": [], "implicitDependencies": ["dream"] }
+    "dream-e2e": { "tags": [], "implicitDependencies": ["dream"] },
+    "components": { "tags": [] }
   }
 }

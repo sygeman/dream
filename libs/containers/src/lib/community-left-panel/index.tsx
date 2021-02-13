@@ -46,7 +46,7 @@ export const CommunityLeftPanel = () => {
       </Link>
 
       <div className="flex flex-1 w-full overflow-hidden">
-        <div className="flex flex-col w-full max-h-max overflow-y-auto py-2">
+        <div className="flex flex-col w-full max-h-max overflow-y-auto">
           {[...Array(50).keys()].map((k) => (
             <ChannelItem
               key={k}

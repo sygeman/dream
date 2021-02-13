@@ -5,22 +5,9 @@ import { UsersIcon } from '@dream/icons/users';
 import { EmojiIcon } from '@dream/icons/emoji';
 import { ChatMessage } from '@dream/components/chat-message';
 
-export const CommunityRightPanel = () => {
+const Chat = () => {
   return (
-    <div className="h-screen flex flex-col w-320px bg-surface">
-      <div className="flex border-b border-background">
-        <div className="flex flex-1 justify-center px-4 py-2 bg-surface">
-          <span className="text-text text-sm">
-            <ChatIcon />
-          </span>
-        </div>
-        <div className="flex flex-1 justify-center px-4 py-2 bg-surface">
-          <span className="text-text text-sm">
-            <UsersIcon />
-          </span>
-        </div>
-      </div>
-
+    <>
       <div className="flex flex-1 w-full overflow-hidden">
         <div className="flex flex-col w-full max-h-max overflow-y-auto py-4">
           {[...Array(50).keys()].map((k) => (
@@ -39,6 +26,26 @@ export const CommunityRightPanel = () => {
           <EmojiIcon />
         </div>
       </div>
+    </>
+  );
+};
+
+export const CommunityRightPanel = () => {
+  return (
+    <div className="h-screen flex flex-col w-320px bg-surface">
+      <div className="flex border-b border-background">
+        <div className="flex flex-1 justify-center px-4 py-2 bg-surface">
+          <span className="text-text text-sm">
+            <ChatIcon />
+          </span>
+        </div>
+        <div className="flex flex-1 justify-center px-4 py-2 bg-surface">
+          <span className="text-text text-sm">
+            <UsersIcon />
+          </span>
+        </div>
+      </div>
+      <Chat />
     </div>
   );
 };

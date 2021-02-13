@@ -6,6 +6,10 @@ module.exports = {
       colors: {
         primary: '#6441A4',
         surface: '#262841',
+        surface: {
+          light: '#2d2f4d',
+          DEFAULT: '#262841',
+        },
         background: '#1D1E31',
         accent: '#968A9D',
         text: '#EEEEEE',

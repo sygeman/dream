@@ -3,8 +3,8 @@ import React from 'react';
 export const ChatIcon = () => {
   return (
     <svg
-      height="16px"
-      width="16px"
+      height="14px"
+      width="14px"
       className="fill-current text-text"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 20 20"

@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { CommunityIcon } from '@dream/icons/community';
+import { ProfileIcon } from '@dream/icons/profile';
 
 const CommunityInAppPanel: React.FC<{ path: string; name: string }> = ({
   path,
@@ -57,7 +58,8 @@ const AppPanel = () => {
       </div>
 
       <div className="flex items-center justify-center w-48px h-48px bg-surface border-t border-background">
-        <div className="rounded-full bg-background h-32px w-32px"></div>
+        {/* <div className="rounded-full bg-background h-32px w-32px"></div> */}
+        <ProfileIcon />
       </div>
     </div>
   );

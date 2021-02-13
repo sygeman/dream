@@ -39,10 +39,20 @@ model Community {
   name            String            @unique
   title           String
   avatar          String?
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt @default(now())
+  Channel         Channel[]
+}
+
+model Channel {
+  id              String            @default(cuid()) @id
+  name            String            @unique
+  title           String
+  avatar          String?
   mode            CommunityMode     @default(WAITLIST)
   createdAt       DateTime          @default(now())
   updatedAt       DateTime          @updatedAt @default(now())
-  CommunitySource CommunitySource[]
+  Chat            Chat
 }
 
 model Source {

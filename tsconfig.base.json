@@ -30,8 +30,8 @@
       "@dream/connection-api": ["libs/connection-api/src/index.ts"],
       "@dream/pepega-ui": ["libs/pepega-ui/src/index.ts"],
       "@dream/pepega-ui/*": ["libs/pepega-ui/src/lib/*"],
-      "@dream/components": ["libs/components/src/index.ts"],
-      "@dream/icons": ["libs/icons/src/index.ts"]
+      "@dream/components/*": ["libs/components/src/*"],
+      "@dream/icons/*": ["libs/icons/src/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]

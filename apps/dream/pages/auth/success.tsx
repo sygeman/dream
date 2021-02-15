@@ -1,14 +1,14 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import { Auth } from '@dream/containers/RavePro/Auth';
+import { AuthSuccess } from '@dream/containers/auth/success';
 
-export function AuthSuccess() {
+export function AuthSuccessPage() {
   const rotuer = useRouter();
   const code = rotuer.query?.code;
   const redirect = rotuer.query?.redirect;
 
   return (
-    <Auth
+    <AuthSuccess
       code={typeof code === 'string' && code}
       onSuccess={({ accessToken, refreshToken }) => {
         localStorage.setItem('accessToken', accessToken);
@@ -22,4 +22,4 @@ export function AuthSuccess() {
   );
 }
 
-export default AuthSuccess;
+export default AuthSuccessPage;

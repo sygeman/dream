@@ -29,7 +29,7 @@ export const MainCommunities = () => {
     <div className="flex flex-col w-full">
       <div className="flex w-full justify-end px-4 py-2 bg-surface">
         <Link
-          as={isUser ? `/newCommunity` : `/auth?continue=/newCommunity`}
+          as={isUser ? `/communities/new` : `/auth?continue=/communities/new`}
           href={{
             pathname: router.route,
             query: {

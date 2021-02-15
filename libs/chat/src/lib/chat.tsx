@@ -1,18 +1,10 @@
 import React from 'react';
-import styled from 'styled-components';
+import { ChatMessage } from '@dream/components/chat-message';
 import {
   useChatMessagesQuery,
   useChatMessageCreatedSubscription,
 } from './types';
-import { Flex, Typography } from '@dream/ui';
-import { ChatMessagesBottom } from './Bottom';
-
-const Box = styled.div`
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
-  background: ${({ theme }) => theme.colors.dark2};
-`;
+import { ChatBottom } from './bottom';
 
 export const Chat: React.FC<{ chatId: string }> = ({ chatId }) => {
   const messagesQuery = useChatMessagesQuery({
@@ -40,16 +32,20 @@ export const Chat: React.FC<{ chatId: string }> = ({ chatId }) => {
   const messages = messagesQuery.data?.chatMessages || [];
 
   return (
-    <Box>
-      {messages.map((message) => (
-        <Flex key={message.id} p="4px">
-          <Typography mr="4px" color="accent2">
-            {message.author.name}:
-          </Typography>
-          <Typography>{message.content}</Typography>
-        </Flex>
-      ))}
-      <ChatMessagesBottom chatId={chatId} />
-    </Box>
+    <>
+      <div className="flex flex-1 w-full overflow-hidden">
+        <div className="flex flex-col w-full max-h-max overflow-y-auto py-4">
+          {messages.map((message) => (
+            <ChatMessage
+              key={message.id}
+              username={message.author.name}
+              content={message.content}
+            />
+          ))}
+        </div>
+      </div>
+
+      <ChatBottom chatId={chatId} />
+    </>
   );
 };

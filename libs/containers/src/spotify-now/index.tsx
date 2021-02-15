@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import useAxios from 'axios-hooks';
 import '@dream/utils/axios';
 import { gql, useQuery } from '@apollo/client';
-import { TrackInfo } from './track-info';
+import { TrackInfo } from '@dream/components/track-info';
 
 const CurrentPlayingInner = () => {
   const [{ data: current }, refetch] = useAxios(

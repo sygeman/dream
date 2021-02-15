@@ -1,7 +1,6 @@
 import React from 'react';
 import { MainLayout } from '@dream/layouts/main';
-import { CommunityLeftPanel } from '@dream/containers/community-left-panel';
-import { CommunityWelcome } from '@dream/containers/community-welcome';
+import { CommunityLeftPanel, CommunityWelcome } from '@dream/community';
 
 export function CommunityPage() {
   return (

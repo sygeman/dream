@@ -1,10 +1,12 @@
 import React from 'react';
 import { MainLayout } from '@dream/layouts/main';
-import { CommunityLeftPanel } from '@dream/containers/community-left-panel';
-import { CommunityContent } from '@dream/containers/community-content';
-import { CommunityRightPanel } from '@dream/containers/community-right-panel';
+import {
+  CommunityLeftPanel,
+  CommunityContent,
+  CommunityRightPanel,
+} from '@dream/community';
 
-export function ChannelPage() {
+export function CommunityChannelPage() {
   return (
     <MainLayout>
       <CommunityLeftPanel />
@@ -14,4 +16,4 @@ export function ChannelPage() {
   );
 }
 
-export default ChannelPage;
+export default CommunityChannelPage;

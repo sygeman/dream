@@ -1,8 +1,8 @@
 import React from 'react';
 import { MainLayout } from '@dream/layouts/main';
 
-export function IndexPage() {
+export function CommunitiesNewPage() {
   return <MainLayout>New Community</MainLayout>;
 }
 
-export default IndexPage;
+export default CommunitiesNewPage;

@@ -17,5 +17,6 @@ module.exports = {
     '<rootDir>/apps/dream',
     '<rootDir>/libs/components',
     '<rootDir>/libs/icons',
+    '<rootDir>/libs/layouts',
   ],
 };

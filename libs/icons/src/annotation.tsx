@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const ChatIcon = () => {
+export const AnnotationIcon = () => {
   return (
     <svg
       height="14px"

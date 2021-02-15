@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.btn {
+  @apply bg-surface text-white text-sm py-1 px-3 rounded hover:bg-surface-light;
+}
+
+.btn-primary {
+  @apply bg-primary text-white text-sm py-2 px-3 rounded hover:bg-primary-light;
+}

@@ -1,8 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { CommunityIcon } from '@dream/icons/community';
-import { ProfileIcon } from '@dream/icons/profile';
+import { UserGroupIcon } from '@dream/icons/user-group';
+import { UserCircleIcon } from '@dream/icons/user-circle';
+import { HeartIcon } from '@dream/icons/heart';
 
 const CommunityInAppPanel: React.FC<{ title: string; name: string }> = ({
   title,
@@ -26,17 +27,24 @@ const CommunityInAppPanel: React.FC<{ title: string; name: string }> = ({
   );
 };
 
-export const AppPanel = () => {
+const Logo = () => {
   return (
-    <div className="h-screen flex flex-col w-48px bg-surface border-r border-background overflow-hidden">
-      <Link href="/">
-        <div className="flex items-center justify-center w-48px h-48px cursor-pointer hover:opacity-90">
-          <div className="flex justify-center items-center h-32px w-32px">
-            <span className="text-text">D</span>
-          </div>
+    <Link href="/">
+      <div className="flex items-center justify-center w-48px h-48px cursor-pointer hover:opacity-90">
+        <div className="flex justify-center items-center h-32px w-32px">
+          <span className="text-text">D</span>
         </div>
-      </Link>
+      </div>
+    </Link>
+  );
+};
 
+const Communities = () => {
+  return (
+    <>
+      <div className="flex justify-center py-2">
+        <HeartIcon />
+      </div>
       <div className="flex flex-1 w-full overflow-hidden">
         <div className="flex flex-col w-full max-h-max overflow-y-auto">
           {[...Array(50).keys()].map((k) => (
@@ -48,11 +56,16 @@ export const AppPanel = () => {
           ))}
         </div>
       </div>
+    </>
+  );
+};
 
+const Friends = () => {
+  return (
+    <>
       <div className="flex justify-center py-2">
-        <CommunityIcon />
+        <UserGroupIcon />
       </div>
-
       <div className="flex flex-1 w-full overflow-hidden">
         <div className="flex flex-col w-full max-h-max overflow-y-auto">
           {[...Array(3).keys()].map((k) => (
@@ -60,11 +73,25 @@ export const AppPanel = () => {
           ))}
         </div>
       </div>
+    </>
+  );
+};
 
-      <div className="flex items-center justify-center w-48px h-48px bg-surface border-t border-background">
-        {/* <div className="rounded-full bg-background h-32px w-32px"></div> */}
-        <ProfileIcon />
-      </div>
+const UserPanel = () => {
+  return (
+    <div className="flex items-center justify-center w-48px h-48px bg-surface border-t border-background">
+      <UserCircleIcon />
+    </div>
+  );
+};
+
+export const AppPanel = () => {
+  return (
+    <div className="h-screen flex flex-col w-48px bg-surface border-r border-background overflow-hidden">
+      <Logo />
+      <Communities />
+      <Friends />
+      <UserPanel />
     </div>
   );
 };

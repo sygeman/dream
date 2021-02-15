@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const CommunityIcon = () => {
+export const UserGroupIcon = () => {
   return (
     <svg
       height="16px"

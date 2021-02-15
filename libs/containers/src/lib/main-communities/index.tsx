@@ -23,9 +23,11 @@ const CommunityCard: React.FC<{ title: string; name: string }> = ({
 export const MainCommunities = () => {
   return (
     <div className="flex flex-col w-full">
-      <div className="flex w-full h-48px bg-primary"></div>
+      <div className="flex w-full justify-end px-4 py-2 bg-surface">
+        <button className="btn-primary">Create community</button>
+      </div>
 
-      <div className="flex flex-1 w-full overflow-hidden">
+      <div className="flex flex-1 w-full overflow-hidden my-4">
         <div className="w-full grid grid-cols-fill-240px auto-rows-max gap-2 justify-center overflow-y-auto">
           {[...Array(100).keys()].map((k) => (
             <CommunityCard

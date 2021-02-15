@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const ProfileIcon = () => {
+export const UserCircleIcon = () => {
   return (
     <svg
       height="20px"

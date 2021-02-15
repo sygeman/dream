@@ -78,10 +78,24 @@ const Friends = () => {
 };
 
 const UserPanel = () => {
+  const router = useRouter();
+
   return (
-    <div className="flex items-center justify-center w-48px h-48px bg-surface border-t border-background">
-      <UserCircleIcon />
-    </div>
+    <Link
+      as={`/auth?continue=${router.asPath}`}
+      href={{
+        pathname: router.route,
+        query: {
+          ...router.query,
+          authModal: 1,
+        },
+      }}
+      passHref
+    >
+      <div className="flex items-center justify-center w-48px h-48px bg-surface border-t border-background cursor-pointer">
+        <UserCircleIcon />
+      </div>
+    </Link>
   );
 };
 

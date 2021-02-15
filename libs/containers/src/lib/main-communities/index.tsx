@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 const CommunityCard: React.FC<{ title: string; name: string }> = ({
   title,
@@ -21,10 +22,25 @@ const CommunityCard: React.FC<{ title: string; name: string }> = ({
 };
 
 export const MainCommunities = () => {
+  const router = useRouter();
+  const isUser = true;
+
   return (
     <div className="flex flex-col w-full">
       <div className="flex w-full justify-end px-4 py-2 bg-surface">
-        <button className="btn-primary">Create community</button>
+        <Link
+          as={isUser ? `/newCommunity` : `/auth?continue=/newCommunity`}
+          href={{
+            pathname: router.route,
+            query: {
+              ...router.query,
+              [isUser ? 'newCommunity' : 'authModal']: 1,
+            },
+          }}
+          passHref
+        >
+          <button className="btn-primary">Create community</button>
+        </Link>
       </div>
 
       <div className="flex flex-1 w-full overflow-hidden my-4">

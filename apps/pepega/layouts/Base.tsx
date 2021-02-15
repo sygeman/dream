@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import { lighten, rgba } from 'polished';
-import { ReactNode, useState, FC } from 'react';
+import React, { ReactNode, useState, FC } from 'react';
 import Scrollbars from 'react-custom-scrollbars';
 import styled from 'styled-components';
 import Auth from '../containers/Auth';

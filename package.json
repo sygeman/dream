@@ -85,6 +85,7 @@
     "react-pose": "4.0.10",
     "react-share": "4.3.1",
     "react-textarea-autosize": "8.3.1",
+    "react-useportal": "^1.0.13",
     "recharts": "2.0.6",
     "reflect-metadata": "0.1.13",
     "rxjs": "6.6.3",

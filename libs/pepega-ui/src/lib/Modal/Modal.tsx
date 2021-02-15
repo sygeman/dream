@@ -1,5 +1,5 @@
 import { darken, lighten, rgba } from 'polished';
-import { FC, useEffect } from 'react';
+import React, { FC, useEffect } from 'react';
 import styled from 'styled-components';
 import { Close, ChevronLeft, ChevronRight } from 'styled-icons/material';
 import { Portal } from '../Portal';
@@ -178,11 +178,11 @@ export const Modal: FC<IModalProps> & {
   minimal,
   noBackgroud,
   onOpen,
-  onClose
+  onClose,
 }) => {
   const close = () => onClose();
 
-  const escapeHandler = e => {
+  const escapeHandler = (e) => {
     if (e.keyCode === 27 && visible) {
       onClose();
     }
@@ -247,5 +247,5 @@ Modal.defaultProps = {
   noBackgroud: false,
   title: '',
   onOpen: () => undefined,
-  onClose: () => undefined
+  onClose: () => undefined,
 };

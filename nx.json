@@ -17,7 +17,6 @@
   },
   "projects": {
     "storybook": { "tags": [] },
-    "ui": { "tags": [] },
     "api": { "tags": [] },
     "prisma": { "tags": [] },
     "containers": { "tags": [] },

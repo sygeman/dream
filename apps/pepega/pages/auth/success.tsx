@@ -1,28 +1,25 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import { Auth } from '@dream/containers/RavePro/Auth';
-import { RaveProLayout } from '@dream/ui';
+import { AuthSuccess } from '@dream/containers/auth/success';
 
-export function AuthSuccess() {
+export function AuthSuccessPage() {
   const rotuer = useRouter();
   const code = rotuer.query?.code;
   const redirect = rotuer.query?.redirect;
 
   return (
-    <RaveProLayout>
-      <Auth
-        code={typeof code === 'string' && code}
-        onSuccess={({ accessToken, refreshToken }) => {
-          localStorage.setItem('accessToken', accessToken);
-          localStorage.setItem('refreshToken', refreshToken);
+    <AuthSuccess
+      code={typeof code === 'string' && code}
+      onSuccess={({ accessToken, refreshToken }) => {
+        localStorage.setItem('accessToken', accessToken);
+        localStorage.setItem('refreshToken', refreshToken);
 
-          if (typeof redirect === 'string') {
-            rotuer.push(redirect);
-          }
-        }}
-      />
-    </RaveProLayout>
+        if (typeof redirect === 'string') {
+          rotuer.push(redirect);
+        }
+      }}
+    />
   );
 }
 
-export default AuthSuccess;
+export default AuthSuccessPage;

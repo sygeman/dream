@@ -1,82 +1,22 @@
 {
   "version": 1,
+  "cli": {
+    "defaultCollection": "@nrwl/next"
+  },
+  "schematics": {
+    "@nrwl/react": {
+      "application": {
+        "babel": true
+      }
+    },
+    "@nrwl/next": {
+      "application": {
+        "style": "styled-components",
+        "linter": "eslint"
+      }
+    }
+  },
   "projects": {
-    "ravepro": {
-      "root": "apps/ravepro",
-      "sourceRoot": "apps/ravepro",
-      "projectType": "application",
-      "schematics": {},
-      "architect": {
-        "build": {
-          "builder": "@nrwl/next:build",
-          "options": {
-            "root": "apps/ravepro",
-            "outputPath": "dist/apps/ravepro"
-          },
-          "configurations": {
-            "production": {}
-          }
-        },
-        "serve": {
-          "builder": "@nrwl/next:server",
-          "options": {
-            "buildTarget": "ravepro:build",
-            "dev": true
-          },
-          "configurations": {
-            "production": {
-              "buildTarget": "ravepro:build:production",
-              "dev": false
-            }
-          }
-        },
-        "export": {
-          "builder": "@nrwl/next:export",
-          "options": {
-            "buildTarget": "ravepro:build:production"
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["apps/ravepro/**/*.{ts,tsx}"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "apps/ravepro/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "ravepro-e2e": {
-      "root": "apps/ravepro-e2e",
-      "sourceRoot": "apps/ravepro-e2e/src",
-      "projectType": "application",
-      "architect": {
-        "e2e": {
-          "builder": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "apps/ravepro-e2e/cypress.json",
-            "tsConfig": "apps/ravepro-e2e/tsconfig.e2e.json",
-            "devServerTarget": "ravepro:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "ravepro:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["apps/ravepro-e2e/**/*.{js,ts}"]
-          }
-        }
-      }
-    },
     "storybook": {
       "root": "libs/storybook",
       "sourceRoot": "libs/storybook",
@@ -598,22 +538,5 @@
         }
       }
     }
-  },
-  "cli": {
-    "defaultCollection": "@nrwl/next"
-  },
-  "schematics": {
-    "@nrwl/react": {
-      "application": {
-        "babel": true
-      }
-    },
-    "@nrwl/next": {
-      "application": {
-        "style": "styled-components",
-        "linter": "eslint"
-      }
-    }
-  },
-  "defaultProject": "ravepro"
+  }
 }

@@ -16,8 +16,6 @@
     }
   },
   "projects": {
-    "ravepro": { "tags": [] },
-    "ravepro-e2e": { "tags": [], "implicitDependencies": ["ravepro"] },
     "storybook": { "tags": [] },
     "ui": { "tags": [] },
     "api": { "tags": [] },

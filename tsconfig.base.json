@@ -21,7 +21,7 @@
       "@dream/ui/*": ["libs/ui/src/lib/*"],
       "@dream/prisma": ["libs/prisma/src/index.ts"],
       "@dream/containers/*": ["libs/containers/src/*"],
-      "@dream/utils/*": ["libs/utils/src/lib/*"],
+      "@dream/utils/*": ["libs/utils/src/*"],
       "@dream/chat": ["libs/chat/src/index.ts"],
       "@dream/chat-api": ["libs/chat-api/src/index.ts"],
       "@dream/community": ["libs/community/src/index.ts"],

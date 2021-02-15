@@ -1,0 +1,54 @@
+import React from 'react';
+import clsx from 'clsx';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTwitch, faSpotify } from '@fortawesome/free-brands-svg-icons';
+
+const SocialButton = ({ provider, icon }) => {
+  const router = useRouter();
+  const clientURL = 'https://dream.sgmn.dev';
+  const continuePath = router.query.continue || '/';
+
+  const params = new URLSearchParams();
+  params.set('code_handler', `${clientURL}/auth/success?`);
+  params.set('redirect_uri', `${clientURL}${continuePath}`);
+  const authUrl = `https://api.sgmn.dev/auth/${provider}?${params.toString()}`;
+
+  return (
+    <Link href={authUrl}>
+      <button
+        className={clsx(
+          'font-medium',
+          'px-4 py-3 my-1',
+          `bg-${provider}`,
+          `inline-flex items-center w-full relative`,
+          'rounded',
+          `hover:bg-${provider}-light`,
+          'transition-all duration-150 ease'
+        )}
+      >
+        <div className="absolute">
+          <FontAwesomeIcon icon={icon} className="text-white mr-2 h-4" />
+        </div>
+
+        <span className="text-white opacity-80 text-sm uppercase tracking-widest mx-5 text-center w-full">
+          {provider}
+        </span>
+      </button>
+    </Link>
+  );
+};
+
+export const Auth = () => {
+  return (
+    <div className="flex flex-col px-4 py-2 w-320px">
+      <div className="text-accent text-xs w-full flex justify-center py-2">
+        Auth with
+      </div>
+
+      <SocialButton provider="twitch" icon={faTwitch} />
+      <SocialButton provider="spotify" icon={faSpotify} />
+    </div>
+  );
+};

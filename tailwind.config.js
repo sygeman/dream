@@ -26,6 +26,14 @@ module.exports = {
         background: '#1D1E31',
         accent: '#968A9D',
         text: '#EEEEEE',
+        twitch: {
+          light: lighen('#6542a6', 0.2),
+          DEFAULT: '#6542a6',
+        },
+        spotify: {
+          light: lighen('#1a9c48', 0.2),
+          DEFAULT: '#1a9c48',
+        },
       },
       height: {
         '32px': '32px',

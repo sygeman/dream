@@ -50,7 +50,7 @@ export const Modal: React.FC<ModalProps> = ({
               </div>
             </div>
           )}
-          <div className={!minimal && 'p-4'}>{children}</div>
+          <div className={!minimal ? 'p-4' : undefined}>{children}</div>
         </div>
       </div>
     </Portal>

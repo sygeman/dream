@@ -35,6 +35,9 @@
   "private": true,
   "dependencies": {
     "@apollo/client": "3.3.9",
+    "@fortawesome/fontawesome-svg-core": "1.2.34",
+    "@fortawesome/free-brands-svg-icons": "5.15.2",
+    "@fortawesome/react-fontawesome": "0.1.14",
     "@nestjs/bull": "0.3.1",
     "@nestjs/common": "7.6.12",
     "@nestjs/config": "0.6.3",

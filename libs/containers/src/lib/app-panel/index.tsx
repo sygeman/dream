@@ -88,6 +88,7 @@ const UserPanel = () => {
         query: {
           ...router.query,
           authModal: 1,
+          continue: router.asPath,
         },
       }}
       passHref

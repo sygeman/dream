@@ -38,7 +38,7 @@ export const CommunityLeftPanel = () => {
   const community = router.query?.community;
 
   return (
-    <div className="h-screen flex flex-col w-240px bg-surface">
+    <div className="h-screen flex flex-col flex-shrink-0 w-240px bg-surface">
       <Link href={`/${community}`}>
         <div className="flex items-center w-full h-48px px-4 bg-primary hover:opacity-95 cursor-pointer">
           <span className="text-text">{community}</span>

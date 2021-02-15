@@ -101,7 +101,7 @@ const UserPanel = () => {
 
 export const AppPanel = () => {
   return (
-    <div className="h-screen flex flex-col w-48px bg-surface border-r border-background overflow-hidden">
+    <div className="h-screen flex flex-col flex-shrink-0 w-48px bg-surface border-r border-background overflow-hidden">
       <Logo />
       <Communities />
       <Friends />

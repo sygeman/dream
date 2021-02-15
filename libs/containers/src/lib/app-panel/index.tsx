@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import { UserGroupIcon } from '@dream/icons/user-group';
 import { UserCircleIcon } from '@dream/icons/user-circle';
 import { HeartIcon } from '@dream/icons/heart';
+import { UserPanel } from './user-panel';
 
 const CommunityInAppPanel: React.FC<{ title: string; name: string }> = ({
   title,
@@ -74,29 +75,6 @@ const Friends = () => {
         </div>
       </div>
     </>
-  );
-};
-
-const UserPanel = () => {
-  const router = useRouter();
-
-  return (
-    <Link
-      as={`/auth?continue=${router.asPath}`}
-      href={{
-        pathname: router.route,
-        query: {
-          ...router.query,
-          authModal: 1,
-          continue: router.asPath,
-        },
-      }}
-      passHref
-    >
-      <div className="flex items-center justify-center w-48px h-48px bg-surface border-t border-background cursor-pointer">
-        <UserCircleIcon />
-      </div>
-    </Link>
   );
 };
 

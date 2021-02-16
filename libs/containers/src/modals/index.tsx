@@ -1,6 +1,6 @@
 import React from 'react';
 import { Modal } from './modal';
-import { Auth } from '../auth';
+import { Auth } from '@dream/auth';
 
 export const Modals = () => {
   return (

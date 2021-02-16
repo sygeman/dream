@@ -18,5 +18,6 @@ module.exports = {
     '<rootDir>/libs/components',
     '<rootDir>/libs/icons',
     '<rootDir>/libs/layouts',
+    '<rootDir>/libs/auth',
   ],
 };

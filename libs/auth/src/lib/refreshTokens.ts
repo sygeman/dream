@@ -1,4 +1,4 @@
-import { getRefreshToken, setAccessToken } from '../token';
+import { getRefreshToken, setAccessToken } from './token';
 
 export const refreshTokens = async () => {
   const newAccessToken = await fetch('https://api.sgmn.dev/graphql', {

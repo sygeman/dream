@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import { AuthSuccess } from '@dream/containers/auth/success';
+import { AuthSuccess } from '@dream/auth';
 
 export function AuthSuccessPage() {
   const rotuer = useRouter();

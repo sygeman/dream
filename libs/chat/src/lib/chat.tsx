@@ -1,9 +1,6 @@
 import React from 'react';
 import { ChatMessage } from '@dream/components/chat-message';
-import {
-  useChatMessagesQuery,
-  useChatMessageCreatedSubscription,
-} from './types';
+import { useChatMessagesQuery, useChatMessageCreatedSubscription } from './api';
 import { ChatBottom } from './bottom';
 
 export const Chat: React.FC<{ chatId: string }> = ({ chatId }) => {

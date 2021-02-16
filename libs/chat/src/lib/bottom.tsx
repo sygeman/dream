@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
 import { EmojiHappyIcon } from '@dream/icons/emoji-happy';
-import { useCreateChatMessageMutation } from './types';
+import { useCreateChatMessageMutation } from './api';
 
 interface ChatBottomProps {
   chatId: string;

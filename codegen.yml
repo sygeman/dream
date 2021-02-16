@@ -1,7 +1,7 @@
 overwrite: true
 schema: './schema.gql'
 generates:
-  libs/chat/src/lib/types/index.tsx:
+  libs/chat/src/lib/api/index.tsx:
     documents: 'libs/chat/src/lib/**/*.graphql'
     plugins:
       - 'typescript'

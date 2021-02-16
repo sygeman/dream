@@ -52,6 +52,7 @@ export type Query = {
   __typename?: 'Query';
   tokens: AuthTokens;
   refresh: Scalars['String'];
+  user?: Maybe<User>;
   me: User;
   spotifyToken: Scalars['String'];
   chatMessages: Array<ChatMessage>;
@@ -65,6 +66,11 @@ export type QueryTokensArgs = {
 
 export type QueryRefreshArgs = {
   refreshToken: Scalars['String'];
+};
+
+
+export type QueryUserArgs = {
+  id?: Maybe<Scalars['ID']>;
 };
 
 

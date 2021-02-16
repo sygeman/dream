@@ -31,7 +31,8 @@
       "@dream/pepega-ui/*": ["libs/pepega-ui/src/lib/*"],
       "@dream/components/*": ["libs/components/src/*"],
       "@dream/icons/*": ["libs/icons/src/*"],
-      "@dream/layouts/*": ["libs/layouts/src/*"]
+      "@dream/layouts/*": ["libs/layouts/src/*"],
+      "@dream/auth": ["libs/auth/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -1,5 +1,5 @@
 import { ApolloLink } from '@apollo/client';
-import { getAccessToken } from '../token';
+import { getAccessToken } from '@dream/auth';
 
 type Headers = {
   authorization?: string;

@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { UserCircleIcon } from '@dream/icons/user-circle';
 import { gql, useMutation, useQuery } from '@apollo/client';
-import { getRefreshToken } from '@dream/utils/token';
+import { getRefreshToken } from '@dream/auth';
 
 const UserPanelForGuest = () => {
   const router = useRouter();

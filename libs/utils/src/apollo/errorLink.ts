@@ -1,6 +1,6 @@
 import { fromPromise } from '@apollo/client';
 import { onError } from '@apollo/client/link/error';
-import { refreshTokens } from './refreshTokens';
+import { refreshTokens } from '@dream/auth';
 
 type PendingRequest = () => void;
 

@@ -33,6 +33,7 @@
     "dream-e2e": { "tags": [], "implicitDependencies": ["dream"] },
     "components": { "tags": [] },
     "icons": { "tags": [] },
-    "layouts": { "tags": [] }
+    "layouts": { "tags": [] },
+    "auth": { "tags": [] }
   }
 }

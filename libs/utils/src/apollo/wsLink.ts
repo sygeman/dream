@@ -1,6 +1,5 @@
 import { WebSocketLink } from '@apollo/client/link/ws';
-import { getAccessToken } from '../token';
-import { refreshTokens } from './refreshTokens';
+import { getAccessToken, refreshTokens } from '@dream/auth';
 
 export const getWsLink = () =>
   new WebSocketLink({

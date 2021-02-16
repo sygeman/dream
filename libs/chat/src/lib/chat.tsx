@@ -1,7 +1,7 @@
 import React from 'react';
 import { useChatMessagesQuery, useChatMessageCreatedSubscription } from './api';
-import { ChatBottom } from './bottom';
 import { ChatMessages } from './messages';
+import { ChatBottom } from './bottom';
 
 export const Chat: React.FC<{ chatId: string }> = ({ chatId }) => {
   const messagesQuery = useChatMessagesQuery({

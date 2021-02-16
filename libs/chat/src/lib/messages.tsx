@@ -1,61 +1,38 @@
-import React, { useEffect, useState } from 'react';
-import { ChatMessagesWithScroll } from './with-scroll';
+import React from 'react';
+import clsx from 'clsx';
+import SimpleBar from 'simplebar-react';
+import { ChatMessage } from './components/chat-message';
+import { useChatScroll } from './useChatScroll';
+import { compactMessages } from './compactMessages';
 
 export const ChatMessages: React.FC<{ messages: any[] }> = ({ messages }) => {
-  const [isBottom, setIsBottom] = useState(false);
-  const [fixBottom, setFixBottom] = useState(false);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setIsBottom(true);
-      setFixBottom(true);
-    }, 10);
-  }, []);
-
-  const compactMessages = (messages) => {
-    const compactInterval = 90e3; // 1,5 min
-
-    return messages.map((message, index, array) => {
-      let compact = false;
-
-      if (index > 0) {
-        const diff =
-          parseInt(message.createdAt, 10) -
-          parseInt(array[index - 1].createdAt, 10);
-
-        if (
-          diff < compactInterval &&
-          message.authorId === array[index - 1].authorId
-        ) {
-          compact = true;
-        }
-      }
-
-      return {
-        ...message,
-        compact,
-      };
-    });
-  };
-
-  const setBottom = (isBottom) => {
-    setIsBottom(isBottom);
-    setFixBottom(isBottom);
-  };
+  const { ref, isBottom, toBottom } = useChatScroll({
+    updateTriggers: [messages[messages.length - 1]?.id],
+  });
 
   return (
     <div className="flex flex-col overflow-hidden flex-1 relative">
-      <ChatMessagesWithScroll
-        fixBottom={fixBottom}
-        messages={compactMessages(messages)}
-        onPositionChanged={setBottom}
-      />
+      <SimpleBar ref={ref} className="h-full">
+        {compactMessages(messages).map((message) => (
+          <ChatMessage
+            key={message.id}
+            username={message.author.name}
+            content={message.content}
+          />
+        ))}
+      </SimpleBar>
       {!isBottom && (
         <div
-          className="bg-surface flex w-full items-center justify-center opacity-90 absolute bottom-0 cursor-pointer"
-          onClick={() => setFixBottom(true)}
+          className={clsx(
+            'absolute bottom-0',
+            'flex w-full items-center justify-center',
+            'text-white text-sm',
+            'bg-surface',
+            'opacity-90   cursor-pointer'
+          )}
+          onClick={toBottom}
         >
-          К новым сообщениям
+          Chat Paused Due to Scroll
         </div>
       )}
     </div>

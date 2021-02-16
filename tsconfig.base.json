@@ -16,7 +16,6 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@dream/storybook": ["libs/storybook/src/index.ts"],
       "@dream/ui/*": ["libs/ui/src/lib/*"],
       "@dream/prisma": ["libs/prisma/src/index.ts"],
       "@dream/containers/*": ["libs/containers/src/*"],

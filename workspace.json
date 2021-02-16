@@ -17,29 +17,6 @@
     }
   },
   "projects": {
-    "storybook": {
-      "root": "libs/storybook",
-      "sourceRoot": "libs/storybook",
-      "projectType": "library",
-      "schematics": {},
-      "architect": {
-        "storybook": {
-          "builder": "@nrwl/storybook:storybook",
-          "options": {
-            "uiFramework": "@storybook/react",
-            "port": 4400,
-            "config": {
-              "configFolder": "libs/storybook"
-            }
-          },
-          "configurations": {
-            "ci": {
-              "quiet": true
-            }
-          }
-        }
-      }
-    },
     "api": {
       "root": "apps/api",
       "sourceRoot": "apps/api/src",
@@ -279,57 +256,6 @@
         }
       }
     },
-    "pepega": {
-      "root": "apps/pepega",
-      "sourceRoot": "apps/pepega",
-      "projectType": "application",
-      "architect": {
-        "build": {
-          "builder": "@nrwl/next:build",
-          "outputs": ["{options.outputPath}"],
-          "options": {
-            "root": "apps/pepega",
-            "outputPath": "dist/apps/pepega"
-          },
-          "configurations": {
-            "production": {}
-          }
-        },
-        "serve": {
-          "builder": "@nrwl/next:server",
-          "options": {
-            "buildTarget": "pepega:build",
-            "dev": true
-          },
-          "configurations": {
-            "production": {
-              "buildTarget": "pepega:build:production",
-              "dev": false
-            }
-          }
-        },
-        "export": {
-          "builder": "@nrwl/next:export",
-          "options": {
-            "buildTarget": "pepega:build:production"
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["apps/pepega/**/*.{ts,tsx,js,jsx}"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/pepega"],
-          "options": {
-            "jestConfig": "apps/pepega/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
     "pepega-ui": {
       "root": "libs/pepega-ui",
       "sourceRoot": "libs/pepega-ui/src",
@@ -398,32 +324,6 @@
           "options": {
             "jestConfig": "apps/dream/jest.config.js",
             "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "dream-e2e": {
-      "root": "apps/dream-e2e",
-      "sourceRoot": "apps/dream-e2e/src",
-      "projectType": "application",
-      "architect": {
-        "e2e": {
-          "builder": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "apps/dream-e2e/cypress.json",
-            "tsConfig": "apps/dream-e2e/tsconfig.e2e.json",
-            "devServerTarget": "dream:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "dream:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["apps/dream-e2e/**/*.{js,ts}"]
           }
         }
       }

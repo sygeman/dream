@@ -256,27 +256,6 @@
         }
       }
     },
-    "pepega-ui": {
-      "root": "libs/pepega-ui",
-      "sourceRoot": "libs/pepega-ui/src",
-      "projectType": "library",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/pepega-ui/**/*.{ts,tsx,js,jsx}"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/pepega-ui"],
-          "options": {
-            "jestConfig": "libs/pepega-ui/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
     "dream": {
       "root": "apps/dream",
       "sourceRoot": "apps/dream",

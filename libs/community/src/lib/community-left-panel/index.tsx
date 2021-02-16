@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import SimpleBar from 'simplebar-react';
 
 const ChannelItem = ({ name, title, current, online }) => {
   const router = useRouter();
@@ -46,7 +47,7 @@ export const CommunityLeftPanel = () => {
       </Link>
 
       <div className="flex flex-1 w-full overflow-hidden">
-        <div className="flex flex-col w-full max-h-max overflow-y-auto">
+        <SimpleBar className="w-full">
           {[...Array(50).keys()].map((k) => (
             <ChannelItem
               key={k}
@@ -56,7 +57,7 @@ export const CommunityLeftPanel = () => {
               name={`channel-${k}`}
             />
           ))}
-        </div>
+        </SimpleBar>
       </div>
 
       <div className="w-full h-48px bg-surface border-t border-background"></div>

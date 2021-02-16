@@ -4,6 +4,7 @@ import { AppProps } from 'next/app';
 import { ApolloProvider } from '@apollo/client';
 import { useApollo } from '@dream/utils/apollo';
 import '../styles/globals.css';
+import 'simplebar/dist/simplebar.min.css';
 
 function CustomApp({ Component, pageProps }: AppProps) {
   const apolloClient = useApollo({

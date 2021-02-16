@@ -1,7 +1,7 @@
 import React from 'react';
-import { ChatMessage } from '@dream/components/chat-message';
 import { useChatMessagesQuery, useChatMessageCreatedSubscription } from './api';
 import { ChatBottom } from './bottom';
+import { ChatMessages } from './messages';
 
 export const Chat: React.FC<{ chatId: string }> = ({ chatId }) => {
   const messagesQuery = useChatMessagesQuery({
@@ -32,13 +32,7 @@ export const Chat: React.FC<{ chatId: string }> = ({ chatId }) => {
     <>
       <div className="flex flex-1 w-full overflow-hidden">
         <div className="flex flex-col w-full max-h-max overflow-y-auto py-4">
-          {messages.map((message) => (
-            <ChatMessage
-              key={message.id}
-              username={message.author.name}
-              content={message.content}
-            />
-          ))}
+          <ChatMessages messages={messages} />
         </div>
       </div>
 

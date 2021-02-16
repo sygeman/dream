@@ -7,12 +7,12 @@ import { faTwitch, faSpotify } from '@fortawesome/free-brands-svg-icons';
 
 const SocialButton = ({ provider, icon }) => {
   const router = useRouter();
-  const clientURL = 'https://dream.sgmn.dev';
+  const origin = window?.location?.origin || '';
   const continuePath = router.query.continue || '/';
 
   const params = new URLSearchParams();
-  params.set('code_handler', `${clientURL}/auth/success?`);
-  params.set('redirect_uri', `${clientURL}${continuePath}`);
+  params.set('code_handler', `${origin}/auth/success?`);
+  params.set('redirect_uri', `${origin}${continuePath}`);
   const authUrl = `https://api.sgmn.dev/auth/${provider}?${params.toString()}`;
 
   return (

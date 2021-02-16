@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import SimpleBar from 'simplebar-react';
-import { ChatMessage } from '@dream/components/chat-message';
+import { ChatMessage } from './components/chat-message';
 
 interface ChatMessagesWithScrollProps {
   messages: any[];

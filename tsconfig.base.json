@@ -30,7 +30,8 @@
       "@dream/components/*": ["libs/components/src/*"],
       "@dream/icons/*": ["libs/icons/src/*"],
       "@dream/layouts/*": ["libs/layouts/src/*"],
-      "@dream/auth": ["libs/auth/src/index.ts"]
+      "@dream/auth": ["libs/auth/src/index.ts"],
+      "@dream/spotify-now": ["libs/spotify-now/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -307,27 +307,6 @@
         }
       }
     },
-    "components": {
-      "root": "libs/components",
-      "sourceRoot": "libs/components/src",
-      "projectType": "library",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/components/**/*.{ts,tsx,js,jsx}"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/components"],
-          "options": {
-            "jestConfig": "libs/components/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
     "icons": {
       "root": "libs/icons",
       "sourceRoot": "libs/icons/src",
@@ -386,6 +365,27 @@
           "outputs": ["coverage/libs/auth"],
           "options": {
             "jestConfig": "libs/auth/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "spotify-now": {
+      "root": "libs/spotify-now",
+      "sourceRoot": "libs/spotify-now/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/spotify-now/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/spotify-now"],
+          "options": {
+            "jestConfig": "libs/spotify-now/jest.config.js",
             "passWithNoTests": true
           }
         }

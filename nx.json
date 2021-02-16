@@ -27,9 +27,9 @@
     "user-api": { "tags": [] },
     "connection-api": { "tags": [] },
     "dream": { "tags": [] },
-    "components": { "tags": [] },
     "icons": { "tags": [] },
     "layouts": { "tags": [] },
-    "auth": { "tags": [] }
+    "auth": { "tags": [] },
+    "spotify-now": { "tags": [] }
   }
 }

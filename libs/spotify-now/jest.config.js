@@ -1,5 +1,5 @@
 module.exports = {
-  displayName: 'components',
+  displayName: 'spotify-now',
   preset: '../../jest.preset.js',
   transform: {
     '^.+\\.[tj]sx?$': [
@@ -8,5 +8,5 @@ module.exports = {
     ],
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
-  coverageDirectory: '../../coverage/libs/components',
+  coverageDirectory: '../../coverage/libs/spotify-now',
 };

@@ -1,8 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import SimpleBar from 'simplebar-react';
 import { UserGroupIcon } from '@dream/icons/user-group';
-import { UserCircleIcon } from '@dream/icons/user-circle';
 import { HeartIcon } from '@dream/icons/heart';
 import { UserPanel } from './user-panel';
 
@@ -47,7 +47,7 @@ const Communities = () => {
         <HeartIcon />
       </div>
       <div className="flex flex-1 w-full overflow-hidden">
-        <div className="flex flex-col w-full max-h-max overflow-y-auto">
+        <SimpleBar className="w-full">
           {[...Array(50).keys()].map((k) => (
             <CommunityInAppPanel
               key={k}
@@ -55,7 +55,7 @@ const Communities = () => {
               title={`${k}`}
             />
           ))}
-        </div>
+        </SimpleBar>
       </div>
     </>
   );
@@ -68,11 +68,11 @@ const Friends = () => {
         <UserGroupIcon />
       </div>
       <div className="flex flex-1 w-full overflow-hidden">
-        <div className="flex flex-col w-full max-h-max overflow-y-auto">
-          {[...Array(3).keys()].map((k) => (
+        <SimpleBar className="w-full">
+          {[...Array(50).keys()].map((k) => (
             <CommunityInAppPanel key={k} name={`user-${k}`} title={`${k}`} />
           ))}
-        </div>
+        </SimpleBar>
       </div>
     </>
   );
@@ -80,7 +80,7 @@ const Friends = () => {
 
 export const AppPanel = () => {
   return (
-    <div className="h-screen flex flex-col flex-shrink-0 w-48px bg-surface border-r border-background overflow-hidden">
+    <div className="h-screen flex flex-col flex-shrink-0 min-w-48px bg-surface border-r border-background overflow-hidden">
       <Logo />
       <Communities />
       <Friends />

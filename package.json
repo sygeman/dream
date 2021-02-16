@@ -85,7 +85,7 @@
     "react-useportal": "1.0.13",
     "reflect-metadata": "0.1.13",
     "rxjs": "6.6.3",
-    "simplebar-react": "^2.3.0",
+    "simplebar-react": "2.3.0",
     "tailwindcss": "2.0.3",
     "tslib": "2.1.0"
   },

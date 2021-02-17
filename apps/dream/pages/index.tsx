@@ -1,6 +1,6 @@
 import React from 'react';
 import { MainLayout } from '@dream/layouts/main';
-import { MainCommunities } from '@dream/containers/main-communities';
+import { MainCommunities } from '@dream/community';
 
 export function IndexPage() {
   return (

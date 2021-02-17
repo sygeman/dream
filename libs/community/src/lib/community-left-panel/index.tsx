@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import SimpleBar from 'simplebar-react';
+import { useCommunityChannelsQuery, useCommunityQuery } from '../api';
 
 const ChannelItem = ({ name, title, current, online }) => {
   const router = useRouter();
@@ -36,25 +37,36 @@ const ChannelItem = ({ name, title, current, online }) => {
 
 export const CommunityLeftPanel = () => {
   const router = useRouter();
-  const community = router.query?.community;
+  const name = router.query?.community;
+
+  const communityQuery = useCommunityQuery({
+    variables: { name: typeof name === 'string' && name },
+  });
+
+  const communityChannelsQuery = useCommunityChannelsQuery({
+    variables: { name: typeof name === 'string' && name },
+  });
+
+  const community = communityQuery?.data?.community;
+  const channels = communityChannelsQuery?.data?.channels || [];
 
   return (
     <div className="h-screen flex flex-col flex-shrink-0 w-240px bg-surface">
-      <Link href={`/${community}`}>
+      <Link href={`/${name}`}>
         <div className="flex items-center w-full h-48px px-4 bg-primary hover:opacity-95 cursor-pointer">
-          <span className="text-text">{community}</span>
+          <span className="text-text">{community?.title}</span>
         </div>
       </Link>
 
       <div className="flex flex-1 w-full overflow-hidden">
         <SimpleBar className="w-full">
-          {[...Array(50).keys()].map((k) => (
+          {channels.map((channel) => (
             <ChannelItem
-              key={k}
-              title={`Channel #${k}`}
-              current="Artist - Track"
-              online={k}
-              name={`channel-${k}`}
+              key={channel.id}
+              title={channel.title}
+              current="Nothing"
+              online={0}
+              name={channel.name}
             />
           ))}
         </SimpleBar>

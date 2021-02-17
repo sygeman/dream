@@ -81,6 +81,7 @@
     "react-custom-scrollbars": "4.2.1",
     "react-dom": "17.0.1",
     "react-is": "17.0.1",
+    "react-player": "^2.8.2",
     "react-textarea-autosize": "8.3.1",
     "react-useportal": "1.0.13",
     "reflect-metadata": "0.1.13",

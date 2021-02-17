@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import SimpleBar from 'simplebar-react';
+import { useCommunitiesQuery } from '../api';
 
 const CommunityCard: React.FC<{ title: string; name: string }> = ({
   title,
@@ -22,6 +23,9 @@ const CommunityCard: React.FC<{ title: string; name: string }> = ({
 export const MainCommunities = () => {
   const router = useRouter();
   const isUser = true;
+
+  const communitiesQuery = useCommunitiesQuery();
+  const communities = communitiesQuery?.data?.communities || [];
 
   return (
     <div className="flex flex-col w-full">
@@ -44,11 +48,11 @@ export const MainCommunities = () => {
       <div className="flex flex-1 w-full overflow-hidden">
         <SimpleBar className="h-full w-full">
           <div className="w-full grid grid-cols-fill-240px py-4 auto-rows-max gap-2 justify-center overflow-y-auto">
-            {[...Array(100).keys()].map((k) => (
+            {communities.map((community, k) => (
               <CommunityCard
-                key={k}
-                name={`community-${k}`}
-                title={`Community ${k}`}
+                key={community.id}
+                name={community.name}
+                title={community.title}
               />
             ))}
           </div>

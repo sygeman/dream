@@ -1,0 +1,19 @@
+query channel($name: String!) {
+  channel(name: $name) {
+    ...ChannelFields
+  }
+}
+
+query communityChannels($name: String!) {
+  channels(name: $name) {
+    ...ChannelFields
+  }
+}
+
+fragment ChannelFields on Channel {
+  id
+  name
+  title
+  avatar
+  chatId
+}

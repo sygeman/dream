@@ -36,12 +36,35 @@ type ChatMessage {
   createdAt: String!
 }
 
+type Community {
+  id: String!
+  name: String!
+  title: String!
+  avatar: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Channel {
+  id: String!
+  name: String!
+  title: String!
+  avatar: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  chatId: String!
+}
+
 type Query {
   tokens(authCode: String!): AuthTokens!
   refresh(refreshToken: String!): String!
   user(id: ID): User
   me: User!
   spotifyToken: String!
+  community(name: String!): Community!
+  communities: [Community!]!
+  channel(name: String!): Channel!
+  channels(name: String!): [Channel!]!
   chatMessages(chatId: ID!): [ChatMessage!]!
 }
 

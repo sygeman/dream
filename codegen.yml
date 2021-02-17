@@ -13,3 +13,9 @@ generates:
       - 'typescript'
       - 'typescript-operations'
       - 'typescript-react-apollo'
+  libs/community/src/lib/api/index.tsx:
+    documents: 'libs/community/src/lib/**/*.graphql'
+    plugins:
+      - 'typescript'
+      - 'typescript-operations'
+      - 'typescript-react-apollo'

@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
 import { EmojiHappyIcon } from '@dream/icons/emoji-happy';
 import { useCreateChatMessageMutation } from './api';
+import { convertTextToEmojiCode } from '@dream/utils/emoji';
 
 interface ChatBottomProps {
   chatId: string;
@@ -35,8 +36,8 @@ export const ChatBottom: React.FC<ChatBottomProps> = ({ chatId }) => {
             return null;
           }
 
-          //   const text = convertTextToEmojiCode(textareaRef.current.value.trim());
-          const text = textareaRef.current.value.trim();
+          const text = convertTextToEmojiCode(textareaRef.current.value.trim());
+          // const text = textareaRef.current.value.trim();
 
           if (e.key === 'Enter') {
             e.preventDefault();

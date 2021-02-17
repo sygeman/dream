@@ -5,6 +5,7 @@ import * as depthLimit from 'graphql-depth-limit';
 import { AuthModule, AuthService } from '@dream/auth-api';
 import { UserModule } from '@dream/user-api';
 import { ChatModule } from '@dream/chat-api';
+import { CommunityModule } from '@dream/community-api';
 import { ConnectionModule, ConnectionService } from '@dream/connection-api';
 import { SharedModule } from './shared.module';
 import { config } from './config';
@@ -104,6 +105,7 @@ import { config } from './config';
     AuthModule,
     UserModule,
     ConnectionModule,
+    CommunityModule,
     ChatModule,
   ],
 })

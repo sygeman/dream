@@ -49,6 +49,27 @@ export type ChatMessage = {
   createdAt: Scalars['String'];
 };
 
+export type Community = {
+  __typename?: 'Community';
+  id: Scalars['String'];
+  name: Scalars['String'];
+  title: Scalars['String'];
+  avatar?: Maybe<Scalars['String']>;
+  createdAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
+};
+
+export type Channel = {
+  __typename?: 'Channel';
+  id: Scalars['String'];
+  name: Scalars['String'];
+  title: Scalars['String'];
+  avatar?: Maybe<Scalars['String']>;
+  createdAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
+  chatId: Scalars['String'];
+};
+
 export type Query = {
   __typename?: 'Query';
   tokens: AuthTokens;
@@ -56,6 +77,10 @@ export type Query = {
   user?: Maybe<User>;
   me: User;
   spotifyToken: Scalars['String'];
+  community: Community;
+  communities: Array<Community>;
+  channel: Channel;
+  channels: Array<Channel>;
   chatMessages: Array<ChatMessage>;
 };
 
@@ -72,6 +97,21 @@ export type QueryRefreshArgs = {
 
 export type QueryUserArgs = {
   id?: Maybe<Scalars['ID']>;
+};
+
+
+export type QueryCommunityArgs = {
+  name: Scalars['String'];
+};
+
+
+export type QueryChannelArgs = {
+  name: Scalars['String'];
+};
+
+
+export type QueryChannelsArgs = {
+  name: Scalars['String'];
 };
 
 

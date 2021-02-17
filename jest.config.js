@@ -21,5 +21,6 @@ module.exports = {
     '<rootDir>/libs/auth',
     '<rootDir>/libs/spotify-now',
     '<rootDir>/libs/user',
+    '<rootDir>/libs/community-api',
   ],
 };

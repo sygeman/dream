@@ -2,8 +2,19 @@ import React from 'react';
 import { AnnotationIcon } from '@dream/icons/annotation';
 import { UsersIcon } from '@dream/icons/users';
 import { Chat } from '@dream/chat';
+import { useRouter } from 'next/router';
+import { useChannelQuery } from '../api';
 
 export const CommunityRightPanel = () => {
+  const router = useRouter();
+  const name = router.query?.channel;
+
+  const communityChannelsQuery = useChannelQuery({
+    variables: { name: typeof name === 'string' && name },
+  });
+
+  const channel = communityChannelsQuery?.data?.channel;
+
   return (
     <div className="h-screen flex flex-col w-320px bg-surface">
       <div className="flex border-b border-background">
@@ -18,7 +29,7 @@ export const CommunityRightPanel = () => {
           </span>
         </div>
       </div>
-      <Chat chatId="ckjqa4tsg00008amaxie5r8vi" />
+      <Chat chatId={channel?.chatId} />
     </div>
   );
 };

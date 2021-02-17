@@ -411,6 +411,27 @@
           }
         }
       }
+    },
+    "community-api": {
+      "root": "libs/community-api",
+      "sourceRoot": "libs/community-api/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/community-api/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/community-api"],
+          "options": {
+            "jestConfig": "libs/community-api/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   }
 }

@@ -1,0 +1,18 @@
+query community($name: String!) {
+  community(name: $name) {
+    ...CommunityFields
+  }
+}
+
+query communities {
+  communities {
+    ...CommunityFields
+  }
+}
+
+fragment CommunityFields on Community {
+  id
+  name
+  title
+  avatar
+}

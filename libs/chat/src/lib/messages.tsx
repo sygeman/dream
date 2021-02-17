@@ -11,13 +11,16 @@ export const ChatMessages: React.FC<{ messages: any[] }> = ({ messages }) => {
   });
 
   return (
-    <div className="flex flex-col overflow-hidden flex-1 relative">
+    <div className="flex flex-col flex-1 overflow-hidden relative">
       <SimpleBar ref={ref} className="h-full">
         {compactMessages(messages).map((message) => (
           <ChatMessage
             key={message.id}
-            username={message.author.name}
+            authorName={message.author.name}
+            authorAvatar={message.author.avatar}
             content={message.content}
+            compact={message.compact}
+            createdAt={message.createdAt}
           />
         ))}
       </SimpleBar>
@@ -28,7 +31,7 @@ export const ChatMessages: React.FC<{ messages: any[] }> = ({ messages }) => {
             'flex w-full items-center justify-center',
             'text-white text-sm',
             'bg-surface',
-            'opacity-90   cursor-pointer'
+            'opacity-90 cursor-pointer'
           )}
           onClick={toBottom}
         >

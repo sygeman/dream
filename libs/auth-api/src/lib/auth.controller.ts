@@ -47,6 +47,7 @@ export class AuthController {
           user: {
             update: {
               name: profile.name,
+              avatar: profile.avatar,
             },
           },
         },
@@ -65,6 +66,7 @@ export class AuthController {
           user: {
             create: {
               name: profile.name,
+              avatar: profile.avatar,
             },
           },
         },

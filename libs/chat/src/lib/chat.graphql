@@ -27,5 +27,6 @@ fragment ChatMessageFields on ChatMessage {
   author {
     id
     name
+    avatar
   }
 }

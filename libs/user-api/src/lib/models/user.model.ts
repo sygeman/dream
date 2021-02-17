@@ -20,12 +20,15 @@ export class User {
   @Field({ nullable: true })
   name?: string;
 
+  @Field({ nullable: true })
+  avatar?: string;
+
   @Field()
   createdAt: Date;
 
   @Field()
   updatedAt: Date;
 
-  @Field((type) => Profile, { nullable: true })
+  @Field(() => Profile, { nullable: true })
   profile?: Profile;
 }

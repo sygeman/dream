@@ -11,6 +11,7 @@ export const useChatScroll = ({ updateTriggers }) => {
   };
 
   const chatScroll = () => {
+    ref.current.recalculate();
     const el = ref.current.getScrollElement();
     const p = Math.round(el.scrollTop);
     const max = el.scrollHeight - el.clientHeight;
@@ -19,7 +20,6 @@ export const useChatScroll = ({ updateTriggers }) => {
 
   useEffect(() => {
     if (ref?.current) {
-      ref.current.recalculate();
       ref.current.getScrollElement().addEventListener('scroll', chatScroll);
 
       return () => {

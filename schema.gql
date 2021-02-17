@@ -16,6 +16,7 @@ type Profile {
 type User {
   id: String!
   name: String
+  avatar: String
   createdAt: DateTime!
   updatedAt: DateTime!
   profile: Profile

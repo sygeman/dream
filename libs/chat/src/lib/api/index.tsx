@@ -32,6 +32,7 @@ export type User = {
   __typename?: 'User';
   id: Scalars['String'];
   name?: Maybe<Scalars['String']>;
+  avatar?: Maybe<Scalars['String']>;
   createdAt: Scalars['DateTime'];
   updatedAt: Scalars['DateTime'];
   profile?: Maybe<Profile>;
@@ -170,7 +171,7 @@ export type ChatMessageFieldsFragment = (
   & Pick<ChatMessage, 'id' | 'content' | 'createdAt'>
   & { author: (
     { __typename?: 'User' }
-    & Pick<User, 'id' | 'name'>
+    & Pick<User, 'id' | 'name' | 'avatar'>
   ) }
 );
 
@@ -182,6 +183,7 @@ export const ChatMessageFieldsFragmentDoc = gql`
   author {
     id
     name
+    avatar
   }
 }
     `;

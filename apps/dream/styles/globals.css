@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  @apply overflow-hidden bg-surface h-screen w-screen;
+}
+
 .btn {
   @apply bg-surface text-white text-sm py-1 px-3 rounded hover:bg-surface-light;
 }

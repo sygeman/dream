@@ -20,5 +20,6 @@ module.exports = {
     '<rootDir>/libs/layouts',
     '<rootDir>/libs/auth',
     '<rootDir>/libs/spotify-now',
+    '<rootDir>/libs/user',
   ],
 };

@@ -1,0 +1,11 @@
+query me {
+  me {
+    id
+    name
+    avatar
+  }
+}
+
+mutation logout($refreshToken: String!) {
+  logout(refreshToken: $refreshToken)
+}

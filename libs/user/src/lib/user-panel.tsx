@@ -2,8 +2,8 @@ import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { UserCircleIcon } from '@dream/icons/user-circle';
-import { gql, useMutation, useQuery } from '@apollo/client';
 import { getRefreshToken } from '@dream/auth';
+import { useMeQuery, useLogoutMutation } from './api';
 
 const UserPanelForGuest = () => {
   const router = useRouter();
@@ -29,34 +29,15 @@ const UserPanelForGuest = () => {
 };
 
 export const UserPanel = () => {
-  const userQuery = useQuery(gql`
-    query me {
-      me {
-        id
-        name
-        profile {
-          id
-          name
-          avatar
-        }
-      }
-    }
-  `);
+  const userQuery = useMeQuery();
 
-  const [logoutMutation] = useMutation(
-    gql`
-      mutation logout($refreshToken: String!) {
-        logout(refreshToken: $refreshToken)
-      }
-    `,
-    {
-      onCompleted: () => {
-        localStorage.removeItem('accessToken');
-        localStorage.removeItem('refreshToken');
-        window.location.reload();
-      },
-    }
-  );
+  const [logoutMutation] = useLogoutMutation({
+    onCompleted: () => {
+      localStorage.removeItem('accessToken');
+      localStorage.removeItem('refreshToken');
+      window.location.reload();
+    },
+  });
 
   const logout = () => {
     logoutMutation({
@@ -68,7 +49,7 @@ export const UserPanel = () => {
 
   const user = userQuery.data?.me;
   const name = user?.name;
-  const avatar = user?.profile?.avatar;
+  const avatar = user?.avatar;
 
   if (!user) {
     return <UserPanelForGuest />;

@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import SimpleBar from 'simplebar-react';
 import { UserGroupIcon } from '@dream/icons/user-group';
 import { HeartIcon } from '@dream/icons/heart';
-import { UserPanel } from './user-panel';
+import { UserPanel } from '@dream/user';
 
 const CommunityInAppPanel: React.FC<{ title: string; name: string }> = ({
   title,

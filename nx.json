@@ -30,6 +30,7 @@
     "icons": { "tags": [] },
     "layouts": { "tags": [] },
     "auth": { "tags": [] },
-    "spotify-now": { "tags": [] }
+    "spotify-now": { "tags": [] },
+    "user": { "tags": [] }
   }
 }

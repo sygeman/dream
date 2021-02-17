@@ -1,5 +1,5 @@
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
-import locale from 'date-fns/locale/ru';
+import locale from 'date-fns/locale/en-US';
 
 export const dateDistanceInWordsToNow = (date) => {
   let numDate;

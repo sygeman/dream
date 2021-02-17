@@ -64,6 +64,7 @@ export type Channel = {
   id: Scalars['String'];
   name: Scalars['String'];
   title: Scalars['String'];
+  state?: Maybe<Scalars['String']>;
   avatar?: Maybe<Scalars['String']>;
   createdAt: Scalars['DateTime'];
   updatedAt: Scalars['DateTime'];

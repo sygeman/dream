@@ -49,6 +49,7 @@ type Channel {
   id: String!
   name: String!
   title: String!
+  state: String
   avatar: String
   createdAt: DateTime!
   updatedAt: DateTime!

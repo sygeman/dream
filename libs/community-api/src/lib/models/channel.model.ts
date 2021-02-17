@@ -12,6 +12,9 @@ export class Channel {
   title: string;
 
   @Field({ nullable: true })
+  state?: string;
+
+  @Field({ nullable: true })
   avatar?: string;
 
   @Field()

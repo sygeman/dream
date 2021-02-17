@@ -5,10 +5,11 @@ import SimpleBar from 'simplebar-react';
 import { HeartIcon } from '@dream/icons/heart';
 import { useCommunitiesQuery } from '../api';
 
-const CommunityInAppPanel: React.FC<{ title: string; name: string }> = ({
-  title,
-  name,
-}) => {
+const CommunityInAppPanel: React.FC<{
+  title: string;
+  name: string;
+  avatar: string;
+}> = ({ title, name, avatar }) => {
   const router = useRouter();
   const community = router.query?.community;
 
@@ -20,7 +21,11 @@ const CommunityInAppPanel: React.FC<{ title: string; name: string }> = ({
         }`}
       >
         <div className="rounded-full bg-background h-32px w-32px flex items-center justify-center">
-          <span className="text-gray-400 text-sm">{title[0]}</span>
+          {avatar ? (
+            <img src={avatar} className="h-full" alt={title} />
+          ) : (
+            <span className="text-gray-400 text-sm">{title[0]}</span>
+          )}
         </div>
       </div>
     </Link>
@@ -43,6 +48,7 @@ export const AppPanelCommunities = () => {
               key={community.id}
               name={community.name}
               title={community.title}
+              avatar={community.avatar}
             />
           ))}
         </SimpleBar>

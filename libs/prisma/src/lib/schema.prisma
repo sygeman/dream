@@ -50,10 +50,12 @@ model Channel {
   name            String            @unique
   title           String
   avatar          String?
+  state           String?
   mode            CommunityMode     @default(WAITLIST)
   createdAt       DateTime          @default(now())
   updatedAt       DateTime          @updatedAt @default(now())
   Chat            Chat
+  Connection      Connection[]
 }
 
 model Source {

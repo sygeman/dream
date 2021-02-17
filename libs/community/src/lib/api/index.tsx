@@ -64,6 +64,7 @@ export type Channel = {
   id: Scalars['String'];
   name: Scalars['String'];
   title: Scalars['String'];
+  state?: Maybe<Scalars['String']>;
   avatar?: Maybe<Scalars['String']>;
   createdAt: Scalars['DateTime'];
   updatedAt: Scalars['DateTime'];
@@ -185,7 +186,7 @@ export type CommunityChannelsQuery = (
 
 export type ChannelFieldsFragment = (
   { __typename?: 'Channel' }
-  & Pick<Channel, 'id' | 'name' | 'title' | 'avatar' | 'chatId'>
+  & Pick<Channel, 'id' | 'name' | 'title' | 'state' | 'avatar' | 'chatId'>
 );
 
 export type CommunityQueryVariables = Exact<{
@@ -222,6 +223,7 @@ export const ChannelFieldsFragmentDoc = gql`
   id
   name
   title
+  state
   avatar
   chatId
 }

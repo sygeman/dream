@@ -1,50 +1,28 @@
 import { useMemo } from 'react';
 import {
   ApolloClient,
-  createHttpLink,
   InMemoryCache,
-  split,
   NormalizedCacheObject,
 } from '@apollo/client';
 import merge from 'deepmerge';
 import isEqual from 'lodash/isEqual';
-import { authLink } from './authLink';
 import { errorLink } from './errorLink';
-import { getWsLink } from './wsLink';
-import { getMainDefinition } from '@apollo/client/utilities';
+import { wsLink } from './wsLink';
 
 export const APOLLO_STATE_PROP_NAME = '__APOLLO_STATE__';
 
 let apolloClient: ApolloClient<NormalizedCacheObject>;
 
-function createApolloClient(uri: string) {
-  const httpLink = createHttpLink({ uri });
-
-  let link = errorLink.concat(authLink.concat(httpLink));
-
-  if (typeof window !== 'undefined') {
-    link = split(
-      ({ query }) => {
-        const definition = getMainDefinition(query);
-        return (
-          definition.kind === 'OperationDefinition' &&
-          definition.operation === 'subscription'
-        );
-      },
-      getWsLink(),
-      link
-    );
-  }
-
+function createApolloClient() {
   return new ApolloClient({
-    link,
-    ssrMode: false,
+    link: errorLink.concat(wsLink),
     cache: new InMemoryCache(),
+    ssrMode: false,
   });
 }
 
-export function initializeApollo(initialState = null, uri: string) {
-  const _apolloClient = apolloClient ?? createApolloClient(uri);
+export function initializeApollo(initialState = null) {
+  const _apolloClient = apolloClient ?? createApolloClient();
 
   // If your page has Next.js data fetching methods that use Apollo Client, the initial state
   // gets hydrated here
@@ -82,14 +60,8 @@ export function addApolloState(client, pageProps) {
   return pageProps;
 }
 
-export function useApollo({
-  uri,
-  pageProps,
-}: {
-  uri: string;
-  pageProps?: any;
-}) {
+export function useApollo(pageProps) {
   const state = pageProps ? pageProps[APOLLO_STATE_PROP_NAME] : null;
-  const store = useMemo(() => initializeApollo(state, uri), [state]);
+  const store = useMemo(() => initializeApollo(state), [state]);
   return store;
 }

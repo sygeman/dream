@@ -7,7 +7,7 @@ import {
   Args,
   Context,
 } from '@nestjs/graphql';
-import { UseGuards, Inject } from '@nestjs/common';
+import { UseGuards, Inject, Logger } from '@nestjs/common';
 //   import { AuthGuard, ModGuard } from '../../guards';
 import { ChatMessageCreateInput } from './dto/chatMessage.create.input';
 //   import { ChatService } from './chat.service';
@@ -47,8 +47,11 @@ export class ChatResolver {
   @UseGuards(AuthGuard)
   async createChatMessage(
     @Args('input') input: ChatMessageCreateInput,
-    @Context('userId') userId: string
+    @Context('userId') userId: string,
+    @Context('connectionId') connectionId: string
   ) {
+    Logger.log({ connectionId });
+
     let { text, chatId } = input;
     text = text.trim();
     if (text.length === 0) {

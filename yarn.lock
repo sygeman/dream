@@ -14173,7 +14173,7 @@ react-is@17.0.1, react-is@^17.0.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.1.tgz#5b3531bd76a645a4c9fb6e693ed36419e3301339"
   integrity sha512-NAnt2iGDXohE5LI7uBnLnqvLQMtzhkiAOLXTmv+qnF9Ky7xAPcX8Up/xWIhxvLVGJvuLiNc4xQLtuqDRzb4fSA==
 
-react-player@^2.8.2:
+react-player@2.8.2:
   version "2.8.2"
   resolved "https://registry.yarnpkg.com/react-player/-/react-player-2.8.2.tgz#20fb5c4bcbf304ad719ca5566551ddb3ddefcd93"
   integrity sha512-AiCvWJGpFxgxjwMxDMiaeTyL2IgDaKuPZfERzNULGPx7X67Mh9D0UqKZG6YHqJQ1KbpbCdE0VBtICrzRxr28pg==

@@ -81,6 +81,7 @@ input ChatMessageCreateInput {
 }
 
 type Subscription {
+  channelUpdated(id: ID!): Channel!
   chatMessageCreated(chatId: ID!): ChatMessage!
   chatMessageDeleted(chatId: ID!): ChatMessage!
 }

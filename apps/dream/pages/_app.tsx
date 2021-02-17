@@ -7,10 +7,7 @@ import '../styles/globals.css';
 import 'simplebar/dist/simplebar.min.css';
 
 function CustomApp({ Component, pageProps }: AppProps) {
-  const apolloClient = useApollo({
-    uri: 'https://api.sgmn.dev/graphql',
-    pageProps,
-  });
+  const apolloClient = useApollo(pageProps);
 
   return (
     <ApolloProvider client={apolloClient}>

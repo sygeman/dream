@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Logger, Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ConfigModule } from '@nestjs/config';
 import * as depthLimit from 'graphql-depth-limit';
@@ -27,7 +27,14 @@ import { config } from './config';
         installSubscriptionHandlers: true,
         validationRules: [depthLimit(10)],
         autoSchemaFile: 'schema.gql',
-        context: async ({ req }) => {
+        context: async ({ req, connection }) => {
+          if (connection) {
+            Logger.log('with connection');
+            return connection.context;
+          }
+
+          Logger.log('without connection');
+
           const accessToken = authService.accessTokenFromHeader(
             req?.headers?.authorization
           );

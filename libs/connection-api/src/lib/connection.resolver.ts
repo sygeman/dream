@@ -1,9 +1,14 @@
-import { Resolver, Mutation, Context, Args } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Context, Args, Int } from '@nestjs/graphql';
 import { ConnectionService } from './connection.service';
 
 @Resolver()
 export class ConnectionResolver {
   constructor(private readonly connectionService: ConnectionService) {}
+
+  @Query(() => Int)
+  uniqCount() {
+    return this.connectionService.uniqCount();
+  }
 
   @Mutation(() => Boolean)
   async updateConnectionStatus(

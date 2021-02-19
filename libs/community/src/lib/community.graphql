@@ -10,6 +10,10 @@ query communities {
   }
 }
 
+query uniqCount {
+  uniqCount
+}
+
 fragment CommunityFields on Community {
   id
   name

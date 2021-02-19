@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import SimpleBar from 'simplebar-react';
-import { useCommunitiesQuery } from '../api';
+import { useCommunitiesQuery, useUniqCountQuery } from '../api';
 
 const CommunityCard: React.FC<{
   title: string;
@@ -31,9 +31,16 @@ export const MainCommunities = () => {
   const communitiesQuery = useCommunitiesQuery({ pollInterval: 3000 });
   const communities = communitiesQuery?.data?.communities || [];
 
+  const uniqCountQuery = useUniqCountQuery({ pollInterval: 3000 });
+  const uniqCount = uniqCountQuery?.data?.uniqCount || 0;
+
   return (
     <div className="flex flex-col w-full">
-      <div className="flex w-full justify-end px-4 py-2 bg-surface">
+      <div className="flex w-full justify-between items-center px-4 py-2 bg-surface">
+        <div>
+          <span className="text-accent">Online:</span>
+          <span className="text-white ml-2">{uniqCount}</span>
+        </div>
         <Link
           as={isUser ? `/communities/new` : `/auth?continue=/communities/new`}
           href={{

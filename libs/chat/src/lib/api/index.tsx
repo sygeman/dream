@@ -69,6 +69,7 @@ export type Channel = {
 
 export type Query = {
   __typename?: 'Query';
+  uniqCount: Scalars['Int'];
   user?: Maybe<User>;
   me: User;
   spotifyToken: Scalars['String'];

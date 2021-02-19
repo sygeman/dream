@@ -69,6 +69,7 @@ export type Channel = {
 
 export type Query = {
   __typename?: 'Query';
+  uniqCount: Scalars['Int'];
   user?: Maybe<User>;
   me: User;
   spotifyToken: Scalars['String'];
@@ -203,6 +204,14 @@ export type CommunitiesQuery = (
     { __typename?: 'Community' }
     & CommunityFieldsFragment
   )> }
+);
+
+export type UniqCountQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type UniqCountQuery = (
+  { __typename?: 'Query' }
+  & Pick<Query, 'uniqCount'>
 );
 
 export type CommunityFieldsFragment = (
@@ -361,3 +370,33 @@ export function useCommunitiesLazyQuery(baseOptions?: Apollo.LazyQueryHookOption
 export type CommunitiesQueryHookResult = ReturnType<typeof useCommunitiesQuery>;
 export type CommunitiesLazyQueryHookResult = ReturnType<typeof useCommunitiesLazyQuery>;
 export type CommunitiesQueryResult = Apollo.QueryResult<CommunitiesQuery, CommunitiesQueryVariables>;
+export const UniqCountDocument = gql`
+    query uniqCount {
+  uniqCount
+}
+    `;
+
+/**
+ * __useUniqCountQuery__
+ *
+ * To run a query within a React component, call `useUniqCountQuery` and pass it any options that fit your needs.
+ * When your component renders, `useUniqCountQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useUniqCountQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useUniqCountQuery(baseOptions?: Apollo.QueryHookOptions<UniqCountQuery, UniqCountQueryVariables>) {
+        return Apollo.useQuery<UniqCountQuery, UniqCountQueryVariables>(UniqCountDocument, baseOptions);
+      }
+export function useUniqCountLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<UniqCountQuery, UniqCountQueryVariables>) {
+          return Apollo.useLazyQuery<UniqCountQuery, UniqCountQueryVariables>(UniqCountDocument, baseOptions);
+        }
+export type UniqCountQueryHookResult = ReturnType<typeof useUniqCountQuery>;
+export type UniqCountLazyQueryHookResult = ReturnType<typeof useUniqCountLazyQuery>;
+export type UniqCountQueryResult = Apollo.QueryResult<UniqCountQuery, UniqCountQueryVariables>;

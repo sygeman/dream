@@ -54,6 +54,7 @@ type Channel {
 }
 
 type Query {
+  uniqCount: Int!
   user(id: ID): User
   me: User!
   spotifyToken: String!

@@ -1,6 +1,6 @@
 import { Logger, Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import * as depthLimit from 'graphql-depth-limit';
 import { AuthModule, AuthService } from '@dream/auth-api';
 import { UserModule } from '@dream/user-api';
@@ -10,12 +10,26 @@ import { ConnectionModule, ConnectionService } from '@dream/connection-api';
 import { SharedModule } from './shared.module';
 import { config } from './config';
 import { nanoid } from 'nanoid';
+import { BullModule } from '@nestjs/bull';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
       load: config,
+    }),
+    BullModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: async (configService: ConfigService) => ({
+        redis: {
+          port: configService.get('db.redisPort'),
+          host: configService.get('db.redisHost'),
+        },
+        defaultJobOptions: {
+          removeOnComplete: true,
+        },
+      }),
+      inject: [ConfigService],
     }),
     SharedModule,
     GraphQLModule.forRootAsync({

@@ -1,29 +1,22 @@
 import { PrismaService } from '@dream/prisma';
-import { Injectable, Logger, OnApplicationBootstrap } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { interval } from 'rxjs';
 import * as ms from 'ms';
 
 @Injectable()
-export class ConnectionService implements OnApplicationBootstrap {
+export class ConnectionService {
   constructor(
     private readonly config: ConfigService,
     private prisma: PrismaService
   ) {}
 
-  onApplicationBootstrap() {
-    this.initConnectionWatcher();
-  }
-
-  async initConnectionWatcher() {
-    interval(ms('5s')).subscribe(async () => {
-      return await this.prisma.connection.deleteMany({
-        where: {
-          updatedAt: {
-            lt: new Date(new Date().getTime() - ms('7s')),
-          },
+  async cleanup() {
+    return await this.prisma.connection.deleteMany({
+      where: {
+        updatedAt: {
+          lt: new Date(new Date().getTime() - ms('7s')),
         },
-      });
+      },
     });
   }
 
@@ -48,22 +41,26 @@ export class ConnectionService implements OnApplicationBootstrap {
       }
     }
 
-    await this.prisma.connection.upsert({
-      where: {
-        id: connectionId,
-      },
-      create: {
-        id: connectionId,
-        ipHash,
-        instanceId,
-        userId,
-        channelId,
-      },
-      update: {
-        channelId,
-        updatedAt: new Date(),
-      },
-    });
+    try {
+      await this.prisma.connection.upsert({
+        where: {
+          id: connectionId,
+        },
+        create: {
+          id: connectionId,
+          ipHash,
+          instanceId,
+          userId,
+          channelId,
+        },
+        update: {
+          channelId,
+          updatedAt: new Date(),
+        },
+      });
+    } catch (error) {
+      Logger.error(error);
+    }
   }
 
   async remove(id: string) {

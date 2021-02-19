@@ -59,7 +59,7 @@ export const MainCommunities = () => {
       <div className="flex flex-1 w-full overflow-hidden">
         <SimpleBar className="h-full w-full">
           <div className="w-full grid grid-cols-fill-240px py-4 auto-rows-max gap-2 justify-center overflow-y-auto">
-            {communities.map((community, k) => (
+            {communities.map((community) => (
               <CommunityCard
                 key={community.id}
                 name={community.name}

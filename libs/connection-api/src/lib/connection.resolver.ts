@@ -21,7 +21,7 @@ export class ConnectionResolver {
     this.connectionService.updateConnectionStatus({
       userId,
       connectionId,
-      ipHash,
+      ipHash: `${ipHash}-${userId || 'anon'}`,
       community,
       channel,
     });

@@ -20,6 +20,9 @@ export class Community {
   @Field()
   updatedAt: Date;
 
+  @Field()
+  onlineCount: number;
+
   // @Field(() => Profile, { nullable: true })
   // profile?: Profile;
 }

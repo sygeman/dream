@@ -51,6 +51,7 @@ export type Community = {
   avatar?: Maybe<Scalars['String']>;
   createdAt: Scalars['DateTime'];
   updatedAt: Scalars['DateTime'];
+  onlineCount: Scalars['Float'];
 };
 
 export type Channel = {
@@ -63,6 +64,7 @@ export type Channel = {
   createdAt: Scalars['DateTime'];
   updatedAt: Scalars['DateTime'];
   chatId: Scalars['String'];
+  onlineCount: Scalars['Float'];
 };
 
 export type Query = {
@@ -176,7 +178,7 @@ export type CommunityChannelsQuery = (
 
 export type ChannelFieldsFragment = (
   { __typename?: 'Channel' }
-  & Pick<Channel, 'id' | 'name' | 'title' | 'state' | 'avatar' | 'chatId'>
+  & Pick<Channel, 'id' | 'name' | 'title' | 'state' | 'avatar' | 'chatId' | 'onlineCount'>
 );
 
 export type CommunityQueryVariables = Exact<{
@@ -205,7 +207,7 @@ export type CommunitiesQuery = (
 
 export type CommunityFieldsFragment = (
   { __typename?: 'Community' }
-  & Pick<Community, 'id' | 'name' | 'title' | 'avatar'>
+  & Pick<Community, 'id' | 'name' | 'title' | 'avatar' | 'onlineCount'>
 );
 
 export const ChannelFieldsFragmentDoc = gql`
@@ -216,6 +218,7 @@ export const ChannelFieldsFragmentDoc = gql`
   state
   avatar
   chatId
+  onlineCount
 }
     `;
 export const CommunityFieldsFragmentDoc = gql`
@@ -224,6 +227,7 @@ export const CommunityFieldsFragmentDoc = gql`
   name
   title
   avatar
+  onlineCount
 }
     `;
 export const ChannelDocument = gql`

@@ -38,6 +38,7 @@ type Community {
   avatar: String
   createdAt: DateTime!
   updatedAt: DateTime!
+  onlineCount: Float!
 }
 
 type Channel {
@@ -49,6 +50,7 @@ type Channel {
   createdAt: DateTime!
   updatedAt: DateTime!
   chatId: String!
+  onlineCount: Float!
 }
 
 type Query {

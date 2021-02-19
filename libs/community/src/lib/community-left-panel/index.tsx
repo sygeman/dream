@@ -47,6 +47,7 @@ export const CommunityLeftPanel = () => {
   const communityChannelsQuery = useCommunityChannelsQuery({
     variables: { name },
     skip: !name,
+    pollInterval: 2000,
   });
 
   const community = communityQuery?.data?.community;
@@ -67,7 +68,7 @@ export const CommunityLeftPanel = () => {
               key={channel.id}
               title={channel.title}
               current={channel.state}
-              online={0}
+              online={channel.onlineCount}
               name={channel.name}
             />
           ))}

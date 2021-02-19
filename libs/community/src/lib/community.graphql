@@ -15,4 +15,5 @@ fragment CommunityFields on Community {
   name
   title
   avatar
+  onlineCount
 }

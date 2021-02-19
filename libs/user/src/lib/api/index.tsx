@@ -51,6 +51,7 @@ export type Community = {
   avatar?: Maybe<Scalars['String']>;
   createdAt: Scalars['DateTime'];
   updatedAt: Scalars['DateTime'];
+  onlineCount: Scalars['Float'];
 };
 
 export type Channel = {
@@ -63,6 +64,7 @@ export type Channel = {
   createdAt: Scalars['DateTime'];
   updatedAt: Scalars['DateTime'];
   chatId: Scalars['String'];
+  onlineCount: Scalars['Float'];
 };
 
 export type Query = {

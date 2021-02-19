@@ -26,6 +26,9 @@ export class Channel {
   @Field()
   chatId: string;
 
+  @Field()
+  onlineCount: number;
+
   // @Field(() => Profile, { nullable: true })
   // profile?: Profile;
 }

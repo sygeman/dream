@@ -1,10 +1,26 @@
-import { Args, Query, Resolver } from '@nestjs/graphql';
+import { Args, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql';
 import { PrismaService } from '@dream/prisma';
 import { Community } from './models/community.model';
 
 @Resolver(() => Community)
 export class CommunityResolver {
   constructor(private prisma: PrismaService) {}
+
+  @ResolveField()
+  async onlineCount(@Parent() community: Community) {
+    const { id } = community;
+    const connections = await this.prisma.connection.findMany({
+      where: {
+        Channel: {
+          communityId: id,
+        },
+      },
+      select: { ipHash: true },
+      distinct: ['ipHash'],
+    });
+
+    return connections.length;
+  }
 
   @Query(() => Community)
   community(@Args({ name: 'name' }) name: string) {

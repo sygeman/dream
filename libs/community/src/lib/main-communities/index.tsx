@@ -4,16 +4,20 @@ import { useRouter } from 'next/router';
 import SimpleBar from 'simplebar-react';
 import { useCommunitiesQuery } from '../api';
 
-const CommunityCard: React.FC<{ title: string; name: string }> = ({
-  title,
-  name,
-}) => {
+const CommunityCard: React.FC<{
+  title: string;
+  name: string;
+  online: number;
+}> = ({ title, name, online }) => {
   return (
     <Link href={`/${name}`}>
       <div className="flex flex-col flex-shrink-0 overflow-hidden items-center justify-center  cursor-pointer hover:opacity-90 bg-surface m-4 rounded">
         <div className="w-full bg-surface-light py-12"></div>
-        <div className="w-full px-4 py-2">
+        <div className="flex items-center justify-between w-full px-4 py-2">
           <span className="text-sm text-text">{title}</span>
+          <span className="text-text text-xs rounded bg-background px-2 py-1">
+            {online}
+          </span>
         </div>
       </div>
     </Link>
@@ -24,7 +28,7 @@ export const MainCommunities = () => {
   const router = useRouter();
   const isUser = true;
 
-  const communitiesQuery = useCommunitiesQuery();
+  const communitiesQuery = useCommunitiesQuery({ pollInterval: 3000 });
   const communities = communitiesQuery?.data?.communities || [];
 
   return (
@@ -53,6 +57,7 @@ export const MainCommunities = () => {
                 key={community.id}
                 name={community.name}
                 title={community.title}
+                online={community.onlineCount}
               />
             ))}
           </div>

@@ -2,7 +2,9 @@ import {
   Args,
   ID,
   Mutation,
+  Parent,
   Query,
+  ResolveField,
   Resolver,
   Subscription,
 } from '@nestjs/graphql';
@@ -17,6 +19,22 @@ export class ChannelResolver {
     private readonly prisma: PrismaService, // private readonly userService: UsersService,
     @Inject('PUB_SUB') private readonly pubsub: RedisPubSub
   ) {}
+
+  @ResolveField()
+  async onlineCount(@Parent() channel: Channel) {
+    const { id } = channel;
+    const connections = await this.prisma.connection.findMany({
+      where: {
+        Channel: {
+          id,
+        },
+      },
+      select: { ipHash: true },
+      distinct: ['ipHash'],
+    });
+
+    return connections.length;
+  }
 
   @Query(() => Channel)
   channel(@Args({ name: 'name', type: () => String }) name: string) {
@@ -35,11 +53,6 @@ export class ChannelResolver {
       },
     });
   }
-
-  // @Mutation()
-  // joinChannel() {
-
-  // }
 
   @Subscription(() => Channel, {
     filter: ({ channelUpdated }, { channelId }) =>

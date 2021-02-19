@@ -6,6 +6,6 @@ query me {
   }
 }
 
-mutation logout($refreshToken: String!) {
-  logout(refreshToken: $refreshToken)
+mutation logout {
+  logout
 }

@@ -1,4 +1,4 @@
-import { Logger, Module } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ConfigModule } from '@nestjs/config';
 import * as depthLimit from 'graphql-depth-limit';
@@ -29,39 +29,24 @@ import { config } from './config';
         autoSchemaFile: 'schema.gql',
         context: async ({ req, connection }) => {
           if (connection) {
-            Logger.log('with connection');
             return connection.context;
           }
 
-          Logger.log('without connection');
-
-          const accessToken = authService.accessTokenFromHeader(
-            req?.headers?.authorization
+          const token = req?.headers?.authorization;
+          const { userId, tokenIsInvalid } = await authService.getTokenData(
+            token
           );
 
-          let userId;
-          let tokenIsInvalid = false;
-
-          if (accessToken) {
-            const payload: any = authService.jwtValidation(accessToken);
-
-            if (payload) {
-              userId = payload.userId;
-            } else {
-              tokenIsInvalid = true;
-            }
-          }
-
-          return { userId, tokenIsInvalid };
+          return { userId, token, tokenIsInvalid };
         },
         subscriptions: {
           keepAlive: 3000,
           onConnect: async (
-            connectionParams: { accessToken?: string },
+            connectionParams: { token?: string },
             _webSocket,
             context
           ) => {
-            const accessToken = connectionParams?.accessToken;
+            const token = connectionParams?.token;
 
             let ipHash;
 
@@ -73,18 +58,9 @@ import { config } from './config';
               ipHash = Buffer.from(ip).toString('base64');
             }
 
-            let userId;
-            let tokenIsInvalid = false;
-
-            if (accessToken) {
-              const payload: any = authService.jwtValidation(accessToken);
-
-              if (payload) {
-                userId = payload.userId;
-              } else {
-                tokenIsInvalid = true;
-              }
-            }
+            const { userId, tokenIsInvalid } = await authService.getTokenData(
+              token
+            );
 
             if (!tokenIsInvalid) {
               const { id: connectionId } = await connectionService.create({

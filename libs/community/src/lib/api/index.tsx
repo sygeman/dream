@@ -15,12 +15,6 @@ export type Scalars = {
   DateTime: any;
 };
 
-export type AuthTokens = {
-  __typename?: 'AuthTokens';
-  refreshToken: Scalars['String'];
-  accessToken: Scalars['String'];
-};
-
 export type Profile = {
   __typename?: 'Profile';
   id: Scalars['String'];
@@ -73,8 +67,6 @@ export type Channel = {
 
 export type Query = {
   __typename?: 'Query';
-  tokens: AuthTokens;
-  refresh: Scalars['String'];
   user?: Maybe<User>;
   me: User;
   spotifyToken: Scalars['String'];
@@ -83,16 +75,6 @@ export type Query = {
   channel: Channel;
   channels: Array<Channel>;
   chatMessages: Array<ChatMessage>;
-};
-
-
-export type QueryTokensArgs = {
-  authCode: Scalars['String'];
-};
-
-
-export type QueryRefreshArgs = {
-  refreshToken: Scalars['String'];
 };
 
 
@@ -128,11 +110,6 @@ export type Mutation = {
 };
 
 
-export type MutationLogoutArgs = {
-  refreshToken: Scalars['String'];
-};
-
-
 export type MutationCreateChatMessageArgs = {
   input: ChatMessageCreateInput;
 };
@@ -144,8 +121,14 @@ export type ChatMessageCreateInput = {
 
 export type Subscription = {
   __typename?: 'Subscription';
+  channelUpdated: Channel;
   chatMessageCreated: ChatMessage;
   chatMessageDeleted: ChatMessage;
+};
+
+
+export type SubscriptionChannelUpdatedArgs = {
+  id: Scalars['ID'];
 };
 
 

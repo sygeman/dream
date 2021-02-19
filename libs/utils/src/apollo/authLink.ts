@@ -1,18 +1,18 @@
 import { ApolloLink } from '@apollo/client';
-import { getAccessToken } from '@dream/auth';
+import { getToken } from '@dream/auth';
 
 type Headers = {
   authorization?: string;
 };
 
 export const authLink = new ApolloLink((operation, forward) => {
-  const accessToken = getAccessToken();
+  const token = getToken();
 
-  if (accessToken) {
+  if (token) {
     operation.setContext(({ headers }: { headers: Headers }) => ({
       headers: {
         ...headers,
-        authorization: `Bearer ${accessToken}`,
+        authorization: token,
       },
     }));
   }

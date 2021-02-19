@@ -1,5 +1,5 @@
 import { WebSocketLink } from '@apollo/client/link/ws';
-import { getAccessToken, refreshTokens } from '@dream/auth';
+import { getToken } from '@dream/auth';
 import WebSocket from 'isomorphic-ws';
 
 export const wsLink = new WebSocketLink({
@@ -8,13 +8,8 @@ export const wsLink = new WebSocketLink({
   options: {
     reconnect: true,
     connectionParams: async () => {
-      const accessToken = getAccessToken();
-      return { accessToken };
-    },
-    connectionCallback: (error) => {
-      if (error) {
-        refreshTokens();
-      }
+      const token = getToken();
+      return { token };
     },
   },
 });

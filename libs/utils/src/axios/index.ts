@@ -2,7 +2,7 @@ import { gql } from '@apollo/client';
 import axios from 'axios';
 import { initializeApollo } from '../apollo';
 
-const apolloClient = initializeApollo(null, 'https://api.sgmn.dev/graphql');
+const apolloClient = initializeApollo();
 
 const getAccessToken = async () => {
   const d = await apolloClient.query({

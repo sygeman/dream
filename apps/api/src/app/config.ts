@@ -2,10 +2,6 @@ import { registerAs } from '@nestjs/config';
 import { nanoid } from 'nanoid';
 
 export const config = [
-  registerAs('auth', () => ({
-    secretKey: 'ajsfijasbfabjfasjfajlfd',
-    expiresIn: 86400,
-  })),
   registerAs('authGoogle', () => ({
     clientID: process.env.GOOGLE_ID,
     clientSecret: process.env.GOOGLE_SECRET,

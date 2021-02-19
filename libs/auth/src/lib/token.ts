@@ -1,28 +1,16 @@
-export const getAccessToken = () => {
+export const getToken = () => {
   return typeof localStorage !== 'undefined'
-    ? localStorage.getItem('accessToken')
+    ? localStorage.getItem('token')
     : undefined;
 };
 
-export const getRefreshToken = () => {
+export const removeToken = () => {
   return typeof localStorage !== 'undefined'
-    ? localStorage.getItem('refreshToken')
+    ? localStorage.removeItem('token')
     : undefined;
 };
 
-export const setAccessToken = (accessToken: string) => {
+export const setToken = (token: string) => {
   if (typeof localStorage === 'undefined') return;
-  localStorage.setItem('accessToken', accessToken);
-};
-
-export const setTokens = ({ accessToken, refreshToken }) => {
-  if (typeof localStorage === 'undefined') return;
-  localStorage.setItem('accessToken', accessToken);
-  localStorage.setItem('refreshToken', refreshToken);
-};
-
-export const removeTokens = () => {
-  if (typeof localStorage === 'undefined') return;
-  localStorage.removeItem('accessToken');
-  localStorage.removeItem('refreshToken');
+  localStorage.setItem('token', token);
 };

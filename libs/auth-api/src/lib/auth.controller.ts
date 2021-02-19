@@ -75,13 +75,9 @@ export class AuthController {
       userId = newProfile.userId;
     }
 
-    // Make auth code
-    const tokens = await this.authService.createToken(userId, true);
+    const token = await this.authService.createToken(userId);
 
-    // Redirect back with auth code client/auth/success?code=code&redirect=somecommunityurl
-    return res.redirect(
-      `${codeHandler}code=${tokens.code}&redirect=${redirectUri}`
-    );
+    return res.redirect(`${codeHandler}token=${token}&redirect=${redirectUri}`);
   }
 
   // Spotify

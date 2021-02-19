@@ -9,7 +9,6 @@ import {
 import { getMainDefinition } from '@apollo/client/utilities';
 import merge from 'deepmerge';
 import isEqual from 'lodash/isEqual';
-import { errorLink } from './errorLink';
 import { wsLink } from './wsLink';
 import { authLink } from './authLink';
 
@@ -29,7 +28,7 @@ function createApolloClient() {
       );
     },
     wsLink,
-    errorLink.concat(authLink.concat(httpLink))
+    authLink.concat(httpLink)
   );
 
   return new ApolloClient({

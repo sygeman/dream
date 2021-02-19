@@ -9,14 +9,12 @@ const QueueModule = BullModule.registerQueueAsync({
     const redisConfig = {
       port: configService.get('db.redisPort'),
       host: configService.get('db.redisHost'),
-      keyPrefix: configService.get('base.appPrefix'),
     };
 
     return {
       defaultJobOptions: {
         removeOnComplete: true,
       },
-      prefix: `${configService.get('base.appPrefix')}bull`,
       redis: redisConfig,
     };
   },

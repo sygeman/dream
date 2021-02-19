@@ -72,7 +72,7 @@ import { config } from './config';
           },
           onDisconnect: async (_webSocket, context) => {
             const data = await context.initPromise;
-            await connectionService.remove(data.connectionId);
+            return await connectionService.remove(data.connectionId);
           },
         },
       }),

@@ -1,5 +1,5 @@
 import { PrismaService } from '@dream/prisma';
-import { Injectable, OnModuleInit } from '@nestjs/common';
+import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { interval } from 'rxjs';
 import * as ms from 'ms';
@@ -78,7 +78,7 @@ export class ConnectionService implements OnModuleInit {
   }
 
   async remove(id: string) {
-    return this.prisma.connection.deleteMany({ where: { id } });
+    return this.prisma.connection.delete({ where: { id } });
   }
 
   async uniqCount() {

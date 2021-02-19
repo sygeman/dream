@@ -16,6 +16,5 @@ fragment ChannelFields on Channel {
   title
   state
   avatar
-  chatId
   onlineCount
 }

@@ -151,27 +151,6 @@
         }
       }
     },
-    "chat-api": {
-      "root": "libs/chat-api",
-      "sourceRoot": "libs/chat-api/src",
-      "projectType": "library",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/chat-api/**/*.ts"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/chat-api"],
-          "options": {
-            "jestConfig": "libs/chat-api/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
     "community": {
       "root": "libs/community",
       "sourceRoot": "libs/community/src",

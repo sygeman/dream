@@ -11,7 +11,7 @@ export const compactMessages = (messages) => {
 
       if (
         diff < compactInterval &&
-        message.author?.id === array[index - 1]?.author?.id
+        message.user?.id === array[index - 1]?.user?.id
       ) {
         compact = true;
       }

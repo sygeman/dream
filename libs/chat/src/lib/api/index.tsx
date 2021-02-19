@@ -29,19 +29,9 @@ export type User = {
   avatar?: Maybe<Scalars['String']>;
   createdAt: Scalars['DateTime'];
   updatedAt: Scalars['DateTime'];
-  profile?: Maybe<Profile>;
+  profiles?: Maybe<Array<Profile>>;
 };
 
-
-export type ChatMessage = {
-  __typename?: 'ChatMessage';
-  id: Scalars['String'];
-  content: Scalars['String'];
-  chatId: Scalars['String'];
-  authorId: Scalars['String'];
-  author: User;
-  createdAt: Scalars['String'];
-};
 
 export type Community = {
   __typename?: 'Community';
@@ -63,8 +53,17 @@ export type Channel = {
   avatar?: Maybe<Scalars['String']>;
   createdAt: Scalars['DateTime'];
   updatedAt: Scalars['DateTime'];
-  chatId: Scalars['String'];
   onlineCount: Scalars['Float'];
+};
+
+export type ChannelMessage = {
+  __typename?: 'ChannelMessage';
+  id: Scalars['String'];
+  content: Scalars['String'];
+  channelId: Scalars['String'];
+  userId: Scalars['String'];
+  user: User;
+  createdAt: Scalars['String'];
 };
 
 export type Query = {
@@ -77,7 +76,7 @@ export type Query = {
   communities: Array<Community>;
   channel: Channel;
   channels: Array<Channel>;
-  chatMessages: Array<ChatMessage>;
+  channelMessages: Array<ChannelMessage>;
 };
 
 
@@ -101,8 +100,8 @@ export type QueryChannelsArgs = {
 };
 
 
-export type QueryChatMessagesArgs = {
-  chatId: Scalars['ID'];
+export type QueryChannelMessagesArgs = {
+  channelId: Scalars['ID'];
 };
 
 export type Mutation = {
@@ -110,7 +109,7 @@ export type Mutation = {
   logout: Scalars['Boolean'];
   updateConnectionStatus: Scalars['Boolean'];
   refreshSpotifyToken: Scalars['String'];
-  createChatMessage: Scalars['Boolean'];
+  createChannelMessage: Scalars['Boolean'];
 };
 
 
@@ -120,225 +119,219 @@ export type MutationUpdateConnectionStatusArgs = {
 };
 
 
-export type MutationCreateChatMessageArgs = {
-  input: ChatMessageCreateInput;
+export type MutationCreateChannelMessageArgs = {
+  input: ChannelMessageCreateInput;
 };
 
-export type ChatMessageCreateInput = {
-  text: Scalars['String'];
-  chatId: Scalars['String'];
+export type ChannelMessageCreateInput = {
+  content: Scalars['String'];
+  channelId: Scalars['String'];
 };
 
 export type Subscription = {
   __typename?: 'Subscription';
-  channelUpdated: Channel;
-  chatMessageCreated: ChatMessage;
-  chatMessageDeleted: ChatMessage;
+  channelMessageCreated: ChannelMessage;
+  channelMessageDeleted: ChannelMessage;
 };
 
 
-export type SubscriptionChannelUpdatedArgs = {
-  id: Scalars['ID'];
+export type SubscriptionChannelMessageCreatedArgs = {
+  channelId: Scalars['ID'];
 };
 
 
-export type SubscriptionChatMessageCreatedArgs = {
-  chatId: Scalars['ID'];
+export type SubscriptionChannelMessageDeletedArgs = {
+  channelId: Scalars['ID'];
 };
 
-
-export type SubscriptionChatMessageDeletedArgs = {
-  chatId: Scalars['ID'];
-};
-
-export type ChatMessagesQueryVariables = Exact<{
-  chatId: Scalars['ID'];
+export type ChannelMessagesQueryVariables = Exact<{
+  channelId: Scalars['ID'];
 }>;
 
 
-export type ChatMessagesQuery = (
+export type ChannelMessagesQuery = (
   { __typename?: 'Query' }
-  & { chatMessages: Array<(
-    { __typename?: 'ChatMessage' }
-    & ChatMessageFieldsFragment
+  & { channelMessages: Array<(
+    { __typename?: 'ChannelMessage' }
+    & ChannelMessageFieldsFragment
   )> }
 );
 
-export type CreateChatMessageMutationVariables = Exact<{
-  input: ChatMessageCreateInput;
+export type CreateChannelMessageMutationVariables = Exact<{
+  input: ChannelMessageCreateInput;
 }>;
 
 
-export type CreateChatMessageMutation = (
+export type CreateChannelMessageMutation = (
   { __typename?: 'Mutation' }
-  & Pick<Mutation, 'createChatMessage'>
+  & Pick<Mutation, 'createChannelMessage'>
 );
 
-export type ChatMessageCreatedSubscriptionVariables = Exact<{
-  chatId: Scalars['ID'];
+export type ChannelMessageCreatedSubscriptionVariables = Exact<{
+  channelId: Scalars['ID'];
 }>;
 
 
-export type ChatMessageCreatedSubscription = (
+export type ChannelMessageCreatedSubscription = (
   { __typename?: 'Subscription' }
-  & { chatMessageCreated: (
-    { __typename?: 'ChatMessage' }
-    & ChatMessageFieldsFragment
+  & { channelMessageCreated: (
+    { __typename?: 'ChannelMessage' }
+    & ChannelMessageFieldsFragment
   ) }
 );
 
-export type ChatMessageDeletedSubscriptionVariables = Exact<{
-  chatId: Scalars['ID'];
+export type ChannelMessageDeletedSubscriptionVariables = Exact<{
+  channelId: Scalars['ID'];
 }>;
 
 
-export type ChatMessageDeletedSubscription = (
+export type ChannelMessageDeletedSubscription = (
   { __typename?: 'Subscription' }
-  & { chatMessageDeleted: (
-    { __typename?: 'ChatMessage' }
-    & ChatMessageFieldsFragment
+  & { channelMessageDeleted: (
+    { __typename?: 'ChannelMessage' }
+    & ChannelMessageFieldsFragment
   ) }
 );
 
-export type ChatMessageFieldsFragment = (
-  { __typename?: 'ChatMessage' }
-  & Pick<ChatMessage, 'id' | 'content' | 'createdAt'>
-  & { author: (
+export type ChannelMessageFieldsFragment = (
+  { __typename?: 'ChannelMessage' }
+  & Pick<ChannelMessage, 'id' | 'content' | 'createdAt'>
+  & { user: (
     { __typename?: 'User' }
     & Pick<User, 'id' | 'name' | 'avatar'>
   ) }
 );
 
-export const ChatMessageFieldsFragmentDoc = gql`
-    fragment ChatMessageFields on ChatMessage {
+export const ChannelMessageFieldsFragmentDoc = gql`
+    fragment ChannelMessageFields on ChannelMessage {
   id
   content
   createdAt
-  author {
+  user {
     id
     name
     avatar
   }
 }
     `;
-export const ChatMessagesDocument = gql`
-    query chatMessages($chatId: ID!) {
-  chatMessages(chatId: $chatId) {
-    ...ChatMessageFields
+export const ChannelMessagesDocument = gql`
+    query ChannelMessages($channelId: ID!) {
+  channelMessages(channelId: $channelId) {
+    ...ChannelMessageFields
   }
 }
-    ${ChatMessageFieldsFragmentDoc}`;
+    ${ChannelMessageFieldsFragmentDoc}`;
 
 /**
- * __useChatMessagesQuery__
+ * __useChannelMessagesQuery__
  *
- * To run a query within a React component, call `useChatMessagesQuery` and pass it any options that fit your needs.
- * When your component renders, `useChatMessagesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useChannelMessagesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useChannelMessagesQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useChatMessagesQuery({
+ * const { data, loading, error } = useChannelMessagesQuery({
  *   variables: {
- *      chatId: // value for 'chatId'
+ *      channelId: // value for 'channelId'
  *   },
  * });
  */
-export function useChatMessagesQuery(baseOptions: Apollo.QueryHookOptions<ChatMessagesQuery, ChatMessagesQueryVariables>) {
-        return Apollo.useQuery<ChatMessagesQuery, ChatMessagesQueryVariables>(ChatMessagesDocument, baseOptions);
+export function useChannelMessagesQuery(baseOptions: Apollo.QueryHookOptions<ChannelMessagesQuery, ChannelMessagesQueryVariables>) {
+        return Apollo.useQuery<ChannelMessagesQuery, ChannelMessagesQueryVariables>(ChannelMessagesDocument, baseOptions);
       }
-export function useChatMessagesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ChatMessagesQuery, ChatMessagesQueryVariables>) {
-          return Apollo.useLazyQuery<ChatMessagesQuery, ChatMessagesQueryVariables>(ChatMessagesDocument, baseOptions);
+export function useChannelMessagesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ChannelMessagesQuery, ChannelMessagesQueryVariables>) {
+          return Apollo.useLazyQuery<ChannelMessagesQuery, ChannelMessagesQueryVariables>(ChannelMessagesDocument, baseOptions);
         }
-export type ChatMessagesQueryHookResult = ReturnType<typeof useChatMessagesQuery>;
-export type ChatMessagesLazyQueryHookResult = ReturnType<typeof useChatMessagesLazyQuery>;
-export type ChatMessagesQueryResult = Apollo.QueryResult<ChatMessagesQuery, ChatMessagesQueryVariables>;
-export const CreateChatMessageDocument = gql`
-    mutation createChatMessage($input: ChatMessageCreateInput!) {
-  createChatMessage(input: $input)
+export type ChannelMessagesQueryHookResult = ReturnType<typeof useChannelMessagesQuery>;
+export type ChannelMessagesLazyQueryHookResult = ReturnType<typeof useChannelMessagesLazyQuery>;
+export type ChannelMessagesQueryResult = Apollo.QueryResult<ChannelMessagesQuery, ChannelMessagesQueryVariables>;
+export const CreateChannelMessageDocument = gql`
+    mutation createChannelMessage($input: ChannelMessageCreateInput!) {
+  createChannelMessage(input: $input)
 }
     `;
-export type CreateChatMessageMutationFn = Apollo.MutationFunction<CreateChatMessageMutation, CreateChatMessageMutationVariables>;
+export type CreateChannelMessageMutationFn = Apollo.MutationFunction<CreateChannelMessageMutation, CreateChannelMessageMutationVariables>;
 
 /**
- * __useCreateChatMessageMutation__
+ * __useCreateChannelMessageMutation__
  *
- * To run a mutation, you first call `useCreateChatMessageMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useCreateChatMessageMutation` returns a tuple that includes:
+ * To run a mutation, you first call `useCreateChannelMessageMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateChannelMessageMutation` returns a tuple that includes:
  * - A mutate function that you can call at any time to execute the mutation
  * - An object with fields that represent the current status of the mutation's execution
  *
  * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
  *
  * @example
- * const [createChatMessageMutation, { data, loading, error }] = useCreateChatMessageMutation({
+ * const [createChannelMessageMutation, { data, loading, error }] = useCreateChannelMessageMutation({
  *   variables: {
  *      input: // value for 'input'
  *   },
  * });
  */
-export function useCreateChatMessageMutation(baseOptions?: Apollo.MutationHookOptions<CreateChatMessageMutation, CreateChatMessageMutationVariables>) {
-        return Apollo.useMutation<CreateChatMessageMutation, CreateChatMessageMutationVariables>(CreateChatMessageDocument, baseOptions);
+export function useCreateChannelMessageMutation(baseOptions?: Apollo.MutationHookOptions<CreateChannelMessageMutation, CreateChannelMessageMutationVariables>) {
+        return Apollo.useMutation<CreateChannelMessageMutation, CreateChannelMessageMutationVariables>(CreateChannelMessageDocument, baseOptions);
       }
-export type CreateChatMessageMutationHookResult = ReturnType<typeof useCreateChatMessageMutation>;
-export type CreateChatMessageMutationResult = Apollo.MutationResult<CreateChatMessageMutation>;
-export type CreateChatMessageMutationOptions = Apollo.BaseMutationOptions<CreateChatMessageMutation, CreateChatMessageMutationVariables>;
-export const ChatMessageCreatedDocument = gql`
-    subscription chatMessageCreated($chatId: ID!) {
-  chatMessageCreated(chatId: $chatId) {
-    ...ChatMessageFields
+export type CreateChannelMessageMutationHookResult = ReturnType<typeof useCreateChannelMessageMutation>;
+export type CreateChannelMessageMutationResult = Apollo.MutationResult<CreateChannelMessageMutation>;
+export type CreateChannelMessageMutationOptions = Apollo.BaseMutationOptions<CreateChannelMessageMutation, CreateChannelMessageMutationVariables>;
+export const ChannelMessageCreatedDocument = gql`
+    subscription ChannelMessageCreated($channelId: ID!) {
+  channelMessageCreated(channelId: $channelId) {
+    ...ChannelMessageFields
   }
 }
-    ${ChatMessageFieldsFragmentDoc}`;
+    ${ChannelMessageFieldsFragmentDoc}`;
 
 /**
- * __useChatMessageCreatedSubscription__
+ * __useChannelMessageCreatedSubscription__
  *
- * To run a query within a React component, call `useChatMessageCreatedSubscription` and pass it any options that fit your needs.
- * When your component renders, `useChatMessageCreatedSubscription` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useChannelMessageCreatedSubscription` and pass it any options that fit your needs.
+ * When your component renders, `useChannelMessageCreatedSubscription` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the subscription, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useChatMessageCreatedSubscription({
+ * const { data, loading, error } = useChannelMessageCreatedSubscription({
  *   variables: {
- *      chatId: // value for 'chatId'
+ *      channelId: // value for 'channelId'
  *   },
  * });
  */
-export function useChatMessageCreatedSubscription(baseOptions: Apollo.SubscriptionHookOptions<ChatMessageCreatedSubscription, ChatMessageCreatedSubscriptionVariables>) {
-        return Apollo.useSubscription<ChatMessageCreatedSubscription, ChatMessageCreatedSubscriptionVariables>(ChatMessageCreatedDocument, baseOptions);
+export function useChannelMessageCreatedSubscription(baseOptions: Apollo.SubscriptionHookOptions<ChannelMessageCreatedSubscription, ChannelMessageCreatedSubscriptionVariables>) {
+        return Apollo.useSubscription<ChannelMessageCreatedSubscription, ChannelMessageCreatedSubscriptionVariables>(ChannelMessageCreatedDocument, baseOptions);
       }
-export type ChatMessageCreatedSubscriptionHookResult = ReturnType<typeof useChatMessageCreatedSubscription>;
-export type ChatMessageCreatedSubscriptionResult = Apollo.SubscriptionResult<ChatMessageCreatedSubscription>;
-export const ChatMessageDeletedDocument = gql`
-    subscription chatMessageDeleted($chatId: ID!) {
-  chatMessageDeleted(chatId: $chatId) {
-    ...ChatMessageFields
+export type ChannelMessageCreatedSubscriptionHookResult = ReturnType<typeof useChannelMessageCreatedSubscription>;
+export type ChannelMessageCreatedSubscriptionResult = Apollo.SubscriptionResult<ChannelMessageCreatedSubscription>;
+export const ChannelMessageDeletedDocument = gql`
+    subscription ChannelMessageDeleted($channelId: ID!) {
+  channelMessageDeleted(channelId: $channelId) {
+    ...ChannelMessageFields
   }
 }
-    ${ChatMessageFieldsFragmentDoc}`;
+    ${ChannelMessageFieldsFragmentDoc}`;
 
 /**
- * __useChatMessageDeletedSubscription__
+ * __useChannelMessageDeletedSubscription__
  *
- * To run a query within a React component, call `useChatMessageDeletedSubscription` and pass it any options that fit your needs.
- * When your component renders, `useChatMessageDeletedSubscription` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useChannelMessageDeletedSubscription` and pass it any options that fit your needs.
+ * When your component renders, `useChannelMessageDeletedSubscription` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the subscription, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useChatMessageDeletedSubscription({
+ * const { data, loading, error } = useChannelMessageDeletedSubscription({
  *   variables: {
- *      chatId: // value for 'chatId'
+ *      channelId: // value for 'channelId'
  *   },
  * });
  */
-export function useChatMessageDeletedSubscription(baseOptions: Apollo.SubscriptionHookOptions<ChatMessageDeletedSubscription, ChatMessageDeletedSubscriptionVariables>) {
-        return Apollo.useSubscription<ChatMessageDeletedSubscription, ChatMessageDeletedSubscriptionVariables>(ChatMessageDeletedDocument, baseOptions);
+export function useChannelMessageDeletedSubscription(baseOptions: Apollo.SubscriptionHookOptions<ChannelMessageDeletedSubscription, ChannelMessageDeletedSubscriptionVariables>) {
+        return Apollo.useSubscription<ChannelMessageDeletedSubscription, ChannelMessageDeletedSubscriptionVariables>(ChannelMessageDeletedDocument, baseOptions);
       }
-export type ChatMessageDeletedSubscriptionHookResult = ReturnType<typeof useChatMessageDeletedSubscription>;
-export type ChatMessageDeletedSubscriptionResult = Apollo.SubscriptionResult<ChatMessageDeletedSubscription>;
+export type ChannelMessageDeletedSubscriptionHookResult = ReturnType<typeof useChannelMessageDeletedSubscription>;
+export type ChannelMessageDeletedSubscriptionResult = Apollo.SubscriptionResult<ChannelMessageDeletedSubscription>;

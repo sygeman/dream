@@ -2,11 +2,11 @@ import { Field, InputType } from '@nestjs/graphql';
 import { Length } from 'class-validator';
 
 @InputType()
-export class ChatMessageCreateInput {
+export class ChannelMessageCreateInput {
   @Field()
   @Length(1, 500)
-  text: string;
+  content: string;
 
   @Field()
-  chatId: string;
+  channelId: string;
 }

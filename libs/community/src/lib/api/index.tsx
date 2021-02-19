@@ -29,19 +29,9 @@ export type User = {
   avatar?: Maybe<Scalars['String']>;
   createdAt: Scalars['DateTime'];
   updatedAt: Scalars['DateTime'];
-  profile?: Maybe<Profile>;
+  profiles?: Maybe<Array<Profile>>;
 };
 
-
-export type ChatMessage = {
-  __typename?: 'ChatMessage';
-  id: Scalars['String'];
-  content: Scalars['String'];
-  chatId: Scalars['String'];
-  authorId: Scalars['String'];
-  author: User;
-  createdAt: Scalars['String'];
-};
 
 export type Community = {
   __typename?: 'Community';
@@ -63,8 +53,17 @@ export type Channel = {
   avatar?: Maybe<Scalars['String']>;
   createdAt: Scalars['DateTime'];
   updatedAt: Scalars['DateTime'];
-  chatId: Scalars['String'];
   onlineCount: Scalars['Float'];
+};
+
+export type ChannelMessage = {
+  __typename?: 'ChannelMessage';
+  id: Scalars['String'];
+  content: Scalars['String'];
+  channelId: Scalars['String'];
+  userId: Scalars['String'];
+  user: User;
+  createdAt: Scalars['String'];
 };
 
 export type Query = {
@@ -77,7 +76,7 @@ export type Query = {
   communities: Array<Community>;
   channel: Channel;
   channels: Array<Channel>;
-  chatMessages: Array<ChatMessage>;
+  channelMessages: Array<ChannelMessage>;
 };
 
 
@@ -101,8 +100,8 @@ export type QueryChannelsArgs = {
 };
 
 
-export type QueryChatMessagesArgs = {
-  chatId: Scalars['ID'];
+export type QueryChannelMessagesArgs = {
+  channelId: Scalars['ID'];
 };
 
 export type Mutation = {
@@ -110,7 +109,7 @@ export type Mutation = {
   logout: Scalars['Boolean'];
   updateConnectionStatus: Scalars['Boolean'];
   refreshSpotifyToken: Scalars['String'];
-  createChatMessage: Scalars['Boolean'];
+  createChannelMessage: Scalars['Boolean'];
 };
 
 
@@ -120,35 +119,29 @@ export type MutationUpdateConnectionStatusArgs = {
 };
 
 
-export type MutationCreateChatMessageArgs = {
-  input: ChatMessageCreateInput;
+export type MutationCreateChannelMessageArgs = {
+  input: ChannelMessageCreateInput;
 };
 
-export type ChatMessageCreateInput = {
-  text: Scalars['String'];
-  chatId: Scalars['String'];
+export type ChannelMessageCreateInput = {
+  content: Scalars['String'];
+  channelId: Scalars['String'];
 };
 
 export type Subscription = {
   __typename?: 'Subscription';
-  channelUpdated: Channel;
-  chatMessageCreated: ChatMessage;
-  chatMessageDeleted: ChatMessage;
+  channelMessageCreated: ChannelMessage;
+  channelMessageDeleted: ChannelMessage;
 };
 
 
-export type SubscriptionChannelUpdatedArgs = {
-  id: Scalars['ID'];
+export type SubscriptionChannelMessageCreatedArgs = {
+  channelId: Scalars['ID'];
 };
 
 
-export type SubscriptionChatMessageCreatedArgs = {
-  chatId: Scalars['ID'];
-};
-
-
-export type SubscriptionChatMessageDeletedArgs = {
-  chatId: Scalars['ID'];
+export type SubscriptionChannelMessageDeletedArgs = {
+  channelId: Scalars['ID'];
 };
 
 export type ChannelQueryVariables = Exact<{
@@ -179,7 +172,7 @@ export type CommunityChannelsQuery = (
 
 export type ChannelFieldsFragment = (
   { __typename?: 'Channel' }
-  & Pick<Channel, 'id' | 'name' | 'title' | 'state' | 'avatar' | 'chatId' | 'onlineCount'>
+  & Pick<Channel, 'id' | 'name' | 'title' | 'state' | 'avatar' | 'onlineCount'>
 );
 
 export type CommunityQueryVariables = Exact<{
@@ -226,7 +219,6 @@ export const ChannelFieldsFragmentDoc = gql`
   title
   state
   avatar
-  chatId
   onlineCount
 }
     `;

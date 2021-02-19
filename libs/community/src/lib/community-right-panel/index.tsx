@@ -30,7 +30,7 @@ export const CommunityRightPanel = () => {
           </span>
         </div>
       </div>
-      <Chat chatId={channel?.chatId} />
+      <Chat channelId={channel?.id} />
     </div>
   );
 };

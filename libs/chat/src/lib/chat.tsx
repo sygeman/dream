@@ -1,34 +1,39 @@
 import React from 'react';
-import { useChatMessagesQuery, useChatMessageCreatedSubscription } from './api';
+import {
+  useChannelMessagesQuery,
+  useChannelMessageCreatedSubscription,
+} from './api';
 import { ChatMessages } from './messages';
 import { ChatBottom } from './bottom';
 
-export const Chat: React.FC<{ chatId: string }> = ({ chatId }) => {
-  const messagesQuery = useChatMessagesQuery({
-    variables: { chatId },
-    skip: !chatId,
+export const Chat: React.FC<{ channelId: string }> = ({ channelId }) => {
+  const messagesQuery = useChannelMessagesQuery({
+    variables: { channelId },
+    skip: !channelId,
   });
 
-  useChatMessageCreatedSubscription({
-    variables: { chatId },
-    skip: !chatId,
+  useChannelMessageCreatedSubscription({
+    variables: { channelId },
+    skip: !channelId,
     onSubscriptionData: ({ subscriptionData }) => {
       if (!subscriptionData.data) return;
 
-      const chatMessage = subscriptionData.data.chatMessageCreated;
+      const chatMessage = subscriptionData.data.channelMessageCreated;
 
       messagesQuery.updateQuery((prev) => {
-        if (prev.chatMessages.findIndex((c) => c.id === chatMessage.id) < 0) {
+        if (
+          prev.channelMessages.findIndex((c) => c.id === chatMessage.id) < 0
+        ) {
           return {
             ...prev,
-            chatMessages: [...prev.chatMessages.slice(-50), chatMessage],
+            channelMessages: [...prev.channelMessages.slice(-50), chatMessage],
           };
         }
       });
     },
   });
 
-  const messages = messagesQuery.data?.chatMessages || [];
+  const messages = messagesQuery.data?.channelMessages || [];
 
   return (
     <>
@@ -38,7 +43,7 @@ export const Chat: React.FC<{ chatId: string }> = ({ chatId }) => {
         </div>
       </div>
 
-      <ChatBottom chatId={chatId} />
+      <ChatBottom channelId={channelId} />
     </>
   );
 };

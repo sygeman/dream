@@ -1,30 +1,30 @@
-query chatMessages($chatId: ID!) {
-  chatMessages(chatId: $chatId) {
-    ...ChatMessageFields
+query ChannelMessages($channelId: ID!) {
+  channelMessages(channelId: $channelId) {
+    ...ChannelMessageFields
   }
 }
 
-mutation createChatMessage($input: ChatMessageCreateInput!) {
-  createChatMessage(input: $input)
+mutation createChannelMessage($input: ChannelMessageCreateInput!) {
+  createChannelMessage(input: $input)
 }
 
-subscription chatMessageCreated($chatId: ID!) {
-  chatMessageCreated(chatId: $chatId) {
-    ...ChatMessageFields
+subscription ChannelMessageCreated($channelId: ID!) {
+  channelMessageCreated(channelId: $channelId) {
+    ...ChannelMessageFields
   }
 }
 
-subscription chatMessageDeleted($chatId: ID!) {
-  chatMessageDeleted(chatId: $chatId) {
-    ...ChatMessageFields
+subscription ChannelMessageDeleted($channelId: ID!) {
+  channelMessageDeleted(channelId: $channelId) {
+    ...ChannelMessageFields
   }
 }
 
-fragment ChatMessageFields on ChatMessage {
+fragment ChannelMessageFields on ChannelMessage {
   id
   content
   createdAt
-  author {
+  user {
     id
     name
     avatar

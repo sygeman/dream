@@ -4,7 +4,6 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import * as depthLimit from 'graphql-depth-limit';
 import { AuthModule, AuthService } from '@dream/auth-api';
 import { UserModule } from '@dream/user-api';
-import { ChatModule } from '@dream/chat-api';
 import { CommunityModule } from '@dream/community-api';
 import { ConnectionModule, ConnectionService } from '@dream/connection-api';
 import { SharedModule } from './shared.module';
@@ -98,7 +97,6 @@ import { BullModule } from '@nestjs/bull';
     UserModule,
     ConnectionModule,
     CommunityModule,
-    ChatModule,
   ],
 })
 export class AppModule {}

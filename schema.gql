@@ -14,22 +14,13 @@ type User {
   avatar: String
   createdAt: DateTime!
   updatedAt: DateTime!
-  profile: Profile
+  profiles: [Profile!]
 }
 
 """
 A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
 """
 scalar DateTime
-
-type ChatMessage {
-  id: String!
-  content: String!
-  chatId: String!
-  authorId: String!
-  author: User!
-  createdAt: String!
-}
 
 type Community {
   id: String!
@@ -49,8 +40,16 @@ type Channel {
   avatar: String
   createdAt: DateTime!
   updatedAt: DateTime!
-  chatId: String!
   onlineCount: Float!
+}
+
+type ChannelMessage {
+  id: String!
+  content: String!
+  channelId: String!
+  userId: String!
+  user: User!
+  createdAt: String!
 }
 
 type Query {
@@ -62,23 +61,22 @@ type Query {
   communities: [Community!]!
   channel(name: String!): Channel!
   channels(name: String!): [Channel!]!
-  chatMessages(chatId: ID!): [ChatMessage!]!
+  channelMessages(channelId: ID!): [ChannelMessage!]!
 }
 
 type Mutation {
   logout: Boolean!
   updateConnectionStatus(channel: String, community: String): Boolean!
   refreshSpotifyToken: String!
-  createChatMessage(input: ChatMessageCreateInput!): Boolean!
+  createChannelMessage(input: ChannelMessageCreateInput!): Boolean!
 }
 
-input ChatMessageCreateInput {
-  text: String!
-  chatId: String!
+input ChannelMessageCreateInput {
+  content: String!
+  channelId: String!
 }
 
 type Subscription {
-  channelUpdated(id: ID!): Channel!
-  chatMessageCreated(chatId: ID!): ChatMessage!
-  chatMessageDeleted(chatId: ID!): ChatMessage!
+  channelMessageCreated(channelId: ID!): ChannelMessage!
+  channelMessageDeleted(channelId: ID!): ChannelMessage!
 }

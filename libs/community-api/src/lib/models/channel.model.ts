@@ -24,9 +24,6 @@ export class Channel {
   updatedAt: Date;
 
   @Field()
-  chatId: string;
-
-  @Field()
   onlineCount: number;
 
   // @Field(() => Profile, { nullable: true })

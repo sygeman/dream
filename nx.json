@@ -21,7 +21,6 @@
     "containers": { "tags": [] },
     "utils": { "tags": [] },
     "chat": { "tags": [] },
-    "chat-api": { "tags": [] },
     "community": { "tags": [] },
     "auth-api": { "tags": [] },
     "user-api": { "tags": [] },

@@ -16,8 +16,8 @@ export const ChatMessages: React.FC<{ messages: any[] }> = ({ messages }) => {
         {compactMessages(messages).map((message) => (
           <ChatMessage
             key={message.id}
-            authorName={message.author.name}
-            authorAvatar={message.author.avatar}
+            authorName={message.user.name}
+            authorAvatar={message.user.avatar}
             content={message.content}
             compact={message.compact}
             createdAt={message.createdAt}

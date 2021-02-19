@@ -21,7 +21,6 @@
       "@dream/containers/*": ["libs/containers/src/*"],
       "@dream/utils/*": ["libs/utils/src/*"],
       "@dream/chat": ["libs/chat/src/index.ts"],
-      "@dream/chat-api": ["libs/chat-api/src/index.ts"],
       "@dream/community": ["libs/community/src/index.ts"],
       "@dream/auth-api": ["libs/auth-api/src/index.ts"],
       "@dream/user-api": ["libs/user-api/src/index.ts"],

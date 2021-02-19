@@ -1,22 +1,20 @@
 import React, { useRef } from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
 import { EmojiHappyIcon } from '@dream/icons/emoji-happy';
-import { useCreateChatMessageMutation } from './api';
+import { useCreateChannelMessageMutation } from './api';
 import { convertTextToEmojiCode } from '@dream/utils/emoji';
 
 interface ChatBottomProps {
-  chatId: string;
+  channelId: string;
 }
 
-export const ChatBottom: React.FC<ChatBottomProps> = ({ chatId }) => {
+export const ChatBottom: React.FC<ChatBottomProps> = ({ channelId }) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-  //   const [{ allow: isAllow }] = useAccess();
-  const isAllow = true;
   let lock = false;
 
-  const [createChatMessage] = useCreateChatMessageMutation({
+  const [createMessage] = useCreateChannelMessageMutation({
     onCompleted: (data) => {
-      if (data.createChatMessage && textareaRef.current) {
+      if (data.createChannelMessage && textareaRef.current) {
         textareaRef.current.value = '';
         lock = false;
       }
@@ -36,17 +34,18 @@ export const ChatBottom: React.FC<ChatBottomProps> = ({ chatId }) => {
             return null;
           }
 
-          const text = convertTextToEmojiCode(textareaRef.current.value.trim());
-          // const text = textareaRef.current.value.trim();
+          const content = convertTextToEmojiCode(
+            textareaRef.current.value.trim()
+          );
 
           if (e.key === 'Enter') {
             e.preventDefault();
           }
 
-          if (e.key === 'Enter' && !lock && text.length > 0) {
+          if (e.key === 'Enter' && !lock && content.length > 0) {
             lock = true;
-            createChatMessage({
-              variables: { input: { chatId, text } },
+            createMessage({
+              variables: { input: { channelId, content } },
             });
           }
         }}

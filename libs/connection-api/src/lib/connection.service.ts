@@ -33,7 +33,7 @@ export class ConnectionService {
 
     if (channel) {
       const channelData = await this.prisma.channel.findFirst({
-        where: { name: channel, Community: { name: community } },
+        where: { name: channel, community: { name: community } },
       });
 
       if (channelData) {

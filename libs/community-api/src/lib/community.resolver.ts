@@ -11,7 +11,7 @@ export class CommunityResolver {
     const { id } = community;
     const connections = await this.prisma.connection.findMany({
       where: {
-        Channel: {
+        channel: {
           communityId: id,
         },
       },

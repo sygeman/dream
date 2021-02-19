@@ -7,17 +7,21 @@ datasource db {
   url      = env("PG_URL")
 }
 
-model Profile {
-  id     String  @default(cuid()) @id
-  userId String  @unique
-  provider String
-  serviceId String
-  name   String?
-  avatar String?
-  email String?
-  accessToken String?
-  refreshToken String?
-  user   User    @relation(fields: [userId], references: [id])
+model Token {
+  id          String  @default(cuid()) @id
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt @default(now())
+  user        User
+}
+
+model Connection {
+  id          String  @default(cuid()) @id
+  instanceId  String?
+  ipHash      String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt @default(now())
+  user        User?
+  channel     Channel?
 }
 
 model User {
@@ -26,8 +30,19 @@ model User {
   avatar          String?
   createdAt       DateTime          @default(now())
   updatedAt       DateTime          @updatedAt @default(now())
-  profile         Profile?
-  // CommunitySource CommunitySource[]
+  profiles        Profile[]
+}
+
+model Profile {
+  id     String  @default(cuid()) @id
+  provider String
+  serviceId String
+  name   String?
+  avatar String?
+  email String?
+  accessToken String?
+  refreshToken String?
+  user   User
 }
 
 enum CommunityMode {
@@ -42,7 +57,7 @@ model Community {
   avatar          String?
   createdAt       DateTime          @default(now())
   updatedAt       DateTime          @updatedAt @default(now())
-  Channel         Channel[]
+  channels        Channel[]
 }
 
 model Channel {
@@ -54,67 +69,17 @@ model Channel {
   mode            CommunityMode     @default(WAITLIST)
   createdAt       DateTime          @default(now())
   updatedAt       DateTime          @updatedAt @default(now())
-  Chat            Chat
-  Connection      Connection[]
+  community       Community
+  messages        ChannelMessage[]
+  connections     Connection[]
 }
 
-model Source {
-  id              String            @default(cuid()) @id
-  title           String
-  cover           String?
-  service         String
-  serviceId       String
-  duration        Int               @default(0)
-  createdAt       DateTime          @default(now())
-  updatedAt       DateTime          @updatedAt @default(now())
-  CommunitySource CommunitySource[]
-}
-
-model CommunitySource {
-  id          String    @default(cuid()) @id
-  communityId String
-  sourceId    String
-  userId      String?
-  playCount   Int       @default(0)
-  lastPlayAt  DateTime?
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt @default(now())
-  community   Community @relation(fields: [communityId], references: [id])
-  source      Source    @relation(fields: [sourceId], references: [id])
-  user        User?     @relation(fields: [userId], references: [id])
-}
-
-model Token {
+model ChannelMessage {
   id          String  @default(cuid()) @id
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt @default(now())
-  User        User
-}
-
-model Connection {
-  id          String  @default(cuid()) @id
-  instanceId  String?
-  userId      String?
-  ipHash      String?
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt @default(now())
-  user        User?     @relation(fields: [userId], references: [id])
-}
-
-model Chat  {
-  id          String    @default(cuid()) @id
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt @default(now())
-}
-
-model ChatMessage {
-  id          String  @default(cuid()) @id
-  chatId      String
-  userId      String
   content     String
   deleted     Boolean @default(false)
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt @default(now())
-  chat        Chat  @relation(fields: [chatId], references: [id])
-  author      User     @relation(fields: [userId], references: [id])
+  channel     Channel
+  user        User
 }

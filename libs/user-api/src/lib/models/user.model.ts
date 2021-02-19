@@ -29,6 +29,6 @@ export class User {
   @Field()
   updatedAt: Date;
 
-  @Field(() => Profile, { nullable: true })
-  profile?: Profile;
+  @Field(() => [Profile], { nullable: true })
+  profiles?: Profile[];
 }

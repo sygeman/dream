@@ -27,7 +27,7 @@ export class UserResolver {
 
     return this.prisma.user.findFirst({
       where: { id },
-      include: { profile: true },
+      include: { profiles: true },
     });
   }
 
@@ -37,7 +37,7 @@ export class UserResolver {
     return this.prisma.user.findFirst({
       where: { id: userId },
       include: {
-        profile: true,
+        profiles: true,
       },
     });
   }

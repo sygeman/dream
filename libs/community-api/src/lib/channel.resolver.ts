@@ -1,13 +1,4 @@
-import {
-  Args,
-  ID,
-  Mutation,
-  Parent,
-  Query,
-  ResolveField,
-  Resolver,
-  Subscription,
-} from '@nestjs/graphql';
+import { Args, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql';
 import { PrismaService } from '@dream/prisma';
 import { Channel } from './models/channel.model';
 import { RedisPubSub } from 'graphql-redis-subscriptions';
@@ -16,7 +7,7 @@ import { Inject } from '@nestjs/common';
 @Resolver(() => Channel)
 export class ChannelResolver {
   constructor(
-    private readonly prisma: PrismaService, // private readonly userService: UsersService,
+    private readonly prisma: PrismaService,
     @Inject('PUB_SUB') private readonly pubsub: RedisPubSub
   ) {}
 
@@ -25,7 +16,7 @@ export class ChannelResolver {
     const { id } = channel;
     const connections = await this.prisma.connection.findMany({
       where: {
-        Channel: {
+        channel: {
           id,
         },
       },
@@ -47,18 +38,10 @@ export class ChannelResolver {
   channels(@Args({ name: 'name', type: () => String }) name: string) {
     return this.prisma.channel.findMany({
       where: {
-        Community: {
+        community: {
           name,
         },
       },
     });
-  }
-
-  @Subscription(() => Channel, {
-    filter: ({ channelUpdated }, { channelId }) =>
-      channelUpdated.channelId === channelId,
-  })
-  channelUpdated(@Args({ name: 'id', type: () => ID }) channelId: string) {
-    return this.pubsub.asyncIterator('channelUpdated');
   }
 }

@@ -6,11 +6,12 @@ import { useRouter } from 'next/router';
 import { useChannelQuery } from '../api';
 
 export const CommunityRightPanel = () => {
-  const router = useRouter();
-  const name = router.query?.channel;
+  const { query } = useRouter();
+  const name = typeof query?.channel === 'string' && query?.channel;
 
   const communityChannelsQuery = useChannelQuery({
-    variables: { name: typeof name === 'string' && name },
+    variables: { name },
+    skip: !name,
   });
 
   const channel = communityChannelsQuery?.data?.channel;

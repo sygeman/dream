@@ -36,15 +36,17 @@ const ChannelItem = ({ name, title, current, online }) => {
 };
 
 export const CommunityLeftPanel = () => {
-  const router = useRouter();
-  const name = router.query?.community;
+  const { query } = useRouter();
+  const name = typeof query?.community === 'string' && query?.community;
 
   const communityQuery = useCommunityQuery({
-    variables: { name: typeof name === 'string' && name },
+    variables: { name },
+    skip: !name,
   });
 
   const communityChannelsQuery = useCommunityChannelsQuery({
-    variables: { name: typeof name === 'string' && name },
+    variables: { name },
+    skip: !name,
   });
 
   const community = communityQuery?.data?.community;

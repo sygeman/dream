@@ -6,10 +6,12 @@ import { ChatBottom } from './bottom';
 export const Chat: React.FC<{ chatId: string }> = ({ chatId }) => {
   const messagesQuery = useChatMessagesQuery({
     variables: { chatId },
+    skip: !chatId,
   });
 
   useChatMessageCreatedSubscription({
     variables: { chatId },
+    skip: !chatId,
     onSubscriptionData: ({ subscriptionData }) => {
       if (!subscriptionData.data) return;
 

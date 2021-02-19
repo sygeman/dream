@@ -105,8 +105,15 @@ export type QueryChatMessagesArgs = {
 export type Mutation = {
   __typename?: 'Mutation';
   logout: Scalars['Boolean'];
+  updateConnectionStatus: Scalars['Boolean'];
   refreshSpotifyToken: Scalars['String'];
   createChatMessage: Scalars['Boolean'];
+};
+
+
+export type MutationUpdateConnectionStatusArgs = {
+  channel?: Maybe<Scalars['String']>;
+  community?: Maybe<Scalars['String']>;
 };
 
 
@@ -158,6 +165,17 @@ export type LogoutMutationVariables = Exact<{ [key: string]: never; }>;
 export type LogoutMutation = (
   { __typename?: 'Mutation' }
   & Pick<Mutation, 'logout'>
+);
+
+export type UpdateConnectionStatusMutationVariables = Exact<{
+  channel?: Maybe<Scalars['String']>;
+  community?: Maybe<Scalars['String']>;
+}>;
+
+
+export type UpdateConnectionStatusMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'updateConnectionStatus'>
 );
 
 
@@ -224,3 +242,34 @@ export function useLogoutMutation(baseOptions?: Apollo.MutationHookOptions<Logou
 export type LogoutMutationHookResult = ReturnType<typeof useLogoutMutation>;
 export type LogoutMutationResult = Apollo.MutationResult<LogoutMutation>;
 export type LogoutMutationOptions = Apollo.BaseMutationOptions<LogoutMutation, LogoutMutationVariables>;
+export const UpdateConnectionStatusDocument = gql`
+    mutation updateConnectionStatus($channel: String, $community: String) {
+  updateConnectionStatus(channel: $channel, community: $community)
+}
+    `;
+export type UpdateConnectionStatusMutationFn = Apollo.MutationFunction<UpdateConnectionStatusMutation, UpdateConnectionStatusMutationVariables>;
+
+/**
+ * __useUpdateConnectionStatusMutation__
+ *
+ * To run a mutation, you first call `useUpdateConnectionStatusMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateConnectionStatusMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateConnectionStatusMutation, { data, loading, error }] = useUpdateConnectionStatusMutation({
+ *   variables: {
+ *      channel: // value for 'channel'
+ *      community: // value for 'community'
+ *   },
+ * });
+ */
+export function useUpdateConnectionStatusMutation(baseOptions?: Apollo.MutationHookOptions<UpdateConnectionStatusMutation, UpdateConnectionStatusMutationVariables>) {
+        return Apollo.useMutation<UpdateConnectionStatusMutation, UpdateConnectionStatusMutationVariables>(UpdateConnectionStatusDocument, baseOptions);
+      }
+export type UpdateConnectionStatusMutationHookResult = ReturnType<typeof useUpdateConnectionStatusMutation>;
+export type UpdateConnectionStatusMutationResult = Apollo.MutationResult<UpdateConnectionStatusMutation>;
+export type UpdateConnectionStatusMutationOptions = Apollo.BaseMutationOptions<UpdateConnectionStatusMutation, UpdateConnectionStatusMutationVariables>;

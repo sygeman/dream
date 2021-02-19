@@ -105,8 +105,15 @@ export type QueryChatMessagesArgs = {
 export type Mutation = {
   __typename?: 'Mutation';
   logout: Scalars['Boolean'];
+  updateConnectionStatus: Scalars['Boolean'];
   refreshSpotifyToken: Scalars['String'];
   createChatMessage: Scalars['Boolean'];
+};
+
+
+export type MutationUpdateConnectionStatusArgs = {
+  channel?: Maybe<Scalars['String']>;
+  community?: Maybe<Scalars['String']>;
 };
 
 

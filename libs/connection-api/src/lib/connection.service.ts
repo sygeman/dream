@@ -1,84 +1,73 @@
 import { PrismaService } from '@dream/prisma';
-import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
+import { Injectable, Logger, OnApplicationBootstrap } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { interval } from 'rxjs';
 import * as ms from 'ms';
 
 @Injectable()
-export class ConnectionService implements OnModuleInit {
+export class ConnectionService implements OnApplicationBootstrap {
   constructor(
     private readonly config: ConfigService,
     private prisma: PrismaService
   ) {}
 
-  onModuleInit() {
-    this.initInstance();
-    this.initInstanceWatcher();
+  onApplicationBootstrap() {
+    this.initConnectionWatcher();
   }
 
-  upInstance = async () => {
-    const id = this.config.get('base.instanceId');
-
-    return this.prisma.instance.upsert({
-      where: { id },
-      create: { id },
-      update: { updatedAt: new Date() },
-    });
-  };
-
-  async killInstance(instanceId: string) {
-    await this.prisma.connection.deleteMany({ where: { instanceId } });
-    return this.prisma.instance.delete({ where: { id: instanceId } });
-  }
-
-  async initInstance() {
-    await this.upInstance();
-    interval(ms('5s')).subscribe(this.upInstance);
-  }
-
-  async initInstanceWatcher() {
-    interval(ms('10s')).subscribe(async () => {
-      const instances = await this.prisma.instance.findMany({
+  async initConnectionWatcher() {
+    interval(ms('5s')).subscribe(async () => {
+      return await this.prisma.connection.deleteMany({
         where: {
           updatedAt: {
-            lt: new Date(new Date().getTime() - ms('10s')),
+            lt: new Date(new Date().getTime() - ms('7s')),
           },
         },
       });
-
-      instances.forEach((instance) => this.killInstance(instance.id));
     });
   }
 
-  async create({ userId, ipHash }: { userId?: string; ipHash: string }) {
+  async updateConnectionStatus({
+    connectionId,
+    ipHash,
+    userId,
+    community,
+    channel,
+  }) {
     const instanceId = this.config.get('base.instanceId');
 
-    if (userId) {
-      return this.prisma.connection.create({
-        data: {
-          ipHash,
-          user: {
-            connect: { id: userId },
-          },
-          instance: {
-            connect: { id: instanceId },
-          },
-        },
+    let channelId = null;
+
+    if (channel) {
+      const channelData = await this.prisma.channel.findFirst({
+        where: { name: channel, Community: { name: community } },
       });
-    } else {
-      return this.prisma.connection.create({
-        data: {
-          ipHash,
-          instance: {
-            connect: { id: instanceId },
-          },
-        },
-      });
+
+      if (channelData) {
+        channelId = channelData.id;
+      }
     }
+
+    await this.prisma.connection.upsert({
+      where: {
+        id: connectionId,
+      },
+      create: {
+        id: connectionId,
+        ipHash,
+        instanceId,
+        userId,
+        channelId,
+      },
+      update: {
+        channelId,
+        updatedAt: new Date(),
+      },
+    });
   }
 
   async remove(id: string) {
-    return this.prisma.connection.delete({ where: { id } });
+    return this.prisma.connection.deleteMany({ where: { id } });
   }
 
   async uniqCount() {

@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Logger, Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ConfigModule } from '@nestjs/config';
 import * as depthLimit from 'graphql-depth-limit';
@@ -9,6 +9,7 @@ import { CommunityModule } from '@dream/community-api';
 import { ConnectionModule, ConnectionService } from '@dream/connection-api';
 import { SharedModule } from './shared.module';
 import { config } from './config';
+import { nanoid } from 'nanoid';
 
 @Module({
   imports: [
@@ -38,7 +39,6 @@ import { config } from './config';
           return { userId, token };
         },
         subscriptions: {
-          keepAlive: 3000,
           onConnect: async (
             connectionParams: { token?: string },
             _webSocket,
@@ -58,10 +58,7 @@ import { config } from './config';
 
             const { userId } = await authService.getTokenData(token);
 
-            const { id: connectionId } = await connectionService.create({
-              userId,
-              ipHash,
-            });
+            const connectionId = nanoid();
 
             return {
               token,
@@ -72,7 +69,13 @@ import { config } from './config';
           },
           onDisconnect: async (_webSocket, context) => {
             const data = await context.initPromise;
-            return await connectionService.remove(data.connectionId);
+            const connectionId = data.connectionId;
+
+            if (connectionId) {
+              await connectionService.remove(connectionId);
+            } else {
+              Logger.log(data);
+            }
           },
         },
       }),

@@ -47,7 +47,7 @@ model Community {
 
 model Channel {
   id              String            @default(cuid()) @id
-  name            String            @unique
+  name            String
   title           String
   avatar          String?
   state           String?
@@ -91,23 +91,15 @@ model Token {
   User        User
 }
 
-model Instance  {
-  id          String    @default(cuid()) @id
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt @default(now())
-}
-
 model Connection {
   id          String  @default(cuid()) @id
-  instanceId  String
+  instanceId  String?
   userId      String?
   ipHash      String?
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt @default(now())
-  instance    Instance  @relation(fields: [instanceId], references: [id])
   user        User?     @relation(fields: [userId], references: [id])
 }
-
 
 model Chat  {
   id          String    @default(cuid()) @id

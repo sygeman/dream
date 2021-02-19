@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { removeToken } from '@dream/auth';
 import { UserCircleIcon } from '@dream/icons/user-circle';
-import { useMeQuery, useLogoutMutation } from './api';
+import {
+  useMeQuery,
+  useLogoutMutation,
+  useUpdateConnectionStatusMutation,
+} from './api';
 
 const UserPanelForGuest = () => {
   const router = useRouter();
@@ -29,7 +33,26 @@ const UserPanelForGuest = () => {
 };
 
 export const UserPanel = () => {
+  const { query } = useRouter();
+  const community =
+    typeof query?.community === 'string' ? query?.community : undefined;
+  const channel =
+    typeof query?.channel === 'string' ? query?.channel : undefined;
+
   const userQuery = useMeQuery();
+  const [updateStatus] = useUpdateConnectionStatusMutation();
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const interval = setInterval(() => {
+        updateStatus({ variables: { community, channel } });
+      }, 4000);
+
+      return () => {
+        clearInterval(interval);
+      };
+    }
+  }, [updateStatus, channel, community]);
 
   const [logout] = useLogoutMutation({
     onCompleted: () => {

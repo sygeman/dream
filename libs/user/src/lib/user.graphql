@@ -9,3 +9,7 @@ query me {
 mutation logout {
   logout
 }
+
+mutation updateConnectionStatus($channel: String, $community: String) {
+  updateConnectionStatus(channel: $channel, community: $community)
+}

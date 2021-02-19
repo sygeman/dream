@@ -15,19 +15,16 @@ export class AuthService {
 
   async getTokenData(id: string) {
     let userId: string;
-    let tokenIsInvalid = false;
 
     if (id) {
       const tokenData = await this.prisma.token.findUnique({ where: { id } });
 
       if (tokenData) {
         userId = tokenData.userId;
-      } else {
-        tokenIsInvalid = true;
       }
     }
 
-    return { userId, tokenIsInvalid };
+    return { userId };
   }
 
   async logout(token: string) {

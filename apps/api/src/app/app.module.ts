@@ -33,11 +33,9 @@ import { config } from './config';
           }
 
           const token = req?.headers?.authorization;
-          const { userId, tokenIsInvalid } = await authService.getTokenData(
-            token
-          );
+          const { userId } = await authService.getTokenData(token);
 
-          return { userId, token, tokenIsInvalid };
+          return { userId, token };
         },
         subscriptions: {
           keepAlive: 3000,
@@ -58,25 +56,19 @@ import { config } from './config';
               ipHash = Buffer.from(ip).toString('base64');
             }
 
-            const { userId, tokenIsInvalid } = await authService.getTokenData(
-              token
-            );
+            const { userId } = await authService.getTokenData(token);
 
-            if (!tokenIsInvalid) {
-              const { id: connectionId } = await connectionService.create({
-                userId,
-                ipHash,
-              });
+            const { id: connectionId } = await connectionService.create({
+              userId,
+              ipHash,
+            });
 
-              return {
-                userId,
-                ipHash,
-                connectionId,
-                tokenIsInvalid,
-              };
-            }
-
-            return false;
+            return {
+              token,
+              userId,
+              ipHash,
+              connectionId,
+            };
           },
           onDisconnect: async (_webSocket, context) => {
             const data = await context.initPromise;

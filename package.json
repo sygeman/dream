@@ -67,6 +67,7 @@
     "graphql-subscriptions": "1.2.0",
     "graphql-tools": "7.0.4",
     "ioredis": "4.22.0",
+    "isomorphic-ws": "4.0.1",
     "load-script": "1.0.0",
     "lodash": "4.17.20",
     "ms": "2.1.3",

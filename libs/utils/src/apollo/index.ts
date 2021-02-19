@@ -24,7 +24,7 @@ function createApolloClient() {
         connectionParams: () => ({ token: getToken() }),
       },
     }),
-    ssrMode: false,
+    ssrMode: typeof window === 'undefined',
     cache: new InMemoryCache(),
   });
 }
@@ -69,7 +69,7 @@ export function addApolloState(client, pageProps) {
 }
 
 export function useApollo(pageProps) {
-  const state = pageProps ? pageProps[APOLLO_STATE_PROP_NAME] : null;
+  const state = pageProps[APOLLO_STATE_PROP_NAME];
   const store = useMemo(() => initializeApollo(state), [state]);
   return store;
 }

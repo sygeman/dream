@@ -1,38 +1,29 @@
 import { useMemo } from 'react';
 import {
   ApolloClient,
-  createHttpLink,
   InMemoryCache,
   NormalizedCacheObject,
-  split,
 } from '@apollo/client';
-import { getMainDefinition } from '@apollo/client/utilities';
 import merge from 'deepmerge';
 import isEqual from 'lodash/isEqual';
-import { wsLink } from './wsLink';
-import { authLink } from './authLink';
+import { WebSocketLink } from '@apollo/client/link/ws';
+import { getToken } from '@dream/auth';
+import WebSocket from 'isomorphic-ws';
 
 export const APOLLO_STATE_PROP_NAME = '__APOLLO_STATE__';
 
 let apolloClient: ApolloClient<NormalizedCacheObject>;
 
 function createApolloClient() {
-  const httpLink = createHttpLink({ uri: 'https://api.sgmn.dev/graphql' });
-
-  const link = split(
-    ({ query }) => {
-      const definition = getMainDefinition(query);
-      return (
-        definition.kind === 'OperationDefinition' &&
-        definition.operation === 'subscription'
-      );
-    },
-    wsLink,
-    authLink.concat(httpLink)
-  );
-
   return new ApolloClient({
-    link,
+    link: new WebSocketLink({
+      uri: `wss://api.sgmn.dev/graphql`,
+      webSocketImpl: WebSocket,
+      options: {
+        reconnect: true,
+        connectionParams: () => ({ token: getToken() }),
+      },
+    }),
     ssrMode: false,
     cache: new InMemoryCache(),
   });

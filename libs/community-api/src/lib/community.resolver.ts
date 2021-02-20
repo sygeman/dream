@@ -1,6 +1,17 @@
-import { Args, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql';
+import {
+  Args,
+  Context,
+  Mutation,
+  Parent,
+  Query,
+  ResolveField,
+  Resolver,
+} from '@nestjs/graphql';
 import { PrismaService } from '@dream/prisma';
 import { Community } from './models/community.model';
+import { UseGuards } from '@nestjs/common';
+import { AuthGuard } from '@dream/auth-api';
+import { CreateCommunityInput } from './dto/createCommunity.input';
 
 @Resolver(() => Community)
 export class CommunityResolver {
@@ -32,5 +43,28 @@ export class CommunityResolver {
   @Query(() => [Community])
   communities() {
     return this.prisma.community.findMany();
+  }
+
+  @Mutation(() => Community)
+  @UseGuards(AuthGuard)
+  async createCommunity(
+    @Args({ name: 'input', type: () => CreateCommunityInput })
+    input: CreateCommunityInput,
+    @Context('userId') userId: string
+  ) {
+    const count = await this.prisma.community.count({
+      where: { ownerId: userId },
+    });
+
+    if (count > 0) {
+      throw 'Deny';
+    }
+
+    return this.prisma.community.create({
+      data: {
+        ...input,
+        ownerId: userId,
+      },
+    });
   }
 }

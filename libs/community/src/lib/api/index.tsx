@@ -109,6 +109,7 @@ export type Mutation = {
   logout: Scalars['Boolean'];
   updateConnectionStatus: Scalars['Boolean'];
   refreshSpotifyToken: Scalars['String'];
+  createCommunity: Community;
   createChannel: Channel;
   createChannelMessage: Scalars['Boolean'];
 };
@@ -120,6 +121,11 @@ export type MutationUpdateConnectionStatusArgs = {
 };
 
 
+export type MutationCreateCommunityArgs = {
+  input: CreateCommunityInput;
+};
+
+
 export type MutationCreateChannelArgs = {
   input: CreateChannelInput;
 };
@@ -127,6 +133,11 @@ export type MutationCreateChannelArgs = {
 
 export type MutationCreateChannelMessageArgs = {
   input: ChannelMessageCreateInput;
+};
+
+export type CreateCommunityInput = {
+  name: Scalars['String'];
+  title: Scalars['String'];
 };
 
 export type CreateChannelInput = {
@@ -230,6 +241,19 @@ export type UniqCountQueryVariables = Exact<{ [key: string]: never; }>;
 export type UniqCountQuery = (
   { __typename?: 'Query' }
   & Pick<Query, 'uniqCount'>
+);
+
+export type CreateCommunityMutationVariables = Exact<{
+  input: CreateCommunityInput;
+}>;
+
+
+export type CreateCommunityMutation = (
+  { __typename?: 'Mutation' }
+  & { createCommunity: (
+    { __typename?: 'Community' }
+    & CommunityFieldsFragment
+  ) }
 );
 
 export type CommunityFieldsFragment = (
@@ -449,3 +473,35 @@ export function useUniqCountLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<
 export type UniqCountQueryHookResult = ReturnType<typeof useUniqCountQuery>;
 export type UniqCountLazyQueryHookResult = ReturnType<typeof useUniqCountLazyQuery>;
 export type UniqCountQueryResult = Apollo.QueryResult<UniqCountQuery, UniqCountQueryVariables>;
+export const CreateCommunityDocument = gql`
+    mutation createCommunity($input: CreateCommunityInput!) {
+  createCommunity(input: $input) {
+    ...CommunityFields
+  }
+}
+    ${CommunityFieldsFragmentDoc}`;
+export type CreateCommunityMutationFn = Apollo.MutationFunction<CreateCommunityMutation, CreateCommunityMutationVariables>;
+
+/**
+ * __useCreateCommunityMutation__
+ *
+ * To run a mutation, you first call `useCreateCommunityMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateCommunityMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createCommunityMutation, { data, loading, error }] = useCreateCommunityMutation({
+ *   variables: {
+ *      input: // value for 'input'
+ *   },
+ * });
+ */
+export function useCreateCommunityMutation(baseOptions?: Apollo.MutationHookOptions<CreateCommunityMutation, CreateCommunityMutationVariables>) {
+        return Apollo.useMutation<CreateCommunityMutation, CreateCommunityMutationVariables>(CreateCommunityDocument, baseOptions);
+      }
+export type CreateCommunityMutationHookResult = ReturnType<typeof useCreateCommunityMutation>;
+export type CreateCommunityMutationResult = Apollo.MutationResult<CreateCommunityMutation>;
+export type CreateCommunityMutationOptions = Apollo.BaseMutationOptions<CreateCommunityMutation, CreateCommunityMutationVariables>;

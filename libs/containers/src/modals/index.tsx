@@ -1,7 +1,7 @@
 import React from 'react';
 import { Modal } from './modal';
 import { Auth } from '@dream/auth';
-import { NewChannel } from '@dream/community';
+import { NewCommunity, NewChannel } from '@dream/community';
 
 export const Modals = () => {
   return (
@@ -10,7 +10,7 @@ export const Modals = () => {
         <Auth />
       </Modal>
       <Modal routerKey="newCommunity" title="New Community">
-        <div className="text-white">New Community</div>
+        <NewCommunity />
       </Modal>
       <Modal routerKey="newChannel" title="New Channel">
         <NewChannel />

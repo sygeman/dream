@@ -41,18 +41,13 @@ export const SpotifyNow = () => {
     query me {
       me {
         id
-        profile {
-          id
-          name
-          avatar
-        }
       }
     }
   `);
 
-  const profile = meQuery?.data?.me?.profile;
+  const id = meQuery?.data?.me?.id;
 
-  if (profile) {
+  if (id) {
     return <CurrentPlayingInner />;
   } else {
     return null;

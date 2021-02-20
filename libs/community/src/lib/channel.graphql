@@ -10,6 +10,12 @@ query communityChannels($name: String!) {
   }
 }
 
+mutation createChannel($input: CreateChannelInput!) {
+  createChannel(input: $input) {
+    ...ChannelFields
+  }
+}
+
 fragment ChannelFields on Channel {
   id
   name

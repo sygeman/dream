@@ -58,6 +58,8 @@ model Community {
   createdAt       DateTime          @default(now())
   updatedAt       DateTime          @updatedAt @default(now())
   channels        Channel[]
+  owner           User              @relation(fields: [ownerId], references: [id])
+  ownerId         String
 }
 
 model Channel {

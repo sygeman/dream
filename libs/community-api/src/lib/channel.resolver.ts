@@ -1,8 +1,18 @@
-import { Args, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql';
+import {
+  Args,
+  Context,
+  Mutation,
+  Parent,
+  Query,
+  ResolveField,
+  Resolver,
+} from '@nestjs/graphql';
 import { PrismaService } from '@dream/prisma';
 import { Channel } from './models/channel.model';
 import { RedisPubSub } from 'graphql-redis-subscriptions';
-import { Inject } from '@nestjs/common';
+import { Inject, UseGuards } from '@nestjs/common';
+import { CreateChannelInput } from './dto/createChannel.input';
+import { AuthGuard } from '@dream/auth-api';
 
 @Resolver(() => Channel)
 export class ChannelResolver {
@@ -41,6 +51,37 @@ export class ChannelResolver {
         community: {
           name,
         },
+      },
+
+      orderBy: {
+        createdAt: 'asc',
+      },
+    });
+  }
+
+  @Mutation(() => Channel)
+  @UseGuards(AuthGuard)
+  async createChannel(
+    @Args({ name: 'input', type: () => CreateChannelInput })
+    input: CreateChannelInput,
+    @Context('userId') userId: string
+  ) {
+    const community = await this.prisma.community.findUnique({
+      where: { id: input.communityId },
+      include: { channels: true },
+    });
+
+    if (community.ownerId !== userId) {
+      throw 'Deny';
+    }
+
+    if (community.channels.length >= 10) {
+      throw 'Channels per ccommunity limit';
+    }
+
+    return this.prisma.channel.create({
+      data: {
+        ...input,
       },
     });
   }

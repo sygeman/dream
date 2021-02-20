@@ -109,6 +109,7 @@ export type Mutation = {
   logout: Scalars['Boolean'];
   updateConnectionStatus: Scalars['Boolean'];
   refreshSpotifyToken: Scalars['String'];
+  createChannel: Channel;
   createChannelMessage: Scalars['Boolean'];
 };
 
@@ -119,8 +120,19 @@ export type MutationUpdateConnectionStatusArgs = {
 };
 
 
+export type MutationCreateChannelArgs = {
+  input: CreateChannelInput;
+};
+
+
 export type MutationCreateChannelMessageArgs = {
   input: ChannelMessageCreateInput;
+};
+
+export type CreateChannelInput = {
+  communityId: Scalars['ID'];
+  name: Scalars['String'];
+  title: Scalars['String'];
 };
 
 export type ChannelMessageCreateInput = {
@@ -168,6 +180,19 @@ export type CommunityChannelsQuery = (
     { __typename?: 'Channel' }
     & ChannelFieldsFragment
   )> }
+);
+
+export type CreateChannelMutationVariables = Exact<{
+  input: CreateChannelInput;
+}>;
+
+
+export type CreateChannelMutation = (
+  { __typename?: 'Mutation' }
+  & { createChannel: (
+    { __typename?: 'Channel' }
+    & ChannelFieldsFragment
+  ) }
 );
 
 export type ChannelFieldsFragment = (
@@ -297,6 +322,38 @@ export function useCommunityChannelsLazyQuery(baseOptions?: Apollo.LazyQueryHook
 export type CommunityChannelsQueryHookResult = ReturnType<typeof useCommunityChannelsQuery>;
 export type CommunityChannelsLazyQueryHookResult = ReturnType<typeof useCommunityChannelsLazyQuery>;
 export type CommunityChannelsQueryResult = Apollo.QueryResult<CommunityChannelsQuery, CommunityChannelsQueryVariables>;
+export const CreateChannelDocument = gql`
+    mutation createChannel($input: CreateChannelInput!) {
+  createChannel(input: $input) {
+    ...ChannelFields
+  }
+}
+    ${ChannelFieldsFragmentDoc}`;
+export type CreateChannelMutationFn = Apollo.MutationFunction<CreateChannelMutation, CreateChannelMutationVariables>;
+
+/**
+ * __useCreateChannelMutation__
+ *
+ * To run a mutation, you first call `useCreateChannelMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateChannelMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createChannelMutation, { data, loading, error }] = useCreateChannelMutation({
+ *   variables: {
+ *      input: // value for 'input'
+ *   },
+ * });
+ */
+export function useCreateChannelMutation(baseOptions?: Apollo.MutationHookOptions<CreateChannelMutation, CreateChannelMutationVariables>) {
+        return Apollo.useMutation<CreateChannelMutation, CreateChannelMutationVariables>(CreateChannelDocument, baseOptions);
+      }
+export type CreateChannelMutationHookResult = ReturnType<typeof useCreateChannelMutation>;
+export type CreateChannelMutationResult = Apollo.MutationResult<CreateChannelMutation>;
+export type CreateChannelMutationOptions = Apollo.BaseMutationOptions<CreateChannelMutation, CreateChannelMutationVariables>;
 export const CommunityDocument = gql`
     query community($name: String!) {
   community(name: $name) {

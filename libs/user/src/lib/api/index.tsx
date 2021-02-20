@@ -109,6 +109,7 @@ export type Mutation = {
   logout: Scalars['Boolean'];
   updateConnectionStatus: Scalars['Boolean'];
   refreshSpotifyToken: Scalars['String'];
+  createChannel: Channel;
   createChannelMessage: Scalars['Boolean'];
 };
 
@@ -119,8 +120,19 @@ export type MutationUpdateConnectionStatusArgs = {
 };
 
 
+export type MutationCreateChannelArgs = {
+  input: CreateChannelInput;
+};
+
+
 export type MutationCreateChannelMessageArgs = {
   input: ChannelMessageCreateInput;
+};
+
+export type CreateChannelInput = {
+  communityId: Scalars['ID'];
+  name: Scalars['String'];
+  title: Scalars['String'];
 };
 
 export type ChannelMessageCreateInput = {

@@ -26,7 +26,7 @@
     "help": "nx help",
     "u": "yarn upgrade-interactive --latest",
     "studio": "prisma studio",
-    "migrate": "prisma migrate dev -n latest --preview-feature && prisma generate",
+    "migrate": "prisma format && prisma migrate dev -n latest --preview-feature && prisma generate",
     "g": "graphql-codegen --config codegen.yml"
   },
   "prisma": {

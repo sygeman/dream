@@ -28,17 +28,16 @@ model Connection {
 }
 
 model User {
-  id               String            @id @default(cuid())
-  name             String?
-  avatar           String?
-  createdAt        DateTime          @default(now())
-  updatedAt        DateTime          @default(now()) @updatedAt
-  profiles         Profile[]
-  Token            Token[]
-  connection       Connection[]
-  communitySources CommunitySource[]
-  communities      Community[]
-  channelMessages  ChannelMessage[]
+  id              String           @id @default(cuid())
+  name            String?
+  avatar          String?
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @default(now()) @updatedAt
+  profiles        Profile[]
+  tokens          Token[]
+  connection      Connection[]
+  communities     Community[]
+  channelMessages ChannelMessage[]
 }
 
 model Profile {
@@ -55,47 +54,31 @@ model Profile {
 }
 
 model Source {
-  id               String            @id @default(cuid())
-  title            String
-  cover            String?
-  provider         String
-  serviceId        String
-  duration         Int               @default(0)
-  createdAt        DateTime          @default(now())
-  updatedAt        DateTime          @default(now()) @updatedAt
-  communitySources CommunitySource[]
+  id        String   @id @default(cuid())
+  title     String
+  cover     String?
+  provider  String
+  serviceId String
+  duration  Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
 }
 
-model CommunitySource {
-  id          String    @id @default(cuid())
-  playCount   Int       @default(0)
-  lastPlayAt  DateTime?
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @default(now()) @updatedAt
-  community   Community @relation(fields: [communityId], references: [id])
-  source      Source    @relation(fields: [sourceId], references: [id])
-  user        User?     @relation(fields: [userId], references: [id])
-  communityId String
-  sourceId    String
-  userId      String?
-}
-
-enum CommunityMode {
+enum ChannelMode {
   WAITLIST
   COLLECTION
 }
 
 model Community {
-  id               String            @id @default(cuid())
-  name             String            @unique
-  title            String
-  avatar           String?
-  createdAt        DateTime          @default(now())
-  updatedAt        DateTime          @default(now()) @updatedAt
-  channels         Channel[]
-  owner            User              @relation(fields: [ownerId], references: [id])
-  ownerId          String
-  communitySources CommunitySource[]
+  id        String    @id @default(cuid())
+  name      String    @unique
+  title     String
+  avatar    String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now()) @updatedAt
+  channels  Channel[]
+  owner     User      @relation(fields: [ownerId], references: [id])
+  ownerId   String
 }
 
 model Channel {
@@ -104,7 +87,7 @@ model Channel {
   title       String
   avatar      String?
   state       String?
-  mode        CommunityMode    @default(WAITLIST)
+  mode        ChannelMode      @default(WAITLIST)
   createdAt   DateTime         @default(now())
   updatedAt   DateTime         @default(now()) @updatedAt
   community   Community        @relation(fields: [communityId], references: [id])

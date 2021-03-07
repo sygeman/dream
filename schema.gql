@@ -37,10 +37,16 @@ type Channel {
   name: String!
   title: String!
   state: String
+  mode: ChannelMode!
   avatar: String
   createdAt: DateTime!
   updatedAt: DateTime!
   onlineCount: Float!
+}
+
+enum ChannelMode {
+  WAITLIST
+  COLLECTION
 }
 
 type ChannelMessage {
@@ -62,6 +68,8 @@ type Query {
   channel(name: String!): Channel!
   channels(name: String!): [Channel!]!
   channelMessages(channelId: ID!): [ChannelMessage!]!
+  modeWaitlist(channelId: String!): Boolean!
+  modeWaitlistQueue(channelId: String!): [Boolean!]!
 }
 
 type Mutation {

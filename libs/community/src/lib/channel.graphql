@@ -20,6 +20,7 @@ fragment ChannelFields on Channel {
   id
   name
   title
+  mode
   state
   avatar
   onlineCount

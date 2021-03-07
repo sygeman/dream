@@ -28,16 +28,18 @@ model Connection {
 }
 
 model User {
-  id              String           @id @default(cuid())
-  name            String?
-  avatar          String?
-  createdAt       DateTime         @default(now())
-  updatedAt       DateTime         @default(now()) @updatedAt
-  profiles        Profile[]
-  tokens          Token[]
-  connection      Connection[]
-  communities     Community[]
-  channelMessages ChannelMessage[]
+  id                String              @id @default(cuid())
+  name              String?
+  avatar            String?
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @default(now()) @updatedAt
+  profiles          Profile[]
+  tokens            Token[]
+  connection        Connection[]
+  communities       Community[]
+  channelMessages   ChannelMessage[]
+  modeWaitlistQueue ModeWaitlistQueue[]
+  modeWaitlist      ModeWaitlist[]
 }
 
 model Profile {
@@ -82,18 +84,20 @@ model Community {
 }
 
 model Channel {
-  id          String           @id @default(cuid())
-  name        String
-  title       String
-  avatar      String?
-  state       String?
-  mode        ChannelMode      @default(WAITLIST)
-  createdAt   DateTime         @default(now())
-  updatedAt   DateTime         @default(now()) @updatedAt
-  community   Community        @relation(fields: [communityId], references: [id])
-  messages    ChannelMessage[]
-  connections Connection[]
-  communityId String
+  id                String              @id @default(cuid())
+  name              String
+  title             String
+  avatar            String?
+  state             String?
+  mode              ChannelMode         @default(WAITLIST)
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @default(now()) @updatedAt
+  community         Community           @relation(fields: [communityId], references: [id])
+  messages          ChannelMessage[]
+  connections       Connection[]
+  communityId       String
+  modeWaitlistQueue ModeWaitlistQueue[]
+  modeWaitlist      ModeWaitlist[]
 }
 
 model ChannelMessage {
@@ -106,4 +110,33 @@ model ChannelMessage {
   user      User     @relation(fields: [userId], references: [id])
   channelId String
   userId    String
+}
+
+model ModeWaitlistQueue {
+  id        String   @id @default(cuid())
+  trackId   String
+  title     String
+  cover     String?
+  duration  Int
+  channel   Channel  @relation(fields: [channelId], references: [id])
+  channelId String
+  author    User     @relation(fields: [authorId], references: [id])
+  authorId  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+}
+
+model ModeWaitlist {
+  id        String   @id @default(cuid())
+  trackId   String?
+  title     String?
+  cover     String?
+  duration  Int?
+  channel   Channel  @relation(fields: [channelId], references: [id])
+  channelId String
+  author    User?    @relation(fields: [authorId], references: [id])
+  authorId  String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+  start     DateTime
 }

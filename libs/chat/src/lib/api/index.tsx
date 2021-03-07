@@ -50,11 +50,17 @@ export type Channel = {
   name: Scalars['String'];
   title: Scalars['String'];
   state?: Maybe<Scalars['String']>;
+  mode: ChannelMode;
   avatar?: Maybe<Scalars['String']>;
   createdAt: Scalars['DateTime'];
   updatedAt: Scalars['DateTime'];
   onlineCount: Scalars['Float'];
 };
+
+export enum ChannelMode {
+  Waitlist = 'WAITLIST',
+  Collection = 'COLLECTION'
+}
 
 export type ChannelMessage = {
   __typename?: 'ChannelMessage';

@@ -10,6 +10,7 @@ import { SharedModule } from './shared.module';
 import { config } from './config';
 import { nanoid } from 'nanoid';
 import { BullModule } from '@nestjs/bull';
+import { ModeWaitlistModule } from '@dream/mode-waitlist-api';
 
 @Module({
   imports: [
@@ -97,6 +98,7 @@ import { BullModule } from '@nestjs/bull';
     UserModule,
     ConnectionModule,
     CommunityModule,
+    ModeWaitlistModule,
   ],
 })
 export class AppModule {}

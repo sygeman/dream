@@ -1,4 +1,9 @@
-import { Field, ObjectType } from '@nestjs/graphql';
+import { Field, ObjectType, registerEnumType } from '@nestjs/graphql';
+import { ChannelMode } from '@prisma/client';
+
+registerEnumType(ChannelMode, {
+  name: 'ChannelMode',
+});
 
 @ObjectType()
 export class Channel {
@@ -13,6 +18,9 @@ export class Channel {
 
   @Field({ nullable: true })
   state?: string;
+
+  @Field(() => ChannelMode)
+  mode: ChannelMode;
 
   @Field({ nullable: true })
   avatar?: string;

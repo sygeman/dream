@@ -1,1 +1,1 @@
-export * from './lib/mode-waitlist-api.module';
+export * from './lib/mode-waitlist.module';

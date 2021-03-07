@@ -60,6 +60,7 @@
     "core-js": "3.9.1",
     "date-fns": "2.19.0",
     "deepmerge": "4.2.2",
+    "document-register-element": "1.13.1",
     "express-session": "1.17.1",
     "formik": "2.2.6",
     "framer-motion": "3.10.0",

@@ -411,6 +411,48 @@
           }
         }
       }
+    },
+    "mode-waitlist-api": {
+      "root": "libs/mode-waitlist-api",
+      "sourceRoot": "libs/mode-waitlist-api/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/mode-waitlist-api/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/mode-waitlist-api"],
+          "options": {
+            "jestConfig": "libs/mode-waitlist-api/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "mode-waitlist": {
+      "root": "libs/mode-waitlist",
+      "sourceRoot": "libs/mode-waitlist/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/mode-waitlist/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/mode-waitlist"],
+          "options": {
+            "jestConfig": "libs/mode-waitlist/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   }
 }

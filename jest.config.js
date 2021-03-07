@@ -22,5 +22,7 @@ module.exports = {
     '<rootDir>/libs/spotify-now',
     '<rootDir>/libs/user',
     '<rootDir>/libs/community-api',
+    '<rootDir>/libs/mode-waitlist-api',
+    '<rootDir>/libs/mode-waitlist',
   ],
 };

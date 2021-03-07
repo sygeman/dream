@@ -32,7 +32,9 @@
       "@dream/auth": ["libs/auth/src/index.ts"],
       "@dream/spotify-now": ["libs/spotify-now/src/index.ts"],
       "@dream/user": ["libs/user/src/index.ts"],
-      "@dream/community-api": ["libs/community-api/src/index.ts"]
+      "@dream/community-api": ["libs/community-api/src/index.ts"],
+      "@dream/mode-waitlist-api": ["libs/mode-waitlist-api/src/index.ts"],
+      "@dream/mode-waitlist": ["libs/mode-waitlist/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

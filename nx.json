@@ -1,6 +1,4 @@
 {
-  "npmScope": "dream",
-  "affected": { "defaultBase": "master" },
   "implicitDependencies": {
     "workspace.json": "*",
     "package.json": { "dependencies": "*", "devDependencies": "*" },
@@ -9,6 +7,8 @@
     ".eslintrc.json": "*",
     "nx.json": "*"
   },
+  "affected": { "defaultBase": "master" },
+  "npmScope": "dream",
   "tasksRunnerOptions": {
     "default": {
       "runner": "@nrwl/workspace/tasks-runners/default",
@@ -31,6 +31,8 @@
     "auth": { "tags": [] },
     "spotify-now": { "tags": [] },
     "user": { "tags": [] },
-    "community-api": { "tags": [] }
+    "community-api": { "tags": [] },
+    "mode-waitlist-api": { "tags": [] },
+    "mode-waitlist": { "tags": [] }
   }
 }

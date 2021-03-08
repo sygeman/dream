@@ -33,6 +33,7 @@
     "user": { "tags": [] },
     "community-api": { "tags": [] },
     "mode-waitlist-api": { "tags": [] },
-    "mode-waitlist": { "tags": [] }
+    "mode-waitlist": { "tags": [] },
+    "types": { "tags": [] }
   }
 }

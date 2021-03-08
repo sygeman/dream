@@ -15,10 +15,18 @@ export const CommunityContent = () => {
 
   const channel = communityQuery?.data?.channel;
 
-  switch (channel?.mode) {
-    case ChannelMode.Waitlist:
-      return <ChannelModeWaitlist />;
-    default:
-      return null;
-  }
+  const getContentView = () => {
+    switch (channel?.mode) {
+      case ChannelMode.Waitlist:
+        return <ChannelModeWaitlist />;
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <div className="h-screen w-full flex flex-1 flex-col">
+      {getContentView()}
+    </div>
+  );
 };

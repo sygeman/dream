@@ -11,8 +11,8 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
-  /** A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format. */
-  DateTime: any;
+  /** Date custom scalar type */
+  Date: any;
 };
 
 export type Profile = {
@@ -27,8 +27,8 @@ export type User = {
   id: Scalars['String'];
   name?: Maybe<Scalars['String']>;
   avatar?: Maybe<Scalars['String']>;
-  createdAt: Scalars['DateTime'];
-  updatedAt: Scalars['DateTime'];
+  createdAt: Scalars['Date'];
+  updatedAt: Scalars['Date'];
   profiles?: Maybe<Array<Profile>>;
 };
 
@@ -39,8 +39,8 @@ export type Community = {
   name: Scalars['String'];
   title: Scalars['String'];
   avatar?: Maybe<Scalars['String']>;
-  createdAt: Scalars['DateTime'];
-  updatedAt: Scalars['DateTime'];
+  createdAt: Scalars['Date'];
+  updatedAt: Scalars['Date'];
   onlineCount: Scalars['Float'];
 };
 
@@ -52,8 +52,8 @@ export type Channel = {
   state?: Maybe<Scalars['String']>;
   mode: ChannelMode;
   avatar?: Maybe<Scalars['String']>;
-  createdAt: Scalars['DateTime'];
-  updatedAt: Scalars['DateTime'];
+  createdAt: Scalars['Date'];
+  updatedAt: Scalars['Date'];
   onlineCount: Scalars['Float'];
 };
 
@@ -72,6 +72,16 @@ export type ChannelMessage = {
   createdAt: Scalars['String'];
 };
 
+export type ModeWaitlist = {
+  __typename?: 'ModeWaitlist';
+  id: Scalars['String'];
+  trackId?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  cover?: Maybe<Scalars['String']>;
+  duration?: Maybe<Scalars['Int']>;
+  start?: Maybe<Scalars['String']>;
+};
+
 export type Query = {
   __typename?: 'Query';
   uniqCount: Scalars['Int'];
@@ -83,6 +93,8 @@ export type Query = {
   channel: Channel;
   channels: Array<Channel>;
   channelMessages: Array<ChannelMessage>;
+  modeWaitlist: ModeWaitlist;
+  modeWaitlistQueue: Array<Scalars['Boolean']>;
 };
 
 
@@ -108,6 +120,16 @@ export type QueryChannelsArgs = {
 
 export type QueryChannelMessagesArgs = {
   channelId: Scalars['ID'];
+};
+
+
+export type QueryModeWaitlistArgs = {
+  channelId: Scalars['String'];
+};
+
+
+export type QueryModeWaitlistQueueArgs = {
+  channelId: Scalars['String'];
 };
 
 export type Mutation = {
@@ -161,6 +183,7 @@ export type Subscription = {
   __typename?: 'Subscription';
   channelMessageCreated: ChannelMessage;
   channelMessageDeleted: ChannelMessage;
+  modeWaitlistUpdated: ModeWaitlist;
 };
 
 
@@ -171,6 +194,11 @@ export type SubscriptionChannelMessageCreatedArgs = {
 
 export type SubscriptionChannelMessageDeletedArgs = {
   channelId: Scalars['ID'];
+};
+
+
+export type SubscriptionModeWaitlistUpdatedArgs = {
+  channelId: Scalars['String'];
 };
 
 export type MeQueryVariables = Exact<{ [key: string]: never; }>;

@@ -18,10 +18,14 @@ import { Queue } from 'bull';
 })
 export class ModeWaitlistModule implements OnApplicationBootstrap {
   constructor(
-    @InjectQueue('modeWaitlist') private readonly modeWaitlistQueue: Queue
+    @InjectQueue('modeWaitlist') private readonly modeWaitlistQueue: Queue,
+    private readonly modeWaitlistService: ModeWaitlistService
   ) {}
 
   onApplicationBootstrap() {
     // this.modeWaitlistQueue.add('cleanup', null, { repeat: { every: 4e3 } });
+    this.modeWaitlistService.skipTrack({
+      channelId: 'cklxztxux02983v5vnhbptj4q',
+    });
   }
 }

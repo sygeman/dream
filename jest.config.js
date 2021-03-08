@@ -24,5 +24,6 @@ module.exports = {
     '<rootDir>/libs/community-api',
     '<rootDir>/libs/mode-waitlist-api',
     '<rootDir>/libs/mode-waitlist',
+    '<rootDir>/libs/types',
   ],
 };

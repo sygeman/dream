@@ -139,4 +139,5 @@ model ModeWaitlist {
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now()) @updatedAt
   start     DateTime
+  playkey   String?
 }

@@ -12,6 +12,9 @@ export class ModeWaitlist {
   title: string;
 
   @Field({ nullable: true })
+  artists: string;
+
+  @Field({ nullable: true })
   cover: string;
 
   @Field(() => Int, { nullable: true })

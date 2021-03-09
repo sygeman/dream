@@ -3,7 +3,6 @@ import { InjectQueue } from '@nestjs/bull';
 import { Inject, Injectable, Logger } from '@nestjs/common';
 import { Queue } from 'bull';
 import { RedisPubSub } from 'graphql-redis-subscriptions';
-import * as ms from 'ms';
 
 @Injectable()
 export class ModeWaitlistService {
@@ -36,6 +35,19 @@ export class ModeWaitlistService {
       where: { channelId: track.channelId },
     });
 
+    await this.prisma.modeWaitlistQueue.delete({ where: { id: track.id } });
+    await this.prisma.modeWaitlistQueue.create({
+      data: {
+        trackId: modeWaitlist.trackId,
+        title: modeWaitlist.title,
+        artists: modeWaitlist.artists,
+        cover: modeWaitlist.cover,
+        duration: modeWaitlist.duration,
+        channelId: modeWaitlist.channelId,
+        authorId: modeWaitlist.authorId,
+      },
+    });
+
     const start = new Date();
     const playkey = modeWaitlist.id + +start;
 
@@ -47,6 +59,7 @@ export class ModeWaitlistService {
       data: {
         trackId: track.trackId,
         title: track.title,
+        artists: track.artists,
         cover: track.cover,
         duration: track.duration,
         channelId: track.channelId,

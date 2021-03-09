@@ -1,13 +1,20 @@
 import React, { useEffect, useState } from 'react';
+import { TrackInfo } from './components/track-info';
 
-export const ChannelModeWaitlistProgress = ({ start, duration }) => {
-  const [current, setCurrent] = useState(0);
+export const ChannelModeWaitlistProgress = ({
+  start,
+  duration,
+  imageUrl,
+  artist,
+  name,
+}) => {
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
       const s = +new Date(+start);
       const now = +new Date();
-      setCurrent(now - s);
+      setProgress((now - s) / duration / 100);
     }, 10);
 
     return () => {
@@ -15,12 +22,12 @@ export const ChannelModeWaitlistProgress = ({ start, duration }) => {
     };
   }, [start]);
 
-  const percentage = (current * 100) / duration;
-
   return (
-    <div
-      className="w-full h-full bg-accent"
-      style={{ width: `${percentage}%` }}
-    ></div>
+    <TrackInfo
+      imageUrl={imageUrl}
+      artist={artist}
+      name={name}
+      progress={progress || 0}
+    />
   );
 };

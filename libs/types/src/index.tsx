@@ -11,8 +11,8 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
-  /** Date custom scalar type */
-  Date: any;
+  /** A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format. */
+  DateTime: any;
 };
 
 export type Profile = {
@@ -27,8 +27,8 @@ export type User = {
   id: Scalars['String'];
   name?: Maybe<Scalars['String']>;
   avatar?: Maybe<Scalars['String']>;
-  createdAt: Scalars['Date'];
-  updatedAt: Scalars['Date'];
+  createdAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
   profiles?: Maybe<Array<Profile>>;
 };
 
@@ -39,8 +39,8 @@ export type Community = {
   name: Scalars['String'];
   title: Scalars['String'];
   avatar?: Maybe<Scalars['String']>;
-  createdAt: Scalars['Date'];
-  updatedAt: Scalars['Date'];
+  createdAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
   onlineCount: Scalars['Float'];
 };
 
@@ -52,8 +52,8 @@ export type Channel = {
   state?: Maybe<Scalars['String']>;
   mode: ChannelMode;
   avatar?: Maybe<Scalars['String']>;
-  createdAt: Scalars['Date'];
-  updatedAt: Scalars['Date'];
+  createdAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
   onlineCount: Scalars['Float'];
 };
 
@@ -77,6 +77,7 @@ export type ModeWaitlist = {
   id: Scalars['String'];
   trackId?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
+  artists?: Maybe<Scalars['String']>;
   cover?: Maybe<Scalars['String']>;
   duration?: Maybe<Scalars['Int']>;
   start?: Maybe<Scalars['String']>;
@@ -362,7 +363,7 @@ export type ModeWaitlistQuery = (
   { __typename?: 'Query' }
   & { modeWaitlist: (
     { __typename?: 'ModeWaitlist' }
-    & Pick<ModeWaitlist, 'id' | 'trackId' | 'title' | 'cover' | 'duration' | 'start'>
+    & Pick<ModeWaitlist, 'id' | 'trackId' | 'artists' | 'title' | 'cover' | 'duration' | 'start'>
   ) }
 );
 
@@ -375,7 +376,7 @@ export type ModeWaitlistUpdatedSubscription = (
   { __typename?: 'Subscription' }
   & { modeWaitlistUpdated: (
     { __typename?: 'ModeWaitlist' }
-    & Pick<ModeWaitlist, 'id' | 'trackId' | 'title' | 'cover' | 'duration' | 'start'>
+    & Pick<ModeWaitlist, 'id' | 'trackId' | 'artists' | 'title' | 'cover' | 'duration' | 'start'>
   ) }
 );
 
@@ -792,6 +793,7 @@ export const ModeWaitlistDocument = gql`
   modeWaitlist(channelId: $channelId) {
     id
     trackId
+    artists
     title
     cover
     duration
@@ -830,6 +832,7 @@ export const ModeWaitlistUpdatedDocument = gql`
   modeWaitlistUpdated(channelId: $channelId) {
     id
     trackId
+    artists
     title
     cover
     duration

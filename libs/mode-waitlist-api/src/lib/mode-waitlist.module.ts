@@ -23,9 +23,10 @@ export class ModeWaitlistModule implements OnApplicationBootstrap {
   ) {}
 
   onApplicationBootstrap() {
-    // this.modeWaitlistQueue.add('cleanup', null, { repeat: { every: 4e3 } });
-    this.modeWaitlistService.skipTrack({
-      channelId: 'cklxztxux02983v5vnhbptj4q',
-    });
+    setInterval(() => {
+      this.modeWaitlistService.skipTrack({
+        channelId: 'cklxztxux02983v5vnhbptj4q',
+      });
+    }, 5000);
   }
 }

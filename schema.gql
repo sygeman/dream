@@ -62,6 +62,7 @@ type ModeWaitlist {
   id: String!
   trackId: String
   title: String
+  artists: String
   cover: String
   duration: Int
   start: String

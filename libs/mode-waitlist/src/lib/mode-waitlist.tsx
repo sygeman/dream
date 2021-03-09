@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import useAxios from 'axios-hooks';
+import React, { useEffect } from 'react';
 import '@dream/utils/axios';
 import { useRouter } from 'next/router';
 import {
@@ -51,8 +50,6 @@ export const ChannelModeWaitlist = () => {
   });
 
   useEffect(() => {
-    console.log(modeWaitlist?.trackId);
-
     if (typeof window !== 'undefined' && modeWaitlist?.trackId) {
       const s = +new Date(+modeWaitlist?.start);
       const now = +new Date();
@@ -64,28 +61,17 @@ export const ChannelModeWaitlist = () => {
         })
         .then();
     }
-  }, [modeWaitlist?.trackId]);
-
-  // const [{ data: trackData }] = useAxios(
-  //   `https://api.spotify.com/v1/tracks/${modeWaitlist?.trackId}`
-  // );
-
-  // console.log(trackData);
+  }, [modeWaitlist?.trackId, modeWaitlist?.start]);
 
   return (
     <div className="h-screen w-full flex flex-1 flex-col">
-      <div className="w-full bg-background h-10">
-        <ChannelModeWaitlistProgress
-          start={modeWaitlist?.start}
-          duration={modeWaitlist?.duration}
-        />
-      </div>
-      <div className="text-white">
-        {modeWaitlist?.title} ({modeWaitlist?.start})
-      </div>
-      {/* <div className="text-white">
-        {current} / {modeWaitlist?.duration}
-      </div> */}
+      <ChannelModeWaitlistProgress
+        start={modeWaitlist?.start}
+        duration={modeWaitlist?.duration}
+        imageUrl={modeWaitlist?.cover}
+        artist={modeWaitlist?.artists}
+        name={modeWaitlist?.title}
+      />
     </div>
   );
 };

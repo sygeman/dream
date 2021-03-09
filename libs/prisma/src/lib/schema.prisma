@@ -115,6 +115,7 @@ model ChannelMessage {
 model ModeWaitlistQueue {
   id        String   @id @default(cuid())
   trackId   String
+  artists   String
   title     String
   cover     String?
   duration  Int
@@ -129,6 +130,7 @@ model ModeWaitlistQueue {
 model ModeWaitlist {
   id        String   @id @default(cuid())
   trackId   String?
+  artists   String?
   title     String?
   cover     String?
   duration  Int?

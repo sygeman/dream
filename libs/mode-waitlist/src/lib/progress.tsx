@@ -14,7 +14,7 @@ export const ChannelModeWaitlistProgress = ({
     const interval = setInterval(() => {
       const s = +new Date(+start);
       const now = +new Date();
-      setProgress((now - s) / duration / 100);
+      setProgress((now - s) / duration);
     }, 10);
 
     return () => {

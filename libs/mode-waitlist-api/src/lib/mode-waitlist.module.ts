@@ -23,10 +23,10 @@ export class ModeWaitlistModule implements OnApplicationBootstrap {
   ) {}
 
   onApplicationBootstrap() {
-    setInterval(() => {
-      this.modeWaitlistService.skipTrack({
-        channelId: 'cklxztxux02983v5vnhbptj4q',
-      });
-    }, 5000);
+    // setInterval(() => {
+    this.modeWaitlistService.skipTrack({
+      channelId: 'cklxztxux02983v5vnhbptj4q',
+    });
+    // }, 5000);
   }
 }

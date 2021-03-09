@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
+import useAxios from 'axios-hooks';
+import '@dream/utils/axios';
 import { useRouter } from 'next/router';
 import {
   useChannelQuery,
   useModeWaitlistQuery,
   useModeWaitlistUpdatedSubscription,
 } from '@dream/types';
+import { ChannelModeWaitlistProgress } from './progress';
+import axios from 'axios';
 
 export const ChannelModeWaitlist = () => {
-  const [current, setCurrent] = useState(0);
-
   const { query } = useRouter();
   const name = typeof query?.channel === 'string' && query?.channel;
 
@@ -49,33 +51,41 @@ export const ChannelModeWaitlist = () => {
   });
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      const start = +new Date(+modeWaitlist?.start);
+    console.log(modeWaitlist?.trackId);
+
+    if (typeof window !== 'undefined' && modeWaitlist?.trackId) {
+      const s = +new Date(+modeWaitlist?.start);
       const now = +new Date();
-      setCurrent(now - start);
-    }, 10);
 
-    return () => {
-      clearInterval(interval);
-    };
-  }, [modeWaitlist?.start]);
+      axios
+        .put('https://api.spotify.com/v1/me/player/play', {
+          uris: [`spotify:track:${modeWaitlist?.trackId}`],
+          position_ms: now - s,
+        })
+        .then();
+    }
+  }, [modeWaitlist?.trackId]);
 
-  const percentage = (current * 100) / modeWaitlist?.duration;
+  // const [{ data: trackData }] = useAxios(
+  //   `https://api.spotify.com/v1/tracks/${modeWaitlist?.trackId}`
+  // );
+
+  // console.log(trackData);
 
   return (
     <div className="h-screen w-full flex flex-1 flex-col">
       <div className="w-full bg-background h-10">
-        <div
-          className="w-full h-full bg-accent"
-          style={{ width: `${percentage}%` }}
-        ></div>
+        <ChannelModeWaitlistProgress
+          start={modeWaitlist?.start}
+          duration={modeWaitlist?.duration}
+        />
       </div>
       <div className="text-white">
         {modeWaitlist?.title} ({modeWaitlist?.start})
       </div>
-      <div className="text-white">
+      {/* <div className="text-white">
         {current} / {modeWaitlist?.duration}
-      </div>
+      </div> */}
     </div>
   );
 };

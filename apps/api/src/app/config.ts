@@ -9,7 +9,11 @@ export const config = [
     clientID: process.env.SPOTIFY_ID,
     clientSecret: process.env.SPOTIFY_SECRET,
     callbackURL: process.env.SPOTIFY_URL,
-    scope: ['user-read-email', 'user-read-playback-state'],
+    scope: [
+      'user-read-email',
+      'user-read-playback-state',
+      'user-modify-playback-state',
+    ],
   })),
   registerAs('authTwitch', () => ({
     clientID: process.env.TWITCH_ID,

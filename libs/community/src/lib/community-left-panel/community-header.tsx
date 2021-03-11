@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { useOnClickOutside } from '@dream/utils/useOnClickOutside';
-import { useCommunityQuery } from '../api';
+import { useCommunityQuery } from '@dream/types';
 
 export const CommunityHeader = () => {
   const headerRef = useRef();

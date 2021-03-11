@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import React from 'react';
 import { ChannelModeWaitlist } from '@dream/mode-waitlist';
-import { useChannelQuery, ChannelMode } from '../api';
+import { useChannelQuery, ChannelMode } from '@dream/types';
 
 export const CommunityContent = () => {
   const router = useRouter();

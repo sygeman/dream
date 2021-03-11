@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
 import { EmojiHappyIcon } from '@dream/icons/emoji-happy';
-import { useCreateChannelMessageMutation } from './api';
+import { useCreateChannelMessageMutation } from '@dream/types';
 import { convertTextToEmojiCode } from '@dream/utils/emoji';
 
 interface ChatBottomProps {

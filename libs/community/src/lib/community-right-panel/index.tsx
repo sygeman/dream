@@ -3,7 +3,7 @@ import { AnnotationIcon } from '@dream/icons/annotation';
 import { UsersIcon } from '@dream/icons/users';
 import { Chat } from '@dream/chat';
 import { useRouter } from 'next/router';
-import { useChannelQuery } from '../api';
+import { useChannelQuery } from '@dream/types';
 
 export const CommunityRightPanel = () => {
   const { query } = useRouter();

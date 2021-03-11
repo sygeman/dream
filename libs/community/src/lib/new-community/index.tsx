@@ -1,6 +1,6 @@
 import React from 'react';
 import { useFormik } from 'formik';
-import { useCreateCommunityMutation } from '../api';
+import { useCreateCommunityMutation } from '@dream/types';
 import { useRouter } from 'next/router';
 import * as Yup from 'yup';
 import clsx from 'clsx';

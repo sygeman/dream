@@ -10,6 +10,9 @@ export class Profile {
 
   @Field({ nullable: true })
   avatar?: string;
+
+  @Field()
+  provider: string;
 }
 
 @ObjectType()

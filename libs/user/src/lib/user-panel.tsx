@@ -7,7 +7,7 @@ import {
   useMeQuery,
   useLogoutMutation,
   useUpdateConnectionStatusMutation,
-} from './api';
+} from '@dream/types';
 
 const UserPanelForGuest = () => {
   const router = useRouter();

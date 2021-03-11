@@ -3,6 +3,10 @@ query me {
     id
     name
     avatar
+    profiles {
+      id
+      provider
+    }
   }
 }
 

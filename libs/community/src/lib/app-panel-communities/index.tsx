@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import SimpleBar from 'simplebar-react';
 import { HeartIcon } from '@dream/icons/heart';
-import { useCommunitiesQuery } from '../api';
+import { useCommunitiesQuery } from '@dream/types';
 
 const CommunityInAppPanel: React.FC<{
   title: string;

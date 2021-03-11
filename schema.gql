@@ -6,6 +6,7 @@ type Profile {
   id: String!
   name: String
   avatar: String
+  provider: String!
 }
 
 type User {

@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import SimpleBar from 'simplebar-react';
-import { useCommunitiesQuery, useUniqCountQuery } from '../api';
+import { useCommunitiesQuery, useUniqCountQuery } from '@dream/types';
 
 const CommunityCard: React.FC<{
   title: string;

@@ -2,7 +2,7 @@ import React from 'react';
 import {
   useChannelMessagesQuery,
   useChannelMessageCreatedSubscription,
-} from './api';
+} from '@dream/types';
 import { ChatMessages } from './messages';
 import { ChatBottom } from './bottom';
 

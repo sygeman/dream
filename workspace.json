@@ -474,6 +474,27 @@
           }
         }
       }
+    },
+    "spotify-api": {
+      "root": "libs/spotify-api",
+      "sourceRoot": "libs/spotify-api/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/spotify-api/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/spotify-api"],
+          "options": {
+            "jestConfig": "libs/spotify-api/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   }
 }

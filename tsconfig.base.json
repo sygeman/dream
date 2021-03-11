@@ -35,7 +35,8 @@
       "@dream/community-api": ["libs/community-api/src/index.ts"],
       "@dream/mode-waitlist-api": ["libs/mode-waitlist-api/src/index.ts"],
       "@dream/mode-waitlist": ["libs/mode-waitlist/src/index.ts"],
-      "@dream/types": ["libs/types/src/index.tsx"]
+      "@dream/types": ["libs/types/src/index.tsx"],
+      "@dream/spotify-api": ["libs/spotify-api/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

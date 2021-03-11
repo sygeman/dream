@@ -34,6 +34,7 @@
     "community-api": { "tags": [] },
     "mode-waitlist-api": { "tags": [] },
     "mode-waitlist": { "tags": [] },
-    "types": { "tags": [] }
+    "types": { "tags": [] },
+    "spotify-api": { "tags": [] }
   }
 }

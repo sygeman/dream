@@ -11,6 +11,7 @@ import { config } from './config';
 import { nanoid } from 'nanoid';
 import { BullModule } from '@nestjs/bull';
 import { ModeWaitlistModule } from '@dream/mode-waitlist-api';
+import { SpotifyModule } from '@dream/spotify-api';
 
 @Module({
   imports: [
@@ -99,6 +100,7 @@ import { ModeWaitlistModule } from '@dream/mode-waitlist-api';
     ConnectionModule,
     CommunityModule,
     ModeWaitlistModule,
+    SpotifyModule,
   ],
 })
 export class AppModule {}

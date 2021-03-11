@@ -73,7 +73,6 @@ type Query {
   uniqCount: Int!
   user(id: ID): User
   me: User!
-  spotifyToken: String!
   community(name: String!): Community!
   communities: [Community!]!
   channel(name: String!): Channel!
@@ -81,15 +80,16 @@ type Query {
   channelMessages(channelId: ID!): [ChannelMessage!]!
   modeWaitlist(channelId: String!): ModeWaitlist!
   modeWaitlistQueue(channelId: String!): [Boolean!]!
+  spotifyToken: String!
 }
 
 type Mutation {
   logout: Boolean!
   updateConnectionStatus(channel: String, community: String): Boolean!
-  refreshSpotifyToken: String!
   createCommunity(input: CreateCommunityInput!): Community!
   createChannel(input: CreateChannelInput!): Channel!
   createChannelMessage(input: ChannelMessageCreateInput!): Boolean!
+  refreshSpotifyToken: String!
 }
 
 input CreateCommunityInput {

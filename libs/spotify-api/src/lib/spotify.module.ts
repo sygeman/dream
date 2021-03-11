@@ -1,11 +1,11 @@
 import { HttpModule, Module } from '@nestjs/common';
 import { PrismaModule } from '@dream/prisma';
 import { SpotifyResolver } from './spotify.resolver';
+import { SpotifyService } from './spotify.service';
 
 @Module({
   imports: [PrismaModule, HttpModule],
-  controllers: [],
-  providers: [SpotifyResolver],
-  exports: [],
+  providers: [SpotifyResolver, SpotifyService],
+  exports: [SpotifyService],
 })
 export class SpotifyModule {}

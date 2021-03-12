@@ -76,8 +76,6 @@ export class ModeWaitlistService {
       { delay: track.duration, removeOnComplete: true }
     );
 
-    Logger.log(modeWaitlistUpdated);
-
     this.pubsub.publish('modeWaitlistUpdated', {
       modeWaitlistUpdated: {
         ...modeWaitlistUpdated,

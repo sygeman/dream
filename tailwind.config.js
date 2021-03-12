@@ -38,9 +38,6 @@ module.exports = {
       fontFamily: {
         sans: 'Roboto',
       },
-      gridTemplateColumns: {
-        'fill-240px': 'repeat(auto-fill, 240px)',
-      },
     },
   },
   variants: {

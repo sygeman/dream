@@ -85,12 +85,20 @@ export type ModeWaitlist = {
   start?: Maybe<Scalars['String']>;
 };
 
+export type SpotifyNow = {
+  __typename?: 'SpotifyNow';
+  id: Scalars['String'];
+  imageUrl: Scalars['String'];
+  artist: Scalars['String'];
+  name: Scalars['String'];
+  progress: Scalars['Float'];
+};
+
 export type Query = {
   __typename?: 'Query';
   uniqCount: Scalars['Int'];
   user?: Maybe<User>;
   me: User;
-  spotifyToken: Scalars['String'];
   community: Community;
   communities: Array<Community>;
   channel: Channel;
@@ -98,6 +106,8 @@ export type Query = {
   channelMessages: Array<ChannelMessage>;
   modeWaitlist: ModeWaitlist;
   modeWaitlistQueue: Array<Scalars['Boolean']>;
+  spotifyNow?: Maybe<SpotifyNow>;
+  spotifyToken: Scalars['String'];
 };
 
 
@@ -135,14 +145,19 @@ export type QueryModeWaitlistQueueArgs = {
   channelId: Scalars['String'];
 };
 
+
+export type QuerySpotifyNowArgs = {
+  token: Scalars['String'];
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   logout: Scalars['Boolean'];
   updateConnectionStatus: Scalars['Boolean'];
-  refreshSpotifyToken: Scalars['String'];
   createCommunity: Community;
   createChannel: Channel;
   createChannelMessage: Scalars['Boolean'];
+  refreshSpotifyToken: Scalars['String'];
 };
 
 
@@ -380,6 +395,19 @@ export type ModeWaitlistUpdatedSubscription = (
     { __typename?: 'ModeWaitlist' }
     & Pick<ModeWaitlist, 'id' | 'trackId' | 'artists' | 'title' | 'cover' | 'duration' | 'start'>
   ) }
+);
+
+export type SpotifyNowQueryVariables = Exact<{
+  token: Scalars['String'];
+}>;
+
+
+export type SpotifyNowQuery = (
+  { __typename?: 'Query' }
+  & { spotifyNow?: Maybe<(
+    { __typename?: 'SpotifyNow' }
+    & Pick<SpotifyNow, 'id' | 'imageUrl' | 'artist' | 'name' | 'progress'>
+  )> }
 );
 
 export type MeQueryVariables = Exact<{ [key: string]: never; }>;
@@ -888,6 +916,45 @@ export function useModeWaitlistUpdatedSubscription(baseOptions: Apollo.Subscript
       }
 export type ModeWaitlistUpdatedSubscriptionHookResult = ReturnType<typeof useModeWaitlistUpdatedSubscription>;
 export type ModeWaitlistUpdatedSubscriptionResult = Apollo.SubscriptionResult<ModeWaitlistUpdatedSubscription>;
+export const SpotifyNowDocument = gql`
+    query spotifyNow($token: String!) {
+  spotifyNow(token: $token) {
+    id
+    imageUrl
+    artist
+    name
+    progress
+  }
+}
+    `;
+
+/**
+ * __useSpotifyNowQuery__
+ *
+ * To run a query within a React component, call `useSpotifyNowQuery` and pass it any options that fit your needs.
+ * When your component renders, `useSpotifyNowQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useSpotifyNowQuery({
+ *   variables: {
+ *      token: // value for 'token'
+ *   },
+ * });
+ */
+export function useSpotifyNowQuery(baseOptions: Apollo.QueryHookOptions<SpotifyNowQuery, SpotifyNowQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<SpotifyNowQuery, SpotifyNowQueryVariables>(SpotifyNowDocument, options);
+      }
+export function useSpotifyNowLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<SpotifyNowQuery, SpotifyNowQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<SpotifyNowQuery, SpotifyNowQueryVariables>(SpotifyNowDocument, options);
+        }
+export type SpotifyNowQueryHookResult = ReturnType<typeof useSpotifyNowQuery>;
+export type SpotifyNowLazyQueryHookResult = ReturnType<typeof useSpotifyNowLazyQuery>;
+export type SpotifyNowQueryResult = Apollo.QueryResult<SpotifyNowQuery, SpotifyNowQueryVariables>;
 export const MeDocument = gql`
     query me {
   me {

@@ -69,6 +69,14 @@ type ModeWaitlist {
   start: String
 }
 
+type SpotifyNow {
+  id: String!
+  imageUrl: String!
+  artist: String!
+  name: String!
+  progress: Float!
+}
+
 type Query {
   uniqCount: Int!
   user(id: ID): User
@@ -80,6 +88,7 @@ type Query {
   channelMessages(channelId: ID!): [ChannelMessage!]!
   modeWaitlist(channelId: String!): ModeWaitlist!
   modeWaitlistQueue(channelId: String!): [Boolean!]!
+  spotifyNow(token: String!): SpotifyNow
   spotifyToken: String!
 }
 

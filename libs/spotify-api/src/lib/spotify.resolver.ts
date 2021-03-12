@@ -1,11 +1,43 @@
-import { Context, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { Args, Context, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@dream/auth-api';
 import { SpotifyService } from './spotify.service';
+import { SpotifyNow } from './models/spotify-now.model';
 
 @Resolver()
 export class SpotifyResolver {
   constructor(private readonly spotifyService: SpotifyService) {}
+
+  @Query(() => SpotifyNow, { nullable: true })
+  async spotifyNow(@Args('token') token: string): Promise<SpotifyNow> {
+    // Find userId by token
+    const userId = 'cklxztcja00753v5v9hn1w2nn';
+
+    const current = (await this.spotifyService.getMePlayer(userId))?.data;
+
+    if (!current) return null;
+
+    let progress = 0;
+
+    if (current) {
+      progress = current?.progress_ms / current?.item?.duration_ms;
+    }
+
+    const id = current?.item?.id;
+    const name = current?.item?.name;
+    const artist = (current?.item?.artists || [])
+      .map((artist) => artist?.name)
+      .join(', ');
+    const images = current?.item?.album?.images || [];
+
+    return {
+      id,
+      imageUrl: images[images.length - 1]?.url,
+      artist: artist,
+      name: name,
+      progress: progress,
+    };
+  }
 
   @UseGuards(AuthGuard)
   @Query(() => String)

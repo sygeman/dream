@@ -1,34 +1,30 @@
 import React, { useEffect } from 'react';
-import useAxios from 'axios-hooks';
-import '@dream/utils/axios';
 import { gql, useQuery } from '@apollo/client';
 import { TrackInfo } from './components/track-info';
+import { useSpotifyNowQuery } from '@dream/types';
 
 const CurrentPlayingInner = () => {
-  const [{ data: current }, refetch] = useAxios(
-    'https://api.spotify.com/v1/me/player'
-  );
+  const spotifyNowQuery = useSpotifyNowQuery({ variables: { token: 'test' } });
+  const current = spotifyNowQuery?.data?.spotifyNow;
 
   useEffect(() => {
-    const t = setInterval(() => refetch(), 3000);
+    const t = setInterval(() => spotifyNowQuery.refetch(), 3000);
     return () => clearInterval(t);
   });
 
   let progress = 0;
 
   if (current) {
-    progress = current?.progress_ms / current?.item?.duration_ms;
+    progress = current?.progress;
   }
 
-  const name = current?.item?.name;
-  const artist = (current?.item?.artists || [])
-    .map((artist) => artist?.name)
-    .join(', ');
-  const images = current?.item?.album?.images || [];
+  const name = current?.name;
+  const artist = current?.artist;
+  const imageUrl = current?.imageUrl;
 
   return (
     <TrackInfo
-      imageUrl={images[images.length - 1]?.url}
+      imageUrl={imageUrl}
       artist={artist}
       name={name}
       progress={progress}

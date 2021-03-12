@@ -1,0 +1,9 @@
+query spotifyNow($token: String!) {
+  spotifyNow(token: $token) {
+    id
+    imageUrl
+    artist
+    name
+    progress
+  }
+}

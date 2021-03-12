@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import SimpleBar from 'simplebar-react';
 import { HeartIcon } from '@dream/icons/heart';
 import { useCommunitiesQuery } from '@dream/types';
+import clsx from 'clsx';
 
 const CommunityInAppPanel: React.FC<{
   title: string;
@@ -16,10 +17,19 @@ const CommunityInAppPanel: React.FC<{
   return (
     <Link href={`/${name}`}>
       <div
-        className={`flex flex-shrink-0 items-center justify-center w-12 h-12 cursor-pointer hover:bg-gray-700 ${
-          name === community && 'bg-gray-700'
-        }`}
+        className={clsx(
+          'group relative',
+          'flex flex-shrink-0 items-center justify-center',
+          'w-12 h-12 cursor-pointer'
+        )}
       >
+        <div
+          className={clsx(
+            'absolute left-0 border-l h-4',
+            'border-transparent group-hover:border-gray-400',
+            name === community && 'border-gray-400 h-6'
+          )}
+        ></div>
         <div className="rounded-full bg-gray-900 h-8 w-8 flex items-center justify-center">
           {avatar ? (
             <img src={avatar} className="h-full" alt={title} />

@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
-import { gql, useQuery } from '@apollo/client';
-import { TrackInfo } from './components/track-info';
 import { useSpotifyNowQuery } from '@dream/types';
+import { TrackInfo } from './components/track-info';
 
-const CurrentPlayingInner = () => {
+export const SpotifyNow = () => {
   const spotifyNowQuery = useSpotifyNowQuery({ variables: { token: 'test' } });
   const current = spotifyNowQuery?.data?.spotifyNow;
 
@@ -30,22 +29,4 @@ const CurrentPlayingInner = () => {
       progress={progress}
     />
   );
-};
-
-export const SpotifyNow = () => {
-  const meQuery = useQuery(gql`
-    query me {
-      me {
-        id
-      }
-    }
-  `);
-
-  const id = meQuery?.data?.me?.id;
-
-  if (id) {
-    return <CurrentPlayingInner />;
-  } else {
-    return null;
-  }
 };

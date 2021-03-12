@@ -1,32 +1,20 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSpotifyNowQuery } from '@dream/types';
 import { TrackInfo } from './components/track-info';
 
 export const SpotifyNow = () => {
-  const spotifyNowQuery = useSpotifyNowQuery({ variables: { token: 'test' } });
-  const current = spotifyNowQuery?.data?.spotifyNow;
-
-  useEffect(() => {
-    const t = setInterval(() => spotifyNowQuery.refetch(), 3000);
-    return () => clearInterval(t);
+  const spotifyNowQuery = useSpotifyNowQuery({
+    variables: { token: 'test' },
+    pollInterval: 3000,
   });
-
-  let progress = 0;
-
-  if (current) {
-    progress = current?.progress;
-  }
-
-  const name = current?.name;
-  const artist = current?.artist;
-  const imageUrl = current?.imageUrl;
+  const current = spotifyNowQuery?.data?.spotifyNow;
 
   return (
     <TrackInfo
-      imageUrl={imageUrl}
-      artist={artist}
-      name={name}
-      progress={progress}
+      imageUrl={current?.imageUrl}
+      artist={current?.artist}
+      name={current?.name}
+      progress={current?.progress}
     />
   );
 };

@@ -16,11 +16,11 @@ const CommunityInAppPanel: React.FC<{
   return (
     <Link href={`/${name}`}>
       <div
-        className={`flex flex-shrink-0 items-center justify-center w-48px h-48px cursor-pointer hover:opacity-90 hover:bg-surface-light ${
+        className={`flex flex-shrink-0 items-center justify-center w-12 h-12 cursor-pointer hover:opacity-90 hover:bg-surface-light ${
           name === community && 'bg-surface-light'
         }`}
       >
-        <div className="rounded-full bg-background h-32px w-32px flex items-center justify-center">
+        <div className="rounded-full bg-background h-8 w-8 flex items-center justify-center">
           {avatar ? (
             <img src={avatar} className="h-full" alt={title} />
           ) : (

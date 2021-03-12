@@ -42,7 +42,7 @@ const SocialButton = ({ provider, icon }) => {
 
 export const Auth = () => {
   return (
-    <div className="flex flex-col px-4 py-2 w-320px">
+    <div className="flex flex-col px-4 py-2 w-80">
       <div className="text-accent text-xs w-full flex justify-center py-2">
         Auth with
       </div>

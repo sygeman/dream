@@ -10,8 +10,8 @@ import { AppPanelCommunities } from '@dream/community';
 const Logo = () => {
   return (
     <Link href="/">
-      <div className="flex items-center justify-center w-48px h-48px cursor-pointer hover:opacity-90">
-        <div className="flex justify-center items-center h-32px w-32px">
+      <div className="flex items-center justify-center w-12 h-12 cursor-pointer hover:opacity-90">
+        <div className="flex justify-center items-center h-8 w-8">
           <span className="text-text">D</span>
         </div>
       </div>
@@ -38,7 +38,7 @@ const Logo = () => {
 
 export const AppPanel = () => {
   return (
-    <div className="h-screen flex flex-col flex-shrink-0 min-w-48px bg-surface border-r border-background overflow-hidden">
+    <div className="h-screen flex flex-col flex-shrink-0 min-w-12 bg-surface border-r border-background overflow-hidden">
       <Logo />
       <AppPanelCommunities />
       {/* <Friends /> */}

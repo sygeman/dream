@@ -35,17 +35,6 @@ module.exports = {
           DEFAULT: '#1a9c48',
         },
       },
-      height: {
-        '32px': '32px',
-        '48px': '48px',
-      },
-      width: {
-        '32px': '32px',
-        '48px': '48px',
-        '72px': '72px',
-        '240px': '240px',
-        '320px': '320px',
-      },
       fontFamily: {
         sans: 'Roboto',
       },

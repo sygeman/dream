@@ -56,7 +56,7 @@ export const NewCommunity = () => {
         placeholder="Awesome Community"
         onChange={formik.handleChange}
         value={formik.values.title}
-        className="bg-background text-white text-xs p-2 rounded w-full focus:outline-none focus:ring-1 mb-2"
+        className="bg-gray-900 text-white text-xs p-2 rounded w-full focus:outline-none focus:ring-1 mb-2"
       />
 
       <label htmlFor="name" className="text-gray-400 text-sm">
@@ -72,7 +72,7 @@ export const NewCommunity = () => {
         placeholder="awesome"
         onChange={formik.handleChange}
         value={formik.values.name}
-        className="bg-background text-white text-xs p-2 rounded w-full focus:outline-none focus:ring-1 mb-2"
+        className="bg-gray-900 text-white text-xs p-2 rounded w-full focus:outline-none focus:ring-1 mb-2"
       />
 
       <div className="flex w-full justify-end mt-2">

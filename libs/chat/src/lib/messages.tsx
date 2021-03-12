@@ -30,7 +30,7 @@ export const ChatMessages: React.FC<{ messages: any[] }> = ({ messages }) => {
             'absolute bottom-0',
             'flex w-full items-center justify-center',
             'text-white text-sm',
-            'bg-surface',
+            'bg-gray-800',
             'opacity-90 cursor-pointer'
           )}
           onClick={toBottom}

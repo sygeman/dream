@@ -5,7 +5,7 @@ export const AnnotationIcon = () => {
     <svg
       height="14px"
       width="14px"
-      className="fill-current text-text"
+      className="fill-current text-white"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 20 20"
       fill="currentColor"

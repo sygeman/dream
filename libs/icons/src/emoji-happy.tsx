@@ -5,7 +5,7 @@ export const EmojiHappyIcon = () => {
     <svg
       height="16px"
       width="16px"
-      className="fill-current text-accent"
+      className="fill-current text-gray-500"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 20 20"
       fill="currentColor"

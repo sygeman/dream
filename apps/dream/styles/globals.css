@@ -3,13 +3,13 @@
 @tailwind utilities;
 
 body {
-  @apply overflow-hidden bg-surface h-screen w-screen;
+  @apply overflow-hidden bg-gray-800 h-screen w-screen;
 }
 
 .btn {
-  @apply bg-surface text-white text-sm py-1 px-3 rounded hover:bg-surface-light;
+  @apply bg-gray-800 text-white text-sm py-1 px-3 rounded hover:bg-gray-700;
 }
 
 .btn-primary {
-  @apply bg-primary text-white text-sm py-2 px-3 rounded hover:bg-primary-light;
+  @apply bg-indigo-600 text-white text-sm py-2 px-3 rounded hover:bg-indigo-500;
 }

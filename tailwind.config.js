@@ -1,7 +1,6 @@
 const Color = require('color');
-const alpha = (clr, val) => Color(clr).alpha(val).rgb().string();
+const colors = require('tailwindcss/colors');
 const lighen = (clr, val) => Color(clr).lighten(val).rgb().string();
-const darken = (clr, val) => Color(clr).darken(val).rgb().string();
 
 module.exports = {
   purge: {
@@ -11,21 +10,11 @@ module.exports = {
       './apps/dream/pages/**/*.{js,ts,jsx,tsx}',
     ],
   },
-  darkMode: 'media', // or 'media' or 'class'
+  darkMode: 'media',
   theme: {
     extend: {
       colors: {
-        primary: {
-          light: lighen('#6441A4', 0.2),
-          DEFAULT: '#6441A4',
-        },
-        surface: {
-          light: lighen('#262841', 0.2),
-          DEFAULT: '#262841',
-        },
-        background: '#1D1E31',
-        accent: '#968A9D',
-        text: '#EEEEEE',
+        gray: colors.blueGray,
         twitch: {
           light: lighen('#6542a6', 0.2),
           DEFAULT: '#6542a6',
@@ -40,8 +29,4 @@ module.exports = {
       },
     },
   },
-  variants: {
-    extend: {},
-  },
-  plugins: [],
 };

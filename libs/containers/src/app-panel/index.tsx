@@ -12,7 +12,7 @@ const Logo = () => {
     <Link href="/">
       <div className="flex items-center justify-center w-12 h-12 cursor-pointer hover:opacity-90">
         <div className="flex justify-center items-center h-8 w-8">
-          <span className="text-text">D</span>
+          <span className="text-white">D</span>
         </div>
       </div>
     </Link>
@@ -38,7 +38,7 @@ const Logo = () => {
 
 export const AppPanel = () => {
   return (
-    <div className="h-screen flex flex-col flex-shrink-0 min-w-12 bg-surface border-r border-background overflow-hidden">
+    <div className="h-screen flex flex-col flex-shrink-0 min-w-12 bg-gray-800 border-r border-gray-900 overflow-hidden">
       <Logo />
       <AppPanelCommunities />
       {/* <Friends /> */}

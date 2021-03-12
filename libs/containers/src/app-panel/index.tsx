@@ -10,7 +10,7 @@ import { AppPanelCommunities } from '@dream/community';
 const Logo = () => {
   return (
     <Link href="/">
-      <div className="flex items-center justify-center w-12 h-12 cursor-pointer hover:opacity-90">
+      <div className="flex items-center justify-center w-12 h-12 cursor-pointer">
         <div className="flex justify-center items-center h-8 w-8">
           <span className="text-white">D</span>
         </div>

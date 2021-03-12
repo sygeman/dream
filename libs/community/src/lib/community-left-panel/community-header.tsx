@@ -31,14 +31,14 @@ export const CommunityHeader = () => {
       <div
         className={clsx(
           'flex justify-between items-center w-full h-12 px-4',
-          'bg-indigo-600 cursor-pointer'
+          'bg-gray-800 cursor-pointer border-b border-gray-900'
         )}
         onClick={toggleMenu}
       >
         <span className="text-white">{community?.title}</span>
         <FontAwesomeIcon
           icon={menuIsOpen ? faTimes : faAngleDown}
-          className="text-white mr-2 h-4"
+          className="text-gray-400 mr-2 h-4"
         />
       </div>
 
@@ -57,7 +57,7 @@ export const CommunityHeader = () => {
               passHref
             >
               <button
-                className="text-white text-sm px-2 py-1 rounded hover:bg-indigo-600 cursor-pointer w-full text-left"
+                className="text-white text-sm px-2 py-1 rounded hover:bg-gray-700 cursor-pointer w-full text-left"
                 onClick={() => setMenuIsOpen(false)}
               >
                 Create channel

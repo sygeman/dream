@@ -5,7 +5,7 @@ export const UserCircleIcon = () => {
     <svg
       height="20px"
       width="20px"
-      className="fill-current text-gray-500"
+      className="fill-current text-gray-400"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 20 20"
       fill="currentColor"

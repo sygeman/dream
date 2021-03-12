@@ -11,5 +11,5 @@ body {
 }
 
 .btn-primary {
-  @apply bg-indigo-600 text-white text-sm py-2 px-3 rounded hover:bg-indigo-500;
+  @apply bg-gray-600 text-white text-sm py-2 px-3 rounded hover:bg-gray-500;
 }

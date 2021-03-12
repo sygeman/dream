@@ -43,7 +43,7 @@ export const Modal: React.FC<ModalProps> = ({
         ></div>
         <div className="m-auto z-30 bg-gray-800 rounded overflow-hidden">
           {!minimal && (
-            <div className="bg-indigo-600 px-4 py-2 flex items-center">
+            <div className="bg-gray-700 px-4 py-2 flex items-center">
               <div className="flex flex-1 text-white">{title}</div>
               <div className="pl-2 cursor-pointer" onClick={closeModal}>
                 <XIcon />

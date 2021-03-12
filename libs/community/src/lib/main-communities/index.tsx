@@ -38,7 +38,7 @@ export const MainCommunities = () => {
     <div className="flex flex-col w-full">
       <div className="flex w-full justify-between items-center px-4 py-2 bg-gray-800">
         <div>
-          <span className="text-gray-500">Online:</span>
+          <span className="text-gray-400">Online:</span>
           <span className="text-white ml-2">{uniqCount}</span>
         </div>
         <Link

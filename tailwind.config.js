@@ -17,14 +17,14 @@ module.exports = {
           DEFAULT: '#b73c78',
           light: lighen('#b73c78', 0.2),
         },
-        backgorud: '#000',
+        backgorud: '#1A212C',
         accent: {
           DEFAULT: '#adadb8',
           light: lighen('#adadb8', 0.4),
         },
         surface: {
-          DEFAULT: '#18181b',
-          light: lighen('#18181b', 0.4),
+          DEFAULT: '#242D3A',
+          light: lighen('#242D3A', 0.4),
         },
         twitch: {
           light: lighen('#6542a6', 0.2),

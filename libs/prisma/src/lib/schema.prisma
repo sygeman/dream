@@ -116,6 +116,8 @@ model ChannelMessage {
   userId    String
 }
 
+// Channel Mods
+
 model ModeWaitlistQueue {
   id        String   @id @default(cuid())
   trackId   String

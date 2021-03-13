@@ -20,11 +20,11 @@ module.exports = {
         backgorud: '#000',
         accent: {
           DEFAULT: '#adadb8',
-          light: lighen('#adadb8', 0.3),
+          light: lighen('#adadb8', 0.4),
         },
         surface: {
           DEFAULT: '#18181b',
-          light: lighen('#18181b', 0.3),
+          light: lighen('#18181b', 0.4),
         },
         twitch: {
           light: lighen('#6542a6', 0.2),

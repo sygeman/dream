@@ -11,11 +11,11 @@ const CommunityCard: React.FC<{
 }> = ({ title, name, online }) => {
   return (
     <Link href={`/${name}`}>
-      <div className="flex flex-col flex-shrink-0 overflow-hidden items-center justify-center  cursor-pointer hover:opacity-90 bg-gray-800 m-4 rounded">
-        <div className="w-full bg-gray-700 py-12"></div>
+      <div className="flex flex-col flex-shrink-0 overflow-hidden items-center justify-center  cursor-pointer hover:opacity-90 bg-surface m-4 rounded">
+        <div className="w-full bg-surface-light py-12"></div>
         <div className="flex items-center justify-between w-full px-4 py-2">
           <span className="text-sm text-white">{title}</span>
-          <span className="text-white text-xs rounded bg-gray-900 px-2 py-1">
+          <span className="text-white text-xs rounded bg-backgorud px-2 py-1">
             {online}
           </span>
         </div>
@@ -36,9 +36,9 @@ export const MainCommunities = () => {
 
   return (
     <div className="flex flex-col w-full">
-      <div className="flex w-full justify-between items-center px-4 py-2 bg-gray-800">
+      <div className="flex w-full justify-between items-center px-4 py-2 bg-surface">
         <div>
-          <span className="text-gray-400">Online:</span>
+          <span className="text-accent">Online:</span>
           <span className="text-white ml-2">{uniqCount}</span>
         </div>
         <Link

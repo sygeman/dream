@@ -18,7 +18,7 @@ export const CommunityLeftPanel = () => {
   const channels = communityChannelsQuery?.data?.channels || [];
 
   return (
-    <div className="h-screen flex flex-col flex-shrink-0 w-60 bg-gray-800">
+    <div className="h-screen flex flex-col flex-shrink-0 w-60 bg-surface">
       <CommunityHeader />
 
       <div className="flex flex-1 w-full overflow-hidden">
@@ -36,7 +36,7 @@ export const CommunityLeftPanel = () => {
         </SimpleBar>
       </div>
 
-      <div className="w-full h-12 bg-gray-800 border-t border-gray-900"></div>
+      <div className="w-full h-12 bg-surface border-t border-backgorud"></div>
     </div>
   );
 };

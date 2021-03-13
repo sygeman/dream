@@ -28,7 +28,7 @@ export const ChatBottom: React.FC<ChatBottomProps> = ({ channelId }) => {
         maxLength={500}
         maxRows={3}
         placeholder="Send a message"
-        className="bg-gray-900 text-white text-xs resize-none mx-2 mb-4 p-2 rounded w-full focus:outline-none focus:ring-1"
+        className="bg-backgorud text-white text-xs resize-none mx-2 mb-4 p-2 rounded w-full focus:outline-none focus:ring-1"
         onKeyPress={(e) => {
           if (!textareaRef.current) {
             return null;

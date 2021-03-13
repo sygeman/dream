@@ -56,17 +56,17 @@ export const ChatMessage = ({
                 alt={authorName}
               />
             ) : (
-              <div className="h-6 w-6 rounded-full bg-gray-900" />
+              <div className="h-6 w-6 rounded-full bg-backgorud" />
             )}
           </div>
           <div className="font-medium text-white ml-2">{authorName}</div>
-          <div className="text-gray-400 text-xs ml-2">
+          <div className="text-accent text-xs ml-2">
             {dateDistanceInWordsToNow(createdAt)}
           </div>
         </div>
       )}
       <div className="relative">
-        <div className="overflow-hidden text-gray-400 break-words ml-8 flex flex-wrap">
+        <div className="overflow-hidden text-accent break-words ml-8 flex flex-wrap">
           {renderMessageText(content)}
         </div>
       </div>

@@ -1,5 +1,4 @@
 const Color = require('color');
-const colors = require('tailwindcss/colors');
 const lighen = (clr, val) => Color(clr).lighten(val).rgb().string();
 
 module.exports = {
@@ -14,7 +13,19 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        gray: colors.blueGray,
+        primary: {
+          DEFAULT: '#b73c78',
+          light: lighen('#b73c78', 0.2),
+        },
+        backgorud: '#000',
+        accent: {
+          DEFAULT: '#adadb8',
+          light: lighen('#adadb8', 0.3),
+        },
+        surface: {
+          DEFAULT: '#18181b',
+          light: lighen('#18181b', 0.3),
+        },
         twitch: {
           light: lighen('#6542a6', 0.2),
           DEFAULT: '#6542a6',

@@ -38,7 +38,7 @@ const Logo = () => {
 
 export const AppPanel = () => {
   return (
-    <div className="h-screen flex flex-col flex-shrink-0 min-w-12 bg-gray-800 border-r border-gray-900 overflow-hidden">
+    <div className="h-screen flex flex-col flex-shrink-0 min-w-12 bg-surface border-r border-backgorud overflow-hidden">
       <Logo />
       <AppPanelCommunities />
       {/* <Friends /> */}

@@ -7,7 +7,7 @@ import { NewCommunity, NewChannel } from '@dream/community';
 export const MainLayout: React.FC = ({ children }) => {
   return (
     <>
-      <div className="h-screen bg-gray-900 flex">
+      <div className="h-screen bg-backgorud flex">
         <AppPanel />
         {children}
       </div>

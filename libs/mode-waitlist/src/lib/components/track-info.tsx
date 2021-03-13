@@ -31,7 +31,7 @@ export const TrackInfo: React.FC<TrackInfoProps> = ({
       />
     </AnimatePresence>
     <motion.div
-      className="absolute bottom-0 opacity-30 bg-black"
+      className="absolute bottom-0 opacity-30 bg-backgorud"
       style={{ left: COVER_SIZE, height: COVER_SIZE }}
       animate={{ width: `calc(${progress * 100}% - ${COVER_SIZE}px)` }}
     />
@@ -48,7 +48,7 @@ export const TrackInfo: React.FC<TrackInfoProps> = ({
         </AnimatePresence>
       </div>
       <div className="flex justify-center px-4 flex-col">
-        <span className="text-xl text-gray-400">{artist}</span>
+        <span className="text-xl text-accent">{artist}</span>
         <span className="text-2xl text-white">{name}</span>
       </div>
     </div>

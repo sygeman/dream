@@ -56,7 +56,7 @@ export const NewChannel = () => {
 
   return (
     <form onSubmit={formik.handleSubmit}>
-      <label htmlFor="title" className="text-gray-400 text-sm">
+      <label htmlFor="title" className="text-accent text-sm">
         Title
       </label>
       <input
@@ -69,10 +69,10 @@ export const NewChannel = () => {
         placeholder="Awesome Channel"
         onChange={formik.handleChange}
         value={formik.values.title}
-        className="bg-gray-900 text-white text-xs p-2 rounded w-full focus:outline-none focus:ring-1 mb-2"
+        className="bg-backgorud text-white text-xs p-2 rounded w-full focus:outline-none focus:ring-1 mb-2"
       />
 
-      <label htmlFor="name" className="text-gray-400 text-sm">
+      <label htmlFor="name" className="text-accent text-sm">
         <span>
           {host}/{name}/
         </span>
@@ -87,7 +87,7 @@ export const NewChannel = () => {
         placeholder="awesome"
         onChange={formik.handleChange}
         value={formik.values.name}
-        className="bg-gray-900 text-white text-xs p-2 rounded w-full focus:outline-none focus:ring-1 mb-2"
+        className="bg-backgorud text-white text-xs p-2 rounded w-full focus:outline-none focus:ring-1 mb-2"
       />
 
       <div className="flex w-full justify-end mt-2">

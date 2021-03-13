@@ -26,15 +26,15 @@ const CommunityInAppPanel: React.FC<{
         <div
           className={clsx(
             'absolute left-0 border-l h-4',
-            'border-transparent group-hover:border-gray-400',
-            name === community && 'border-gray-400 h-6'
+            'border-transparent group-hover:border-accent',
+            name === community && 'border-accent h-6'
           )}
         ></div>
-        <div className="rounded-full bg-gray-900 h-8 w-8 flex items-center justify-center">
+        <div className="rounded-full bg-backgorud h-8 w-8 flex items-center justify-center">
           {avatar ? (
             <img src={avatar} className="h-full" alt={title} />
           ) : (
-            <span className="text-gray-400 text-sm">{title[0]}</span>
+            <span className="text-accent text-sm">{title[0]}</span>
           )}
         </div>
       </div>

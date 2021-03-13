@@ -21,9 +21,9 @@ export const ChannelItem: React.FC<{
             'flex items-center flex-1 w-full h-11',
             'px-4 py-1',
             'cursor-pointer',
-            'hover:bg-gray-700',
+            'hover:bg-surface-light',
             'rounded',
-            name === channel && 'bg-gray-700'
+            name === channel && 'bg-surface-light'
           )}
         >
           <div className="flex flex-col flex-1">
@@ -31,13 +31,13 @@ export const ChannelItem: React.FC<{
               <span className="text-white text-sm">{title}</span>
             </div>
             <div className="flex flex-1">
-              <span className="text-gray-400 text-xs">{state}</span>
+              <span className="text-accent text-xs">{state}</span>
             </div>
           </div>
 
           {typeof online === 'number' && (
             <div>
-              <span className="text-gray-400 text-xs rounded bg-gray-900 px-2 py-1">
+              <span className="text-accent text-xs rounded bg-backgorud px-2 py-1">
                 {online}
               </span>
             </div>

@@ -67,8 +67,12 @@ model Source {
 }
 
 enum ChannelMode {
-  WAITLIST
-  COLLECTION
+  WAITLIST_YOUTUBE
+  WAITLIST_SPOTIFY
+  STREAM_TWITCH
+  STREAM_YOUTUBE
+  COLLECTION_SPOTIFY
+  COLLECTION_YOUTUBE
 }
 
 model Community {
@@ -89,7 +93,7 @@ model Channel {
   title             String
   avatar            String?
   state             String?
-  mode              ChannelMode         @default(WAITLIST)
+  mode              ChannelMode         @default(WAITLIST_YOUTUBE)
   createdAt         DateTime            @default(now())
   updatedAt         DateTime            @default(now()) @updatedAt
   community         Community           @relation(fields: [communityId], references: [id])

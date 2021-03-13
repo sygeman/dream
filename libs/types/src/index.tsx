@@ -61,7 +61,14 @@ export type Channel = {
 
 export enum ChannelMode {
   Waitlist = 'WAITLIST',
-  Collection = 'COLLECTION'
+  Collection = 'COLLECTION',
+  Stream = 'STREAM',
+  WaitlistYoutube = 'WAITLIST_YOUTUBE',
+  WaitlistSpotify = 'WAITLIST_SPOTIFY',
+  StreamTwitch = 'STREAM_TWITCH',
+  StreamYoutube = 'STREAM_YOUTUBE',
+  CollectionSpotify = 'COLLECTION_SPOTIFY',
+  CollectionYoutube = 'COLLECTION_YOUTUBE'
 }
 
 export type ChannelMessage = {

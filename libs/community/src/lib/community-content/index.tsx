@@ -2,6 +2,21 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import { ChannelModeWaitlist } from '@dream/mode-waitlist';
 import { useChannelQuery, ChannelMode } from '@dream/types';
+import ReactPlayer from 'react-player';
+
+const ChannelModeStream = () => {
+  return (
+    <div className="h-screen w-full flex flex-1">
+      <ReactPlayer
+        url="https://www.twitch.tv/sygeman"
+        height="100%"
+        width="100%"
+        playing
+        muted
+      />
+    </div>
+  );
+};
 
 export const CommunityContent = () => {
   const router = useRouter();
@@ -17,8 +32,10 @@ export const CommunityContent = () => {
 
   const getContentView = () => {
     switch (channel?.mode) {
-      case ChannelMode.Waitlist:
+      case ChannelMode.WaitlistSpotify:
         return <ChannelModeWaitlist />;
+      case ChannelMode.StreamTwitch:
+        return <ChannelModeStream />;
       default:
         return null;
     }

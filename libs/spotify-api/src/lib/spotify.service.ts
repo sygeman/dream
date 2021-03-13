@@ -41,10 +41,6 @@ export class SpotifyService implements OnModuleInit {
         return Promise.reject(error);
       }
     );
-
-    const d = await this.getMePlayer('cklxztcja00753v5v9hn1w2nn');
-
-    Logger.log(d.data?.item?.name);
   }
 
   async getToken(userId: string) {

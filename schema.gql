@@ -114,6 +114,7 @@ input CreateChannelInput {
   communityId: ID!
   name: String!
   title: String!
+  mode: ChannelMode!
 }
 
 input ChannelMessageCreateInput {

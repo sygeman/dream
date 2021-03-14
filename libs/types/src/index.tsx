@@ -60,9 +60,6 @@ export type Channel = {
 };
 
 export enum ChannelMode {
-  Waitlist = 'WAITLIST',
-  Collection = 'COLLECTION',
-  Stream = 'STREAM',
   WaitlistYoutube = 'WAITLIST_YOUTUBE',
   WaitlistSpotify = 'WAITLIST_SPOTIFY',
   StreamTwitch = 'STREAM_TWITCH',
@@ -197,6 +194,7 @@ export type CreateChannelInput = {
   communityId: Scalars['ID'];
   name: Scalars['String'];
   title: Scalars['String'];
+  mode: ChannelMode;
 };
 
 export type ChannelMessageCreateInput = {

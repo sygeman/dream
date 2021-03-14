@@ -1,9 +1,11 @@
 import React from 'react';
-import { useFormik } from 'formik';
-import { useCommunityQuery, useCreateChannelMutation } from '@dream/types';
-import { useRouter } from 'next/router';
-import * as Yup from 'yup';
 import clsx from 'clsx';
+import * as Yup from 'yup';
+import { useFormik } from 'formik';
+import { useRouter } from 'next/router';
+import { useCommunityQuery, useCreateChannelMutation } from '@dream/types';
+import { ChannelModeCard } from './channel-mode';
+import { channelMods } from './channel-mods';
 
 const ValidationSchema = Yup.object().shape({
   title: Yup.string()
@@ -14,6 +16,7 @@ const ValidationSchema = Yup.object().shape({
     .min(1, 'Too Short!')
     .max(50, 'Too Long!')
     .required('Required'),
+  mode: Yup.string().required('Required'),
 });
 
 export const NewChannel = () => {
@@ -43,6 +46,7 @@ export const NewChannel = () => {
     initialValues: {
       name: '',
       title: '',
+      mode: channelMods[0]?.value,
     },
     validationSchema: ValidationSchema,
     onSubmit: (values) => {
@@ -89,6 +93,29 @@ export const NewChannel = () => {
         value={formik.values.name}
         className="bg-backgorud text-white text-xs p-2 rounded w-full focus:outline-none focus:ring-1 mb-2"
       />
+
+      <label className="text-accent text-sm">Mode</label>
+
+      <div className="my-2">
+        {channelMods.map((mode) => (
+          <label key={mode.id} className="flex w-full">
+            <input
+              name="mode"
+              type="radio"
+              onChange={formik.handleChange}
+              value={mode.value}
+              checked={formik.values.mode === mode.value}
+              className="appearance-none"
+            />
+            <ChannelModeCard
+              color={mode.color}
+              icon={mode.icon}
+              title={mode.title}
+              selected={formik.values.mode === mode.value}
+            />
+          </label>
+        ))}
+      </div>
 
       <div className="flex w-full justify-end mt-2">
         <button

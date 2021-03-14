@@ -7,6 +7,7 @@ const accent = '#adadb8';
 const surface = '#161B22';
 const twitch = '#6542a6';
 const spotify = '#1a9c48';
+const youtube = '#dc1b1b';
 
 module.exports = {
   purge: {
@@ -40,6 +41,10 @@ module.exports = {
         spotify: {
           light: lighen(spotify, 0.2),
           DEFAULT: spotify,
+        },
+        youtube: {
+          light: lighen(youtube, 0.2),
+          DEFAULT: youtube,
         },
       },
       fontFamily: {

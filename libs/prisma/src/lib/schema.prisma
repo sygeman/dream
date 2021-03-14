@@ -28,18 +28,18 @@ model Connection {
 }
 
 model User {
-  id                String              @id @default(cuid())
+  id                String                     @id @default(cuid())
   name              String?
   avatar            String?
-  createdAt         DateTime            @default(now())
-  updatedAt         DateTime            @default(now()) @updatedAt
+  createdAt         DateTime                   @default(now())
+  updatedAt         DateTime                   @default(now()) @updatedAt
   profiles          Profile[]
   tokens            Token[]
   connection        Connection[]
   communities       Community[]
   channelMessages   ChannelMessage[]
-  modeWaitlistQueue ModeWaitlistQueue[]
-  modeWaitlist      ModeWaitlist[]
+  modeWaitlistQueue ModeWaitlistSpotifyQueue[]
+  modeWaitlist      ModeWaitlistSpotify[]
 }
 
 model Profile {
@@ -88,20 +88,20 @@ model Community {
 }
 
 model Channel {
-  id                String              @id @default(cuid())
+  id                String                     @id @default(cuid())
   name              String
   title             String
   avatar            String?
   state             String?
-  mode              ChannelMode         @default(WAITLIST_YOUTUBE)
-  createdAt         DateTime            @default(now())
-  updatedAt         DateTime            @default(now()) @updatedAt
-  community         Community           @relation(fields: [communityId], references: [id])
+  mode              ChannelMode                @default(WAITLIST_YOUTUBE)
+  createdAt         DateTime                   @default(now())
+  updatedAt         DateTime                   @default(now()) @updatedAt
+  community         Community                  @relation(fields: [communityId], references: [id])
   messages          ChannelMessage[]
   connections       Connection[]
   communityId       String
-  modeWaitlistQueue ModeWaitlistQueue[]
-  modeWaitlist      ModeWaitlist[]
+  modeWaitlistQueue ModeWaitlistSpotifyQueue[]
+  modeWaitlist      ModeWaitlistSpotify[]
 }
 
 model ChannelMessage {
@@ -117,8 +117,8 @@ model ChannelMessage {
 }
 
 // Channel Mods
-
-model ModeWaitlistQueue {
+// Waitlist Spotify
+model ModeWaitlistSpotifyQueue {
   id        String   @id @default(cuid())
   trackId   String
   artists   String
@@ -133,7 +133,7 @@ model ModeWaitlistQueue {
   updatedAt DateTime @default(now()) @updatedAt
 }
 
-model ModeWaitlist {
+model ModeWaitlistSpotify {
   id        String   @id @default(cuid())
   trackId   String?
   artists   String?

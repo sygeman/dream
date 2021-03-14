@@ -12,6 +12,7 @@ import { nanoid } from 'nanoid';
 import { BullModule } from '@nestjs/bull';
 import { ModeWaitlistModule } from '@dream/mode-waitlist-api';
 import { SpotifyModule } from '@dream/spotify-api';
+import { WaitlistSpotifyModule } from '@dream/mods/waitlist-spotify/api';
 
 @Module({
   imports: [
@@ -100,6 +101,7 @@ import { SpotifyModule } from '@dream/spotify-api';
     ConnectionModule,
     CommunityModule,
     ModeWaitlistModule,
+    WaitlistSpotifyModule,
     SpotifyModule,
   ],
 })

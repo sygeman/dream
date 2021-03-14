@@ -24,7 +24,7 @@ export class ModeWaitlistResolver {
 
   @Query(() => ModeWaitlist)
   modeWaitlist(@Args({ name: 'channelId' }) channelId: string) {
-    return this.prisma.modeWaitlist.findFirst({ where: { channelId } });
+    return this.prisma.modeWaitlistSpotify.findFirst({ where: { channelId } });
   }
 
   @Query(() => [Boolean])

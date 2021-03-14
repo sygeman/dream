@@ -26,5 +26,6 @@ module.exports = {
     '<rootDir>/libs/mode-waitlist',
     '<rootDir>/libs/types',
     '<rootDir>/libs/spotify-api',
+    '<rootDir>/libs/mods/waitlist-spotify/api',
   ],
 };

@@ -15,7 +15,7 @@ export class ModeWaitlistService {
   async setTrack({ channelId }) {
     Logger.log('setTrack');
     // Cut first track from queue
-    const track = await this.prisma.modeWaitlistQueue.findFirst({
+    const track = await this.prisma.modeWaitlistSpotify.findFirst({
       where: {
         channelId,
       },
@@ -31,12 +31,14 @@ export class ModeWaitlistService {
 
     // await this.prisma.modeWaitlistQueue.delete({ where: { id: track.id } });
 
-    const modeWaitlist = await this.prisma.modeWaitlist.findFirst({
+    const modeWaitlist = await this.prisma.modeWaitlistSpotify.findFirst({
       where: { channelId: track.channelId },
     });
 
-    await this.prisma.modeWaitlistQueue.delete({ where: { id: track.id } });
-    await this.prisma.modeWaitlistQueue.create({
+    await this.prisma.modeWaitlistSpotifyQueue.delete({
+      where: { id: track.id },
+    });
+    await this.prisma.modeWaitlistSpotifyQueue.create({
       data: {
         trackId: modeWaitlist.trackId,
         title: modeWaitlist.title,
@@ -52,7 +54,7 @@ export class ModeWaitlistService {
     const playkey = modeWaitlist.id + +start;
 
     // Set this track to waitlistMode state
-    const modeWaitlistUpdated = await this.prisma.modeWaitlist.update({
+    const modeWaitlistUpdated = await this.prisma.modeWaitlistSpotify.update({
       where: {
         id: modeWaitlist.id,
       },
@@ -98,7 +100,7 @@ export class ModeWaitlistService {
   async skipTrackByQueue(playkey: string) {
     Logger.log('skipTrackByQueue', playkey);
 
-    const modeWaitlist = await this.prisma.modeWaitlist.findFirst({
+    const modeWaitlist = await this.prisma.modeWaitlistSpotify.findFirst({
       where: {
         playkey,
       },

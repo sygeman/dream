@@ -35,6 +35,7 @@
     "mode-waitlist-api": { "tags": [] },
     "mode-waitlist": { "tags": [] },
     "types": { "tags": [] },
-    "spotify-api": { "tags": [] }
+    "spotify-api": { "tags": [] },
+    "mods-waitlist-spotify-api": { "tags": [] }
   }
 }

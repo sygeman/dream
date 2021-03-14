@@ -10,7 +10,6 @@ import { SharedModule } from './shared.module';
 import { config } from './config';
 import { nanoid } from 'nanoid';
 import { BullModule } from '@nestjs/bull';
-import { ModeWaitlistModule } from '@dream/mode-waitlist-api';
 import { SpotifyModule } from '@dream/spotify-api';
 import { WaitlistSpotifyModule } from '@dream/mods/waitlist-spotify/api';
 
@@ -100,7 +99,6 @@ import { WaitlistSpotifyModule } from '@dream/mods/waitlist-spotify/api';
     UserModule,
     ConnectionModule,
     CommunityModule,
-    ModeWaitlistModule,
     WaitlistSpotifyModule,
     SpotifyModule,
   ],

@@ -63,16 +63,6 @@ type ChannelMessage {
   createdAt: String!
 }
 
-type ModeWaitlist {
-  id: String!
-  trackId: String
-  title: String
-  artists: String
-  cover: String
-  duration: Int
-  start: String
-}
-
 type SpotifyNow {
   id: String!
   imageUrl: String!
@@ -100,8 +90,6 @@ type Query {
   channel(name: String!): Channel!
   channels(name: String!): [Channel!]!
   channelMessages(channelId: ID!): [ChannelMessage!]!
-  modeWaitlist(channelId: String!): ModeWaitlist!
-  modeWaitlistQueue(channelId: String!): [Boolean!]!
   waitlistSpotify(channelId: String!): WaitlistSpotify!
   spotifyNow(token: String!): SpotifyNow
   spotifyToken: String!
@@ -136,6 +124,5 @@ input ChannelMessageCreateInput {
 type Subscription {
   channelMessageCreated(channelId: ID!): ChannelMessage!
   channelMessageDeleted(channelId: ID!): ChannelMessage!
-  modeWaitlistUpdated(channelId: String!): ModeWaitlist!
   waitlistSpotifyUpdated(channelId: String!): WaitlistSpotify!
 }

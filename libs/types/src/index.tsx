@@ -78,17 +78,6 @@ export type ChannelMessage = {
   createdAt: Scalars['String'];
 };
 
-export type ModeWaitlist = {
-  __typename?: 'ModeWaitlist';
-  id: Scalars['String'];
-  trackId?: Maybe<Scalars['String']>;
-  title?: Maybe<Scalars['String']>;
-  artists?: Maybe<Scalars['String']>;
-  cover?: Maybe<Scalars['String']>;
-  duration?: Maybe<Scalars['Int']>;
-  start?: Maybe<Scalars['String']>;
-};
-
 export type SpotifyNow = {
   __typename?: 'SpotifyNow';
   id: Scalars['String'];
@@ -96,6 +85,17 @@ export type SpotifyNow = {
   artist: Scalars['String'];
   name: Scalars['String'];
   progress: Scalars['Float'];
+};
+
+export type WaitlistSpotify = {
+  __typename?: 'WaitlistSpotify';
+  id: Scalars['String'];
+  trackId?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  artists?: Maybe<Scalars['String']>;
+  cover?: Maybe<Scalars['String']>;
+  duration?: Maybe<Scalars['Int']>;
+  start?: Maybe<Scalars['String']>;
 };
 
 export type Query = {
@@ -108,8 +108,7 @@ export type Query = {
   channel: Channel;
   channels: Array<Channel>;
   channelMessages: Array<ChannelMessage>;
-  modeWaitlist: ModeWaitlist;
-  modeWaitlistQueue: Array<Scalars['Boolean']>;
+  waitlistSpotify: WaitlistSpotify;
   spotifyNow?: Maybe<SpotifyNow>;
   spotifyToken: Scalars['String'];
 };
@@ -140,12 +139,7 @@ export type QueryChannelMessagesArgs = {
 };
 
 
-export type QueryModeWaitlistArgs = {
-  channelId: Scalars['String'];
-};
-
-
-export type QueryModeWaitlistQueueArgs = {
+export type QueryWaitlistSpotifyArgs = {
   channelId: Scalars['String'];
 };
 
@@ -206,7 +200,7 @@ export type Subscription = {
   __typename?: 'Subscription';
   channelMessageCreated: ChannelMessage;
   channelMessageDeleted: ChannelMessage;
-  modeWaitlistUpdated: ModeWaitlist;
+  waitlistSpotifyUpdated: WaitlistSpotify;
 };
 
 
@@ -220,7 +214,7 @@ export type SubscriptionChannelMessageDeletedArgs = {
 };
 
 
-export type SubscriptionModeWaitlistUpdatedArgs = {
+export type SubscriptionWaitlistSpotifyUpdatedArgs = {
   channelId: Scalars['String'];
 };
 
@@ -376,29 +370,29 @@ export type CommunityFieldsFragment = (
   & Pick<Community, 'id' | 'name' | 'title' | 'avatar' | 'onlineCount'>
 );
 
-export type ModeWaitlistQueryVariables = Exact<{
+export type WaitlistSpotifyQueryVariables = Exact<{
   channelId: Scalars['String'];
 }>;
 
 
-export type ModeWaitlistQuery = (
+export type WaitlistSpotifyQuery = (
   { __typename?: 'Query' }
-  & { modeWaitlist: (
-    { __typename?: 'ModeWaitlist' }
-    & Pick<ModeWaitlist, 'id' | 'trackId' | 'artists' | 'title' | 'cover' | 'duration' | 'start'>
+  & { waitlistSpotify: (
+    { __typename?: 'WaitlistSpotify' }
+    & Pick<WaitlistSpotify, 'id' | 'trackId' | 'artists' | 'title' | 'cover' | 'duration' | 'start'>
   ) }
 );
 
-export type ModeWaitlistUpdatedSubscriptionVariables = Exact<{
+export type WaitlistSpotifyUpdatedSubscriptionVariables = Exact<{
   channelId: Scalars['String'];
 }>;
 
 
-export type ModeWaitlistUpdatedSubscription = (
+export type WaitlistSpotifyUpdatedSubscription = (
   { __typename?: 'Subscription' }
-  & { modeWaitlistUpdated: (
-    { __typename?: 'ModeWaitlist' }
-    & Pick<ModeWaitlist, 'id' | 'trackId' | 'artists' | 'title' | 'cover' | 'duration' | 'start'>
+  & { waitlistSpotifyUpdated: (
+    { __typename?: 'WaitlistSpotify' }
+    & Pick<WaitlistSpotify, 'id' | 'trackId' | 'artists' | 'title' | 'cover' | 'duration' | 'start'>
   ) }
 );
 
@@ -844,9 +838,9 @@ export function useCreateCommunityMutation(baseOptions?: Apollo.MutationHookOpti
 export type CreateCommunityMutationHookResult = ReturnType<typeof useCreateCommunityMutation>;
 export type CreateCommunityMutationResult = Apollo.MutationResult<CreateCommunityMutation>;
 export type CreateCommunityMutationOptions = Apollo.BaseMutationOptions<CreateCommunityMutation, CreateCommunityMutationVariables>;
-export const ModeWaitlistDocument = gql`
-    query modeWaitlist($channelId: String!) {
-  modeWaitlist(channelId: $channelId) {
+export const WaitlistSpotifyDocument = gql`
+    query waitlistSpotify($channelId: String!) {
+  waitlistSpotify(channelId: $channelId) {
     id
     trackId
     artists
@@ -859,35 +853,35 @@ export const ModeWaitlistDocument = gql`
     `;
 
 /**
- * __useModeWaitlistQuery__
+ * __useWaitlistSpotifyQuery__
  *
- * To run a query within a React component, call `useModeWaitlistQuery` and pass it any options that fit your needs.
- * When your component renders, `useModeWaitlistQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useWaitlistSpotifyQuery` and pass it any options that fit your needs.
+ * When your component renders, `useWaitlistSpotifyQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useModeWaitlistQuery({
+ * const { data, loading, error } = useWaitlistSpotifyQuery({
  *   variables: {
  *      channelId: // value for 'channelId'
  *   },
  * });
  */
-export function useModeWaitlistQuery(baseOptions: Apollo.QueryHookOptions<ModeWaitlistQuery, ModeWaitlistQueryVariables>) {
+export function useWaitlistSpotifyQuery(baseOptions: Apollo.QueryHookOptions<WaitlistSpotifyQuery, WaitlistSpotifyQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<ModeWaitlistQuery, ModeWaitlistQueryVariables>(ModeWaitlistDocument, options);
+        return Apollo.useQuery<WaitlistSpotifyQuery, WaitlistSpotifyQueryVariables>(WaitlistSpotifyDocument, options);
       }
-export function useModeWaitlistLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ModeWaitlistQuery, ModeWaitlistQueryVariables>) {
+export function useWaitlistSpotifyLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<WaitlistSpotifyQuery, WaitlistSpotifyQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<ModeWaitlistQuery, ModeWaitlistQueryVariables>(ModeWaitlistDocument, options);
+          return Apollo.useLazyQuery<WaitlistSpotifyQuery, WaitlistSpotifyQueryVariables>(WaitlistSpotifyDocument, options);
         }
-export type ModeWaitlistQueryHookResult = ReturnType<typeof useModeWaitlistQuery>;
-export type ModeWaitlistLazyQueryHookResult = ReturnType<typeof useModeWaitlistLazyQuery>;
-export type ModeWaitlistQueryResult = Apollo.QueryResult<ModeWaitlistQuery, ModeWaitlistQueryVariables>;
-export const ModeWaitlistUpdatedDocument = gql`
-    subscription modeWaitlistUpdated($channelId: String!) {
-  modeWaitlistUpdated(channelId: $channelId) {
+export type WaitlistSpotifyQueryHookResult = ReturnType<typeof useWaitlistSpotifyQuery>;
+export type WaitlistSpotifyLazyQueryHookResult = ReturnType<typeof useWaitlistSpotifyLazyQuery>;
+export type WaitlistSpotifyQueryResult = Apollo.QueryResult<WaitlistSpotifyQuery, WaitlistSpotifyQueryVariables>;
+export const WaitlistSpotifyUpdatedDocument = gql`
+    subscription waitlistSpotifyUpdated($channelId: String!) {
+  waitlistSpotifyUpdated(channelId: $channelId) {
     id
     trackId
     artists
@@ -900,27 +894,27 @@ export const ModeWaitlistUpdatedDocument = gql`
     `;
 
 /**
- * __useModeWaitlistUpdatedSubscription__
+ * __useWaitlistSpotifyUpdatedSubscription__
  *
- * To run a query within a React component, call `useModeWaitlistUpdatedSubscription` and pass it any options that fit your needs.
- * When your component renders, `useModeWaitlistUpdatedSubscription` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useWaitlistSpotifyUpdatedSubscription` and pass it any options that fit your needs.
+ * When your component renders, `useWaitlistSpotifyUpdatedSubscription` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the subscription, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useModeWaitlistUpdatedSubscription({
+ * const { data, loading, error } = useWaitlistSpotifyUpdatedSubscription({
  *   variables: {
  *      channelId: // value for 'channelId'
  *   },
  * });
  */
-export function useModeWaitlistUpdatedSubscription(baseOptions: Apollo.SubscriptionHookOptions<ModeWaitlistUpdatedSubscription, ModeWaitlistUpdatedSubscriptionVariables>) {
+export function useWaitlistSpotifyUpdatedSubscription(baseOptions: Apollo.SubscriptionHookOptions<WaitlistSpotifyUpdatedSubscription, WaitlistSpotifyUpdatedSubscriptionVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useSubscription<ModeWaitlistUpdatedSubscription, ModeWaitlistUpdatedSubscriptionVariables>(ModeWaitlistUpdatedDocument, options);
+        return Apollo.useSubscription<WaitlistSpotifyUpdatedSubscription, WaitlistSpotifyUpdatedSubscriptionVariables>(WaitlistSpotifyUpdatedDocument, options);
       }
-export type ModeWaitlistUpdatedSubscriptionHookResult = ReturnType<typeof useModeWaitlistUpdatedSubscription>;
-export type ModeWaitlistUpdatedSubscriptionResult = Apollo.SubscriptionResult<ModeWaitlistUpdatedSubscription>;
+export type WaitlistSpotifyUpdatedSubscriptionHookResult = ReturnType<typeof useWaitlistSpotifyUpdatedSubscription>;
+export type WaitlistSpotifyUpdatedSubscriptionResult = Apollo.SubscriptionResult<WaitlistSpotifyUpdatedSubscription>;
 export const SpotifyNowDocument = gql`
     query spotifyNow($token: String!) {
   spotifyNow(token: $token) {

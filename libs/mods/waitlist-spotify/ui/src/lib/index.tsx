@@ -5,8 +5,8 @@ import { useRouter } from 'next/router';
 import {
   useChannelQuery,
   useMeQuery,
-  useModeWaitlistQuery,
-  useModeWaitlistUpdatedSubscription,
+  useWaitlistSpotifyQuery,
+  useWaitlistSpotifyUpdatedSubscription,
 } from '@dream/types';
 import { ChannelModeWaitlistProgress } from './progress';
 import axios from 'axios';
@@ -23,27 +23,27 @@ export const ChannelModeWaitlistSpotify = () => {
   const channel = communityChannelsQuery?.data?.channel;
   const channelId = channel?.id;
 
-  const modeWaitlistQuery = useModeWaitlistQuery({
+  const modeWaitlistQuery = useWaitlistSpotifyQuery({
     variables: { channelId },
     skip: !channelId,
   });
 
-  const modeWaitlist = modeWaitlistQuery?.data?.modeWaitlist;
+  const modeWaitlist = modeWaitlistQuery?.data?.waitlistSpotify;
 
   const meQuery = useMeQuery();
 
   const isSpotifyProfile =
     meQuery?.data?.me?.profiles[0]?.provider === 'spotify';
 
-  useModeWaitlistUpdatedSubscription({
+  useWaitlistSpotifyUpdatedSubscription({
     variables: { channelId },
     skip: !channelId,
     onSubscriptionData: ({ subscriptionData }) => {
-      console.log(subscriptionData.data.modeWaitlistUpdated);
+      console.log(subscriptionData.data.waitlistSpotifyUpdated);
 
       if (!subscriptionData.data) return;
 
-      const modeWaitlistUpdated = subscriptionData.data.modeWaitlistUpdated;
+      const modeWaitlistUpdated = subscriptionData.data.waitlistSpotifyUpdated;
 
       modeWaitlistQuery.updateQuery((prev) => {
         return {

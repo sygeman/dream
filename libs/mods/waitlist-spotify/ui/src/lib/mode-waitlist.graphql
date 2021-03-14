@@ -1,5 +1,5 @@
-query modeWaitlist($channelId: String!) {
-  modeWaitlist(channelId: $channelId) {
+query waitlistSpotify($channelId: String!) {
+  waitlistSpotify(channelId: $channelId) {
     id
     trackId
     artists
@@ -10,8 +10,8 @@ query modeWaitlist($channelId: String!) {
   }
 }
 
-subscription modeWaitlistUpdated($channelId: String!) {
-  modeWaitlistUpdated(channelId: $channelId) {
+subscription waitlistSpotifyUpdated($channelId: String!) {
+  waitlistSpotifyUpdated(channelId: $channelId) {
     id
     trackId
     artists

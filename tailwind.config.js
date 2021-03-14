@@ -1,6 +1,13 @@
 const Color = require('color');
 const lighen = (clr, val) => Color(clr).lighten(val).rgb().string();
 
+const primary = '#b73c78';
+const backgorud = '#0D1117';
+const accent = '#adadb8';
+const surface = '#161B22';
+const twitch = '#6542a6';
+const spotify = '#1a9c48';
+
 module.exports = {
   purge: {
     enabled: process.env.NODE_ENV === 'production',
@@ -14,25 +21,25 @@ module.exports = {
     extend: {
       colors: {
         primary: {
-          DEFAULT: '#b73c78',
-          light: lighen('#b73c78', 0.2),
+          DEFAULT: primary,
+          light: lighen(primary, 0.2),
         },
-        backgorud: '#1A212C',
+        backgorud,
         accent: {
-          DEFAULT: '#adadb8',
-          light: lighen('#adadb8', 0.4),
+          DEFAULT: accent,
+          light: lighen(accent, 0.4),
         },
         surface: {
-          DEFAULT: '#242D3A',
-          light: lighen('#242D3A', 0.4),
+          DEFAULT: surface,
+          light: lighen(surface, 0.4),
         },
         twitch: {
-          light: lighen('#6542a6', 0.2),
-          DEFAULT: '#6542a6',
+          light: lighen(twitch, 0.2),
+          DEFAULT: twitch,
         },
         spotify: {
-          light: lighen('#1a9c48', 0.2),
-          DEFAULT: '#1a9c48',
+          light: lighen(spotify, 0.2),
+          DEFAULT: spotify,
         },
       },
       fontFamily: {

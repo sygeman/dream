@@ -516,6 +516,29 @@
           }
         }
       }
+    },
+    "mods-waitlist-spotify-ui": {
+      "root": "libs/mods/waitlist-spotify/ui",
+      "sourceRoot": "libs/mods/waitlist-spotify/ui/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/mods/waitlist-spotify/ui/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/mods/waitlist-spotify/ui"],
+          "options": {
+            "jestConfig": "libs/mods/waitlist-spotify/ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   }
 }

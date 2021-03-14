@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import React from 'react';
-import { ChannelModeWaitlist } from '@dream/mode-waitlist';
+import { ChannelModeWaitlistSpotify } from '@dream/mods/waitlist-spotify/ui';
 import { useChannelQuery, ChannelMode } from '@dream/types';
 import ReactPlayer from 'react-player';
 
@@ -33,7 +33,7 @@ export const CommunityContent = () => {
   const getContentView = () => {
     switch (channel?.mode) {
       case ChannelMode.WaitlistSpotify:
-        return <ChannelModeWaitlist />;
+        return <ChannelModeWaitlistSpotify />;
       case ChannelMode.StreamTwitch:
         return <ChannelModeStream />;
       default:

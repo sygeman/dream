@@ -39,6 +39,9 @@
       "@dream/spotify-api": ["libs/spotify-api/src/index.ts"],
       "@dream/mods/waitlist-spotify/api": [
         "libs/mods/waitlist-spotify/api/src/index.ts"
+      ],
+      "@dream/mods/waitlist-spotify/ui": [
+        "libs/mods/waitlist-spotify/ui/src/index.ts"
       ]
     }
   },

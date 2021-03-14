@@ -1,0 +1,23 @@
+query modeWaitlist($channelId: String!) {
+  modeWaitlist(channelId: $channelId) {
+    id
+    trackId
+    artists
+    title
+    cover
+    duration
+    start
+  }
+}
+
+subscription modeWaitlistUpdated($channelId: String!) {
+  modeWaitlistUpdated(channelId: $channelId) {
+    id
+    trackId
+    artists
+    title
+    cover
+    duration
+    start
+  }
+}

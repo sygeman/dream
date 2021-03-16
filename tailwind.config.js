@@ -10,13 +10,6 @@ const spotify = '#1a9c48';
 const youtube = '#dc1b1b';
 
 module.exports = {
-  purge: {
-    enabled: true,
-    content: [
-      './apps/dream/**/*.{js,ts,jsx,tsx}',
-      './libs/**/*.{js,ts,jsx,tsx}',
-    ],
-  },
   darkMode: 'media',
   theme: {
     extend: {

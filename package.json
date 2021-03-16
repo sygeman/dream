@@ -26,7 +26,7 @@
     "help": "nx help",
     "u": "yarn upgrade-interactive --latest",
     "studio": "prisma studio",
-    "migrate": "prisma format && prisma migrate dev -n latest --preview-feature && prisma generate",
+    "migrate": "prisma format && prisma migrate dev && prisma generate",
     "g": "graphql-codegen --config codegen.yml"
   },
   "prisma": {
@@ -46,7 +46,7 @@
     "@nestjs/graphql": "7.9.11",
     "@nestjs/passport": "7.1.5",
     "@nestjs/platform-express": "7.6.14",
-    "@prisma/client": "2.18.0",
+    "@prisma/client": "2.19.0",
     "apollo-server-express": "2.21.1",
     "autoprefixer": "10.2.5",
     "axios": "0.21.1",
@@ -80,7 +80,7 @@
     "passport-spotify": "2.0.0",
     "passport-twitch-new": "0.0.2",
     "postcss": "8.2.8",
-    "prisma": "2.18.0",
+    "prisma": "2.19.0",
     "react": "17.0.1",
     "react-custom-scrollbars": "4.2.1",
     "react-dom": "17.0.1",

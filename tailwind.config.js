@@ -11,6 +11,13 @@ const youtube = '#dc1b1b';
 
 module.exports = {
   darkMode: 'media',
+  purge: {
+    enabled: true,
+    content: [
+      'apps/dream/pages/**/*.{js,ts,jsx,tsx}',
+      'libs/**/*.{js,ts,jsx,tsx}',
+    ],
+  },
   theme: {
     extend: {
       colors: {

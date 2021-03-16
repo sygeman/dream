@@ -11,10 +11,10 @@ const youtube = '#dc1b1b';
 
 module.exports = {
   purge: {
-    enabled: process.env.NODE_ENV === 'production',
+    enabled: true,
     content: [
-      './apps/dream/layouts/**/*.{js,ts,jsx,tsx}',
-      './apps/dream/pages/**/*.{js,ts,jsx,tsx}',
+      './apps/dream/**/*.{js,ts,jsx,tsx}',
+      './libs/**/*.{js,ts,jsx,tsx}',
     ],
   },
   darkMode: 'media',

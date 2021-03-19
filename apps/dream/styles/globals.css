@@ -4,6 +4,7 @@
 
 body {
   @apply overflow-hidden bg-surface h-screen w-screen;
+  font-family: 'Roboto';
 }
 
 .btn {

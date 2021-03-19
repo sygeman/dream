@@ -55,9 +55,7 @@ module.exports = {
   theme: {
     extend: {
       colors,
-      fontFamily: {
-        sans: 'Roboto',
-      },
+      fontFamily: false,
     },
   },
 };

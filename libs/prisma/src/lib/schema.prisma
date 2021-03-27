@@ -102,6 +102,7 @@ model Channel {
   communityId       String
   modeWaitlistQueue ModeWaitlistSpotifyQueue[]
   modeWaitlist      ModeWaitlistSpotify[]
+  modeTwitchStream  ModeTwitchStream[]
 }
 
 model ChannelMessage {
@@ -148,4 +149,14 @@ model ModeWaitlistSpotify {
   updatedAt DateTime @default(now()) @updatedAt
   start     DateTime
   playkey   String?
+}
+
+// Twitch Stream
+model ModeTwitchStream {
+  id         String   @id @default(cuid())
+  channelKey String?
+  channel    Channel  @relation(fields: [channelId], references: [id])
+  channelId  String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @default(now()) @updatedAt
 }

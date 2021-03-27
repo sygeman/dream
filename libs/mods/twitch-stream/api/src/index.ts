@@ -1,1 +1,1 @@
-export * from './lib/mods-twitch-stream-api.module';
+export * from './lib/twitch-stream.module';

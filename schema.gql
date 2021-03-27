@@ -81,6 +81,11 @@ type WaitlistSpotify {
   start: String
 }
 
+type TwitchStream {
+  id: String!
+  channelKey: String
+}
+
 type Query {
   uniqCount: Int!
   user(id: ID): User
@@ -93,6 +98,7 @@ type Query {
   waitlistSpotify(channelId: String!): WaitlistSpotify!
   spotifyNow(token: String!): SpotifyNow
   spotifyToken: String!
+  twitchStream(channelName: String!): TwitchStream!
 }
 
 type Mutation {

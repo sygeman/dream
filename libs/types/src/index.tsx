@@ -98,6 +98,12 @@ export type WaitlistSpotify = {
   start?: Maybe<Scalars['String']>;
 };
 
+export type TwitchStream = {
+  __typename?: 'TwitchStream';
+  id: Scalars['String'];
+  channelKey?: Maybe<Scalars['String']>;
+};
+
 export type Query = {
   __typename?: 'Query';
   uniqCount: Scalars['Int'];
@@ -111,6 +117,7 @@ export type Query = {
   waitlistSpotify: WaitlistSpotify;
   spotifyNow?: Maybe<SpotifyNow>;
   spotifyToken: Scalars['String'];
+  twitchStream: TwitchStream;
 };
 
 
@@ -146,6 +153,11 @@ export type QueryWaitlistSpotifyArgs = {
 
 export type QuerySpotifyNowArgs = {
   token: Scalars['String'];
+};
+
+
+export type QueryTwitchStreamArgs = {
+  channelName: Scalars['String'];
 };
 
 export type Mutation = {
@@ -368,6 +380,19 @@ export type CreateCommunityMutation = (
 export type CommunityFieldsFragment = (
   { __typename?: 'Community' }
   & Pick<Community, 'id' | 'name' | 'title' | 'avatar' | 'onlineCount'>
+);
+
+export type TwitchStreamQueryVariables = Exact<{
+  channelName: Scalars['String'];
+}>;
+
+
+export type TwitchStreamQuery = (
+  { __typename?: 'Query' }
+  & { twitchStream: (
+    { __typename?: 'TwitchStream' }
+    & Pick<TwitchStream, 'id' | 'channelKey'>
+  ) }
 );
 
 export type WaitlistSpotifyQueryVariables = Exact<{
@@ -838,6 +863,42 @@ export function useCreateCommunityMutation(baseOptions?: Apollo.MutationHookOpti
 export type CreateCommunityMutationHookResult = ReturnType<typeof useCreateCommunityMutation>;
 export type CreateCommunityMutationResult = Apollo.MutationResult<CreateCommunityMutation>;
 export type CreateCommunityMutationOptions = Apollo.BaseMutationOptions<CreateCommunityMutation, CreateCommunityMutationVariables>;
+export const TwitchStreamDocument = gql`
+    query twitchStream($channelName: String!) {
+  twitchStream(channelName: $channelName) {
+    id
+    channelKey
+  }
+}
+    `;
+
+/**
+ * __useTwitchStreamQuery__
+ *
+ * To run a query within a React component, call `useTwitchStreamQuery` and pass it any options that fit your needs.
+ * When your component renders, `useTwitchStreamQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useTwitchStreamQuery({
+ *   variables: {
+ *      channelName: // value for 'channelName'
+ *   },
+ * });
+ */
+export function useTwitchStreamQuery(baseOptions: Apollo.QueryHookOptions<TwitchStreamQuery, TwitchStreamQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<TwitchStreamQuery, TwitchStreamQueryVariables>(TwitchStreamDocument, options);
+      }
+export function useTwitchStreamLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<TwitchStreamQuery, TwitchStreamQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<TwitchStreamQuery, TwitchStreamQueryVariables>(TwitchStreamDocument, options);
+        }
+export type TwitchStreamQueryHookResult = ReturnType<typeof useTwitchStreamQuery>;
+export type TwitchStreamLazyQueryHookResult = ReturnType<typeof useTwitchStreamLazyQuery>;
+export type TwitchStreamQueryResult = Apollo.QueryResult<TwitchStreamQuery, TwitchStreamQueryVariables>;
 export const WaitlistSpotifyDocument = gql`
     query waitlistSpotify($channelId: String!) {
   waitlistSpotify(channelId: $channelId) {

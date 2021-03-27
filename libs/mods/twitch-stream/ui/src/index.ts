@@ -1,1 +1,1 @@
-export * from './lib/mods-twitch-stream-ui';
+export * from './lib';

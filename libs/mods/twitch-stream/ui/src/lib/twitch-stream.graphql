@@ -1,0 +1,6 @@
+query twitchStream($channelName: String!) {
+  twitchStream(channelName: $channelName) {
+    id
+    channelKey
+  }
+}

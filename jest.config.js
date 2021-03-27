@@ -27,5 +27,7 @@ module.exports = {
     '<rootDir>/libs/spotify-api',
     '<rootDir>/libs/mods/waitlist-spotify/api',
     '<rootDir>/libs/mods/waitlist-spotify/ui',
+    '<rootDir>/libs/mods/twitch-stream/api',
+    '<rootDir>/libs/mods/twitch-stream/ui',
   ],
 };

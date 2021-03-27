@@ -40,6 +40,12 @@
       ],
       "@dream/mods/waitlist-spotify/ui": [
         "libs/mods/waitlist-spotify/ui/src/index.ts"
+      ],
+      "@dream/mods/twitch-stream/api": [
+        "libs/mods/twitch-stream/api/src/index.ts"
+      ],
+      "@dream/mods/twitch-stream/ui": [
+        "libs/mods/twitch-stream/ui/src/index.ts"
       ]
     }
   },

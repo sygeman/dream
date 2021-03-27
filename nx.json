@@ -35,6 +35,8 @@
     "types": { "tags": [] },
     "spotify-api": { "tags": [] },
     "mods-waitlist-spotify-api": { "tags": [] },
-    "mods-waitlist-spotify-ui": { "tags": [] }
+    "mods-waitlist-spotify-ui": { "tags": [] },
+    "mods-twitch-stream-api": { "tags": [] },
+    "mods-twitch-stream-ui": { "tags": [] }
   }
 }

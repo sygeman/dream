@@ -497,6 +497,50 @@
           }
         }
       }
+    },
+    "mods-twitch-stream-api": {
+      "root": "libs/mods/twitch-stream/api",
+      "sourceRoot": "libs/mods/twitch-stream/api/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/mods/twitch-stream/api/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/mods/twitch-stream/api"],
+          "options": {
+            "jestConfig": "libs/mods/twitch-stream/api/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "mods-twitch-stream-ui": {
+      "root": "libs/mods/twitch-stream/ui",
+      "sourceRoot": "libs/mods/twitch-stream/ui/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/mods/twitch-stream/ui/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/mods/twitch-stream/ui"],
+          "options": {
+            "jestConfig": "libs/mods/twitch-stream/ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   }
 }

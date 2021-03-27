@@ -43,7 +43,7 @@ const colors = {
 module.exports = {
   darkMode: 'media',
   purge: {
-    enabled: true,
+    enabled: process.env.NODE_ENV === 'production',
     content: [
       'apps/dream/pages/**/*.{js,ts,jsx,tsx}',
       'libs/**/*.{js,ts,jsx,tsx}',

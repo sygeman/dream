@@ -7,10 +7,11 @@ body {
   font-family: 'Roboto';
 }
 
-.btn {
-  @apply bg-surface text-white text-sm py-1 px-3 rounded hover:bg-surface-light;
+.btn,
+.btn-primary {
+  @apply text-white text-sm px-3 py-1.5 font-medium rounded bg-surface hover:bg-surface-light;
 }
 
 .btn-primary {
-  @apply bg-primary text-white text-sm py-1 px-3 rounded hover:bg-primary-light;
+  @apply bg-primary hover:bg-primary-light;
 }

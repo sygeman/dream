@@ -34,7 +34,7 @@
   },
   "private": true,
   "dependencies": {
-    "@apollo/client": "3.3.13",
+    "@apollo/client": "3.3.14",
     "@fortawesome/fontawesome-svg-core": "1.2.35",
     "@fortawesome/free-brands-svg-icons": "5.15.3",
     "@fortawesome/free-solid-svg-icons": "5.15.3",
@@ -48,7 +48,7 @@
     "@nestjs/platform-express": "7.6.15",
     "@popperjs/core": "2.9.1",
     "@prisma/client": "2.19.0",
-    "apollo-server-express": "2.22.1",
+    "apollo-server-express": "2.22.2",
     "axios": "0.21.1",
     "axios-hooks": "2.5.0",
     "bull": "3.22.0",

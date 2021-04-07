@@ -17,17 +17,7 @@ const SocialButton = ({ provider, icon }) => {
 
   return (
     <Link href={authUrl}>
-      <button
-        className={clsx(
-          'font-medium',
-          'px-4 py-3 my-1',
-          `bg-${provider}`,
-          `inline-flex items-center w-full relative`,
-          'rounded',
-          `hover:bg-${provider}-light`,
-          'transition-all duration-150 ease'
-        )}
-      >
+      <button className={clsx('btn-social', `btn-social-${provider}`)}>
         <div className="absolute">
           <FontAwesomeIcon icon={icon} className="text-white mr-2 h-4" />
         </div>

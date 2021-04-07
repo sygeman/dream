@@ -46,7 +46,6 @@ export const CommunityHeader = () => {
         <div className="absolute top-full left-0 w-full z-10">
           <div className="bg-backgorud m-1 p-2 rounded overflow-hidden">
             <Link
-              as={isUser ? `/${name}/new` : `/auth?continue=/${name}`}
               href={{
                 pathname: router.route,
                 query: {

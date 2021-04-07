@@ -19,7 +19,7 @@ const ValidationSchema = Yup.object().shape({
   mode: Yup.string().required('Required'),
 });
 
-export const NewChannel = () => {
+export const ChannelSettings = () => {
   const router = useRouter();
 
   const origin = typeof window !== 'undefined' ? window?.location?.origin : '';
@@ -59,7 +59,10 @@ export const NewChannel = () => {
   const isError = Object.keys(formik.errors).length > 0;
 
   return (
-    <form onSubmit={formik.handleSubmit}>
+    <form onSubmit={formik.handleSubmit} className="px-4">
+      <div className="py-2 mb-2 text-white text-sm uppercase">
+        Channel Settings
+      </div>
       <label htmlFor="title" className="text-accent text-xs uppercase">
         Title
       </label>
@@ -122,7 +125,7 @@ export const NewChannel = () => {
           disabled={isError}
           className={clsx('btn-primary', isError && 'cursor-not-allowed')}
         >
-          Create
+          Save
         </button>
       </div>
     </form>

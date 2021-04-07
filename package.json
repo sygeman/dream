@@ -85,6 +85,7 @@
     "react-player": "2.9.0",
     "react-popper": "2.2.5",
     "react-textarea-autosize": "8.3.2",
+    "react-use": "17.2.3",
     "react-useportal": "1.0.14",
     "reflect-metadata": "0.1.13",
     "rxjs": "6.6.6",

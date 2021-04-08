@@ -18,6 +18,7 @@ export const ChannelItem: React.FC<{
   const channel = router.query?.channel;
   const selected = name === channel;
 
+  const buttonRef = useRef<HTMLDivElement>();
   const menuRef = useRef();
   const [menuIsOpen, setMenuIsOpen] = useState(false);
   const [referenceElement, setReferenceElement] = useState(null);
@@ -26,7 +27,8 @@ export const ChannelItem: React.FC<{
     placement: 'bottom-end',
   });
 
-  useClickAway(menuRef, () => {
+  useClickAway(menuRef, (e) => {
+    if (buttonRef.current.contains(e.target as Node)) return;
     setMenuIsOpen(false);
   });
 
@@ -55,21 +57,25 @@ export const ChannelItem: React.FC<{
           </div>
 
           {name && (
-            <div
-              ref={setReferenceElement}
-              onClick={(e) => {
-                e.stopPropagation();
-                toggleMenu();
-              }}
-              className={clsx(
-                'p-2 -mr-2 rounded hover:bg-surface',
-                menuIsOpen
-                  ? 'text-white bg-surface'
-                  : 'text-accent hover:text-white ',
-                !selected && !menuIsOpen && 'opacity-0 group-hover:opacity-100'
-              )}
-            >
-              <FontAwesomeIcon icon={faEllipsisV} className={clsx('h-3')} />
+            <div ref={buttonRef}>
+              <div
+                ref={setReferenceElement}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  toggleMenu();
+                }}
+                className={clsx(
+                  'p-2 -mr-2 rounded hover:bg-surface',
+                  menuIsOpen
+                    ? 'text-white bg-surface'
+                    : 'text-accent hover:text-white ',
+                  !selected &&
+                    !menuIsOpen &&
+                    'opacity-0 group-hover:opacity-100'
+                )}
+              >
+                <FontAwesomeIcon icon={faEllipsisV} className={clsx('h-3')} />
+              </div>
             </div>
           )}
 

@@ -79,7 +79,7 @@ export const NewCommunity = () => {
         <button
           type="submit"
           disabled={isError}
-          className={clsx('btn-primary', isError && 'cursor-not-allowed')}
+          className={clsx('btn btn-primary', isError && 'cursor-not-allowed')}
         >
           Create
         </button>

@@ -52,7 +52,7 @@ export const MainCommunities = () => {
           }}
           passHref
         >
-          <button className="btn-primary">Create community</button>
+          <button className="btn btn-primary">Create community</button>
         </Link>
       </div>
 

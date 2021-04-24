@@ -1,4 +1,5 @@
 const Color = require('color');
+const plugin = require('tailwindcss/plugin');
 const lighen = (clr, val) => Color(clr).lighten(val).rgb().string();
 
 const primary = '#b73c78';
@@ -44,7 +45,7 @@ module.exports = {
   mode: 'jit',
   darkMode: 'media',
   purge: {
-    enabled: process.env.NODE_ENV === 'production',
+    // enabled: process.env.NODE_ENV === 'production',
     content: [
       'apps/dream/pages/**/*.{js,ts,jsx,tsx}',
       'libs/**/*.{js,ts,jsx,tsx}',
@@ -59,4 +60,51 @@ module.exports = {
       fontFamily: false,
     },
   },
+  plugins: [
+    plugin(function ({ addComponents, theme }) {
+      const buttons = {
+        '.btn': {
+          color: theme('colors.white'),
+          fontSize: theme('fontSize.sm'),
+          fontWeight: theme('fontWeight.medium'),
+          backgroundColor: theme('colors.surface.DEFAULT'),
+          borderRadius: theme('borderRadius.DEFAULT'),
+          padding: `${theme('spacing[1.5]')} ${theme('spacing.3')}`,
+          '&:hover': {
+            backgroundColor: theme('colors.surface.light'),
+          },
+        },
+        '.btn-primary': {
+          backgroundColor: theme('colors.primary.DEFAULT'),
+          '&:hover': {
+            backgroundColor: theme('colors.primary.light'),
+          },
+        },
+        '.btn-social': {
+          fontWeight: theme('fontWeight.medium'),
+          margin: `${theme('spacing.1')} 0`,
+          padding: `${theme('spacing.3')} ${theme('spacing.4')}`,
+          display: 'inline-flex',
+          alignItems: 'center',
+          width: theme('width.w-full'),
+          position: 'relative',
+          borderRadius: theme('borderRadius.DEFAULT'),
+        },
+        '.btn-social-twitch': {
+          backgroundColor: theme('colors.twitch.DEFAULT'),
+          '&:hover': {
+            backgroundColor: theme('colors.twitch.light'),
+          },
+        },
+        '.btn-social-spotify': {
+          backgroundColor: theme('colors.spotify.DEFAULT'),
+          '&:hover': {
+            backgroundColor: theme('colors.spotify.light'),
+          },
+        },
+      };
+
+      addComponents(buttons);
+    }),
+  ],
 };

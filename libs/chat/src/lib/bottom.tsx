@@ -57,7 +57,7 @@ export const ChatBottom: React.FC<ChatBottomProps> = ({ channelId }) => {
         </div>
       </div>
       <div className="flex justify-end my-2">
-        <button className="btn-primary" onClick={sendMessage}>
+        <button className="btn btn-primary" onClick={sendMessage}>
           Chat
         </button>
       </div>

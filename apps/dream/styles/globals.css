@@ -6,24 +6,3 @@ body {
   @apply overflow-hidden bg-surface h-screen w-screen;
   font-family: Roboto;
 }
-
-.btn,
-.btn-primary {
-  @apply text-white text-sm px-3 py-1.5 font-medium rounded bg-surface hover:bg-surface-light;
-}
-
-.btn-primary {
-  @apply bg-primary hover:bg-primary-light;
-}
-
-.btn-social {
-  @apply font-medium px-4 py-3 my-1 inline-flex items-center w-full relative rounded;
-}
-
-.btn-social-twitch {
-  @apply bg-twitch hover:bg-twitch-light;
-}
-
-.btn-social-spotify {
-  @apply bg-spotify hover:bg-spotify-light;
-}

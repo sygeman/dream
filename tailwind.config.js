@@ -79,7 +79,7 @@ module.exports = {
         },
       });
 
-      addComponents({
+      const buttons = {
         '.btn': {
           color: theme('colors.white'),
           fontSize: theme('fontSize.sm'),
@@ -107,19 +107,22 @@ module.exports = {
           position: 'relative',
           borderRadius: theme('borderRadius.DEFAULT'),
         },
-        '.btn-social-twitch': {
-          backgroundColor: theme('colors.twitch.DEFAULT'),
-          '&:hover': {
-            backgroundColor: theme('colors.twitch.light'),
+      };
+
+      ['twitch', 'spotify'].forEach((c) => {
+        addComponents([
+          {
+            [`.btn-social-${c}`]: {
+              backgroundColor: theme(`colors.${c}.DEFAULT`),
+              '&:hover': {
+                backgroundColor: theme(`colors.${c}.light`),
+              },
+            },
           },
-        },
-        '.btn-social-spotify': {
-          backgroundColor: theme('colors.spotify.DEFAULT'),
-          '&:hover': {
-            backgroundColor: theme('colors.spotify.light'),
-          },
-        },
+        ]);
       });
+
+      addComponents(buttons);
     }),
   ],
 };

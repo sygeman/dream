@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { AppProps } from 'next/app';
 import { ApolloProvider } from '@apollo/client';
 import { useApollo } from '@dream/utils/apollo';
-import '../styles/globals.css';
+import 'tailwindcss/tailwind.css';
 import 'simplebar/dist/simplebar.min.css';
 
 function CustomApp({ Component, pageProps }: AppProps) {

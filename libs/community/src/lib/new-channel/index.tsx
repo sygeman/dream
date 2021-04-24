@@ -104,7 +104,7 @@ export const NewChannel = () => {
               onChange={formik.handleChange}
               value={mode.value}
               checked={formik.values.mode === mode.value}
-              className="appearance-none"
+              className="hidden"
             />
             <ChannelModeCard
               color={mode.color}

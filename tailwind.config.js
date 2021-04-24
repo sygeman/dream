@@ -61,8 +61,22 @@ module.exports = {
     },
   },
   plugins: [
+    require('@tailwindcss/forms'),
     plugin(function ({ addComponents, theme }) {
-      const buttons = {
+      addComponents({
+        body: {
+          fontFamily: 'Roboto',
+          overflow: 'hidden',
+          backgroundColor: theme('colors.surface.DEFAULT'),
+          width: theme('width.screen'),
+          height: theme('width.screen'),
+        },
+        input: {
+          border: 'none',
+        },
+        textarea: {
+          border: 'none',
+        },
         '.btn': {
           color: theme('colors.white'),
           fontSize: theme('fontSize.sm'),
@@ -102,9 +116,7 @@ module.exports = {
             backgroundColor: theme('colors.spotify.light'),
           },
         },
-      };
-
-      addComponents(buttons);
+      });
     }),
   ],
 };

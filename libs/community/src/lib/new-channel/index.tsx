@@ -108,6 +108,8 @@ export const NewChannel = () => {
             />
             <ChannelModeCard
               color={mode.color}
+              bgColor={mode.bgColor}
+              borderColor={mode.borderColor}
               icon={mode.icon}
               title={mode.title}
               selected={formik.values.mode === mode.value}

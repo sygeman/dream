@@ -45,14 +45,10 @@ module.exports = {
   mode: 'jit',
   darkMode: 'media',
   purge: {
-    // enabled: process.env.NODE_ENV === 'production',
     content: [
       'apps/dream/pages/**/*.{js,ts,jsx,tsx}',
       'libs/**/*.{js,ts,jsx,tsx}',
     ],
-    options: {
-      safelist: Object.keys(colors).map((color) => new RegExp(`\-${color}`)),
-    },
   },
   theme: {
     extend: {

@@ -88,27 +88,6 @@
         }
       }
     },
-    "containers": {
-      "root": "libs/containers",
-      "sourceRoot": "libs/containers/src",
-      "projectType": "library",
-      "schematics": {},
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/containers/**/*.{ts,tsx,js,jsx}"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "libs/containers/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
     "utils": {
       "root": "libs/utils",
       "sourceRoot": "libs/utils/src",
@@ -537,6 +516,27 @@
           "outputs": ["coverage/libs/mods/twitch-stream/ui"],
           "options": {
             "jestConfig": "libs/mods/twitch-stream/ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "app-panel": {
+      "root": "libs/app-panel",
+      "sourceRoot": "libs/app-panel/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/app-panel/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/app-panel"],
+          "options": {
+            "jestConfig": "libs/app-panel/jest.config.js",
             "passWithNoTests": true
           }
         }

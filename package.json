@@ -88,6 +88,7 @@
     "react-use": "17.2.4",
     "react-useportal": "1.0.14",
     "reflect-metadata": "0.1.13",
+    "regenerator-runtime": "0.13.7",
     "rxjs": "6.6.7",
     "simplebar-react": "2.3.0",
     "tslib": "2.2.0",

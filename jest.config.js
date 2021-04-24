@@ -4,7 +4,6 @@ module.exports = {
     '<rootDir>/libs/ui',
     '<rootDir>/apps/api',
     '<rootDir>/libs/prisma',
-    '<rootDir>/libs/containers',
     '<rootDir>/libs/utils',
     '<rootDir>/libs/chat',
     '<rootDir>/libs/chat-api',
@@ -29,5 +28,6 @@ module.exports = {
     '<rootDir>/libs/mods/waitlist-spotify/ui',
     '<rootDir>/libs/mods/twitch-stream/api',
     '<rootDir>/libs/mods/twitch-stream/ui',
+    '<rootDir>/libs/app-panel',
   ],
 };

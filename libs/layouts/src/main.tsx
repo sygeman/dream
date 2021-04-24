@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppPanel } from '@dream/containers/app-panel';
+import { AppPanel } from '@dream/app-panel';
 import { Modal } from './modal';
 import { Auth } from '@dream/auth';
 import { NewCommunity, NewChannel } from '@dream/community';

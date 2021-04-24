@@ -18,7 +18,6 @@
   "projects": {
     "api": { "tags": [] },
     "prisma": { "tags": [] },
-    "containers": { "tags": [] },
     "utils": { "tags": [] },
     "chat": { "tags": [] },
     "community": { "tags": [] },
@@ -37,6 +36,7 @@
     "mods-waitlist-spotify-api": { "tags": [] },
     "mods-waitlist-spotify-ui": { "tags": [] },
     "mods-twitch-stream-api": { "tags": [] },
-    "mods-twitch-stream-ui": { "tags": [] }
+    "mods-twitch-stream-ui": { "tags": [] },
+    "app-panel": { "tags": [] }
   }
 }

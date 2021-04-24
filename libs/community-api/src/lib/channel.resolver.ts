@@ -76,7 +76,18 @@ export class ChannelResolver {
     }
 
     if (community.channels.length >= 10) {
-      throw 'Channels per ccommunity limit';
+      throw 'Channels per community limit';
+    }
+
+    const channelWithSameName = await this.prisma.channel.findFirst({
+      where: {
+        communityId: input.communityId,
+        name: input.name,
+      },
+    });
+
+    if (channelWithSameName) {
+      throw 'Channel with same name is exists in the community';
     }
 
     return this.prisma.channel.create({

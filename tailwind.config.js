@@ -62,8 +62,8 @@ module.exports = {
   },
   plugins: [
     require('@tailwindcss/forms'),
-    plugin(function ({ addComponents, theme }) {
-      addComponents({
+    plugin(function ({ addBase, addComponents, theme }) {
+      addBase({
         body: {
           fontFamily: 'Roboto',
           overflow: 'hidden',
@@ -77,6 +77,9 @@ module.exports = {
         textarea: {
           border: 'none',
         },
+      });
+
+      addComponents({
         '.btn': {
           color: theme('colors.white'),
           fontSize: theme('fontSize.sm'),

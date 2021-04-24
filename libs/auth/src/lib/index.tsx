@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTwitch, faSpotify } from '@fortawesome/free-brands-svg-icons';
 
-const SocialButton = ({ provider, icon }) => {
+const SocialButton = ({ provider, icon, className }) => {
   const router = useRouter();
   const origin = window?.location?.origin || '';
   const continuePath = router.query.continue || '/';
@@ -17,7 +17,7 @@ const SocialButton = ({ provider, icon }) => {
 
   return (
     <Link href={authUrl}>
-      <button className={clsx('btn-social', `btn-social-${provider}`)}>
+      <button className={clsx('btn-social', className)}>
         <div className="absolute">
           <FontAwesomeIcon icon={icon} className="text-white mr-2 h-4" />
         </div>
@@ -37,8 +37,16 @@ export const Auth = () => {
         Auth with
       </div>
 
-      <SocialButton provider="twitch" icon={faTwitch} />
-      <SocialButton provider="spotify" icon={faSpotify} />
+      <SocialButton
+        className="btn-social-twitch"
+        provider="twitch"
+        icon={faTwitch}
+      />
+      <SocialButton
+        className="btn-social-spotify"
+        provider="spotify"
+        icon={faSpotify}
+      />
     </div>
   );
 };

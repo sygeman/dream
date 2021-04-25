@@ -1,4 +1,9 @@
-import { Field, ObjectType } from '@nestjs/graphql';
+import { Locale } from '.prisma/client';
+import { Field, ObjectType, registerEnumType } from '@nestjs/graphql';
+
+registerEnumType(Locale, {
+  name: 'Locale',
+});
 
 @ObjectType()
 export class Profile {
@@ -25,6 +30,9 @@ export class User {
 
   @Field({ nullable: true })
   avatar?: string;
+
+  @Field(() => Locale)
+  locale?: Locale;
 
   @Field()
   createdAt: Date;

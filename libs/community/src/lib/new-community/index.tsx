@@ -1,5 +1,6 @@
 import React from 'react';
 import { useFormik } from 'formik';
+import { useIntl } from 'react-intl';
 import { useCreateCommunityMutation } from '@dream/types';
 import { useRouter } from 'next/router';
 import * as Yup from 'yup';
@@ -18,6 +19,7 @@ const ValidationSchema = Yup.object().shape({
 
 export const NewCommunity = () => {
   const router = useRouter();
+  const intl = useIntl();
   const host = typeof window !== 'undefined' ? window?.location?.host : '';
 
   const [createCommunity] = useCreateCommunityMutation({
@@ -44,7 +46,7 @@ export const NewCommunity = () => {
   return (
     <form onSubmit={formik.handleSubmit}>
       <label htmlFor="title" className="text-accent text-sm">
-        Title
+        {intl.formatMessage({ id: 'newCommunityTitleLabel' })}
       </label>
       <input
         id="title"
@@ -53,7 +55,7 @@ export const NewCommunity = () => {
         autoFocus
         minLength={1}
         maxLength={50}
-        placeholder="Awesome Community"
+        placeholder={intl.formatMessage({ id: 'newCommunityTitlePlaceholder' })}
         onChange={formik.handleChange}
         value={formik.values.title}
         className="bg-backgorud text-white text-xs p-2 rounded w-full focus:outline-none focus:ring-1 mb-2"
@@ -81,7 +83,7 @@ export const NewCommunity = () => {
           disabled={isError}
           className={clsx('btn btn-primary', isError && 'cursor-not-allowed')}
         >
-          Create
+          {intl.formatMessage({ id: 'newCommunityCreateButton' })}
         </button>
       </div>
     </form>

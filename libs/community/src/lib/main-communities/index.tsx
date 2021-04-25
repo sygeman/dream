@@ -2,7 +2,17 @@ import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import SimpleBar from 'simplebar-react';
-import { useCommunitiesQuery, useUniqCountQuery } from '@dream/types';
+import { useIntl } from 'react-intl';
+import {
+  useCommunitiesQuery,
+  useMeQuery,
+  useUniqCountQuery,
+  useSetUserLocaleMutation,
+  Locale,
+} from '@dream/types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLanguage } from '@fortawesome/free-solid-svg-icons';
+import { gql, useApolloClient, useQuery } from '@apollo/client';
 
 const CommunityCard: React.FC<{
   title: string;
@@ -25,8 +35,40 @@ const CommunityCard: React.FC<{
 };
 
 export const MainCommunities = () => {
+  const client = useApolloClient();
+
+  const intl = useIntl();
   const router = useRouter();
-  const isUser = true;
+  const userQuery = useMeQuery();
+  const user = userQuery?.data?.me;
+
+  const [setUserLocale] = useSetUserLocaleMutation();
+
+  const clientLocaleQuery = useQuery(gql`
+    query clientLocale {
+      clientLocale @client
+    }
+  `);
+
+  const clientLocale = clientLocaleQuery?.data?.clientLocale;
+  const locale = user?.locale || clientLocale || Locale.EnUs;
+
+  const setLocale = (locale: Locale) => {
+    if (isUser) {
+      setUserLocale({
+        variables: { locale },
+        update() {
+          userQuery.refetch();
+        },
+      });
+    }
+
+    localStorage.setItem('locale', locale);
+    client.cache.evict({ fieldName: 'clientLocale' });
+    client.cache.gc();
+  };
+
+  const isUser = !!user;
 
   const communitiesQuery = useCommunitiesQuery({ pollInterval: 3000 });
   const communities = communitiesQuery?.data?.communities || [];
@@ -37,10 +79,21 @@ export const MainCommunities = () => {
   return (
     <div className="flex flex-col w-full">
       <div className="flex w-full justify-between items-center px-4 py-2 bg-surface">
-        <div>
-          <span className="text-accent">Online:</span>
+        <div className="flex flex-1">
+          <span className="text-accent">
+            {intl.formatMessage({ id: 'mainOnlineLabel' })}:
+          </span>
           <span className="text-white ml-2">{uniqCount}</span>
         </div>
+        <FontAwesomeIcon icon={faLanguage} className="text-accent mr-1 h-6" />
+        <select
+          className="mx-2"
+          value={locale}
+          onChange={(e) => setLocale(e.target.value as Locale)}
+        >
+          <option value={Locale.EnUs}>English</option>
+          <option value={Locale.RuRu}>Русский</option>
+        </select>
         <Link
           as={isUser ? `/communities/new` : `/auth?continue=/communities/new`}
           href={{
@@ -52,7 +105,9 @@ export const MainCommunities = () => {
           }}
           passHref
         >
-          <button className="btn btn-primary">Create community</button>
+          <button className="btn btn-primary">
+            {intl.formatMessage({ id: 'createCommunityButton' })}
+          </button>
         </Link>
       </div>
 

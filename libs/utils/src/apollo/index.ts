@@ -27,7 +27,20 @@ function createApolloClient() {
         },
       }),
     ssrMode: typeof window === 'undefined',
-    cache: new InMemoryCache(),
+    cache: new InMemoryCache({
+      typePolicies: {
+        Query: {
+          fields: {
+            clientLocale: {
+              read() {
+                if (typeof localStorage === 'undefined') return null;
+                return localStorage.getItem('locale');
+              },
+            },
+          },
+        },
+      },
+    }),
   });
 }
 

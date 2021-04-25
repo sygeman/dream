@@ -27,10 +27,16 @@ model Connection {
   channelId  String?
 }
 
+enum Locale {
+  en_US
+  ru_RU
+}
+
 model User {
   id                String                     @id @default(cuid())
   name              String?
   avatar            String?
+  locale            Locale?                    @default(en_US)
   createdAt         DateTime                   @default(now())
   updatedAt         DateTime                   @default(now()) @updatedAt
   profiles          Profile[]

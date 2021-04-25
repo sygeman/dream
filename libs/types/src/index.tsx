@@ -29,10 +29,16 @@ export type User = {
   id: Scalars['String'];
   name?: Maybe<Scalars['String']>;
   avatar?: Maybe<Scalars['String']>;
+  locale: Locale;
   createdAt: Scalars['DateTime'];
   updatedAt: Scalars['DateTime'];
   profiles?: Maybe<Array<Profile>>;
 };
+
+export enum Locale {
+  EnUs = 'en_US',
+  RuRu = 'ru_RU'
+}
 
 
 export type Community = {
@@ -164,6 +170,7 @@ export type Mutation = {
   __typename?: 'Mutation';
   logout: Scalars['Boolean'];
   updateConnectionStatus: Scalars['Boolean'];
+  setUserLocale: Scalars['Boolean'];
   createCommunity: Community;
   createChannel: Channel;
   createChannelMessage: Scalars['Boolean'];
@@ -174,6 +181,11 @@ export type Mutation = {
 export type MutationUpdateConnectionStatusArgs = {
   channel?: Maybe<Scalars['String']>;
   community?: Maybe<Scalars['String']>;
+};
+
+
+export type MutationSetUserLocaleArgs = {
+  locale: Locale;
 };
 
 
@@ -441,7 +453,7 @@ export type MeQuery = (
   { __typename?: 'Query' }
   & { me: (
     { __typename?: 'User' }
-    & Pick<User, 'id' | 'name' | 'avatar'>
+    & Pick<User, 'id' | 'name' | 'avatar' | 'locale'>
     & { profiles?: Maybe<Array<(
       { __typename?: 'Profile' }
       & Pick<Profile, 'id' | 'provider'>
@@ -466,6 +478,16 @@ export type UpdateConnectionStatusMutationVariables = Exact<{
 export type UpdateConnectionStatusMutation = (
   { __typename?: 'Mutation' }
   & Pick<Mutation, 'updateConnectionStatus'>
+);
+
+export type SetUserLocaleMutationVariables = Exact<{
+  locale: Locale;
+}>;
+
+
+export type SetUserLocaleMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'setUserLocale'>
 );
 
 export const ChannelMessageFieldsFragmentDoc = gql`
@@ -1021,6 +1043,7 @@ export const MeDocument = gql`
     id
     name
     avatar
+    locale
     profiles {
       id
       provider
@@ -1117,3 +1140,34 @@ export function useUpdateConnectionStatusMutation(baseOptions?: Apollo.MutationH
 export type UpdateConnectionStatusMutationHookResult = ReturnType<typeof useUpdateConnectionStatusMutation>;
 export type UpdateConnectionStatusMutationResult = Apollo.MutationResult<UpdateConnectionStatusMutation>;
 export type UpdateConnectionStatusMutationOptions = Apollo.BaseMutationOptions<UpdateConnectionStatusMutation, UpdateConnectionStatusMutationVariables>;
+export const SetUserLocaleDocument = gql`
+    mutation setUserLocale($locale: Locale!) {
+  setUserLocale(locale: $locale)
+}
+    `;
+export type SetUserLocaleMutationFn = Apollo.MutationFunction<SetUserLocaleMutation, SetUserLocaleMutationVariables>;
+
+/**
+ * __useSetUserLocaleMutation__
+ *
+ * To run a mutation, you first call `useSetUserLocaleMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useSetUserLocaleMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [setUserLocaleMutation, { data, loading, error }] = useSetUserLocaleMutation({
+ *   variables: {
+ *      locale: // value for 'locale'
+ *   },
+ * });
+ */
+export function useSetUserLocaleMutation(baseOptions?: Apollo.MutationHookOptions<SetUserLocaleMutation, SetUserLocaleMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<SetUserLocaleMutation, SetUserLocaleMutationVariables>(SetUserLocaleDocument, options);
+      }
+export type SetUserLocaleMutationHookResult = ReturnType<typeof useSetUserLocaleMutation>;
+export type SetUserLocaleMutationResult = Apollo.MutationResult<SetUserLocaleMutation>;
+export type SetUserLocaleMutationOptions = Apollo.BaseMutationOptions<SetUserLocaleMutation, SetUserLocaleMutationVariables>;

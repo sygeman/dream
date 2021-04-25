@@ -13,9 +13,15 @@ type User {
   id: String!
   name: String
   avatar: String
+  locale: Locale!
   createdAt: DateTime!
   updatedAt: DateTime!
   profiles: [Profile!]
+}
+
+enum Locale {
+  en_US
+  ru_RU
 }
 
 """
@@ -104,6 +110,7 @@ type Query {
 type Mutation {
   logout: Boolean!
   updateConnectionStatus(channel: String, community: String): Boolean!
+  setUserLocale(locale: Locale!): Boolean!
   createCommunity(input: CreateCommunityInput!): Community!
   createChannel(input: CreateChannelInput!): Channel!
   createChannelMessage(input: ChannelMessageCreateInput!): Boolean!

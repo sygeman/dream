@@ -7,7 +7,6 @@ import {
 import merge from 'deepmerge';
 import isEqual from 'lodash/isEqual';
 import { WebSocketLink } from '@apollo/client/link/ws';
-import { getToken } from '@dream/auth';
 import WebSocket from 'isomorphic-ws';
 
 export const APOLLO_STATE_PROP_NAME = '__APOLLO_STATE__';
@@ -16,16 +15,20 @@ let apolloClient: ApolloClient<NormalizedCacheObject>;
 
 function createApolloClient() {
   return new ApolloClient({
-    link:
-      typeof window !== 'undefined' &&
-      new WebSocketLink({
-        uri: `wss://api.sgmn.dev/graphql`,
-        webSocketImpl: WebSocket,
-        options: {
-          reconnect: true,
-          connectionParams: () => ({ token: getToken() }),
+    link: new WebSocketLink({
+      uri: `wss://api.sgmn.dev/graphql`,
+      webSocketImpl: WebSocket,
+      options: {
+        reconnect: true,
+        connectionParams: async () => {
+          const token = await fetch('/api/auth/token')
+            .then((res) => res.json())
+            .then((data) => data?.token);
+
+          return { token };
         },
-      }),
+      },
+    }),
     ssrMode: typeof window === 'undefined',
     cache: new InMemoryCache({
       typePolicies: {

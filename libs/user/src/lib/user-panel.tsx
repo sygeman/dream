@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { removeToken } from '@dream/auth';
 import { UserCircleIcon } from '@dream/icons/user-circle';
 import {
   useMeQuery,
@@ -33,7 +32,8 @@ const UserPanelForGuest = () => {
 };
 
 export const UserPanel = () => {
-  const { query } = useRouter();
+  const router = useRouter();
+  const { query } = router;
   const community =
     typeof query?.community === 'string' ? query?.community : undefined;
   const channel =
@@ -56,8 +56,7 @@ export const UserPanel = () => {
 
   const [logout] = useLogoutMutation({
     onCompleted: () => {
-      removeToken();
-      window.location.reload();
+      router.push('/api/auth/logout');
     },
   });
 

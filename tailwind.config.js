@@ -57,7 +57,7 @@ module.exports = {
     },
   },
   plugins: [
-    require('@tailwindcss/forms'),
+    // require('@tailwindcss/forms'),
     plugin(function ({ addBase, addComponents, theme }) {
       addBase({
         body: {

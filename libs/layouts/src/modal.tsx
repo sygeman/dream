@@ -36,7 +36,7 @@ export const Modal: React.FC<ModalProps> = ({
 
   return (
     <Portal>
-      <div className="flex fixed top-0 left-0 w-full h-full overflow-hidden">
+      <div className="flex fixed top-0 left-0 w-full h-full overflow-hidden z-20">
         <div
           className="flex fixed top-0 left-0 w-full h-full bg-backgorud opacity-90"
           onClick={closeModal}

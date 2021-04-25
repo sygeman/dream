@@ -10,8 +10,9 @@ import {
   useUniqCountQuery,
 } from '@dream/types';
 
-const LanguageControl = dynamic(() =>
-  import('./language').then((m) => m.LanguageControl)
+const LanguageControl = dynamic(
+  () => import('./language').then((m) => m.LanguageControl),
+  { ssr: false }
 );
 
 const CommunityCard: React.FC<{

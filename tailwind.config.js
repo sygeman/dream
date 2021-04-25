@@ -87,12 +87,15 @@ module.exports = {
 
       const buttons = {
         '.btn': {
+          display: 'inline-flex',
+          alignItems: 'center',
           color: theme('colors.white'),
           fontSize: theme('fontSize.sm'),
           fontWeight: theme('fontWeight.medium'),
           backgroundColor: theme('colors.surface.DEFAULT'),
           borderRadius: theme('borderRadius.DEFAULT'),
-          padding: `${theme('spacing[1.5]')} ${theme('spacing.3')}`,
+          height: theme('height.8'),
+          padding: `0 ${theme('spacing.3')}`,
           '&:hover': {
             backgroundColor: theme('colors.surface.light'),
           },

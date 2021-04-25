@@ -10,11 +10,8 @@ import { AppPanelCommunities } from '@dream/community';
 const Logo = () => {
   return (
     <Link href="/">
-      <div className="flex items-center justify-center w-12 h-12 cursor-pointer relative">
-        <div className="absolute top-0 left-0 w-full h-full bg-primary opacity-10"></div>
-        <div className="flex justify-center items-center h-8 w-8">
-          <span className="text-xs text-primary-light">DR</span>
-        </div>
+      <div className="flex items-center justify-center w-12 h-12 p-2 cursor-pointer relative">
+        <img src="/pepega.png" alt="" />
       </div>
     </Link>
   );

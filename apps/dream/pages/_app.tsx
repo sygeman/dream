@@ -47,6 +47,18 @@ const Inner = ({ Component, pageProps, locale }) => {
           href="https://fonts.googleapis.com/css?family=Orbitron:500|Roboto:300,400,500&subset=cyrillic-ext"
           rel="stylesheet"
         />
+        <link
+          rel="icon"
+          type="image/png"
+          href="/favicon-32x32.png"
+          sizes="32x32"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          href="/favicon-16x16.png"
+          sizes="16x16"
+        />
       </Head>
       <Component {...pageProps} />
     </IntlProvider>

@@ -73,6 +73,16 @@ module.exports = {
         textarea: {
           border: 'none',
         },
+        select: {
+          fontSize: theme('fontSize.sm'),
+          color: theme('colors.white'),
+          padding: `${theme('spacing.1')} ${theme('spacing.10')} ${theme(
+            'spacing.1'
+          )} ${theme('spacing.3')}`,
+          backgroundColor: theme('colors.backgorud.DEFAULT'),
+          border: 'none',
+          borderRadius: theme('borderRadius.DEFAULT'),
+        },
       });
 
       const buttons = {

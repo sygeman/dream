@@ -39,6 +39,7 @@
     "@fortawesome/free-brands-svg-icons": "5.15.3",
     "@fortawesome/free-solid-svg-icons": "5.15.3",
     "@fortawesome/react-fontawesome": "0.1.14",
+    "@headlessui/react": "1.0.0",
     "@nestjs/bull": "0.3.1",
     "@nestjs/common": "7.6.15",
     "@nestjs/config": "0.6.3",

@@ -13,7 +13,6 @@ const UserPanelForGuest = () => {
 
   return (
     <Link
-      as={`/auth?continue=${router.asPath}`}
       href={{
         pathname: router.route,
         query: {

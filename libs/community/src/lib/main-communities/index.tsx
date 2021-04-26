@@ -61,7 +61,6 @@ export const MainCommunities = () => {
         <LanguageControl />
 
         <Link
-          as={isUser ? `/communities/new` : `/auth?continue=/communities/new`}
           href={{
             pathname: router.route,
             query: {

@@ -12,7 +12,7 @@ const SocialButton = ({ provider, icon, className }) => {
           <FontAwesomeIcon icon={icon} className="text-white mr-2 h-4" />
         </div>
 
-        <span className="text-white opacity-80 text-sm uppercase tracking-widest mx-5 text-center w-full">
+        <span className="text-white opacity-80 text-xs uppercase tracking-widest mx-5 text-center w-full">
           {provider}
         </span>
       </button>
@@ -22,7 +22,7 @@ const SocialButton = ({ provider, icon, className }) => {
 
 export const Auth = () => {
   return (
-    <div className="flex flex-col px-4 py-2 w-80">
+    <div className="flex flex-col px-4 py-2">
       <div className="text-accent text-xs w-full flex justify-center py-2">
         Auth with
       </div>

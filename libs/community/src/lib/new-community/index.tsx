@@ -45,7 +45,7 @@ export const NewCommunity = () => {
 
   return (
     <form onSubmit={formik.handleSubmit}>
-      <label htmlFor="title" className="text-accent text-sm">
+      <label htmlFor="title" className="text-accent text-xs">
         {intl.formatMessage({ id: 'newCommunityTitleLabel' })}
       </label>
       <input

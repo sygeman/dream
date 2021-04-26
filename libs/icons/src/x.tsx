@@ -3,9 +3,9 @@ import React from 'react';
 export const XIcon = () => {
   return (
     <svg
-      height="14px"
-      width="14px"
-      className="fill-current text-white"
+      // height="16px"
+      // width="16px"
+      className="fill-current text-accent h-4 w-4"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 20 20"
       fill="currentColor"

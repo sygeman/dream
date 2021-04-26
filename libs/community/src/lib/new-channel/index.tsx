@@ -60,7 +60,7 @@ export const NewChannel = () => {
 
   return (
     <form onSubmit={formik.handleSubmit}>
-      <label htmlFor="title" className="text-accent text-xs uppercase">
+      <label htmlFor="title" className="text-accent text-xs">
         Title
       </label>
       <input
@@ -93,7 +93,7 @@ export const NewChannel = () => {
         />
       </div>
 
-      <label className="text-accent text-xs uppercase">Mode</label>
+      <label className="text-accent text-xs">Mode</label>
 
       <div className="my-2">
         {channelMods.map((mode) => (

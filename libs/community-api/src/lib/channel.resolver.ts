@@ -1,6 +1,7 @@
 import {
   Args,
   Context,
+  ID,
   Mutation,
   Parent,
   Query,
@@ -136,6 +137,33 @@ export class ChannelResolver {
       },
       data: {
         ...data,
+      },
+    });
+  }
+
+  @Mutation(() => Channel)
+  @UseGuards(AuthGuard)
+  async deleteChannel(
+    @Args({ name: 'channelId', type: () => ID })
+    channelId: string,
+    @Context('userId') userId: string
+  ) {
+    const channelIsExist = await this.prisma.channel.findFirst({
+      where: {
+        id: channelId,
+        community: {
+          ownerId: userId,
+        },
+      },
+    });
+
+    if (!channelIsExist) {
+      throw 'Deny';
+    }
+
+    return this.prisma.channel.delete({
+      where: {
+        id: channelId,
       },
     });
   }

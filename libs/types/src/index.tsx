@@ -174,6 +174,7 @@ export type Mutation = {
   createCommunity: Community;
   createChannel: Channel;
   updateChannel: Channel;
+  deleteChannel: Channel;
   createChannelMessage: Scalars['Boolean'];
   refreshSpotifyToken: Scalars['String'];
 };
@@ -202,6 +203,11 @@ export type MutationCreateChannelArgs = {
 
 export type MutationUpdateChannelArgs = {
   input: UpdateChannelInput;
+};
+
+
+export type MutationDeleteChannelArgs = {
+  channelId: Scalars['ID'];
 };
 
 
@@ -361,6 +367,19 @@ export type UpdateChannelMutationVariables = Exact<{
 export type UpdateChannelMutation = (
   { __typename?: 'Mutation' }
   & { updateChannel: (
+    { __typename?: 'Channel' }
+    & ChannelFieldsFragment
+  ) }
+);
+
+export type DeleteChannelMutationVariables = Exact<{
+  channelId: Scalars['ID'];
+}>;
+
+
+export type DeleteChannelMutation = (
+  { __typename?: 'Mutation' }
+  & { deleteChannel: (
     { __typename?: 'Channel' }
     & ChannelFieldsFragment
   ) }
@@ -811,6 +830,39 @@ export function useUpdateChannelMutation(baseOptions?: Apollo.MutationHookOption
 export type UpdateChannelMutationHookResult = ReturnType<typeof useUpdateChannelMutation>;
 export type UpdateChannelMutationResult = Apollo.MutationResult<UpdateChannelMutation>;
 export type UpdateChannelMutationOptions = Apollo.BaseMutationOptions<UpdateChannelMutation, UpdateChannelMutationVariables>;
+export const DeleteChannelDocument = gql`
+    mutation deleteChannel($channelId: ID!) {
+  deleteChannel(channelId: $channelId) {
+    ...ChannelFields
+  }
+}
+    ${ChannelFieldsFragmentDoc}`;
+export type DeleteChannelMutationFn = Apollo.MutationFunction<DeleteChannelMutation, DeleteChannelMutationVariables>;
+
+/**
+ * __useDeleteChannelMutation__
+ *
+ * To run a mutation, you first call `useDeleteChannelMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteChannelMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteChannelMutation, { data, loading, error }] = useDeleteChannelMutation({
+ *   variables: {
+ *      channelId: // value for 'channelId'
+ *   },
+ * });
+ */
+export function useDeleteChannelMutation(baseOptions?: Apollo.MutationHookOptions<DeleteChannelMutation, DeleteChannelMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<DeleteChannelMutation, DeleteChannelMutationVariables>(DeleteChannelDocument, options);
+      }
+export type DeleteChannelMutationHookResult = ReturnType<typeof useDeleteChannelMutation>;
+export type DeleteChannelMutationResult = Apollo.MutationResult<DeleteChannelMutation>;
+export type DeleteChannelMutationOptions = Apollo.BaseMutationOptions<DeleteChannelMutation, DeleteChannelMutationVariables>;
 export const CommunityDocument = gql`
     query community($name: String!) {
   community(name: $name) {

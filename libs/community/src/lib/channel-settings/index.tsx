@@ -7,6 +7,7 @@ import {
   useChannelQuery,
   useCommunityQuery,
   useUpdateChannelMutation,
+  useDeleteChannelMutation,
 } from '@dream/types';
 import { ChannelModeCard } from '../channel-mode';
 import { channelMods } from '../channel-mods';
@@ -49,6 +50,12 @@ export const ChannelSettings = () => {
   const [createChannel] = useUpdateChannelMutation({
     onCompleted: (data) => {
       router.push(`/${communityName}/${data.updateChannel.name}`);
+    },
+  });
+
+  const [deleteChannel] = useDeleteChannelMutation({
+    onCompleted: () => {
+      router.push(`/${communityName}`);
     },
   });
 
@@ -129,6 +136,15 @@ export const ChannelSettings = () => {
       </div>
 
       <div className="flex w-full justify-end mt-2">
+        <button
+          type="button"
+          className={clsx('btn mr-2')}
+          onClick={() => {
+            deleteChannel({ variables: { channelId } });
+          }}
+        >
+          Delete Channel
+        </button>
         <button
           type="submit"
           disabled={isError}

@@ -22,6 +22,12 @@ mutation updateChannel($input: UpdateChannelInput!) {
   }
 }
 
+mutation deleteChannel($channelId: ID!) {
+  deleteChannel(channelId: $channelId) {
+    ...ChannelFields
+  }
+}
+
 fragment ChannelFields on Channel {
   id
   name

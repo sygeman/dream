@@ -114,6 +114,7 @@ type Mutation {
   createCommunity(input: CreateCommunityInput!): Community!
   createChannel(input: CreateChannelInput!): Channel!
   updateChannel(input: UpdateChannelInput!): Channel!
+  deleteChannel(channelId: ID!): Channel!
   createChannelMessage(input: ChannelMessageCreateInput!): Boolean!
   refreshSpotifyToken: String!
 }

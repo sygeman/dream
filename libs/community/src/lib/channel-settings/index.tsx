@@ -3,8 +3,12 @@ import clsx from 'clsx';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import { useRouter } from 'next/router';
-import { useCommunityQuery, useCreateChannelMutation } from '@dream/types';
-import { ChannelModeCard } from './channel-mode';
+import {
+  useChannelQuery,
+  useCommunityQuery,
+  useUpdateChannelMutation,
+} from '@dream/types';
+import { ChannelModeCard } from '../channel-mode';
 import { channelMods } from '../channel-mods';
 
 const ValidationSchema = Yup.object().shape({
@@ -21,37 +25,43 @@ const ValidationSchema = Yup.object().shape({
 
 export const ChannelSettings = () => {
   const router = useRouter();
+  const communityName =
+    typeof router.query?.community === 'string' && router.query?.community;
+  const channelName =
+    typeof router.query?.channel === 'string' && router.query?.channel;
 
   const origin = typeof window !== 'undefined' ? window?.location?.origin : '';
 
-  const name =
-    typeof router.query?.community === 'string' && router.query?.community;
-
   const communityQuery = useCommunityQuery({
-    variables: { name },
-    skip: !name,
+    variables: { name: communityName },
+    skip: !communityName,
   });
-
   const community = communityQuery?.data?.community;
-
   const communityId = community?.id;
 
-  const [createChannel] = useCreateChannelMutation({
+  const channelQuery = useChannelQuery({
+    variables: { name: channelName },
+    skip: !channelName,
+  });
+  const channel = channelQuery?.data?.channel;
+  const channelId = channel?.id;
+
+  const [createChannel] = useUpdateChannelMutation({
     onCompleted: (data) => {
-      router.push(`/${name}/${data.createChannel.name}/settings`);
+      router.push(`/${communityName}/${data.updateChannel.name}`);
     },
   });
 
   const formik = useFormik({
     initialValues: {
-      name: '',
-      title: '',
-      mode: channelMods[0]?.value,
+      name: channel?.name,
+      title: channel?.title,
+      mode: channel?.mode,
     },
     validationSchema: ValidationSchema,
     onSubmit: (values) => {
       createChannel({
-        variables: { input: { ...values, communityId } },
+        variables: { input: { ...values, communityId, channelId } },
       });
     },
   });
@@ -78,7 +88,7 @@ export const ChannelSettings = () => {
 
       <div className="flex items-center mb-2">
         <label htmlFor="name" className="text-accent text-xs">
-          {origin}/{name}/
+          {origin}/{communityName}/
         </label>
         <input
           id="name"
@@ -91,6 +101,31 @@ export const ChannelSettings = () => {
           value={formik.values.name}
           className="bg-backgorud text-white text-xs p-2 rounded w-full focus:outline-none focus:ring-1"
         />
+      </div>
+
+      <label className="text-accent text-xs">Mode</label>
+
+      <div className="my-2">
+        {channelMods.map((mode) => (
+          <label key={mode.id} className="flex w-full">
+            <input
+              name="mode"
+              type="radio"
+              onChange={formik.handleChange}
+              value={mode.value}
+              checked={formik.values.mode === mode.value}
+              className="hidden"
+            />
+            <ChannelModeCard
+              color={mode.color}
+              bgColor={mode.bgColor}
+              borderColor={mode.borderColor}
+              icon={mode.icon}
+              title={mode.title}
+              selected={formik.values.mode === mode.value}
+            />
+          </label>
+        ))}
       </div>
 
       <div className="flex w-full justify-end mt-2">

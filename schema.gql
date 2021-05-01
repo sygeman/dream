@@ -113,6 +113,7 @@ type Mutation {
   setUserLocale(locale: Locale!): Boolean!
   createCommunity(input: CreateCommunityInput!): Community!
   createChannel(input: CreateChannelInput!): Channel!
+  updateChannel(input: UpdateChannelInput!): Channel!
   createChannelMessage(input: ChannelMessageCreateInput!): Boolean!
   refreshSpotifyToken: String!
 }
@@ -123,6 +124,14 @@ input CreateCommunityInput {
 }
 
 input CreateChannelInput {
+  communityId: ID!
+  name: String!
+  title: String!
+  mode: ChannelMode!
+}
+
+input UpdateChannelInput {
+  channelId: ID!
   communityId: ID!
   name: String!
   title: String!

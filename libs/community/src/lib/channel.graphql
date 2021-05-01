@@ -16,6 +16,12 @@ mutation createChannel($input: CreateChannelInput!) {
   }
 }
 
+mutation updateChannel($input: UpdateChannelInput!) {
+  updateChannel(input: $input) {
+    ...ChannelFields
+  }
+}
+
 fragment ChannelFields on Channel {
   id
   name

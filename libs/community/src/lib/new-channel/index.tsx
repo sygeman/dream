@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import { useRouter } from 'next/router';
 import { useCommunityQuery, useCreateChannelMutation } from '@dream/types';
-import { ChannelModeCard } from './channel-mode';
+import { ChannelModeCard } from '../channel-mode';
 import { channelMods } from '../channel-mods';
 
 const ValidationSchema = Yup.object().shape({

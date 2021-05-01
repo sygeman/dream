@@ -38,7 +38,7 @@ export const NewChannel = () => {
 
   const [createChannel] = useCreateChannelMutation({
     onCompleted: (data) => {
-      router.push(`/${name}/${data.createChannel.name}/settings`);
+      router.push(`/${name}/${data.createChannel.name}?channelSettings=1`);
     },
   });
 

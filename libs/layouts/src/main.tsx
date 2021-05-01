@@ -2,7 +2,7 @@ import React from 'react';
 import { AppPanel } from '@dream/app-panel';
 import { Modal } from './modal';
 import { Auth } from '@dream/auth';
-import { NewCommunity, NewChannel } from '@dream/community';
+import { NewCommunity, NewChannel, ChannelSettings } from '@dream/community';
 import { useIntl } from 'react-intl';
 
 export const MainLayout: React.FC = ({ children }) => {
@@ -25,6 +25,9 @@ export const MainLayout: React.FC = ({ children }) => {
       </Modal>
       <Modal routerKey="newChannel" title="New Channel">
         <NewChannel />
+      </Modal>
+      <Modal routerKey="channelSettings" title="Channel Settings">
+        <ChannelSettings />
       </Modal>
     </>
   );

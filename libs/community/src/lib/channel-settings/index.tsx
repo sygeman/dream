@@ -59,11 +59,8 @@ export const ChannelSettings = () => {
   const isError = Object.keys(formik.errors).length > 0;
 
   return (
-    <form onSubmit={formik.handleSubmit} className="px-4">
-      <div className="py-2 mb-2 text-white text-sm uppercase">
-        Channel Settings
-      </div>
-      <label htmlFor="title" className="text-accent text-xs uppercase">
+    <form onSubmit={formik.handleSubmit}>
+      <label htmlFor="title" className="text-accent text-xs">
         Title
       </label>
       <input
@@ -94,29 +91,6 @@ export const ChannelSettings = () => {
           value={formik.values.name}
           className="bg-backgorud text-white text-xs p-2 rounded w-full focus:outline-none focus:ring-1"
         />
-      </div>
-
-      <label className="text-accent text-xs uppercase">Mode</label>
-
-      <div className="my-2">
-        {channelMods.map((mode) => (
-          <label key={mode.id} className="flex w-full">
-            <input
-              name="mode"
-              type="radio"
-              onChange={formik.handleChange}
-              value={mode.value}
-              checked={formik.values.mode === mode.value}
-              className="hidden"
-            />
-            <ChannelModeCard
-              color={mode.color}
-              icon={mode.icon}
-              title={mode.title}
-              selected={formik.values.mode === mode.value}
-            />
-          </label>
-        ))}
       </div>
 
       <div className="flex w-full justify-end mt-2">

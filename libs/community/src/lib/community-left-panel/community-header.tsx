@@ -26,23 +26,21 @@ export const CommunityHeader = () => {
     <Menu as="div" className="relative z-10">
       {({ open }) => (
         <>
-          <div>
-            <Menu.Button
-              className={clsx(
-                'flex justify-between items-center w-full h-12 px-4',
-                'bg-surface cursor-pointer border-b border-backgorud text-white focus:outline-none'
+          <Menu.Button
+            className={clsx(
+              'flex justify-between items-center w-full h-10 px-4 text-md',
+              'bg-surface cursor-pointer border-b border-backgorud text-white focus:outline-none'
+            )}
+          >
+            {community?.title}
+            <span className="w-4 h-4 flex items-center justify-center text-accent">
+              {open ? (
+                <XIcon aria-hidden="true" />
+              ) : (
+                <ChevronDownIcon aria-hidden="true" />
               )}
-            >
-              {community?.title}
-              <span className="w-4 h-4 flex items-center justify-center text-accent">
-                {open ? (
-                  <XIcon aria-hidden="true" />
-                ) : (
-                  <ChevronDownIcon aria-hidden="true" />
-                )}
-              </span>
-            </Menu.Button>
-          </div>
+            </span>
+          </Menu.Button>
           <Transition
             show={open}
             as={Fragment}

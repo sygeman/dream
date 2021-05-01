@@ -18,13 +18,13 @@ export const CommunityRightPanel = () => {
 
   return (
     <div className="h-screen flex flex-col w-80 bg-surface">
-      <div className="flex border-b border-backgorud">
-        <div className="flex flex-1 justify-center px-4 py-2 bg-surface">
+      <div className="flex items-center border-b border-backgorud h-10">
+        <div className="flex flex-1 justify-center items-center bg-surface h-full">
           <span className="text-white text-sm">
             <AnnotationIcon />
           </span>
         </div>
-        <div className="flex flex-1 justify-center px-4 py-2 bg-surface">
+        <div className="flex flex-1 justify-center items-center bg-surface h-full">
           <span className="text-white text-sm">
             <UsersIcon />
           </span>

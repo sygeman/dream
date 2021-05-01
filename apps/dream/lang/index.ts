@@ -6,6 +6,7 @@ export const lang = {
     newCommunityTitleLabel: 'Title',
     newCommunityTitlePlaceholder: 'Awesome Community',
     newCommunityCreateButton: 'Create',
+    newChannelCreateButton: 'Create Channel',
   },
   'ru-RU': {
     createCommunityButton: 'Создать Cообщество',
@@ -14,5 +15,6 @@ export const lang = {
     newCommunityTitleLabel: 'Название',
     newCommunityTitlePlaceholder: 'Потрясающее Cообщество',
     newCommunityCreateButton: 'Создать',
+    newChannelCreateButton: 'Создать канал',
   },
 };

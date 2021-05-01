@@ -1,23 +1,19 @@
-import React, { useRef, useState } from 'react';
+import React, { Fragment } from 'react';
 import clsx from 'clsx';
 import Link from 'next/link';
+import { useIntl } from 'react-intl';
 import { useRouter } from 'next/router';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleDown, faTimes } from '@fortawesome/free-solid-svg-icons';
-import { useOnClickOutside } from '@dream/utils/useOnClickOutside';
+import { Menu, Transition } from '@headlessui/react';
 import { useCommunityQuery } from '@dream/types';
+import { ChevronDownIcon, PlusCircleIcon, XIcon } from '@heroicons/react/solid';
 
 export const CommunityHeader = () => {
-  const headerRef = useRef();
-  const [menuIsOpen, setMenuIsOpen] = useState(false);
-  const toggleMenu = () => setMenuIsOpen(!menuIsOpen);
-  useOnClickOutside(headerRef, () => setMenuIsOpen(false));
-
-  const isUser = true;
-
+  const intl = useIntl();
   const router = useRouter();
   const name =
     typeof router.query?.community === 'string' && router.query?.community;
+
+  const isUser = true;
 
   const communityQuery = useCommunityQuery({
     variables: { name },
@@ -27,44 +23,71 @@ export const CommunityHeader = () => {
   const community = communityQuery?.data?.community;
 
   return (
-    <div className="relative" ref={headerRef}>
-      <div
-        className={clsx(
-          'flex justify-between items-center w-full h-12 px-4',
-          'bg-surface cursor-pointer border-b border-backgorud'
-        )}
-        onClick={toggleMenu}
-      >
-        <span className="text-white">{community?.title}</span>
-        <FontAwesomeIcon
-          icon={menuIsOpen ? faTimes : faAngleDown}
-          className="text-accent mr-2 h-4"
-        />
-      </div>
-
-      {menuIsOpen && (
-        <div className="absolute top-full left-0 w-full z-10">
-          <div className="bg-backgorud m-1 p-2 rounded overflow-hidden">
-            <Link
-              href={{
-                pathname: router.route,
-                query: {
-                  ...router.query,
-                  [isUser ? 'newChannel' : 'authModal']: 1,
-                },
-              }}
-              passHref
+    <Menu as="div" className="relative z-10">
+      {({ open }) => (
+        <>
+          <div>
+            <Menu.Button
+              className={clsx(
+                'flex justify-between items-center w-full h-12 px-4',
+                'bg-surface cursor-pointer border-b border-backgorud text-white focus:outline-none'
+              )}
             >
-              <button
-                className="text-white text-sm px-2 py-1 rounded hover:bg-surface-light cursor-pointer w-full text-left"
-                onClick={() => setMenuIsOpen(false)}
-              >
-                Create channel
-              </button>
-            </Link>
+              {community?.title}
+              <span className="w-4 h-4 flex items-center justify-center text-accent">
+                {open ? (
+                  <XIcon aria-hidden="true" />
+                ) : (
+                  <ChevronDownIcon aria-hidden="true" />
+                )}
+              </span>
+            </Menu.Button>
           </div>
-        </div>
+          <Transition
+            show={open}
+            as={Fragment}
+            enter="transition ease-out duration-100"
+            enterFrom="transform opacity-0 scale-95"
+            enterTo="transform opacity-100 scale-100"
+            leave="transition ease-in duration-75"
+            leaveFrom="transform opacity-100 scale-100"
+            leaveTo="transform opacity-0 scale-95"
+          >
+            <Menu.Items
+              static
+              className="absolute left-0 w-full focus:outline-none p-1"
+            >
+              <div className="bg-backgorud rounded shadow-lg p-2">
+                <Menu.Item>
+                  <Link
+                    href={{
+                      pathname: router.route,
+                      query: {
+                        ...router.query,
+                        [isUser ? 'newChannel' : 'authModal']: 1,
+                      },
+                    }}
+                    passHref
+                  >
+                    <a
+                      href="replace"
+                      className="text-white text-sm px-2 py-1 rounded hover:bg-surface-light cursor-pointer w-full flex justify-between items-center"
+                    >
+                      {intl.formatMessage({
+                        id: 'newChannelCreateButton',
+                      })}
+                      <PlusCircleIcon
+                        className="w-4 h-4 text-accent"
+                        aria-hidden="true"
+                      />
+                    </a>
+                  </Link>
+                </Menu.Item>
+              </div>
+            </Menu.Items>
+          </Transition>
+        </>
       )}
-    </div>
+    </Menu>
   );
 };

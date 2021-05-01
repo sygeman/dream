@@ -23,16 +23,29 @@ export const CommunityLeftPanel = () => {
 
       <div className="flex flex-1 w-full overflow-hidden">
         <SimpleBar className="w-full">
-          <ChannelItem key="welcome" title="Welcome" />
-          {channels.map((channel) => (
-            <ChannelItem
-              key={channel.id}
-              title={channel.title}
-              state={channel.state || 'Nothing'}
-              online={channel.onlineCount}
-              name={channel.name}
-            />
-          ))}
+          {communityChannelsQuery?.loading ? (
+            <>
+              {[...Array(8).keys()].map((i) => (
+                <div
+                  key={i}
+                  className="flex flex-1 rounded h-11 bg-surface-dark mx-2 my-1 opacity-20 animate-pulse"
+                />
+              ))}
+            </>
+          ) : (
+            <>
+              <ChannelItem key="welcome" title="Welcome" />
+              {channels.map((channel) => (
+                <ChannelItem
+                  key={channel.id}
+                  title={channel.title}
+                  state={channel.state || 'Nothing'}
+                  online={channel.onlineCount}
+                  name={channel.name}
+                />
+              ))}
+            </>
+          )}
         </SimpleBar>
       </div>
 

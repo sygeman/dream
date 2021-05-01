@@ -28,22 +28,16 @@ const spotifyStyle = {
 
 export const channelMods = [
   {
-    id: 'youtube-waitlist',
-    value: ChannelMode.WaitlistYoutube,
-    title: 'Youtube Waitlist',
-    ...youtubeStyle,
-  },
-  {
-    id: 'spotify-waitlist',
-    value: ChannelMode.WaitlistSpotify,
-    title: 'Spotify Waitlist',
-    ...spotifyStyle,
-  },
-  {
     id: 'twitch-stream',
     value: ChannelMode.StreamTwitch,
     title: 'Twitch Stream',
     ...twitchStyle,
+  },
+  {
+    id: 'youtube-waitlist',
+    value: ChannelMode.WaitlistYoutube,
+    title: 'Youtube Waitlist',
+    ...youtubeStyle,
   },
   {
     id: 'youtube-stream',
@@ -61,6 +55,12 @@ export const channelMods = [
     id: 'spotify-collection',
     value: ChannelMode.CollectionSpotify,
     title: 'Spotify Collection',
+    ...spotifyStyle,
+  },
+  {
+    id: 'spotify-waitlist',
+    value: ChannelMode.WaitlistSpotify,
+    title: 'Spotify Waitlist',
     ...spotifyStyle,
   },
 ];

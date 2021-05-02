@@ -1,9 +1,16 @@
 import React from 'react';
 import { AppPanel } from '@dream/app-panel';
-import { Modal } from './modal';
-import { Auth } from '@dream/auth';
-import { NewCommunity, NewChannel, ChannelSettings } from '@dream/community';
+import {
+  NewCommunity,
+  NewChannel,
+  ChannelSettings,
+  ChannelSettingsMenu,
+  DeleteChannel,
+} from '@dream/community';
 import { useIntl } from 'react-intl';
+import { Auth } from '@dream/auth';
+import { Modal } from './modal';
+import { ModalFull } from './modal-full';
 
 export const MainLayout: React.FC = ({ children }) => {
   const intl = useIntl();
@@ -26,9 +33,12 @@ export const MainLayout: React.FC = ({ children }) => {
       <Modal routerKey="newChannel" title="New Channel">
         <NewChannel />
       </Modal>
-      <Modal routerKey="channelSettings" title="Channel Settings">
-        <ChannelSettings />
+      <Modal routerKey="deleteChannel" title="Delete Channel" minimal>
+        <DeleteChannel />
       </Modal>
+      <ModalFull routerKey="channelSettings" menu={<ChannelSettingsMenu />}>
+        <ChannelSettings />
+      </ModalFull>
     </>
   );
 };

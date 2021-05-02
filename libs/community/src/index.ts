@@ -7,3 +7,5 @@ export * from './lib/app-panel-communities';
 export * from './lib/new-channel';
 export * from './lib/new-community';
 export * from './lib/channel-settings';
+export * from './lib/channel-settings/menu';
+export * from './lib/delete-channel';

@@ -36,7 +36,7 @@ export const ChannelHeader = () => {
               pathname: router.route,
               query: {
                 ...router.query,
-                channelSettings: 1,
+                channelSettings: 'overview',
               },
             }}
             passHref

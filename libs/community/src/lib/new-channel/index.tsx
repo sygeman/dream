@@ -38,7 +38,7 @@ export const NewChannel = () => {
 
   const [createChannel] = useCreateChannelMutation({
     onCompleted: (data) => {
-      router.push(`/${name}/${data.createChannel.name}?channelSettings=1`);
+      router.push(`/${name}/${data.createChannel.name}?channelSettings=mode`);
     },
   });
 
@@ -94,26 +94,26 @@ export const NewChannel = () => {
       </div>
 
       <span className="text-accent text-xs">Mode</span>
-        {channelMods.map((mode) => (
-          <label key={mode.id} className="flex w-full">
-            <input
-              name="mode"
-              type="radio"
-              onChange={formik.handleChange}
-              value={mode.value}
-              checked={formik.values.mode === mode.value}
-              className="hidden"
-            />
-            <ChannelModeCard
-              color={mode.color}
-              bgColor={mode.bgColor}
-              borderColor={mode.borderColor}
-              icon={mode.icon}
-              title={mode.title}
-              selected={formik.values.mode === mode.value}
-            />
-          </label>
-        ))}
+      {channelMods.map((mode) => (
+        <label key={mode.id} className="flex w-full">
+          <input
+            name="mode"
+            type="radio"
+            onChange={formik.handleChange}
+            value={mode.value}
+            checked={formik.values.mode === mode.value}
+            className="hidden"
+          />
+          <ChannelModeCard
+            color={mode.color}
+            bgColor={mode.bgColor}
+            borderColor={mode.borderColor}
+            icon={mode.icon}
+            title={mode.title}
+            selected={formik.values.mode === mode.value}
+          />
+        </label>
+      ))}
 
       <div className="flex w-full justify-end mt-2">
         <button

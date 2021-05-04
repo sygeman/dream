@@ -22,7 +22,7 @@ export const ChannelHeader = () => {
   const mode = channelMods.find((m) => m?.value === channel?.mode);
 
   return (
-    <div className="flex w-full bg-surface text-white h-10 border-b border-l border-r border-backgorud px-4">
+    <div className="flex w-full bg-surface text-white h-10 px-4">
       <div className="h-full flex items-center text-sm">
         <FontAwesomeIcon icon={mode?.icon} className={`${mode?.color} h-4`} />
       </div>

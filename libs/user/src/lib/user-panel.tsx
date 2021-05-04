@@ -23,7 +23,7 @@ const UserPanelForGuest = () => {
       }}
       passHref
     >
-      <div className="flex items-center justify-center w-12 h-12 bg-surface border-t border-backgorud cursor-pointer">
+      <div className="flex items-center justify-center w-12 h-12 bg-surface cursor-pointer">
         <UserCircleIcon />
       </div>
     </Link>
@@ -69,7 +69,7 @@ export const UserPanel = () => {
 
   return (
     <div
-      className="flex items-center justify-center w-12 h-12 bg-surface border-t border-backgorud cursor-pointer"
+      className="flex items-center justify-center w-12 h-12 bg-surface cursor-pointer"
       onClick={() => logout()}
     >
       <div className="rounded-full bg-backgorud h-8 w-8 flex items-center justify-center">

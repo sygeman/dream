@@ -1,6 +1,7 @@
 const Color = require('color');
 const plugin = require('tailwindcss/plugin');
 const lighen = (clr, val) => Color(clr).lighten(val).rgb().string();
+const darken = (clr, val) => Color(clr).darken(val).rgb().string();
 
 const primary = '#b73c78';
 const backgorud = '#0D1117';
@@ -26,6 +27,7 @@ const colors = {
   surface: {
     DEFAULT: surface,
     light: lighen(surface, 0.4),
+    dark: darken(surface, 0.4),
   },
   twitch: {
     light: lighen(twitch, 0.2),
@@ -89,10 +91,10 @@ module.exports = {
         '.btn': {
           display: 'inline-flex',
           alignItems: 'center',
+          justifyContent: 'center',
           color: theme('colors.white'),
           fontSize: theme('fontSize.sm'),
           fontWeight: theme('fontWeight.medium'),
-          backgroundColor: theme('colors.surface.DEFAULT'),
           borderRadius: theme('borderRadius.DEFAULT'),
           height: theme('height.8'),
           padding: `0 ${theme('spacing.3')}`,

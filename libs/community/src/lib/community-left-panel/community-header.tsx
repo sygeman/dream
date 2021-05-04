@@ -29,7 +29,7 @@ export const CommunityHeader = () => {
           <Menu.Button
             className={clsx(
               'flex justify-between items-center w-full h-10 px-4 text-md',
-              'bg-surface cursor-pointer border-b border-backgorud text-white focus:outline-none'
+              'bg-surface cursor-pointer text-white focus:outline-none'
             )}
           >
             {community?.title}

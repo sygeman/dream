@@ -1,79 +1,41 @@
 import React from 'react';
-import clsx from 'clsx';
-import * as Yup from 'yup';
-import { useFormik } from 'formik';
 import { useRouter } from 'next/router';
-import {
-  useChannelQuery,
-  useCommunityQuery,
-  useUpdateChannelMutation,
-  useDeleteChannelMutation,
-} from '@dream/types';
-import { ChannelModeCard } from '../channel-mode';
+import { ChannelMode, useChannelQuery } from '@dream/types';
+import { ChannelModeTwitchStreamSettings } from '@dream/mods/twitch-stream/ui';
 import { channelMods } from '../channel-mods';
-
-const ValidationSchema = Yup.object().shape({
-  title: Yup.string()
-    .min(1, 'Too Short!')
-    .max(50, 'Too Long!')
-    .required('Required'),
-  name: Yup.string()
-    .min(1, 'Too Short!')
-    .max(50, 'Too Long!')
-    .required('Required'),
-  mode: Yup.string().required('Required'),
-});
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import clsx from 'clsx';
 
 export const ChannelSettingsMode = () => {
   const router = useRouter();
-  const communityName =
-    typeof router.query?.community === 'string' && router.query?.community;
-  const channelName =
+  const name =
     typeof router.query?.channel === 'string' && router.query?.channel;
 
-  const origin = typeof window !== 'undefined' ? window?.location?.origin : '';
-
-  const communityQuery = useCommunityQuery({
-    variables: { name: communityName },
-    skip: !communityName,
-  });
-  const community = communityQuery?.data?.community;
-  const communityId = community?.id;
-
-  const channelQuery = useChannelQuery({
-    variables: { name: channelName },
-    skip: !channelName,
-  });
-  const channel = channelQuery?.data?.channel;
-  const channelId = channel?.id;
-
-  const [createChannel] = useUpdateChannelMutation({
-    onCompleted: (data) => {
-      router.push(`/${communityName}/${data.updateChannel.name}`);
-    },
+  const communityQuery = useChannelQuery({
+    variables: { name },
+    skip: !name,
   });
 
-  const [deleteChannel] = useDeleteChannelMutation({
-    onCompleted: () => {
-      router.push(`/${communityName}`);
-    },
-  });
+  const channel = communityQuery?.data?.channel;
+  const mode = channelMods.find((m) => m?.value === channel?.mode);
 
-  const formik = useFormik({
-    initialValues: {
-      name: channel?.name,
-      title: channel?.title,
-      mode: channel?.mode,
-    },
-    validationSchema: ValidationSchema,
-    onSubmit: (values) => {
-      createChannel({
-        variables: { input: { ...values, communityId, channelId } },
-      });
-    },
-  });
+  const getSettingsView = () => {
+    switch (channel?.mode) {
+      case ChannelMode.StreamTwitch:
+        return <ChannelModeTwitchStreamSettings />;
+      default:
+        return null;
+    }
+  };
 
-  const isError = Object.keys(formik.errors).length > 0;
-
-  return <div>Mode</div>;
+  return (
+    <div>
+      <div className="h-full flex items-center text-sm mb-2">
+        <FontAwesomeIcon icon={mode?.icon} className={`${mode?.color} h-4`} />
+        <span className="text-white ml-2">{mode?.title}</span>
+      </div>
+      <div className={clsx('my-2 border-b', mode?.borderColor)}></div>
+      {getSettingsView()}
+    </div>
+  );
 };

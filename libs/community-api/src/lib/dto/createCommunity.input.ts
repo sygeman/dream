@@ -1,9 +1,13 @@
 import { Field, InputType } from '@nestjs/graphql';
-import { Length } from 'class-validator';
+import { IsLowercase, IsString, Length, Matches } from 'class-validator';
+import { urlNameRegExp } from '@dream/utils/regexp';
 
 @InputType()
 export class CreateCommunityInput {
   @Field()
+  @Matches(urlNameRegExp)
+  @IsString()
+  @IsLowercase()
   @Length(1, 50)
   name: string;
 

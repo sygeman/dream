@@ -10,6 +10,7 @@ import {
 } from '@dream/types';
 import { ChannelModeCard } from '../channel-mode';
 import { channelMods } from '../channel-mods';
+import { urlNameRegExp } from '@dream/utils/regexp';
 
 const ValidationSchema = Yup.object().shape({
   title: Yup.string()
@@ -19,6 +20,8 @@ const ValidationSchema = Yup.object().shape({
   name: Yup.string()
     .min(1, 'Too Short!')
     .max(50, 'Too Long!')
+    .matches(urlNameRegExp)
+    .lowercase()
     .required('Required'),
   mode: Yup.string().required('Required'),
 });

@@ -1,24 +1,16 @@
 import { Field, ID, InputType } from '@nestjs/graphql';
-import { ChannelMode } from '@prisma/client';
 import { IsLowercase, IsString, Length, Matches } from 'class-validator';
 import { urlNameRegExp } from '@dream/utils/regexp';
 
 @InputType()
-export class CreateChannelInput {
+export class UpdateTwitchStreamInput {
   @Field(() => ID)
-  communityId: string;
+  id: string;
 
-  @Field()
   @Matches(urlNameRegExp)
   @IsString()
   @IsLowercase()
   @Length(1, 50)
-  name: string;
-
   @Field()
-  @Length(1, 50)
-  title: string;
-
-  @Field(() => ChannelMode)
-  mode: ChannelMode;
+  channelKey: string;
 }

@@ -177,6 +177,7 @@ export type Mutation = {
   deleteChannel: Channel;
   createChannelMessage: Scalars['Boolean'];
   refreshSpotifyToken: Scalars['String'];
+  updateTwitchStream: TwitchStream;
 };
 
 
@@ -215,6 +216,11 @@ export type MutationCreateChannelMessageArgs = {
   input: ChannelMessageCreateInput;
 };
 
+
+export type MutationUpdateTwitchStreamArgs = {
+  input: UpdateTwitchStreamInput;
+};
+
 export type CreateCommunityInput = {
   name: Scalars['String'];
   title: Scalars['String'];
@@ -238,6 +244,11 @@ export type UpdateChannelInput = {
 export type ChannelMessageCreateInput = {
   content: Scalars['String'];
   channelId: Scalars['String'];
+};
+
+export type UpdateTwitchStreamInput = {
+  id: Scalars['ID'];
+  channelKey: Scalars['String'];
 };
 
 export type Subscription = {
@@ -449,8 +460,26 @@ export type TwitchStreamQuery = (
   { __typename?: 'Query' }
   & { twitchStream: (
     { __typename?: 'TwitchStream' }
-    & Pick<TwitchStream, 'id' | 'channelKey'>
+    & TwitchStreamFieldsFragment
   ) }
+);
+
+export type UpdateTwitchStreamMutationVariables = Exact<{
+  input: UpdateTwitchStreamInput;
+}>;
+
+
+export type UpdateTwitchStreamMutation = (
+  { __typename?: 'Mutation' }
+  & { updateTwitchStream: (
+    { __typename?: 'TwitchStream' }
+    & TwitchStreamFieldsFragment
+  ) }
+);
+
+export type TwitchStreamFieldsFragment = (
+  { __typename?: 'TwitchStream' }
+  & Pick<TwitchStream, 'id' | 'channelKey'>
 );
 
 export type WaitlistSpotifyQueryVariables = Exact<{
@@ -566,6 +595,12 @@ export const CommunityFieldsFragmentDoc = gql`
   title
   avatar
   onlineCount
+}
+    `;
+export const TwitchStreamFieldsFragmentDoc = gql`
+    fragment TwitchStreamFields on TwitchStream {
+  id
+  channelKey
 }
     `;
 export const ChannelMessagesDocument = gql`
@@ -1000,11 +1035,10 @@ export type CreateCommunityMutationOptions = Apollo.BaseMutationOptions<CreateCo
 export const TwitchStreamDocument = gql`
     query twitchStream($channelName: String!) {
   twitchStream(channelName: $channelName) {
-    id
-    channelKey
+    ...TwitchStreamFields
   }
 }
-    `;
+    ${TwitchStreamFieldsFragmentDoc}`;
 
 /**
  * __useTwitchStreamQuery__
@@ -1033,6 +1067,39 @@ export function useTwitchStreamLazyQuery(baseOptions?: Apollo.LazyQueryHookOptio
 export type TwitchStreamQueryHookResult = ReturnType<typeof useTwitchStreamQuery>;
 export type TwitchStreamLazyQueryHookResult = ReturnType<typeof useTwitchStreamLazyQuery>;
 export type TwitchStreamQueryResult = Apollo.QueryResult<TwitchStreamQuery, TwitchStreamQueryVariables>;
+export const UpdateTwitchStreamDocument = gql`
+    mutation updateTwitchStream($input: UpdateTwitchStreamInput!) {
+  updateTwitchStream(input: $input) {
+    ...TwitchStreamFields
+  }
+}
+    ${TwitchStreamFieldsFragmentDoc}`;
+export type UpdateTwitchStreamMutationFn = Apollo.MutationFunction<UpdateTwitchStreamMutation, UpdateTwitchStreamMutationVariables>;
+
+/**
+ * __useUpdateTwitchStreamMutation__
+ *
+ * To run a mutation, you first call `useUpdateTwitchStreamMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateTwitchStreamMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateTwitchStreamMutation, { data, loading, error }] = useUpdateTwitchStreamMutation({
+ *   variables: {
+ *      input: // value for 'input'
+ *   },
+ * });
+ */
+export function useUpdateTwitchStreamMutation(baseOptions?: Apollo.MutationHookOptions<UpdateTwitchStreamMutation, UpdateTwitchStreamMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateTwitchStreamMutation, UpdateTwitchStreamMutationVariables>(UpdateTwitchStreamDocument, options);
+      }
+export type UpdateTwitchStreamMutationHookResult = ReturnType<typeof useUpdateTwitchStreamMutation>;
+export type UpdateTwitchStreamMutationResult = Apollo.MutationResult<UpdateTwitchStreamMutation>;
+export type UpdateTwitchStreamMutationOptions = Apollo.BaseMutationOptions<UpdateTwitchStreamMutation, UpdateTwitchStreamMutationVariables>;
 export const WaitlistSpotifyDocument = gql`
     query waitlistSpotify($channelId: String!) {
   waitlistSpotify(channelId: $channelId) {

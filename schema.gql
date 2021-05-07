@@ -129,7 +129,6 @@ input CreateChannelInput {
   communityId: ID!
   name: String!
   title: String!
-  mode: ChannelMode!
 }
 
 input UpdateChannelInput {
@@ -137,7 +136,6 @@ input UpdateChannelInput {
   communityId: ID!
   name: String!
   title: String!
-  mode: ChannelMode!
 }
 
 input ChannelMessageCreateInput {

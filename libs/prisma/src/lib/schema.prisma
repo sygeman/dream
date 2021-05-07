@@ -99,7 +99,7 @@ model Channel {
   title             String
   avatar            String?
   state             String?
-  mode              ChannelMode                @default(WAITLIST_YOUTUBE)
+  mode              ChannelMode?
   createdAt         DateTime                   @default(now())
   updatedAt         DateTime                   @default(now()) @updatedAt
   community         Community                  @relation(fields: [communityId], references: [id])

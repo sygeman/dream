@@ -8,8 +8,6 @@ import {
   useCommunityQuery,
   useUpdateChannelMutation,
 } from '@dream/types';
-import { ChannelModeCard } from '../channel-mode';
-import { channelMods } from '../channel-mods';
 import { urlNameRegExp } from '@dream/utils/regexp';
 
 const ValidationSchema = Yup.object().shape({
@@ -23,7 +21,6 @@ const ValidationSchema = Yup.object().shape({
     .matches(urlNameRegExp)
     .lowercase()
     .required('Required'),
-  mode: Yup.string().required('Required'),
 });
 
 export const ChannelSettingsOverview = () => {
@@ -59,7 +56,6 @@ export const ChannelSettingsOverview = () => {
     initialValues: {
       name: channel?.name,
       title: channel?.title,
-      mode: channel?.mode,
     },
     validationSchema: ValidationSchema,
     onSubmit: (values) => {
@@ -105,28 +101,6 @@ export const ChannelSettingsOverview = () => {
           className="bg-backgorud text-white text-xs p-2 rounded w-full focus:outline-none focus:ring-1"
         />
       </div>
-
-      <span className="text-accent text-xs">Mode</span>
-      {channelMods.map((mode) => (
-        <label key={mode.id} className="flex w-full">
-          <input
-            name="mode"
-            type="radio"
-            onChange={formik.handleChange}
-            value={mode.value}
-            checked={formik.values.mode === mode.value}
-            className="hidden"
-          />
-          <ChannelModeCard
-            color={mode.color}
-            bgColor={mode.bgColor}
-            borderColor={mode.borderColor}
-            icon={mode.icon}
-            title={mode.title}
-            selected={formik.values.mode === mode.value}
-          />
-        </label>
-      ))}
 
       <div className="flex w-full justify-end mt-2">
         <button

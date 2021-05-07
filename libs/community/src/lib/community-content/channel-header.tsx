@@ -23,10 +23,12 @@ export const ChannelHeader = () => {
 
   return (
     <div className="flex w-full bg-surface text-white h-10 px-4">
-      <div className="h-full flex items-center text-sm">
-        <FontAwesomeIcon icon={mode?.icon} className={`${mode?.color} h-4`} />
-      </div>
-      <div className="h-full flex flex-1 items-center ml-4 text-sm">
+      {mode?.icon && (
+        <div className="h-full flex items-center text-sm mr-4">
+          <FontAwesomeIcon icon={mode?.icon} className={`${mode?.color} h-4`} />
+        </div>
+      )}
+      <div className="h-full flex flex-1 items-center text-sm">
         {channel?.title}
       </div>
       {isUser && (

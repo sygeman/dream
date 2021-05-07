@@ -44,7 +44,7 @@ export const ChannelModeTwitchStreamSettings = () => {
 
   return (
     // <div className="h-screen w-full flex flex-1">
-    <form onSubmit={formik.handleSubmit}>
+    <form onSubmit={formik.handleSubmit} className="w-full">
       <div className="flex items-center mb-2">
         <label htmlFor="channelKey" className="text-accent text-xs mr-2">
           https://www.twitch.tv/

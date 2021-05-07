@@ -230,7 +230,6 @@ export type CreateChannelInput = {
   communityId: Scalars['ID'];
   name: Scalars['String'];
   title: Scalars['String'];
-  mode: ChannelMode;
 };
 
 export type UpdateChannelInput = {
@@ -238,7 +237,6 @@ export type UpdateChannelInput = {
   communityId: Scalars['ID'];
   name: Scalars['String'];
   title: Scalars['String'];
-  mode: ChannelMode;
 };
 
 export type ChannelMessageCreateInput = {

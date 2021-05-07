@@ -1,6 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { CheckCircleIcon } from '@heroicons/react/outline';
 
 export const ChannelModeCard = ({
   color,
@@ -9,6 +10,7 @@ export const ChannelModeCard = ({
   icon,
   title,
   selected = false,
+  active = false,
 }) => {
   return (
     <div
@@ -25,9 +27,10 @@ export const ChannelModeCard = ({
           className={`${bgColor} opacity-5 absolute left-0 top-0 h-full w-full`}
         ></div>
       )}
-      <div className="flex items-center z-10">
+      <div className="flex items-center z-10 w-full">
         <FontAwesomeIcon icon={icon} className={`${color} mr-2 h-4`} />
-        <div className="px-2 text-white">{title}</div>
+        <div className="px-2 text-white text-xs flex flex-1">{title}</div>
+        {active && <CheckCircleIcon className="h-4" />}
       </div>
     </div>
   );

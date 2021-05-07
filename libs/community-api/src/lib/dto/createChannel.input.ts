@@ -1,5 +1,4 @@
 import { Field, ID, InputType } from '@nestjs/graphql';
-import { ChannelMode } from '@prisma/client';
 import { IsLowercase, IsString, Length, Matches } from 'class-validator';
 import { urlNameRegExp } from '@dream/utils/regexp';
 
@@ -18,7 +17,4 @@ export class CreateChannelInput {
   @Field()
   @Length(1, 50)
   title: string;
-
-  @Field(() => ChannelMode)
-  mode: ChannelMode;
 }

@@ -5,6 +5,7 @@ import { ChannelModeTwitchStreamSettings } from '@dream/mods/twitch-stream/ui';
 import { channelMods } from '../channel-mods';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
+import { ChannelModeCard } from '../channel-mode';
 
 export const ChannelSettingsMode = () => {
   const router = useRouter();
@@ -29,13 +30,23 @@ export const ChannelSettingsMode = () => {
   };
 
   return (
-    <div>
-      <div className="h-full flex items-center text-sm mb-2">
-        <FontAwesomeIcon icon={mode?.icon} className={`${mode?.color} h-4`} />
-        <span className="text-white ml-2">{mode?.title}</span>
+    <div className="flex w-full">
+      <div className="flex flex-col w-60">
+        <div className="text-accent text-sm">Modes</div>
+        {channelMods.map((m) => (
+          <ChannelModeCard
+            key={m.id}
+            color={m.color}
+            bgColor={m.bgColor}
+            borderColor={m.borderColor}
+            icon={m.icon}
+            title={m.title}
+            selected={mode?.value === m.value}
+            active={mode?.value === m.value}
+          />
+        ))}
       </div>
-      <div className={clsx('my-2 border-b', mode?.borderColor)}></div>
-      {getSettingsView()}
+      <div className="flex flex-1 ml-4">{getSettingsView()}</div>
     </div>
   );
 };

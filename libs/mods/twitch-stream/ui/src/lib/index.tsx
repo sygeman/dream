@@ -1,13 +1,21 @@
 import React from 'react';
 import ReactPlayer from 'react-player';
 import { useRouter } from 'next/router';
-import { useTwitchStreamQuery } from '@dream/types';
+import { useChannelQuery, useTwitchStreamQuery } from '@dream/types';
 
 export const ChannelModeTwitchStream = () => {
   const { query } = useRouter();
   const channelName = typeof query?.channel === 'string' && query?.channel;
+
+  const channelQuery = useChannelQuery({
+    variables: { name: channelName },
+    skip: !channelName,
+  });
+  const channel = channelQuery?.data?.channel;
+
   const twitchStreamQuery = useTwitchStreamQuery({
-    variables: { channelName },
+    variables: { channelId: channel?.id },
+    skip: !channel?.id,
   });
 
   const channelKey = twitchStreamQuery?.data?.twitchStream?.channelKey;

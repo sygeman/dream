@@ -16,42 +16,6 @@ export type Scalars = {
   DateTime: any;
 };
 
-export type Profile = {
-  __typename?: 'Profile';
-  id: Scalars['String'];
-  name?: Maybe<Scalars['String']>;
-  avatar?: Maybe<Scalars['String']>;
-  provider: Scalars['String'];
-};
-
-export type User = {
-  __typename?: 'User';
-  id: Scalars['String'];
-  name?: Maybe<Scalars['String']>;
-  avatar?: Maybe<Scalars['String']>;
-  locale: Locale;
-  createdAt: Scalars['DateTime'];
-  updatedAt: Scalars['DateTime'];
-  profiles?: Maybe<Array<Profile>>;
-};
-
-export enum Locale {
-  EnUs = 'en_US',
-  RuRu = 'ru_RU'
-}
-
-
-export type Community = {
-  __typename?: 'Community';
-  id: Scalars['String'];
-  name: Scalars['String'];
-  title: Scalars['String'];
-  avatar?: Maybe<Scalars['String']>;
-  createdAt: Scalars['DateTime'];
-  updatedAt: Scalars['DateTime'];
-  onlineCount: Scalars['Float'];
-};
-
 export type Channel = {
   __typename?: 'Channel';
   id: Scalars['String'];
@@ -65,15 +29,6 @@ export type Channel = {
   onlineCount: Scalars['Float'];
 };
 
-export enum ChannelMode {
-  WaitlistYoutube = 'WAITLIST_YOUTUBE',
-  WaitlistSpotify = 'WAITLIST_SPOTIFY',
-  StreamTwitch = 'STREAM_TWITCH',
-  StreamYoutube = 'STREAM_YOUTUBE',
-  CollectionSpotify = 'COLLECTION_SPOTIFY',
-  CollectionYoutube = 'COLLECTION_YOUTUBE'
-}
-
 export type ChannelMessage = {
   __typename?: 'ChannelMessage';
   id: Scalars['String'];
@@ -84,87 +39,48 @@ export type ChannelMessage = {
   createdAt: Scalars['String'];
 };
 
-export type SpotifyNow = {
-  __typename?: 'SpotifyNow';
-  id: Scalars['String'];
-  imageUrl: Scalars['String'];
-  artist: Scalars['String'];
-  name: Scalars['String'];
-  progress: Scalars['Float'];
-};
-
-export type WaitlistSpotify = {
-  __typename?: 'WaitlistSpotify';
-  id: Scalars['String'];
-  trackId?: Maybe<Scalars['String']>;
-  title?: Maybe<Scalars['String']>;
-  artists?: Maybe<Scalars['String']>;
-  cover?: Maybe<Scalars['String']>;
-  duration?: Maybe<Scalars['Int']>;
-  start?: Maybe<Scalars['String']>;
-};
-
-export type TwitchStream = {
-  __typename?: 'TwitchStream';
-  id: Scalars['String'];
-  channelKey?: Maybe<Scalars['String']>;
-};
-
-export type Query = {
-  __typename?: 'Query';
-  uniqCount: Scalars['Int'];
-  user?: Maybe<User>;
-  me: User;
-  community: Community;
-  communities: Array<Community>;
-  channel: Channel;
-  channels: Array<Channel>;
-  channelMessages: Array<ChannelMessage>;
-  waitlistSpotify: WaitlistSpotify;
-  spotifyNow?: Maybe<SpotifyNow>;
-  spotifyToken: Scalars['String'];
-  twitchStream: TwitchStream;
-};
-
-
-export type QueryUserArgs = {
-  id?: Maybe<Scalars['ID']>;
-};
-
-
-export type QueryCommunityArgs = {
-  name: Scalars['String'];
-};
-
-
-export type QueryChannelArgs = {
-  name: Scalars['String'];
-};
-
-
-export type QueryChannelsArgs = {
-  name: Scalars['String'];
-};
-
-
-export type QueryChannelMessagesArgs = {
-  channelId: Scalars['ID'];
-};
-
-
-export type QueryWaitlistSpotifyArgs = {
+export type ChannelMessageCreateInput = {
+  content: Scalars['String'];
   channelId: Scalars['String'];
 };
 
+export enum ChannelMode {
+  None = 'NONE',
+  WaitlistYoutube = 'WAITLIST_YOUTUBE',
+  WaitlistSpotify = 'WAITLIST_SPOTIFY',
+  StreamTwitch = 'STREAM_TWITCH',
+  StreamYoutube = 'STREAM_YOUTUBE',
+  CollectionSpotify = 'COLLECTION_SPOTIFY',
+  CollectionYoutube = 'COLLECTION_YOUTUBE'
+}
 
-export type QuerySpotifyNowArgs = {
-  token: Scalars['String'];
+export type Community = {
+  __typename?: 'Community';
+  id: Scalars['String'];
+  name: Scalars['String'];
+  title: Scalars['String'];
+  avatar?: Maybe<Scalars['String']>;
+  createdAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
+  onlineCount: Scalars['Float'];
+};
+
+export type CreateChannelInput = {
+  communityId: Scalars['ID'];
+  name: Scalars['String'];
+  title: Scalars['String'];
+};
+
+export type CreateCommunityInput = {
+  name: Scalars['String'];
+  title: Scalars['String'];
 };
 
 
-export type QueryTwitchStreamArgs = {
-  channelName: Scalars['String'];
-};
+export enum Locale {
+  EnUs = 'en_US',
+  RuRu = 'ru_RU'
+}
 
 export type Mutation = {
   __typename?: 'Mutation';
@@ -221,32 +137,77 @@ export type MutationUpdateTwitchStreamArgs = {
   input: UpdateTwitchStreamInput;
 };
 
-export type CreateCommunityInput = {
-  name: Scalars['String'];
-  title: Scalars['String'];
+export type Profile = {
+  __typename?: 'Profile';
+  id: Scalars['String'];
+  name?: Maybe<Scalars['String']>;
+  avatar?: Maybe<Scalars['String']>;
+  provider: Scalars['String'];
 };
 
-export type CreateChannelInput = {
-  communityId: Scalars['ID'];
-  name: Scalars['String'];
-  title: Scalars['String'];
+export type Query = {
+  __typename?: 'Query';
+  uniqCount: Scalars['Int'];
+  user?: Maybe<User>;
+  me: User;
+  community: Community;
+  communities: Array<Community>;
+  channel: Channel;
+  channels: Array<Channel>;
+  channelMessages: Array<ChannelMessage>;
+  waitlistSpotify: WaitlistSpotify;
+  spotifyNow?: Maybe<SpotifyNow>;
+  spotifyToken: Scalars['String'];
+  twitchStream: TwitchStream;
 };
 
-export type UpdateChannelInput = {
+
+export type QueryUserArgs = {
+  id?: Maybe<Scalars['ID']>;
+};
+
+
+export type QueryCommunityArgs = {
+  name: Scalars['String'];
+};
+
+
+export type QueryChannelArgs = {
+  name: Scalars['String'];
+};
+
+
+export type QueryChannelsArgs = {
+  name: Scalars['String'];
+};
+
+
+export type QueryChannelMessagesArgs = {
   channelId: Scalars['ID'];
-  communityId: Scalars['ID'];
-  name: Scalars['String'];
-  title: Scalars['String'];
 };
 
-export type ChannelMessageCreateInput = {
-  content: Scalars['String'];
+
+export type QueryWaitlistSpotifyArgs = {
   channelId: Scalars['String'];
 };
 
-export type UpdateTwitchStreamInput = {
-  id: Scalars['ID'];
-  channelKey: Scalars['String'];
+
+export type QuerySpotifyNowArgs = {
+  token: Scalars['String'];
+};
+
+
+export type QueryTwitchStreamArgs = {
+  channelId: Scalars['String'];
+};
+
+export type SpotifyNow = {
+  __typename?: 'SpotifyNow';
+  id: Scalars['String'];
+  imageUrl: Scalars['String'];
+  artist: Scalars['String'];
+  name: Scalars['String'];
+  progress: Scalars['Float'];
 };
 
 export type Subscription = {
@@ -269,6 +230,46 @@ export type SubscriptionChannelMessageDeletedArgs = {
 
 export type SubscriptionWaitlistSpotifyUpdatedArgs = {
   channelId: Scalars['String'];
+};
+
+export type TwitchStream = {
+  __typename?: 'TwitchStream';
+  id: Scalars['String'];
+  channelKey?: Maybe<Scalars['String']>;
+};
+
+export type UpdateChannelInput = {
+  channelId: Scalars['ID'];
+  communityId: Scalars['ID'];
+  name: Scalars['String'];
+  title: Scalars['String'];
+};
+
+export type UpdateTwitchStreamInput = {
+  channelId: Scalars['ID'];
+  channelKey: Scalars['String'];
+};
+
+export type User = {
+  __typename?: 'User';
+  id: Scalars['String'];
+  name?: Maybe<Scalars['String']>;
+  avatar?: Maybe<Scalars['String']>;
+  locale: Locale;
+  createdAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
+  profiles?: Maybe<Array<Profile>>;
+};
+
+export type WaitlistSpotify = {
+  __typename?: 'WaitlistSpotify';
+  id: Scalars['String'];
+  trackId?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  artists?: Maybe<Scalars['String']>;
+  cover?: Maybe<Scalars['String']>;
+  duration?: Maybe<Scalars['Int']>;
+  start?: Maybe<Scalars['String']>;
 };
 
 export type ChannelMessagesQueryVariables = Exact<{
@@ -450,7 +451,7 @@ export type CommunityFieldsFragment = (
 );
 
 export type TwitchStreamQueryVariables = Exact<{
-  channelName: Scalars['String'];
+  channelId: Scalars['String'];
 }>;
 
 
@@ -1031,8 +1032,8 @@ export type CreateCommunityMutationHookResult = ReturnType<typeof useCreateCommu
 export type CreateCommunityMutationResult = Apollo.MutationResult<CreateCommunityMutation>;
 export type CreateCommunityMutationOptions = Apollo.BaseMutationOptions<CreateCommunityMutation, CreateCommunityMutationVariables>;
 export const TwitchStreamDocument = gql`
-    query twitchStream($channelName: String!) {
-  twitchStream(channelName: $channelName) {
+    query twitchStream($channelId: String!) {
+  twitchStream(channelId: $channelId) {
     ...TwitchStreamFields
   }
 }
@@ -1050,7 +1051,7 @@ export const TwitchStreamDocument = gql`
  * @example
  * const { data, loading, error } = useTwitchStreamQuery({
  *   variables: {
- *      channelName: // value for 'channelName'
+ *      channelId: // value for 'channelId'
  *   },
  * });
  */

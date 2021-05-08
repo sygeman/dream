@@ -31,7 +31,7 @@ export const ChannelSettingsMenu: React.FC = () => {
 
   return (
     <div className="px-2">
-      <div className="text-accent text-xs px-3 mb-2 font-medium uppercase">
+      <div className="text-accent text-xs px-3 mb-2 font-medium uppercase opacity-75">
         Channel Settings
       </div>
       <ItemLink

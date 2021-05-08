@@ -13,12 +13,12 @@ export const ChannelHeader = () => {
 
   const isUser = true;
 
-  const communityQuery = useChannelQuery({
+  const channelQuery = useChannelQuery({
     variables: { name },
     skip: !name,
   });
 
-  const channel = communityQuery?.data?.channel;
+  const channel = channelQuery?.data?.channel;
   const mode = channelMods.find((m) => m?.value === channel?.mode);
 
   return (

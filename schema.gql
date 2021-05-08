@@ -52,6 +52,7 @@ type Channel {
 }
 
 enum ChannelMode {
+  NONE
   WAITLIST_YOUTUBE
   WAITLIST_SPOTIFY
   STREAM_TWITCH
@@ -104,7 +105,7 @@ type Query {
   waitlistSpotify(channelId: String!): WaitlistSpotify!
   spotifyNow(token: String!): SpotifyNow
   spotifyToken: String!
-  twitchStream(channelName: String!): TwitchStream!
+  twitchStream(channelId: String!): TwitchStream!
 }
 
 type Mutation {
@@ -144,7 +145,7 @@ input ChannelMessageCreateInput {
 }
 
 input UpdateTwitchStreamInput {
-  id: ID!
+  channelId: ID!
   channelKey: String!
 }
 

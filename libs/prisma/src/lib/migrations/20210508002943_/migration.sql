@@ -1,0 +1,6 @@
+-- AlterEnum
+ALTER TYPE "ChannelMode" ADD VALUE 'NONE';
+
+-- AlterTable
+ALTER TABLE "Channel" ALTER COLUMN "mode" DROP NOT NULL,
+ALTER COLUMN "mode" DROP DEFAULT;

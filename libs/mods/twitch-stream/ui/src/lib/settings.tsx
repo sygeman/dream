@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import { useRouter } from 'next/router';
 import {
+  useChannelQuery,
   useTwitchStreamQuery,
   useUpdateTwitchStreamMutation,
 } from '@dream/types';
@@ -20,8 +21,17 @@ const ValidationSchema = Yup.object().shape({
 export const ChannelModeTwitchStreamSettings = () => {
   const { query } = useRouter();
   const channelName = typeof query?.channel === 'string' && query?.channel;
+
+  const channelQuery = useChannelQuery({
+    variables: { name: channelName },
+    skip: !channelName,
+  });
+
+  const channel = channelQuery?.data?.channel;
+
   const twitchStreamQuery = useTwitchStreamQuery({
-    variables: { channelName },
+    variables: { channelId: channel?.id },
+    skip: !channel?.id,
   });
   const [updateTwitchStream] = useUpdateTwitchStreamMutation();
 
@@ -35,7 +45,7 @@ export const ChannelModeTwitchStreamSettings = () => {
     validationSchema: ValidationSchema,
     onSubmit: (values) => {
       updateTwitchStream({
-        variables: { input: { ...values, id: twitchStream?.id } },
+        variables: { input: { ...values, channelId: channel?.id } },
       });
     },
   });

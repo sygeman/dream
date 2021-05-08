@@ -5,7 +5,7 @@ import { urlNameRegExp } from '@dream/utils/regexp';
 @InputType()
 export class UpdateTwitchStreamInput {
   @Field(() => ID)
-  id: string;
+  channelId: string;
 
   @Matches(urlNameRegExp)
   @IsString()

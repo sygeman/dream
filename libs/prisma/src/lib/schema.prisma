@@ -73,6 +73,7 @@ model Source {
 }
 
 enum ChannelMode {
+  NONE
   WAITLIST_YOUTUBE
   WAITLIST_SPOTIFY
   STREAM_TWITCH
@@ -99,7 +100,7 @@ model Channel {
   title             String
   avatar            String?
   state             String?
-  mode              ChannelMode?
+  mode              ChannelMode                @default(STREAM_TWITCH)
   createdAt         DateTime                   @default(now())
   updatedAt         DateTime                   @default(now()) @updatedAt
   community         Community                  @relation(fields: [communityId], references: [id])
@@ -161,8 +162,8 @@ model ModeWaitlistSpotify {
 model ModeTwitchStream {
   id         String   @id @default(cuid())
   channelKey String?
-  channel    Channel  @relation(fields: [channelId], references: [id])
-  channelId  String
+  channel    Channel? @relation(fields: [channelId], references: [id])
+  channelId  String?
   createdAt  DateTime @default(now())
   updatedAt  DateTime @default(now()) @updatedAt
 }

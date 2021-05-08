@@ -1,5 +1,5 @@
-query twitchStream($channelName: String!) {
-  twitchStream(channelName: $channelName) {
+query twitchStream($channelId: String!) {
+  twitchStream(channelId: $channelId) {
     ...TwitchStreamFields
   }
 }

@@ -57,10 +57,10 @@ export const channelMods = [
   //   title: 'Spotify Collection',
   //   ...spotifyStyle,
   // },
-  {
-    id: 'spotify-waitlist',
-    value: ChannelMode.WaitlistSpotify,
-    title: 'Spotify Waitlist',
-    ...spotifyStyle,
-  },
+  // {
+  //   id: 'spotify-waitlist',
+  //   value: ChannelMode.WaitlistSpotify,
+  //   title: 'Spotify Waitlist',
+  //   ...spotifyStyle,
+  // },
 ];

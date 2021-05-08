@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Channel" ALTER COLUMN "mode" SET DEFAULT E'STREAM_TWITCH';

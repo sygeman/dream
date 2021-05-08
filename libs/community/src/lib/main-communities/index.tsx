@@ -9,6 +9,7 @@ import {
   useMeQuery,
   useUniqCountQuery,
 } from '@dream/types';
+import clsx from 'clsx';
 
 const LanguageControl = dynamic(
   () => import('./language').then((m) => m.LanguageControl),
@@ -22,11 +23,16 @@ const CommunityCard: React.FC<{
 }> = ({ title, name, online }) => {
   return (
     <Link href={`/${name}`}>
-      <div className="flex flex-col flex-shrink-0 overflow-hidden items-center justify-center  cursor-pointer hover:opacity-90 bg-surface m-4 rounded">
-        <div className="w-full bg-surface-light py-12"></div>
-        <div className="flex items-center justify-between w-full px-4 py-2">
+      <div className="flex flex-col flex-shrink-0 overflow-hidden items-center justify-center  cursor-pointer hover:opacity-90 bg-surface-light m-4 rounded">
+        <div className="w-full bg-backgorud aspect-w-16 aspect-h-9">
+          <img
+            src="https://static-cdn.jtvnw.net/previews-ttv/live_user_sygeman-440x248.jpg"
+            alt=""
+          />
+        </div>
+        <div className="flex items-center justify-between w-full px-4 py-2 border-t border-surface">
           <span className="text-sm text-white">{title}</span>
-          <span className="text-white text-xs rounded bg-backgorud px-2 py-1">
+          <span className="text-accent text-xs rounded bg-surface px-2 py-1">
             {online}
           </span>
         </div>
@@ -49,8 +55,8 @@ export const MainCommunities = () => {
   const uniqCount = uniqCountQuery?.data?.uniqCount || 0;
 
   return (
-    <div className="flex flex-col w-full">
-      <div className="flex w-full justify-between items-center px-4 py-2 bg-surface z-10">
+    <div className="flex flex-col w-full bg-surface">
+      <div className="flex w-full justify-between items-center px-4 py-2 z-10">
         <div className="flex flex-1">
           <span className="text-accent">
             {intl.formatMessage({ id: 'mainOnlineLabel' })}:
@@ -78,7 +84,12 @@ export const MainCommunities = () => {
 
       <div className="flex flex-1 w-full overflow-hidden">
         <SimpleBar className="h-full w-full">
-          <div className="w-full grid grid-cols-1 md:grid-cols-4 py-4 auto-rows-max gap-2 justify-center overflow-y-auto">
+          <div
+            className={clsx(
+              'w-full grid py-4 auto-rows-max gap-2 justify-center overflow-y-auto',
+              'grid-cols-1 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6'
+            )}
+          >
             {communities.map((community) => (
               <CommunityCard
                 key={community.id}

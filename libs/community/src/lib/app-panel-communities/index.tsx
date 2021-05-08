@@ -30,7 +30,7 @@ const CommunityInAppPanel: React.FC<{
             name === community && 'border-accent h-6'
           )}
         ></div>
-        <div className="rounded-full bg-backgorud h-8 w-8 flex items-center justify-center">
+        <div className="rounded-full bg-surface h-8 w-8 flex items-center justify-center">
           {avatar ? (
             <img src={avatar} className="h-full" alt={title} />
           ) : (

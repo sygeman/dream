@@ -50,6 +50,7 @@
     "@nestjs/platform-express": "7.6.15",
     "@popperjs/core": "2.9.2",
     "@prisma/client": "2.22.1",
+    "@tailwindcss/aspect-ratio": "^0.2.0",
     "@tailwindcss/forms": "0.3.2",
     "apollo-server-express": "2.24.0",
     "axios": "0.21.1",

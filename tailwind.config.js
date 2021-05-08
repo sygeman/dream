@@ -60,6 +60,7 @@ module.exports = {
   },
   plugins: [
     // require('@tailwindcss/forms'),
+    require('@tailwindcss/aspect-ratio'),
     plugin(function ({ addBase, addComponents, theme }) {
       addBase({
         body: {

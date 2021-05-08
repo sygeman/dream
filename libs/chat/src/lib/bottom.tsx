@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
-import { EmojiHappyIcon } from '@dream/icons/emoji-happy';
+import { EmojiHappyIcon } from '@heroicons/react/solid';
 import { useCreateChannelMessageMutation } from '@dream/types';
 import { convertTextToEmojiCode } from '@dream/utils/emoji';
 
@@ -53,7 +53,7 @@ export const ChatBottom: React.FC<ChatBottomProps> = ({ channelId }) => {
           }}
         />
         <div className="flex absolute right-2 bottom-2">
-          <EmojiHappyIcon />
+          <EmojiHappyIcon className="h-4 text-accent" />
         </div>
       </div>
       <div className="flex justify-end my-2">

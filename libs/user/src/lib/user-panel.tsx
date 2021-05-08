@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { UserCircleIcon } from '@dream/icons/user-circle';
+import { UserCircleIcon } from '@heroicons/react/solid';
 import {
   useMeQuery,
   useLogoutMutation,
@@ -24,7 +24,7 @@ const UserPanelForGuest = () => {
       passHref
     >
       <div className="flex items-center justify-center w-12 h-12 cursor-pointer">
-        <UserCircleIcon />
+        <UserCircleIcon className="text-accent h-5" />
       </div>
     </Link>
   );

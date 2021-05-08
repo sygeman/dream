@@ -15,7 +15,6 @@ module.exports = {
     '<rootDir>/libs/pepega-ui',
     '<rootDir>/apps/dream',
     '<rootDir>/libs/components',
-    '<rootDir>/libs/icons',
     '<rootDir>/libs/layouts',
     '<rootDir>/libs/auth',
     '<rootDir>/libs/spotify-now',

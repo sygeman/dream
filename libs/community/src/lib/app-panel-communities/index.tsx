@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import SimpleBar from 'simplebar-react';
-import { HeartIcon } from '@dream/icons/heart';
+import { HeartIcon } from '@heroicons/react/solid';
 import { useCommunitiesQuery } from '@dream/types';
 import clsx from 'clsx';
 
@@ -49,7 +49,7 @@ export const AppPanelCommunities = () => {
   return (
     <>
       <div className="flex justify-center py-2">
-        <HeartIcon />
+        <HeartIcon className="h-4 text-accent" />
       </div>
       <div className="flex flex-1 w-full overflow-hidden">
         <SimpleBar className="w-full">

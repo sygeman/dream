@@ -265,27 +265,6 @@
         }
       }
     },
-    "icons": {
-      "root": "libs/icons",
-      "sourceRoot": "libs/icons/src",
-      "projectType": "library",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/icons/**/*.{ts,tsx,js,jsx}"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/icons"],
-          "options": {
-            "jestConfig": "libs/icons/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
     "layouts": {
       "root": "libs/layouts",
       "sourceRoot": "libs/layouts/src",

@@ -27,7 +27,6 @@
       "@dream/connection-api": ["libs/connection-api/src/index.ts"],
       "@dream/pepega-ui/*": ["libs/pepega-ui/src/lib/*"],
       "@dream/components/*": ["libs/components/src/*"],
-      "@dream/icons/*": ["libs/icons/src/*"],
       "@dream/layouts/*": ["libs/layouts/src/*"],
       "@dream/auth": ["libs/auth/src/index.ts"],
       "@dream/spotify-now": ["libs/spotify-now/src/index.ts"],

@@ -3,7 +3,7 @@ const plugin = require('tailwindcss/plugin');
 const lighen = (clr, val) => Color(clr).lighten(val).rgb().string();
 const darken = (clr, val) => Color(clr).darken(val).rgb().string();
 
-const primary = '#b73c78';
+const primary = '#597c3e';
 const backgorud = '#0D1117';
 const accent = '#adadb8';
 const surface = '#161B22';
@@ -59,7 +59,6 @@ module.exports = {
     },
   },
   plugins: [
-    // require('@tailwindcss/forms'),
     require('@tailwindcss/aspect-ratio'),
     plugin(function ({ addBase, addComponents, theme }) {
       addBase({

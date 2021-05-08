@@ -24,12 +24,7 @@ const CommunityCard: React.FC<{
   return (
     <Link href={`/${name}`}>
       <div className="flex flex-col flex-shrink-0 overflow-hidden items-center justify-center  cursor-pointer hover:opacity-90 bg-surface-light m-4 rounded">
-        <div className="w-full bg-backgorud aspect-w-16 aspect-h-9">
-          <img
-            src="https://static-cdn.jtvnw.net/previews-ttv/live_user_sygeman-440x248.jpg"
-            alt=""
-          />
-        </div>
+        <div className="w-full bg-backgorud aspect-w-16 aspect-h-9"></div>
         <div className="flex items-center justify-between w-full px-4 py-2 border-t border-surface">
           <span className="text-sm text-white">{title}</span>
           <span className="text-accent text-xs rounded bg-surface px-2 py-1">

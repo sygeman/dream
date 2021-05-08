@@ -30,8 +30,8 @@ export const CommunityContent = () => {
 
   return (
     <div className="h-screen w-full flex flex-1 flex-col">
-      {getContentView()}
       <ChannelHeader />
+      {getContentView()}
     </div>
   );
 };

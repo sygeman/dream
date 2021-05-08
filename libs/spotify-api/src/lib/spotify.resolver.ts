@@ -11,7 +11,7 @@ export class SpotifyResolver {
   @Query(() => SpotifyNow, { nullable: true })
   async spotifyNow(@Args('token') token: string): Promise<SpotifyNow> {
     // Find userId by token
-    const userId = 'ckm7sa93v002862an8m14q0nl';
+    const userId = 'ckof0hq3c12216386mhg8imq4o';
 
     const current = (await this.spotifyService.getMePlayer(userId))?.data;
 

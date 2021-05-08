@@ -17,7 +17,7 @@ export const CommunityRightPanel = () => {
   const channel = communityChannelsQuery?.data?.channel;
 
   return (
-    <div className="h-screen flex flex-col w-80 bg-surface">
+    <div className="h-screen flex flex-col flex-shrink-0 w-80 bg-surface">
       <div className="flex items-center h-10">
         <div className="flex flex-1 justify-center items-center bg-surface h-full">
           <span className="text-white text-sm">

@@ -67,8 +67,8 @@ module.exports = {
           fontFamily: 'Roboto',
           overflow: 'hidden',
           backgroundColor: theme('colors.surface.DEFAULT'),
-          width: theme('width.screen'),
-          height: theme('width.screen'),
+          width: theme('width.full'),
+          height: theme('height.screen'),
         },
         input: {
           border: 'none',

@@ -17,7 +17,7 @@ export const MainLayout: React.FC = ({ children }) => {
 
   return (
     <>
-      <div className="h-screen bg-backgorud flex">
+      <div className="h-screen bg-background flex">
         <AppPanel />
         <div className="flex flex-1 h-full overflow-hidden rounded-l-xl">
           {children}

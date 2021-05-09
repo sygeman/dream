@@ -49,7 +49,7 @@ export const CommunityLeftPanel = () => {
         </SimpleBar>
       </div>
 
-      {/* <div className="w-full h-12 bg-surface border-t border-backgorud"></div> */}
+      {/* <div className="w-full h-12 bg-surface border-t border-background"></div> */}
     </div>
   );
 };

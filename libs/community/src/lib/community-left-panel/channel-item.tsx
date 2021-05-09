@@ -38,7 +38,7 @@ export const ChannelItem: React.FC<{
 
           {typeof online === 'number' && (
             <div>
-              <span className="text-accent text-xs rounded bg-backgorud px-2 py-1">
+              <span className="text-accent text-xs rounded bg-background px-2 py-1">
                 {online}
               </span>
             </div>

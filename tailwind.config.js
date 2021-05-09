@@ -4,7 +4,7 @@ const lighen = (clr, val) => Color(clr).lighten(val).rgb().string();
 const darken = (clr, val) => Color(clr).darken(val).rgb().string();
 
 const primary = '#597c3e';
-const backgorud = '#0D1117';
+const background = '#0D1117';
 const accent = '#adadb8';
 const surface = '#161B22';
 const twitch = '#6542a6';
@@ -16,9 +16,9 @@ const colors = {
     DEFAULT: primary,
     light: lighen(primary, 0.2),
   },
-  backgorud: {
-    DEFAULT: backgorud,
-    light: lighen(backgorud, 0.2),
+  background: {
+    DEFAULT: background,
+    light: lighen(background, 0.2),
   },
   accent: {
     DEFAULT: accent,
@@ -45,7 +45,7 @@ const colors = {
 
 module.exports = {
   // mode: 'jit',
-  darkMode: 'media',
+  // darkMode: 'media',
   purge: {
     enabled: process.env.NODE_ENV === 'production',
     content: [
@@ -82,7 +82,7 @@ module.exports = {
           padding: `${theme('spacing.1')} ${theme('spacing.10')} ${theme(
             'spacing.1'
           )} ${theme('spacing.3')}`,
-          backgroundColor: theme('colors.backgorud.DEFAULT'),
+          backgroundColor: theme('colors.background.DEFAULT'),
           border: 'none',
           borderRadius: theme('borderRadius.DEFAULT'),
         },

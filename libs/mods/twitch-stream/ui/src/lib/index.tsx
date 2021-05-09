@@ -44,7 +44,7 @@ export const ChannelModeTwitchStream = () => {
   }
 
   return (
-    <div ref={ref} className="h-full w-full bg-backgorud-light">
+    <div ref={ref} className="h-full w-full bg-background-light">
       <div className="bg-black flex justify-center">
         <div style={{ width: w, height: h }}>
           <ReactPlayer

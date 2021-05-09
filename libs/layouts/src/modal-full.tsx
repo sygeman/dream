@@ -42,12 +42,14 @@ export const ModalFull: React.FC<ModalProps> = ({
             leaveTo="opacity-0 scale-95"
           >
             <div className="inline-block w-full h-full overflow-hidden transition-all transform bg-surface">
-              <div className="m-auto z-30 overflow-hidden flex h-full">
-                <div className="w-1/4 min-w-min h-full bg-backgorud flex justify-end pt-10">
+              <div className="m-auto z-30 overflow-hidden flex h-full bg-background">
+                <div className="w-1/4 min-w-min h-full bg-background flex justify-end pt-10">
                   <div className="text-white w-52">{menu}</div>
                 </div>
-                <div className="w-2/4 h-full p-4 pt-10">{children}</div>
-                <div className="w-1/4 h-full pt-10">
+                <div className="w-2/4 h-full p-4 pt-10 overflow-hidden rounded-l-xl bg-surface">
+                  {children}
+                </div>
+                <div className="w-1/4 h-full pt-10 bg-surface">
                   <button
                     className={clsx(
                       'btn h-8 w-8 p-0 text-accent border border-surface-light rounded-full',

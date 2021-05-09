@@ -61,7 +61,7 @@ export const LanguageControl = () => {
     >
       {({ open }) => (
         <div className="relative mr-2">
-          <Listbox.Button className="flex relative w-full h-8 items-center pl-4 pr-10 text-left bg-backgorud text-white rounded cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-indigo-500 sm:text-sm">
+          <Listbox.Button className="flex relative w-full h-8 items-center pl-4 pr-10 text-left bg-background text-white rounded cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-indigo-500 sm:text-sm">
             <Language name={selected.name} flag={selected.flag} />
 
             <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">

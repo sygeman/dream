@@ -55,7 +55,7 @@ export const CommunityHeader = () => {
               static
               className="absolute left-0 w-full focus:outline-none p-1"
             >
-              <div className="bg-backgorud rounded shadow-lg p-2">
+              <div className="bg-background rounded shadow-lg p-2">
                 <Menu.Item>
                   <Link
                     href={{

@@ -56,7 +56,7 @@ export const ChatMessage = ({
                 alt={authorName}
               />
             ) : (
-              <div className="h-6 w-6 rounded-full bg-backgorud" />
+              <div className="h-6 w-6 rounded-full bg-background" />
             )}
           </div>
           <div className="font-medium text-white ml-2">{authorName}</div>

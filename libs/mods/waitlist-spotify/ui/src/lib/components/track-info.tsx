@@ -31,7 +31,7 @@ export const TrackInfo: React.FC<TrackInfoProps> = ({
       />
     </AnimatePresence>
     <motion.div
-      className="absolute bottom-0 opacity-30 bg-backgorud"
+      className="absolute bottom-0 opacity-30 bg-background"
       style={{ left: COVER_SIZE, height: COVER_SIZE }}
       animate={{ width: `calc(${progress * 100}% - ${COVER_SIZE}px)` }}
     />

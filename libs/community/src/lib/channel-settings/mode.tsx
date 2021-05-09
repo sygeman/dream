@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
-import { useRouter } from 'next/router';
-import { ChannelMode, useChannelQuery } from '@dream/types';
-import { ChannelModeTwitchStreamSettings } from '@dream/mods/twitch-stream/ui';
-import { channelMods } from '../channel-mods';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { CheckCircleIcon } from '@heroicons/react/outline';
 import clsx from 'clsx';
+import { Transition } from '@headlessui/react';
+import { useRouter } from 'next/router';
+import SimpleBar from 'simplebar-react';
+import { useChannelQuery } from '@dream/types';
+import { channelMods } from '../channel-mods';
+import { ChannelSettingsModeCard } from './mode-card';
+import { ModeSettings } from './mode-settings';
 
 export const ChannelSettingsMode = () => {
-  const [selectedChannelMode, setSelectedChannelMode] = useState(
-    channelMods[0]?.value
-  );
+  const [selectedChannelMode, setSelectedChannelMode] = useState(null);
   const router = useRouter();
   const name =
     typeof router.query?.channel === 'string' && router.query?.channel;
@@ -23,55 +22,44 @@ export const ChannelSettingsMode = () => {
   const channel = communityQuery?.data?.channel;
   const mode = channelMods.find((m) => m?.value === channel?.mode);
 
-  const getSettingsView = () => {
-    switch (selectedChannelMode) {
-      case ChannelMode.StreamTwitch:
-        return <ChannelModeTwitchStreamSettings />;
-      default:
-        return null;
-    }
-  };
-
   return (
-    <div className="flex w-full">
-      <div className="flex flex-col w-60">
-        <div className="text-accent text-sm">Modes</div>
-        {channelMods.map((m) => {
-          const selected = selectedChannelMode === m.value;
-          const active = mode?.value === m.value;
-
-          return (
-            <div
-              key={m.id}
-              onClick={() => setSelectedChannelMode(m.value)}
-              className={clsx(
-                'flex w-full bg-backgorud border-2 border-transparent',
-                m?.color,
-                'text-sm rounded px-4 py-2 my-1 relative overflow-hidden',
-                'cursor-pointer',
-                selected && `${m?.borderColor}`
-              )}
-            >
-              {selected && (
-                <div
-                  className={`${m?.bgColor} opacity-5 absolute left-0 top-0 h-full w-full`}
-                ></div>
-              )}
-              <div className="flex items-center z-10 w-full">
-                <FontAwesomeIcon
-                  icon={m?.icon}
-                  className={`${m?.color} mr-2 h-4`}
-                />
-                <div className="px-2 text-white text-xs flex flex-1">
-                  {m?.title}
-                </div>
-                {active && <CheckCircleIcon className="h-4" />}
-              </div>
-            </div>
-          );
-        })}
+    <div className="flex w-full relative">
+      <div className="flex flex-1 w-full overflow-hidden">
+        <SimpleBar className="h-full w-full">
+          <div
+            className={clsx(
+              'w-full grid py-4 auto-rows-max gap-2 justify-center overflow-y-auto',
+              'grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-3'
+            )}
+          >
+            {channelMods.map((m) => (
+              <ChannelSettingsModeCard
+                key={m?.id}
+                mode={m}
+                active={mode?.value === m.value}
+                openSettings={() => setSelectedChannelMode(m?.value)}
+              />
+            ))}
+          </div>
+        </SimpleBar>
       </div>
-      <div className="flex flex-1 ml-4">{getSettingsView()}</div>
+      <Transition
+        as="div"
+        className="absolute h-full w-full bg-surface"
+        show={!!selectedChannelMode}
+        enter="transition ease-out duration-200"
+        enterFrom="transform opacity-0 scale-95"
+        enterTo="transform opacity-100 scale-100"
+        leave="transition ease-in duration-75"
+        leaveFrom="transform opacity-100 scale-100"
+        leaveTo="transform opacity-0 scale-95"
+      >
+        <ModeSettings
+          modeKey={selectedChannelMode}
+          active={mode?.value === selectedChannelMode}
+          onClose={() => setSelectedChannelMode(null)}
+        />
+      </Transition>
     </div>
   );
 };

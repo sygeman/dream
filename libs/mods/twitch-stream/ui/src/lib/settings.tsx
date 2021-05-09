@@ -69,7 +69,7 @@ export const ChannelModeTwitchStreamSettings = () => {
           placeholder="sygeman"
           onChange={formik.handleChange}
           value={formik.values.channelKey}
-          className="bg-backgorud text-white text-xs p-2 rounded w-full focus:outline-none focus:ring-1"
+          className="bg-background text-white text-xs p-2 rounded w-full focus:outline-none focus:ring-1"
         />
       </div>
 

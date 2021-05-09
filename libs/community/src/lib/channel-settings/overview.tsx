@@ -82,7 +82,7 @@ export const ChannelSettingsOverview = () => {
         placeholder="Awesome Channel"
         onChange={formik.handleChange}
         value={formik.values.title}
-        className="bg-backgorud text-white text-xs p-2 rounded w-full focus:outline-none focus:ring-1 mb-2"
+        className="bg-background text-white text-xs p-2 rounded w-full focus:outline-none focus:ring-1 mb-2"
       />
 
       <div className="flex items-center mb-2">
@@ -98,7 +98,7 @@ export const ChannelSettingsOverview = () => {
           placeholder="awesome"
           onChange={formik.handleChange}
           value={formik.values.name}
-          className="bg-backgorud text-white text-xs p-2 rounded w-full focus:outline-none focus:ring-1"
+          className="bg-background text-white text-xs p-2 rounded w-full focus:outline-none focus:ring-1"
         />
       </div>
 

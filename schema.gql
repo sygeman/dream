@@ -116,6 +116,7 @@ type Mutation {
   createChannel(input: CreateChannelInput!): Channel!
   updateChannel(input: UpdateChannelInput!): Channel!
   deleteChannel(channelId: ID!): Channel!
+  setChannelMode(input: SetChannelModeInput!): Channel!
   createChannelMessage(input: ChannelMessageCreateInput!): Boolean!
   refreshSpotifyToken: String!
   updateTwitchStream(input: UpdateTwitchStreamInput!): TwitchStream!
@@ -137,6 +138,11 @@ input UpdateChannelInput {
   communityId: ID!
   name: String!
   title: String!
+}
+
+input SetChannelModeInput {
+  channelId: ID!
+  mode: ChannelMode!
 }
 
 input ChannelMessageCreateInput {

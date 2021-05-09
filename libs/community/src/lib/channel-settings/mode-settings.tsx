@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ArrowLeftIcon } from '@heroicons/react/outline';
 import clsx from 'clsx';
 
-export const ModeSettings = ({ active, modeKey, onClose }) => {
+export const ModeSettings = ({ active, modeKey, onClose, makeCurrent }) => {
   const mode = channelMods.find((m) => m?.value === modeKey);
 
   const getSettingsView = () => {
@@ -48,6 +48,7 @@ export const ModeSettings = ({ active, modeKey, onClose }) => {
                 mode?.bgColor,
                 `hover:${mode?.bgColorLight}`
               )}
+              onClick={makeCurrent}
             >
               Make Current
             </button>

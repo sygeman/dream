@@ -91,6 +91,7 @@ export type Mutation = {
   createChannel: Channel;
   updateChannel: Channel;
   deleteChannel: Channel;
+  setChannelMode: Channel;
   createChannelMessage: Scalars['Boolean'];
   refreshSpotifyToken: Scalars['String'];
   updateTwitchStream: TwitchStream;
@@ -125,6 +126,11 @@ export type MutationUpdateChannelArgs = {
 
 export type MutationDeleteChannelArgs = {
   channelId: Scalars['ID'];
+};
+
+
+export type MutationSetChannelModeArgs = {
+  input: SetChannelModeInput;
 };
 
 
@@ -199,6 +205,11 @@ export type QuerySpotifyNowArgs = {
 
 export type QueryTwitchStreamArgs = {
   channelId: Scalars['String'];
+};
+
+export type SetChannelModeInput = {
+  channelId: Scalars['ID'];
+  mode: ChannelMode;
 };
 
 export type SpotifyNow = {
@@ -377,6 +388,19 @@ export type UpdateChannelMutationVariables = Exact<{
 export type UpdateChannelMutation = (
   { __typename?: 'Mutation' }
   & { updateChannel: (
+    { __typename?: 'Channel' }
+    & ChannelFieldsFragment
+  ) }
+);
+
+export type SetChannelModeMutationVariables = Exact<{
+  input: SetChannelModeInput;
+}>;
+
+
+export type SetChannelModeMutation = (
+  { __typename?: 'Mutation' }
+  & { setChannelMode: (
     { __typename?: 'Channel' }
     & ChannelFieldsFragment
   ) }
@@ -864,6 +888,39 @@ export function useUpdateChannelMutation(baseOptions?: Apollo.MutationHookOption
 export type UpdateChannelMutationHookResult = ReturnType<typeof useUpdateChannelMutation>;
 export type UpdateChannelMutationResult = Apollo.MutationResult<UpdateChannelMutation>;
 export type UpdateChannelMutationOptions = Apollo.BaseMutationOptions<UpdateChannelMutation, UpdateChannelMutationVariables>;
+export const SetChannelModeDocument = gql`
+    mutation setChannelMode($input: SetChannelModeInput!) {
+  setChannelMode(input: $input) {
+    ...ChannelFields
+  }
+}
+    ${ChannelFieldsFragmentDoc}`;
+export type SetChannelModeMutationFn = Apollo.MutationFunction<SetChannelModeMutation, SetChannelModeMutationVariables>;
+
+/**
+ * __useSetChannelModeMutation__
+ *
+ * To run a mutation, you first call `useSetChannelModeMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useSetChannelModeMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [setChannelModeMutation, { data, loading, error }] = useSetChannelModeMutation({
+ *   variables: {
+ *      input: // value for 'input'
+ *   },
+ * });
+ */
+export function useSetChannelModeMutation(baseOptions?: Apollo.MutationHookOptions<SetChannelModeMutation, SetChannelModeMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<SetChannelModeMutation, SetChannelModeMutationVariables>(SetChannelModeDocument, options);
+      }
+export type SetChannelModeMutationHookResult = ReturnType<typeof useSetChannelModeMutation>;
+export type SetChannelModeMutationResult = Apollo.MutationResult<SetChannelModeMutation>;
+export type SetChannelModeMutationOptions = Apollo.BaseMutationOptions<SetChannelModeMutation, SetChannelModeMutationVariables>;
 export const DeleteChannelDocument = gql`
     mutation deleteChannel($channelId: ID!) {
   deleteChannel(channelId: $channelId) {

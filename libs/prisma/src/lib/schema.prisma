@@ -100,7 +100,7 @@ model Channel {
   title             String
   avatar            String?
   state             String?
-  mode              ChannelMode                @default(STREAM_TWITCH)
+  mode              ChannelMode                @default(NONE)
   createdAt         DateTime                   @default(now())
   updatedAt         DateTime                   @default(now()) @updatedAt
   community         Community                  @relation(fields: [communityId], references: [id])

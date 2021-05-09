@@ -3,7 +3,12 @@ import clsx from 'clsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { CheckCircleIcon } from '@heroicons/react/outline';
 
-export const ChannelSettingsModeCard = ({ mode, active, openSettings }) => {
+export const ChannelSettingsModeCard = ({
+  mode,
+  active,
+  openSettings,
+  makeCurrent,
+}) => {
   return (
     <div
       className={clsx(
@@ -50,6 +55,7 @@ export const ChannelSettingsModeCard = ({ mode, active, openSettings }) => {
                 mode?.bgColor,
                 `hover:${mode?.bgColorLight}`
               )}
+              onClick={makeCurrent}
             >
               Make Current
             </button>

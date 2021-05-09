@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { Transition } from '@headlessui/react';
 import { useRouter } from 'next/router';
 import SimpleBar from 'simplebar-react';
-import { useChannelQuery } from '@dream/types';
+import { useChannelQuery, useSetChannelModeMutation } from '@dream/types';
 import { channelMods } from '../channel-mods';
 import { ChannelSettingsModeCard } from './mode-card';
 import { ModeSettings } from './mode-settings';
@@ -18,6 +18,8 @@ export const ChannelSettingsMode = () => {
     variables: { name },
     skip: !name,
   });
+
+  const [setChannelMode] = useSetChannelModeMutation();
 
   const channel = communityQuery?.data?.channel;
   const mode = channelMods.find((m) => m?.value === channel?.mode);
@@ -38,6 +40,13 @@ export const ChannelSettingsMode = () => {
                 mode={m}
                 active={mode?.value === m.value}
                 openSettings={() => setSelectedChannelMode(m?.value)}
+                makeCurrent={() =>
+                  setChannelMode({
+                    variables: {
+                      input: { channelId: channel?.id, mode: m?.value },
+                    },
+                  })
+                }
               />
             ))}
           </div>
@@ -58,6 +67,13 @@ export const ChannelSettingsMode = () => {
           modeKey={selectedChannelMode}
           active={mode?.value === selectedChannelMode}
           onClose={() => setSelectedChannelMode(null)}
+          makeCurrent={() =>
+            setChannelMode({
+              variables: {
+                input: { channelId: channel?.id, mode: selectedChannelMode },
+              },
+            })
+          }
         />
       </Transition>
     </div>

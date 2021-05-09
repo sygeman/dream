@@ -34,7 +34,15 @@ export const ChannelModeTwitchStreamSettings = () => {
     variables: { channelId: channel?.id },
     skip: !channel?.id,
   });
-  const [updateTwitchStream] = useUpdateTwitchStreamMutation();
+  const [updateTwitchStream] = useUpdateTwitchStreamMutation({
+    onCompleted: (data) => {
+      formik.resetForm({
+        values: {
+          channelKey: data?.updateTwitchStream?.channelKey,
+        },
+      });
+    },
+  });
 
   const twitchStream = twitchStreamQuery?.data?.twitchStream;
   const channelKey = twitchStream?.channelKey;
@@ -54,7 +62,6 @@ export const ChannelModeTwitchStreamSettings = () => {
   const isError = Object.keys(formik.errors).length > 0;
 
   return (
-    // <div className="h-screen w-full flex flex-1">
     <form onSubmit={formik.handleSubmit} className="w-full">
       <div className="flex items-center mb-2">
         <label htmlFor="channelKey" className="text-accent text-xs mr-2">
@@ -76,6 +83,5 @@ export const ChannelModeTwitchStreamSettings = () => {
 
       <SaveFormPanel show={formik.dirty} reset={() => formik.resetForm()} />
     </form>
-    // </div>
   );
 };

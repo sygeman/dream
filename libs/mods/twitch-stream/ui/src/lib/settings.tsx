@@ -8,6 +8,7 @@ import {
   useTwitchStreamQuery,
   useUpdateTwitchStreamMutation,
 } from '@dream/types';
+import { SaveFormPanel } from '@dream/components';
 
 const ValidationSchema = Yup.object().shape({
   channelKey: Yup.string()
@@ -73,15 +74,7 @@ export const ChannelModeTwitchStreamSettings = () => {
         />
       </div>
 
-      <div className="flex w-full justify-end mt-2">
-        <button
-          type="submit"
-          disabled={isError}
-          className={clsx('btn btn-primary', isError && 'cursor-not-allowed')}
-        >
-          Save
-        </button>
-      </div>
+      <SaveFormPanel show={formik.dirty} reset={() => formik.resetForm()} />
     </form>
     // </div>
   );

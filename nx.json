@@ -36,6 +36,7 @@
     "mods-waitlist-spotify-ui": { "tags": [] },
     "mods-twitch-stream-api": { "tags": [] },
     "mods-twitch-stream-ui": { "tags": [] },
-    "app-panel": { "tags": [] }
+    "app-panel": { "tags": [] },
+    "components": { "tags": [] }
   }
 }

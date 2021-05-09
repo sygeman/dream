@@ -1,5 +1,4 @@
 import React from 'react';
-import clsx from 'clsx';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import { useRouter } from 'next/router';
@@ -9,6 +8,7 @@ import {
   useUpdateChannelMutation,
 } from '@dream/types';
 import { urlNameRegExp } from '@dream/utils/regexp';
+import { SaveFormPanel } from '@dream/components';
 
 const ValidationSchema = Yup.object().shape({
   title: Yup.string()
@@ -46,12 +46,6 @@ export const ChannelSettingsOverview = () => {
   const channel = channelQuery?.data?.channel;
   const channelId = channel?.id;
 
-  const [createChannel] = useUpdateChannelMutation({
-    onCompleted: (data) => {
-      router.push(`/${communityName}/${data.updateChannel.name}`);
-    },
-  });
-
   const formik = useFormik({
     initialValues: {
       name: channel?.name,
@@ -59,8 +53,19 @@ export const ChannelSettingsOverview = () => {
     },
     validationSchema: ValidationSchema,
     onSubmit: (values) => {
-      createChannel({
+      updateChannel({
         variables: { input: { ...values, communityId, channelId } },
+      });
+    },
+  });
+
+  const [updateChannel] = useUpdateChannelMutation({
+    onCompleted: (data) => {
+      formik.resetForm({
+        values: {
+          name: data?.updateChannel?.name,
+          title: data?.updateChannel?.title,
+        },
       });
     },
   });
@@ -102,15 +107,7 @@ export const ChannelSettingsOverview = () => {
         />
       </div>
 
-      <div className="flex w-full justify-end mt-2">
-        <button
-          type="submit"
-          disabled={isError}
-          className={clsx('btn btn-primary', isError && 'cursor-not-allowed')}
-        >
-          Save
-        </button>
-      </div>
+      <SaveFormPanel show={formik.dirty} reset={() => formik.resetForm()} />
     </form>
   );
 };

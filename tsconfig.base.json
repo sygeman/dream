@@ -46,7 +46,8 @@
       "@dream/mods/twitch-stream/ui": [
         "libs/mods/twitch-stream/ui/src/index.ts"
       ],
-      "@dream/app-panel": ["libs/app-panel/src/index.ts"]
+      "@dream/app-panel": ["libs/app-panel/src/index.ts"],
+      "@dream/components": ["libs/components/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

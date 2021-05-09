@@ -25,7 +25,7 @@ export const ChannelSettingsMode = () => {
   const mode = channelMods.find((m) => m?.value === channel?.mode);
 
   return (
-    <div className="flex w-full relative">
+    <div className="flex w-full h-full">
       <div className="flex flex-1 w-full overflow-hidden">
         <SimpleBar className="h-full w-full">
           <div
@@ -54,7 +54,7 @@ export const ChannelSettingsMode = () => {
       </div>
       <Transition
         as="div"
-        className="absolute h-full w-full bg-surface"
+        className="absolute top-0 left-0 p-4 pt-10 h-full w-full bg-surface"
         show={!!selectedChannelMode}
         enter="transition ease-out duration-200"
         enterFrom="transform opacity-0 scale-95"

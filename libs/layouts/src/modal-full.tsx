@@ -46,7 +46,7 @@ export const ModalFull: React.FC<ModalProps> = ({
                 <div className="w-1/4 min-w-min h-full bg-background flex justify-end pt-10">
                   <div className="text-white w-52">{menu}</div>
                 </div>
-                <div className="w-2/4 h-full p-4 pt-10 overflow-hidden rounded-l-xl bg-surface">
+                <div className="w-2/4 h-full p-4 pt-10 overflow-hidden rounded-l-xl bg-surface relative">
                   {children}
                 </div>
                 <div className="w-1/4 h-full pt-10 bg-surface">

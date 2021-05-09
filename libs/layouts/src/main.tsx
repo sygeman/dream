@@ -19,7 +19,9 @@ export const MainLayout: React.FC = ({ children }) => {
     <>
       <div className="h-screen bg-backgorud flex">
         <AppPanel />
-        {children}
+        <div className="flex flex-1 h-full overflow-hidden rounded-l-xl">
+          {children}
+        </div>
       </div>
       <Modal routerKey="authModal" minimal>
         <Auth />

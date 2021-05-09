@@ -46,12 +46,13 @@ const colors = {
 module.exports = {
   // mode: 'jit',
   darkMode: 'media',
-  // purge: {
-  //   content: [
-  //     'apps/dream/pages/**/*.{js,ts,jsx,tsx}',
-  //     'libs/**/*.{js,ts,jsx,tsx}',
-  //   ],
-  // },
+  purge: {
+    enabled: process.env.NODE_ENV === 'production',
+    content: [
+      'apps/dream/pages/**/*.{js,ts,jsx,tsx}',
+      'libs/**/*.{js,ts,jsx,tsx}',
+    ],
+  },
   theme: {
     extend: {
       colors,

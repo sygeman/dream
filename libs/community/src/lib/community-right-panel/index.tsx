@@ -3,20 +3,19 @@ import { Chat } from '@dream/chat';
 import { useRouter } from 'next/router';
 import { useChannelQuery } from '@dream/types';
 import { XIcon, UsersIcon, AnnotationIcon } from '@heroicons/react/solid';
+import { Transition } from '@headlessui/react';
 
 const Users = ({ onClose }) => {
   return (
-    <div className="absolute h-full w-full bg-surface">
-      <div className="flex flex-shrink-0 w-full text-white h-10 px-4 items-center justify-between">
-        <UsersIcon className="text-accent h-3.5" />
-        <span className="text-accent text-sm">Users</span>
-        <button
-          onClick={onClose}
-          className="h-8 w-8 rounded hover:bg-surface-light flex items-center justify-center"
-        >
-          <XIcon className="w-4 h-4 text-accent" aria-hidden="true" />
-        </button>
-      </div>
+    <div className="flex flex-shrink-0 w-full text-white h-10 px-4 items-center justify-between">
+      <UsersIcon className="text-accent h-3.5" />
+      <span className="text-accent text-sm">Users</span>
+      <button
+        onClick={onClose}
+        className="h-8 w-8 rounded hover:bg-surface-light flex items-center justify-center"
+      >
+        <XIcon className="w-4 h-4 text-accent" aria-hidden="true" />
+      </button>
     </div>
   );
 };
@@ -50,7 +49,19 @@ export const CommunityRightPanel = () => {
         </div>
       </div>
       <Chat channelId={channel?.id} />
-      {usersIsOpen && <Users onClose={() => setUsersIsOpen(false)} />}
+      <Transition
+        as="div"
+        className="absolute h-full w-full bg-surface"
+        show={usersIsOpen}
+        enter="transition ease-out duration-100"
+        enterFrom="transform opacity-0 scale-95"
+        enterTo="transform opacity-100 scale-100"
+        leave="transition ease-in duration-75"
+        leaveFrom="transform opacity-100 scale-100"
+        leaveTo="transform opacity-0 scale-95"
+      >
+        <Users onClose={() => setUsersIsOpen(false)} />
+      </Transition>
     </div>
   );
 };

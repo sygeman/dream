@@ -21,7 +21,7 @@ export const ChannelItem: React.FC<{
           className={clsx(
             'flex items-center flex-1 w-full h-11',
             'px-2 py-1',
-            'cursor-pointer',
+            'cursor-pointer transition-colors',
             'hover:bg-surface-light',
             'rounded',
             selected && 'bg-surface-light'

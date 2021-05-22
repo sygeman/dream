@@ -28,8 +28,9 @@ export const CommunityHeader = () => {
         <>
           <Menu.Button
             className={clsx(
-              'flex justify-between items-center w-full h-10 px-4 text-md',
-              'bg-surface cursor-pointer text-white focus:outline-none'
+              'flex justify-between items-center w-full h-10 px-4 text-md transition-colors',
+              'bg-surface cursor-pointer text-white focus:outline-none hover:bg-surface-light',
+              open && 'bg-surface-light'
             )}
           >
             {community?.title}

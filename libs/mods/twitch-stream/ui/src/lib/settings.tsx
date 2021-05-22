@@ -8,7 +8,7 @@ import {
   useTwitchStreamQuery,
   useUpdateTwitchStreamMutation,
 } from '@dream/types';
-import { SaveFormPanel } from '@dream/components';
+import { SaveFormPanel } from '@dream/components/save-form';
 
 const ValidationSchema = Yup.object().shape({
   channelKey: Yup.string()

@@ -8,7 +8,7 @@ import {
   useUpdateChannelMutation,
 } from '@dream/types';
 import { urlNameRegExp } from '@dream/utils/regexp';
-import { SaveFormPanel } from '@dream/components';
+import { SaveFormPanel } from '@dream/components/save-form';
 
 const ValidationSchema = Yup.object().shape({
   title: Yup.string()

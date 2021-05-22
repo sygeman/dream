@@ -1,27 +1,25 @@
-import { Dialog, Transition } from '@headlessui/react';
 import React, { Fragment } from 'react';
-import { useRouter } from 'next/router';
+import { Dialog, Transition } from '@headlessui/react';
 import { XIcon } from '@heroicons/react/solid';
 
 export type ModalProps = {
-  routerKey: string;
+  id: string;
+  isOpen: (id: string) => boolean;
+  onClose: (id: string) => void;
   title?: string;
   minimal?: boolean;
 };
 
 export const Modal: React.FC<ModalProps> = ({
+  id,
+  isOpen,
+  onClose,
   minimal = false,
   title = '',
-  routerKey,
   children,
 }) => {
-  const router = useRouter();
-  const open = router && !!router.query[routerKey];
-
-  const closeModal = () => {
-    const { [routerKey]: k, ...query } = router.query;
-    router.push({ pathname: router.pathname, query });
-  };
+  const open = isOpen(id);
+  const close = () => onClose(id);
 
   return (
     <Transition show={open} as={Fragment}>
@@ -30,7 +28,7 @@ export const Modal: React.FC<ModalProps> = ({
         className="fixed inset-0 z-10 overflow-y-auto min-h-screen"
         static
         open={open}
-        onClose={closeModal}
+        onClose={close}
       >
         <div className="min-h-screen px-4 text-center" tabIndex={1}>
           <Transition.Child
@@ -70,7 +68,7 @@ export const Modal: React.FC<ModalProps> = ({
                     </div>
                     <button
                       className="btn h-6 w-6 p-1 hover:bg-surface focus:outline-none text-accent"
-                      onClick={closeModal}
+                      onClick={close}
                     >
                       <XIcon />
                     </button>

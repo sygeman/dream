@@ -1,7 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
-import { useRouter } from 'next/router';
 import SimpleBar from 'simplebar-react';
 import { useIntl } from 'react-intl';
 import {
@@ -38,10 +37,6 @@ const CommunityCard: React.FC<{
 
 export const MainCommunities = () => {
   const intl = useIntl();
-  const router = useRouter();
-  const userQuery = useMeQuery();
-  const user = userQuery?.data?.me;
-  const isUser = !!user;
 
   const communitiesQuery = useCommunitiesQuery({ pollInterval: 3000 });
   const communities = communitiesQuery?.data?.communities || [];
@@ -60,21 +55,6 @@ export const MainCommunities = () => {
         </div>
 
         <LanguageControl />
-
-        <Link
-          href={{
-            pathname: router.route,
-            query: {
-              ...router.query,
-              [isUser ? 'newCommunity' : 'authModal']: 1,
-            },
-          }}
-          passHref
-        >
-          <button className="btn btn-primary">
-            {intl.formatMessage({ id: 'createCommunityButton' })}
-          </button>
-        </Link>
       </div>
 
       <div className="flex flex-1 w-full overflow-hidden">

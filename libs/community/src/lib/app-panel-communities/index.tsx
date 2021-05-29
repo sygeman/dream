@@ -25,10 +25,9 @@ export const AppPanelCommunities = () => {
       <div className="flex flex-1 w-full overflow-hidden">
         <SimpleBar className="w-full">
           {communities.map((community) => (
-            <Link href={`/${community?.name}`} passHref>
+            <Link key={community?.id} href={`/${community?.name}`} passHref>
               <a href="repalce">
                 <AppPanelMenuItem
-                  key={community?.id}
                   label={community?.title}
                   img={community?.avatar}
                   selected={community?.name === currentCommunity}

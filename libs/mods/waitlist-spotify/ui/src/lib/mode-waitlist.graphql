@@ -1,23 +1,78 @@
-query waitlistSpotify($channelId: String!) {
-  waitlistSpotify(channelId: $channelId) {
-    id
-    trackId
-    artists
-    title
-    cover
-    duration
-    start
+query waitlistSpotify($channelName: String!) {
+  waitlistSpotify(channelName: $channelName) {
+    history {
+      items {
+        data {
+          id
+          trackId
+          duration
+          cover
+          artists
+          title
+          startedAt
+          endedAt
+          author {
+            id
+            name
+            avatar
+          }
+        }
+        actions
+      }
+    }
+    current {
+      item {
+        id
+        trackId
+        duration
+        cover
+        artists
+        title
+        startedAt
+        author {
+          id
+          name
+          avatar
+        }
+      }
+      actions
+    }
+    queue {
+      items {
+        data {
+          id
+          trackId
+          duration
+          cover
+          artists
+          title
+          author {
+            id
+            name
+            avatar
+          }
+        }
+        actions
+      }
+      actions
+    }
   }
 }
 
-subscription waitlistSpotifyUpdated($channelId: String!) {
-  waitlistSpotifyUpdated(channelId: $channelId) {
-    id
-    trackId
-    artists
-    title
-    cover
-    duration
-    start
+subscription waitlistSpotifyUpdated($channelName: String!) {
+  waitlistSpotifyUpdated(channelName: $channelName) {
+    channelName
   }
+}
+
+mutation waitlistSpotifyQueueAddTrack($channelId: String!) {
+  waitlistSpotifyQueueAddTrack(channelId: $channelId)
+}
+
+mutation waitlistSpotifyQueueSkipTrack($channelId: String!) {
+  waitlistSpotifyQueueSkipTrack(channelId: $channelId)
+}
+
+mutation waitlistSpotifyUserSync($channelId: String!) {
+  waitlistSpotifyUserSync(channelId: $channelId)
 }

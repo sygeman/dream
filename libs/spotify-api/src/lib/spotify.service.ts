@@ -21,7 +21,9 @@ export class SpotifyService implements OnModuleInit {
         if (error.response.status === 401 && !config._retry) {
           config._retry = true;
 
-          const accessToken = config.headers['authorization'].split(' ')[1];
+          const authorization = config.headers['authorization'] || '';
+
+          const accessToken = authorization.split(' ')?.[1];
 
           const profile = await this.prisma.profile.findFirst({
             where: { accessToken },
@@ -98,6 +100,47 @@ export class SpotifyService implements OnModuleInit {
 
     return this.httpService
       .get('https://api.spotify.com/v1/me/player', {
+        headers: { authorization: `Bearer ${token}` },
+      })
+      .toPromise();
+  }
+
+  async getTrack(trackId: string, userId: string) {
+    const token = await this.getToken(userId);
+
+    return this.httpService
+      .get(`https://api.spotify.com/v1/tracks/${trackId}`, {
+        headers: { authorization: `Bearer ${token}` },
+      })
+      .toPromise();
+  }
+
+  async setTrack(trackId: string, userId: string, position: number) {
+    const token = await this.getToken(userId);
+
+    return this.httpService
+      .put(
+        `https://api.spotify.com/v1/me/player/play`,
+        {
+          uris: [`spotify:track:${trackId}`],
+          position_ms: position,
+        },
+        {
+          headers: { authorization: `Bearer ${token}` },
+        }
+      )
+      .toPromise();
+  }
+
+  async pause(userId: string) {
+    Logger.log('pause', userId);
+
+    const token = await this.getToken(userId);
+
+    Logger.log('token', token);
+
+    return this.httpService
+      .put(`https://api.spotify.com/v1/me/player/pause`, undefined, {
         headers: { authorization: `Bearer ${token}` },
       })
       .toPromise();

@@ -15,7 +15,7 @@ export const ChannelModeWaitlistProgress = ({
       const s = +new Date(+start);
       const now = +new Date();
       setProgress((now - s) / duration);
-    }, 10);
+    }, 50);
 
     return () => {
       clearInterval(interval);
@@ -27,7 +27,7 @@ export const ChannelModeWaitlistProgress = ({
       imageUrl={imageUrl}
       artist={artist}
       name={name}
-      progress={progress || 0}
+      progress={parseFloat(progress.toFixed(6)) || 0}
     />
   );
 };

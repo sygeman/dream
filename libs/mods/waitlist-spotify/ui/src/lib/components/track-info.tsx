@@ -1,7 +1,4 @@
 import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-
-const COVER_SIZE = 64;
 
 interface TrackInfoProps {
   imageUrl?: string;
@@ -16,40 +13,22 @@ export const TrackInfo: React.FC<TrackInfoProps> = ({
   name,
   progress = 0,
 }) => (
-  <div className="w-full h-full relative overflow-hidden">
-    <AnimatePresence>
-      <motion.div
-        key={imageUrl}
-        className="absolute left-0 top-0 h-full w-full bg-center bg-no-repeat bg-cover"
-        style={{
-          backgroundImage: `url(${imageUrl})`,
-          filter: 'blur(14px) brightness(0.3)',
-        }}
-        initial={{ opacity: 0, x: 0 }}
-        animate={{ opacity: 1, x: 0 }}
-        exit={{ opacity: 0, x: -COVER_SIZE }}
-      />
-    </AnimatePresence>
-    <motion.div
-      className="absolute bottom-0 opacity-30 bg-background"
-      style={{ left: COVER_SIZE, height: COVER_SIZE }}
-      animate={{ width: `calc(${progress * 100}% - ${COVER_SIZE}px)` }}
-    />
-    <div className="flex absolute left-0 bottom-0">
-      <div style={{ height: `${COVER_SIZE}px`, width: `${COVER_SIZE}px` }}>
-        <AnimatePresence>
-          <motion.img
-            key={imageUrl}
-            src={imageUrl}
-            initial={{ opacity: 0, x: 0 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -COVER_SIZE }}
-          />
-        </AnimatePresence>
+  <div className="flex relative w-full h-16">
+    <div className="flex absolute left-0 bottom-0 w-full">
+      <div className="h-16 w-16">
+        <img src={imageUrl} alt="" />
       </div>
-      <div className="flex justify-center px-4 flex-col">
-        <span className="text-xl text-accent">{artist}</span>
-        <span className="text-2xl text-white">{name}</span>
+      <div className="flex flex-1 relative">
+        <div
+          className="absolute top-0 left-0 h-full opacity-50 bg-background"
+          style={{ width: `${progress * 100}%` }}
+        />
+        <div className="absolute top-0 left-0 h-full w-full flex items-center px-4">
+          <div className="flex flex-col">
+            <span className="text-base text-accent font-medium">{artist}</span>
+            <span className="text-lg text-white">{name}</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>

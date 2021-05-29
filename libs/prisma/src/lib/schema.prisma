@@ -33,19 +33,18 @@ enum Locale {
 }
 
 model User {
-  id                String                     @id @default(cuid())
-  name              String?
-  avatar            String?
-  locale            Locale?                    @default(en_US)
-  createdAt         DateTime                   @default(now())
-  updatedAt         DateTime                   @default(now()) @updatedAt
-  profiles          Profile[]
-  tokens            Token[]
-  connection        Connection[]
-  communities       Community[]
-  channelMessages   ChannelMessage[]
-  modeWaitlistQueue ModeWaitlistSpotifyQueue[]
-  modeWaitlist      ModeWaitlistSpotify[]
+  id                      String                    @id @default(cuid())
+  name                    String?
+  avatar                  String?
+  locale                  Locale?                   @default(en_US)
+  createdAt               DateTime                  @default(now())
+  updatedAt               DateTime                  @default(now()) @updatedAt
+  profiles                Profile[]
+  tokens                  Token[]
+  connection              Connection[]
+  communities             Community[]
+  channelMessages         ChannelMessage[]
+  modeWaitlistSpotifyItem ModeWaitlistSpotifyItem[]
 }
 
 model Profile {
@@ -95,21 +94,21 @@ model Community {
 }
 
 model Channel {
-  id                String                     @id @default(cuid())
-  name              String
-  title             String
-  avatar            String?
-  state             String?
-  mode              ChannelMode                @default(NONE)
-  createdAt         DateTime                   @default(now())
-  updatedAt         DateTime                   @default(now()) @updatedAt
-  community         Community                  @relation(fields: [communityId], references: [id])
-  messages          ChannelMessage[]
-  connections       Connection[]
-  communityId       String
-  modeWaitlistQueue ModeWaitlistSpotifyQueue[]
-  modeWaitlist      ModeWaitlistSpotify[]
-  modeTwitchStream  ModeTwitchStream[]
+  id                      String                    @id @default(cuid())
+  name                    String
+  title                   String
+  avatar                  String?
+  state                   String?
+  mode                    ChannelMode               @default(NONE)
+  createdAt               DateTime                  @default(now())
+  updatedAt               DateTime                  @default(now()) @updatedAt
+  community               Community                 @relation(fields: [communityId], references: [id])
+  messages                ChannelMessage[]
+  connections             Connection[]
+  communityId             String
+  modeWaitlistSpotifyItem ModeWaitlistSpotifyItem[]
+  modeWaitlistSpotify     ModeWaitlistSpotify[]
+  modeTwitchStream        ModeTwitchStream[]
 }
 
 model ChannelMessage {
@@ -126,36 +125,45 @@ model ChannelMessage {
 
 // Channel Mods
 // Waitlist Spotify
-model ModeWaitlistSpotifyQueue {
-  id        String   @id @default(cuid())
-  trackId   String
-  artists   String
-  title     String
-  cover     String?
-  duration  Int
-  channel   Channel  @relation(fields: [channelId], references: [id])
-  channelId String
-  author    User     @relation(fields: [authorId], references: [id])
-  authorId  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now()) @updatedAt
+model ModeWaitlistSpotifyTrack {
+  id                      String                    @id
+  artists                 String
+  title                   String
+  cover                   String?
+  duration                Int
+  createdAt               DateTime                  @default(now())
+  updatedAt               DateTime                  @default(now()) @updatedAt
+  modeWaitlistSpotifyItem ModeWaitlistSpotifyItem[]
+}
+
+model ModeWaitlistSpotifyItem {
+  id                  String                    @id @default(cuid())
+  duration            Int?                      @default(0)
+  start               Int?                      @default(0) // (Start track position (0))
+  end                 Int? // (End track position (=duration))
+  skipped             Boolean?                  @default(false) // (Manual skip (=flase))
+  canceled            Boolean?                  @default(false) // (Manual remove from Queue (=false))
+  track               ModeWaitlistSpotifyTrack? @relation(fields: [trackId], references: [id])
+  trackId             String?
+  channel             Channel?                  @relation(fields: [channelId], references: [id])
+  channelId           String?
+  author              User?                     @relation(fields: [authorId], references: [id])
+  authorId            String?
+  startedAt           DateTime? // (Update after Waitlist.itemId changed)
+  endedAt             DateTime? // (Update after skip (process or manual))
+  createdAt           DateTime                  @default(now())
+  updatedAt           DateTime                  @default(now()) @updatedAt
+  modeWaitlistSpotify ModeWaitlistSpotify[]
 }
 
 model ModeWaitlistSpotify {
-  id        String   @id @default(cuid())
-  trackId   String?
-  artists   String?
-  title     String?
-  cover     String?
-  duration  Int?
-  channel   Channel  @relation(fields: [channelId], references: [id])
-  channelId String
-  author    User?    @relation(fields: [authorId], references: [id])
-  authorId  String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now()) @updatedAt
-  start     DateTime
-  playkey   String?
+  id        String                   @id @default(cuid())
+  item      ModeWaitlistSpotifyItem? @relation(fields: [itemId], references: [id])
+  itemId    String?
+  channel   Channel?                 @relation(fields: [channelId], references: [id])
+  channelId String?
+  createdAt DateTime                 @default(now())
+  updatedAt DateTime                 @default(now()) @updatedAt
 }
 
 // Twitch Stream

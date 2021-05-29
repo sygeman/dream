@@ -1,106 +1,187 @@
 import { PrismaService } from '@dream/prisma';
+import { SpotifyService } from '@dream/spotify-api';
 import { InjectQueue } from '@nestjs/bull';
 import { Inject, Injectable, Logger } from '@nestjs/common';
 import { Queue } from 'bull';
 import { RedisPubSub } from 'graphql-redis-subscriptions';
 
+const tracks = [
+  '17zlGHXRnT7MWL2xd18hj2',
+  '3u3Xbikv0FlSRyyPfug1YR',
+  '6RxYJ07q468fDNFMYXnqrc',
+  '6dLBgoJCyB9NlDARCTwJes',
+];
+
 @Injectable()
 export class WaitlistSpotifyService {
+  private readonly logger = new Logger(WaitlistSpotifyService.name);
+
   constructor(
     private prisma: PrismaService,
+    private spotify: SpotifyService,
     @InjectQueue('waitlistSpotify')
     private readonly waitlistSpotifyQueue: Queue,
     @Inject('PUB_SUB') private readonly pubsub: RedisPubSub
   ) {}
 
-  async setTrack({ channelId }) {
-    Logger.log('setTrack');
-    // Cut first track from queue
-    const track = await this.prisma.modeWaitlistSpotify.findFirst({
-      where: { channelId },
-      orderBy: { createdAt: 'asc' },
-    });
+  async updateWaitlistState({ waitlistId, itemId = null, duration = 0 }) {
+    this.logger.log(
+      `Update waitlist state waitlist:${waitlistId}, item:${itemId}`
+    );
 
-    if (!track) {
-      Logger.log('waitlistSpotifyQueue is empty');
-      return;
-    }
-
-    const waitlistSpotify = await this.prisma.modeWaitlistSpotify.findFirst({
-      where: { channelId: track.channelId },
-    });
-
-    await this.prisma.modeWaitlistSpotifyQueue.delete({
-      where: { id: track.id },
-    });
-    await this.prisma.modeWaitlistSpotifyQueue.create({
-      data: {
-        trackId: waitlistSpotify.trackId,
-        title: waitlistSpotify.title,
-        artists: waitlistSpotify.artists,
-        cover: waitlistSpotify.cover,
-        duration: waitlistSpotify.duration,
-        channelId: waitlistSpotify.channelId,
-        authorId: waitlistSpotify.authorId,
-      },
-    });
-
-    const start = new Date();
-    const playkey = waitlistSpotify.id + +start;
-
-    // Set this track to waitlistMode state
     const waitlistSpotifyUpdated = await this.prisma.modeWaitlistSpotify.update(
       {
-        where: {
-          id: waitlistSpotify.id,
-        },
-        data: {
-          trackId: track.trackId,
-          title: track.title,
-          artists: track.artists,
-          cover: track.cover,
-          duration: track.duration,
-          channelId: track.channelId,
-          authorId: track.authorId,
-          start,
-          playkey,
+        where: { id: waitlistId },
+        data: { itemId },
+        include: {
+          channel: true,
         },
       }
     );
 
-    // Create new skip process
-    this.waitlistSpotifyQueue.add(
-      `skip`,
-      { playkey },
-      { delay: track.duration, removeOnComplete: true }
-    );
+    if (itemId) {
+      // Create new skip process
+      this.logger.log(`Create new skip process waitlist:${itemId}`);
+      this.waitlistSpotifyQueue.add(
+        `skip`,
+        { itemId },
+        { delay: duration, removeOnComplete: true }
+      );
+    }
 
     this.pubsub.publish('waitlistSpotifyUpdated', {
       waitlistSpotifyUpdated: {
-        ...waitlistSpotifyUpdated,
-        start: `${start.getTime()}`,
+        channelName: waitlistSpotifyUpdated.channel.name,
       },
     });
   }
 
-  addTrack() {
-    Logger.log('addTrack');
-    // Add track to queue
-    // If current is empty this.setTrack()
+  async setTrack({ channelId, manualSkip = false }) {
+    this.logger.log(`setTrack channel:${channelId}`);
+
+    // For test
+    const randomTrackId = tracks[Math.floor(Math.random() * tracks.length)];
+    this.addTrack({
+      channelId,
+      userId: 'ckof0hq3c12216386mhg8imq4o',
+      trackId: randomTrackId,
+    });
+
+    // Get current state
+    const waitlistSpotify = await this.prisma.modeWaitlistSpotify.findFirst({
+      where: { channelId },
+    });
+
+    if (waitlistSpotify?.itemId) {
+      // Update current item data
+      await this.prisma.modeWaitlistSpotifyItem.update({
+        where: { id: waitlistSpotify?.itemId },
+        data: { endedAt: new Date(), skipped: manualSkip },
+      });
+    }
+
+    // Cut first track from queue
+    const item = await this.prisma.modeWaitlistSpotifyItem.findFirst({
+      where: {
+        channelId,
+        startedAt: null,
+        canceled: false,
+      },
+      include: { track: true },
+      orderBy: { createdAt: 'asc' },
+    });
+
+    if (!item) {
+      this.logger.log('Queue is empty');
+      // Clear state
+      return this.updateWaitlistState({ waitlistId: waitlistSpotify?.id });
+    }
+
+    const itemId = item.id;
+
+    await this.prisma.modeWaitlistSpotifyItem.update({
+      where: { id: itemId },
+      data: { startedAt: new Date() },
+    });
+
+    return this.updateWaitlistState({
+      waitlistId: waitlistSpotify?.id,
+      itemId,
+      duration: item?.duration,
+    });
+  }
+
+  async addTrack({
+    channelId,
+    trackId,
+    userId,
+  }: {
+    channelId: string;
+    trackId: string;
+    userId: string;
+  }) {
+    this.logger.log('addTrack');
+
+    const track = (await this.spotify.getTrack(trackId, userId))?.data;
+
+    if (!track) {
+      throw 'Track not found';
+    }
+
+    // Set track to queue
+    const images = track?.album?.images || [];
+
+    await this.prisma.modeWaitlistSpotifyItem.create({
+      data: {
+        duration: track?.duration_ms, // TODO: Include start, end position
+        end: track?.duration_ms,
+        channel: {
+          connect: { id: channelId },
+        },
+        author: {
+          connect: { id: userId },
+        },
+        track: {
+          connectOrCreate: {
+            where: { id: trackId },
+            create: {
+              id: trackId,
+              title: track?.name,
+              artists: (track?.artists || [])
+                .map((artist) => artist?.name)
+                .join(', '),
+              cover: images[images.length - 1]?.url,
+              duration: track?.duration_ms,
+            },
+          },
+        },
+      },
+    });
+
+    const waitlistSpotifyIsEmpty =
+      await this.prisma.modeWaitlistSpotify.findFirst({
+        where: { channelId, itemId: null },
+      });
+
+    if (waitlistSpotifyIsEmpty) {
+      return this.setTrack({ channelId });
+    }
   }
 
   removeTrack() {
-    Logger.log('removeTrack');
+    this.logger.log('removeTrack');
     // Remove track from queue
   }
 
-  async skipTrackByQueue(playkey: string) {
-    Logger.log('skipTrackByQueue', playkey);
+  async skipTrackByQueue(itemId: string) {
+    this.logger.log('skipTrackByQueue', itemId);
+
+    if (!itemId) {
+      return null;
+    }
 
     const waitlistSpotify = await this.prisma.modeWaitlistSpotify.findFirst({
-      where: {
-        playkey,
-      },
+      where: { itemId },
     });
 
     if (waitlistSpotify) {
@@ -109,8 +190,39 @@ export class WaitlistSpotifyService {
   }
 
   async skipTrack({ channelId }) {
-    Logger.log('skipTrack', channelId);
+    this.logger.log('skipTrack', channelId);
     // Set next track from queue
-    return this.setTrack({ channelId });
+    return this.setTrack({ channelId, manualSkip: true });
+  }
+
+  async syncUserSpotify({ channelId, userId }) {
+    const waitlistSpotify = await this.prisma.modeWaitlistSpotify.findFirst({
+      where: { channelId },
+      include: { item: { include: { track: true } } },
+    });
+
+    const trackId = waitlistSpotify?.item?.trackId;
+
+    if (!trackId) {
+      try {
+        return await this.spotify.pause(userId);
+      } catch (error) {
+        // this.logger.error(error);
+      }
+    }
+
+    const s = +new Date(+waitlistSpotify?.item?.startedAt);
+    const now = +new Date();
+    const position = now - s;
+
+    this.logger.log(
+      `Sync user spotify channel:${channelId} user:${userId} track:${trackId} start:${position}`
+    );
+
+    try {
+      await this.spotify.setTrack(trackId, userId, position);
+    } catch (error) {
+      this.logger.log(error);
+    }
   }
 }

@@ -10,8 +10,8 @@ export class WaitlistSpotifyProcessor {
   ) {}
 
   @Process('skip')
-  skip({ data: { playkey } }: Job<{ playkey: string }>) {
-    Logger.log(`waitlistSpotifySkip ${playkey}`);
-    return this.waitlistSpotifyService.skipTrackByQueue(playkey);
+  skip({ data: { itemId } }: Job<{ itemId: string }>) {
+    Logger.log(`waitlistSpotifySkip ${itemId}`);
+    return this.waitlistSpotifyService.skipTrackByQueue(itemId);
   }
 }

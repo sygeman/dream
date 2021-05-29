@@ -82,6 +82,146 @@ export enum Locale {
   RuRu = 'ru_RU'
 }
 
+export type ModeWaitlistSpotify = {
+  __typename?: 'ModeWaitlistSpotify';
+  history: ModeWaitlistSpotifyHistory;
+  current: ModeWaitlistSpotifyCurrent;
+  queue: ModeWaitlistSpotifyQueue;
+};
+
+export type ModeWaitlistSpotifyCurrent = {
+  __typename?: 'ModeWaitlistSpotifyCurrent';
+  actions: Array<ModeWaitlistSpotifyCurrentAction>;
+  item?: Maybe<ModeWaitlistSpotifyCurrentItem>;
+};
+
+export enum ModeWaitlistSpotifyCurrentAction {
+  Skip = 'SKIP'
+}
+
+export type ModeWaitlistSpotifyCurrentItem = {
+  __typename?: 'ModeWaitlistSpotifyCurrentItem';
+  id: Scalars['String'];
+  trackId: Scalars['String'];
+  duration: Scalars['Int'];
+  cover: Scalars['String'];
+  artists: Scalars['String'];
+  title: Scalars['String'];
+  startedAt?: Maybe<Scalars['String']>;
+  author: ModeWaitlistSpotifyCurrentItemAuthor;
+};
+
+export type ModeWaitlistSpotifyCurrentItemAuthor = {
+  __typename?: 'ModeWaitlistSpotifyCurrentItemAuthor';
+  id: Scalars['String'];
+  name: Scalars['String'];
+  avatar?: Maybe<Scalars['String']>;
+};
+
+export type ModeWaitlistSpotifyHistory = {
+  __typename?: 'ModeWaitlistSpotifyHistory';
+  items: Array<ModeWaitlistSpotifyHistoryItem>;
+};
+
+export type ModeWaitlistSpotifyHistoryItem = {
+  __typename?: 'ModeWaitlistSpotifyHistoryItem';
+  actions: Array<ModeWaitlistSpotifyHistoryItemAction>;
+  data: ModeWaitlistSpotifyHistoryItemData;
+};
+
+export enum ModeWaitlistSpotifyHistoryItemAction {
+  AddToQueue = 'ADD_TO_QUEUE'
+}
+
+export type ModeWaitlistSpotifyHistoryItemData = {
+  __typename?: 'ModeWaitlistSpotifyHistoryItemData';
+  id: Scalars['String'];
+  trackId: Scalars['String'];
+  duration: Scalars['Int'];
+  cover: Scalars['String'];
+  artists: Scalars['String'];
+  title: Scalars['String'];
+  startedAt?: Maybe<Scalars['String']>;
+  endedAt?: Maybe<Scalars['String']>;
+  author: ModeWaitlistSpotifyHistoryItemDataAuthor;
+};
+
+export type ModeWaitlistSpotifyHistoryItemDataAuthor = {
+  __typename?: 'ModeWaitlistSpotifyHistoryItemDataAuthor';
+  id: Scalars['String'];
+  name: Scalars['String'];
+  avatar?: Maybe<Scalars['String']>;
+};
+
+export type ModeWaitlistSpotifyItem = {
+  __typename?: 'ModeWaitlistSpotifyItem';
+  id: Scalars['String'];
+  duration?: Maybe<Scalars['Int']>;
+  start?: Maybe<Scalars['Int']>;
+  end?: Maybe<Scalars['Int']>;
+  skipped?: Maybe<Scalars['Boolean']>;
+  canceled?: Maybe<Scalars['Boolean']>;
+  track?: Maybe<ModeWaitlistSpotifyTrack>;
+  trackId?: Maybe<Scalars['String']>;
+  authorId?: Maybe<Scalars['String']>;
+  startedAt?: Maybe<Scalars['String']>;
+  endedAt?: Maybe<Scalars['String']>;
+  createdAt: Scalars['String'];
+  updatedAt: Scalars['String'];
+};
+
+export type ModeWaitlistSpotifyQueue = {
+  __typename?: 'ModeWaitlistSpotifyQueue';
+  actions: Array<ModeWaitlistSpotifyQueueAction>;
+  items: Array<ModeWaitlistSpotifyQueueItem>;
+};
+
+export enum ModeWaitlistSpotifyQueueAction {
+  AddTrack = 'ADD_TRACK'
+}
+
+export type ModeWaitlistSpotifyQueueItem = {
+  __typename?: 'ModeWaitlistSpotifyQueueItem';
+  actions: Array<ModeWaitlistSpotifyQueueItemAction>;
+  data: ModeWaitlistSpotifyQueueItemData;
+};
+
+export enum ModeWaitlistSpotifyQueueItemAction {
+  Cancel = 'CANCEL'
+}
+
+export type ModeWaitlistSpotifyQueueItemData = {
+  __typename?: 'ModeWaitlistSpotifyQueueItemData';
+  id: Scalars['String'];
+  trackId: Scalars['String'];
+  duration: Scalars['Int'];
+  cover: Scalars['String'];
+  artists: Scalars['String'];
+  title: Scalars['String'];
+  author: ModeWaitlistSpotifyQueueItemDataAuthor;
+};
+
+export type ModeWaitlistSpotifyQueueItemDataAuthor = {
+  __typename?: 'ModeWaitlistSpotifyQueueItemDataAuthor';
+  id: Scalars['String'];
+  name: Scalars['String'];
+  avatar?: Maybe<Scalars['String']>;
+};
+
+export type ModeWaitlistSpotifyTrack = {
+  __typename?: 'ModeWaitlistSpotifyTrack';
+  id: Scalars['String'];
+  title?: Maybe<Scalars['String']>;
+  artists?: Maybe<Scalars['String']>;
+  cover?: Maybe<Scalars['String']>;
+  duration?: Maybe<Scalars['Int']>;
+};
+
+export type ModeWaitlistSpotifyUpdated = {
+  __typename?: 'ModeWaitlistSpotifyUpdated';
+  channelName: Scalars['String'];
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   logout: Scalars['Boolean'];
@@ -93,6 +233,9 @@ export type Mutation = {
   deleteChannel: Channel;
   setChannelMode: Channel;
   createChannelMessage: Scalars['Boolean'];
+  waitlistSpotifyQueueAddTrack: Scalars['Boolean'];
+  waitlistSpotifyQueueSkipTrack: Scalars['Boolean'];
+  waitlistSpotifyUserSync: Scalars['Boolean'];
   refreshSpotifyToken: Scalars['String'];
   updateTwitchStream: TwitchStream;
 };
@@ -139,6 +282,21 @@ export type MutationCreateChannelMessageArgs = {
 };
 
 
+export type MutationWaitlistSpotifyQueueAddTrackArgs = {
+  channelId: Scalars['String'];
+};
+
+
+export type MutationWaitlistSpotifyQueueSkipTrackArgs = {
+  channelId: Scalars['String'];
+};
+
+
+export type MutationWaitlistSpotifyUserSyncArgs = {
+  channelId: Scalars['String'];
+};
+
+
 export type MutationUpdateTwitchStreamArgs = {
   input: UpdateTwitchStreamInput;
 };
@@ -161,7 +319,9 @@ export type Query = {
   channel: Channel;
   channels: Array<Channel>;
   channelMessages: Array<ChannelMessage>;
-  waitlistSpotify: WaitlistSpotify;
+  waitlistSpotify: ModeWaitlistSpotify;
+  waitlistSpotifyItem: ModeWaitlistSpotifyItem;
+  waitlistSpotifyQueue: Array<ModeWaitlistSpotifyItem>;
   spotifyNow?: Maybe<SpotifyNow>;
   spotifyToken: Scalars['String'];
   twitchStream: TwitchStream;
@@ -194,6 +354,16 @@ export type QueryChannelMessagesArgs = {
 
 
 export type QueryWaitlistSpotifyArgs = {
+  channelName: Scalars['String'];
+};
+
+
+export type QueryWaitlistSpotifyItemArgs = {
+  itemId: Scalars['String'];
+};
+
+
+export type QueryWaitlistSpotifyQueueArgs = {
   channelId: Scalars['String'];
 };
 
@@ -225,7 +395,7 @@ export type Subscription = {
   __typename?: 'Subscription';
   channelMessageCreated: ChannelMessage;
   channelMessageDeleted: ChannelMessage;
-  waitlistSpotifyUpdated: WaitlistSpotify;
+  waitlistSpotifyUpdated: ModeWaitlistSpotifyUpdated;
 };
 
 
@@ -240,7 +410,7 @@ export type SubscriptionChannelMessageDeletedArgs = {
 
 
 export type SubscriptionWaitlistSpotifyUpdatedArgs = {
-  channelId: Scalars['String'];
+  channelName: Scalars['String'];
 };
 
 export type TwitchStream = {
@@ -270,17 +440,6 @@ export type User = {
   createdAt: Scalars['DateTime'];
   updatedAt: Scalars['DateTime'];
   profiles?: Maybe<Array<Profile>>;
-};
-
-export type WaitlistSpotify = {
-  __typename?: 'WaitlistSpotify';
-  id: Scalars['String'];
-  trackId?: Maybe<Scalars['String']>;
-  title?: Maybe<Scalars['String']>;
-  artists?: Maybe<Scalars['String']>;
-  cover?: Maybe<Scalars['String']>;
-  duration?: Maybe<Scalars['Int']>;
-  start?: Maybe<Scalars['String']>;
 };
 
 export type ChannelMessagesQueryVariables = Exact<{
@@ -506,29 +665,99 @@ export type TwitchStreamFieldsFragment = (
 );
 
 export type WaitlistSpotifyQueryVariables = Exact<{
-  channelId: Scalars['String'];
+  channelName: Scalars['String'];
 }>;
 
 
 export type WaitlistSpotifyQuery = (
   { __typename?: 'Query' }
   & { waitlistSpotify: (
-    { __typename?: 'WaitlistSpotify' }
-    & Pick<WaitlistSpotify, 'id' | 'trackId' | 'artists' | 'title' | 'cover' | 'duration' | 'start'>
+    { __typename?: 'ModeWaitlistSpotify' }
+    & { history: (
+      { __typename?: 'ModeWaitlistSpotifyHistory' }
+      & { items: Array<(
+        { __typename?: 'ModeWaitlistSpotifyHistoryItem' }
+        & Pick<ModeWaitlistSpotifyHistoryItem, 'actions'>
+        & { data: (
+          { __typename?: 'ModeWaitlistSpotifyHistoryItemData' }
+          & Pick<ModeWaitlistSpotifyHistoryItemData, 'id' | 'trackId' | 'duration' | 'cover' | 'artists' | 'title' | 'startedAt' | 'endedAt'>
+          & { author: (
+            { __typename?: 'ModeWaitlistSpotifyHistoryItemDataAuthor' }
+            & Pick<ModeWaitlistSpotifyHistoryItemDataAuthor, 'id' | 'name' | 'avatar'>
+          ) }
+        ) }
+      )> }
+    ), current: (
+      { __typename?: 'ModeWaitlistSpotifyCurrent' }
+      & Pick<ModeWaitlistSpotifyCurrent, 'actions'>
+      & { item?: Maybe<(
+        { __typename?: 'ModeWaitlistSpotifyCurrentItem' }
+        & Pick<ModeWaitlistSpotifyCurrentItem, 'id' | 'trackId' | 'duration' | 'cover' | 'artists' | 'title' | 'startedAt'>
+        & { author: (
+          { __typename?: 'ModeWaitlistSpotifyCurrentItemAuthor' }
+          & Pick<ModeWaitlistSpotifyCurrentItemAuthor, 'id' | 'name' | 'avatar'>
+        ) }
+      )> }
+    ), queue: (
+      { __typename?: 'ModeWaitlistSpotifyQueue' }
+      & Pick<ModeWaitlistSpotifyQueue, 'actions'>
+      & { items: Array<(
+        { __typename?: 'ModeWaitlistSpotifyQueueItem' }
+        & Pick<ModeWaitlistSpotifyQueueItem, 'actions'>
+        & { data: (
+          { __typename?: 'ModeWaitlistSpotifyQueueItemData' }
+          & Pick<ModeWaitlistSpotifyQueueItemData, 'id' | 'trackId' | 'duration' | 'cover' | 'artists' | 'title'>
+          & { author: (
+            { __typename?: 'ModeWaitlistSpotifyQueueItemDataAuthor' }
+            & Pick<ModeWaitlistSpotifyQueueItemDataAuthor, 'id' | 'name' | 'avatar'>
+          ) }
+        ) }
+      )> }
+    ) }
   ) }
 );
 
 export type WaitlistSpotifyUpdatedSubscriptionVariables = Exact<{
-  channelId: Scalars['String'];
+  channelName: Scalars['String'];
 }>;
 
 
 export type WaitlistSpotifyUpdatedSubscription = (
   { __typename?: 'Subscription' }
   & { waitlistSpotifyUpdated: (
-    { __typename?: 'WaitlistSpotify' }
-    & Pick<WaitlistSpotify, 'id' | 'trackId' | 'artists' | 'title' | 'cover' | 'duration' | 'start'>
+    { __typename?: 'ModeWaitlistSpotifyUpdated' }
+    & Pick<ModeWaitlistSpotifyUpdated, 'channelName'>
   ) }
+);
+
+export type WaitlistSpotifyQueueAddTrackMutationVariables = Exact<{
+  channelId: Scalars['String'];
+}>;
+
+
+export type WaitlistSpotifyQueueAddTrackMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'waitlistSpotifyQueueAddTrack'>
+);
+
+export type WaitlistSpotifyQueueSkipTrackMutationVariables = Exact<{
+  channelId: Scalars['String'];
+}>;
+
+
+export type WaitlistSpotifyQueueSkipTrackMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'waitlistSpotifyQueueSkipTrack'>
+);
+
+export type WaitlistSpotifyUserSyncMutationVariables = Exact<{
+  channelId: Scalars['String'];
+}>;
+
+
+export type WaitlistSpotifyUserSyncMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'waitlistSpotifyUserSync'>
 );
 
 export type SpotifyNowQueryVariables = Exact<{
@@ -1157,15 +1386,64 @@ export type UpdateTwitchStreamMutationHookResult = ReturnType<typeof useUpdateTw
 export type UpdateTwitchStreamMutationResult = Apollo.MutationResult<UpdateTwitchStreamMutation>;
 export type UpdateTwitchStreamMutationOptions = Apollo.BaseMutationOptions<UpdateTwitchStreamMutation, UpdateTwitchStreamMutationVariables>;
 export const WaitlistSpotifyDocument = gql`
-    query waitlistSpotify($channelId: String!) {
-  waitlistSpotify(channelId: $channelId) {
-    id
-    trackId
-    artists
-    title
-    cover
-    duration
-    start
+    query waitlistSpotify($channelName: String!) {
+  waitlistSpotify(channelName: $channelName) {
+    history {
+      items {
+        data {
+          id
+          trackId
+          duration
+          cover
+          artists
+          title
+          startedAt
+          endedAt
+          author {
+            id
+            name
+            avatar
+          }
+        }
+        actions
+      }
+    }
+    current {
+      item {
+        id
+        trackId
+        duration
+        cover
+        artists
+        title
+        startedAt
+        author {
+          id
+          name
+          avatar
+        }
+      }
+      actions
+    }
+    queue {
+      items {
+        data {
+          id
+          trackId
+          duration
+          cover
+          artists
+          title
+          author {
+            id
+            name
+            avatar
+          }
+        }
+        actions
+      }
+      actions
+    }
   }
 }
     `;
@@ -1182,7 +1460,7 @@ export const WaitlistSpotifyDocument = gql`
  * @example
  * const { data, loading, error } = useWaitlistSpotifyQuery({
  *   variables: {
- *      channelId: // value for 'channelId'
+ *      channelName: // value for 'channelName'
  *   },
  * });
  */
@@ -1198,15 +1476,9 @@ export type WaitlistSpotifyQueryHookResult = ReturnType<typeof useWaitlistSpotif
 export type WaitlistSpotifyLazyQueryHookResult = ReturnType<typeof useWaitlistSpotifyLazyQuery>;
 export type WaitlistSpotifyQueryResult = Apollo.QueryResult<WaitlistSpotifyQuery, WaitlistSpotifyQueryVariables>;
 export const WaitlistSpotifyUpdatedDocument = gql`
-    subscription waitlistSpotifyUpdated($channelId: String!) {
-  waitlistSpotifyUpdated(channelId: $channelId) {
-    id
-    trackId
-    artists
-    title
-    cover
-    duration
-    start
+    subscription waitlistSpotifyUpdated($channelName: String!) {
+  waitlistSpotifyUpdated(channelName: $channelName) {
+    channelName
   }
 }
     `;
@@ -1223,7 +1495,7 @@ export const WaitlistSpotifyUpdatedDocument = gql`
  * @example
  * const { data, loading, error } = useWaitlistSpotifyUpdatedSubscription({
  *   variables: {
- *      channelId: // value for 'channelId'
+ *      channelName: // value for 'channelName'
  *   },
  * });
  */
@@ -1233,6 +1505,99 @@ export function useWaitlistSpotifyUpdatedSubscription(baseOptions: Apollo.Subscr
       }
 export type WaitlistSpotifyUpdatedSubscriptionHookResult = ReturnType<typeof useWaitlistSpotifyUpdatedSubscription>;
 export type WaitlistSpotifyUpdatedSubscriptionResult = Apollo.SubscriptionResult<WaitlistSpotifyUpdatedSubscription>;
+export const WaitlistSpotifyQueueAddTrackDocument = gql`
+    mutation waitlistSpotifyQueueAddTrack($channelId: String!) {
+  waitlistSpotifyQueueAddTrack(channelId: $channelId)
+}
+    `;
+export type WaitlistSpotifyQueueAddTrackMutationFn = Apollo.MutationFunction<WaitlistSpotifyQueueAddTrackMutation, WaitlistSpotifyQueueAddTrackMutationVariables>;
+
+/**
+ * __useWaitlistSpotifyQueueAddTrackMutation__
+ *
+ * To run a mutation, you first call `useWaitlistSpotifyQueueAddTrackMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useWaitlistSpotifyQueueAddTrackMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [waitlistSpotifyQueueAddTrackMutation, { data, loading, error }] = useWaitlistSpotifyQueueAddTrackMutation({
+ *   variables: {
+ *      channelId: // value for 'channelId'
+ *   },
+ * });
+ */
+export function useWaitlistSpotifyQueueAddTrackMutation(baseOptions?: Apollo.MutationHookOptions<WaitlistSpotifyQueueAddTrackMutation, WaitlistSpotifyQueueAddTrackMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<WaitlistSpotifyQueueAddTrackMutation, WaitlistSpotifyQueueAddTrackMutationVariables>(WaitlistSpotifyQueueAddTrackDocument, options);
+      }
+export type WaitlistSpotifyQueueAddTrackMutationHookResult = ReturnType<typeof useWaitlistSpotifyQueueAddTrackMutation>;
+export type WaitlistSpotifyQueueAddTrackMutationResult = Apollo.MutationResult<WaitlistSpotifyQueueAddTrackMutation>;
+export type WaitlistSpotifyQueueAddTrackMutationOptions = Apollo.BaseMutationOptions<WaitlistSpotifyQueueAddTrackMutation, WaitlistSpotifyQueueAddTrackMutationVariables>;
+export const WaitlistSpotifyQueueSkipTrackDocument = gql`
+    mutation waitlistSpotifyQueueSkipTrack($channelId: String!) {
+  waitlistSpotifyQueueSkipTrack(channelId: $channelId)
+}
+    `;
+export type WaitlistSpotifyQueueSkipTrackMutationFn = Apollo.MutationFunction<WaitlistSpotifyQueueSkipTrackMutation, WaitlistSpotifyQueueSkipTrackMutationVariables>;
+
+/**
+ * __useWaitlistSpotifyQueueSkipTrackMutation__
+ *
+ * To run a mutation, you first call `useWaitlistSpotifyQueueSkipTrackMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useWaitlistSpotifyQueueSkipTrackMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [waitlistSpotifyQueueSkipTrackMutation, { data, loading, error }] = useWaitlistSpotifyQueueSkipTrackMutation({
+ *   variables: {
+ *      channelId: // value for 'channelId'
+ *   },
+ * });
+ */
+export function useWaitlistSpotifyQueueSkipTrackMutation(baseOptions?: Apollo.MutationHookOptions<WaitlistSpotifyQueueSkipTrackMutation, WaitlistSpotifyQueueSkipTrackMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<WaitlistSpotifyQueueSkipTrackMutation, WaitlistSpotifyQueueSkipTrackMutationVariables>(WaitlistSpotifyQueueSkipTrackDocument, options);
+      }
+export type WaitlistSpotifyQueueSkipTrackMutationHookResult = ReturnType<typeof useWaitlistSpotifyQueueSkipTrackMutation>;
+export type WaitlistSpotifyQueueSkipTrackMutationResult = Apollo.MutationResult<WaitlistSpotifyQueueSkipTrackMutation>;
+export type WaitlistSpotifyQueueSkipTrackMutationOptions = Apollo.BaseMutationOptions<WaitlistSpotifyQueueSkipTrackMutation, WaitlistSpotifyQueueSkipTrackMutationVariables>;
+export const WaitlistSpotifyUserSyncDocument = gql`
+    mutation waitlistSpotifyUserSync($channelId: String!) {
+  waitlistSpotifyUserSync(channelId: $channelId)
+}
+    `;
+export type WaitlistSpotifyUserSyncMutationFn = Apollo.MutationFunction<WaitlistSpotifyUserSyncMutation, WaitlistSpotifyUserSyncMutationVariables>;
+
+/**
+ * __useWaitlistSpotifyUserSyncMutation__
+ *
+ * To run a mutation, you first call `useWaitlistSpotifyUserSyncMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useWaitlistSpotifyUserSyncMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [waitlistSpotifyUserSyncMutation, { data, loading, error }] = useWaitlistSpotifyUserSyncMutation({
+ *   variables: {
+ *      channelId: // value for 'channelId'
+ *   },
+ * });
+ */
+export function useWaitlistSpotifyUserSyncMutation(baseOptions?: Apollo.MutationHookOptions<WaitlistSpotifyUserSyncMutation, WaitlistSpotifyUserSyncMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<WaitlistSpotifyUserSyncMutation, WaitlistSpotifyUserSyncMutationVariables>(WaitlistSpotifyUserSyncDocument, options);
+      }
+export type WaitlistSpotifyUserSyncMutationHookResult = ReturnType<typeof useWaitlistSpotifyUserSyncMutation>;
+export type WaitlistSpotifyUserSyncMutationResult = Apollo.MutationResult<WaitlistSpotifyUserSyncMutation>;
+export type WaitlistSpotifyUserSyncMutationOptions = Apollo.BaseMutationOptions<WaitlistSpotifyUserSyncMutation, WaitlistSpotifyUserSyncMutationVariables>;
 export const SpotifyNowDocument = gql`
     query spotifyNow($token: String!) {
   spotifyNow(token: $token) {

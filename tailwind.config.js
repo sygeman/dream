@@ -66,6 +66,7 @@ module.exports = {
         body: {
           fontFamily: 'Roboto',
           overflow: 'hidden',
+          color: theme('colors.white'),
           backgroundColor: theme('colors.surface.DEFAULT'),
           width: theme('width.full'),
           height: theme('height.screen'),
@@ -99,6 +100,10 @@ module.exports = {
           borderRadius: theme('borderRadius.DEFAULT'),
           height: theme('height.8'),
           padding: `0 ${theme('spacing.3')}`,
+          transitionProperty:
+            'background-color, border-color, color, fill, stroke',
+          transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
+          transitionDuration: '75ms',
           '&:hover': {
             backgroundColor: theme('colors.surface.light'),
           },

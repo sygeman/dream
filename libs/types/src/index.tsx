@@ -146,23 +146,6 @@ export type ModeWaitlistSpotifyHistoryItemDataAuthor = {
   avatar?: Maybe<Scalars['String']>;
 };
 
-export type ModeWaitlistSpotifyItem = {
-  __typename?: 'ModeWaitlistSpotifyItem';
-  id: Scalars['String'];
-  duration?: Maybe<Scalars['Int']>;
-  start?: Maybe<Scalars['Int']>;
-  end?: Maybe<Scalars['Int']>;
-  skipped?: Maybe<Scalars['Boolean']>;
-  canceled?: Maybe<Scalars['Boolean']>;
-  track?: Maybe<ModeWaitlistSpotifyTrack>;
-  trackId?: Maybe<Scalars['String']>;
-  authorId?: Maybe<Scalars['String']>;
-  startedAt?: Maybe<Scalars['String']>;
-  endedAt?: Maybe<Scalars['String']>;
-  createdAt: Scalars['String'];
-  updatedAt: Scalars['String'];
-};
-
 export type ModeWaitlistSpotifyQueue = {
   __typename?: 'ModeWaitlistSpotifyQueue';
   actions: Array<ModeWaitlistSpotifyQueueAction>;
@@ -199,15 +182,6 @@ export type ModeWaitlistSpotifyQueueItemDataAuthor = {
   id: Scalars['String'];
   name: Scalars['String'];
   avatar?: Maybe<Scalars['String']>;
-};
-
-export type ModeWaitlistSpotifyTrack = {
-  __typename?: 'ModeWaitlistSpotifyTrack';
-  id: Scalars['String'];
-  title?: Maybe<Scalars['String']>;
-  artists?: Maybe<Scalars['String']>;
-  cover?: Maybe<Scalars['String']>;
-  duration?: Maybe<Scalars['Int']>;
 };
 
 export type Mutation = {
@@ -310,7 +284,6 @@ export type Query = {
   waitlistSpotifyHistory: ModeWaitlistSpotifyHistory;
   waitlistSpotifyCurrent: ModeWaitlistSpotifyCurrent;
   waitlistSpotifyQueue: ModeWaitlistSpotifyQueue;
-  waitlistSpotifyItem: ModeWaitlistSpotifyItem;
   spotifyNow?: Maybe<SpotifyNow>;
   spotifyToken: Scalars['String'];
   twitchStream: TwitchStream;
@@ -354,11 +327,6 @@ export type QueryWaitlistSpotifyCurrentArgs = {
 
 export type QueryWaitlistSpotifyQueueArgs = {
   channelName: Scalars['String'];
-};
-
-
-export type QueryWaitlistSpotifyItemArgs = {
-  itemId: Scalars['String'];
 };
 
 

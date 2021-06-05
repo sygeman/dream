@@ -7,7 +7,6 @@ import {
   Subscription,
 } from '@nestjs/graphql';
 import { PrismaService } from '@dream/prisma';
-import { ModeWaitlistSpotifyItem } from './models/waitlist-spotify-item.model';
 import { Inject, Logger, UseGuards } from '@nestjs/common';
 import { RedisPubSub } from 'graphql-redis-subscriptions';
 import { AuthGuard } from '@dream/auth-api';
@@ -108,14 +107,6 @@ export class WaitlistSpotifyResolver {
     };
 
     return queue;
-  }
-
-  @Query(() => ModeWaitlistSpotifyItem)
-  waitlistSpotifyItem(@Args({ name: 'itemId' }) itemId: string) {
-    return this.prisma.modeWaitlistSpotifyItem.findFirst({
-      where: { id: itemId },
-      include: { track: true },
-    });
   }
 
   @Mutation(() => Boolean)

@@ -21,7 +21,7 @@ export const TrackFromList = ({
     <div className="flex items-center h-full ml-auto">
       <div className="text-xs px-2 text-accent">{info}</div>
       <div
-        className="flex rounded-full overflow-hidden h-6 w-6 bg-background"
+        className="flex rounded-full overflow-hidden h-6 w-6 bg-surface"
         title={username}
       >
         <img src={avatar} className="" alt="" />

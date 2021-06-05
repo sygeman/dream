@@ -53,21 +53,25 @@ export class WaitlistSpotifyResolver {
     return history;
   }
 
-  @Query(() => ModeWaitlistSpotifyCurrent)
+  @Query(() => ModeWaitlistSpotifyCurrent, { nullable: true })
   async waitlistSpotifyCurrent(@Args({ name: 'channelId' }) channelId: string) {
-    const currentItem = await this.prisma.modeWaitlistSpotify.findFirst({
+    const modeData = await this.prisma.modeWaitlistSpotify.findFirst({
       where: { channel: { id: channelId } },
       include: {
         item: { include: { track: true, author: true } },
       },
     });
 
+    if (!modeData?.item) {
+      return null;
+    }
+
     const current = {
       item: {
-        ...currentItem.item,
-        cover: currentItem.item.track.cover,
-        artists: currentItem.item.track.artists,
-        title: currentItem.item.track.title,
+        ...modeData.item,
+        cover: modeData.item.track.cover,
+        artists: modeData.item.track.artists,
+        title: modeData.item.track.title,
       },
       actions: [ModeWaitlistSpotifyCurrentAction.SKIP],
     };

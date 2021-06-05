@@ -69,11 +69,11 @@ export const ChannelModeWaitlistSpotifyCurrent = ({
   setIsConnected,
 }) => {
   return (
-    <div className="relative">
+    <div className="relative h-16">
       <div className="absolute top-0 left-0 h-full w-full opacity-20 bg-background" />
-      <div className="relative">
-        <div className="relative">
-          {current && (
+      <div className="relative h-full">
+        <div className="relative h-full flex items-center">
+          {current ? (
             <ChannelModeWaitlistProgress
               start={current.startedAt}
               duration={current.duration}
@@ -81,36 +81,49 @@ export const ChannelModeWaitlistSpotifyCurrent = ({
               artist={current.artists}
               name={current.title}
             />
-          )}
-          {current && (
-            <div className="absolute right-4 top-0 h-full flex items-center">
-              {isConnected ? (
-                <button
-                  className="btn btn-secondary bg-surface mr-2 flex flex-nowrap w-auto"
-                  onClick={() => setIsConnected(false)}
-                >
-                  <StopIcon className="h-4 mr-2 opacity-70" />
-                  <span className="flex flex-nowrap">Leave Stream</span>
-                </button>
-              ) : (
-                <button
-                  className="btn btn-primary mr-2 flex flex-nowrap w-auto"
-                  onClick={() => setIsConnected(true)}
-                >
-                  <PlayIcon className="h-4 mr-2 opacity-70" />
-                  <span className="flex flex-nowrap">Connect to Stream</span>
-                </button>
-              )}
-              <div className="flex flex-col text-xs font-medium px-2 opacity-70 text-right">
-                <div className="text-accent">from</div>
-                <div className="text-white">{current.author.name}</div>
+          ) : (
+            <div className=" flex flex-col px-4">
+              <div className="text-md text-white">Nothing is playing now</div>
+              <div className="text-sm text-accent">
+                The queue is empty, add some cool track
               </div>
-              <div className="flex rounded-full overflow-hidden h-8 w-8 rounded-full bg-background mr-2">
-                <img src={current.author.avatar} className="" alt="" />
-              </div>
-              <CurrentMenu />
             </div>
           )}
+
+          <div className="absolute right-4 top-0 h-full flex items-center">
+            {isConnected ? (
+              <button
+                className="btn btn-secondary bg-surface mr-2 flex flex-nowrap w-auto"
+                onClick={() => setIsConnected(false)}
+              >
+                <StopIcon className="h-4 mr-2 opacity-70" />
+                <span className="flex flex-nowrap">Leave Stream</span>
+              </button>
+            ) : (
+              <button
+                className={clsx(
+                  'btn mr-2 flex flex-nowrap w-auto',
+                  current ? 'btn-primary' : 'btn-secondary bg-surface'
+                )}
+                onClick={() => setIsConnected(true)}
+              >
+                <PlayIcon className="h-4 mr-2 opacity-70" />
+                <span className="flex flex-nowrap">Connect to Stream</span>
+              </button>
+            )}
+            {current && (
+              <>
+                <div className="flex flex-col text-xs font-medium px-2 opacity-70 text-right">
+                  <div className="text-accent">from</div>
+                  <div className="text-white">{current.author.name}</div>
+                </div>
+                <div className="flex rounded-full overflow-hidden h-8 w-8 rounded-full bg-background mr-2">
+                  <img src={current.author.avatar} className="" alt="" />
+                </div>
+                <CurrentMenu />
+              </>
+            )}
+          </div>
         </div>
       </div>
     </div>

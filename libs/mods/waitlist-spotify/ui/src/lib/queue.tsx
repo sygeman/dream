@@ -12,7 +12,7 @@ import { useChannelId } from './use-channel-id';
 
 export const ChannelModeWaitlistSpotifyQueue = ({
   hidden = false,
-  isConnected,
+  addTrackAccent,
 }) => {
   const router = useRouter();
   const channelId = useChannelId();
@@ -57,7 +57,7 @@ export const ChannelModeWaitlistSpotifyQueue = ({
           <button
             className={clsx(
               'btn text-xs h-6 ml-auto',
-              isConnected ? 'btn-primary' : 'btn-secondary bg-surface'
+              addTrackAccent ? 'btn-primary' : 'btn-secondary bg-surface'
             )}
           >
             Add Track

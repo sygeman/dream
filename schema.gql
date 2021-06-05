@@ -184,7 +184,7 @@ type Query {
   channels(name: String!): [Channel!]!
   channelMessages(channelId: ID!): [ChannelMessage!]!
   waitlistSpotifyHistory(channelId: String!): ModeWaitlistSpotifyHistory!
-  waitlistSpotifyCurrent(channelId: String!): ModeWaitlistSpotifyCurrent!
+  waitlistSpotifyCurrent(channelId: String!): ModeWaitlistSpotifyCurrent
   waitlistSpotifyQueue(channelId: String!): ModeWaitlistSpotifyQueue!
   spotifyNow(token: String!): SpotifyNow
   spotifyToken: String!

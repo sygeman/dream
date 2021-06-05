@@ -12,6 +12,26 @@ import { ChannelModeWaitlistSpotifyQueue } from './queue';
 import { ChannelModeWaitlistSpotifyCurrent } from './current';
 import { useChannelId } from './use-channel-id';
 
+const ChannelModeWaitlistSpotifyAuth = () => (
+  <div className="absolute left-0 top-0 w-full h-full flex items-center justify-center">
+    <div className="flex flex-col">
+      <div className="text-sm text-accent mb-2">
+        For this mode you need a{' '}
+        <a
+          href="https://www.spotify.com/premium/"
+          target="_blank"
+          rel="noreferrer"
+          className="text-white underline"
+        >
+          Spotify Premium
+        </a>{' '}
+        account
+      </div>
+      <AuthButtonSpotify />
+    </div>
+  </div>
+);
+
 export const ChannelModeWaitlistSpotify = () => {
   const meQuery = useMeQuery();
   const profiles = meQuery?.data?.me?.profiles || [];
@@ -68,27 +88,11 @@ export const ChannelModeWaitlistSpotify = () => {
           isConnected={isConnected}
           setIsConnected={setIsConnected}
         />
-        <ChannelModeWaitlistSpotifyQueue isConnected={isConnected} />
+        <ChannelModeWaitlistSpotifyQueue
+          addTrackAccent={isConnected || !current}
+        />
       </div>
-      {!hasSpotifyAccount && (
-        <div className="absolute left-0 top-0 w-full h-full flex items-center justify-center">
-          <div className="flex flex-col">
-            <div className="text-sm text-accent mb-2">
-              For this mode you need a{' '}
-              <a
-                href="https://www.spotify.com/premium/"
-                target="_blank"
-                rel="noreferrer"
-                className="text-white underline"
-              >
-                Spotify Premium
-              </a>{' '}
-              account
-            </div>
-            <AuthButtonSpotify />
-          </div>
-        </div>
-      )}
+      {!hasSpotifyAccount && <ChannelModeWaitlistSpotifyAuth />}
     </div>
   );
 };

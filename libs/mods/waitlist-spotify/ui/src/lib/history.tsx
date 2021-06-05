@@ -7,6 +7,7 @@ import {
 } from '@dream/types';
 import { TrackFromList } from './components/track-from-list';
 import { useChannelId } from './use-channel-id';
+import { dateDistanceInWordsToNow } from '@dream/utils/date';
 
 export const ChannelModeWaitlistSpotifyHistory = ({ hidden = false }) => {
   const channelId = useChannelId();
@@ -41,7 +42,8 @@ export const ChannelModeWaitlistSpotifyHistory = ({ hidden = false }) => {
               artists={item.data.artists}
               title={item.data.title}
               avatar={item.data.author.avatar}
-              createdAt={item.data.endedAt}
+              info={dateDistanceInWordsToNow(item.data.endedAt)}
+              username={item.data.author.name}
             />
           </div>
         ))}

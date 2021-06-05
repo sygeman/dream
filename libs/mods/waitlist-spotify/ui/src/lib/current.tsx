@@ -105,7 +105,7 @@ export const ChannelModeWaitlistSpotifyCurrent = ({
                 <div className="text-accent">from</div>
                 <div className="text-white">{current.author.name}</div>
               </div>
-              <div className="flex rounded-full overflow-hidden h-8 w-8 mr-2">
+              <div className="flex rounded-full overflow-hidden h-8 w-8 rounded-full bg-background mr-2">
                 <img src={current.author.avatar} className="" alt="" />
               </div>
               <CurrentMenu />

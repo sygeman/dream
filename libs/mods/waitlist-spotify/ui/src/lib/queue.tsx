@@ -72,6 +72,7 @@ export const ChannelModeWaitlistSpotifyQueue = ({
               artists={item.data.artists}
               title={item.data.title}
               avatar={item.data.author.avatar}
+              info={item.data.author.name}
             />
           </div>
         ))}

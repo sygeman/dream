@@ -7,7 +7,8 @@ export const TrackFromList = ({
   artists,
   title,
   avatar,
-  createdAt = null,
+  username = '',
+  info = '',
 }) => (
   <div className="flex px-4 py-1 items-center opacity-70 hover:opacity-100 group">
     <div>
@@ -18,10 +19,11 @@ export const TrackFromList = ({
       <div className="text-xs text-accent">{title}</div>
     </div>
     <div className="flex items-center h-full ml-auto">
-      <div className="text-xs px-2 text-accent">
-        {dateDistanceInWordsToNow(createdAt)}
-      </div>
-      <div className="flex rounded-full overflow-hidden h-6 w-6">
+      <div className="text-xs px-2 text-accent">{info}</div>
+      <div
+        className="flex rounded-full overflow-hidden h-6 w-6 bg-background"
+        title={username}
+      >
         <img src={avatar} className="" alt="" />
       </div>
       <div className="ml-2">

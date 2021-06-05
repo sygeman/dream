@@ -117,7 +117,7 @@ module.exports = {
         '.btn-social': {
           fontWeight: theme('fontWeight.medium'),
           margin: `${theme('spacing.1')} 0`,
-          padding: `${theme('spacing.3')} ${theme('spacing.4')}`,
+          padding: `${theme('spacing.2')} ${theme('spacing.4')}`,
           display: 'inline-flex',
           alignItems: 'center',
           width: theme('width.w-full'),

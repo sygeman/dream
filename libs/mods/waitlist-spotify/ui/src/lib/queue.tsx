@@ -1,5 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import {
   useWaitlistSpotifyQueueQuery,
@@ -7,19 +8,21 @@ import {
 } from '@dream/types';
 import { TrackFromList } from './components/track-from-list';
 import { ViewListIcon } from '@heroicons/react/solid';
+import { useChannelId } from './use-channel-id';
 
 export const ChannelModeWaitlistSpotifyQueue = ({ hidden = false }) => {
-  const { query } = useRouter();
-  const channelName = typeof query?.channel === 'string' && query?.channel;
+  const router = useRouter();
+  const channelId = useChannelId();
 
   const queueQuery = useWaitlistSpotifyQueueQuery({
-    variables: { channelName },
-    skip: !channelName,
+    variables: { channelId },
+    skip: !channelId,
+    fetchPolicy: 'network-only',
   });
 
   useWaitlistSpotifyQueueUpdatedSubscription({
-    variables: { channelName },
-    skip: !channelName,
+    variables: { channelId },
+    skip: !channelId,
     onSubscriptionData: () => {
       queueQuery.refetch();
     },
@@ -37,10 +40,21 @@ export const ChannelModeWaitlistSpotifyQueue = ({ hidden = false }) => {
       <div className="flex text-xs text-accent font-medium px-4 py-2 items-center">
         <ViewListIcon className="h-4 text-accent mr-2 opacity-50" />
         <span>Waitlist</span>
-        <span className="opacity-50 ml-2">1/50</span>
-        <button className="btn btn-primary text-xs h-6 ml-auto">
-          Add Track
-        </button>
+        <span className="opacity-50 ml-2">{queueItems?.length}/50</span>
+        <Link
+          href={{
+            pathname: router.route,
+            query: {
+              ...router.query,
+              waitlistSpotifyAddTrack: 1,
+            },
+          }}
+          passHref
+        >
+          <button className="btn btn-primary text-xs h-6 ml-auto">
+            Add Track
+          </button>
+        </Link>
       </div>
       {!hidden &&
         queueItems.map((item) => (

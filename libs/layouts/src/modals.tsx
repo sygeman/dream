@@ -11,6 +11,7 @@ import { useIntl } from 'react-intl';
 import { Auth } from '@dream/auth';
 import { Modal } from '@dream/components/modal';
 import { ModalFull } from '@dream/components/modal-full';
+import { ChannelModeWaitlistSpotifyAddTrack } from '@dream/mods/waitlist-spotify/ui';
 
 export const Modals = () => {
   const intl = useIntl();
@@ -33,6 +34,14 @@ export const Modals = () => {
       </Modal>
       <Modal id="deleteChannel" title="Delete Channel" minimal {...modalProps}>
         <DeleteChannel />
+      </Modal>
+      <Modal
+        id="waitlistSpotifyAddTrack"
+        title="Add Track To Queue"
+        minimal
+        {...modalProps}
+      >
+        <ChannelModeWaitlistSpotifyAddTrack />
       </Modal>
       <ModalFull
         id="channelSettings"

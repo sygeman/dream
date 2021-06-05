@@ -1,5 +1,5 @@
-query waitlistSpotifyHistory($channelName: String!) {
-  waitlistSpotifyHistory(channelName: $channelName) {
+query waitlistSpotifyHistory($channelId: String!) {
+  waitlistSpotifyHistory(channelId: $channelId) {
     items {
       data {
         id
@@ -21,8 +21,12 @@ query waitlistSpotifyHistory($channelName: String!) {
   }
 }
 
-query waitlistSpotifyCurrent($channelName: String!) {
-  waitlistSpotifyCurrent(channelName: $channelName) {
+subscription waitlistSpotifyHistoryUpdated($channelId: String!) {
+  waitlistSpotifyHistoryUpdated(channelId: $channelId)
+}
+
+query waitlistSpotifyCurrent($channelId: String!) {
+  waitlistSpotifyCurrent(channelId: $channelId) {
     item {
       id
       trackId
@@ -41,8 +45,12 @@ query waitlistSpotifyCurrent($channelName: String!) {
   }
 }
 
-query waitlistSpotifyQueue($channelName: String!) {
-  waitlistSpotifyQueue(channelName: $channelName) {
+subscription waitlistSpotifyCurrentUpdated($channelId: String!) {
+  waitlistSpotifyCurrentUpdated(channelId: $channelId)
+}
+
+query waitlistSpotifyQueue($channelId: String!) {
+  waitlistSpotifyQueue(channelId: $channelId) {
     items {
       data {
         id
@@ -63,12 +71,8 @@ query waitlistSpotifyQueue($channelName: String!) {
   }
 }
 
-subscription waitlistSpotifyCurrentUpdated($channelName: String!) {
-  waitlistSpotifyCurrentUpdated(channelName: $channelName)
-}
-
-subscription waitlistSpotifyQueueUpdated($channelName: String!) {
-  waitlistSpotifyQueueUpdated(channelName: $channelName)
+subscription waitlistSpotifyQueueUpdated($channelId: String!) {
+  waitlistSpotifyQueueUpdated(channelId: $channelId)
 }
 
 mutation waitlistSpotifyQueueAddTrack($channelId: String!) {

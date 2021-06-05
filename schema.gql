@@ -183,9 +183,9 @@ type Query {
   channel(name: String!): Channel!
   channels(name: String!): [Channel!]!
   channelMessages(channelId: ID!): [ChannelMessage!]!
-  waitlistSpotifyHistory(channelName: String!): ModeWaitlistSpotifyHistory!
-  waitlistSpotifyCurrent(channelName: String!): ModeWaitlistSpotifyCurrent!
-  waitlistSpotifyQueue(channelName: String!): ModeWaitlistSpotifyQueue!
+  waitlistSpotifyHistory(channelId: String!): ModeWaitlistSpotifyHistory!
+  waitlistSpotifyCurrent(channelId: String!): ModeWaitlistSpotifyCurrent!
+  waitlistSpotifyQueue(channelId: String!): ModeWaitlistSpotifyQueue!
   spotifyNow(token: String!): SpotifyNow
   spotifyToken: String!
   twitchStream(channelId: String!): TwitchStream!
@@ -244,6 +244,7 @@ input UpdateTwitchStreamInput {
 type Subscription {
   channelMessageCreated(channelId: ID!): ChannelMessage!
   channelMessageDeleted(channelId: ID!): ChannelMessage!
-  waitlistSpotifyCurrentUpdated(channelName: String!): Boolean!
-  waitlistSpotifyQueueUpdated(channelName: String!): Boolean!
+  waitlistSpotifyCurrentUpdated(channelId: String!): Boolean!
+  waitlistSpotifyQueueUpdated(channelId: String!): Boolean!
+  waitlistSpotifyHistoryUpdated(channelId: String!): Boolean!
 }

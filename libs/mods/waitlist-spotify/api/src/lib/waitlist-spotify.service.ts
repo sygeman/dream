@@ -33,9 +33,6 @@ export class WaitlistSpotifyService {
       {
         where: { id: waitlistId },
         data: { itemId },
-        include: {
-          channel: true,
-        },
       }
     );
 
@@ -49,8 +46,13 @@ export class WaitlistSpotifyService {
       );
     }
 
+    this.logger.log(
+      `waitlistSpotifyCurrentUpdated - ${waitlistSpotifyUpdated.channelId}`
+    );
+
     this.pubsub.publish('waitlistSpotifyCurrentUpdated', {
-      channelName: waitlistSpotifyUpdated.channel.name,
+      channelId: waitlistSpotifyUpdated.channelId,
+      waitlistSpotifyCurrentUpdated: true,
     });
   }
 
@@ -100,11 +102,16 @@ export class WaitlistSpotifyService {
     const updatedItem = await this.prisma.modeWaitlistSpotifyItem.update({
       where: { id: itemId },
       data: { startedAt: new Date() },
-      include: { channel: true },
     });
 
     this.pubsub.publish('waitlistSpotifyQueueUpdated', {
-      channelName: updatedItem.channel.name,
+      channelId: updatedItem.channelId,
+      waitlistSpotifyQueueUpdated: true,
+    });
+
+    this.pubsub.publish('waitlistSpotifyHistoryUpdated', {
+      channelId: updatedItem.channelId,
+      waitlistSpotifyHistoryUpdated: true,
     });
 
     return this.updateWaitlistState({
@@ -159,11 +166,11 @@ export class WaitlistSpotifyService {
           },
         },
       },
-      include: { channel: true },
     });
 
     this.pubsub.publish('waitlistSpotifyQueueUpdated', {
-      channelName: newItem.channel.name,
+      channelId: newItem.channelId,
+      waitlistSpotifyQueueUpdated: true,
     });
 
     const waitlistSpotifyIsEmpty =

@@ -1,5 +1,4 @@
 import React from 'react';
-import { useRouter } from 'next/router';
 import {
   useWaitlistSpotifyCurrentQuery,
   useWaitlistSpotifyCurrentUpdatedSubscription,
@@ -8,19 +7,20 @@ import { Backgroud } from './components/background';
 import { ChannelModeWaitlistSpotifyHistory } from './history';
 import { ChannelModeWaitlistSpotifyQueue } from './queue';
 import { ChannelModeWaitlistSpotifyCurrent } from './current';
+import { useChannelId } from './use-channel-id';
 
 export const ChannelModeWaitlistSpotify = () => {
-  const { query } = useRouter();
-  const channelName = typeof query?.channel === 'string' && query?.channel;
+  const channelId = useChannelId();
 
   const currentQuery = useWaitlistSpotifyCurrentQuery({
-    variables: { channelName },
-    skip: !channelName,
+    variables: { channelId },
+    skip: !channelId,
+    fetchPolicy: 'network-only',
   });
 
   useWaitlistSpotifyCurrentUpdatedSubscription({
-    variables: { channelName },
-    skip: !channelName,
+    variables: { channelId },
+    skip: !channelId,
     onSubscriptionData: () => {
       currentQuery.refetch();
     },

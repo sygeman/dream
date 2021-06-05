@@ -28,11 +28,9 @@ export class WaitlistSpotifyResolver {
   ) {}
 
   @Query(() => ModeWaitlistSpotifyHistory)
-  async waitlistSpotifyHistory(
-    @Args({ name: 'channelName' }) channelName: string
-  ) {
+  async waitlistSpotifyHistory(@Args({ name: 'channelId' }) channelId: string) {
     const historyItems = await this.prisma.modeWaitlistSpotifyItem.findMany({
-      where: { channel: { name: channelName }, endedAt: { not: null } },
+      where: { channel: { id: channelId }, endedAt: { not: null } },
       orderBy: {
         createdAt: 'desc',
       },
@@ -56,11 +54,9 @@ export class WaitlistSpotifyResolver {
   }
 
   @Query(() => ModeWaitlistSpotifyCurrent)
-  async waitlistSpotifyCurrent(
-    @Args({ name: 'channelName' }) channelName: string
-  ) {
+  async waitlistSpotifyCurrent(@Args({ name: 'channelId' }) channelId: string) {
     const currentItem = await this.prisma.modeWaitlistSpotify.findFirst({
-      where: { channel: { name: channelName } },
+      where: { channel: { id: channelId } },
       include: {
         item: { include: { track: true, author: true } },
       },
@@ -80,12 +76,10 @@ export class WaitlistSpotifyResolver {
   }
 
   @Query(() => ModeWaitlistSpotifyQueue)
-  async waitlistSpotifyQueue(
-    @Args({ name: 'channelName' }) channelName: string
-  ) {
+  async waitlistSpotifyQueue(@Args({ name: 'channelId' }) channelId: string) {
     const queueItems = await this.prisma.modeWaitlistSpotifyItem.findMany({
       where: {
-        channel: { name: channelName },
+        channel: { id: channelId },
         startedAt: null,
         canceled: false,
       },
@@ -147,20 +141,29 @@ export class WaitlistSpotifyResolver {
   }
 
   @Subscription(() => Boolean, {
-    filter: ({ channelName }, args) => channelName === args.channelName,
+    filter: ({ channelId }, args) => channelId === args.channelId,
   })
   waitlistSpotifyCurrentUpdated(
-    @Args({ name: 'channelName', type: () => String }) channelName: string
+    @Args({ name: 'channelId', type: () => String }) channelId: string
   ) {
     return this.pubsub.asyncIterator('waitlistSpotifyCurrentUpdated');
   }
 
   @Subscription(() => Boolean, {
-    filter: ({ channelName }, args) => channelName === args.channelName,
+    filter: ({ channelId }, args) => channelId === args.channelId,
   })
   waitlistSpotifyQueueUpdated(
-    @Args({ name: 'channelName', type: () => String }) channelName: string
+    @Args({ name: 'channelId', type: () => String }) channelId: string
   ) {
     return this.pubsub.asyncIterator('waitlistSpotifyQueueUpdated');
+  }
+
+  @Subscription(() => Boolean, {
+    filter: ({ channelId }, args) => channelId === args.channelId,
+  })
+  waitlistSpotifyHistoryUpdated(
+    @Args({ name: 'channelId', type: () => String }) channelId: string
+  ) {
+    return this.pubsub.asyncIterator('waitlistSpotifyHistoryUpdated');
   }
 }

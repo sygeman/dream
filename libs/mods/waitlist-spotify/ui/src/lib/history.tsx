@@ -1,18 +1,27 @@
 import React from 'react';
 import clsx from 'clsx';
-import { useRouter } from 'next/router';
 import { ClockIcon } from '@heroicons/react/solid';
-import { useWaitlistSpotifyHistoryQuery } from '@dream/types';
+import {
+  useWaitlistSpotifyHistoryQuery,
+  useWaitlistSpotifyHistoryUpdatedSubscription,
+} from '@dream/types';
 import { TrackFromList } from './components/track-from-list';
+import { useChannelId } from './use-channel-id';
 
 export const ChannelModeWaitlistSpotifyHistory = ({ hidden = false }) => {
-  const { query } = useRouter();
-  const channelName = typeof query?.channel === 'string' && query?.channel;
+  const channelId = useChannelId();
 
   const historyQuery = useWaitlistSpotifyHistoryQuery({
-    variables: { channelName },
-    skip: !channelName,
-    pollInterval: 5000,
+    variables: { channelId },
+    skip: !channelId,
+  });
+
+  useWaitlistSpotifyHistoryUpdatedSubscription({
+    variables: { channelId },
+    skip: !channelId,
+    onSubscriptionData: () => {
+      historyQuery.refetch();
+    },
   });
 
   const historyItems = historyQuery?.data?.waitlistSpotifyHistory?.items || [];

@@ -31,17 +31,7 @@ export const Modal: React.FC<ModalProps> = ({
         onClose={close}
       >
         <div className="min-h-screen px-4 text-center" tabIndex={1}>
-          <Transition.Child
-            as={Fragment}
-            enter="ease-out duration-300"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
-            leave="ease-in duration-200"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
-          >
-            <Dialog.Overlay className="fixed inset-0 bg-background opacity-90" />
-          </Transition.Child>
+          <Dialog.Overlay className="fixed inset-0 bg-background opacity-90" />
 
           {/* This element is to trick the browser into centering the modal contents. */}
           <span

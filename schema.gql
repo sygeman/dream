@@ -78,6 +78,30 @@ type SpotifyNow {
   progress: Float!
 }
 
+type ModeWaitlistSpotifyTrack {
+  id: String!
+  title: String
+  artists: String
+  cover: String
+  duration: Int
+}
+
+type ModeWaitlistSpotifyItem {
+  id: String!
+  duration: Int
+  start: Int
+  end: Int
+  skipped: Boolean
+  canceled: Boolean
+  track: ModeWaitlistSpotifyTrack
+  trackId: String
+  authorId: String
+  startedAt: String
+  endedAt: String
+  createdAt: String!
+  updatedAt: String!
+}
+
 type ModeWaitlistSpotifyHistoryItemDataAuthor {
   id: String!
   name: String!
@@ -169,40 +193,6 @@ enum ModeWaitlistSpotifyQueueAction {
   ADD_TRACK
 }
 
-type ModeWaitlistSpotify {
-  history: ModeWaitlistSpotifyHistory!
-  current: ModeWaitlistSpotifyCurrent!
-  queue: ModeWaitlistSpotifyQueue!
-}
-
-type ModeWaitlistSpotifyTrack {
-  id: String!
-  title: String
-  artists: String
-  cover: String
-  duration: Int
-}
-
-type ModeWaitlistSpotifyItem {
-  id: String!
-  duration: Int
-  start: Int
-  end: Int
-  skipped: Boolean
-  canceled: Boolean
-  track: ModeWaitlistSpotifyTrack
-  trackId: String
-  authorId: String
-  startedAt: String
-  endedAt: String
-  createdAt: String!
-  updatedAt: String!
-}
-
-type ModeWaitlistSpotifyUpdated {
-  channelName: String!
-}
-
 type TwitchStream {
   id: String!
   channelKey: String
@@ -217,9 +207,10 @@ type Query {
   channel(name: String!): Channel!
   channels(name: String!): [Channel!]!
   channelMessages(channelId: ID!): [ChannelMessage!]!
-  waitlistSpotify(channelName: String!): ModeWaitlistSpotify!
+  waitlistSpotifyHistory(channelName: String!): ModeWaitlistSpotifyHistory!
+  waitlistSpotifyCurrent(channelName: String!): ModeWaitlistSpotifyCurrent!
+  waitlistSpotifyQueue(channelName: String!): ModeWaitlistSpotifyQueue!
   waitlistSpotifyItem(itemId: String!): ModeWaitlistSpotifyItem!
-  waitlistSpotifyQueue(channelId: String!): [ModeWaitlistSpotifyItem!]!
   spotifyNow(token: String!): SpotifyNow
   spotifyToken: String!
   twitchStream(channelId: String!): TwitchStream!
@@ -278,5 +269,6 @@ input UpdateTwitchStreamInput {
 type Subscription {
   channelMessageCreated(channelId: ID!): ChannelMessage!
   channelMessageDeleted(channelId: ID!): ChannelMessage!
-  waitlistSpotifyUpdated(channelName: String!): ModeWaitlistSpotifyUpdated!
+  waitlistSpotifyCurrentUpdated(channelName: String!): Boolean!
+  waitlistSpotifyQueueUpdated(channelName: String!): Boolean!
 }

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { TrackInfo } from './components/track-info';
+import { TrackInfo } from './track-info';
 
 export const ChannelModeWaitlistProgress = ({
   start,

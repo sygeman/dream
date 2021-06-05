@@ -1,27 +1,7 @@
-query waitlistSpotify($channelName: String!) {
-  waitlistSpotify(channelName: $channelName) {
-    history {
-      items {
-        data {
-          id
-          trackId
-          duration
-          cover
-          artists
-          title
-          startedAt
-          endedAt
-          author {
-            id
-            name
-            avatar
-          }
-        }
-        actions
-      }
-    }
-    current {
-      item {
+query waitlistSpotifyHistory($channelName: String!) {
+  waitlistSpotifyHistory(channelName: $channelName) {
+    items {
+      data {
         id
         trackId
         duration
@@ -29,6 +9,7 @@ query waitlistSpotify($channelName: String!) {
         artists
         title
         startedAt
+        endedAt
         author {
           id
           name
@@ -37,32 +18,57 @@ query waitlistSpotify($channelName: String!) {
       }
       actions
     }
-    queue {
-      items {
-        data {
-          id
-          trackId
-          duration
-          cover
-          artists
-          title
-          author {
-            id
-            name
-            avatar
-          }
-        }
-        actions
-      }
-      actions
-    }
   }
 }
 
-subscription waitlistSpotifyUpdated($channelName: String!) {
-  waitlistSpotifyUpdated(channelName: $channelName) {
-    channelName
+query waitlistSpotifyCurrent($channelName: String!) {
+  waitlistSpotifyCurrent(channelName: $channelName) {
+    item {
+      id
+      trackId
+      duration
+      cover
+      artists
+      title
+      startedAt
+      author {
+        id
+        name
+        avatar
+      }
+    }
+    actions
   }
+}
+
+query waitlistSpotifyQueue($channelName: String!) {
+  waitlistSpotifyQueue(channelName: $channelName) {
+    items {
+      data {
+        id
+        trackId
+        duration
+        cover
+        artists
+        title
+        author {
+          id
+          name
+          avatar
+        }
+      }
+      actions
+    }
+    actions
+  }
+}
+
+subscription waitlistSpotifyCurrentUpdated($channelName: String!) {
+  waitlistSpotifyCurrentUpdated(channelName: $channelName)
+}
+
+subscription waitlistSpotifyQueueUpdated($channelName: String!) {
+  waitlistSpotifyQueueUpdated(channelName: $channelName)
 }
 
 mutation waitlistSpotifyQueueAddTrack($channelId: String!) {

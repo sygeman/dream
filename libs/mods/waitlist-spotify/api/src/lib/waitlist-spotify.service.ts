@@ -49,10 +49,8 @@ export class WaitlistSpotifyService {
       );
     }
 
-    this.pubsub.publish('waitlistSpotifyUpdated', {
-      waitlistSpotifyUpdated: {
-        channelName: waitlistSpotifyUpdated.channel.name,
-      },
+    this.pubsub.publish('waitlistSpotifyCurrentUpdated', {
+      channelName: waitlistSpotifyUpdated.channel.name,
     });
   }
 
@@ -99,9 +97,14 @@ export class WaitlistSpotifyService {
 
     const itemId = item.id;
 
-    await this.prisma.modeWaitlistSpotifyItem.update({
+    const updatedItem = await this.prisma.modeWaitlistSpotifyItem.update({
       where: { id: itemId },
       data: { startedAt: new Date() },
+      include: { channel: true },
+    });
+
+    this.pubsub.publish('waitlistSpotifyQueueUpdated', {
+      channelName: updatedItem.channel.name,
     });
 
     return this.updateWaitlistState({
@@ -131,7 +134,7 @@ export class WaitlistSpotifyService {
     // Set track to queue
     const images = track?.album?.images || [];
 
-    await this.prisma.modeWaitlistSpotifyItem.create({
+    const newItem = await this.prisma.modeWaitlistSpotifyItem.create({
       data: {
         duration: track?.duration_ms, // TODO: Include start, end position
         end: track?.duration_ms,
@@ -156,6 +159,11 @@ export class WaitlistSpotifyService {
           },
         },
       },
+      include: { channel: true },
+    });
+
+    this.pubsub.publish('waitlistSpotifyQueueUpdated', {
+      channelName: newItem.channel.name,
     });
 
     const waitlistSpotifyIsEmpty =
@@ -171,6 +179,10 @@ export class WaitlistSpotifyService {
   removeTrack() {
     this.logger.log('removeTrack');
     // Remove track from queue
+
+    // this.pubsub.publish('waitlistSpotifyQueueUpdated', {
+    //   channelName: waitlistSpotifyUpdated.channel.name,
+    // });
   }
 
   async skipTrackByQueue(itemId: string) {

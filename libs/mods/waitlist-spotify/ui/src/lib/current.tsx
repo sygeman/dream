@@ -1,10 +1,14 @@
-import React, { Fragment } from 'react';
-import { DotsVerticalIcon, FastForwardIcon } from '@heroicons/react/solid';
+import React, { Fragment, useState } from 'react';
+import {
+  DotsVerticalIcon,
+  FastForwardIcon,
+  PlayIcon,
+  StopIcon,
+} from '@heroicons/react/solid';
 import { ChannelModeWaitlistProgress } from './components/progress';
 import { Menu, Transition } from '@headlessui/react';
 import clsx from 'clsx';
 import { useWaitlistSpotifyQueueSkipTrackMutation } from '@dream/types';
-import { useRouter } from 'next/router';
 import { useChannelId } from './use-channel-id';
 
 const CurrentMenu = () => {
@@ -59,7 +63,11 @@ const CurrentMenu = () => {
   );
 };
 
-export const ChannelModeWaitlistSpotifyCurrent = ({ current }) => {
+export const ChannelModeWaitlistSpotifyCurrent = ({
+  current,
+  isConnected,
+  setIsConnected,
+}) => {
   return (
     <div className="relative">
       <div className="absolute top-0 left-0 h-full w-full opacity-20 bg-background" />
@@ -76,6 +84,23 @@ export const ChannelModeWaitlistSpotifyCurrent = ({ current }) => {
           )}
           {current && (
             <div className="absolute right-4 top-0 h-full flex items-center">
+              {isConnected ? (
+                <button
+                  className="btn btn-secondary bg-surface mr-2 flex flex-nowrap w-auto"
+                  onClick={() => setIsConnected(false)}
+                >
+                  <StopIcon className="h-4 mr-2 opacity-70" />
+                  <span className="flex flex-nowrap">Leave Stream</span>
+                </button>
+              ) : (
+                <button
+                  className="btn btn-primary mr-2 flex flex-nowrap w-auto"
+                  onClick={() => setIsConnected(true)}
+                >
+                  <PlayIcon className="h-4 mr-2 opacity-70" />
+                  <span className="flex flex-nowrap">Connect Stream</span>
+                </button>
+              )}
               <div className="flex flex-col text-xs font-medium px-2 opacity-70 text-right">
                 <div className="text-accent">from</div>
                 <div className="text-white">{current.author.name}</div>

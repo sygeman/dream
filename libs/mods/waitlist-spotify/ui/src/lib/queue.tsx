@@ -10,7 +10,10 @@ import { TrackFromList } from './components/track-from-list';
 import { ViewListIcon } from '@heroicons/react/solid';
 import { useChannelId } from './use-channel-id';
 
-export const ChannelModeWaitlistSpotifyQueue = ({ hidden = false }) => {
+export const ChannelModeWaitlistSpotifyQueue = ({
+  hidden = false,
+  isConnected,
+}) => {
   const router = useRouter();
   const channelId = useChannelId();
 
@@ -51,7 +54,12 @@ export const ChannelModeWaitlistSpotifyQueue = ({ hidden = false }) => {
           }}
           passHref
         >
-          <button className="btn btn-primary text-xs h-6 ml-auto">
+          <button
+            className={clsx(
+              'btn text-xs h-6 ml-auto',
+              isConnected ? 'btn-primary' : 'btn-secondary bg-surface'
+            )}
+          >
             Add Track
           </button>
         </Link>

@@ -98,7 +98,7 @@ export const ChannelModeWaitlistSpotifyCurrent = ({
                   onClick={() => setIsConnected(true)}
                 >
                   <PlayIcon className="h-4 mr-2 opacity-70" />
-                  <span className="flex flex-nowrap">Connect Stream</span>
+                  <span className="flex flex-nowrap">Connect to Stream</span>
                 </button>
               )}
               <div className="flex flex-col text-xs font-medium px-2 opacity-70 text-right">

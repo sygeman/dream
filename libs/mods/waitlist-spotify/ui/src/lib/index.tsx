@@ -52,7 +52,7 @@ export const ChannelModeWaitlistSpotify = () => {
           isConnected={isConnected}
           setIsConnected={setIsConnected}
         />
-        <ChannelModeWaitlistSpotifyQueue />
+        <ChannelModeWaitlistSpotifyQueue isConnected={isConnected} />
       </div>
     </div>
   );

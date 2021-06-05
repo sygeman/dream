@@ -245,6 +245,7 @@ export type MutationCreateChannelMessageArgs = {
 
 
 export type MutationWaitlistSpotifyQueueAddTrackArgs = {
+  trackId: Scalars['String'];
   channelId: Scalars['String'];
 };
 
@@ -740,6 +741,7 @@ export type WaitlistSpotifyQueueUpdatedSubscription = (
 
 export type WaitlistSpotifyQueueAddTrackMutationVariables = Exact<{
   channelId: Scalars['String'];
+  trackId: Scalars['String'];
 }>;
 
 
@@ -1630,8 +1632,8 @@ export function useWaitlistSpotifyQueueUpdatedSubscription(baseOptions: Apollo.S
 export type WaitlistSpotifyQueueUpdatedSubscriptionHookResult = ReturnType<typeof useWaitlistSpotifyQueueUpdatedSubscription>;
 export type WaitlistSpotifyQueueUpdatedSubscriptionResult = Apollo.SubscriptionResult<WaitlistSpotifyQueueUpdatedSubscription>;
 export const WaitlistSpotifyQueueAddTrackDocument = gql`
-    mutation waitlistSpotifyQueueAddTrack($channelId: String!) {
-  waitlistSpotifyQueueAddTrack(channelId: $channelId)
+    mutation waitlistSpotifyQueueAddTrack($channelId: String!, $trackId: String!) {
+  waitlistSpotifyQueueAddTrack(channelId: $channelId, trackId: $trackId)
 }
     `;
 export type WaitlistSpotifyQueueAddTrackMutationFn = Apollo.MutationFunction<WaitlistSpotifyQueueAddTrackMutation, WaitlistSpotifyQueueAddTrackMutationVariables>;
@@ -1650,6 +1652,7 @@ export type WaitlistSpotifyQueueAddTrackMutationFn = Apollo.MutationFunction<Wai
  * const [waitlistSpotifyQueueAddTrackMutation, { data, loading, error }] = useWaitlistSpotifyQueueAddTrackMutation({
  *   variables: {
  *      channelId: // value for 'channelId'
+ *      trackId: // value for 'trackId'
  *   },
  * });
  */

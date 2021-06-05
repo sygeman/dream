@@ -75,8 +75,8 @@ subscription waitlistSpotifyQueueUpdated($channelId: String!) {
   waitlistSpotifyQueueUpdated(channelId: $channelId)
 }
 
-mutation waitlistSpotifyQueueAddTrack($channelId: String!) {
-  waitlistSpotifyQueueAddTrack(channelId: $channelId)
+mutation waitlistSpotifyQueueAddTrack($channelId: String!, $trackId: String!) {
+  waitlistSpotifyQueueAddTrack(channelId: $channelId, trackId: $trackId)
 }
 
 mutation waitlistSpotifyQueueSkipTrack($channelId: String!) {

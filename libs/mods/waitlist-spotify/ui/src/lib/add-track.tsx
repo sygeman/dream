@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import clsx from 'clsx';
 import { useRouter } from 'next/router';
 import { useWaitlistSpotifyQueueAddTrackMutation } from '@dream/types';
 import { useChannelId } from './use-channel-id';
 
 export const ChannelModeWaitlistSpotifyAddTrack = () => {
+  const [trackId, setTrackId] = useState('');
   const router = useRouter();
   const channelId = useChannelId();
 
@@ -19,26 +20,36 @@ export const ChannelModeWaitlistSpotifyAddTrack = () => {
       <h2 className="text-accent-light uppercase text-sm font-medium mb-2">
         Add Track To Queue
       </h2>
-      <p className="mb-6 text-accent text-sm">Search Track Input</p>
+      <p className="mb-6 text-accent text-sm">
+        <input
+          type="text"
+          className="bg-background text-white text-xs p-2 rounded w-full focus:outline-none focus:ring-1 mb-2"
+          placeholder="Paste spotify track link here..."
+          onChange={(e) => {
+            const trackId = e.target.value.match(/\/track\/([^?]+)/)?.[1];
+            setTrackId(trackId);
+          }}
+        />
+      </p>
       <div className="flex w-full justify-end">
         <button
           type="button"
           className={clsx('btn mr-2')}
-          onClick={() => {
-            router.back();
-          }}
+          onClick={() => router.back()}
         >
           Cancel
         </button>
-        <button
-          type="button"
-          className={clsx('btn btn-primary')}
-          onClick={() => {
-            addTrackMutation({ variables: { channelId } });
-          }}
-        >
-          Add Track
-        </button>
+        {trackId && (
+          <button
+            type="button"
+            className={clsx('btn btn-primary')}
+            onClick={() => {
+              addTrackMutation({ variables: { channelId, trackId } });
+            }}
+          >
+            Add Track
+          </button>
+        )}
       </div>
     </div>
   );

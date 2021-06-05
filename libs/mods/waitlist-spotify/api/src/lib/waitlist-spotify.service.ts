@@ -5,13 +5,6 @@ import { Inject, Injectable, Logger } from '@nestjs/common';
 import { Queue } from 'bull';
 import { RedisPubSub } from 'graphql-redis-subscriptions';
 
-const tracks = [
-  '17zlGHXRnT7MWL2xd18hj2',
-  '3u3Xbikv0FlSRyyPfug1YR',
-  '6RxYJ07q468fDNFMYXnqrc',
-  '6dLBgoJCyB9NlDARCTwJes',
-];
-
 @Injectable()
 export class WaitlistSpotifyService {
   private readonly logger = new Logger(WaitlistSpotifyService.name);
@@ -58,14 +51,6 @@ export class WaitlistSpotifyService {
 
   async setTrack({ channelId, manualSkip = false }) {
     this.logger.log(`setTrack channel:${channelId}`);
-
-    // For test
-    const randomTrackId = tracks[Math.floor(Math.random() * tracks.length)];
-    this.addTrack({
-      channelId,
-      userId: 'ckof0hq3c12216386mhg8imq4o',
-      trackId: randomTrackId,
-    });
 
     // Get current state
     const waitlistSpotify = await this.prisma.modeWaitlistSpotify.findFirst({

@@ -107,15 +107,10 @@ export class WaitlistSpotifyResolver {
   @UseGuards(AuthGuard)
   async waitlistSpotifyQueueAddTrack(
     @Args({ name: 'channelId' }) channelId: string,
+    @Args({ name: 'trackId' }) trackId: string,
     @Context('userId') userId: string
   ) {
-    // Some track input (parse link) https://open.spotify.com/track/3u3Xbikv0FlSRyyPfug1YR?si=afe7417d4c3b4cbe
-    const trackId = '3u3Xbikv0FlSRyyPfug1YR'; // 17zlGHXRnT7MWL2xd18hj2
-    // Get track from spotify service by id,
-    Logger.log({ userId, trackId });
-
     await this.waitlistSpotifyService.addTrack({ channelId, userId, trackId });
-
     return true;
   }
 

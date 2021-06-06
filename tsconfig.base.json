@@ -46,7 +46,12 @@
       "@dream/mods/twitch-stream/ui": [
         "libs/mods/twitch-stream/ui/src/index.ts"
       ],
-      "@dream/app-panel": ["libs/app-panel/src/index.ts"]
+      "@dream/app-panel": ["libs/app-panel/src/index.ts"],
+      "@dream/components/modal": ["libs/components/modal/src/index.ts"],
+      "@dream/components/modal-full": [
+        "libs/components/modal-full/src/index.ts"
+      ],
+      "@dream/components/save-form": ["libs/components/save-form/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

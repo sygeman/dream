@@ -1,42 +1,99 @@
 {
   "implicitDependencies": {
     "workspace.json": "*",
-    "package.json": { "dependencies": "*", "devDependencies": "*" },
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
     "tsconfig.base.json": "*",
     "tslint.json": "*",
     ".eslintrc.json": "*",
     "nx.json": "*"
   },
-  "affected": { "defaultBase": "master" },
+  "affected": {
+    "defaultBase": "master"
+  },
   "npmScope": "dream",
   "tasksRunnerOptions": {
     "default": {
       "runner": "@nrwl/workspace/tasks-runners/default",
-      "options": { "cacheableOperations": ["build", "lint", "test", "e2e"] }
+      "options": {
+        "cacheableOperations": ["build", "lint", "test", "e2e"]
+      }
     }
   },
   "projects": {
-    "api": { "tags": [] },
-    "prisma": { "tags": [] },
-    "utils": { "tags": [] },
-    "chat": { "tags": [] },
-    "community": { "tags": [] },
-    "auth-api": { "tags": [] },
-    "user-api": { "tags": [] },
-    "connection-api": { "tags": [] },
-    "dream": { "tags": [] },
-    "layouts": { "tags": [] },
-    "auth": { "tags": [] },
-    "spotify-now": { "tags": [] },
-    "user": { "tags": [] },
-    "community-api": { "tags": [] },
-    "types": { "tags": [] },
-    "spotify-api": { "tags": [] },
-    "mods-waitlist-spotify-api": { "tags": [] },
-    "mods-waitlist-spotify-ui": { "tags": [] },
-    "mods-twitch-stream-api": { "tags": [] },
-    "mods-twitch-stream-ui": { "tags": [] },
-    "app-panel": { "tags": [] },
-    "components": { "tags": [] }
+    "api": {
+      "tags": []
+    },
+    "prisma": {
+      "tags": []
+    },
+    "utils": {
+      "tags": []
+    },
+    "chat": {
+      "tags": []
+    },
+    "community": {
+      "tags": []
+    },
+    "auth-api": {
+      "tags": []
+    },
+    "user-api": {
+      "tags": []
+    },
+    "connection-api": {
+      "tags": []
+    },
+    "dream": {
+      "tags": []
+    },
+    "layouts": {
+      "tags": []
+    },
+    "auth": {
+      "tags": []
+    },
+    "spotify-now": {
+      "tags": []
+    },
+    "user": {
+      "tags": []
+    },
+    "community-api": {
+      "tags": []
+    },
+    "types": {
+      "tags": []
+    },
+    "spotify-api": {
+      "tags": []
+    },
+    "mods-waitlist-spotify-api": {
+      "tags": []
+    },
+    "mods-waitlist-spotify-ui": {
+      "tags": []
+    },
+    "mods-twitch-stream-api": {
+      "tags": []
+    },
+    "mods-twitch-stream-ui": {
+      "tags": []
+    },
+    "app-panel": {
+      "tags": []
+    },
+    "components-modal": {
+      "tags": []
+    },
+    "components-modal-full": {
+      "tags": []
+    },
+    "components-save-form": {
+      "tags": []
+    }
   }
 }

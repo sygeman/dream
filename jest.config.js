@@ -14,7 +14,6 @@ module.exports = {
     '<rootDir>/apps/pepega',
     '<rootDir>/libs/pepega-ui',
     '<rootDir>/apps/dream',
-    '<rootDir>/libs/components',
     '<rootDir>/libs/layouts',
     '<rootDir>/libs/auth',
     '<rootDir>/libs/spotify-now',
@@ -28,5 +27,8 @@ module.exports = {
     '<rootDir>/libs/mods/twitch-stream/api',
     '<rootDir>/libs/mods/twitch-stream/ui',
     '<rootDir>/libs/app-panel',
+    '<rootDir>/libs/components/modal',
+    '<rootDir>/libs/components/modal-full',
+    '<rootDir>/libs/components/save-form',
   ],
 };

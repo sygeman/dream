@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment } from 'react';
 import {
   DotsVerticalIcon,
   FastForwardIcon,
@@ -22,8 +22,8 @@ const CurrentMenu = () => {
         <>
           <Menu.Button
             className={clsx(
-              'h-6 w-6 flex btn p-0 items-center justify-center',
-              open && 'bg-background'
+              'h-6 w-6 flex btn btn-secondary p-0 items-center justify-center',
+              open && 'bg-surface'
             )}
           >
             <DotsVerticalIcon className="h-4 text-accent" />
@@ -70,7 +70,7 @@ export const ChannelModeWaitlistSpotifyCurrent = ({
 }) => {
   return (
     <div className="relative h-16">
-      <div className="absolute top-0 left-0 h-full w-full opacity-20 bg-background" />
+      <div className="absolute top-0 left-0 h-full w-full opacity-20 bg-surface" />
       <div className="relative h-full">
         <div className="relative h-full flex items-center">
           {current ? (
@@ -93,7 +93,7 @@ export const ChannelModeWaitlistSpotifyCurrent = ({
           <div className="absolute right-4 top-0 h-full flex items-center">
             {isConnected ? (
               <button
-                className="btn btn-secondary bg-surface mr-2 flex flex-nowrap w-auto"
+                className="btn btn-secondary bg-surface flex flex-nowrap w-auto"
                 onClick={() => setIsConnected(false)}
               >
                 <StopIcon className="h-4 mr-2 opacity-70" />
@@ -102,7 +102,7 @@ export const ChannelModeWaitlistSpotifyCurrent = ({
             ) : (
               <button
                 className={clsx(
-                  'btn mr-2 flex flex-nowrap w-auto',
+                  'btn flex flex-nowrap w-auto',
                   current ? 'btn-primary' : 'btn-secondary bg-surface'
                 )}
                 onClick={() => setIsConnected(true)}
@@ -113,7 +113,7 @@ export const ChannelModeWaitlistSpotifyCurrent = ({
             )}
             {current && (
               <>
-                <div className="flex flex-col text-xs font-medium px-2 opacity-70 text-right">
+                <div className="flex flex-col text-xs font-medium px-2 opacity-70 text-right ml-2">
                   <div className="text-accent">from</div>
                   <div className="text-white">{current.author.name}</div>
                 </div>

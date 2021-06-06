@@ -42,7 +42,7 @@ export const ChannelModeWaitlistSpotifyQueue = ({
     >
       <div className="flex text-xs text-accent font-medium px-4 py-2 items-center">
         <ViewListIcon className="h-4 text-accent mr-2 opacity-50" />
-        <span>Waitlist</span>
+        <span>Queue</span>
         <span className="opacity-50 ml-2">{queueItems?.length}/50</span>
         <Link
           href={{

@@ -521,22 +521,68 @@
         }
       }
     },
-    "components": {
-      "root": "libs/components",
-      "sourceRoot": "libs/components/src",
+    "components-modal": {
+      "root": "libs/components/modal",
+      "sourceRoot": "libs/components/modal/src",
       "projectType": "library",
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/components/**/*.{ts,tsx,js,jsx}"]
+            "lintFilePatterns": ["libs/components/modal/**/*.{ts,tsx,js,jsx}"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/components"],
+          "outputs": ["coverage/libs/components/modal"],
           "options": {
-            "jestConfig": "libs/components/jest.config.js",
+            "jestConfig": "libs/components/modal/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "components-modal-full": {
+      "root": "libs/components/modal-full",
+      "sourceRoot": "libs/components/modal-full/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/components/modal-full/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/components/modal-full"],
+          "options": {
+            "jestConfig": "libs/components/modal-full/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "components-save-form": {
+      "root": "libs/components/save-form",
+      "sourceRoot": "libs/components/save-form/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/components/save-form/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/components/save-form"],
+          "options": {
+            "jestConfig": "libs/components/save-form/jest.config.js",
             "passWithNoTests": true
           }
         }

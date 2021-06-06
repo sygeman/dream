@@ -44,8 +44,8 @@ const colors = {
 };
 
 module.exports = {
-  // mode: 'jit',
-  // darkMode: 'media',
+  mode: 'jit',
+  darkMode: 'media',
   purge: {
     enabled: process.env.NODE_ENV === 'production',
     content: [
@@ -70,6 +70,12 @@ module.exports = {
           backgroundColor: theme('colors.surface.DEFAULT'),
           width: theme('width.full'),
           height: theme('height.screen'),
+        },
+        button: {
+          '&:focus': {
+            outline: '2px solid transparent',
+            outlineOffset: '2px',
+          },
         },
         input: {
           border: 'none',

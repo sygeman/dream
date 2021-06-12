@@ -391,27 +391,6 @@
         }
       }
     },
-    "spotify-api": {
-      "root": "libs/spotify-api",
-      "sourceRoot": "libs/spotify-api/src",
-      "projectType": "library",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/spotify-api/**/*.ts"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/spotify-api"],
-          "options": {
-            "jestConfig": "libs/spotify-api/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
     "mods-waitlist-spotify-api": {
       "root": "libs/mods/waitlist-spotify/api",
       "sourceRoot": "libs/mods/waitlist-spotify/api/src",
@@ -583,6 +562,92 @@
           "outputs": ["coverage/libs/components/save-form"],
           "options": {
             "jestConfig": "libs/components/save-form/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "mods-waitlist-youtube-ui": {
+      "root": "libs/mods/waitlist-youtube/ui",
+      "sourceRoot": "libs/mods/waitlist-youtube/ui/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/mods/waitlist-youtube/ui/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/mods/waitlist-youtube/ui"],
+          "options": {
+            "jestConfig": "libs/mods/waitlist-youtube/ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "mods-waitlist-youtube-api": {
+      "root": "libs/mods/waitlist-youtube/api",
+      "sourceRoot": "libs/mods/waitlist-youtube/api/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/mods/waitlist-youtube/api/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/mods/waitlist-youtube/api"],
+          "options": {
+            "jestConfig": "libs/mods/waitlist-youtube/api/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "external-api-youtube": {
+      "root": "libs/external-api/youtube",
+      "sourceRoot": "libs/external-api/youtube/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/external-api/youtube/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/external-api/youtube"],
+          "options": {
+            "jestConfig": "libs/external-api/youtube/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "external-api-spotify": {
+      "root": "libs/external-api/spotify",
+      "sourceRoot": "libs/external-api/spotify/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/external-api/spotify/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/external-api/spotify"],
+          "options": {
+            "jestConfig": "libs/external-api/spotify/jest.config.js",
             "passWithNoTests": true
           }
         }

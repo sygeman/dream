@@ -12,6 +12,7 @@ import { Auth } from '@dream/auth';
 import { Modal } from '@dream/components/modal';
 import { ModalFull } from '@dream/components/modal-full';
 import { ChannelModeWaitlistSpotifyAddTrack } from '@dream/mods/waitlist-spotify/ui';
+import { ChannelModeWaitlistYoutubeAddVideo } from '@dream/mods/waitlist-youtube/ui';
 
 export const Modals = () => {
   const intl = useIntl();
@@ -42,6 +43,14 @@ export const Modals = () => {
         {...modalProps}
       >
         <ChannelModeWaitlistSpotifyAddTrack />
+      </Modal>
+      <Modal
+        id="waitlistYoutubeAddVideo"
+        title="Add Video To Queue"
+        minimal
+        {...modalProps}
+      >
+        <ChannelModeWaitlistYoutubeAddVideo />
       </Modal>
       <ModalFull
         id="channelSettings"

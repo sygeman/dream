@@ -1,9 +1,9 @@
 module.exports = {
-  displayName: 'spotify-api',
-  preset: '../../jest.preset.js',
+  displayName: 'external-api-spotify',
+  preset: '../../../jest.preset.js',
   globals: {
     'ts-jest': {
-      tsConfig: '<rootDir>/tsconfig.spec.json',
+      tsconfig: '<rootDir>/tsconfig.spec.json',
     },
   },
   testEnvironment: 'node',
@@ -11,5 +11,5 @@ module.exports = {
     '^.+\\.[tj]sx?$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
-  coverageDirectory: '../../coverage/libs/spotify-api',
+  coverageDirectory: '../../../coverage/libs/external-api/spotify',
 };

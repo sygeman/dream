@@ -1,4 +1,4 @@
-import { HttpModule, HttpService, Module, OnModuleInit } from '@nestjs/common';
+import { HttpModule, Module } from '@nestjs/common';
 import { PrismaModule } from '@dream/prisma';
 import { SpotifyResolver } from './spotify.resolver';
 import { SpotifyService } from './spotify.service';

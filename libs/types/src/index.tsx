@@ -184,6 +184,108 @@ export type ModeWaitlistSpotifyQueueItemDataAuthor = {
   avatar?: Maybe<Scalars['String']>;
 };
 
+export type ModeWaitlistYoutubeCurrent = {
+  __typename?: 'ModeWaitlistYoutubeCurrent';
+  actions: Array<ModeWaitlistYoutubeCurrentAction>;
+  item?: Maybe<ModeWaitlistYoutubeCurrentItem>;
+};
+
+export enum ModeWaitlistYoutubeCurrentAction {
+  Skip = 'SKIP'
+}
+
+export type ModeWaitlistYoutubeCurrentItem = {
+  __typename?: 'ModeWaitlistYoutubeCurrentItem';
+  id: Scalars['String'];
+  videoId: Scalars['String'];
+  duration: Scalars['Int'];
+  cover: Scalars['String'];
+  artists: Scalars['String'];
+  title: Scalars['String'];
+  startedAt?: Maybe<Scalars['String']>;
+  author: ModeWaitlistYoutubeCurrentItemAuthor;
+};
+
+export type ModeWaitlistYoutubeCurrentItemAuthor = {
+  __typename?: 'ModeWaitlistYoutubeCurrentItemAuthor';
+  id: Scalars['String'];
+  name: Scalars['String'];
+  avatar?: Maybe<Scalars['String']>;
+};
+
+export type ModeWaitlistYoutubeHistory = {
+  __typename?: 'ModeWaitlistYoutubeHistory';
+  items: Array<ModeWaitlistYoutubeHistoryItem>;
+};
+
+export type ModeWaitlistYoutubeHistoryItem = {
+  __typename?: 'ModeWaitlistYoutubeHistoryItem';
+  actions: Array<ModeWaitlistYoutubeHistoryItemAction>;
+  data: ModeWaitlistYoutubeHistoryItemData;
+};
+
+export enum ModeWaitlistYoutubeHistoryItemAction {
+  AddToQueue = 'ADD_TO_QUEUE'
+}
+
+export type ModeWaitlistYoutubeHistoryItemData = {
+  __typename?: 'ModeWaitlistYoutubeHistoryItemData';
+  id: Scalars['String'];
+  videoId: Scalars['String'];
+  duration: Scalars['Int'];
+  cover: Scalars['String'];
+  artists: Scalars['String'];
+  title: Scalars['String'];
+  startedAt?: Maybe<Scalars['String']>;
+  endedAt?: Maybe<Scalars['String']>;
+  author: ModeWaitlistYoutubeHistoryItemDataAuthor;
+};
+
+export type ModeWaitlistYoutubeHistoryItemDataAuthor = {
+  __typename?: 'ModeWaitlistYoutubeHistoryItemDataAuthor';
+  id: Scalars['String'];
+  name: Scalars['String'];
+  avatar?: Maybe<Scalars['String']>;
+};
+
+export type ModeWaitlistYoutubeQueue = {
+  __typename?: 'ModeWaitlistYoutubeQueue';
+  actions: Array<ModeWaitlistYoutubeQueueAction>;
+  items: Array<ModeWaitlistYoutubeQueueItem>;
+};
+
+export enum ModeWaitlistYoutubeQueueAction {
+  AddVideo = 'ADD_VIDEO'
+}
+
+export type ModeWaitlistYoutubeQueueItem = {
+  __typename?: 'ModeWaitlistYoutubeQueueItem';
+  actions: Array<ModeWaitlistYoutubeQueueItemAction>;
+  data: ModeWaitlistYoutubeQueueItemData;
+};
+
+export enum ModeWaitlistYoutubeQueueItemAction {
+  Cancel = 'CANCEL'
+}
+
+export type ModeWaitlistYoutubeQueueItemData = {
+  __typename?: 'ModeWaitlistYoutubeQueueItemData';
+  id: Scalars['String'];
+  videoId: Scalars['String'];
+  duration: Scalars['Int'];
+  cover: Scalars['String'];
+  artists: Scalars['String'];
+  title: Scalars['String'];
+  author: ModeWaitlistYoutubeQueueItemDataAuthor;
+};
+
+export type ModeWaitlistYoutubeQueueItemDataAuthor = {
+  __typename?: 'ModeWaitlistYoutubeQueueItemDataAuthor';
+  id: Scalars['String'];
+  name: Scalars['String'];
+  avatar?: Maybe<Scalars['String']>;
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   logout: Scalars['Boolean'];
@@ -200,6 +302,8 @@ export type Mutation = {
   waitlistSpotifyUserSync: Scalars['Boolean'];
   refreshSpotifyToken: Scalars['String'];
   updateTwitchStream: TwitchStream;
+  waitlistYoutubeQueueAddVideo: Scalars['Boolean'];
+  waitlistYoutubeQueueSkipVideo: Scalars['Boolean'];
 };
 
 
@@ -264,6 +368,17 @@ export type MutationUpdateTwitchStreamArgs = {
   input: UpdateTwitchStreamInput;
 };
 
+
+export type MutationWaitlistYoutubeQueueAddVideoArgs = {
+  videoId: Scalars['String'];
+  channelId: Scalars['String'];
+};
+
+
+export type MutationWaitlistYoutubeQueueSkipVideoArgs = {
+  channelId: Scalars['String'];
+};
+
 export type Profile = {
   __typename?: 'Profile';
   id: Scalars['String'];
@@ -283,11 +398,14 @@ export type Query = {
   channels: Array<Channel>;
   channelMessages: Array<ChannelMessage>;
   waitlistSpotifyHistory: ModeWaitlistSpotifyHistory;
-  waitlistSpotifyCurrent: ModeWaitlistSpotifyCurrent;
+  waitlistSpotifyCurrent?: Maybe<ModeWaitlistSpotifyCurrent>;
   waitlistSpotifyQueue: ModeWaitlistSpotifyQueue;
   spotifyNow?: Maybe<SpotifyNow>;
   spotifyToken: Scalars['String'];
   twitchStream: TwitchStream;
+  waitlistYoutubeHistory: ModeWaitlistYoutubeHistory;
+  waitlistYoutubeCurrent?: Maybe<ModeWaitlistYoutubeCurrent>;
+  waitlistYoutubeQueue: ModeWaitlistYoutubeQueue;
 };
 
 
@@ -340,6 +458,21 @@ export type QueryTwitchStreamArgs = {
   channelId: Scalars['String'];
 };
 
+
+export type QueryWaitlistYoutubeHistoryArgs = {
+  channelId: Scalars['String'];
+};
+
+
+export type QueryWaitlistYoutubeCurrentArgs = {
+  channelId: Scalars['String'];
+};
+
+
+export type QueryWaitlistYoutubeQueueArgs = {
+  channelId: Scalars['String'];
+};
+
 export type SetChannelModeInput = {
   channelId: Scalars['ID'];
   mode: ChannelMode;
@@ -361,6 +494,9 @@ export type Subscription = {
   waitlistSpotifyCurrentUpdated: Scalars['Boolean'];
   waitlistSpotifyQueueUpdated: Scalars['Boolean'];
   waitlistSpotifyHistoryUpdated: Scalars['Boolean'];
+  waitlistYoutubeCurrentUpdated: Scalars['Boolean'];
+  waitlistYoutubeQueueUpdated: Scalars['Boolean'];
+  waitlistYoutubeHistoryUpdated: Scalars['Boolean'];
 };
 
 
@@ -385,6 +521,21 @@ export type SubscriptionWaitlistSpotifyQueueUpdatedArgs = {
 
 
 export type SubscriptionWaitlistSpotifyHistoryUpdatedArgs = {
+  channelId: Scalars['String'];
+};
+
+
+export type SubscriptionWaitlistYoutubeCurrentUpdatedArgs = {
+  channelId: Scalars['String'];
+};
+
+
+export type SubscriptionWaitlistYoutubeQueueUpdatedArgs = {
+  channelId: Scalars['String'];
+};
+
+
+export type SubscriptionWaitlistYoutubeHistoryUpdatedArgs = {
   channelId: Scalars['String'];
 };
 
@@ -680,7 +831,7 @@ export type WaitlistSpotifyCurrentQueryVariables = Exact<{
 
 export type WaitlistSpotifyCurrentQuery = (
   { __typename?: 'Query' }
-  & { waitlistSpotifyCurrent: (
+  & { waitlistSpotifyCurrent?: Maybe<(
     { __typename?: 'ModeWaitlistSpotifyCurrent' }
     & Pick<ModeWaitlistSpotifyCurrent, 'actions'>
     & { item?: Maybe<(
@@ -691,7 +842,7 @@ export type WaitlistSpotifyCurrentQuery = (
         & Pick<ModeWaitlistSpotifyCurrentItemAuthor, 'id' | 'name' | 'avatar'>
       ) }
     )> }
-  ) }
+  )> }
 );
 
 export type WaitlistSpotifyCurrentUpdatedSubscriptionVariables = Exact<{
@@ -768,6 +919,127 @@ export type WaitlistSpotifyUserSyncMutationVariables = Exact<{
 export type WaitlistSpotifyUserSyncMutation = (
   { __typename?: 'Mutation' }
   & Pick<Mutation, 'waitlistSpotifyUserSync'>
+);
+
+export type WaitlistYoutubeHistoryQueryVariables = Exact<{
+  channelId: Scalars['String'];
+}>;
+
+
+export type WaitlistYoutubeHistoryQuery = (
+  { __typename?: 'Query' }
+  & { waitlistYoutubeHistory: (
+    { __typename?: 'ModeWaitlistYoutubeHistory' }
+    & { items: Array<(
+      { __typename?: 'ModeWaitlistYoutubeHistoryItem' }
+      & Pick<ModeWaitlistYoutubeHistoryItem, 'actions'>
+      & { data: (
+        { __typename?: 'ModeWaitlistYoutubeHistoryItemData' }
+        & Pick<ModeWaitlistYoutubeHistoryItemData, 'id' | 'videoId' | 'duration' | 'cover' | 'title' | 'startedAt' | 'endedAt'>
+        & { author: (
+          { __typename?: 'ModeWaitlistYoutubeHistoryItemDataAuthor' }
+          & Pick<ModeWaitlistYoutubeHistoryItemDataAuthor, 'id' | 'name' | 'avatar'>
+        ) }
+      ) }
+    )> }
+  ) }
+);
+
+export type WaitlistYoutubeHistoryUpdatedSubscriptionVariables = Exact<{
+  channelId: Scalars['String'];
+}>;
+
+
+export type WaitlistYoutubeHistoryUpdatedSubscription = (
+  { __typename?: 'Subscription' }
+  & Pick<Subscription, 'waitlistYoutubeHistoryUpdated'>
+);
+
+export type WaitlistYoutubeCurrentQueryVariables = Exact<{
+  channelId: Scalars['String'];
+}>;
+
+
+export type WaitlistYoutubeCurrentQuery = (
+  { __typename?: 'Query' }
+  & { waitlistYoutubeCurrent?: Maybe<(
+    { __typename?: 'ModeWaitlistYoutubeCurrent' }
+    & Pick<ModeWaitlistYoutubeCurrent, 'actions'>
+    & { item?: Maybe<(
+      { __typename?: 'ModeWaitlistYoutubeCurrentItem' }
+      & Pick<ModeWaitlistYoutubeCurrentItem, 'id' | 'videoId' | 'duration' | 'cover' | 'title' | 'startedAt'>
+      & { author: (
+        { __typename?: 'ModeWaitlistYoutubeCurrentItemAuthor' }
+        & Pick<ModeWaitlistYoutubeCurrentItemAuthor, 'id' | 'name' | 'avatar'>
+      ) }
+    )> }
+  )> }
+);
+
+export type WaitlistYoutubeCurrentUpdatedSubscriptionVariables = Exact<{
+  channelId: Scalars['String'];
+}>;
+
+
+export type WaitlistYoutubeCurrentUpdatedSubscription = (
+  { __typename?: 'Subscription' }
+  & Pick<Subscription, 'waitlistYoutubeCurrentUpdated'>
+);
+
+export type WaitlistYoutubeQueueQueryVariables = Exact<{
+  channelId: Scalars['String'];
+}>;
+
+
+export type WaitlistYoutubeQueueQuery = (
+  { __typename?: 'Query' }
+  & { waitlistYoutubeQueue: (
+    { __typename?: 'ModeWaitlistYoutubeQueue' }
+    & Pick<ModeWaitlistYoutubeQueue, 'actions'>
+    & { items: Array<(
+      { __typename?: 'ModeWaitlistYoutubeQueueItem' }
+      & Pick<ModeWaitlistYoutubeQueueItem, 'actions'>
+      & { data: (
+        { __typename?: 'ModeWaitlistYoutubeQueueItemData' }
+        & Pick<ModeWaitlistYoutubeQueueItemData, 'id' | 'videoId' | 'duration' | 'cover' | 'title'>
+        & { author: (
+          { __typename?: 'ModeWaitlistYoutubeQueueItemDataAuthor' }
+          & Pick<ModeWaitlistYoutubeQueueItemDataAuthor, 'id' | 'name' | 'avatar'>
+        ) }
+      ) }
+    )> }
+  ) }
+);
+
+export type WaitlistYoutubeQueueUpdatedSubscriptionVariables = Exact<{
+  channelId: Scalars['String'];
+}>;
+
+
+export type WaitlistYoutubeQueueUpdatedSubscription = (
+  { __typename?: 'Subscription' }
+  & Pick<Subscription, 'waitlistYoutubeQueueUpdated'>
+);
+
+export type WaitlistYoutubeQueueAddVideoMutationVariables = Exact<{
+  channelId: Scalars['String'];
+  videoId: Scalars['String'];
+}>;
+
+
+export type WaitlistYoutubeQueueAddVideoMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'waitlistYoutubeQueueAddVideo'>
+);
+
+export type WaitlistYoutubeQueueSkipVideoMutationVariables = Exact<{
+  channelId: Scalars['String'];
+}>;
+
+
+export type WaitlistYoutubeQueueSkipVideoMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'waitlistYoutubeQueueSkipVideo'>
 );
 
 export type SpotifyNowQueryVariables = Exact<{
@@ -1725,6 +1997,302 @@ export function useWaitlistSpotifyUserSyncMutation(baseOptions?: Apollo.Mutation
 export type WaitlistSpotifyUserSyncMutationHookResult = ReturnType<typeof useWaitlistSpotifyUserSyncMutation>;
 export type WaitlistSpotifyUserSyncMutationResult = Apollo.MutationResult<WaitlistSpotifyUserSyncMutation>;
 export type WaitlistSpotifyUserSyncMutationOptions = Apollo.BaseMutationOptions<WaitlistSpotifyUserSyncMutation, WaitlistSpotifyUserSyncMutationVariables>;
+export const WaitlistYoutubeHistoryDocument = gql`
+    query waitlistYoutubeHistory($channelId: String!) {
+  waitlistYoutubeHistory(channelId: $channelId) {
+    items {
+      data {
+        id
+        videoId
+        duration
+        cover
+        title
+        startedAt
+        endedAt
+        author {
+          id
+          name
+          avatar
+        }
+      }
+      actions
+    }
+  }
+}
+    `;
+
+/**
+ * __useWaitlistYoutubeHistoryQuery__
+ *
+ * To run a query within a React component, call `useWaitlistYoutubeHistoryQuery` and pass it any options that fit your needs.
+ * When your component renders, `useWaitlistYoutubeHistoryQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useWaitlistYoutubeHistoryQuery({
+ *   variables: {
+ *      channelId: // value for 'channelId'
+ *   },
+ * });
+ */
+export function useWaitlistYoutubeHistoryQuery(baseOptions: Apollo.QueryHookOptions<WaitlistYoutubeHistoryQuery, WaitlistYoutubeHistoryQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<WaitlistYoutubeHistoryQuery, WaitlistYoutubeHistoryQueryVariables>(WaitlistYoutubeHistoryDocument, options);
+      }
+export function useWaitlistYoutubeHistoryLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<WaitlistYoutubeHistoryQuery, WaitlistYoutubeHistoryQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<WaitlistYoutubeHistoryQuery, WaitlistYoutubeHistoryQueryVariables>(WaitlistYoutubeHistoryDocument, options);
+        }
+export type WaitlistYoutubeHistoryQueryHookResult = ReturnType<typeof useWaitlistYoutubeHistoryQuery>;
+export type WaitlistYoutubeHistoryLazyQueryHookResult = ReturnType<typeof useWaitlistYoutubeHistoryLazyQuery>;
+export type WaitlistYoutubeHistoryQueryResult = Apollo.QueryResult<WaitlistYoutubeHistoryQuery, WaitlistYoutubeHistoryQueryVariables>;
+export const WaitlistYoutubeHistoryUpdatedDocument = gql`
+    subscription waitlistYoutubeHistoryUpdated($channelId: String!) {
+  waitlistYoutubeHistoryUpdated(channelId: $channelId)
+}
+    `;
+
+/**
+ * __useWaitlistYoutubeHistoryUpdatedSubscription__
+ *
+ * To run a query within a React component, call `useWaitlistYoutubeHistoryUpdatedSubscription` and pass it any options that fit your needs.
+ * When your component renders, `useWaitlistYoutubeHistoryUpdatedSubscription` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the subscription, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useWaitlistYoutubeHistoryUpdatedSubscription({
+ *   variables: {
+ *      channelId: // value for 'channelId'
+ *   },
+ * });
+ */
+export function useWaitlistYoutubeHistoryUpdatedSubscription(baseOptions: Apollo.SubscriptionHookOptions<WaitlistYoutubeHistoryUpdatedSubscription, WaitlistYoutubeHistoryUpdatedSubscriptionVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useSubscription<WaitlistYoutubeHistoryUpdatedSubscription, WaitlistYoutubeHistoryUpdatedSubscriptionVariables>(WaitlistYoutubeHistoryUpdatedDocument, options);
+      }
+export type WaitlistYoutubeHistoryUpdatedSubscriptionHookResult = ReturnType<typeof useWaitlistYoutubeHistoryUpdatedSubscription>;
+export type WaitlistYoutubeHistoryUpdatedSubscriptionResult = Apollo.SubscriptionResult<WaitlistYoutubeHistoryUpdatedSubscription>;
+export const WaitlistYoutubeCurrentDocument = gql`
+    query waitlistYoutubeCurrent($channelId: String!) {
+  waitlistYoutubeCurrent(channelId: $channelId) {
+    item {
+      id
+      videoId
+      duration
+      cover
+      title
+      startedAt
+      author {
+        id
+        name
+        avatar
+      }
+    }
+    actions
+  }
+}
+    `;
+
+/**
+ * __useWaitlistYoutubeCurrentQuery__
+ *
+ * To run a query within a React component, call `useWaitlistYoutubeCurrentQuery` and pass it any options that fit your needs.
+ * When your component renders, `useWaitlistYoutubeCurrentQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useWaitlistYoutubeCurrentQuery({
+ *   variables: {
+ *      channelId: // value for 'channelId'
+ *   },
+ * });
+ */
+export function useWaitlistYoutubeCurrentQuery(baseOptions: Apollo.QueryHookOptions<WaitlistYoutubeCurrentQuery, WaitlistYoutubeCurrentQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<WaitlistYoutubeCurrentQuery, WaitlistYoutubeCurrentQueryVariables>(WaitlistYoutubeCurrentDocument, options);
+      }
+export function useWaitlistYoutubeCurrentLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<WaitlistYoutubeCurrentQuery, WaitlistYoutubeCurrentQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<WaitlistYoutubeCurrentQuery, WaitlistYoutubeCurrentQueryVariables>(WaitlistYoutubeCurrentDocument, options);
+        }
+export type WaitlistYoutubeCurrentQueryHookResult = ReturnType<typeof useWaitlistYoutubeCurrentQuery>;
+export type WaitlistYoutubeCurrentLazyQueryHookResult = ReturnType<typeof useWaitlistYoutubeCurrentLazyQuery>;
+export type WaitlistYoutubeCurrentQueryResult = Apollo.QueryResult<WaitlistYoutubeCurrentQuery, WaitlistYoutubeCurrentQueryVariables>;
+export const WaitlistYoutubeCurrentUpdatedDocument = gql`
+    subscription waitlistYoutubeCurrentUpdated($channelId: String!) {
+  waitlistYoutubeCurrentUpdated(channelId: $channelId)
+}
+    `;
+
+/**
+ * __useWaitlistYoutubeCurrentUpdatedSubscription__
+ *
+ * To run a query within a React component, call `useWaitlistYoutubeCurrentUpdatedSubscription` and pass it any options that fit your needs.
+ * When your component renders, `useWaitlistYoutubeCurrentUpdatedSubscription` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the subscription, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useWaitlistYoutubeCurrentUpdatedSubscription({
+ *   variables: {
+ *      channelId: // value for 'channelId'
+ *   },
+ * });
+ */
+export function useWaitlistYoutubeCurrentUpdatedSubscription(baseOptions: Apollo.SubscriptionHookOptions<WaitlistYoutubeCurrentUpdatedSubscription, WaitlistYoutubeCurrentUpdatedSubscriptionVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useSubscription<WaitlistYoutubeCurrentUpdatedSubscription, WaitlistYoutubeCurrentUpdatedSubscriptionVariables>(WaitlistYoutubeCurrentUpdatedDocument, options);
+      }
+export type WaitlistYoutubeCurrentUpdatedSubscriptionHookResult = ReturnType<typeof useWaitlistYoutubeCurrentUpdatedSubscription>;
+export type WaitlistYoutubeCurrentUpdatedSubscriptionResult = Apollo.SubscriptionResult<WaitlistYoutubeCurrentUpdatedSubscription>;
+export const WaitlistYoutubeQueueDocument = gql`
+    query waitlistYoutubeQueue($channelId: String!) {
+  waitlistYoutubeQueue(channelId: $channelId) {
+    items {
+      data {
+        id
+        videoId
+        duration
+        cover
+        title
+        author {
+          id
+          name
+          avatar
+        }
+      }
+      actions
+    }
+    actions
+  }
+}
+    `;
+
+/**
+ * __useWaitlistYoutubeQueueQuery__
+ *
+ * To run a query within a React component, call `useWaitlistYoutubeQueueQuery` and pass it any options that fit your needs.
+ * When your component renders, `useWaitlistYoutubeQueueQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useWaitlistYoutubeQueueQuery({
+ *   variables: {
+ *      channelId: // value for 'channelId'
+ *   },
+ * });
+ */
+export function useWaitlistYoutubeQueueQuery(baseOptions: Apollo.QueryHookOptions<WaitlistYoutubeQueueQuery, WaitlistYoutubeQueueQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<WaitlistYoutubeQueueQuery, WaitlistYoutubeQueueQueryVariables>(WaitlistYoutubeQueueDocument, options);
+      }
+export function useWaitlistYoutubeQueueLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<WaitlistYoutubeQueueQuery, WaitlistYoutubeQueueQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<WaitlistYoutubeQueueQuery, WaitlistYoutubeQueueQueryVariables>(WaitlistYoutubeQueueDocument, options);
+        }
+export type WaitlistYoutubeQueueQueryHookResult = ReturnType<typeof useWaitlistYoutubeQueueQuery>;
+export type WaitlistYoutubeQueueLazyQueryHookResult = ReturnType<typeof useWaitlistYoutubeQueueLazyQuery>;
+export type WaitlistYoutubeQueueQueryResult = Apollo.QueryResult<WaitlistYoutubeQueueQuery, WaitlistYoutubeQueueQueryVariables>;
+export const WaitlistYoutubeQueueUpdatedDocument = gql`
+    subscription waitlistYoutubeQueueUpdated($channelId: String!) {
+  waitlistYoutubeQueueUpdated(channelId: $channelId)
+}
+    `;
+
+/**
+ * __useWaitlistYoutubeQueueUpdatedSubscription__
+ *
+ * To run a query within a React component, call `useWaitlistYoutubeQueueUpdatedSubscription` and pass it any options that fit your needs.
+ * When your component renders, `useWaitlistYoutubeQueueUpdatedSubscription` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the subscription, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useWaitlistYoutubeQueueUpdatedSubscription({
+ *   variables: {
+ *      channelId: // value for 'channelId'
+ *   },
+ * });
+ */
+export function useWaitlistYoutubeQueueUpdatedSubscription(baseOptions: Apollo.SubscriptionHookOptions<WaitlistYoutubeQueueUpdatedSubscription, WaitlistYoutubeQueueUpdatedSubscriptionVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useSubscription<WaitlistYoutubeQueueUpdatedSubscription, WaitlistYoutubeQueueUpdatedSubscriptionVariables>(WaitlistYoutubeQueueUpdatedDocument, options);
+      }
+export type WaitlistYoutubeQueueUpdatedSubscriptionHookResult = ReturnType<typeof useWaitlistYoutubeQueueUpdatedSubscription>;
+export type WaitlistYoutubeQueueUpdatedSubscriptionResult = Apollo.SubscriptionResult<WaitlistYoutubeQueueUpdatedSubscription>;
+export const WaitlistYoutubeQueueAddVideoDocument = gql`
+    mutation waitlistYoutubeQueueAddVideo($channelId: String!, $videoId: String!) {
+  waitlistYoutubeQueueAddVideo(channelId: $channelId, videoId: $videoId)
+}
+    `;
+export type WaitlistYoutubeQueueAddVideoMutationFn = Apollo.MutationFunction<WaitlistYoutubeQueueAddVideoMutation, WaitlistYoutubeQueueAddVideoMutationVariables>;
+
+/**
+ * __useWaitlistYoutubeQueueAddVideoMutation__
+ *
+ * To run a mutation, you first call `useWaitlistYoutubeQueueAddVideoMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useWaitlistYoutubeQueueAddVideoMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [waitlistYoutubeQueueAddVideoMutation, { data, loading, error }] = useWaitlistYoutubeQueueAddVideoMutation({
+ *   variables: {
+ *      channelId: // value for 'channelId'
+ *      videoId: // value for 'videoId'
+ *   },
+ * });
+ */
+export function useWaitlistYoutubeQueueAddVideoMutation(baseOptions?: Apollo.MutationHookOptions<WaitlistYoutubeQueueAddVideoMutation, WaitlistYoutubeQueueAddVideoMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<WaitlistYoutubeQueueAddVideoMutation, WaitlistYoutubeQueueAddVideoMutationVariables>(WaitlistYoutubeQueueAddVideoDocument, options);
+      }
+export type WaitlistYoutubeQueueAddVideoMutationHookResult = ReturnType<typeof useWaitlistYoutubeQueueAddVideoMutation>;
+export type WaitlistYoutubeQueueAddVideoMutationResult = Apollo.MutationResult<WaitlistYoutubeQueueAddVideoMutation>;
+export type WaitlistYoutubeQueueAddVideoMutationOptions = Apollo.BaseMutationOptions<WaitlistYoutubeQueueAddVideoMutation, WaitlistYoutubeQueueAddVideoMutationVariables>;
+export const WaitlistYoutubeQueueSkipVideoDocument = gql`
+    mutation waitlistYoutubeQueueSkipVideo($channelId: String!) {
+  waitlistYoutubeQueueSkipVideo(channelId: $channelId)
+}
+    `;
+export type WaitlistYoutubeQueueSkipVideoMutationFn = Apollo.MutationFunction<WaitlistYoutubeQueueSkipVideoMutation, WaitlistYoutubeQueueSkipVideoMutationVariables>;
+
+/**
+ * __useWaitlistYoutubeQueueSkipVideoMutation__
+ *
+ * To run a mutation, you first call `useWaitlistYoutubeQueueSkipVideoMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useWaitlistYoutubeQueueSkipVideoMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [waitlistYoutubeQueueSkipVideoMutation, { data, loading, error }] = useWaitlistYoutubeQueueSkipVideoMutation({
+ *   variables: {
+ *      channelId: // value for 'channelId'
+ *   },
+ * });
+ */
+export function useWaitlistYoutubeQueueSkipVideoMutation(baseOptions?: Apollo.MutationHookOptions<WaitlistYoutubeQueueSkipVideoMutation, WaitlistYoutubeQueueSkipVideoMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<WaitlistYoutubeQueueSkipVideoMutation, WaitlistYoutubeQueueSkipVideoMutationVariables>(WaitlistYoutubeQueueSkipVideoDocument, options);
+      }
+export type WaitlistYoutubeQueueSkipVideoMutationHookResult = ReturnType<typeof useWaitlistYoutubeQueueSkipVideoMutation>;
+export type WaitlistYoutubeQueueSkipVideoMutationResult = Apollo.MutationResult<WaitlistYoutubeQueueSkipVideoMutation>;
+export type WaitlistYoutubeQueueSkipVideoMutationOptions = Apollo.BaseMutationOptions<WaitlistYoutubeQueueSkipVideoMutation, WaitlistYoutubeQueueSkipVideoMutationVariables>;
 export const SpotifyNowDocument = gql`
     query spotifyNow($token: String!) {
   spotifyNow(token: $token) {

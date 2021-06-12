@@ -45,6 +45,7 @@ model User {
   communities             Community[]
   channelMessages         ChannelMessage[]
   modeWaitlistSpotifyItem ModeWaitlistSpotifyItem[]
+  modeWaitlistYoutubeItem ModeWaitlistYoutubeItem[]
 }
 
 model Profile {
@@ -109,6 +110,8 @@ model Channel {
   modeWaitlistSpotifyItem ModeWaitlistSpotifyItem[]
   modeWaitlistSpotify     ModeWaitlistSpotify[]
   modeTwitchStream        ModeTwitchStream[]
+  modeWaitlistYotubeItem  ModeWaitlistYoutubeItem[]
+  modeWaitlistYoutube     ModeWaitlistYoutube[]
 }
 
 model ChannelMessage {
@@ -174,4 +177,45 @@ model ModeTwitchStream {
   channelId  String?
   createdAt  DateTime @default(now())
   updatedAt  DateTime @default(now()) @updatedAt
+}
+
+// Waitlist Youtube
+model ModeWaitlistYoutubeVideo {
+  id                      String                    @id
+  title                   String
+  cover                   String?
+  duration                Int
+  createdAt               DateTime                  @default(now())
+  updatedAt               DateTime                  @default(now()) @updatedAt
+  modeWaitlistYoutubeItem ModeWaitlistYoutubeItem[]
+}
+
+model ModeWaitlistYoutubeItem {
+  id                  String                    @id @default(cuid())
+  duration            Int?                      @default(0)
+  start               Int?                      @default(0) // (Start video position (0))
+  end                 Int? // (End video position (=duration))
+  skipped             Boolean?                  @default(false) // (Manual skip (=flase))
+  canceled            Boolean?                  @default(false) // (Manual remove from Queue (=false))
+  video               ModeWaitlistYoutubeVideo? @relation(fields: [videoId], references: [id])
+  videoId             String?
+  channel             Channel?                  @relation(fields: [channelId], references: [id])
+  channelId           String?
+  author              User?                     @relation(fields: [authorId], references: [id])
+  authorId            String?
+  startedAt           DateTime? // (Update after Waitlist.itemId changed)
+  endedAt             DateTime? // (Update after skip (process or manual))
+  createdAt           DateTime                  @default(now())
+  updatedAt           DateTime                  @default(now()) @updatedAt
+  modeWaitlistYoutube ModeWaitlistYoutube[]
+}
+
+model ModeWaitlistYoutube {
+  id        String                   @id @default(cuid())
+  item      ModeWaitlistYoutubeItem? @relation(fields: [itemId], references: [id])
+  itemId    String?
+  channel   Channel?                 @relation(fields: [channelId], references: [id])
+  channelId String?
+  createdAt DateTime                 @default(now())
+  updatedAt DateTime                 @default(now()) @updatedAt
 }

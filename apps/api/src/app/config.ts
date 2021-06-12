@@ -2,6 +2,9 @@ import { registerAs } from '@nestjs/config';
 import { nanoid } from 'nanoid';
 
 export const config = [
+  registerAs('youtube', () => ({
+    key: process.env.YOUTUBE_KEY,
+  })),
   registerAs('auth', () => ({
     sessionSecret: process.env.SESSION_SECRET,
   })),

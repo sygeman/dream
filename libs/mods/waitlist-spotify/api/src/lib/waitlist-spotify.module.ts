@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { BullModule } from '@nestjs/bull';
 import { PrismaModule } from '@dream/prisma';
-import { SpotifyModule } from '@dream/spotify-api';
+import { SpotifyModule } from '@dream/external-api/spotify';
 import { WaitlistSpotifyResolver } from './waitlist-spotify.resolver';
 import { WaitlistSpotifyProcessor } from './waitlist-spotify.processor';
 import { WaitlistSpotifyService } from './waitlist-spotify.service';

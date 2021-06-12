@@ -21,7 +21,6 @@ module.exports = {
     '<rootDir>/libs/community-api',
     '<rootDir>/libs/mode-waitlist',
     '<rootDir>/libs/types',
-    '<rootDir>/libs/spotify-api',
     '<rootDir>/libs/mods/waitlist-spotify/api',
     '<rootDir>/libs/mods/waitlist-spotify/ui',
     '<rootDir>/libs/mods/twitch-stream/api',
@@ -30,5 +29,9 @@ module.exports = {
     '<rootDir>/libs/components/modal',
     '<rootDir>/libs/components/modal-full',
     '<rootDir>/libs/components/save-form',
+    '<rootDir>/libs/mods/waitlist-youtube/ui',
+    '<rootDir>/libs/mods/waitlist-youtube/api',
+    '<rootDir>/libs/external-api/youtube',
+    '<rootDir>/libs/external-api/spotify',
   ],
 };

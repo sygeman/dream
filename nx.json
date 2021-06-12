@@ -68,9 +68,6 @@
     "types": {
       "tags": []
     },
-    "spotify-api": {
-      "tags": []
-    },
     "mods-waitlist-spotify-api": {
       "tags": []
     },
@@ -93,6 +90,18 @@
       "tags": []
     },
     "components-save-form": {
+      "tags": []
+    },
+    "mods-waitlist-youtube-ui": {
+      "tags": []
+    },
+    "mods-waitlist-youtube-api": {
+      "tags": []
+    },
+    "external-api-youtube": {
+      "tags": []
+    },
+    "external-api-spotify": {
       "tags": []
     }
   }

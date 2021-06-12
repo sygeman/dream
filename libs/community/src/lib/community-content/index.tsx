@@ -2,6 +2,7 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import { ChannelModeWaitlistSpotify } from '@dream/mods/waitlist-spotify/ui';
 import { ChannelModeTwitchStream } from '@dream/mods/twitch-stream/ui';
+import { ChannelModeWaitlistYoutube } from '@dream/mods/waitlist-youtube/ui';
 import { useChannelQuery, ChannelMode } from '@dream/types';
 import { ChannelHeader } from './channel-header';
 
@@ -23,6 +24,8 @@ export const CommunityContent = () => {
         return <ChannelModeWaitlistSpotify />;
       case ChannelMode.StreamTwitch:
         return <ChannelModeTwitchStream />;
+      case ChannelMode.WaitlistYoutube:
+        return <ChannelModeWaitlistYoutube />;
       default:
         return null;
     }

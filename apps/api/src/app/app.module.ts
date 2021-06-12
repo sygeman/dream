@@ -10,9 +10,10 @@ import { SharedModule } from './shared.module';
 import { config } from './config';
 import { nanoid } from 'nanoid';
 import { BullModule } from '@nestjs/bull';
-import { SpotifyModule } from '@dream/spotify-api';
+import { SpotifyModule } from '@dream/external-api/spotify';
 import { WaitlistSpotifyModule } from '@dream/mods/waitlist-spotify/api';
 import { TwitchStreamModule } from '@dream/mods/twitch-stream/api';
+import { WaitlistYoutubeModule } from '@dream/mods/waitlist-youtube/api';
 
 @Module({
   imports: [
@@ -103,6 +104,7 @@ import { TwitchStreamModule } from '@dream/mods/twitch-stream/api';
     WaitlistSpotifyModule,
     SpotifyModule,
     TwitchStreamModule,
+    WaitlistYoutubeModule,
   ],
 })
 export class AppModule {}

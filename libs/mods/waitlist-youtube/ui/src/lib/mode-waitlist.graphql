@@ -1,0 +1,81 @@
+query waitlistYoutubeHistory($channelId: String!) {
+  waitlistYoutubeHistory(channelId: $channelId) {
+    items {
+      data {
+        id
+        videoId
+        duration
+        cover
+        title
+        startedAt
+        endedAt
+        author {
+          id
+          name
+          avatar
+        }
+      }
+      actions
+    }
+  }
+}
+
+subscription waitlistYoutubeHistoryUpdated($channelId: String!) {
+  waitlistYoutubeHistoryUpdated(channelId: $channelId)
+}
+
+query waitlistYoutubeCurrent($channelId: String!) {
+  waitlistYoutubeCurrent(channelId: $channelId) {
+    item {
+      id
+      videoId
+      duration
+      cover
+      title
+      startedAt
+      author {
+        id
+        name
+        avatar
+      }
+    }
+    actions
+  }
+}
+
+subscription waitlistYoutubeCurrentUpdated($channelId: String!) {
+  waitlistYoutubeCurrentUpdated(channelId: $channelId)
+}
+
+query waitlistYoutubeQueue($channelId: String!) {
+  waitlistYoutubeQueue(channelId: $channelId) {
+    items {
+      data {
+        id
+        videoId
+        duration
+        cover
+        title
+        author {
+          id
+          name
+          avatar
+        }
+      }
+      actions
+    }
+    actions
+  }
+}
+
+subscription waitlistYoutubeQueueUpdated($channelId: String!) {
+  waitlistYoutubeQueueUpdated(channelId: $channelId)
+}
+
+mutation waitlistYoutubeQueueAddVideo($channelId: String!, $videoId: String!) {
+  waitlistYoutubeQueueAddVideo(channelId: $channelId, videoId: $videoId)
+}
+
+mutation waitlistYoutubeQueueSkipVideo($channelId: String!) {
+  waitlistYoutubeQueueSkipVideo(channelId: $channelId)
+}

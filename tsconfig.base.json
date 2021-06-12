@@ -33,7 +33,6 @@
       "@dream/user": ["libs/user/src/index.ts"],
       "@dream/community-api": ["libs/community-api/src/index.ts"],
       "@dream/types": ["libs/types/src/index.tsx"],
-      "@dream/spotify-api": ["libs/spotify-api/src/index.ts"],
       "@dream/mods/waitlist-spotify/api": [
         "libs/mods/waitlist-spotify/api/src/index.ts"
       ],
@@ -51,7 +50,15 @@
       "@dream/components/modal-full": [
         "libs/components/modal-full/src/index.ts"
       ],
-      "@dream/components/save-form": ["libs/components/save-form/src/index.ts"]
+      "@dream/components/save-form": ["libs/components/save-form/src/index.ts"],
+      "@dream/mods/waitlist-youtube/ui": [
+        "libs/mods/waitlist-youtube/ui/src/index.ts"
+      ],
+      "@dream/mods/waitlist-youtube/api": [
+        "libs/mods/waitlist-youtube/api/src/index.ts"
+      ],
+      "@dream/external-api/youtube": ["libs/external-api/youtube/src/index.ts"],
+      "@dream/external-api/spotify": ["libs/external-api/spotify/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

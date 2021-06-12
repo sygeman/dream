@@ -19,7 +19,7 @@ export const ChannelModeWaitlistYoutubeAddVideo = () => {
       <h2 className="text-accent-light uppercase text-sm font-medium mb-2">
         Add Video To Queue
       </h2>
-      <p className="mb-6 text-accent text-sm">
+      <p className="mb-4 text-accent text-sm">
         <input
           type="text"
           className="bg-background text-white text-xs p-2 rounded w-full focus:outline-none focus:ring-1 mb-2"
@@ -33,7 +33,7 @@ export const ChannelModeWaitlistYoutubeAddVideo = () => {
         />
       </p>
       {videoId && (
-        <div className="aspect-w-16 aspect-h-9 z-10">
+        <div className="aspect-w-16 aspect-h-9 z-10 mb-4">
           <ReactPlayer
             height="100%"
             width="100%"

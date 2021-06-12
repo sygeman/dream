@@ -27,4 +27,6 @@ jobs:
             
       - name: Install dependencies
         run: yarn --frozen-lockfile
-#       - run: yarn build api
+      
+      - name: Install dependencies
+        run: yarn build api

@@ -27,6 +27,8 @@ jobs:
 
       - name: Build apps
         run: yarn build api
+
+      - name: Generate prisma
         run: yarn generate
 
       # Docker

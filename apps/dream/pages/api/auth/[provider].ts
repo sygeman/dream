@@ -7,7 +7,9 @@ async function handler(req, res) {
   const params = new URLSearchParams();
   params.set('code_handler', `https://${host}/api/auth/callback?`);
   params.set('redirect_uri', `https://${host}${req.query?.continue}`);
-  const authUrl = `https://api.sgmn.dev/auth/${provider}?${params.toString()}`;
+  const authUrl = `https://${
+    process.env.NEXT_PUBLIC_API
+  }/auth/${provider}?${params.toString()}`;
 
   return res.redirect(authUrl);
 }

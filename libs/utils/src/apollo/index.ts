@@ -16,7 +16,7 @@ let apolloClient: ApolloClient<NormalizedCacheObject>;
 function createApolloClient() {
   return new ApolloClient({
     link: new WebSocketLink({
-      uri: `wss://api.sgmn.dev/graphql`,
+      uri: `wss://${process.env.NEXT_PUBLIC_API}/graphql`,
       webSocketImpl: WebSocket,
       options: {
         reconnect: true,

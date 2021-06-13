@@ -1,4 +1,4 @@
-import { Logger, Module } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import * as depthLimit from 'graphql-depth-limit';
@@ -90,8 +90,6 @@ import { WaitlistYoutubeModule } from '@dream/mods/waitlist-youtube/api';
 
             if (connectionId) {
               await connectionService.remove(connectionId);
-            } else {
-              Logger.log(data);
             }
           },
         },

@@ -6,6 +6,8 @@ import axios from 'axios';
 
 @Injectable()
 export class SpotifyService implements OnModuleInit {
+  private readonly logger = new Logger(SpotifyService.name);
+
   constructor(
     private prisma: PrismaService,
     private httpService: HttpService,
@@ -54,7 +56,7 @@ export class SpotifyService implements OnModuleInit {
   }
 
   async refreshToken(userId: string) {
-    Logger.log('refreshToken', userId);
+    this.logger.log('refreshToken', userId);
     const profile = await this.prisma.profile.findFirst({
       where: { userId, provider: 'spotify' },
     });
@@ -133,11 +135,11 @@ export class SpotifyService implements OnModuleInit {
   }
 
   async pause(userId: string) {
-    Logger.log('pause', userId);
+    this.logger.log('pause', userId);
 
     const token = await this.getToken(userId);
 
-    Logger.log('token', token);
+    this.logger.log('token', token);
 
     return this.httpService
       .put(`https://api.spotify.com/v1/me/player/pause`, undefined, {

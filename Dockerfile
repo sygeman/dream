@@ -6,7 +6,7 @@ COPY prisma .
 
 FROM base as dependencies
 RUN yarn --production
-COPY prisma node_modules/.prisma/client/ ./node_modules/.prisma/client/
+COPY node_modules/.prisma/client/ ./node_modules/.prisma/client/
 
 FROM dependencies as release
 ENV PORT=3333

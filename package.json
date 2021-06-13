@@ -30,9 +30,6 @@
     "generate": "prisma generate",
     "g": "graphql-codegen --config codegen.yml"
   },
-  "prisma": {
-    "schema": "./libs/prisma/src/lib/schema.prisma"
-  },
   "private": true,
   "dependencies": {
     "@apollo/client": "3.3.20",

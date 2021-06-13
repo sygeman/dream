@@ -2,6 +2,7 @@ FROM node:lts-alpine as base
 WORKDIR /app
 RUN ls
 COPY dist/apps/api .
+COPY prisma .
 
 FROM base as dependencies
 RUN yarn --production

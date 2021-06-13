@@ -9,12 +9,14 @@ import {
 import { AuthGuard } from '@nestjs/passport';
 import { PrismaService } from '@dream/prisma';
 import { AuthService } from './auth.service';
+import { ConfigService } from '@nestjs/config';
 
 @Controller()
 export class AuthController {
   constructor(
     private prisma: PrismaService,
-    private authService: AuthService
+    private authService: AuthService,
+    private readonly config: ConfigService
   ) {}
 
   async authend(req, res) {
@@ -24,7 +26,7 @@ export class AuthController {
     // Update or create profile and user
     if (!profile) {
       // Redirect with error
-      return res.redirect('https://api.sgmn.dev/graphql');
+      return res.redirect(redirectUri);
     }
 
     const existProfile = await this.prisma.profile.findFirst({
@@ -90,7 +92,7 @@ export class AuthController {
   ) {
     req.session.codeHandler = codeHandler;
     req.session.redirectUri = redirectUri;
-    res.redirect(`https://api.sgmn.dev/authwr/spotify`);
+    res.redirect(`${this.config.get('base.apiURL')}authwr/spotify`);
   }
 
   @Get('authwr/spotify')
@@ -114,7 +116,7 @@ export class AuthController {
   ) {
     req.session.codeHandler = codeHandler;
     req.session.redirectUri = redirectUri;
-    res.redirect(`https://api.sgmn.dev/authwr/twitch`);
+    res.redirect(`${this.config.get('base.apiURL')}authwr/twitch`);
   }
 
   @Get('authwr/twitch')

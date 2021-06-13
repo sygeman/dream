@@ -27,6 +27,7 @@
     "u": "yarn upgrade-interactive --latest",
     "studio": "prisma studio",
     "migrate": "prisma format && prisma migrate dev && prisma generate",
+    "generate": "prisma generate",
     "g": "graphql-codegen --config codegen.yml"
   },
   "prisma": {

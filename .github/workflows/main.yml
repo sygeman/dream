@@ -28,9 +28,6 @@ jobs:
       - name: Build apps
         run: yarn build api
 
-      - name: Generate prisma
-        run: yarn generate
-
       # Docker
 
       - name: Log in to GitHub Docker Registry

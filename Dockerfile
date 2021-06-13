@@ -2,11 +2,12 @@ FROM node:lts-alpine as base
 WORKDIR /app
 RUN ls
 COPY dist/apps/api .
-COPY prisma .
+COPY prisma ./prisma
 
 FROM base as dependencies
 RUN yarn --production
-COPY node_modules/.prisma/client/ ./node_modules/.prisma/client/
+RUN yarn add prisma --dev
+RUN yarn prisma generate
 
 FROM dependencies as release
 ENV PORT=3333

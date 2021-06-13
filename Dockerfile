@@ -5,6 +5,7 @@ COPY dist/apps/api .
 
 FROM base as dependencies
 RUN yarn --production
+RUN prisma generate
 
 FROM dependencies as release
 ENV PORT=3333

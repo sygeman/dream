@@ -6,7 +6,7 @@ COPY prisma .
 
 FROM base as dependencies
 RUN yarn --production
-RUN yarn prisma generate
+RUN npx prisma generate
 
 FROM dependencies as release
 ENV PORT=3333

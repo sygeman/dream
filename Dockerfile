@@ -6,10 +6,12 @@ COPY prisma ./prisma
 
 FROM base as dependencies
 RUN yarn --production
+
+FROM dependencies as prisma
 RUN yarn add prisma --dev
 RUN yarn prisma generate
 
-FROM dependencies as release
+FROM prisma as release
 ENV PORT=3333
 EXPOSE ${PORT}
 

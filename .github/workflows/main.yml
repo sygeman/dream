@@ -27,6 +27,7 @@ jobs:
 
       - name: Build apps
         run: yarn build api
+        run: yarn generate
 
       # Docker
 

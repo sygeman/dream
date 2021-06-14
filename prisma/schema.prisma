@@ -61,17 +61,6 @@ model Profile {
   userId       String
 }
 
-model Source {
-  id        String   @id @default(cuid())
-  title     String
-  cover     String?
-  provider  String
-  serviceId String
-  duration  Int      @default(0)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now()) @updatedAt
-}
-
 enum ChannelMode {
   NONE
   WAITLIST_YOUTUBE
@@ -126,9 +115,8 @@ model ChannelMessage {
   userId    String
 }
 
-// Channel Mods
-// Waitlist Spotify
-model ModeWaitlistSpotifyTrack {
+// External API
+model SpotifyTrack {
   id                      String                    @id
   artists                 String
   title                   String
@@ -139,23 +127,36 @@ model ModeWaitlistSpotifyTrack {
   modeWaitlistSpotifyItem ModeWaitlistSpotifyItem[]
 }
 
+model YoutubeVideo {
+  id                      String                    @id
+  title                   String
+  cover                   String?
+  duration                Int
+  createdAt               DateTime                  @default(now())
+  updatedAt               DateTime                  @default(now()) @updatedAt
+  modeWaitlistYoutubeItem ModeWaitlistYoutubeItem[]
+}
+
+// Channel Mods
+// Waitlist Spotify
+
 model ModeWaitlistSpotifyItem {
-  id                  String                    @id @default(cuid())
-  duration            Int?                      @default(0)
-  start               Int?                      @default(0) // (Start track position (0))
+  id                  String                @id @default(cuid())
+  duration            Int?                  @default(0)
+  start               Int?                  @default(0) // (Start track position (0))
   end                 Int? // (End track position (=duration))
-  skipped             Boolean?                  @default(false) // (Manual skip (=flase))
-  canceled            Boolean?                  @default(false) // (Manual remove from Queue (=false))
-  track               ModeWaitlistSpotifyTrack? @relation(fields: [trackId], references: [id])
+  skipped             Boolean?              @default(false) // (Manual skip (=flase))
+  canceled            Boolean?              @default(false) // (Manual remove from Queue (=false))
+  track               SpotifyTrack?         @relation(fields: [trackId], references: [id])
   trackId             String?
-  channel             Channel?                  @relation(fields: [channelId], references: [id])
+  channel             Channel?              @relation(fields: [channelId], references: [id])
   channelId           String?
-  author              User?                     @relation(fields: [authorId], references: [id])
+  author              User?                 @relation(fields: [authorId], references: [id])
   authorId            String?
   startedAt           DateTime? // (Update after Waitlist.itemId changed)
   endedAt             DateTime? // (Update after skip (process or manual))
-  createdAt           DateTime                  @default(now())
-  updatedAt           DateTime                  @default(now()) @updatedAt
+  createdAt           DateTime              @default(now())
+  updatedAt           DateTime              @default(now()) @updatedAt
   modeWaitlistSpotify ModeWaitlistSpotify[]
 }
 
@@ -180,33 +181,24 @@ model ModeTwitchStream {
 }
 
 // Waitlist Youtube
-model ModeWaitlistYoutubeVideo {
-  id                      String                    @id
-  title                   String
-  cover                   String?
-  duration                Int
-  createdAt               DateTime                  @default(now())
-  updatedAt               DateTime                  @default(now()) @updatedAt
-  modeWaitlistYoutubeItem ModeWaitlistYoutubeItem[]
-}
 
 model ModeWaitlistYoutubeItem {
-  id                  String                    @id @default(cuid())
-  duration            Int?                      @default(0)
-  start               Int?                      @default(0) // (Start video position (0))
+  id                  String                @id @default(cuid())
+  duration            Int?                  @default(0)
+  start               Int?                  @default(0) // (Start video position (0))
   end                 Int? // (End video position (=duration))
-  skipped             Boolean?                  @default(false) // (Manual skip (=flase))
-  canceled            Boolean?                  @default(false) // (Manual remove from Queue (=false))
-  video               ModeWaitlistYoutubeVideo? @relation(fields: [videoId], references: [id])
+  skipped             Boolean?              @default(false) // (Manual skip (=flase))
+  canceled            Boolean?              @default(false) // (Manual remove from Queue (=false))
+  video               YoutubeVideo?         @relation(fields: [videoId], references: [id])
   videoId             String?
-  channel             Channel?                  @relation(fields: [channelId], references: [id])
+  channel             Channel?              @relation(fields: [channelId], references: [id])
   channelId           String?
-  author              User?                     @relation(fields: [authorId], references: [id])
+  author              User?                 @relation(fields: [authorId], references: [id])
   authorId            String?
   startedAt           DateTime? // (Update after Waitlist.itemId changed)
   endedAt             DateTime? // (Update after skip (process or manual))
-  createdAt           DateTime                  @default(now())
-  updatedAt           DateTime                  @default(now()) @updatedAt
+  createdAt           DateTime              @default(now())
+  updatedAt           DateTime              @default(now()) @updatedAt
   modeWaitlistYoutube ModeWaitlistYoutube[]
 }
 

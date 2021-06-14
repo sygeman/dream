@@ -9,3 +9,4 @@ export * from './lib/new-community';
 export * from './lib/channel-settings';
 export * from './lib/channel-settings/menu';
 export * from './lib/delete-channel';
+export * from './lib/channel-overlay';

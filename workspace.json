@@ -653,6 +653,29 @@
           }
         }
       }
+    },
+    "mode-host-spotify-ui": {
+      "root": "libs/mode/host-spotify/ui",
+      "sourceRoot": "libs/mode/host-spotify/ui/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/mode/host-spotify/ui/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/mode/host-spotify/ui"],
+          "options": {
+            "jestConfig": "libs/mode/host-spotify/ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   }
 }

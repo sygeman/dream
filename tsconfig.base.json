@@ -58,7 +58,8 @@
         "libs/mode/waitlist-youtube/api/src/index.ts"
       ],
       "@dream/external-api/youtube": ["libs/external-api/youtube/src/index.ts"],
-      "@dream/external-api/spotify": ["libs/external-api/spotify/src/index.ts"]
+      "@dream/external-api/spotify": ["libs/external-api/spotify/src/index.ts"],
+      "@dream/mode/host-spotify/ui": ["libs/mode/host-spotify/ui/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

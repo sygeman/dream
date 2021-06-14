@@ -33,5 +33,6 @@ module.exports = {
     '<rootDir>/libs/mode/waitlist-youtube/api',
     '<rootDir>/libs/external-api/youtube',
     '<rootDir>/libs/external-api/spotify',
+    '<rootDir>/libs/mode/host-spotify/ui',
   ],
 };

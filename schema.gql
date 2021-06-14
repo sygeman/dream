@@ -295,6 +295,7 @@ type Mutation {
   deleteChannel(channelId: ID!): Channel!
   setChannelMode(input: SetChannelModeInput!): Channel!
   createChannelMessage(input: ChannelMessageCreateInput!): Boolean!
+  waitlistSpotifyMakeCurrent(channelId: String!): Boolean!
   waitlistSpotifyQueueAddTrack(trackId: String!, channelId: String!): Boolean!
   waitlistSpotifyQueueSkipTrack(channelId: String!): Boolean!
   waitlistSpotifyUserSync(channelId: String!): Boolean!

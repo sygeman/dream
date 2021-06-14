@@ -103,6 +103,9 @@
     },
     "external-api-spotify": {
       "tags": []
+    },
+    "mode-host-spotify-ui": {
+      "tags": []
     }
   }
 }

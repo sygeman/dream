@@ -11,8 +11,8 @@ import { useIntl } from 'react-intl';
 import { Auth } from '@dream/auth';
 import { Modal } from '@dream/components/modal';
 import { ModalFull } from '@dream/components/modal-full';
-import { ChannelModeWaitlistSpotifyAddTrack } from '@dream/mods/waitlist-spotify/ui';
-import { ChannelModeWaitlistYoutubeAddVideo } from '@dream/mods/waitlist-youtube/ui';
+import { ChannelModeWaitlistSpotifyAddTrack } from '@dream/mode/waitlist-spotify/ui';
+import { ChannelModeWaitlistYoutubeAddVideo } from '@dream/mode/waitlist-youtube/ui';
 
 export const Modals = () => {
   const intl = useIntl();

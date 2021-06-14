@@ -5,7 +5,7 @@
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
       "parserOptions": {
-        "project": ["libs/mods/waitlist-spotify/ui/tsconfig.*?.json"]
+        "project": ["libs/mode/twitch-stream/ui/tsconfig.*?.json"]
       },
       "rules": {}
     },

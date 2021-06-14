@@ -1,8 +1,8 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import { ChannelModeWaitlistSpotify } from '@dream/mods/waitlist-spotify/ui';
-import { ChannelModeTwitchStream } from '@dream/mods/twitch-stream/ui';
-import { ChannelModeWaitlistYoutube } from '@dream/mods/waitlist-youtube/ui';
+import { ChannelModeWaitlistSpotify } from '@dream/mode/waitlist-spotify/ui';
+import { ChannelModeTwitchStream } from '@dream/mode/twitch-stream/ui';
+import { ChannelModeWaitlistYoutube } from '@dream/mode/waitlist-youtube/ui';
 import { useChannelQuery, ChannelMode } from '@dream/types';
 import { ChannelHeader } from './channel-header';
 

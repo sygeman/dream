@@ -4,7 +4,7 @@ import { Transition } from '@headlessui/react';
 import { useRouter } from 'next/router';
 import SimpleBar from 'simplebar-react';
 import { useChannelQuery, useSetChannelModeMutation } from '@dream/types';
-import { channelMods } from '../channel-mods';
+import { channelMods } from '../channel-mode';
 import { ChannelSettingsModeCard } from './mode-card';
 import { ModeSettings } from './mode-settings';
 

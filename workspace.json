@@ -392,89 +392,89 @@
         }
       }
     },
-    "mods-waitlist-spotify-api": {
-      "root": "libs/mods/waitlist-spotify/api",
-      "sourceRoot": "libs/mods/waitlist-spotify/api/src",
+    "mode-waitlist-spotify-api": {
+      "root": "libs/mode/waitlist-spotify/api",
+      "sourceRoot": "libs/mode/waitlist-spotify/api/src",
       "projectType": "library",
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/mods/waitlist-spotify/api/**/*.ts"]
+            "lintFilePatterns": ["libs/mode/waitlist-spotify/api/**/*.ts"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/mods/waitlist-spotify/api"],
+          "outputs": ["coverage/libs/mode/waitlist-spotify/api"],
           "options": {
-            "jestConfig": "libs/mods/waitlist-spotify/api/jest.config.js",
+            "jestConfig": "libs/mode/waitlist-spotify/api/jest.config.js",
             "passWithNoTests": true
           }
         }
       }
     },
-    "mods-waitlist-spotify-ui": {
-      "root": "libs/mods/waitlist-spotify/ui",
-      "sourceRoot": "libs/mods/waitlist-spotify/ui/src",
+    "mode-waitlist-spotify-ui": {
+      "root": "libs/mode/waitlist-spotify/ui",
+      "sourceRoot": "libs/mode/waitlist-spotify/ui/src",
       "projectType": "library",
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/mods/waitlist-spotify/ui/**/*.{ts,tsx,js,jsx}"
+              "libs/mode/waitlist-spotify/ui/**/*.{ts,tsx,js,jsx}"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/mods/waitlist-spotify/ui"],
+          "outputs": ["coverage/libs/mode/waitlist-spotify/ui"],
           "options": {
-            "jestConfig": "libs/mods/waitlist-spotify/ui/jest.config.js",
+            "jestConfig": "libs/mode/waitlist-spotify/ui/jest.config.js",
             "passWithNoTests": true
           }
         }
       }
     },
-    "mods-twitch-stream-api": {
-      "root": "libs/mods/twitch-stream/api",
-      "sourceRoot": "libs/mods/twitch-stream/api/src",
+    "mode-twitch-stream-api": {
+      "root": "libs/mode/twitch-stream/api",
+      "sourceRoot": "libs/mode/twitch-stream/api/src",
       "projectType": "library",
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/mods/twitch-stream/api/**/*.ts"]
+            "lintFilePatterns": ["libs/mode/twitch-stream/api/**/*.ts"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/mods/twitch-stream/api"],
+          "outputs": ["coverage/libs/mode/twitch-stream/api"],
           "options": {
-            "jestConfig": "libs/mods/twitch-stream/api/jest.config.js",
+            "jestConfig": "libs/mode/twitch-stream/api/jest.config.js",
             "passWithNoTests": true
           }
         }
       }
     },
-    "mods-twitch-stream-ui": {
-      "root": "libs/mods/twitch-stream/ui",
-      "sourceRoot": "libs/mods/twitch-stream/ui/src",
+    "mode-twitch-stream-ui": {
+      "root": "libs/mode/twitch-stream/ui",
+      "sourceRoot": "libs/mode/twitch-stream/ui/src",
       "projectType": "library",
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/mods/twitch-stream/ui/**/*.{ts,tsx,js,jsx}"
+              "libs/mode/twitch-stream/ui/**/*.{ts,tsx,js,jsx}"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/mods/twitch-stream/ui"],
+          "outputs": ["coverage/libs/mode/twitch-stream/ui"],
           "options": {
-            "jestConfig": "libs/mods/twitch-stream/ui/jest.config.js",
+            "jestConfig": "libs/mode/twitch-stream/ui/jest.config.js",
             "passWithNoTests": true
           }
         }
@@ -568,45 +568,45 @@
         }
       }
     },
-    "mods-waitlist-youtube-ui": {
-      "root": "libs/mods/waitlist-youtube/ui",
-      "sourceRoot": "libs/mods/waitlist-youtube/ui/src",
+    "mode-waitlist-youtube-ui": {
+      "root": "libs/mode/waitlist-youtube/ui",
+      "sourceRoot": "libs/mode/waitlist-youtube/ui/src",
       "projectType": "library",
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/mods/waitlist-youtube/ui/**/*.{ts,tsx,js,jsx}"
+              "libs/mode/waitlist-youtube/ui/**/*.{ts,tsx,js,jsx}"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/mods/waitlist-youtube/ui"],
+          "outputs": ["coverage/libs/mode/waitlist-youtube/ui"],
           "options": {
-            "jestConfig": "libs/mods/waitlist-youtube/ui/jest.config.js",
+            "jestConfig": "libs/mode/waitlist-youtube/ui/jest.config.js",
             "passWithNoTests": true
           }
         }
       }
     },
-    "mods-waitlist-youtube-api": {
-      "root": "libs/mods/waitlist-youtube/api",
-      "sourceRoot": "libs/mods/waitlist-youtube/api/src",
+    "mode-waitlist-youtube-api": {
+      "root": "libs/mode/waitlist-youtube/api",
+      "sourceRoot": "libs/mode/waitlist-youtube/api/src",
       "projectType": "library",
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/mods/waitlist-youtube/api/**/*.ts"]
+            "lintFilePatterns": ["libs/mode/waitlist-youtube/api/**/*.ts"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/mods/waitlist-youtube/api"],
+          "outputs": ["coverage/libs/mode/waitlist-youtube/api"],
           "options": {
-            "jestConfig": "libs/mods/waitlist-youtube/api/jest.config.js",
+            "jestConfig": "libs/mode/waitlist-youtube/api/jest.config.js",
             "passWithNoTests": true
           }
         }

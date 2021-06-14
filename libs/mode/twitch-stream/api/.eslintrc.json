@@ -1,11 +1,11 @@
 {
-  "extends": ["plugin:@nrwl/nx/react", "../../../../.eslintrc.json"],
+  "extends": ["../../../../.eslintrc.json"],
   "ignorePatterns": ["!**/*"],
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
       "parserOptions": {
-        "project": ["libs/mods/twitch-stream/ui/tsconfig.*?.json"]
+        "project": ["libs/mode/twitch-stream/api/tsconfig.*?.json"]
       },
       "rules": {}
     },

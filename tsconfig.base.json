@@ -33,17 +33,17 @@
       "@dream/user": ["libs/user/src/index.ts"],
       "@dream/community-api": ["libs/community-api/src/index.ts"],
       "@dream/types": ["libs/types/src/index.tsx"],
-      "@dream/mods/waitlist-spotify/api": [
-        "libs/mods/waitlist-spotify/api/src/index.ts"
+      "@dream/mode/waitlist-spotify/api": [
+        "libs/mode/waitlist-spotify/api/src/index.ts"
       ],
-      "@dream/mods/waitlist-spotify/ui": [
-        "libs/mods/waitlist-spotify/ui/src/index.ts"
+      "@dream/mode/waitlist-spotify/ui": [
+        "libs/mode/waitlist-spotify/ui/src/index.ts"
       ],
-      "@dream/mods/twitch-stream/api": [
-        "libs/mods/twitch-stream/api/src/index.ts"
+      "@dream/mode/twitch-stream/api": [
+        "libs/mode/twitch-stream/api/src/index.ts"
       ],
-      "@dream/mods/twitch-stream/ui": [
-        "libs/mods/twitch-stream/ui/src/index.ts"
+      "@dream/mode/twitch-stream/ui": [
+        "libs/mode/twitch-stream/ui/src/index.ts"
       ],
       "@dream/app-panel": ["libs/app-panel/src/index.ts"],
       "@dream/components/modal": ["libs/components/modal/src/index.ts"],
@@ -51,11 +51,11 @@
         "libs/components/modal-full/src/index.ts"
       ],
       "@dream/components/save-form": ["libs/components/save-form/src/index.ts"],
-      "@dream/mods/waitlist-youtube/ui": [
-        "libs/mods/waitlist-youtube/ui/src/index.ts"
+      "@dream/mode/waitlist-youtube/ui": [
+        "libs/mode/waitlist-youtube/ui/src/index.ts"
       ],
-      "@dream/mods/waitlist-youtube/api": [
-        "libs/mods/waitlist-youtube/api/src/index.ts"
+      "@dream/mode/waitlist-youtube/api": [
+        "libs/mode/waitlist-youtube/api/src/index.ts"
       ],
       "@dream/external-api/youtube": ["libs/external-api/youtube/src/index.ts"],
       "@dream/external-api/spotify": ["libs/external-api/spotify/src/index.ts"]

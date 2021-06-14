@@ -1,5 +1,5 @@
 module.exports = {
-  displayName: 'mods-twitch-stream-api',
+  displayName: 'mode-waitlist-spotify-api',
   preset: '../../../../jest.preset.js',
   globals: {
     'ts-jest': {
@@ -11,5 +11,5 @@ module.exports = {
     '^.+\\.[tj]sx?$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
-  coverageDirectory: '../../../../coverage/libs/mods/twitch-stream/api',
+  coverageDirectory: '../../../../coverage/libs/mode/waitlist-spotify/api',
 };

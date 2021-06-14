@@ -1,7 +1,7 @@
 import React from 'react';
 import { ChannelMode } from '@dream/types';
-import { ChannelModeTwitchStreamSettings } from '@dream/mods/twitch-stream/ui';
-import { channelMods } from '../channel-mods';
+import { ChannelModeTwitchStreamSettings } from '@dream/mode/twitch-stream/ui';
+import { channelMods } from '../channel-mode';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ArrowLeftIcon } from '@heroicons/react/outline';
 import clsx from 'clsx';

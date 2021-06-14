@@ -68,16 +68,16 @@
     "types": {
       "tags": []
     },
-    "mods-waitlist-spotify-api": {
+    "mode-waitlist-spotify-api": {
       "tags": []
     },
-    "mods-waitlist-spotify-ui": {
+    "mode-waitlist-spotify-ui": {
       "tags": []
     },
-    "mods-twitch-stream-api": {
+    "mode-twitch-stream-api": {
       "tags": []
     },
-    "mods-twitch-stream-ui": {
+    "mode-twitch-stream-ui": {
       "tags": []
     },
     "app-panel": {
@@ -92,10 +92,10 @@
     "components-save-form": {
       "tags": []
     },
-    "mods-waitlist-youtube-ui": {
+    "mode-waitlist-youtube-ui": {
       "tags": []
     },
-    "mods-waitlist-youtube-api": {
+    "mode-waitlist-youtube-api": {
       "tags": []
     },
     "external-api-youtube": {

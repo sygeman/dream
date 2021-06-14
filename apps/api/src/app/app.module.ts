@@ -11,9 +11,9 @@ import { config } from './config';
 import { nanoid } from 'nanoid';
 import { BullModule } from '@nestjs/bull';
 import { SpotifyModule } from '@dream/external-api/spotify';
-import { WaitlistSpotifyModule } from '@dream/mods/waitlist-spotify/api';
-import { TwitchStreamModule } from '@dream/mods/twitch-stream/api';
-import { WaitlistYoutubeModule } from '@dream/mods/waitlist-youtube/api';
+import { WaitlistSpotifyModule } from '@dream/mode/waitlist-spotify/api';
+import { TwitchStreamModule } from '@dream/mode/twitch-stream/api';
+import { WaitlistYoutubeModule } from '@dream/mode/waitlist-youtube/api';
 
 @Module({
   imports: [

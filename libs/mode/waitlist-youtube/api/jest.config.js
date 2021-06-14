@@ -1,9 +1,9 @@
 module.exports = {
-  displayName: 'mods-waitlist-spotify-api',
+  displayName: 'mode-waitlist-youtube-api',
   preset: '../../../../jest.preset.js',
   globals: {
     'ts-jest': {
-      tsConfig: '<rootDir>/tsconfig.spec.json',
+      tsconfig: '<rootDir>/tsconfig.spec.json',
     },
   },
   testEnvironment: 'node',
@@ -11,5 +11,5 @@ module.exports = {
     '^.+\\.[tj]sx?$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
-  coverageDirectory: '../../../../coverage/libs/mods/waitlist-spotify/api',
+  coverageDirectory: '../../../../coverage/libs/mode/waitlist-youtube/api',
 };

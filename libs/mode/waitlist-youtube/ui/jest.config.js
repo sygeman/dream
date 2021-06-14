@@ -1,9 +1,9 @@
 module.exports = {
-  displayName: 'mods-waitlist-youtube-ui',
+  displayName: 'mode-waitlist-youtube-ui',
   preset: '../../../../jest.preset.js',
   transform: {
     '^.+\\.[tj]sx?$': 'babel-jest',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
-  coverageDirectory: '../../../../coverage/libs/mods/waitlist-youtube/ui',
+  coverageDirectory: '../../../../coverage/libs/mode/waitlist-youtube/ui',
 };

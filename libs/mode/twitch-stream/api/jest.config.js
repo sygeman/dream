@@ -1,9 +1,9 @@
 module.exports = {
-  displayName: 'mods-waitlist-youtube-api',
+  displayName: 'mode-twitch-stream-api',
   preset: '../../../../jest.preset.js',
   globals: {
     'ts-jest': {
-      tsconfig: '<rootDir>/tsconfig.spec.json',
+      tsConfig: '<rootDir>/tsconfig.spec.json',
     },
   },
   testEnvironment: 'node',
@@ -11,5 +11,5 @@ module.exports = {
     '^.+\\.[tj]sx?$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
-  coverageDirectory: '../../../../coverage/libs/mods/waitlist-youtube/api',
+  coverageDirectory: '../../../../coverage/libs/mode/twitch-stream/api',
 };

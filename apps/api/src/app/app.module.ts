@@ -44,7 +44,7 @@ import { WaitlistYoutubeModule } from '@dream/mode/waitlist-youtube/api';
       ) => ({
         installSubscriptionHandlers: true,
         validationRules: [depthLimit(10)],
-        autoSchemaFile: 'schema.gql',
+        autoSchemaFile: 'apps/api/schema.gql',
         context: async ({ req, connection }) => {
           if (connection) {
             return connection.context;

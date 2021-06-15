@@ -1,5 +1,5 @@
 overwrite: true
-schema: './schema.gql'
+schema: 'apps/api/schema.gql'
 documents: 'libs/**/*.graphql'
 generates:
   libs/types/src/index.tsx:

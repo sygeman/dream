@@ -17,6 +17,20 @@ export class WaitlistSpotifyService {
     @Inject('PUB_SUB') private readonly pubsub: RedisPubSub
   ) {}
 
+  async init(channelId: string) {
+    const waitlistSpotify = await this.prisma.modeWaitlistSpotify.findFirst({
+      where: { channelId },
+    });
+
+    if (waitlistSpotify) return waitlistSpotify;
+
+    return this.prisma.modeWaitlistSpotify.create({
+      data: {
+        channel: { connect: { id: channelId } },
+      },
+    });
+  }
+
   async updateWaitlistState({ waitlistId, itemId = null, duration = 0 }) {
     this.logger.log(
       `Update waitlist state waitlist:${waitlistId}, item:${itemId}`

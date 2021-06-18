@@ -1,0 +1,11 @@
+mutation makeTwitchStreamModeCurrent($channelId: String!) {
+  makeTwitchStreamModeCurrent(channelId: $channelId)
+}
+
+mutation makeWaitlistSpotifyModeCurrent($channelId: String!) {
+  makeWaitlistSpotifyModeCurrent(channelId: $channelId)
+}
+
+mutation makeWaitlistYoutubeModeCurrent($channelId: String!) {
+  makeWaitlistYoutubeModeCurrent(channelId: $channelId)
+}

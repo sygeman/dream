@@ -18,6 +18,7 @@ import { ModeWaitlistSpotifyCurrentAction } from './models/current/action';
 import { ModeWaitlistSpotifyHistory } from './models/history/model';
 import { ModeWaitlistSpotifyCurrent } from './models/current/model';
 import { ModeWaitlistSpotifyQueue } from './models/queue/model';
+import { ChannelMode } from '.prisma/client';
 
 @Resolver()
 export class WaitlistSpotifyResolver {
@@ -105,6 +106,22 @@ export class WaitlistSpotifyResolver {
     };
 
     return queue;
+  }
+
+  @Mutation(() => Boolean)
+  @UseGuards(AuthGuard)
+  async makeWaitlistSpotifyModeCurrent(
+    @Args({ name: 'channelId' }) channelId: string
+  ) {
+    await this.waitlistSpotifyService.init(channelId);
+
+    // Use channel service here
+    await this.prisma.channel.update({
+      where: { id: channelId },
+      data: { mode: ChannelMode.WAITLIST_SPOTIFY },
+    });
+
+    return true;
   }
 
   @Mutation(() => Boolean)

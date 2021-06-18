@@ -5,11 +5,14 @@ import { Inject, UseGuards } from '@nestjs/common';
 import { RedisPubSub } from 'graphql-redis-subscriptions';
 import { UpdateTwitchStreamInput } from './dto/update-twitch-stream.input';
 import { AuthGuard } from '@dream/auth-api';
+import { TwitchStreamService } from './twitch-stream.service';
+import { ChannelMode } from '.prisma/client';
 
 @Resolver()
 export class TwitchStreamResolver {
   constructor(
     private prisma: PrismaService,
+    private twitchStreamService: TwitchStreamService,
     @Inject('PUB_SUB') private readonly pubsub: RedisPubSub
   ) {}
 
@@ -18,6 +21,22 @@ export class TwitchStreamResolver {
     return this.prisma.modeTwitchStream.findFirst({
       where: { channel: { id: channelId } },
     });
+  }
+
+  @Mutation(() => Boolean)
+  @UseGuards(AuthGuard)
+  async makeTwitchStreamModeCurrent(
+    @Args({ name: 'channelId' }) channelId: string
+  ) {
+    await this.twitchStreamService.init(channelId);
+
+    // Use channel service here
+    await this.prisma.channel.update({
+      where: { id: channelId },
+      data: { mode: ChannelMode.STREAM_TWITCH },
+    });
+
+    return true;
   }
 
   @Mutation(() => TwitchStream)
@@ -40,26 +59,9 @@ export class TwitchStreamResolver {
       throw 'Deny';
     }
 
-    const twitchStream = await this.prisma.modeTwitchStream.findFirst({
-      where: { channelId: input?.channelId },
-    });
-
-    if (twitchStream) {
-      return await this.prisma.modeTwitchStream.update({
-        where: { id: twitchStream.id },
-        data: { channelKey: input.channelKey },
-      });
-    }
-
-    return this.prisma.modeTwitchStream.create({
-      data: {
-        channel: {
-          connect: {
-            id: input?.channelId,
-          },
-        },
-        channelKey: input.channelKey,
-      },
+    return this.twitchStreamService.update({
+      channelId: input?.channelId,
+      channelKey: input.channelKey,
     });
   }
 }

@@ -3,10 +3,11 @@ import clsx from 'clsx';
 import { Transition } from '@headlessui/react';
 import { useRouter } from 'next/router';
 import SimpleBar from 'simplebar-react';
-import { useChannelQuery, useSetChannelModeMutation } from '@dream/types';
+import { useChannelQuery } from '@dream/types';
 import { channelMods } from '../channel-mode';
 import { ChannelSettingsModeCard } from './mode-card';
 import { ModeSettings } from './mode-settings';
+import { useMakeModeCurrent } from './use-make-mode-current';
 
 export const ChannelSettingsMode = () => {
   const [selectedChannelMode, setSelectedChannelMode] = useState(null);
@@ -19,10 +20,10 @@ export const ChannelSettingsMode = () => {
     skip: !name,
   });
 
-  const [setChannelMode] = useSetChannelModeMutation();
-
   const channel = communityQuery?.data?.channel;
-  const mode = channelMods.find((m) => m?.value === channel?.mode);
+  const currentMode = channelMods.find((m) => m?.value === channel?.mode);
+
+  const { makeModeCurrent } = useMakeModeCurrent();
 
   return (
     <div className="flex w-full h-full">
@@ -38,15 +39,9 @@ export const ChannelSettingsMode = () => {
               <ChannelSettingsModeCard
                 key={m?.id}
                 mode={m}
-                active={mode?.value === m.value}
+                active={currentMode?.value === m.value}
                 openSettings={() => setSelectedChannelMode(m?.value)}
-                makeCurrent={() =>
-                  setChannelMode({
-                    variables: {
-                      input: { channelId: channel?.id, mode: m?.value },
-                    },
-                  })
-                }
+                makeCurrent={() => makeModeCurrent(m?.value, channel?.id)}
               />
             ))}
           </div>
@@ -65,15 +60,9 @@ export const ChannelSettingsMode = () => {
       >
         <ModeSettings
           modeKey={selectedChannelMode}
-          active={mode?.value === selectedChannelMode}
+          active={currentMode?.value === selectedChannelMode}
           onClose={() => setSelectedChannelMode(null)}
-          makeCurrent={() =>
-            setChannelMode({
-              variables: {
-                input: { channelId: channel?.id, mode: selectedChannelMode },
-              },
-            })
-          }
+          makeCurrent={() => makeModeCurrent(selectedChannelMode, channel?.id)}
         />
       </Transition>
     </div>

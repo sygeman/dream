@@ -17,6 +17,20 @@ export class WaitlistYoutubeService {
     @Inject('PUB_SUB') private readonly pubsub: RedisPubSub
   ) {}
 
+  async init(channelId: string) {
+    const waitlistYoutube = await this.prisma.modeWaitlistYoutube.findFirst({
+      where: { channelId },
+    });
+
+    if (waitlistYoutube) return waitlistYoutube;
+
+    return this.prisma.modeWaitlistYoutube.create({
+      data: {
+        channel: { connect: { id: channelId } },
+      },
+    });
+  }
+
   async updateWaitlistState({ waitlistId, itemId = null, duration = 0 }) {
     this.logger.log(
       `Update waitlist state waitlist:${waitlistId}, item:${itemId}`

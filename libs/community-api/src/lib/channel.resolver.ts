@@ -14,7 +14,6 @@ import { RedisPubSub } from 'graphql-redis-subscriptions';
 import { Inject, UseGuards } from '@nestjs/common';
 import { CreateChannelInput } from './dto/createChannel.input';
 import { UpdateChannelInput } from './dto/updateChannel.input';
-import { SetChannelModeInput } from './dto/setChannelMode.input';
 import { AuthGuard } from '@dream/auth-api';
 
 @Resolver(() => Channel)
@@ -166,34 +165,6 @@ export class ChannelResolver {
       where: {
         id: channelId,
       },
-    });
-  }
-
-  @Mutation(() => Channel)
-  @UseGuards(AuthGuard)
-  async setChannelMode(
-    @Args({ name: 'input', type: () => SetChannelModeInput })
-    input: SetChannelModeInput,
-    @Context('userId') userId: string
-  ) {
-    const { channelId, mode } = input;
-
-    const channelIsExist = await this.prisma.channel.findFirst({
-      where: {
-        id: channelId,
-        community: {
-          ownerId: userId,
-        },
-      },
-    });
-
-    if (!channelIsExist) {
-      throw 'Deny';
-    }
-
-    return this.prisma.channel.update({
-      where: { id: channelId },
-      data: { mode },
     });
   }
 }

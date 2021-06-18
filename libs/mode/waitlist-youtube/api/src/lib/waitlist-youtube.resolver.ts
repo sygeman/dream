@@ -18,6 +18,7 @@ import { ModeWaitlistYoutubeCurrentAction } from './models/current/action';
 import { ModeWaitlistYoutubeHistory } from './models/history/model';
 import { ModeWaitlistYoutubeCurrent } from './models/current/model';
 import { ModeWaitlistYoutubeQueue } from './models/queue/model';
+import { ChannelMode } from '.prisma/client';
 
 @Resolver()
 export class WaitlistYoutubeResolver {
@@ -102,6 +103,22 @@ export class WaitlistYoutubeResolver {
     };
 
     return queue;
+  }
+
+  @Mutation(() => Boolean)
+  @UseGuards(AuthGuard)
+  async makeWaitlistYoutubeModeCurrent(
+    @Args({ name: 'channelId' }) channelId: string
+  ) {
+    await this.waitlistYoutubeService.init(channelId);
+
+    // Use channel service here
+    await this.prisma.channel.update({
+      where: { id: channelId },
+      data: { mode: ChannelMode.WAITLIST_YOUTUBE },
+    });
+
+    return true;
   }
 
   @Mutation(() => Boolean)

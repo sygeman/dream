@@ -15,6 +15,7 @@ const colors = {
   primary: {
     DEFAULT: primary,
     light: lighen(primary, 0.2),
+    dark: darken(primary, 0.2),
   },
   background: {
     DEFAULT: background,

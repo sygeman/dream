@@ -392,89 +392,85 @@
         }
       }
     },
-    "mode-waitlist-spotify-api": {
-      "root": "libs/mode/waitlist-spotify/api",
-      "sourceRoot": "libs/mode/waitlist-spotify/api/src",
+    "mode-spotify-api": {
+      "root": "libs/mode/spotify/api",
+      "sourceRoot": "libs/mode/spotify/api/src",
       "projectType": "library",
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/mode/waitlist-spotify/api/**/*.ts"]
+            "lintFilePatterns": ["libs/mode/spotify/api/**/*.ts"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/mode/waitlist-spotify/api"],
+          "outputs": ["coverage/libs/mode/spotify/api"],
           "options": {
-            "jestConfig": "libs/mode/waitlist-spotify/api/jest.config.js",
+            "jestConfig": "libs/mode/spotify/api/jest.config.js",
             "passWithNoTests": true
           }
         }
       }
     },
-    "mode-waitlist-spotify-ui": {
-      "root": "libs/mode/waitlist-spotify/ui",
-      "sourceRoot": "libs/mode/waitlist-spotify/ui/src",
+    "mode-spotify-ui": {
+      "root": "libs/mode/spotify/ui",
+      "sourceRoot": "libs/mode/spotify/ui/src",
       "projectType": "library",
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/mode/waitlist-spotify/ui/**/*.{ts,tsx,js,jsx}"
-            ]
+            "lintFilePatterns": ["libs/mode/spotify/ui/**/*.{ts,tsx,js,jsx}"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/mode/waitlist-spotify/ui"],
+          "outputs": ["coverage/libs/mode/spotify/ui"],
           "options": {
-            "jestConfig": "libs/mode/waitlist-spotify/ui/jest.config.js",
+            "jestConfig": "libs/mode/spotify/ui/jest.config.js",
             "passWithNoTests": true
           }
         }
       }
     },
-    "mode-twitch-stream-api": {
-      "root": "libs/mode/twitch-stream/api",
-      "sourceRoot": "libs/mode/twitch-stream/api/src",
+    "mode-twitch-api": {
+      "root": "libs/mode/twitch/api",
+      "sourceRoot": "libs/mode/twitch/api/src",
       "projectType": "library",
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/mode/twitch-stream/api/**/*.ts"]
+            "lintFilePatterns": ["libs/mode/twitch/api/**/*.ts"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/mode/twitch-stream/api"],
+          "outputs": ["coverage/libs/mode/twitch/api"],
           "options": {
-            "jestConfig": "libs/mode/twitch-stream/api/jest.config.js",
+            "jestConfig": "libs/mode/twitch/api/jest.config.js",
             "passWithNoTests": true
           }
         }
       }
     },
-    "mode-twitch-stream-ui": {
-      "root": "libs/mode/twitch-stream/ui",
-      "sourceRoot": "libs/mode/twitch-stream/ui/src",
+    "mode-twitch-ui": {
+      "root": "libs/mode/twitch/ui",
+      "sourceRoot": "libs/mode/twitch/ui/src",
       "projectType": "library",
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/mode/twitch-stream/ui/**/*.{ts,tsx,js,jsx}"
-            ]
+            "lintFilePatterns": ["libs/mode/twitch/ui/**/*.{ts,tsx,js,jsx}"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/mode/twitch-stream/ui"],
+          "outputs": ["coverage/libs/mode/twitch/ui"],
           "options": {
-            "jestConfig": "libs/mode/twitch-stream/ui/jest.config.js",
+            "jestConfig": "libs/mode/twitch/ui/jest.config.js",
             "passWithNoTests": true
           }
         }
@@ -568,45 +564,43 @@
         }
       }
     },
-    "mode-waitlist-youtube-ui": {
-      "root": "libs/mode/waitlist-youtube/ui",
-      "sourceRoot": "libs/mode/waitlist-youtube/ui/src",
+    "mode-youtube-ui": {
+      "root": "libs/mode/youtube/ui",
+      "sourceRoot": "libs/mode/youtube/ui/src",
       "projectType": "library",
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/mode/waitlist-youtube/ui/**/*.{ts,tsx,js,jsx}"
-            ]
+            "lintFilePatterns": ["libs/mode/youtube/ui/**/*.{ts,tsx,js,jsx}"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/mode/waitlist-youtube/ui"],
+          "outputs": ["coverage/libs/mode/youtube/ui"],
           "options": {
-            "jestConfig": "libs/mode/waitlist-youtube/ui/jest.config.js",
+            "jestConfig": "libs/mode/youtube/ui/jest.config.js",
             "passWithNoTests": true
           }
         }
       }
     },
-    "mode-waitlist-youtube-api": {
-      "root": "libs/mode/waitlist-youtube/api",
-      "sourceRoot": "libs/mode/waitlist-youtube/api/src",
+    "mode-youtube-api": {
+      "root": "libs/mode/youtube/api",
+      "sourceRoot": "libs/mode/youtube/api/src",
       "projectType": "library",
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/mode/waitlist-youtube/api/**/*.ts"]
+            "lintFilePatterns": ["libs/mode/youtube/api/**/*.ts"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/mode/waitlist-youtube/api"],
+          "outputs": ["coverage/libs/mode/youtube/api"],
           "options": {
-            "jestConfig": "libs/mode/waitlist-youtube/api/jest.config.js",
+            "jestConfig": "libs/mode/youtube/api/jest.config.js",
             "passWithNoTests": true
           }
         }

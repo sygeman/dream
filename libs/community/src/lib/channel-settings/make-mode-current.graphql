@@ -2,8 +2,8 @@ mutation makeTwitchStreamModeCurrent($channelId: String!) {
   makeTwitchStreamModeCurrent(channelId: $channelId)
 }
 
-mutation makeWaitlistSpotifyModeCurrent($channelId: String!) {
-  makeWaitlistSpotifyModeCurrent(channelId: $channelId)
+mutation makeSpotifyModeModeCurrent($channelId: String!) {
+  makeSpotifyModeModeCurrent(channelId: $channelId)
 }
 
 mutation makeWaitlistYoutubeModeCurrent($channelId: String!) {

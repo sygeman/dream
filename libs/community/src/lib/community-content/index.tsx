@@ -1,8 +1,8 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import { ChannelModeWaitlistSpotify } from '@dream/mode/waitlist-spotify/ui';
-import { ChannelModeTwitchStream } from '@dream/mode/twitch-stream/ui';
-import { ChannelModeWaitlistYoutube } from '@dream/mode/waitlist-youtube/ui';
+import { ChannelSpotifyMode } from '@dream/mode/spotify/ui';
+import { ChannelTwitchMode } from '@dream/mode/twitch/ui';
+import { ChannelYoutubeMode } from '@dream/mode/youtube/ui';
 import { useChannelQuery, ChannelMode } from '@dream/types';
 import { ChannelHeader } from './channel-header';
 
@@ -20,12 +20,12 @@ export const CommunityContent = () => {
 
   const getContentView = () => {
     switch (channel?.mode) {
-      case ChannelMode.WaitlistSpotify:
-        return <ChannelModeWaitlistSpotify />;
-      case ChannelMode.StreamTwitch:
-        return <ChannelModeTwitchStream />;
-      case ChannelMode.WaitlistYoutube:
-        return <ChannelModeWaitlistYoutube />;
+      case ChannelMode.Spotify:
+        return <ChannelSpotifyMode />;
+      case ChannelMode.Twitch:
+        return <ChannelTwitchMode />;
+      case ChannelMode.Youtube:
+        return <ChannelYoutubeMode />;
       default:
         return null;
     }

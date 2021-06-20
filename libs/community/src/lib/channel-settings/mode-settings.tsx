@@ -1,6 +1,6 @@
 import React from 'react';
 import { ChannelMode } from '@dream/types';
-import { ChannelModeTwitchStreamSettings } from '@dream/mode/twitch-stream/ui';
+import { ChannelTwitchModeSettings } from '@dream/mode/twitch/ui';
 import { channelMods } from '../channel-mode';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ArrowLeftIcon } from '@heroicons/react/outline';
@@ -11,8 +11,8 @@ export const ModeSettings = ({ active, modeKey, onClose, makeCurrent }) => {
 
   const getSettingsView = () => {
     switch (modeKey) {
-      case ChannelMode.StreamTwitch:
-        return <ChannelModeTwitchStreamSettings />;
+      case ChannelMode.Twitch:
+        return <ChannelTwitchModeSettings />;
       default:
         return null;
     }

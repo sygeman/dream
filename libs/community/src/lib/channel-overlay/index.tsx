@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import { ChannelModeWaitlistSpotifyOverlay } from '@dream/mode/waitlist-spotify/ui';
+import { ChannelSpotifyModeOverlay } from '@dream/mode/spotify/ui';
 import { useChannelQuery, ChannelMode } from '@dream/types';
 
 export const CommunityChannelOverlay = () => {
@@ -16,8 +16,8 @@ export const CommunityChannelOverlay = () => {
   const channel = communityQuery?.data?.channel;
 
   switch (channel?.mode) {
-    case ChannelMode.WaitlistSpotify:
-      return <ChannelModeWaitlistSpotifyOverlay />;
+    case ChannelMode.Spotify:
+      return <ChannelSpotifyModeOverlay />;
     default:
       return null;
   }

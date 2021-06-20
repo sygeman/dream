@@ -3,7 +3,7 @@ import { PrismaService } from '@dream/prisma';
 import { User } from './models/user.model';
 import { UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@dream/auth-api';
-import { Locale } from '.prisma/client';
+import { Locale } from '@prisma/client';
 
 @Resolver(() => User)
 export class UserResolver {

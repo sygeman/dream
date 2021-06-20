@@ -1,2 +1,0 @@
--- AlterTable
-ALTER TABLE "Channel" ALTER COLUMN "mode" SET DEFAULT E'NONE';

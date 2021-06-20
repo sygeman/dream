@@ -11,8 +11,8 @@ import { useIntl } from 'react-intl';
 import { Auth } from '@dream/auth';
 import { Modal } from '@dream/components/modal';
 import { ModalFull } from '@dream/components/modal-full';
-import { ChannelModeWaitlistSpotifyAddTrack } from '@dream/mode/waitlist-spotify/ui';
-import { ChannelModeWaitlistYoutubeAddVideo } from '@dream/mode/waitlist-youtube/ui';
+import { ChannelSpotifyModeAddTrack } from '@dream/mode/spotify/ui';
+import { ChannelYoutubeModeAddVideo } from '@dream/mode/youtube/ui';
 
 export const Modals = () => {
   const intl = useIntl();
@@ -37,12 +37,12 @@ export const Modals = () => {
         <DeleteChannel />
       </Modal>
       <Modal
-        id="waitlistSpotifyAddTrack"
+        id="spotifyModeAddTrack"
         title="Add Track To Queue"
         minimal
         {...modalProps}
       >
-        <ChannelModeWaitlistSpotifyAddTrack />
+        <ChannelSpotifyModeAddTrack />
       </Modal>
       <Modal
         id="waitlistYoutubeAddVideo"
@@ -50,7 +50,7 @@ export const Modals = () => {
         minimal
         {...modalProps}
       >
-        <ChannelModeWaitlistYoutubeAddVideo />
+        <ChannelYoutubeModeAddVideo />
       </Modal>
       <ModalFull
         id="channelSettings"

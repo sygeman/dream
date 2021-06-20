@@ -53,12 +53,9 @@ type Channel {
 
 enum ChannelMode {
   NONE
-  WAITLIST_YOUTUBE
-  WAITLIST_SPOTIFY
-  STREAM_TWITCH
-  STREAM_YOUTUBE
-  COLLECTION_SPOTIFY
-  COLLECTION_YOUTUBE
+  TWITCH
+  YOUTUBE
+  SPOTIFY
 }
 
 type ChannelMessage {
@@ -78,13 +75,13 @@ type SpotifyNow {
   progress: Float!
 }
 
-type ModeWaitlistSpotifyHistoryItemDataAuthor {
+type SpotifyModeHistoryItemDataAuthor {
   id: String!
   name: String!
   avatar: String
 }
 
-type ModeWaitlistSpotifyHistoryItemData {
+type SpotifyModeHistoryItemData {
   id: String!
   trackId: String!
   duration: Int!
@@ -93,29 +90,29 @@ type ModeWaitlistSpotifyHistoryItemData {
   title: String!
   startedAt: String
   endedAt: String
-  author: ModeWaitlistSpotifyHistoryItemDataAuthor!
+  author: SpotifyModeHistoryItemDataAuthor!
 }
 
-type ModeWaitlistSpotifyHistoryItem {
-  actions: [ModeWaitlistSpotifyHistoryItemAction!]!
-  data: ModeWaitlistSpotifyHistoryItemData!
+type SpotifyModeHistoryItem {
+  actions: [SpotifyModeHistoryItemAction!]!
+  data: SpotifyModeHistoryItemData!
 }
 
-enum ModeWaitlistSpotifyHistoryItemAction {
+enum SpotifyModeHistoryItemAction {
   ADD_TO_QUEUE
 }
 
-type ModeWaitlistSpotifyHistory {
-  items: [ModeWaitlistSpotifyHistoryItem!]!
+type SpotifyModeHistory {
+  items: [SpotifyModeHistoryItem!]!
 }
 
-type ModeWaitlistSpotifyCurrentItemAuthor {
+type SpotifyModeCurrentItemAuthor {
   id: String!
   name: String!
   avatar: String
 }
 
-type ModeWaitlistSpotifyCurrentItem {
+type SpotifyModeCurrentItem {
   id: String!
   trackId: String!
   duration: Int!
@@ -123,49 +120,49 @@ type ModeWaitlistSpotifyCurrentItem {
   artists: String!
   title: String!
   startedAt: String
-  author: ModeWaitlistSpotifyCurrentItemAuthor!
+  author: SpotifyModeCurrentItemAuthor!
 }
 
-type ModeWaitlistSpotifyCurrent {
-  actions: [ModeWaitlistSpotifyCurrentAction!]!
-  item: ModeWaitlistSpotifyCurrentItem
+type SpotifyModeCurrent {
+  actions: [SpotifyModeCurrentAction!]!
+  item: SpotifyModeCurrentItem
 }
 
-enum ModeWaitlistSpotifyCurrentAction {
+enum SpotifyModeCurrentAction {
   SKIP
 }
 
-type ModeWaitlistSpotifyQueueItemDataAuthor {
+type SpotifyModeQueueItemDataAuthor {
   id: String!
   name: String!
   avatar: String
 }
 
-type ModeWaitlistSpotifyQueueItemData {
+type SpotifyModeQueueItemData {
   id: String!
   trackId: String!
   duration: Int!
   cover: String!
   artists: String!
   title: String!
-  author: ModeWaitlistSpotifyQueueItemDataAuthor!
+  author: SpotifyModeQueueItemDataAuthor!
 }
 
-type ModeWaitlistSpotifyQueueItem {
-  actions: [ModeWaitlistSpotifyQueueItemAction!]!
-  data: ModeWaitlistSpotifyQueueItemData!
+type SpotifyModeQueueItem {
+  actions: [SpotifyModeQueueItemAction!]!
+  data: SpotifyModeQueueItemData!
 }
 
-enum ModeWaitlistSpotifyQueueItemAction {
+enum SpotifyModeQueueItemAction {
   CANCEL
 }
 
-type ModeWaitlistSpotifyQueue {
-  actions: [ModeWaitlistSpotifyQueueAction!]!
-  items: [ModeWaitlistSpotifyQueueItem!]!
+type SpotifyModeQueue {
+  actions: [SpotifyModeQueueAction!]!
+  items: [SpotifyModeQueueItem!]!
 }
 
-enum ModeWaitlistSpotifyQueueAction {
+enum SpotifyModeQueueAction {
   ADD_TRACK
 }
 
@@ -174,13 +171,13 @@ type TwitchStream {
   channelKey: String
 }
 
-type ModeWaitlistYoutubeHistoryItemDataAuthor {
+type YoutubeModeHistoryItemDataAuthor {
   id: String!
   name: String!
   avatar: String
 }
 
-type ModeWaitlistYoutubeHistoryItemData {
+type YoutubeModeHistoryItemData {
   id: String!
   videoId: String!
   duration: Int!
@@ -189,29 +186,29 @@ type ModeWaitlistYoutubeHistoryItemData {
   title: String!
   startedAt: String
   endedAt: String
-  author: ModeWaitlistYoutubeHistoryItemDataAuthor!
+  author: YoutubeModeHistoryItemDataAuthor!
 }
 
-type ModeWaitlistYoutubeHistoryItem {
-  actions: [ModeWaitlistYoutubeHistoryItemAction!]!
-  data: ModeWaitlistYoutubeHistoryItemData!
+type YoutubeModeHistoryItem {
+  actions: [YoutubeModeHistoryItemAction!]!
+  data: YoutubeModeHistoryItemData!
 }
 
-enum ModeWaitlistYoutubeHistoryItemAction {
+enum YoutubeModeHistoryItemAction {
   ADD_TO_QUEUE
 }
 
-type ModeWaitlistYoutubeHistory {
-  items: [ModeWaitlistYoutubeHistoryItem!]!
+type YoutubeModeHistory {
+  items: [YoutubeModeHistoryItem!]!
 }
 
-type ModeWaitlistYoutubeCurrentItemAuthor {
+type YoutubeModeCurrentItemAuthor {
   id: String!
   name: String!
   avatar: String
 }
 
-type ModeWaitlistYoutubeCurrentItem {
+type YoutubeModeCurrentItem {
   id: String!
   videoId: String!
   duration: Int!
@@ -219,49 +216,49 @@ type ModeWaitlistYoutubeCurrentItem {
   artists: String!
   title: String!
   startedAt: String
-  author: ModeWaitlistYoutubeCurrentItemAuthor!
+  author: YoutubeModeCurrentItemAuthor!
 }
 
-type ModeWaitlistYoutubeCurrent {
-  actions: [ModeWaitlistYoutubeCurrentAction!]!
-  item: ModeWaitlistYoutubeCurrentItem
+type YoutubeModeCurrent {
+  actions: [YoutubeModeCurrentAction!]!
+  item: YoutubeModeCurrentItem
 }
 
-enum ModeWaitlistYoutubeCurrentAction {
+enum YoutubeModeCurrentAction {
   SKIP
 }
 
-type ModeWaitlistYoutubeQueueItemDataAuthor {
+type YoutubeModeQueueItemDataAuthor {
   id: String!
   name: String!
   avatar: String
 }
 
-type ModeWaitlistYoutubeQueueItemData {
+type YoutubeModeQueueItemData {
   id: String!
   videoId: String!
   duration: Int!
   cover: String!
   artists: String!
   title: String!
-  author: ModeWaitlistYoutubeQueueItemDataAuthor!
+  author: YoutubeModeQueueItemDataAuthor!
 }
 
-type ModeWaitlistYoutubeQueueItem {
-  actions: [ModeWaitlistYoutubeQueueItemAction!]!
-  data: ModeWaitlistYoutubeQueueItemData!
+type YoutubeModeQueueItem {
+  actions: [YoutubeModeQueueItemAction!]!
+  data: YoutubeModeQueueItemData!
 }
 
-enum ModeWaitlistYoutubeQueueItemAction {
+enum YoutubeModeQueueItemAction {
   CANCEL
 }
 
-type ModeWaitlistYoutubeQueue {
-  actions: [ModeWaitlistYoutubeQueueAction!]!
-  items: [ModeWaitlistYoutubeQueueItem!]!
+type YoutubeModeQueue {
+  actions: [YoutubeModeQueueAction!]!
+  items: [YoutubeModeQueueItem!]!
 }
 
-enum ModeWaitlistYoutubeQueueAction {
+enum YoutubeModeQueueAction {
   ADD_VIDEO
 }
 
@@ -274,15 +271,15 @@ type Query {
   channel(name: String!): Channel!
   channels(name: String!): [Channel!]!
   channelMessages(channelId: ID!): [ChannelMessage!]!
-  waitlistSpotifyHistory(channelId: String!): ModeWaitlistSpotifyHistory!
-  waitlistSpotifyCurrent(channelId: String!): ModeWaitlistSpotifyCurrent
-  waitlistSpotifyQueue(channelId: String!): ModeWaitlistSpotifyQueue!
+  spotifyModeHistory(channelId: String!): SpotifyModeHistory!
+  spotifyModeCurrent(channelId: String!): SpotifyModeCurrent
+  spotifyModeQueue(channelId: String!): SpotifyModeQueue!
   spotifyNow(token: String!): SpotifyNow
   spotifyToken: String!
   twitchStream(channelId: String!): TwitchStream!
-  waitlistYoutubeHistory(channelId: String!): ModeWaitlistYoutubeHistory!
-  waitlistYoutubeCurrent(channelId: String!): ModeWaitlistYoutubeCurrent
-  waitlistYoutubeQueue(channelId: String!): ModeWaitlistYoutubeQueue!
+  waitlistYoutubeHistory(channelId: String!): YoutubeModeHistory!
+  waitlistYoutubeCurrent(channelId: String!): YoutubeModeCurrent
+  waitlistYoutubeQueue(channelId: String!): YoutubeModeQueue!
 }
 
 type Mutation {
@@ -294,10 +291,10 @@ type Mutation {
   updateChannel(input: UpdateChannelInput!): Channel!
   deleteChannel(channelId: ID!): Channel!
   createChannelMessage(input: ChannelMessageCreateInput!): Boolean!
-  makeWaitlistSpotifyModeCurrent(channelId: String!): Boolean!
-  waitlistSpotifyQueueAddTrack(trackId: String!, channelId: String!): Boolean!
-  waitlistSpotifyQueueSkipTrack(channelId: String!): Boolean!
-  waitlistSpotifyUserSync(channelId: String!): Boolean!
+  makeSpotifyModeModeCurrent(channelId: String!): Boolean!
+  spotifyModeQueueAddTrack(trackId: String!, channelId: String!): Boolean!
+  spotifyModeQueueSkipTrack(channelId: String!): Boolean!
+  spotifyModeUserSync(channelId: String!): Boolean!
   refreshSpotifyToken: String!
   makeTwitchStreamModeCurrent(channelId: String!): Boolean!
   updateTwitchStream(input: UpdateTwitchStreamInput!): TwitchStream!
@@ -337,9 +334,9 @@ input UpdateTwitchStreamInput {
 type Subscription {
   channelMessageCreated(channelId: ID!): ChannelMessage!
   channelMessageDeleted(channelId: ID!): ChannelMessage!
-  waitlistSpotifyCurrentUpdated(channelId: String!): Boolean!
-  waitlistSpotifyQueueUpdated(channelId: String!): Boolean!
-  waitlistSpotifyHistoryUpdated(channelId: String!): Boolean!
+  spotifyModeCurrentUpdated(channelId: String!): Boolean!
+  spotifyModeQueueUpdated(channelId: String!): Boolean!
+  spotifyModeHistoryUpdated(channelId: String!): Boolean!
   waitlistYoutubeCurrentUpdated(channelId: String!): Boolean!
   waitlistYoutubeQueueUpdated(channelId: String!): Boolean!
   waitlistYoutubeHistoryUpdated(channelId: String!): Boolean!

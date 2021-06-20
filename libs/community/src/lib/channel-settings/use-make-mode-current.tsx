@@ -1,15 +1,14 @@
 import {
   ChannelMode,
   useMakeTwitchStreamModeCurrentMutation,
-  useMakeSpotifyModeModeCurrentMutation,
+  useMakeSpotifyModeCurrentMutation,
   useMakeWaitlistYoutubeModeCurrentMutation,
 } from '@dream/types';
 
 export const useMakeModeCurrent = () => {
   const [makeTwitchStreamModeCurrentMutation] =
     useMakeTwitchStreamModeCurrentMutation();
-  const [makeSpotifyModeModeCurrentMutation] =
-    useMakeSpotifyModeModeCurrentMutation();
+  const [makeSpotifyModeCurrentMutation] = useMakeSpotifyModeCurrentMutation();
   const [makeMakeWaitlistYoutubeModeCurrentMutation] =
     useMakeWaitlistYoutubeModeCurrentMutation();
 
@@ -23,7 +22,7 @@ export const useMakeModeCurrent = () => {
             variables: { channelId },
           });
         case ChannelMode.Spotify:
-          return makeSpotifyModeModeCurrentMutation({
+          return makeSpotifyModeCurrentMutation({
             variables: { channelId },
           });
         case ChannelMode.Youtube:

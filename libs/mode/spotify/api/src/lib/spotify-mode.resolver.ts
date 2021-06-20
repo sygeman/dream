@@ -110,9 +110,7 @@ export class SpotifyModeResolver {
 
   @Mutation(() => Boolean)
   @UseGuards(AuthGuard)
-  async makeSpotifyModeModeCurrent(
-    @Args({ name: 'channelId' }) channelId: string
-  ) {
+  async makeSpotifyModeCurrent(@Args({ name: 'channelId' }) channelId: string) {
     await this.spotifyModeService.init(channelId);
 
     // Use channel service here

@@ -1,10 +1,27 @@
 import React from 'react';
+import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
-import { ChannelSpotifyMode } from '@dream/mode/spotify/ui';
-import { ChannelTwitchMode } from '@dream/mode/twitch/ui';
-import { ChannelYoutubeMode } from '@dream/mode/youtube/ui';
 import { useChannelQuery, ChannelMode } from '@dream/types';
 import { ChannelHeader } from './channel-header';
+
+const getContentView = (mode: ChannelMode) => {
+  switch (mode) {
+    case ChannelMode.Spotify:
+      return dynamic(() =>
+        import('@dream/mode/spotify/ui').then((c) => c.ChannelSpotifyMode)
+      );
+    case ChannelMode.Twitch:
+      return dynamic(() =>
+        import('@dream/mode/twitch/ui').then((c) => c.ChannelTwitchMode)
+      );
+    case ChannelMode.Youtube:
+      return dynamic(() =>
+        import('@dream/mode/youtube/ui').then((c) => c.ChannelYoutubeMode)
+      );
+    default:
+      return null;
+  }
+};
 
 export const CommunityContent = () => {
   const router = useRouter();
@@ -17,24 +34,12 @@ export const CommunityContent = () => {
   });
 
   const channel = communityQuery?.data?.channel;
-
-  const getContentView = () => {
-    switch (channel?.mode) {
-      case ChannelMode.Spotify:
-        return <ChannelSpotifyMode />;
-      case ChannelMode.Twitch:
-        return <ChannelTwitchMode />;
-      case ChannelMode.Youtube:
-        return <ChannelYoutubeMode />;
-      default:
-        return null;
-    }
-  };
+  const Content = getContentView(channel?.mode);
 
   return (
     <div className="h-screen w-full flex flex-1 flex-col">
       <ChannelHeader />
-      {getContentView()}
+      {Content && <Content />}
     </div>
   );
 };

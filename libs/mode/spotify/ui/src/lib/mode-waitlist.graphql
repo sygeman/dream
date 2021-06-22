@@ -1,3 +1,21 @@
+fragment SpotifyModeFields on SpotifyMode {
+  id
+  hostId
+  strategy
+}
+
+query spotifyMode($channelId: String!) {
+  spotifyMode(channelId: $channelId) {
+    ...SpotifyModeFields
+  }
+}
+
+mutation updateSpotifyMode($input: UpdateSpotifyModeInput!) {
+  updateSpotifyMode(input: $input) {
+    ...SpotifyModeFields
+  }
+}
+
 query spotifyModeHistory($channelId: String!) {
   spotifyModeHistory(channelId: $channelId) {
     items {
@@ -34,6 +52,8 @@ query spotifyModeCurrent($channelId: String!) {
       cover
       artists
       title
+      start
+      end
       startedAt
       author {
         id

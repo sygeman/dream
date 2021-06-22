@@ -89,6 +89,7 @@ export type Mutation = {
   updateChannel: Channel;
   deleteChannel: Channel;
   createChannelMessage: Scalars['Boolean'];
+  updateSpotifyMode: SpotifyMode;
   makeSpotifyModeCurrent: Scalars['Boolean'];
   spotifyModeQueueAddTrack: Scalars['Boolean'];
   spotifyModeQueueSkipTrack: Scalars['Boolean'];
@@ -135,6 +136,11 @@ export type MutationDeleteChannelArgs = {
 
 export type MutationCreateChannelMessageArgs = {
   input: ChannelMessageCreateInput;
+};
+
+
+export type MutationUpdateSpotifyModeArgs = {
+  input: UpdateSpotifyModeInput;
 };
 
 
@@ -202,6 +208,7 @@ export type Query = {
   channel: Channel;
   channels: Array<Channel>;
   channelMessages: Array<ChannelMessage>;
+  spotifyMode: SpotifyMode;
   spotifyModeHistory: SpotifyModeHistory;
   spotifyModeCurrent?: Maybe<SpotifyModeCurrent>;
   spotifyModeQueue: SpotifyModeQueue;
@@ -236,6 +243,11 @@ export type QueryChannelsArgs = {
 
 export type QueryChannelMessagesArgs = {
   channelId: Scalars['ID'];
+};
+
+
+export type QuerySpotifyModeArgs = {
+  channelId: Scalars['String'];
 };
 
 
@@ -278,6 +290,13 @@ export type QueryWaitlistYoutubeQueueArgs = {
   channelId: Scalars['String'];
 };
 
+export type SpotifyMode = {
+  __typename?: 'SpotifyMode';
+  id: Scalars['String'];
+  hostId?: Maybe<Scalars['String']>;
+  strategy: SpotifyModeStrategy;
+};
+
 export type SpotifyModeCurrent = {
   __typename?: 'SpotifyModeCurrent';
   actions: Array<SpotifyModeCurrentAction>;
@@ -293,6 +312,8 @@ export type SpotifyModeCurrentItem = {
   id: Scalars['String'];
   trackId: Scalars['String'];
   duration: Scalars['Int'];
+  start: Scalars['Int'];
+  end: Scalars['Int'];
   cover: Scalars['String'];
   artists: Scalars['String'];
   title: Scalars['String'];
@@ -380,6 +401,11 @@ export type SpotifyModeQueueItemDataAuthor = {
   avatar?: Maybe<Scalars['String']>;
 };
 
+export enum SpotifyModeStrategy {
+  Queue = 'QUEUE',
+  Host = 'HOST'
+}
+
 export type SpotifyNow = {
   __typename?: 'SpotifyNow';
   id: Scalars['String'];
@@ -452,6 +478,11 @@ export type UpdateChannelInput = {
   communityId: Scalars['ID'];
   name: Scalars['String'];
   title: Scalars['String'];
+};
+
+export type UpdateSpotifyModeInput = {
+  channelId: Scalars['ID'];
+  strategy: SpotifyModeStrategy;
 };
 
 export type UpdateTwitchStreamInput = {
@@ -780,6 +811,37 @@ export type CommunityFieldsFragment = (
   & Pick<Community, 'id' | 'name' | 'title' | 'avatar' | 'onlineCount'>
 );
 
+export type SpotifyModeFieldsFragment = (
+  { __typename?: 'SpotifyMode' }
+  & Pick<SpotifyMode, 'id' | 'hostId' | 'strategy'>
+);
+
+export type SpotifyModeQueryVariables = Exact<{
+  channelId: Scalars['String'];
+}>;
+
+
+export type SpotifyModeQuery = (
+  { __typename?: 'Query' }
+  & { spotifyMode: (
+    { __typename?: 'SpotifyMode' }
+    & SpotifyModeFieldsFragment
+  ) }
+);
+
+export type UpdateSpotifyModeMutationVariables = Exact<{
+  input: UpdateSpotifyModeInput;
+}>;
+
+
+export type UpdateSpotifyModeMutation = (
+  { __typename?: 'Mutation' }
+  & { updateSpotifyMode: (
+    { __typename?: 'SpotifyMode' }
+    & SpotifyModeFieldsFragment
+  ) }
+);
+
 export type SpotifyModeHistoryQueryVariables = Exact<{
   channelId: Scalars['String'];
 }>;
@@ -826,7 +888,7 @@ export type SpotifyModeCurrentQuery = (
     & Pick<SpotifyModeCurrent, 'actions'>
     & { item?: Maybe<(
       { __typename?: 'SpotifyModeCurrentItem' }
-      & Pick<SpotifyModeCurrentItem, 'id' | 'trackId' | 'duration' | 'cover' | 'artists' | 'title' | 'startedAt'>
+      & Pick<SpotifyModeCurrentItem, 'id' | 'trackId' | 'duration' | 'cover' | 'artists' | 'title' | 'start' | 'end' | 'startedAt'>
       & { author: (
         { __typename?: 'SpotifyModeCurrentItemAuthor' }
         & Pick<SpotifyModeCurrentItemAuthor, 'id' | 'name' | 'avatar'>
@@ -1150,6 +1212,13 @@ export const CommunityFieldsFragmentDoc = gql`
   title
   avatar
   onlineCount
+}
+    `;
+export const SpotifyModeFieldsFragmentDoc = gql`
+    fragment SpotifyModeFields on SpotifyMode {
+  id
+  hostId
+  strategy
 }
     `;
 export const TwitchStreamFieldsFragmentDoc = gql`
@@ -1680,6 +1749,74 @@ export function useCreateCommunityMutation(baseOptions?: Apollo.MutationHookOpti
 export type CreateCommunityMutationHookResult = ReturnType<typeof useCreateCommunityMutation>;
 export type CreateCommunityMutationResult = Apollo.MutationResult<CreateCommunityMutation>;
 export type CreateCommunityMutationOptions = Apollo.BaseMutationOptions<CreateCommunityMutation, CreateCommunityMutationVariables>;
+export const SpotifyModeDocument = gql`
+    query spotifyMode($channelId: String!) {
+  spotifyMode(channelId: $channelId) {
+    ...SpotifyModeFields
+  }
+}
+    ${SpotifyModeFieldsFragmentDoc}`;
+
+/**
+ * __useSpotifyModeQuery__
+ *
+ * To run a query within a React component, call `useSpotifyModeQuery` and pass it any options that fit your needs.
+ * When your component renders, `useSpotifyModeQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useSpotifyModeQuery({
+ *   variables: {
+ *      channelId: // value for 'channelId'
+ *   },
+ * });
+ */
+export function useSpotifyModeQuery(baseOptions: Apollo.QueryHookOptions<SpotifyModeQuery, SpotifyModeQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<SpotifyModeQuery, SpotifyModeQueryVariables>(SpotifyModeDocument, options);
+      }
+export function useSpotifyModeLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<SpotifyModeQuery, SpotifyModeQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<SpotifyModeQuery, SpotifyModeQueryVariables>(SpotifyModeDocument, options);
+        }
+export type SpotifyModeQueryHookResult = ReturnType<typeof useSpotifyModeQuery>;
+export type SpotifyModeLazyQueryHookResult = ReturnType<typeof useSpotifyModeLazyQuery>;
+export type SpotifyModeQueryResult = Apollo.QueryResult<SpotifyModeQuery, SpotifyModeQueryVariables>;
+export const UpdateSpotifyModeDocument = gql`
+    mutation updateSpotifyMode($input: UpdateSpotifyModeInput!) {
+  updateSpotifyMode(input: $input) {
+    ...SpotifyModeFields
+  }
+}
+    ${SpotifyModeFieldsFragmentDoc}`;
+export type UpdateSpotifyModeMutationFn = Apollo.MutationFunction<UpdateSpotifyModeMutation, UpdateSpotifyModeMutationVariables>;
+
+/**
+ * __useUpdateSpotifyModeMutation__
+ *
+ * To run a mutation, you first call `useUpdateSpotifyModeMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateSpotifyModeMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateSpotifyModeMutation, { data, loading, error }] = useUpdateSpotifyModeMutation({
+ *   variables: {
+ *      input: // value for 'input'
+ *   },
+ * });
+ */
+export function useUpdateSpotifyModeMutation(baseOptions?: Apollo.MutationHookOptions<UpdateSpotifyModeMutation, UpdateSpotifyModeMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateSpotifyModeMutation, UpdateSpotifyModeMutationVariables>(UpdateSpotifyModeDocument, options);
+      }
+export type UpdateSpotifyModeMutationHookResult = ReturnType<typeof useUpdateSpotifyModeMutation>;
+export type UpdateSpotifyModeMutationResult = Apollo.MutationResult<UpdateSpotifyModeMutation>;
+export type UpdateSpotifyModeMutationOptions = Apollo.BaseMutationOptions<UpdateSpotifyModeMutation, UpdateSpotifyModeMutationVariables>;
 export const SpotifyModeHistoryDocument = gql`
     query spotifyModeHistory($channelId: String!) {
   spotifyModeHistory(channelId: $channelId) {
@@ -1770,6 +1907,8 @@ export const SpotifyModeCurrentDocument = gql`
       cover
       artists
       title
+      start
+      end
       startedAt
       author {
         id

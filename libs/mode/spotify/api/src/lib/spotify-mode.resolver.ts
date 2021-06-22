@@ -19,6 +19,8 @@ import { SpotifyModeHistory } from './models/history/model';
 import { SpotifyModeCurrent } from './models/current/model';
 import { SpotifyModeQueue } from './models/queue/model';
 import { ChannelMode } from '@prisma/client';
+import { SpotifyMode } from './models/spotify-mode.model';
+import { UpdateSpotifyModeInput } from './dto/update-spotify-mode.input';
 
 @Resolver()
 export class SpotifyModeResolver {
@@ -27,6 +29,13 @@ export class SpotifyModeResolver {
     private spotifyModeService: SpotifyModeService,
     @Inject('PUB_SUB') private readonly pubsub: RedisPubSub
   ) {}
+
+  @Query(() => SpotifyMode)
+  async spotifyMode(@Args({ name: 'channelId' }) channelId: string) {
+    return this.prisma.spotifyMode.findFirst({
+      where: { channelId },
+    });
+  }
 
   @Query(() => SpotifyModeHistory)
   async spotifyModeHistory(@Args({ name: 'channelId' }) channelId: string) {
@@ -106,6 +115,32 @@ export class SpotifyModeResolver {
     };
 
     return queue;
+  }
+
+  @Mutation(() => SpotifyMode)
+  @UseGuards(AuthGuard)
+  async updateSpotifyMode(
+    @Args({ name: 'input', type: () => UpdateSpotifyModeInput })
+    input: UpdateSpotifyModeInput,
+    @Context('userId') userId: string
+  ) {
+    const channelIsExist = await this.prisma.channel.findFirst({
+      where: {
+        id: input?.channelId,
+        community: {
+          ownerId: userId,
+        },
+      },
+    });
+
+    if (!channelIsExist) {
+      throw 'Deny';
+    }
+
+    return this.spotifyModeService.update({
+      channelId: input?.channelId,
+      strategy: input.strategy,
+    });
   }
 
   @Mutation(() => Boolean)

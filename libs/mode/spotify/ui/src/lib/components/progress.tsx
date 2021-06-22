@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { TrackInfo } from './track-info';
 
 export const ChannelModeWaitlistProgress = ({
-  start,
+  start = 0,
+  startedAt,
   duration,
   imageUrl,
   artist,
@@ -12,15 +13,15 @@ export const ChannelModeWaitlistProgress = ({
 
   useEffect(() => {
     const interval = setInterval(() => {
-      const s = +new Date(+start);
+      const s = +new Date(+startedAt);
       const now = +new Date();
-      setProgress((now - s) / duration);
+      setProgress((now - s + start) / duration);
     }, 50);
 
     return () => {
       clearInterval(interval);
     };
-  }, [start]);
+  }, [startedAt]);
 
   return (
     <TrackInfo

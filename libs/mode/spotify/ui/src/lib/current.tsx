@@ -75,7 +75,8 @@ export const ChannelSpotifyModeCurrent = ({
         <div className="relative h-full flex items-center">
           {current ? (
             <ChannelModeWaitlistProgress
-              start={current.startedAt}
+              start={current.start}
+              startedAt={current.startedAt}
               duration={current.duration}
               imageUrl={current.cover}
               artist={current.artists}

@@ -4,6 +4,7 @@ import { InjectQueue } from '@nestjs/bull';
 import { Inject, Injectable, Logger } from '@nestjs/common';
 import { Queue } from 'bull';
 import { RedisPubSub } from 'graphql-redis-subscriptions';
+import { SpotifyModeStrategy } from '.prisma/client';
 
 @Injectable()
 export class SpotifyModeService {
@@ -28,6 +29,21 @@ export class SpotifyModeService {
       data: {
         channel: { connect: { id: channelId } },
       },
+    });
+  }
+
+  async update({
+    channelId,
+    strategy,
+  }: {
+    channelId: string;
+    strategy?: SpotifyModeStrategy;
+  }) {
+    const spotifyMode = await this.init(channelId);
+
+    return await this.prisma.spotifyMode.update({
+      where: { id: spotifyMode.id },
+      data: { strategy },
     });
   }
 
@@ -122,10 +138,12 @@ export class SpotifyModeService {
     channelId,
     trackId,
     userId,
+    start = 0,
   }: {
     channelId: string;
     trackId: string;
     userId: string;
+    start?: number;
   }) {
     this.logger.log('addTrack');
 
@@ -140,7 +158,8 @@ export class SpotifyModeService {
 
     const newItem = await this.prisma.spotifyModeItem.create({
       data: {
-        duration: track?.duration_ms, // TODO: Include start, end position
+        duration: track?.duration_ms - start, // TODO: Include start, end position
+        start,
         end: track?.duration_ms,
         channel: {
           connect: { id: channelId },

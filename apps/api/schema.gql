@@ -116,6 +116,8 @@ type SpotifyModeCurrentItem {
   id: String!
   trackId: String!
   duration: Int!
+  start: Int!
+  end: Int!
   cover: String!
   artists: String!
   title: String!
@@ -164,6 +166,17 @@ type SpotifyModeQueue {
 
 enum SpotifyModeQueueAction {
   ADD_TRACK
+}
+
+type SpotifyMode {
+  id: String!
+  hostId: String
+  strategy: SpotifyModeStrategy!
+}
+
+enum SpotifyModeStrategy {
+  QUEUE
+  HOST
 }
 
 type TwitchStream {
@@ -271,6 +284,7 @@ type Query {
   channel(name: String!): Channel!
   channels(name: String!): [Channel!]!
   channelMessages(channelId: ID!): [ChannelMessage!]!
+  spotifyMode(channelId: String!): SpotifyMode!
   spotifyModeHistory(channelId: String!): SpotifyModeHistory!
   spotifyModeCurrent(channelId: String!): SpotifyModeCurrent
   spotifyModeQueue(channelId: String!): SpotifyModeQueue!
@@ -291,6 +305,7 @@ type Mutation {
   updateChannel(input: UpdateChannelInput!): Channel!
   deleteChannel(channelId: ID!): Channel!
   createChannelMessage(input: ChannelMessageCreateInput!): Boolean!
+  updateSpotifyMode(input: UpdateSpotifyModeInput!): SpotifyMode!
   makeSpotifyModeCurrent(channelId: String!): Boolean!
   spotifyModeQueueAddTrack(trackId: String!, channelId: String!): Boolean!
   spotifyModeQueueSkipTrack(channelId: String!): Boolean!
@@ -324,6 +339,11 @@ input UpdateChannelInput {
 input ChannelMessageCreateInput {
   content: String!
   channelId: String!
+}
+
+input UpdateSpotifyModeInput {
+  channelId: ID!
+  strategy: SpotifyModeStrategy!
 }
 
 input UpdateTwitchStreamInput {

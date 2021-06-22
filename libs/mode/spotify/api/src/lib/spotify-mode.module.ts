@@ -5,6 +5,7 @@ import { SpotifyModule } from '@dream/external-api/spotify';
 import { SpotifyModeResolver } from './spotify-mode.resolver';
 import { SpotifyModeProcessor } from './spotify-mode.processor';
 import { SpotifyModeService } from './spotify-mode.service';
+import { SpotifyModeHostService } from './host.service';
 
 @Module({
   imports: [
@@ -14,7 +15,12 @@ import { SpotifyModeService } from './spotify-mode.service';
     }),
     SpotifyModule,
   ],
-  providers: [SpotifyModeService, SpotifyModeResolver, SpotifyModeProcessor],
-  exports: [SpotifyModeService],
+  providers: [
+    SpotifyModeService,
+    SpotifyModeHostService,
+    SpotifyModeResolver,
+    SpotifyModeProcessor,
+  ],
+  exports: [SpotifyModeService, SpotifyModeHostService],
 })
 export class SpotifyModeModule {}

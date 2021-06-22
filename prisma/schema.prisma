@@ -46,6 +46,7 @@ model User {
   channelMessages ChannelMessage[]
   spotifyModeItem SpotifyModeItem[]
   youtubeModeItem YoutubeModeItem[]
+  spotifyMode     SpotifyMode[]
 }
 
 model Profile {
@@ -154,14 +155,23 @@ model SpotifyModeItem {
   spotifyMode SpotifyMode[]
 }
 
+enum SpotifyModeStrategy {
+  QUEUE
+  HOST
+}
+
 model SpotifyMode {
-  id        String           @id @default(cuid())
-  item      SpotifyModeItem? @relation(fields: [itemId], references: [id])
-  itemId    String?
-  channel   Channel?         @relation(fields: [channelId], references: [id])
-  channelId String?
-  createdAt DateTime         @default(now())
-  updatedAt DateTime         @default(now()) @updatedAt
+  id            String               @id @default(cuid())
+  item          SpotifyModeItem?     @relation(fields: [itemId], references: [id])
+  itemId        String?
+  hostId        String?
+  host          User?                @relation(fields: [hostId], references: [id])
+  hostCurrentId String?
+  channel       Channel?             @relation(fields: [channelId], references: [id])
+  channelId     String?
+  strategy      SpotifyModeStrategy? @default(QUEUE)
+  createdAt     DateTime             @default(now())
+  updatedAt     DateTime             @default(now()) @updatedAt
 }
 
 model TwitchMode {

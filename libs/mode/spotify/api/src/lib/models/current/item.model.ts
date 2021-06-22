@@ -12,6 +12,12 @@ export class SpotifyModeCurrentItem {
   @Field(() => Int)
   duration: number;
 
+  @Field(() => Int)
+  start: number;
+
+  @Field(() => Int)
+  end: number;
+
   @Field()
   cover: string;
 

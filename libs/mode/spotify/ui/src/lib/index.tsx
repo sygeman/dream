@@ -66,11 +66,11 @@ export const ChannelSpotifyMode = () => {
     },
   });
 
-  const current = currentQuery?.data?.spotifyModeCurrent?.item;
+  const current = currentQuery?.data?.spotifyModeCurrent;
 
   return (
     <div className="h-screen w-full flex flex-1 flex-col relative overflow-hidden">
-      <Backgroud imageUrl={current?.cover} />
+      <Backgroud imageUrl={current?.item?.cover} />
       <div
         className="absolute left-0 top-0 w-full h-full flex flex-col"
         style={

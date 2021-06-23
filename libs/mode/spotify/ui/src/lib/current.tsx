@@ -8,13 +8,54 @@ import {
 import { ChannelModeWaitlistProgress } from './components/progress';
 import { Menu, Transition } from '@headlessui/react';
 import clsx from 'clsx';
-import { useSpotifyModeQueueSkipTrackMutation } from '@dream/types';
+import {
+  SpotifyModeCurrentAction,
+  useSpotifyModeQueueSkipTrackMutation,
+} from '@dream/types';
 import { useCommunityChannel } from '@dream/community';
 
-const CurrentMenu = () => {
+const MenuItem = ({ action, label, icon }) => {
+  return (
+    <Menu.Item
+      as="button"
+      onClick={action}
+      className={clsx(
+        'flex justify-between items-center w-full h-8 px-2',
+        'rounded overflow-hidden text-accent font-medium',
+        'hover:bg-surface hover:text-white'
+      )}
+    >
+      <span className="text-sm">{label}</span>
+      {icon}
+    </Menu.Item>
+  );
+};
+
+const MenuItemSkip = () => {
   const { channelId } = useCommunityChannel();
   const [skipMutation] = useSpotifyModeQueueSkipTrackMutation();
   const skipTrack = () => skipMutation({ variables: { channelId } });
+
+  return (
+    <MenuItem
+      action={skipTrack}
+      label="Skip"
+      icon={<FastForwardIcon className="h-4 text-accent" />}
+    />
+  );
+};
+
+const CurrentMenu: React.FC<{ actions: SpotifyModeCurrentAction[] }> = ({
+  actions,
+}) => {
+  const getMenuItemByAction = (action: SpotifyModeCurrentAction) => {
+    switch (action) {
+      case SpotifyModeCurrentAction.Skip:
+        return <MenuItemSkip />;
+      default:
+        return null;
+    }
+  };
 
   return (
     <Menu as="div" className="relative inline-block text-left">
@@ -43,18 +84,7 @@ const CurrentMenu = () => {
                 'divide-y divide-gray-100 rounded shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none'
               )}
             >
-              <Menu.Item
-                as="button"
-                onClick={skipTrack}
-                className={clsx(
-                  'flex justify-between items-center w-full h-8 px-2',
-                  'rounded overflow-hidden text-accent font-medium',
-                  'hover:bg-surface hover:text-white'
-                )}
-              >
-                <span className="text-sm">Skip</span>
-                <FastForwardIcon className="h-4 text-accent" />
-              </Menu.Item>
+              {actions.map(getMenuItemByAction)}
             </Menu.Items>
           </Transition>
         </>
@@ -68,19 +98,22 @@ export const ChannelSpotifyModeCurrent = ({
   isConnected,
   setIsConnected,
 }) => {
+  const currentItem = current?.item;
+  const currentActions = current?.actions;
+
   return (
     <div className="relative h-16">
       <div className="absolute top-0 left-0 h-full w-full opacity-20 bg-surface" />
       <div className="relative h-full">
         <div className="relative h-full flex items-center">
-          {current ? (
+          {currentItem ? (
             <ChannelModeWaitlistProgress
-              start={current.start}
-              startedAt={current.startedAt}
-              duration={current.duration}
-              imageUrl={current.cover}
-              artist={current.artists}
-              name={current.title}
+              start={currentItem.start}
+              startedAt={currentItem.startedAt}
+              duration={currentItem.duration}
+              imageUrl={currentItem.cover}
+              artist={currentItem.artists}
+              name={currentItem.title}
             />
           ) : (
             <div className=" flex flex-col px-4">
@@ -104,7 +137,7 @@ export const ChannelSpotifyModeCurrent = ({
               <button
                 className={clsx(
                   'btn flex flex-nowrap w-auto',
-                  current ? 'btn-primary' : 'btn-secondary bg-surface'
+                  currentItem ? 'btn-primary' : 'btn-secondary bg-surface'
                 )}
                 onClick={() => setIsConnected(true)}
               >
@@ -112,16 +145,18 @@ export const ChannelSpotifyModeCurrent = ({
                 <span className="flex flex-nowrap">Connect to Stream</span>
               </button>
             )}
-            {current && (
+            {currentItem && (
               <>
                 <div className="flex flex-col text-xs font-medium px-2 opacity-70 text-right ml-2">
                   <div className="text-accent">from</div>
-                  <div className="text-white">{current.author.name}</div>
+                  <div className="text-white">{currentItem.author.name}</div>
                 </div>
-                <div className="flex rounded-full overflow-hidden h-8 w-8 rounded-full bg-background mr-2">
-                  <img src={current.author.avatar} className="" alt="" />
+                <div className="flex rounded-full overflow-hidden h-8 w-8 bg-background mr-2">
+                  <img src={currentItem.author.avatar} className="" alt="" />
                 </div>
-                <CurrentMenu />
+                {currentActions.length > 0 && (
+                  <CurrentMenu actions={currentActions} />
+                )}
               </>
             )}
           </div>

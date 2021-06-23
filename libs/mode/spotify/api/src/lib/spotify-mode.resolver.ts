@@ -64,7 +64,10 @@ export class SpotifyModeResolver {
   }
 
   @Query(() => SpotifyModeCurrent, { nullable: true })
-  async spotifyModeCurrent(@Args({ name: 'channelId' }) channelId: string) {
+  async spotifyModeCurrent(
+    @Args({ name: 'channelId' }) channelId: string,
+    @Context('userId') userId: string
+  ) {
     const modeData = await this.prisma.spotifyMode.findFirst({
       where: { channel: { id: channelId } },
       include: {
@@ -76,6 +79,12 @@ export class SpotifyModeResolver {
       return null;
     }
 
+    let actions = [];
+
+    if (modeData.item.authorId === userId) {
+      actions = [...actions, SpotifyModeCurrentAction.SKIP];
+    }
+
     const current = {
       item: {
         ...modeData.item,
@@ -83,7 +92,7 @@ export class SpotifyModeResolver {
         artists: modeData.item.track.artists,
         title: modeData.item.track.title,
       },
-      actions: [SpotifyModeCurrentAction.SKIP],
+      actions,
     };
 
     return current;
@@ -174,6 +183,17 @@ export class SpotifyModeResolver {
     @Args({ name: 'channelId' }) channelId: string,
     @Context('userId') userId: string
   ) {
+    const modeData = await this.prisma.spotifyMode.findFirst({
+      where: { channel: { id: channelId } },
+      include: {
+        item: { include: { track: true, author: true } },
+      },
+    });
+
+    if (modeData.item.authorId !== userId) {
+      throw new Error('Deny');
+    }
+
     await this.spotifyModeService.skipTrack({ channelId });
 
     return true;

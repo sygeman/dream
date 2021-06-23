@@ -88,7 +88,15 @@ export class SpotifyModeHostService implements OnApplicationBootstrap {
 
   syncHost = async () => {
     const spotifyMods = await this.prisma.spotifyMode.findMany({
-      where: { strategy: 'HOST' },
+      where: {
+        strategy: 'HOST',
+        hostId: {
+          notIn: null,
+        },
+        channel: {
+          deleted: false,
+        },
+      },
     });
 
     spotifyMods.map(this.syncHostForChannel);

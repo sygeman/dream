@@ -1,36 +1,31 @@
 import React from 'react';
-import dynamic from 'next/dynamic';
+import { ChannelSpotifyMode } from '@dream/mode/spotify/ui';
+import { ChannelTwitchMode } from '@dream/mode/twitch/ui';
+import { ChannelYoutubeMode } from '@dream/mode/youtube/ui';
 import { ChannelMode } from '@dream/types';
 import { ChannelHeader } from './channel-header';
 import { useCommunityChannel } from '../use-community-channel';
 
-const getContentView = (mode: ChannelMode) => {
-  switch (mode) {
-    case ChannelMode.Spotify:
-      return dynamic(() =>
-        import('@dream/mode/spotify/ui').then((c) => c.ChannelSpotifyMode)
-      );
-    case ChannelMode.Twitch:
-      return dynamic(() =>
-        import('@dream/mode/twitch/ui').then((c) => c.ChannelTwitchMode)
-      );
-    case ChannelMode.Youtube:
-      return dynamic(() =>
-        import('@dream/mode/youtube/ui').then((c) => c.ChannelYoutubeMode)
-      );
-    default:
-      return null;
-  }
-};
-
 export const CommunityContent = () => {
   const { channel } = useCommunityChannel();
-  const Content = getContentView(channel?.mode);
+
+  const getContentView = () => {
+    switch (channel?.mode) {
+      case ChannelMode.Spotify:
+        return <ChannelSpotifyMode />;
+      case ChannelMode.Twitch:
+        return <ChannelTwitchMode />;
+      case ChannelMode.Youtube:
+        return <ChannelYoutubeMode />;
+      default:
+        return null;
+    }
+  };
 
   return (
     <div className="h-screen w-full flex flex-1 flex-col">
       <ChannelHeader />
-      {Content && <Content />}
+      {getContentView()}
     </div>
   );
 };

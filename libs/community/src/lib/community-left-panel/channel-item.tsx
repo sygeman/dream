@@ -31,9 +31,13 @@ export const ChannelItem: React.FC<{
             <div className="flex flex-1">
               <span className="text-white text-sm font-medium">{title}</span>
             </div>
-            <div className="flex flex-1">
-              <span className="text-accent text-xs">{state}</span>
-            </div>
+            {state && (
+              <div className="flex flex-1" title={state}>
+                <span className="text-accent text-xs line-clamp-1">
+                  {state}
+                </span>
+              </div>
+            )}
           </div>
 
           {typeof online === 'number' && (

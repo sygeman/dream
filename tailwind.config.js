@@ -62,6 +62,7 @@ module.exports = {
   },
   plugins: [
     require('@tailwindcss/aspect-ratio'),
+    require('@tailwindcss/line-clamp'),
     plugin(function ({ addBase, addComponents, theme }) {
       addBase({
         body: {

@@ -55,6 +55,15 @@ export class SpotifyModeService {
     const spotifyModeUpdated = await this.prisma.spotifyMode.update({
       where: { id: waitlistId },
       data: { itemId },
+      include: { item: { include: { track: true } } },
+    });
+
+    const track = spotifyModeUpdated?.item?.track;
+    const state = track ? `${track?.artists} - ${track?.title}` : null;
+
+    await this.prisma.channel.update({
+      where: { id: spotifyModeUpdated.channelId },
+      data: { state },
     });
 
     if (itemId) {

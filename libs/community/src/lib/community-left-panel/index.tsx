@@ -39,7 +39,7 @@ export const CommunityLeftPanel = () => {
                 <ChannelItem
                   key={channel.id}
                   title={channel.title}
-                  state={channel.state || 'Nothing'}
+                  state={channel.state}
                   online={channel.onlineCount}
                   name={channel.name}
                 />

@@ -83,7 +83,7 @@ export type Mutation = {
   __typename?: 'Mutation';
   logout: Scalars['Boolean'];
   updateConnectionStatus: Scalars['Boolean'];
-  setUserLocale: Scalars['Boolean'];
+  setUserLocale: Locale;
   createCommunity: Community;
   updateCommunity: Community;
   deleteCommunity: Community;

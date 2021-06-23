@@ -71,7 +71,7 @@ enum ChannelMode {
 
 model Community {
   id        String    @id @default(cuid())
-  name      String    @unique
+  name      String?   @unique
   title     String
   avatar    String?
   createdAt DateTime  @default(now())
@@ -79,6 +79,7 @@ model Community {
   channels  Channel[]
   owner     User      @relation(fields: [ownerId], references: [id])
   ownerId   String
+  deleted   Boolean   @default(false)
 }
 
 model Channel {
@@ -91,6 +92,7 @@ model Channel {
   createdAt       DateTime          @default(now())
   updatedAt       DateTime          @default(now()) @updatedAt
   community       Community         @relation(fields: [communityId], references: [id])
+  deleted         Boolean           @default(false)
   messages        ChannelMessage[]
   connections     Connection[]
   communityId     String

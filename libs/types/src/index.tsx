@@ -85,6 +85,8 @@ export type Mutation = {
   updateConnectionStatus: Scalars['Boolean'];
   setUserLocale: Scalars['Boolean'];
   createCommunity: Community;
+  updateCommunity: Community;
+  deleteCommunity: Community;
   createChannel: Channel;
   updateChannel: Channel;
   deleteChannel: Channel;
@@ -116,6 +118,16 @@ export type MutationSetUserLocaleArgs = {
 
 export type MutationCreateCommunityArgs = {
   input: CreateCommunityInput;
+};
+
+
+export type MutationUpdateCommunityArgs = {
+  input: UpdateCommunityInput;
+};
+
+
+export type MutationDeleteCommunityArgs = {
+  communityId: Scalars['ID'];
 };
 
 
@@ -481,6 +493,12 @@ export type UpdateChannelInput = {
   title: Scalars['String'];
 };
 
+export type UpdateCommunityInput = {
+  communityId: Scalars['ID'];
+  name: Scalars['String'];
+  title: Scalars['String'];
+};
+
 export type UpdateSpotifyModeInput = {
   channelId: Scalars['ID'];
   strategy: SpotifyModeStrategy;
@@ -803,6 +821,32 @@ export type CreateCommunityMutationVariables = Exact<{
 export type CreateCommunityMutation = (
   { __typename?: 'Mutation' }
   & { createCommunity: (
+    { __typename?: 'Community' }
+    & CommunityFieldsFragment
+  ) }
+);
+
+export type UpdateCommunityMutationVariables = Exact<{
+  input: UpdateCommunityInput;
+}>;
+
+
+export type UpdateCommunityMutation = (
+  { __typename?: 'Mutation' }
+  & { updateCommunity: (
+    { __typename?: 'Community' }
+    & CommunityFieldsFragment
+  ) }
+);
+
+export type DeleteCommunityMutationVariables = Exact<{
+  communityId: Scalars['ID'];
+}>;
+
+
+export type DeleteCommunityMutation = (
+  { __typename?: 'Mutation' }
+  & { deleteCommunity: (
     { __typename?: 'Community' }
     & CommunityFieldsFragment
   ) }
@@ -1752,6 +1796,72 @@ export function useCreateCommunityMutation(baseOptions?: Apollo.MutationHookOpti
 export type CreateCommunityMutationHookResult = ReturnType<typeof useCreateCommunityMutation>;
 export type CreateCommunityMutationResult = Apollo.MutationResult<CreateCommunityMutation>;
 export type CreateCommunityMutationOptions = Apollo.BaseMutationOptions<CreateCommunityMutation, CreateCommunityMutationVariables>;
+export const UpdateCommunityDocument = gql`
+    mutation updateCommunity($input: UpdateCommunityInput!) {
+  updateCommunity(input: $input) {
+    ...CommunityFields
+  }
+}
+    ${CommunityFieldsFragmentDoc}`;
+export type UpdateCommunityMutationFn = Apollo.MutationFunction<UpdateCommunityMutation, UpdateCommunityMutationVariables>;
+
+/**
+ * __useUpdateCommunityMutation__
+ *
+ * To run a mutation, you first call `useUpdateCommunityMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateCommunityMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateCommunityMutation, { data, loading, error }] = useUpdateCommunityMutation({
+ *   variables: {
+ *      input: // value for 'input'
+ *   },
+ * });
+ */
+export function useUpdateCommunityMutation(baseOptions?: Apollo.MutationHookOptions<UpdateCommunityMutation, UpdateCommunityMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateCommunityMutation, UpdateCommunityMutationVariables>(UpdateCommunityDocument, options);
+      }
+export type UpdateCommunityMutationHookResult = ReturnType<typeof useUpdateCommunityMutation>;
+export type UpdateCommunityMutationResult = Apollo.MutationResult<UpdateCommunityMutation>;
+export type UpdateCommunityMutationOptions = Apollo.BaseMutationOptions<UpdateCommunityMutation, UpdateCommunityMutationVariables>;
+export const DeleteCommunityDocument = gql`
+    mutation deleteCommunity($communityId: ID!) {
+  deleteCommunity(communityId: $communityId) {
+    ...CommunityFields
+  }
+}
+    ${CommunityFieldsFragmentDoc}`;
+export type DeleteCommunityMutationFn = Apollo.MutationFunction<DeleteCommunityMutation, DeleteCommunityMutationVariables>;
+
+/**
+ * __useDeleteCommunityMutation__
+ *
+ * To run a mutation, you first call `useDeleteCommunityMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteCommunityMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteCommunityMutation, { data, loading, error }] = useDeleteCommunityMutation({
+ *   variables: {
+ *      communityId: // value for 'communityId'
+ *   },
+ * });
+ */
+export function useDeleteCommunityMutation(baseOptions?: Apollo.MutationHookOptions<DeleteCommunityMutation, DeleteCommunityMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<DeleteCommunityMutation, DeleteCommunityMutationVariables>(DeleteCommunityDocument, options);
+      }
+export type DeleteCommunityMutationHookResult = ReturnType<typeof useDeleteCommunityMutation>;
+export type DeleteCommunityMutationResult = Apollo.MutationResult<DeleteCommunityMutation>;
+export type DeleteCommunityMutationOptions = Apollo.BaseMutationOptions<DeleteCommunityMutation, DeleteCommunityMutationVariables>;
 export const SpotifyModeDocument = gql`
     query spotifyMode($channelId: String!) {
   spotifyMode(channelId: $channelId) {

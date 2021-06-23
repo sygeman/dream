@@ -31,7 +31,7 @@ scalar DateTime
 
 type Community {
   id: String!
-  name: String!
+  name: String
   title: String!
   avatar: String
   createdAt: DateTime!
@@ -301,6 +301,8 @@ type Mutation {
   updateConnectionStatus(channel: String, community: String): Boolean!
   setUserLocale(locale: Locale!): Boolean!
   createCommunity(input: CreateCommunityInput!): Community!
+  updateCommunity(input: UpdateCommunityInput!): Community!
+  deleteCommunity(communityId: ID!): Community!
   createChannel(input: CreateChannelInput!): Channel!
   updateChannel(input: UpdateChannelInput!): Channel!
   deleteChannel(channelId: ID!): Channel!
@@ -319,6 +321,12 @@ type Mutation {
 }
 
 input CreateCommunityInput {
+  name: String!
+  title: String!
+}
+
+input UpdateCommunityInput {
+  communityId: ID!
   name: String!
   title: String!
 }

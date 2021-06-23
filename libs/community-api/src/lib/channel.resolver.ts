@@ -28,9 +28,7 @@ export class ChannelResolver {
     const { id } = channel;
     const connections = await this.prisma.connection.findMany({
       where: {
-        channel: {
-          id,
-        },
+        channel: { id },
       },
       select: { ipHash: true },
       distinct: ['ipHash'],
@@ -45,7 +43,7 @@ export class ChannelResolver {
     @Args({ name: 'communityId', type: () => String }) communityId: string
   ) {
     return this.prisma.channel.findFirst({
-      where: { name, communityId },
+      where: { name, communityId, deleted: false },
     });
   }
 
@@ -53,11 +51,9 @@ export class ChannelResolver {
   channels(@Args({ name: 'name', type: () => String }) name: string) {
     return this.prisma.channel.findMany({
       where: {
-        community: {
-          name,
-        },
+        deleted: false,
+        community: { name },
       },
-
       orderBy: {
         createdAt: 'asc',
       },
@@ -88,6 +84,7 @@ export class ChannelResolver {
       where: {
         communityId: input.communityId,
         name: input.name,
+        deleted: false,
       },
     });
 
@@ -124,6 +121,7 @@ export class ChannelResolver {
       where: {
         communityId,
         name: input.name,
+        deleted: false,
         id: {
           not: channelId,
         },
@@ -164,9 +162,12 @@ export class ChannelResolver {
       throw 'Deny';
     }
 
-    return this.prisma.channel.delete({
+    return this.prisma.channel.update({
       where: {
         id: channelId,
+      },
+      data: {
+        deleted: true,
       },
     });
   }

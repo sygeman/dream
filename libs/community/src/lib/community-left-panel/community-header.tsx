@@ -4,8 +4,28 @@ import Link from 'next/link';
 import { useIntl } from 'react-intl';
 import { useRouter } from 'next/router';
 import { Menu, Transition } from '@headlessui/react';
-import { ChevronDownIcon, PlusCircleIcon, XIcon } from '@heroicons/react/solid';
+import {
+  ChevronDownIcon,
+  PlusCircleIcon,
+  XIcon,
+  CogIcon,
+} from '@heroicons/react/solid';
 import { useCommunityChannel } from '../use-community-channel';
+
+const MenuItem = ({ Icon, label }) => {
+  return (
+    <div
+      className={clsx(
+        'w-full flex justify-between items-center',
+        'text-white text-sm font-medium',
+        'px-2 h-8 rounded hover:bg-surface-light cursor-pointer '
+      )}
+    >
+      {label}
+      <Icon className="w-4 h-4 text-accent" aria-hidden="true" />
+    </div>
+  );
+};
 
 export const CommunityHeader = () => {
   const intl = useIntl();
@@ -61,16 +81,33 @@ export const CommunityHeader = () => {
                     }}
                     passHref
                   >
-                    <a
-                      href="replace"
-                      className="text-white text-sm px-2 py-1 rounded hover:bg-surface-light cursor-pointer w-full flex justify-between items-center"
-                    >
-                      {intl.formatMessage({
-                        id: 'newChannelCreateButton',
-                      })}
-                      <PlusCircleIcon
-                        className="w-4 h-4 text-accent"
-                        aria-hidden="true"
+                    <a href="replace">
+                      <MenuItem
+                        Icon={PlusCircleIcon}
+                        label={intl.formatMessage({
+                          id: 'newChannelCreateButton',
+                        })}
+                      />
+                    </a>
+                  </Link>
+                </Menu.Item>
+                <Menu.Item>
+                  <Link
+                    href={{
+                      pathname: router.route,
+                      query: {
+                        ...router.query,
+                        communitySettings: 'overview',
+                      },
+                    }}
+                    passHref
+                  >
+                    <a href="replace">
+                      <MenuItem
+                        Icon={CogIcon}
+                        label={intl.formatMessage({
+                          id: 'communitySettingsButton',
+                        })}
                       />
                     </a>
                   </Link>

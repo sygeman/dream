@@ -20,6 +20,18 @@ mutation createCommunity($input: CreateCommunityInput!) {
   }
 }
 
+mutation updateCommunity($input: UpdateCommunityInput!) {
+  updateCommunity(input: $input) {
+    ...CommunityFields
+  }
+}
+
+mutation deleteCommunity($communityId: ID!) {
+  deleteCommunity(communityId: $communityId) {
+    ...CommunityFields
+  }
+}
+
 fragment CommunityFields on Community {
   id
   name

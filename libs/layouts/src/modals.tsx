@@ -2,6 +2,9 @@ import React from 'react';
 import {
   NewCommunity,
   NewChannel,
+  DeleteCommunity,
+  CommunitySettings,
+  CommunitySettingsMenu,
   ChannelSettings,
   ChannelSettingsMenu,
   DeleteChannel,
@@ -30,6 +33,14 @@ export const Modals = () => {
       >
         <NewCommunity />
       </Modal>
+      <Modal
+        id="deleteCommunity"
+        title="Delete Community"
+        minimal
+        {...modalProps}
+      >
+        <DeleteCommunity />
+      </Modal>
       <Modal id="newChannel" title="New Channel" {...modalProps}>
         <NewChannel />
       </Modal>
@@ -52,6 +63,13 @@ export const Modals = () => {
       >
         <ChannelYoutubeModeAddVideo />
       </Modal>
+      <ModalFull
+        id="communitySettings"
+        menu={<CommunitySettingsMenu />}
+        {...modalProps}
+      >
+        <CommunitySettings />
+      </ModalFull>
       <ModalFull
         id="channelSettings"
         menu={<ChannelSettingsMenu />}

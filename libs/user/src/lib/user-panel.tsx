@@ -2,11 +2,7 @@ import React, { useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { UserCircleIcon } from '@heroicons/react/solid';
-import {
-  useMeQuery,
-  useLogoutMutation,
-  useUpdateConnectionStatusMutation,
-} from '@dream/types';
+import { useMeQuery, useUpdateConnectionStatusMutation } from '@dream/types';
 
 const UserPanelForGuest = () => {
   const router = useRouter();
@@ -52,12 +48,6 @@ export const UserPanel = () => {
     }
   }, [updateStatus, channel, community]);
 
-  const [logout] = useLogoutMutation({
-    onCompleted: () => {
-      router.push('/api/auth/logout');
-    },
-  });
-
   const user = userQuery.data?.me;
   const name = user?.name;
   const avatar = user?.avatar;
@@ -67,13 +57,27 @@ export const UserPanel = () => {
   }
 
   return (
-    <div
-      className="flex items-center justify-center w-12 h-12 cursor-pointer"
-      onClick={() => logout()}
+    <Link
+      href={{
+        pathname: router.route,
+        query: {
+          ...router.query,
+          userSettings: 'language',
+        },
+      }}
+      passHref
     >
-      <div className="rounded-full h-8 w-8 flex items-center justify-center">
-        <img src={avatar} alt={name} className="h-full w-full rounded-full" />
-      </div>
-    </div>
+      <a href="replace">
+        <div className="flex items-center justify-center w-12 h-12 cursor-pointer">
+          <div className="rounded-full h-8 w-8 flex items-center justify-center">
+            <img
+              src={avatar}
+              alt={name}
+              className="h-full w-full rounded-full"
+            />
+          </div>
+        </div>
+      </a>
+    </Link>
   );
 };

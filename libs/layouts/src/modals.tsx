@@ -9,6 +9,7 @@ import {
   ChannelSettingsMenu,
   DeleteChannel,
 } from '@dream/community';
+import { UserLogout, UserSettings, UserSettingsMenu } from '@dream/user';
 import { useModal } from '@dream/utils/use-modal';
 import { useIntl } from 'react-intl';
 import { Auth } from '@dream/auth';
@@ -47,6 +48,9 @@ export const Modals = () => {
       <Modal id="deleteChannel" title="Delete Channel" minimal {...modalProps}>
         <DeleteChannel />
       </Modal>
+      <Modal id="logout" title="Log Out" minimal {...modalProps}>
+        <UserLogout />
+      </Modal>
       <Modal
         id="spotifyModeAddTrack"
         title="Add Track To Queue"
@@ -76,6 +80,9 @@ export const Modals = () => {
         {...modalProps}
       >
         <ChannelSettings />
+      </ModalFull>
+      <ModalFull id="userSettings" menu={<UserSettingsMenu />} {...modalProps}>
+        <UserSettings />
       </ModalFull>
     </>
   );

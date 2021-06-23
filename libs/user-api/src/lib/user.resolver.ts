@@ -36,17 +36,17 @@ export class UserResolver {
   }
 
   @UseGuards(AuthGuard)
-  @Mutation(() => Boolean)
+  @Mutation(() => Locale)
   async setUserLocale(
     @Args({ name: 'locale', type: () => Locale })
     locale: Locale,
     @Context('userId') userId
-  ): Promise<boolean> {
+  ): Promise<Locale> {
     await this.prisma.user.update({
       where: { id: userId },
       data: { locale },
     });
 
-    return true;
+    return locale;
   }
 }

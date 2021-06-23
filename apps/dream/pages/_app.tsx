@@ -26,17 +26,8 @@ const getMessages = (locales: string | string[] = ['en-US']) => {
 const Inner = ({ Component, pageProps, locale }) => {
   const userQuery = useMeQuery();
   const userLocale = userQuery?.data?.me?.locale;
-  const clientLocaleQuery = useQuery(gql`
-    query clientLocale {
-      clientLocale @client
-    }
-  `);
 
-  const clientLocale = clientLocaleQuery?.data?.clientLocale;
-  locale = (userLocale || clientLocale || locale || Locale.EnUs).replace(
-    '_',
-    '-'
-  );
+  locale = (userLocale || locale || Locale.EnUs).replace('_', '-');
 
   return (
     <IntlProvider locale={locale} messages={lang[locale]}>

@@ -299,7 +299,7 @@ type Query {
 type Mutation {
   logout: Boolean!
   updateConnectionStatus(channel: String, community: String): Boolean!
-  setUserLocale(locale: Locale!): Boolean!
+  setUserLocale(locale: Locale!): Locale!
   createCommunity(input: CreateCommunityInput!): Community!
   updateCommunity(input: UpdateCommunityInput!): Community!
   deleteCommunity(communityId: ID!): Community!

@@ -54,7 +54,7 @@ export enum ChannelMode {
 export type Community = {
   __typename?: 'Community';
   id: Scalars['String'];
-  name: Scalars['String'];
+  name?: Maybe<Scalars['String']>;
   title: Scalars['String'];
   avatar?: Maybe<Scalars['String']>;
   createdAt: Scalars['DateTime'];
@@ -280,7 +280,7 @@ export type QuerySpotifyModeQueueArgs = {
 
 
 export type QuerySpotifyNowArgs = {
-  token: Scalars['String'];
+  userId: Scalars['String'];
 };
 
 
@@ -1172,7 +1172,7 @@ export type WaitlistYoutubeQueueSkipVideoMutation = (
 );
 
 export type SpotifyNowQueryVariables = Exact<{
-  token: Scalars['String'];
+  userId: Scalars['String'];
 }>;
 
 
@@ -2627,8 +2627,8 @@ export type WaitlistYoutubeQueueSkipVideoMutationHookResult = ReturnType<typeof 
 export type WaitlistYoutubeQueueSkipVideoMutationResult = Apollo.MutationResult<WaitlistYoutubeQueueSkipVideoMutation>;
 export type WaitlistYoutubeQueueSkipVideoMutationOptions = Apollo.BaseMutationOptions<WaitlistYoutubeQueueSkipVideoMutation, WaitlistYoutubeQueueSkipVideoMutationVariables>;
 export const SpotifyNowDocument = gql`
-    query spotifyNow($token: String!) {
-  spotifyNow(token: $token) {
+    query spotifyNow($userId: String!) {
+  spotifyNow(userId: $userId) {
     id
     imageUrl
     artist
@@ -2650,7 +2650,7 @@ export const SpotifyNowDocument = gql`
  * @example
  * const { data, loading, error } = useSpotifyNowQuery({
  *   variables: {
- *      token: // value for 'token'
+ *      userId: // value for 'userId'
  *   },
  * });
  */

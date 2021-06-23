@@ -9,10 +9,7 @@ export class SpotifyResolver {
   constructor(private readonly spotifyService: SpotifyService) {}
 
   @Query(() => SpotifyNow, { nullable: true })
-  async spotifyNow(@Args('token') token: string): Promise<SpotifyNow> {
-    // Find userId by token
-    const userId = 'ckpvrk0zv01571677x051qze4';
-
+  async spotifyNow(@Args('userId') userId: string): Promise<SpotifyNow> {
     const current = (await this.spotifyService.getMePlayer(userId))?.data;
 
     if (!current) return null;

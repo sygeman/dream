@@ -288,7 +288,7 @@ type Query {
   spotifyModeHistory(channelId: String!): SpotifyModeHistory!
   spotifyModeCurrent(channelId: String!): SpotifyModeCurrent
   spotifyModeQueue(channelId: String!): SpotifyModeQueue!
-  spotifyNow(token: String!): SpotifyNow
+  spotifyNow(userId: String!): SpotifyNow
   spotifyToken: String!
   twitchStream(channelId: String!): TwitchStream!
   waitlistYoutubeHistory(channelId: String!): YoutubeModeHistory!

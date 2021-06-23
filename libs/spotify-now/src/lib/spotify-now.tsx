@@ -2,9 +2,10 @@ import React from 'react';
 import { useSpotifyNowQuery } from '@dream/types';
 import { TrackInfo } from './components/track-info';
 
-export const SpotifyNow = () => {
+export const SpotifyNow = ({ userId = '' }) => {
   const spotifyNowQuery = useSpotifyNowQuery({
-    variables: { token: 'test' },
+    variables: { userId },
+    skip: !userId,
     pollInterval: 3000,
   });
   const current = spotifyNowQuery?.data?.spotifyNow;

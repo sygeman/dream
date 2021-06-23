@@ -1,5 +1,5 @@
-query spotifyNow($token: String!) {
-  spotifyNow(token: $token) {
+query spotifyNow($userId: String!) {
+  spotifyNow(userId: $userId) {
     id
     imageUrl
     artist

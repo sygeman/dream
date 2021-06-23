@@ -29,8 +29,9 @@ export class SpotifyModeHostService implements OnApplicationBootstrap {
 
   onApplicationBootstrap() {
     this.spotifyModeQueue.add('syncHost', null, {
-      jobId: 'syncHost',
       repeat: { every: 5000 },
+      removeOnComplete: true,
+      removeOnFail: true,
     });
   }
 

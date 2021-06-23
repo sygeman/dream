@@ -10,3 +10,4 @@ export * from './lib/channel-settings';
 export * from './lib/channel-settings/menu';
 export * from './lib/delete-channel';
 export * from './lib/channel-overlay';
+export * from './lib/use-community-channel';

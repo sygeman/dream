@@ -56,7 +56,7 @@ export class CommunityResolver {
       where: { ownerId: userId },
     });
 
-    if (count > 0) {
+    if (count > 1) {
       throw 'Deny';
     }
 

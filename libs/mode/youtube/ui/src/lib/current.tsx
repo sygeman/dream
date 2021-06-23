@@ -10,10 +10,10 @@ import { ChannelModeWaitlistProgress } from './components/progress';
 import { Menu, Transition } from '@headlessui/react';
 import clsx from 'clsx';
 import { useWaitlistYoutubeQueueSkipVideoMutation } from '@dream/types';
-import { useChannelId } from './use-channel-id';
+import { useCommunityChannel } from '@dream/community';
 
 const CurrentMenu = () => {
-  const channelId = useChannelId();
+  const { channelId } = useCommunityChannel();
   const [skipMutation] = useWaitlistYoutubeQueueSkipVideoMutation();
   const skipTrack = () => skipMutation({ variables: { channelId } });
 

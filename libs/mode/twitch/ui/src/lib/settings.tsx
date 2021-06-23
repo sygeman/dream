@@ -1,14 +1,12 @@
 import React from 'react';
-import clsx from 'clsx';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
-import { useRouter } from 'next/router';
 import {
-  useChannelQuery,
   useTwitchStreamQuery,
   useUpdateTwitchStreamMutation,
 } from '@dream/types';
 import { SaveFormPanel } from '@dream/components/save-form';
+import { useCommunityChannel } from '@dream/community';
 
 const ValidationSchema = Yup.object().shape({
   channelKey: Yup.string()
@@ -20,19 +18,11 @@ const ValidationSchema = Yup.object().shape({
 });
 
 export const ChannelTwitchModeSettings = () => {
-  const { query } = useRouter();
-  const channelName = typeof query?.channel === 'string' && query?.channel;
-
-  const channelQuery = useChannelQuery({
-    variables: { name: channelName },
-    skip: !channelName,
-  });
-
-  const channel = channelQuery?.data?.channel;
+  const { channelId } = useCommunityChannel();
 
   const twitchStreamQuery = useTwitchStreamQuery({
-    variables: { channelId: channel?.id },
-    skip: !channel?.id,
+    variables: { channelId },
+    skip: !channelId,
   });
   const [updateTwitchStream] = useUpdateTwitchStreamMutation({
     onCompleted: (data) => {
@@ -54,7 +44,7 @@ export const ChannelTwitchModeSettings = () => {
     validationSchema: ValidationSchema,
     onSubmit: (values) => {
       updateTwitchStream({
-        variables: { input: { ...values, channelId: channel?.id } },
+        variables: { input: { ...values, channelId } },
       });
     },
   });

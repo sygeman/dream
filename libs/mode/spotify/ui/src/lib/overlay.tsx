@@ -5,10 +5,10 @@ import {
 } from '@dream/types';
 import { ChannelModeWaitlistProgress } from './components/progress';
 import { Backgroud } from './components/background';
-import { useChannelId } from './use-channel-id';
+import { useCommunityChannel } from '@dream/community';
 
 export const ChannelSpotifyModeOverlay = () => {
-  const channelId = useChannelId();
+  const { channelId } = useCommunityChannel();
 
   const currentQuery = useSpotifyModeCurrentQuery({
     variables: { channelId },

@@ -1,5 +1,5 @@
-query channel($name: String!) {
-  channel(name: $name) {
+query channel($name: String!, $communityId: String!) {
+  channel(name: $name, communityId: $communityId) {
     ...ChannelFields
   }
 }

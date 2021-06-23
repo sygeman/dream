@@ -232,6 +232,7 @@ export type QueryCommunityArgs = {
 
 
 export type QueryChannelArgs = {
+  communityId: Scalars['String'];
   name: Scalars['String'];
 };
 
@@ -693,6 +694,7 @@ export type MakeWaitlistYoutubeModeCurrentMutation = (
 
 export type ChannelQueryVariables = Exact<{
   name: Scalars['String'];
+  communityId: Scalars['String'];
 }>;
 
 
@@ -1447,8 +1449,8 @@ export type MakeWaitlistYoutubeModeCurrentMutationHookResult = ReturnType<typeof
 export type MakeWaitlistYoutubeModeCurrentMutationResult = Apollo.MutationResult<MakeWaitlistYoutubeModeCurrentMutation>;
 export type MakeWaitlistYoutubeModeCurrentMutationOptions = Apollo.BaseMutationOptions<MakeWaitlistYoutubeModeCurrentMutation, MakeWaitlistYoutubeModeCurrentMutationVariables>;
 export const ChannelDocument = gql`
-    query channel($name: String!) {
-  channel(name: $name) {
+    query channel($name: String!, $communityId: String!) {
+  channel(name: $name, communityId: $communityId) {
     ...ChannelFields
   }
 }
@@ -1467,6 +1469,7 @@ export const ChannelDocument = gql`
  * const { data, loading, error } = useChannelQuery({
  *   variables: {
  *      name: // value for 'name'
+ *      communityId: // value for 'communityId'
  *   },
  * });
  */

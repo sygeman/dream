@@ -1,18 +1,8 @@
 import React from 'react';
-import { useRouter } from 'next/router';
-import { useCommunityQuery } from '@dream/types';
+import { useCommunityChannel } from '../use-community-channel';
 
 export const CommunityWelcome = () => {
-  const router = useRouter();
-  const name =
-    typeof router.query?.community === 'string' && router.query?.community;
-
-  const communityQuery = useCommunityQuery({
-    variables: { name },
-    skip: !name,
-  });
-
-  const community = communityQuery?.data?.community;
+  const { community } = useCommunityChannel();
 
   return (
     <div className="w-full flex justify-center items-center">

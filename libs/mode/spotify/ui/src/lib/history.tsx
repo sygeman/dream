@@ -6,11 +6,11 @@ import {
   useSpotifyModeHistoryUpdatedSubscription,
 } from '@dream/types';
 import { TrackFromList } from './components/track-from-list';
-import { useChannelId } from './use-channel-id';
 import { dateDistanceInWordsToNow } from '@dream/utils/date';
+import { useCommunityChannel } from '@dream/community';
 
 export const ChannelSpotifyModeHistory = ({ hidden = false }) => {
-  const channelId = useChannelId();
+  const { channelId } = useCommunityChannel();
 
   const historyQuery = useSpotifyModeHistoryQuery({
     variables: { channelId },

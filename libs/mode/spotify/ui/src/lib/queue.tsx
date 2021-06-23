@@ -8,11 +8,11 @@ import {
 } from '@dream/types';
 import { TrackFromList } from './components/track-from-list';
 import { ViewListIcon } from '@heroicons/react/solid';
-import { useChannelId } from './use-channel-id';
+import { useCommunityChannel } from '@dream/community';
 
 export const ChannelSpotifyModeQueue = ({ hidden = false, addTrackAccent }) => {
   const router = useRouter();
-  const channelId = useChannelId();
+  const { channelId } = useCommunityChannel();
 
   const queueQuery = useSpotifyModeQueueQuery({
     variables: { channelId },

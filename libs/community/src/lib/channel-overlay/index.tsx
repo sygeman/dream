@@ -1,19 +1,10 @@
 import React from 'react';
-import { useRouter } from 'next/router';
 import { ChannelSpotifyModeOverlay } from '@dream/mode/spotify/ui';
-import { useChannelQuery, ChannelMode } from '@dream/types';
+import { ChannelMode } from '@dream/types';
+import { useCommunityChannel } from '../use-community-channel';
 
 export const CommunityChannelOverlay = () => {
-  const router = useRouter();
-  const name =
-    typeof router.query?.channel === 'string' && router.query?.channel;
-
-  const communityQuery = useChannelQuery({
-    variables: { name },
-    skip: !name,
-  });
-
-  const channel = communityQuery?.data?.channel;
+  const { channel } = useCommunityChannel();
 
   switch (channel?.mode) {
     case ChannelMode.Spotify:

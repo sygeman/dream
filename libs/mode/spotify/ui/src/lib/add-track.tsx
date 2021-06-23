@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import clsx from 'clsx';
 import { useRouter } from 'next/router';
 import { useSpotifyModeQueueAddTrackMutation } from '@dream/types';
-import { useChannelId } from './use-channel-id';
+import { useCommunityChannel } from '@dream/community';
 
 export const ChannelSpotifyModeAddTrack = () => {
   const [trackId, setTrackId] = useState('');
   const router = useRouter();
-  const channelId = useChannelId();
+  const { channelId } = useCommunityChannel();
 
   const [addTrackMutation] = useSpotifyModeQueueAddTrackMutation({
     onCompleted: () => {

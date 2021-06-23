@@ -6,10 +6,10 @@ import { Backgroud } from './components/background';
 import { ChannelYoutubeModeHistory } from './history';
 import { ChannelYoutubeModeQueue } from './queue';
 import { ChannelYoutubeModeCurrent } from './current';
-import { useChannelId } from './use-channel-id';
+import { useCommunityChannel } from '@dream/community';
 
 export const ChannelYoutubeMode = () => {
-  const channelId = useChannelId();
+  const { channelId } = useCommunityChannel();
 
   const currentQuery = useWaitlistYoutubeCurrentQuery({
     variables: { channelId },

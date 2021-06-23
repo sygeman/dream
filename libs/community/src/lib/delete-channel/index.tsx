@@ -1,25 +1,16 @@
 import React from 'react';
 import clsx from 'clsx';
 import { useRouter } from 'next/router';
-import { useChannelQuery, useDeleteChannelMutation } from '@dream/types';
+import { useDeleteChannelMutation } from '@dream/types';
+import { useCommunityChannel } from '../use-community-channel';
 
 export const DeleteChannel = () => {
   const router = useRouter();
-  const communityName =
-    typeof router.query?.community === 'string' && router.query?.community;
-  const channelName =
-    typeof router.query?.channel === 'string' && router.query?.channel;
-
-  const channelQuery = useChannelQuery({
-    variables: { name: channelName },
-    skip: !channelName,
-  });
-  const channel = channelQuery?.data?.channel;
-  const channelId = channel?.id;
+  const { community, channel, channelId } = useCommunityChannel();
 
   const [deleteChannel] = useDeleteChannelMutation({
     onCompleted: () => {
-      router.push(`/${communityName}`);
+      router.push(`/${community?.name}`);
     },
   });
 

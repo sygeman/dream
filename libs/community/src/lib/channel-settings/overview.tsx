@@ -1,12 +1,8 @@
 import React from 'react';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
-import { useRouter } from 'next/router';
-import {
-  useChannelQuery,
-  useCommunityQuery,
-  useUpdateChannelMutation,
-} from '@dream/types';
+import { useUpdateChannelMutation } from '@dream/types';
+import { useCommunityChannel } from '../use-community-channel';
 import { urlNameRegExp } from '@dream/utils/regexp';
 import { SaveFormPanel } from '@dream/components/save-form';
 
@@ -24,27 +20,8 @@ const ValidationSchema = Yup.object().shape({
 });
 
 export const ChannelSettingsOverview = () => {
-  const router = useRouter();
-  const communityName =
-    typeof router.query?.community === 'string' && router.query?.community;
-  const channelName =
-    typeof router.query?.channel === 'string' && router.query?.channel;
-
   const origin = typeof window !== 'undefined' ? window?.location?.origin : '';
-
-  const communityQuery = useCommunityQuery({
-    variables: { name: communityName },
-    skip: !communityName,
-  });
-  const community = communityQuery?.data?.community;
-  const communityId = community?.id;
-
-  const channelQuery = useChannelQuery({
-    variables: { name: channelName },
-    skip: !channelName,
-  });
-  const channel = channelQuery?.data?.channel;
-  const channelId = channel?.id;
+  const { community, channel, channelId, communityId } = useCommunityChannel();
 
   const formik = useFormik({
     initialValues: {
@@ -92,7 +69,7 @@ export const ChannelSettingsOverview = () => {
 
       <div className="flex items-center mb-2">
         <label htmlFor="name" className="text-accent text-xs">
-          {origin}/{communityName}/
+          {origin}/{community?.name}/
         </label>
         <input
           id="name"

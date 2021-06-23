@@ -2,13 +2,13 @@ import { useState } from 'react';
 import clsx from 'clsx';
 import { useRouter } from 'next/router';
 import { useWaitlistYoutubeQueueAddVideoMutation } from '@dream/types';
-import { useChannelId } from './use-channel-id';
 import ReactPlayer from 'react-player';
+import { useCommunityChannel } from '@dream/community';
 
 export const ChannelYoutubeModeAddVideo = () => {
   const [videoId, setVideoId] = useState('');
   const router = useRouter();
-  const channelId = useChannelId();
+  const { channelId } = useCommunityChannel();
 
   const [addVideoMutation] = useWaitlistYoutubeQueueAddVideoMutation({
     onCompleted: () => router.back(),

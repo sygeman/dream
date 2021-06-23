@@ -4,23 +4,16 @@ import Link from 'next/link';
 import { useIntl } from 'react-intl';
 import { useRouter } from 'next/router';
 import { Menu, Transition } from '@headlessui/react';
-import { useCommunityQuery } from '@dream/types';
 import { ChevronDownIcon, PlusCircleIcon, XIcon } from '@heroicons/react/solid';
+import { useCommunityChannel } from '../use-community-channel';
 
 export const CommunityHeader = () => {
   const intl = useIntl();
   const router = useRouter();
-  const name =
-    typeof router.query?.community === 'string' && router.query?.community;
 
   const isUser = true;
 
-  const communityQuery = useCommunityQuery({
-    variables: { name },
-    skip: !name,
-  });
-
-  const community = communityQuery?.data?.community;
+  const { community } = useCommunityChannel();
 
   return (
     <Menu as="div" className="relative z-10">

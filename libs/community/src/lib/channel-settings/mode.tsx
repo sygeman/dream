@@ -1,26 +1,17 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
 import { Transition } from '@headlessui/react';
-import { useRouter } from 'next/router';
 import SimpleBar from 'simplebar-react';
-import { useChannelQuery } from '@dream/types';
 import { channelMods } from '../channel-mode';
 import { ChannelSettingsModeCard } from './mode-card';
 import { ModeSettings } from './mode-settings';
 import { useMakeModeCurrent } from './use-make-mode-current';
+import { useCommunityChannel } from '../use-community-channel';
 
 export const ChannelSettingsMode = () => {
   const [selectedChannelMode, setSelectedChannelMode] = useState(null);
-  const router = useRouter();
-  const name =
-    typeof router.query?.channel === 'string' && router.query?.channel;
+  const { channel } = useCommunityChannel();
 
-  const communityQuery = useChannelQuery({
-    variables: { name },
-    skip: !name,
-  });
-
-  const channel = communityQuery?.data?.channel;
   const currentMode = channelMods.find((m) => m?.value === channel?.mode);
 
   const { makeModeCurrent } = useMakeModeCurrent();

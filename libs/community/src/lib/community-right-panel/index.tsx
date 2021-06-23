@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { Chat } from '@dream/chat';
-import { useRouter } from 'next/router';
-import { useChannelQuery } from '@dream/types';
 import { XIcon, UsersIcon, AnnotationIcon } from '@heroicons/react/solid';
 import { Transition } from '@headlessui/react';
+import { useCommunityChannel } from '../use-community-channel';
 
 const Users = ({ onClose }) => {
   return (
@@ -22,16 +21,7 @@ const Users = ({ onClose }) => {
 
 export const CommunityRightPanel = () => {
   const [usersIsOpen, setUsersIsOpen] = useState(false);
-
-  const { query } = useRouter();
-  const name = typeof query?.channel === 'string' && query?.channel;
-
-  const communityChannelsQuery = useChannelQuery({
-    variables: { name },
-    skip: !name,
-  });
-
-  const channel = communityChannelsQuery?.data?.channel;
+  const { channel } = useCommunityChannel();
 
   return (
     <div className="h-screen flex flex-col flex-shrink-0 w-80 bg-surface relative">

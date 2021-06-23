@@ -10,7 +10,7 @@ import { Backgroud } from './components/background';
 import { ChannelSpotifyModeHistory } from './history';
 import { ChannelSpotifyModeQueue } from './queue';
 import { ChannelSpotifyModeCurrent } from './current';
-import { useChannelId } from './use-channel-id';
+import { useCommunityChannel } from '@dream/community';
 
 const ChannelSpotifyModeAuth = () => (
   <div className="absolute left-0 top-0 w-full h-full flex items-center justify-center">
@@ -37,7 +37,7 @@ export const ChannelSpotifyMode = () => {
   const profiles = meQuery?.data?.me?.profiles || [];
   const hasSpotifyAccount = !!profiles.find((p) => p.provider === 'spotify');
 
-  const channelId = useChannelId();
+  const { channelId } = useCommunityChannel();
   const [isConnected, setIsConnected] = useState(false);
 
   const [userSyncMutation] = useSpotifyModeUserSyncMutation();

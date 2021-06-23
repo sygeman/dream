@@ -4,30 +4,21 @@ import * as Yup from 'yup';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircle, faDotCircle } from '@fortawesome/free-regular-svg-icons';
 import { useFormik } from 'formik';
-import { useRouter } from 'next/router';
 import {
-  useChannelQuery,
   useSpotifyModeQuery,
   useUpdateSpotifyModeMutation,
 } from '@dream/types';
 import { SaveFormPanel } from '@dream/components/save-form';
 import clsx from 'clsx';
 import { strategies } from './strategies';
+import { useCommunityChannel } from '@dream/community';
 
 const ValidationSchema = Yup.object().shape({
   strategy: Yup.string().required('Required'),
 });
 
 export const ChannelSpotifyModeSettings = () => {
-  const { query } = useRouter();
-  const channelName = typeof query?.channel === 'string' && query?.channel;
-
-  const channelQuery = useChannelQuery({
-    variables: { name: channelName },
-    skip: !channelName,
-  });
-
-  const channel = channelQuery?.data?.channel;
+  const { channel } = useCommunityChannel();
 
   const spotifyModeQuery = useSpotifyModeQuery({
     variables: { channelId: channel?.id },
@@ -35,9 +26,6 @@ export const ChannelSpotifyModeSettings = () => {
   });
   const [updateSpotifyModeMutation] = useUpdateSpotifyModeMutation({
     onCompleted: (data) => {
-      console.log(data);
-
-      channelQuery.refetch();
       formik.resetForm({
         values: {
           strategy: data?.updateSpotifyMode?.strategy,

@@ -40,9 +40,12 @@ export class ChannelResolver {
   }
 
   @Query(() => Channel)
-  channel(@Args({ name: 'name', type: () => String }) name: string) {
+  channel(
+    @Args({ name: 'name', type: () => String }) name: string,
+    @Args({ name: 'communityId', type: () => String }) communityId: string
+  ) {
     return this.prisma.channel.findFirst({
-      where: { name },
+      where: { name, communityId },
     });
   }
 

@@ -1,24 +1,17 @@
 import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useChannelQuery } from '@dream/types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { CogIcon } from '@heroicons/react/solid';
 import { channelMods } from '../channel-mode';
+import { useCommunityChannel } from '../use-community-channel';
 
 export const ChannelHeader = () => {
   const router = useRouter();
-  const name =
-    typeof router.query?.channel === 'string' && router.query?.channel;
 
   const isUser = true;
 
-  const channelQuery = useChannelQuery({
-    variables: { name },
-    skip: !name,
-  });
-
-  const channel = channelQuery?.data?.channel;
+  const { channel } = useCommunityChannel();
   const mode = channelMods.find((m) => m?.value === channel?.mode);
 
   return (

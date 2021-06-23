@@ -3,8 +3,9 @@ import clsx from 'clsx';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import { useRouter } from 'next/router';
-import { useCommunityQuery, useCreateChannelMutation } from '@dream/types';
+import { useCreateChannelMutation } from '@dream/types';
 import { urlNameRegExp } from '@dream/utils/regexp';
+import { useCommunityChannel } from '../use-community-channel';
 
 const ValidationSchema = Yup.object().shape({
   title: Yup.string()
@@ -23,20 +24,13 @@ export const NewChannel = () => {
   const router = useRouter();
   const origin = typeof window !== 'undefined' ? window?.location?.origin : '';
 
-  const name =
-    typeof router.query?.community === 'string' && router.query?.community;
-
-  const communityQuery = useCommunityQuery({
-    variables: { name },
-    skip: !name,
-  });
-
-  const community = communityQuery?.data?.community;
-  const communityId = community?.id;
+  const { community, communityId } = useCommunityChannel();
 
   const [createChannel] = useCreateChannelMutation({
     onCompleted: (data) => {
-      router.push(`/${name}/${data.createChannel.name}?channelSettings=mode`);
+      router.push(
+        `/${community?.name}/${data.createChannel.name}?channelSettings=mode`
+      );
     },
   });
 
@@ -75,7 +69,7 @@ export const NewChannel = () => {
 
       <div className="flex items-center mb-2">
         <label htmlFor="name" className="text-accent text-xs">
-          {origin}/{name}/
+          {origin}/{community?.name}/
         </label>
         <input
           id="name"

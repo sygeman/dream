@@ -281,7 +281,7 @@ type Query {
   me: User!
   community(name: String!): Community!
   communities: [Community!]!
-  channel(name: String!): Channel!
+  channel(communityId: String!, name: String!): Channel!
   channels(name: String!): [Channel!]!
   channelMessages(channelId: ID!): [ChannelMessage!]!
   spotifyMode(channelId: String!): SpotifyMode!

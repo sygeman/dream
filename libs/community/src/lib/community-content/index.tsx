@@ -1,8 +1,8 @@
 import React from 'react';
 import dynamic from 'next/dynamic';
-import { useRouter } from 'next/router';
-import { useChannelQuery, ChannelMode } from '@dream/types';
+import { ChannelMode } from '@dream/types';
 import { ChannelHeader } from './channel-header';
+import { useCommunityChannel } from '../use-community-channel';
 
 const getContentView = (mode: ChannelMode) => {
   switch (mode) {
@@ -24,16 +24,7 @@ const getContentView = (mode: ChannelMode) => {
 };
 
 export const CommunityContent = () => {
-  const router = useRouter();
-  const name =
-    typeof router.query?.channel === 'string' && router.query?.channel;
-
-  const communityQuery = useChannelQuery({
-    variables: { name },
-    skip: !name,
-  });
-
-  const channel = communityQuery?.data?.channel;
+  const { channel } = useCommunityChannel();
   const Content = getContentView(channel?.mode);
 
   return (

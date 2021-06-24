@@ -21,12 +21,16 @@ import { SpotifyModeQueue } from './models/queue/model';
 import { ChannelMode } from '@prisma/client';
 import { SpotifyMode } from './models/spotify-mode.model';
 import { UpdateSpotifyModeInput } from './dto/update-spotify-mode.input';
+import { SpotifyModeQueueService } from './services/queue.service';
+import { SpotifyModeCurrentService } from './services/current.service';
 
 @Resolver()
 export class SpotifyModeResolver {
   constructor(
     private prisma: PrismaService,
     private spotifyModeService: SpotifyModeService,
+    private queueService: SpotifyModeQueueService,
+    private currentService: SpotifyModeCurrentService,
     @Inject('PUB_SUB') private readonly pubsub: RedisPubSub
   ) {}
 
@@ -173,7 +177,7 @@ export class SpotifyModeResolver {
     @Args({ name: 'trackId' }) trackId: string,
     @Context('userId') userId: string
   ) {
-    await this.spotifyModeService.addTrack({ channelId, userId, trackId });
+    await this.queueService.add({ channelId, userId, trackId });
     return true;
   }
 
@@ -194,7 +198,7 @@ export class SpotifyModeResolver {
       throw new Error('Deny');
     }
 
-    await this.spotifyModeService.skipTrack({ channelId });
+    await this.currentService.skip({ channelId });
 
     return true;
   }

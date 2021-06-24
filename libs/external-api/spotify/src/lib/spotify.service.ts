@@ -147,4 +147,31 @@ export class SpotifyService implements OnModuleInit {
       })
       .toPromise();
   }
+
+  async getFormatedTrack(trackId: string, userId: string) {
+    const track = await this.prisma.spotifyTrack.findUnique({
+      where: { id: trackId },
+    });
+
+    if (track) return track;
+
+    const trackData = (await this.getTrack(trackId, userId))?.data;
+
+    if (!trackData) throw 'Track not found';
+
+    // Set track to queue
+    const images = trackData?.album?.images || [];
+
+    return this.prisma.spotifyTrack.create({
+      data: {
+        id: trackId,
+        title: trackData?.name,
+        artists: (trackData?.artists || [])
+          .map((artist) => artist?.name)
+          .join(', '),
+        cover: images[images.length - 1]?.url,
+        duration: trackData?.duration_ms,
+      },
+    });
+  }
 }

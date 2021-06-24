@@ -3,16 +3,11 @@
 import { PrismaService } from '@dream/prisma';
 import { SpotifyService } from '@dream/external-api/spotify';
 import { InjectQueue } from '@nestjs/bull';
-import {
-  Inject,
-  Injectable,
-  Logger,
-  OnApplicationBootstrap,
-} from '@nestjs/common';
+import { Injectable, Logger, OnApplicationBootstrap } from '@nestjs/common';
 import { Queue } from 'bull';
-import { RedisPubSub } from 'graphql-redis-subscriptions';
-import { SpotifyModeService } from './spotify-mode.service';
-import { SpotifyMode } from '.prisma/client';
+import { SpotifyModeCurrentService } from './current.service';
+import { SpotifyModeQueueService } from './queue.service';
+import { SpotifyMode } from '@prisma/client';
 
 @Injectable()
 export class SpotifyModeHostService implements OnApplicationBootstrap {
@@ -21,10 +16,10 @@ export class SpotifyModeHostService implements OnApplicationBootstrap {
   constructor(
     private prisma: PrismaService,
     private spotify: SpotifyService,
-    private spotifyModeService: SpotifyModeService,
+    private currentService: SpotifyModeCurrentService,
+    private queueService: SpotifyModeQueueService,
     @InjectQueue('spotifyMode')
-    private readonly spotifyModeQueue: Queue,
-    @Inject('PUB_SUB') private readonly pubsub: RedisPubSub
+    private readonly spotifyModeQueue: Queue
   ) {}
 
   onApplicationBootstrap() {
@@ -53,7 +48,7 @@ export class SpotifyModeHostService implements OnApplicationBootstrap {
         where: { id: spotifyMode.id },
         data: { hostCurrentId: null },
       });
-      return this.spotifyModeService.skipTrack({
+      return this.currentService.skip({
         channelId: spotifyMode.channelId,
       });
     }
@@ -71,14 +66,14 @@ export class SpotifyModeHostService implements OnApplicationBootstrap {
 
     this.logger.log('new item');
 
-    await this.spotifyModeService.skipTrack({
+    await this.currentService.skip({
       channelId: spotifyMode.channelId,
     });
 
     this.logger.log(current?.progress_ms);
 
     // set new current item
-    return this.spotifyModeService.addTrack({
+    return this.queueService.add({
       channelId: spotifyMode.channelId,
       trackId,
       userId: spotifyMode.hostId,

@@ -19,7 +19,7 @@ export const ChannelItem: React.FC<{
       <a href="replace" className="group flex mx-2 my-1">
         <div
           className={clsx(
-            'flex items-center flex-1 w-full h-11',
+            'flex items-center flex-1 w-full h-10',
             'px-2 py-1',
             'cursor-pointer transition-colors',
             'hover:bg-surface-light',
@@ -29,11 +29,18 @@ export const ChannelItem: React.FC<{
         >
           <div className="flex flex-col flex-1">
             <div className="flex flex-1">
-              <span className="text-white text-sm font-medium">{title}</span>
+              <span
+                className={clsx(
+                  'text-white font-medium',
+                  state ? 'text-xs' : 'text-sm'
+                )}
+              >
+                {title}
+              </span>
             </div>
             {state && (
               <div className="flex flex-1" title={state}>
-                <span className="text-accent text-xs line-clamp-1">
+                <span className="text-accent text-xs line-clamp-1 mr-1">
                   {state}
                 </span>
               </div>

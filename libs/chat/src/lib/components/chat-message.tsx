@@ -48,7 +48,7 @@ export const ChatMessage = ({
     <div className="px-2 w-full relative overflow-hidden text-sm">
       {!compact && (
         <div className="flex items-center w-full pt-1">
-          <div className="flex items-center  justify-center rounded-full cursor-pointer">
+          <div className="flex items-center justify-center rounded-full cursor-pointer">
             {authorAvatar ? (
               <img
                 className="h-6 w-6 rounded-full"

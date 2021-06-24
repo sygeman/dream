@@ -47,7 +47,7 @@ export const ChannelItem: React.FC<{
             )}
           </div>
 
-          {typeof online === 'number' && (
+          {typeof online === 'number' && online > 0 && (
             <div>
               <span className="text-accent text-xs rounded bg-background px-2 py-1">
                 {online}

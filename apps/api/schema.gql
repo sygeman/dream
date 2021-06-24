@@ -64,7 +64,7 @@ type ChannelMessage {
   channelId: String!
   userId: String!
   user: User!
-  createdAt: String!
+  createdAt: DateTime!
 }
 
 type SpotifyNow {

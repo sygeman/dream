@@ -36,7 +36,7 @@ export type ChannelMessage = {
   channelId: Scalars['String'];
   userId: Scalars['String'];
   user: User;
-  createdAt: Scalars['String'];
+  createdAt: Scalars['DateTime'];
 };
 
 export type ChannelMessageCreateInput = {

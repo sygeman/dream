@@ -13,5 +13,5 @@ export class ChannelMessage {
 
   @Field(() => User) user: User;
 
-  @Field() createdAt: string;
+  @Field() createdAt: Date;
 }

@@ -20,7 +20,12 @@ export const ChannelSettingsModeCard = ({
     >
       <div className="w-full bg-background h-32 flex items-center justify-center text-center relative">
         <div className="flex flex-col">
-          <FontAwesomeIcon icon={mode?.icon} className={`${mode?.color} h-6`} />
+          <div className="h-6 flex justify-center">
+            <FontAwesomeIcon
+              icon={mode?.icon}
+              className={clsx('h-6', mode?.color && mode?.color)}
+            />
+          </div>
           <span className="text-sm text-white font-medium mt-2">
             {mode?.title}
           </span>

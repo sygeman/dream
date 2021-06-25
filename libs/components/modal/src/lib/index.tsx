@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useRef } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { XIcon } from '@heroicons/react/solid';
 
@@ -18,6 +18,7 @@ export const Modal: React.FC<ModalProps> = ({
   title = '',
   children,
 }) => {
+  let completeButtonRef = useRef(null);
   const open = isOpen(id);
   const close = () => onClose(id);
 
@@ -29,6 +30,7 @@ export const Modal: React.FC<ModalProps> = ({
         static
         open={open}
         onClose={close}
+        initialFocus={completeButtonRef}
       >
         <div className="min-h-screen px-4 text-center" tabIndex={1}>
           <Dialog.Overlay className="fixed inset-0 bg-background opacity-90" />

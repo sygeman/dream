@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useRef } from 'react';
 import clsx from 'clsx';
 import { Dialog, Transition } from '@headlessui/react';
 import { XIcon } from '@heroicons/react/solid';
@@ -17,6 +17,7 @@ export const ModalFull: React.FC<ModalProps> = ({
   menu,
   children,
 }) => {
+  let completeButtonRef = useRef(null);
   const open = isOpen(id);
   const close = () => onClose(id);
 
@@ -28,6 +29,7 @@ export const ModalFull: React.FC<ModalProps> = ({
         static
         open={open}
         onClose={close}
+        initialFocus={completeButtonRef}
       >
         <div className="h-full w-full" tabIndex={2}>
           <Transition.Child
@@ -49,6 +51,7 @@ export const ModalFull: React.FC<ModalProps> = ({
                 </div>
                 <div className="w-1/4 h-full pt-10 bg-surface">
                   <button
+                    ref={completeButtonRef}
                     className={clsx(
                       'btn h-8 w-8 p-0 text-accent border border-surface-light rounded-full',
                       'focus:outline-none hover:text-white hover:border-surface'

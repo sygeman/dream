@@ -1,10 +1,14 @@
 import React from 'react';
 import { Transition } from '@headlessui/react';
 
-export const SaveFormPanel: React.FC<{
+export interface SaveFormPanelProps {
   show: boolean;
   reset: () => void;
-}> = ({ show, reset }) => (
+}
+export const SaveFormPanel: React.FC<SaveFormPanelProps> = ({
+  show,
+  reset,
+}) => (
   <Transition
     as="div"
     className="flex w-full absolute left-0 bottom-4 p-2"

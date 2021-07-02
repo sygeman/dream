@@ -56,14 +56,15 @@ export const GifMenu: React.FC<GifMenuProps> = ({ onSelect }) => {
                   style={{ columnCount: 2 }}
                 >
                   {gifs.map((gif) => (
-                    <div
+                    <Menu.Item
                       key={gif.id}
+                      as="div"
                       className="w-full cursor-pointer rounded overflow-hidden mb-2"
                       style={{ breakInside: 'avoid' }}
                       onClick={() => onSelect(gif.itemurl)}
                     >
                       <video src={gif.media?.[0].webm.url} loop autoPlay />
-                    </div>
+                    </Menu.Item>
                   ))}
                 </div>
               </SimpleBar>

@@ -26,10 +26,13 @@
     "api": {
       "tags": []
     },
-    "prisma": {
+    "app-panel": {
       "tags": []
     },
-    "utils": {
+    "auth": {
+      "tags": []
+    },
+    "auth-api": {
       "tags": []
     },
     "chat": {
@@ -38,10 +41,16 @@
     "community": {
       "tags": []
     },
-    "auth-api": {
+    "community-api": {
       "tags": []
     },
-    "user-api": {
+    "components-modal": {
+      "tags": []
+    },
+    "components-modal-full": {
+      "tags": []
+    },
+    "components-save-form": {
       "tags": []
     },
     "connection-api": {
@@ -50,22 +59,19 @@
     "dream": {
       "tags": []
     },
+    "external-api-spotify": {
+      "tags": []
+    },
+    "external-api-tenor": {
+      "tags": []
+    },
+    "external-api-youtube": {
+      "tags": []
+    },
     "layouts": {
       "tags": []
     },
-    "auth": {
-      "tags": []
-    },
-    "spotify-now": {
-      "tags": []
-    },
-    "user": {
-      "tags": []
-    },
-    "community-api": {
-      "tags": []
-    },
-    "types": {
+    "mode-host-spotify-ui": {
       "tags": []
     },
     "mode-spotify-api": {
@@ -80,31 +86,28 @@
     "mode-twitch-ui": {
       "tags": []
     },
-    "app-panel": {
-      "tags": []
-    },
-    "components-modal": {
-      "tags": []
-    },
-    "components-modal-full": {
-      "tags": []
-    },
-    "components-save-form": {
+    "mode-youtube-api": {
       "tags": []
     },
     "mode-youtube-ui": {
       "tags": []
     },
-    "mode-youtube-api": {
+    "prisma": {
       "tags": []
     },
-    "external-api-youtube": {
+    "spotify-now": {
       "tags": []
     },
-    "external-api-spotify": {
+    "types": {
       "tags": []
     },
-    "mode-host-spotify-ui": {
+    "user": {
+      "tags": []
+    },
+    "user-api": {
+      "tags": []
+    },
+    "utils": {
       "tags": []
     }
   }

@@ -36,7 +36,8 @@ export type ChannelMessage = {
   channelId: Scalars['String'];
   userId: Scalars['String'];
   user: User;
-  createdAt: Scalars['DateTime'];
+  createdAt: Scalars['String'];
+  tenorGif?: Maybe<TenorGif>;
 };
 
 export type ChannelMessageCreateInput = {
@@ -480,6 +481,15 @@ export type SubscriptionWaitlistYoutubeHistoryUpdatedArgs = {
   channelId: Scalars['String'];
 };
 
+export type TenorGif = {
+  __typename?: 'TenorGif';
+  id: Scalars['String'];
+  height: Scalars['Float'];
+  width: Scalars['Float'];
+  preview: Scalars['String'];
+  video: Scalars['String'];
+};
+
 export type TwitchStream = {
   __typename?: 'TwitchStream';
   id: Scalars['String'];
@@ -674,7 +684,10 @@ export type ChannelMessageDeletedSubscription = (
 export type ChannelMessageFieldsFragment = (
   { __typename?: 'ChannelMessage' }
   & Pick<ChannelMessage, 'id' | 'content' | 'createdAt'>
-  & { user: (
+  & { tenorGif?: Maybe<(
+    { __typename?: 'TenorGif' }
+    & Pick<TenorGif, 'id' | 'height' | 'width' | 'preview' | 'video'>
+  )>, user: (
     { __typename?: 'User' }
     & Pick<User, 'id' | 'name' | 'avatar'>
   ) }
@@ -1233,6 +1246,13 @@ export const ChannelMessageFieldsFragmentDoc = gql`
   id
   content
   createdAt
+  tenorGif {
+    id
+    height
+    width
+    preview
+    video
+  }
   user {
     id
     name

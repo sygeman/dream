@@ -103,16 +103,27 @@ model Channel {
   youtubeMode     YoutubeMode[]
 }
 
+model TenorGif {
+  id             String           @unique
+  height         Int
+  width          Int
+  preview        String
+  video          String
+  ChannelMessage ChannelMessage[]
+}
+
 model ChannelMessage {
-  id        String   @id @default(cuid())
-  content   String
-  deleted   Boolean  @default(false)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now()) @updatedAt
-  channel   Channel? @relation(fields: [channelId], references: [id])
-  user      User     @relation(fields: [userId], references: [id])
-  channelId String?
-  userId    String
+  id         String    @id @default(cuid())
+  content    String
+  deleted    Boolean   @default(false)
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @default(now()) @updatedAt
+  channel    Channel?  @relation(fields: [channelId], references: [id])
+  user       User      @relation(fields: [userId], references: [id])
+  tenorGif   TenorGif? @relation(fields: [tenorGifId], references: [id])
+  tenorGifId String?
+  channelId  String?
+  userId     String
 }
 
 // External API

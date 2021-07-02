@@ -13,11 +13,13 @@ import { ChannelMessage } from './models/message.model';
 import { RedisPubSub } from 'graphql-redis-subscriptions';
 import { Inject, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@dream/auth-api';
+import { TenorService } from 'libs/external-api/tenor/src/lib/tenor.service';
 
 @Resolver(() => ChannelMessage)
 export class ChannelMessageResolver {
   constructor(
     private readonly prisma: PrismaService,
+    private readonly tenor: TenorService,
     @Inject('PUB_SUB') private readonly pubsub: RedisPubSub
   ) {}
 
@@ -36,6 +38,7 @@ export class ChannelMessageResolver {
       take: 50,
       include: {
         user: true,
+        tenorGif: true,
       },
     });
 
@@ -50,6 +53,16 @@ export class ChannelMessageResolver {
   ) {
     const { content, channelId } = input;
 
+    const tenorGifMatch = content.match(
+      /https\:\/\/tenor\.com\/view(.+)gif-([0-9]+)/
+    );
+
+    const tenorGifId = tenorGifMatch?.[2];
+
+    if (tenorGifId) {
+      await this.tenor.getGif(tenorGifId);
+    }
+
     const message = await this.prisma.channelMessage.create({
       data: {
         content,
@@ -63,9 +76,15 @@ export class ChannelMessageResolver {
             id: userId,
           },
         },
+        tenorGif: tenorGifId && {
+          connect: {
+            id: tenorGifId,
+          },
+        },
       },
       include: {
         user: true,
+        tenorGif: true,
       },
     });
 

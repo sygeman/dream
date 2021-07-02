@@ -20,6 +20,7 @@ export const ChatMessages: React.FC<{ messages: any[] }> = ({ messages }) => {
             authorAvatar={message.user.avatar}
             content={message.content}
             compact={message.compact}
+            tenorGif={message.tenorGif}
             createdAt={message.createdAt}
           />
         ))}

@@ -24,6 +24,13 @@ fragment ChannelMessageFields on ChannelMessage {
   id
   content
   createdAt
+  tenorGif {
+    id
+    height
+    width
+    preview
+    video
+  }
   user {
     id
     name

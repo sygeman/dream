@@ -51,7 +51,7 @@ const CurrentMenu: React.FC<{ actions: SpotifyModeCurrentAction[] }> = ({
   const getMenuItemByAction = (action: SpotifyModeCurrentAction) => {
     switch (action) {
       case SpotifyModeCurrentAction.Skip:
-        return <MenuItemSkip />;
+        return <MenuItemSkip key={action} />;
       default:
         return null;
     }

@@ -58,13 +58,22 @@ enum ChannelMode {
   SPOTIFY
 }
 
+type TenorGif {
+  id: String!
+  height: Float!
+  width: Float!
+  preview: String!
+  video: String!
+}
+
 type ChannelMessage {
   id: String!
   content: String!
   channelId: String!
   userId: String!
   user: User!
-  createdAt: DateTime!
+  createdAt: String!
+  tenorGif: TenorGif
 }
 
 type SpotifyNow {

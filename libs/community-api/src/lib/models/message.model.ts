@@ -2,6 +2,24 @@ import { Field, ObjectType } from '@nestjs/graphql';
 import { User } from '@dream/user-api';
 
 @ObjectType()
+export class TenorGif {
+  @Field()
+  id: string;
+
+  @Field()
+  height: number;
+
+  @Field()
+  width: number;
+
+  @Field()
+  preview: string;
+
+  @Field()
+  video: string;
+}
+
+@ObjectType()
 export class ChannelMessage {
   @Field() id: string;
 
@@ -13,5 +31,8 @@ export class ChannelMessage {
 
   @Field(() => User) user: User;
 
-  @Field() createdAt: Date;
+  @Field() createdAt: string;
+
+  @Field(() => TenorGif, { nullable: true })
+  tenorGif?: TenorGif;
 }

@@ -42,6 +42,7 @@ export const ChatMessage = ({
   authorAvatar,
   content,
   compact = false,
+  tenorGif,
   createdAt,
 }) => {
   return (
@@ -67,7 +68,13 @@ export const ChatMessage = ({
       )}
       <div className="relative">
         <div className="overflow-hidden text-accent break-words ml-8 flex flex-wrap">
-          {renderMessageText(content)}
+          {tenorGif ? (
+            <div className="p-1 pr-3 rounded overflow-hidden">
+              <video src={tenorGif.video} loop autoPlay />
+            </div>
+          ) : (
+            renderMessageText(content)
+          )}
         </div>
       </div>
     </div>

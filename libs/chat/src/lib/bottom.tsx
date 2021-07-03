@@ -1,8 +1,11 @@
-import React, { useRef } from 'react';
+import React, { Fragment, useRef } from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
 import { useCreateChannelMessageMutation } from '@dream/types';
 import { convertTextToEmojiCode } from '@dream/utils/emoji';
-import { GifMenu } from './gifs';
+import { Menu, Transition } from '@headlessui/react';
+import { GifPicker } from './components/gif-picker';
+import { PhotographIcon } from '@heroicons/react/solid';
+import clsx from 'clsx';
 
 interface ChatBottomProps {
   channelId: string;
@@ -53,13 +56,37 @@ export const ChatBottom: React.FC<ChatBottomProps> = ({ channelId }) => {
           }}
         />
 
-        <GifMenu
-          onSelect={(content) => {
-            createMessage({
-              variables: { input: { channelId, content } },
-            });
-          }}
-        />
+        <Menu>
+          <>
+            <Menu.Button className="absolute right-2 bottom-2">
+              {({ open }) => (
+                <PhotographIcon
+                  className={clsx('h-4', open ? 'text-white' : 'text-accent')}
+                />
+              )}
+            </Menu.Button>
+            <Transition
+              as={Fragment}
+              enter="transition ease-out duration-100"
+              enterFrom="transform opacity-0 scale-95"
+              enterTo="transform opacity-100 scale-100"
+              leave="transition ease-in duration-75"
+              leaveFrom="transform opacity-100 scale-100"
+              leaveTo="transform opacity-0 scale-95"
+            >
+              <Menu.Items className="absolute right-0 bottom-10 bg-background rounded w-full shadow-md">
+                <GifPicker
+                  onSelect={(content) => {
+                    createMessage({
+                      variables: { input: { channelId, content } },
+                    });
+                  }}
+                  gifContainer={(gif) => <Menu.Item>{gif}</Menu.Item>}
+                />
+              </Menu.Items>
+            </Transition>
+          </>
+        </Menu>
       </div>
       <div className="flex justify-end my-2">
         <button className="btn btn-primary" onClick={sendMessage}>

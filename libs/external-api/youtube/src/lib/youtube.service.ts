@@ -1,4 +1,5 @@
-import { HttpService, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
+import { HttpService } from '@nestjs/axios';
 import { ConfigService } from '@nestjs/config';
 import * as querystring from 'querystring';
 
@@ -19,9 +20,7 @@ export class YoutubeService {
     private readonly config: ConfigService
   ) {}
 
-  async getVideo(
-    videoId: string
-  ): Promise<{
+  async getVideo(videoId: string): Promise<{
     id: string;
     title: string;
     cover: string;

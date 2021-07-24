@@ -1,5 +1,6 @@
 import { PrismaService } from '@dream/prisma';
-import { HttpService, Injectable, Logger, OnModuleInit } from '@nestjs/common';
+import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
+import { HttpService } from '@nestjs/axios';
 import { ConfigService } from '@nestjs/config';
 import * as querystring from 'querystring';
 import axios from 'axios';

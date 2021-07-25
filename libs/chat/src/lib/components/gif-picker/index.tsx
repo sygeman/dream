@@ -13,15 +13,35 @@ export const GifPicker: React.FC<GifPickerProps> = ({
   onSelect,
   gifContainer = (gif: React.ReactNode) => <div>{gif}</div>,
 }) => {
+  const [nextPos, setNextPos] = useState();
+  const [dataPerPage, setDataPerPage] = useState({});
+
   const [searchQuery, setSearchQuery] = useState('');
   const [searchQueryWithDebounce] = useDebounce(searchQuery, 300);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const key = 'J9KE7ZY93YW1';
-  const trending = `https://g.tenor.com/v1/search?key=${key}&q=${searchQueryWithDebounce}`;
 
-  const [{ data, loading, error }, refetch] = useAxios(trending);
-  const gifs = data?.results || [];
+  const [{ data, loading, error }, refetch] = useAxios({
+    url: 'https://g.tenor.com/v1/search',
+    params: {
+      key,
+      q: searchQueryWithDebounce,
+      pos: nextPos,
+    },
+  });
+  const gifs = [].concat(...Object.values(dataPerPage)) || [];
+
+  const loadMore = () => {
+    console.log('loadMore', data?.next);
+    setNextPos(data?.next);
+  };
+
+  useEffect(() => {
+    if (data?.next) {
+      setDataPerPage((d) => ({ ...d, [data?.next]: data?.results }));
+    }
+  }, [data?.next, data?.results]);
 
   useEffect(() => {
     setTimeout(() => {
@@ -50,7 +70,7 @@ export const GifPicker: React.FC<GifPickerProps> = ({
           {gifs.map((gif) => (
             <div
               key={gif.id}
-              className="w-full cursor-pointer rounded overflow-hidden mb-2"
+              className="w-full cursor-pointer rounded overflow-hidden mb-2 bg-background"
               style={{ breakInside: 'avoid' }}
               onClick={() => onSelect(gif.itemurl)}
             >
@@ -60,6 +80,7 @@ export const GifPicker: React.FC<GifPickerProps> = ({
             </div>
           ))}
         </div>
+        <div onClick={loadMore}>Load More</div>
       </SimpleBar>
     </div>
   );

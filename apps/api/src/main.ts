@@ -3,6 +3,7 @@ import * as session from 'express-session';
 import * as connectRedis from 'connect-redis';
 import * as Redis from 'ioredis';
 import { AppModule } from './app/app.module';
+import { ConfigService } from '@nestjs/config';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
@@ -11,7 +12,7 @@ async function bootstrap() {
     },
   });
 
-  const config = app.get('ConfigService');
+  const config = app.get(ConfigService);
 
   const RedisStore = connectRedis(session);
 
@@ -27,7 +28,7 @@ async function bootstrap() {
     })
   );
 
-  await app.startAllMicroservicesAsync();
+  await app.startAllMicroservices();
   await app.listen(3333);
 }
 

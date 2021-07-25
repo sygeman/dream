@@ -14,6 +14,8 @@ import { SpotifyModeModule } from '@dream/mode/spotify/api';
 import { TwitchModeModule } from '@dream/mode/twitch/api';
 import { YoutubeModeModule } from '@dream/mode/youtube/api';
 
+console.log('Cock');
+
 @Module({
   imports: [
     ConfigModule.forRoot({

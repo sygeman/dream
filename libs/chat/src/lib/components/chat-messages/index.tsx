@@ -1,62 +1,110 @@
-import React from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { FixedSizeList as List } from 'react-window';
 import InfiniteLoader from 'react-window-infinite-loader';
+import { Scrollbars } from 'react-custom-scrollbars';
+import AutoSizer from 'react-virtualized-auto-sizer';
 
-export const ChatMessages = ({
-  // Are there more items to load?
-  // (This information comes from the most recent API request.)
-  hasNextPage,
-
-  // Are we currently loading a page of items?
-  // (This may be an in-flight flag in your Redux store for example.)
-  isNextPageLoading,
-
-  // Array of items loaded so far.
-  items,
-
-  // Callback function responsible for loading the next page of items.
-  loadNextPage,
-}) => {
-  // If there are more items to be loaded then add an extra row to hold a loading indicator.
-  const itemCount = hasNextPage ? items.length + 1 : items.length;
-
-  // Only load 1 page of items at a time.
-  // Pass an empty callback to InfiniteLoader in case it asks us to load more than once.
-  const loadMoreItems = isNextPageLoading ? () => {} : loadNextPage;
-
-  // Every row is loaded except for our loading indicator row.
-  const isItemLoaded = (index) => !hasNextPage || index < items.length;
-
-  // Render an item or a loading indicator.
-  const Item = ({ index, style }) => {
-    let content;
-    if (!isItemLoaded(index)) {
-      content = 'Loading...';
+const CustomScrollbars = ({ onScroll, forwardedRef, style, children }) => {
+  const refSetter = useCallback((scrollbarsRef) => {
+    if (scrollbarsRef) {
+      forwardedRef(scrollbarsRef.view);
     } else {
-      content = items[index].name;
+      forwardedRef(null);
     }
+  }, []);
 
-    return <div style={style}>{content}</div>;
-  };
+  return (
+    <Scrollbars
+      ref={refSetter}
+      style={{ ...style, overflow: 'hidden' }}
+      onScroll={onScroll}
+    >
+      {children}
+    </Scrollbars>
+  );
+};
+
+const CustomScrollbarsVirtualList = React.forwardRef((props, ref) => (
+  <CustomScrollbars {...props} forwardedRef={ref} />
+));
+
+const LOADING = 1;
+const LOADED = 2;
+let itemStatusMap = {};
+
+const isItemLoaded = (index) => !!itemStatusMap[index];
+const loadMoreItems = (startIndex, stopIndex) => {
+  console.log('load more', startIndex, stopIndex);
+
+  for (let index = startIndex; index <= stopIndex; index++) {
+    itemStatusMap[index] = LOADING;
+  }
+  return new Promise((resolve) =>
+    setTimeout(() => {
+      for (let index = startIndex; index <= stopIndex; index++) {
+        itemStatusMap[index] = LOADED;
+      }
+      resolve();
+    }, 2500)
+  );
+};
+
+const Row = ({ index, style }) => {
+  let label;
+  if (itemStatusMap[index] === LOADED) {
+    label = `Row ${index}`;
+  } else {
+    label = (
+      <div className="w-full h-full p-2">
+        <div className="w-full h-full rounded bg-surface"></div>
+      </div>
+    );
+  }
+  return (
+    <div className="ListItem" style={style}>
+      {label}
+    </div>
+  );
+};
+
+export const ChatMessages = () => {
+  const listRef = React.useRef();
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (listRef?.current) {
+        listRef?.current?._listRef?.scrollToItem(100, 'center');
+      }
+    }, 100);
+  }, []);
+
+  const totalCount = 100000;
 
   return (
     <InfiniteLoader
+      ref={listRef}
       isItemLoaded={isItemLoaded}
-      itemCount={itemCount}
+      itemCount={totalCount}
+      minimumBatchSize={25}
       loadMoreItems={loadMoreItems}
     >
       {({ onItemsRendered, ref }) => (
-        <List
-          className="List"
-          height={150}
-          itemCount={itemCount}
-          itemSize={30}
-          onItemsRendered={onItemsRendered}
-          ref={ref}
-          width={500}
-        >
-          {Item}
-        </List>
+        <AutoSizer>
+          {({ height, width }) => (
+            <List
+              className="List"
+              height={height}
+              itemCount={totalCount}
+              itemSize={30}
+              outerElementType={CustomScrollbarsVirtualList}
+              onItemsRendered={onItemsRendered}
+              ref={ref}
+              width={width}
+            >
+              {Row}
+            </List>
+          )}
+        </AutoSizer>
       )}
     </InfiniteLoader>
   );

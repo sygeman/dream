@@ -1,8 +1,8 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { Story, Meta } from '@storybook/react';
 import { ChatMessages } from './';
-import { useEffect, useState } from '@storybook/addons';
-import { generateUsers } from './generate';
+import { useEffect, useRef, useState, useCallback } from '@storybook/addons';
+import { generateMessages } from './generate';
 
 const START_INDEX = 10000;
 const INITIAL_ITEM_COUNT = 20;
@@ -17,51 +17,65 @@ export default {
 
 const Template: Story = () => {
   const [firstItemIndex, setFirstItemIndex] = useState(START_INDEX);
-  const [users, setUsers] = useState([]);
+  const [messages, setMessages] = useState([]);
+  const appendInterval = useRef(null);
 
   useEffect(() => {
     const generate = async () => {
-      const newUsers = await generateUsers(INITIAL_ITEM_COUNT, START_INDEX);
-      setUsers(newUsers);
+      const newMessages = await generateMessages(
+        INITIAL_ITEM_COUNT,
+        START_INDEX
+      );
+      setMessages(newMessages);
     };
 
     generate();
+
+    appendInterval.current = setInterval(async () => {
+      const newMessages = await generateMessages(1);
+      setMessages((messages) => [...messages, ...newMessages]);
+    }, 2000);
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      clearInterval(appendInterval.current);
+    };
   }, []);
 
   const loadPrevPage = useCallback(async () => {
     const nextFirstItemIndex = firstItemIndex - INITIAL_ITEM_COUNT;
 
-    const newUsers = await generateUsers(
+    const newMessages = await generateMessages(
       INITIAL_ITEM_COUNT,
       nextFirstItemIndex
     );
 
-    setUsers(() => [...newUsers, ...users]);
-
+    setMessages((messages) => [...newMessages, ...messages]);
     setFirstItemIndex(() => nextFirstItemIndex);
 
     return false;
-  }, [firstItemIndex, users, setUsers]);
+  }, [firstItemIndex, messages, setMessages]);
 
   const loadNextPage = useCallback(async () => {
-    const newUsers = await generateUsers(
+    const newMessages = await generateMessages(
       INITIAL_ITEM_COUNT,
-      users[users.length - 1].index
+      messages[messages.length - 1].index
     );
 
-    setUsers(() => [...users, ...newUsers]);
+    setMessages((messages) => [...messages, ...newMessages]);
 
     return false;
-  }, [users, setUsers]);
+  }, [messages, setMessages]);
 
   return (
     <div className="w-80 h-96 relative shadow-md bg-background rounded overflow-hidden">
       <ChatMessages
-        items={users}
-        initialTopMostItemIndex={INITIAL_ITEM_COUNT - 1}
-        loadPrevPage={loadPrevPage}
-        loadNextPage={loadNextPage}
-        firstItemIndex={firstItemIndex}
+        messages={messages}
+        // initialTopMostItemIndex={INITIAL_ITEM_COUNT - 1}
+        // loadPrevPage={loadPrevPage}
+        // loadNextPage={loadNextPage}
+        // firstItemIndex={firstItemIndex}
       />
     </div>
   );

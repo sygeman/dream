@@ -7,6 +7,7 @@ export const Scroller: React.ComponentType<ScrollerProps> = React.forwardRef(
     const refSetter = useCallback(
       (scrollbarsRef) => {
         if (scrollbarsRef) {
+          //@ts-ignore
           ref.current = scrollbarsRef.osInstance().getElements().viewport;
         }
       },

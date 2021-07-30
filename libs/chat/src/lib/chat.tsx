@@ -3,8 +3,9 @@ import {
   useChannelMessagesQuery,
   useChannelMessageCreatedSubscription,
 } from '@dream/types';
-import { ChatMessages } from './messages';
+import { ChatMessages } from './components/chat-messages';
 import { ChatBottom } from './bottom';
+import { compactMessages } from './compactMessages';
 
 export const Chat: React.FC<{ channelId: string }> = ({ channelId }) => {
   const messagesQuery = useChannelMessagesQuery({
@@ -39,7 +40,16 @@ export const Chat: React.FC<{ channelId: string }> = ({ channelId }) => {
     <>
       <div className="flex flex-1 w-full overflow-hidden">
         <div className="flex flex-col w-full max-h-max overflow-y-auto py-4">
-          <ChatMessages messages={messages} />
+          <ChatMessages
+            messages={compactMessages(messages).map((message) => ({
+              authorName: message.user.name,
+              authorAvatar: message.user.avatar,
+              content: message.content,
+              compact: message.compact,
+              tenorGif: message.tenorGif,
+              createdAt: message.createdAt,
+            }))}
+          />
         </div>
       </div>
 

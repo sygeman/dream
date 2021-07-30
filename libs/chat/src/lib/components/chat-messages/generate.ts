@@ -1,30 +1,20 @@
-import axios from 'axios';
+import { name, lorem, image } from 'faker';
 
-const generated: any[] = [];
+function sleep(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
 
-function user(index = 0, user: any) {
-  let firstName = user.name.first;
-  let lastName = user.name.last;
-
+function getMessage(index = 0) {
   return {
     index: index + 1,
-    name: `${firstName} ${lastName}`,
-    description: user.email,
+    authorName: `${name.firstName()} ${name.lastName()}`,
+    authorAvatar: image.avatar(),
+    content: lorem.text(),
+    createdAt: new Date().getTime().toString(),
   };
 }
 
-export const getUser = (index: number, newUser: any) => {
-  if (!generated[index]) {
-    generated[index] = user(index, newUser);
-  }
-
-  return generated[index];
-};
-
-export const generateUsers = async (length: number, startIndex = 0) => {
-  const { data } = await axios.get(
-    `https://randomuser.me/api/?results=${length}`
-  );
-
-  return data.results.map((user, i) => getUser(i + startIndex, user));
+export const generateMessages = async (length: number, startIndex = 0) => {
+  await sleep(1000);
+  return [...Array(length).keys()].map((i) => getMessage(i + startIndex));
 };

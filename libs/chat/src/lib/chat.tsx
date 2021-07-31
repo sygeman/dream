@@ -40,16 +40,27 @@ export const Chat: React.FC<{ channelId: string }> = ({ channelId }) => {
     <>
       <div className="flex flex-1 w-full overflow-hidden">
         <div className="flex flex-col w-full max-h-max overflow-y-auto py-4">
-          <ChatMessages
-            messages={compactMessages(messages).map((message) => ({
-              authorName: message.user.name,
-              authorAvatar: message.user.avatar,
-              content: message.content,
-              compact: message.compact,
-              tenorGif: message.tenorGif,
-              createdAt: message.createdAt,
-            }))}
-          />
+          {messages.length > 0 ? (
+            <ChatMessages
+              messages={compactMessages(messages).map((message) => ({
+                authorName: message.user.name,
+                authorAvatar: message.user.avatar,
+                content: message.content,
+                compact: message.compact,
+                tenorGif: message.tenorGif,
+                createdAt: message.createdAt,
+              }))}
+            />
+          ) : (
+            <div className="flex flex-col flex-1 overflow-hidden relative h-full">
+              {[...Array(20).keys()].map((i) => (
+                <div
+                  key={i}
+                  className="flex flex-shrink-0 rounded h-11 bg-surface-dark mx-2 my-1 opacity-20 animate-pulse"
+                />
+              ))}
+            </div>
+          )}
         </div>
       </div>
 

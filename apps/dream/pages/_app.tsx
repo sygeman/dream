@@ -2,7 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 import App from 'next/app';
 import { IntlProvider } from 'react-intl';
-import { ApolloProvider, gql, useQuery } from '@apollo/client';
+import { ApolloProvider } from '@apollo/client';
 import { useApollo } from '@dream/utils/apollo';
 import 'tailwindcss/tailwind.css';
 import 'simplebar/dist/simplebar.min.css';

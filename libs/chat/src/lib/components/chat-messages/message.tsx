@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { dateDistanceInWordsToNow } from '@dream/utils/date';
 import { splitTextToEmojiArray } from '@dream/utils/emoji';
+import { GifContainer } from './gif';
 
 interface IProps {
   id?: string;
@@ -35,8 +36,31 @@ export const ChatMessage = ({
   tenorGif,
   createdAt,
 }) => {
+  const ref = useRef(null);
+
+  const [isIntersecting, setIntersecting] = useState(false);
+
+  useEffect(() => {
+    const rootRef =
+      ref.current.parentNode.parentNode.parentNode.parentNode.parentNode;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIntersecting(entry.isIntersecting);
+      },
+      {
+        root: rootRef,
+      }
+    );
+
+    observer.observe(ref.current);
+    return () => {
+      observer.disconnect();
+    };
+  });
+
   return (
-    <div className="px-2 w-full relative overflow-hidden text-sm">
+    <div ref={ref} className="px-2 w-full relative overflow-hidden text-sm">
       {!compact && (
         <div className="flex items-center w-full pt-1">
           <div className="flex items-center justify-center rounded-full cursor-pointer">
@@ -59,8 +83,11 @@ export const ChatMessage = ({
       <div className="relative">
         <div className="overflow-hidden text-accent break-words ml-8 flex flex-wrap">
           {tenorGif ? (
-            <div className="p-1 pr-3 rounded overflow-hidden">
-              <video src={tenorGif.video} loop autoPlay />
+            <div className="p-1 pr-3 w-full ">
+              <GifContainer
+                tenorGif={tenorGif}
+                isIntersecting={isIntersecting}
+              />
             </div>
           ) : (
             renderMessageText(content)

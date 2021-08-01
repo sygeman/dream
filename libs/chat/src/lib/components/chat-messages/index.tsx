@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import React, { useEffect, useRef, useState } from 'react';
 import { Virtuoso, VirtuosoHandle } from 'react-virtuoso';
 import { Scroller } from './scrollbar';
-import { ChatMessage } from '../chat-message';
+import { ChatMessage } from './message';
 
 export const ChatMessages = ({
   messages,
@@ -42,6 +42,7 @@ export const ChatMessages = ({
         data={messages}
         ref={virtuoso}
         className="h-full"
+        overscan={200}
         initialTopMostItemIndex={100000}
         // startReached={loadPrevPage}
         // endReached={loadNextPage}

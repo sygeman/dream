@@ -33,6 +33,8 @@ fragment ChannelFields on Channel {
   name
   title
   mode
+  gifAllowed
+  nsfw
   state
   avatar
   onlineCount

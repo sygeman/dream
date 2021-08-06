@@ -28,6 +28,9 @@
         "libs/components/modal-full/src/index.ts"
       ],
       "@dream/components/save-form": ["libs/components/save-form/src/index.ts"],
+      "@dream/components/switch-form-field": [
+        "libs/components/switch-form-field/src/index.ts"
+      ],
       "@dream/connection-api": ["libs/connection-api/src/index.ts"],
       "@dream/containers/*": ["libs/containers/src/*"],
       "@dream/external-api/spotify": ["libs/external-api/spotify/src/index.ts"],

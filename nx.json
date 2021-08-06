@@ -59,6 +59,9 @@
     "components-save-form": {
       "tags": []
     },
+    "components-switch-form-field": {
+      "tags": []
+    },
     "connection-api": {
       "tags": []
     },

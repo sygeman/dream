@@ -4,9 +4,10 @@ import App from 'next/app';
 import { IntlProvider } from 'react-intl';
 import { ApolloProvider } from '@apollo/client';
 import { useApollo } from '@dream/utils/apollo';
-import 'tailwindcss/tailwind.css';
 import 'simplebar/dist/simplebar.min.css';
 import 'overlayscrollbars/css/OverlayScrollbars.css';
+import 'rc-slider/assets/index.css';
+import '../styles.css';
 import { Locale, useMeQuery } from '@dream/types';
 import { lang } from '../lang';
 

@@ -22,6 +22,12 @@ export class Channel {
   @Field(() => ChannelMode)
   mode: ChannelMode;
 
+  @Field(() => Boolean)
+  gifAllowed: boolean;
+
+  @Field(() => Boolean)
+  nsfw: boolean;
+
   @Field({ nullable: true })
   avatar?: string;
 

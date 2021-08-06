@@ -45,6 +45,8 @@ type Channel {
   title: String!
   state: String
   mode: ChannelMode!
+  gifAllowed: Boolean!
+  nsfw: Boolean!
   avatar: String
   createdAt: DateTime!
   updatedAt: DateTime!
@@ -349,8 +351,10 @@ input CreateChannelInput {
 input UpdateChannelInput {
   channelId: ID!
   communityId: ID!
-  name: String!
-  title: String!
+  name: String
+  gifAllowed: Boolean
+  nsfw: Boolean
+  title: String
 }
 
 input ChannelMessageCreateInput {

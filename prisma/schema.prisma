@@ -89,6 +89,8 @@ model Channel {
   avatar          String?
   state           String?
   mode            ChannelMode       @default(NONE)
+  gifAllowed      Boolean           @default(true)
+  nsfw            Boolean           @default(false)
   createdAt       DateTime          @default(now())
   updatedAt       DateTime          @default(now()) @updatedAt
   community       Community         @relation(fields: [communityId], references: [id])

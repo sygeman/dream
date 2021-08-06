@@ -9,11 +9,17 @@ export class UpdateChannelInput {
   @Field(() => ID)
   communityId: string;
 
-  @Field()
+  @Field({ nullable: true })
   @Length(1, 50)
-  name: string;
+  name?: string;
 
-  @Field()
+  @Field(() => Boolean, { nullable: true })
+  gifAllowed?: boolean;
+
+  @Field(() => Boolean, { nullable: true })
+  nsfw?: boolean;
+
+  @Field({ nullable: true })
   @Length(1, 50)
-  title: string;
+  title?: string;
 }

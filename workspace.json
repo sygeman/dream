@@ -261,6 +261,29 @@
         }
       }
     },
+    "components-switch-form-field": {
+      "root": "libs/components/switch-form-field",
+      "sourceRoot": "libs/components/switch-form-field/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/components/switch-form-field/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/components/switch-form-field"],
+          "options": {
+            "jestConfig": "libs/components/switch-form-field/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "connection-api": {
       "root": "libs/connection-api",
       "sourceRoot": "libs/connection-api/src",

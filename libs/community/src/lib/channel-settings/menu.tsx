@@ -44,6 +44,11 @@ export const ChannelSettingsMenu: React.FC = () => {
         selected={section === 'mode'}
         query={({ query }) => ({ ...query, channelSettings: 'mode' })}
       />
+      <ItemLink
+        title="Chat"
+        selected={section === 'chat'}
+        query={({ query }) => ({ ...query, channelSettings: 'chat' })}
+      />
       <Divider />
       <ItemLink
         title="Delete Channel"

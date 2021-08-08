@@ -1,4 +1,4 @@
-import { Field, ObjectType, registerEnumType } from '@nestjs/graphql';
+import { Field, Int, ObjectType, registerEnumType } from '@nestjs/graphql';
 import { ChannelMode } from '@prisma/client';
 
 registerEnumType(ChannelMode, {
@@ -27,6 +27,9 @@ export class Channel {
 
   @Field(() => Boolean)
   nsfw: boolean;
+
+  @Field(() => Int)
+  slowmode: number;
 
   @Field({ nullable: true })
   avatar?: string;

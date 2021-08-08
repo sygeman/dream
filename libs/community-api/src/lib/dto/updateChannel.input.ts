@@ -1,4 +1,4 @@
-import { Field, ID, InputType } from '@nestjs/graphql';
+import { Field, ID, InputType, Int } from '@nestjs/graphql';
 import { Length } from 'class-validator';
 
 @InputType()
@@ -18,6 +18,9 @@ export class UpdateChannelInput {
 
   @Field(() => Boolean, { nullable: true })
   nsfw?: boolean;
+
+  @Field(() => Int, { nullable: true })
+  slowmode?: number;
 
   @Field({ nullable: true })
   @Length(1, 50)

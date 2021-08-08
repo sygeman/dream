@@ -25,6 +25,7 @@ export type Channel = {
   mode: ChannelMode;
   gifAllowed: Scalars['Boolean'];
   nsfw: Scalars['Boolean'];
+  slowmode: Scalars['Int'];
   avatar?: Maybe<Scalars['String']>;
   createdAt: Scalars['DateTime'];
   updatedAt: Scalars['DateTime'];
@@ -504,6 +505,7 @@ export type UpdateChannelInput = {
   name?: Maybe<Scalars['String']>;
   gifAllowed?: Maybe<Scalars['Boolean']>;
   nsfw?: Maybe<Scalars['Boolean']>;
+  slowmode?: Maybe<Scalars['Int']>;
   title?: Maybe<Scalars['String']>;
 };
 
@@ -693,37 +695,37 @@ export type ChannelQueryVariables = Exact<{
 }>;
 
 
-export type ChannelQuery = { __typename?: 'Query', channel: { __typename?: 'Channel', id: string, name: string, title: string, mode: ChannelMode, gifAllowed: boolean, nsfw: boolean, state?: Maybe<string>, avatar?: Maybe<string>, onlineCount: number } };
+export type ChannelQuery = { __typename?: 'Query', channel: { __typename?: 'Channel', id: string, name: string, title: string, mode: ChannelMode, gifAllowed: boolean, nsfw: boolean, slowmode: number, state?: Maybe<string>, avatar?: Maybe<string>, onlineCount: number } };
 
 export type CommunityChannelsQueryVariables = Exact<{
   name: Scalars['String'];
 }>;
 
 
-export type CommunityChannelsQuery = { __typename?: 'Query', channels: Array<{ __typename?: 'Channel', id: string, name: string, title: string, mode: ChannelMode, gifAllowed: boolean, nsfw: boolean, state?: Maybe<string>, avatar?: Maybe<string>, onlineCount: number }> };
+export type CommunityChannelsQuery = { __typename?: 'Query', channels: Array<{ __typename?: 'Channel', id: string, name: string, title: string, mode: ChannelMode, gifAllowed: boolean, nsfw: boolean, slowmode: number, state?: Maybe<string>, avatar?: Maybe<string>, onlineCount: number }> };
 
 export type CreateChannelMutationVariables = Exact<{
   input: CreateChannelInput;
 }>;
 
 
-export type CreateChannelMutation = { __typename?: 'Mutation', createChannel: { __typename?: 'Channel', id: string, name: string, title: string, mode: ChannelMode, gifAllowed: boolean, nsfw: boolean, state?: Maybe<string>, avatar?: Maybe<string>, onlineCount: number } };
+export type CreateChannelMutation = { __typename?: 'Mutation', createChannel: { __typename?: 'Channel', id: string, name: string, title: string, mode: ChannelMode, gifAllowed: boolean, nsfw: boolean, slowmode: number, state?: Maybe<string>, avatar?: Maybe<string>, onlineCount: number } };
 
 export type UpdateChannelMutationVariables = Exact<{
   input: UpdateChannelInput;
 }>;
 
 
-export type UpdateChannelMutation = { __typename?: 'Mutation', updateChannel: { __typename?: 'Channel', id: string, name: string, title: string, mode: ChannelMode, gifAllowed: boolean, nsfw: boolean, state?: Maybe<string>, avatar?: Maybe<string>, onlineCount: number } };
+export type UpdateChannelMutation = { __typename?: 'Mutation', updateChannel: { __typename?: 'Channel', id: string, name: string, title: string, mode: ChannelMode, gifAllowed: boolean, nsfw: boolean, slowmode: number, state?: Maybe<string>, avatar?: Maybe<string>, onlineCount: number } };
 
 export type DeleteChannelMutationVariables = Exact<{
   channelId: Scalars['ID'];
 }>;
 
 
-export type DeleteChannelMutation = { __typename?: 'Mutation', deleteChannel: { __typename?: 'Channel', id: string, name: string, title: string, mode: ChannelMode, gifAllowed: boolean, nsfw: boolean, state?: Maybe<string>, avatar?: Maybe<string>, onlineCount: number } };
+export type DeleteChannelMutation = { __typename?: 'Mutation', deleteChannel: { __typename?: 'Channel', id: string, name: string, title: string, mode: ChannelMode, gifAllowed: boolean, nsfw: boolean, slowmode: number, state?: Maybe<string>, avatar?: Maybe<string>, onlineCount: number } };
 
-export type ChannelFieldsFragment = { __typename?: 'Channel', id: string, name: string, title: string, mode: ChannelMode, gifAllowed: boolean, nsfw: boolean, state?: Maybe<string>, avatar?: Maybe<string>, onlineCount: number };
+export type ChannelFieldsFragment = { __typename?: 'Channel', id: string, name: string, title: string, mode: ChannelMode, gifAllowed: boolean, nsfw: boolean, slowmode: number, state?: Maybe<string>, avatar?: Maybe<string>, onlineCount: number };
 
 export type CommunityQueryVariables = Exact<{
   name: Scalars['String'];
@@ -977,6 +979,7 @@ export const ChannelFieldsFragmentDoc = gql`
   mode
   gifAllowed
   nsfw
+  slowmode
   state
   avatar
   onlineCount

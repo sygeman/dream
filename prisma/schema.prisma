@@ -91,6 +91,7 @@ model Channel {
   mode            ChannelMode       @default(NONE)
   gifAllowed      Boolean           @default(true)
   nsfw            Boolean           @default(false)
+  slowmode        Int               @default(0)
   createdAt       DateTime          @default(now())
   updatedAt       DateTime          @default(now()) @updatedAt
   community       Community         @relation(fields: [communityId], references: [id])

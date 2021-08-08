@@ -10,6 +10,7 @@ import { SwitchFormField } from '@dream/components/switch-form-field';
 const ValidationSchema = Yup.object().shape({
   gifAllowed: Yup.boolean(),
   nsfw: Yup.boolean(),
+  slowmode: Yup.number().required('Required'),
 });
 
 export const ChannelSettingsChat = () => {
@@ -19,7 +20,9 @@ export const ChannelSettingsChat = () => {
     initialValues: {
       gifAllowed: channel?.gifAllowed,
       nsfw: channel?.nsfw,
+      slowmode: channel?.slowmode,
     },
+    enableReinitialize: true,
     validationSchema: ValidationSchema,
     onSubmit: (values) => {
       updateChannel({
@@ -34,12 +37,11 @@ export const ChannelSettingsChat = () => {
         values: {
           gifAllowed: data?.updateChannel?.gifAllowed,
           nsfw: data?.updateChannel?.nsfw,
+          slowmode: data?.updateChannel?.slowmode,
         },
       });
     },
   });
-
-  const isError = Object.keys(formik.errors).length > 0;
 
   const marks = {
     0: 'Off',
@@ -48,10 +50,6 @@ export const ChannelSettingsChat = () => {
     15: '15s',
     30: '30s',
   };
-
-  function log(value) {
-    console.log(value); //eslint-disable-line
-  }
 
   return (
     <form onSubmit={formik.handleSubmit}>
@@ -74,7 +72,16 @@ export const ChannelSettingsChat = () => {
         <div className="p-2">
           <div className="text-sm text-accent">Slowmode</div>
           <div className="p-2">
-            <Slider min={0} max={30} marks={marks} step={null} />
+            <Slider
+              defaultValue={formik.values.slowmode}
+              min={0}
+              max={30}
+              marks={marks}
+              step={null}
+              onChange={(slowmode) =>
+                formik.setFieldValue('slowmode', slowmode)
+              }
+            />
           </div>
         </div>
       </div>

@@ -35,6 +35,7 @@ fragment ChannelFields on Channel {
   mode
   gifAllowed
   nsfw
+  slowmode
   state
   avatar
   onlineCount

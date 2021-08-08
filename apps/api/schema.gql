@@ -47,6 +47,7 @@ type Channel {
   mode: ChannelMode!
   gifAllowed: Boolean!
   nsfw: Boolean!
+  slowmode: Int!
   avatar: String
   createdAt: DateTime!
   updatedAt: DateTime!
@@ -354,6 +355,7 @@ input UpdateChannelInput {
   name: String
   gifAllowed: Boolean
   nsfw: Boolean
+  slowmode: Int
   title: String
 }
 

@@ -11,7 +11,7 @@ interface IProps {
 export const Emoji: React.FC<IProps> = ({ name, id }) => (
   <img
     className="object-contain h-6 w-6"
-    alt={`${name} `}
+    alt={`:${name}: `}
     src={`/emojis/${id ? id : name}.gif`}
   />
 );

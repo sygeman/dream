@@ -47,6 +47,7 @@ model User {
   spotifyModeItem SpotifyModeItem[]
   youtubeModeItem YoutubeModeItem[]
   spotifyMode     SpotifyMode[]
+  emojis          Emoji[]
 }
 
 model Profile {
@@ -80,6 +81,7 @@ model Community {
   owner     User      @relation(fields: [ownerId], references: [id])
   ownerId   String
   deleted   Boolean   @default(false)
+  emojis    Emoji[]
 }
 
 model Channel {
@@ -113,6 +115,17 @@ model TenorGif {
   preview        String
   video          String
   ChannelMessage ChannelMessage[]
+}
+
+model Emoji {
+  id          String     @id @default(cuid())
+  alias       String
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @default(now()) @updatedAt
+  community   Community? @relation(fields: [communityId], references: [id])
+  communityId String
+  author      User       @relation(fields: [authorId], references: [id])
+  authorId    String
 }
 
 model ChannelMessage {

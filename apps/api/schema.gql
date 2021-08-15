@@ -79,6 +79,15 @@ type ChannelMessage {
   tenorGif: TenorGif
 }
 
+type Emoji {
+  id: String!
+  alias: String!
+  communityId: String!
+  authorId: String!
+  author: User!
+  createdAt: String!
+}
+
 type SpotifyNow {
   id: String!
   imageUrl: String!
@@ -296,6 +305,7 @@ type Query {
   channel(communityId: String!, name: String!): Channel!
   channels(name: String!): [Channel!]!
   channelMessages(channelId: ID!): [ChannelMessage!]!
+  emojis(communityId: String!): [Emoji!]!
   spotifyMode(channelId: String!): SpotifyMode!
   spotifyModeHistory(channelId: String!): SpotifyModeHistory!
   spotifyModeCurrent(channelId: String!): SpotifyModeCurrent

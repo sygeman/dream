@@ -39,6 +39,11 @@ export const CommunitySettingsMenu: React.FC = () => {
         selected={section === 'overview'}
         query={({ query }) => ({ ...query, communitySettings: 'overview' })}
       />
+      <ItemLink
+        title="Emoji"
+        selected={section === 'emoji'}
+        query={({ query }) => ({ ...query, communitySettings: 'emoji' })}
+      />
       <Divider />
       <ItemLink
         title="Delete Community"

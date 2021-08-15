@@ -10,6 +10,20 @@ query communities {
   }
 }
 
+query emojis($communityId: String!) {
+  emojis(communityId: $communityId) {
+    id
+    alias
+    authorId
+    author {
+      id
+      name
+      avatar
+    }
+    createdAt
+  }
+}
+
 query uniqCount {
   uniqCount
 }

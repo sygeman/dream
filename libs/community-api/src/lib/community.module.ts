@@ -4,10 +4,16 @@ import { TenorModule } from '@dream/external-api/tenor';
 import { CommunityResolver } from './community.resolver';
 import { ChannelResolver } from './channel.resolver';
 import { ChannelMessageResolver } from './message.resolver';
+import { EmojiResolver } from './emoji.resolver';
 
 @Module({
   imports: [PrismaModule, TenorModule],
-  providers: [CommunityResolver, ChannelResolver, ChannelMessageResolver],
+  providers: [
+    CommunityResolver,
+    ChannelResolver,
+    ChannelMessageResolver,
+    EmojiResolver,
+  ],
   exports: [],
 })
 export class CommunityModule {}

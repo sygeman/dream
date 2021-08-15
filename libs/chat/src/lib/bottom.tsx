@@ -1,11 +1,12 @@
 import React, { Fragment, useRef } from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
-import { useCreateChannelMessageMutation } from '@dream/types';
+import { useCreateChannelMessageMutation, useEmojisQuery } from '@dream/types';
 import { convertTextToEmojiCode } from '@dream/utils/emoji';
 import { Menu, Transition } from '@headlessui/react';
 import { GifPicker } from './components/gif-picker';
 import { PhotographIcon } from '@heroicons/react/solid';
 import clsx from 'clsx';
+import { useCommunityChannel } from '@dream/community';
 
 interface ChatBottomProps {
   channelId: string;
@@ -14,6 +15,15 @@ interface ChatBottomProps {
 export const ChatBottom: React.FC<ChatBottomProps> = ({ channelId }) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   let lock = false;
+
+  const { communityId } = useCommunityChannel();
+
+  const emojisQuery = useEmojisQuery({
+    variables: { communityId },
+    skip: !communityId,
+  });
+
+  const emojis = emojisQuery?.data?.emojis || [];
 
   const [createMessage] = useCreateChannelMessageMutation({
     onCompleted: (data) => {
@@ -25,7 +35,10 @@ export const ChatBottom: React.FC<ChatBottomProps> = ({ channelId }) => {
   });
 
   const sendMessage = () => {
-    const content = convertTextToEmojiCode(textareaRef.current.value.trim());
+    const content = convertTextToEmojiCode(
+      textareaRef.current.value.trim(),
+      emojis
+    );
 
     if (!lock && content.length > 0) {
       lock = true;

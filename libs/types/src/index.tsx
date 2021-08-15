@@ -78,6 +78,16 @@ export type CreateCommunityInput = {
 };
 
 
+export type Emoji = {
+  __typename?: 'Emoji';
+  id: Scalars['String'];
+  alias: Scalars['String'];
+  communityId: Scalars['String'];
+  authorId: Scalars['String'];
+  author: User;
+  createdAt: Scalars['String'];
+};
+
 export enum Locale {
   EnUs = 'en_US',
   RuRu = 'ru_RU'
@@ -224,6 +234,7 @@ export type Query = {
   channel: Channel;
   channels: Array<Channel>;
   channelMessages: Array<ChannelMessage>;
+  emojis: Array<Emoji>;
   spotifyMode: SpotifyMode;
   spotifyModeHistory: SpotifyModeHistory;
   spotifyModeCurrent?: Maybe<SpotifyModeCurrent>;
@@ -260,6 +271,11 @@ export type QueryChannelsArgs = {
 
 export type QueryChannelMessagesArgs = {
   channelId: Scalars['ID'];
+};
+
+
+export type QueryEmojisArgs = {
+  communityId: Scalars['String'];
 };
 
 
@@ -738,6 +754,13 @@ export type CommunitiesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type CommunitiesQuery = { __typename?: 'Query', communities: Array<{ __typename?: 'Community', id: string, name?: Maybe<string>, title: string, avatar?: Maybe<string>, onlineCount: number }> };
+
+export type EmojisQueryVariables = Exact<{
+  communityId: Scalars['String'];
+}>;
+
+
+export type EmojisQuery = { __typename?: 'Query', emojis: Array<{ __typename?: 'Emoji', id: string, alias: string, authorId: string, createdAt: string, author: { __typename?: 'User', id: string, name?: Maybe<string>, avatar?: Maybe<string> } }> };
 
 export type UniqCountQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -1465,6 +1488,49 @@ export function useCommunitiesLazyQuery(baseOptions?: Apollo.LazyQueryHookOption
 export type CommunitiesQueryHookResult = ReturnType<typeof useCommunitiesQuery>;
 export type CommunitiesLazyQueryHookResult = ReturnType<typeof useCommunitiesLazyQuery>;
 export type CommunitiesQueryResult = Apollo.QueryResult<CommunitiesQuery, CommunitiesQueryVariables>;
+export const EmojisDocument = gql`
+    query emojis($communityId: String!) {
+  emojis(communityId: $communityId) {
+    id
+    alias
+    authorId
+    author {
+      id
+      name
+      avatar
+    }
+    createdAt
+  }
+}
+    `;
+
+/**
+ * __useEmojisQuery__
+ *
+ * To run a query within a React component, call `useEmojisQuery` and pass it any options that fit your needs.
+ * When your component renders, `useEmojisQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useEmojisQuery({
+ *   variables: {
+ *      communityId: // value for 'communityId'
+ *   },
+ * });
+ */
+export function useEmojisQuery(baseOptions: Apollo.QueryHookOptions<EmojisQuery, EmojisQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<EmojisQuery, EmojisQueryVariables>(EmojisDocument, options);
+      }
+export function useEmojisLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<EmojisQuery, EmojisQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<EmojisQuery, EmojisQueryVariables>(EmojisDocument, options);
+        }
+export type EmojisQueryHookResult = ReturnType<typeof useEmojisQuery>;
+export type EmojisLazyQueryHookResult = ReturnType<typeof useEmojisLazyQuery>;
+export type EmojisQueryResult = Apollo.QueryResult<EmojisQuery, EmojisQueryVariables>;
 export const UniqCountDocument = gql`
     query uniqCount {
   uniqCount

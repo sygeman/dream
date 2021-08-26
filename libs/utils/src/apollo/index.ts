@@ -1,32 +1,28 @@
 import { useMemo } from 'react';
-import {
-  ApolloClient,
-  InMemoryCache,
-  NormalizedCacheObject,
-} from '@apollo/client';
+import { ApolloClient, InMemoryCache } from '@apollo/client';
 import merge from 'deepmerge';
 import isEqual from 'lodash/isEqual';
-import { WebSocketLink } from '@apollo/client/link/ws';
+import { WebSocketLink } from './web-socket-link';
 import WebSocket from 'isomorphic-ws';
 
 export const APOLLO_STATE_PROP_NAME = '__APOLLO_STATE__';
 
-let apolloClient: ApolloClient<NormalizedCacheObject>;
+let apolloClient;
 
 function createApolloClient() {
   return new ApolloClient({
     link: new WebSocketLink({
-      uri: `wss://${process.env.NEXT_PUBLIC_API}/graphql`,
+      url: `wss://${process.env.NEXT_PUBLIC_API}/graphql`,
       webSocketImpl: WebSocket,
-      options: {
-        reconnect: true,
-        connectionParams: async () => {
-          const token = await fetch('/api/auth/token')
-            .then((res) => res.json())
-            .then((data) => data?.token);
+      // options: {
+      //   reconnect: true,
+      connectionParams: async () => {
+        const token = await fetch('/api/auth/token')
+          .then((res) => res.json())
+          .then((data) => data?.token);
 
-          return { token };
-        },
+        return { token };
+        // },
       },
     }),
     ssrMode: typeof window === 'undefined',

@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { Context } from 'graphql-ws';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import * as depthLimit from 'graphql-depth-limit';
@@ -44,52 +45,40 @@ import { YoutubeModeModule } from '@dream/mode/youtube/api';
         installSubscriptionHandlers: true,
         validationRules: [depthLimit(10)],
         autoSchemaFile: 'apps/api/schema.gql',
-        context: async ({ req, connection }) => {
-          if (connection) {
-            return connection.context;
-          }
-
-          const token = req?.headers?.authorization;
-          const { userId } = await authService.getTokenData(token);
-
-          return { userId, token };
-        },
+        context: (ctx) => ctx?.extra?.socket?.ctx,
         subscriptions: {
-          onConnect: async (
-            connectionParams: { token?: string },
-            _webSocket,
-            context
-          ) => {
-            const token = connectionParams?.token;
+          'graphql-ws': {
+            onConnect: async (ctx: Context<any>) => {
+              const token = ctx?.connectionParams?.token as string;
 
-            let ipHash;
+              let ipHash;
 
-            const xForwardedFor =
-              context.request.headers['x-original-forwarded-for'];
+              const xForwardedFor =
+                ctx?.extra?.request?.headers['x-original-forwarded-for'];
 
-            if (xForwardedFor && typeof xForwardedFor === 'string') {
-              const ip = xForwardedFor.split(/\s*,\s*/)[0];
-              ipHash = Buffer.from(ip).toString('base64');
-            }
+              if (xForwardedFor && typeof xForwardedFor === 'string') {
+                const ip = xForwardedFor.split(/\s*,\s*/)[0];
+                ipHash = Buffer.from(ip).toString('base64');
+              }
 
-            const { userId } = await authService.getTokenData(token);
+              const { userId } = await authService.getTokenData(token);
 
-            const connectionId = nanoid();
+              const connectionId = nanoid();
 
-            return {
-              token,
-              userId,
-              ipHash,
-              connectionId,
-            };
-          },
-          onDisconnect: async (_webSocket, context) => {
-            const data = await context.initPromise;
-            const connectionId = data.connectionId;
+              const data = { token, userId, ipHash, connectionId };
 
-            if (connectionId) {
-              await connectionService.remove(connectionId);
-            }
+              ctx.extra.socket.ctx = data;
+
+              return data;
+            },
+            onDisconnect: async (ctx: Context<any>) => {
+              const data = ctx?.extra?.socket?.ctx;
+
+              const connectionId = data.connectionId;
+              if (connectionId) {
+                await connectionService.remove(connectionId);
+              }
+            },
           },
         },
       }),

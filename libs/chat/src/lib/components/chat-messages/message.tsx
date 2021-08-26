@@ -23,7 +23,7 @@ const renderMessageText = (text: string) => {
     }
 
     if (elm.type === 'emoji' && elm.name) {
-      return <Emoji key={index} name={elm.name} />;
+      return <Emoji key={index} name={elm.name} id={elm.id} />;
     }
   });
 };

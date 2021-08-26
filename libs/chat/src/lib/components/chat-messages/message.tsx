@@ -9,11 +9,13 @@ interface IProps {
 }
 
 export const Emoji: React.FC<IProps> = ({ name, id }) => (
-  <img
-    className="object-contain h-6 w-6"
-    alt={`:${name}: `}
-    src={`/emojis/${id ? id : name}.gif`}
-  />
+  <span className="h-6 w-6">
+    <img
+      className="object-contain h-6 w-6"
+      alt={`:${name}: `}
+      src={`/emojis/${id ? id : name}.gif`}
+    />
+  </span>
 );
 
 const renderMessageText = (text: string) => {

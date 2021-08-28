@@ -34,7 +34,7 @@ const Template: Story = () => {
     appendInterval.current = setInterval(async () => {
       const newMessages = await generateMessages(1);
       setMessages((messages) => [...messages, ...newMessages]);
-    }, 2000);
+    }, 100);
   }, []);
 
   useEffect(() => {

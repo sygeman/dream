@@ -31,6 +31,7 @@ export class ChannelMessageResolver {
       where: {
         channelId,
         deleted: false,
+        tenorGifId: null,
       },
       orderBy: {
         createdAt: 'desc',

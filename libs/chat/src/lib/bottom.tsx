@@ -119,7 +119,7 @@ export const ChatBottom: React.FC<ChatBottomProps> = ({ channelId }) => {
 
         <Menu>
           <>
-            <Menu.Button className="absolute right-8 bottom-2">
+            {/* <Menu.Button className="absolute right-8 bottom-2">
               {({ open }) => (
                 <PhotographIcon
                   onClick={() => setPickerType(PickerType.GIF)}
@@ -131,7 +131,7 @@ export const ChatBottom: React.FC<ChatBottomProps> = ({ channelId }) => {
                   )}
                 />
               )}
-            </Menu.Button>
+            </Menu.Button> */}
             <Menu.Button className="absolute right-2 bottom-2">
               {({ open }) => (
                 <EmojiHappyIcon
@@ -162,11 +162,11 @@ export const ChatBottom: React.FC<ChatBottomProps> = ({ channelId }) => {
                   }
                 >
                   <Tab.List className="p-1">
-                    <Tab>
+                    {/* <Tab>
                       {({ selected }) => (
                         <PickerTab selected={selected}>Gif</PickerTab>
                       )}
-                    </Tab>
+                    </Tab> */}
                     <Tab>
                       {({ selected }) => (
                         <PickerTab selected={selected}>Emoji</PickerTab>
@@ -174,7 +174,7 @@ export const ChatBottom: React.FC<ChatBottomProps> = ({ channelId }) => {
                     </Tab>
                   </Tab.List>
                   <Tab.Panels as="div" className="h-80">
-                    <Tab.Panel>
+                    {/* <Tab.Panel>
                       <GifPicker
                         onSelect={(content) => {
                           createMessage({
@@ -183,12 +183,18 @@ export const ChatBottom: React.FC<ChatBottomProps> = ({ channelId }) => {
                         }}
                         gifContainer={(gif) => <Menu.Item>{gif}</Menu.Item>}
                       />
-                    </Tab.Panel>
+                    </Tab.Panel> */}
                     <Tab.Panel>
                       <EmojiPicker
-                        onSelect={(alias) =>
-                          (textareaRef.current.value = `${textareaRef.current.value} :${alias}:`)
-                        }
+                        onSelect={(alias) => {
+                          const prevValue = textareaRef.current.value;
+                          const newValue =
+                            prevValue.length === 0
+                              ? `:${alias}: `
+                              : `${prevValue} :${alias}: `;
+
+                          textareaRef.current.value = newValue;
+                        }}
                       />
                     </Tab.Panel>
                   </Tab.Panels>

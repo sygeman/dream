@@ -7,6 +7,33 @@ import { ChatMessages } from './components/chat-messages';
 import { ChatBottom } from './bottom';
 import { compactMessages } from './compactMessages';
 
+const getContainerHeight = ({
+  width,
+  height,
+  parentWidth = 256,
+}: {
+  width: number;
+  height: number;
+  parentWidth?: number;
+}): number => {
+  return (parentWidth * height) / width;
+};
+
+const formatedTenorGif = (tenorGif) => {
+  if (!tenorGif) {
+    return;
+  }
+
+  const { width, height } = tenorGif;
+
+  const containerHeight = getContainerHeight({ width, height });
+
+  return {
+    ...tenorGif,
+    containerHeight,
+  };
+};
+
 export const Chat: React.FC<{ channelId: string }> = ({ channelId }) => {
   const messagesQuery = useChannelMessagesQuery({
     variables: { channelId },
@@ -47,7 +74,7 @@ export const Chat: React.FC<{ channelId: string }> = ({ channelId }) => {
                 authorAvatar: message.user.avatar,
                 content: message.content,
                 compact: message.compact,
-                tenorGif: message.tenorGif,
+                tenorGif: formatedTenorGif(message.tenorGif),
                 createdAt: message.createdAt,
               }))}
             />

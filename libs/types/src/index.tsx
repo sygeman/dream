@@ -232,6 +232,7 @@ export type Query = {
   community: Community;
   communities: Array<Community>;
   channel: Channel;
+  channelUsersOnline: Array<User>;
   channels: Array<Channel>;
   channelMessages: Array<ChannelMessage>;
   emojis: Array<Emoji>;
@@ -261,6 +262,11 @@ export type QueryCommunityArgs = {
 export type QueryChannelArgs = {
   communityId: Scalars['String'];
   name: Scalars['String'];
+};
+
+
+export type QueryChannelUsersOnlineArgs = {
+  channelId: Scalars['String'];
 };
 
 
@@ -719,6 +725,13 @@ export type CommunityChannelsQueryVariables = Exact<{
 
 
 export type CommunityChannelsQuery = { __typename?: 'Query', channels: Array<{ __typename?: 'Channel', id: string, name: string, title: string, mode: ChannelMode, gifAllowed: boolean, nsfw: boolean, slowmode: number, state?: Maybe<string>, avatar?: Maybe<string>, onlineCount: number }> };
+
+export type ChannelUsersOnlineQueryVariables = Exact<{
+  channelId: Scalars['String'];
+}>;
+
+
+export type ChannelUsersOnlineQuery = { __typename?: 'Query', channelUsersOnline: Array<{ __typename?: 'User', id: string, name?: Maybe<string>, avatar?: Maybe<string> }> };
 
 export type CreateChannelMutationVariables = Exact<{
   input: CreateChannelInput;
@@ -1320,6 +1333,43 @@ export function useCommunityChannelsLazyQuery(baseOptions?: Apollo.LazyQueryHook
 export type CommunityChannelsQueryHookResult = ReturnType<typeof useCommunityChannelsQuery>;
 export type CommunityChannelsLazyQueryHookResult = ReturnType<typeof useCommunityChannelsLazyQuery>;
 export type CommunityChannelsQueryResult = Apollo.QueryResult<CommunityChannelsQuery, CommunityChannelsQueryVariables>;
+export const ChannelUsersOnlineDocument = gql`
+    query channelUsersOnline($channelId: String!) {
+  channelUsersOnline(channelId: $channelId) {
+    id
+    name
+    avatar
+  }
+}
+    `;
+
+/**
+ * __useChannelUsersOnlineQuery__
+ *
+ * To run a query within a React component, call `useChannelUsersOnlineQuery` and pass it any options that fit your needs.
+ * When your component renders, `useChannelUsersOnlineQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useChannelUsersOnlineQuery({
+ *   variables: {
+ *      channelId: // value for 'channelId'
+ *   },
+ * });
+ */
+export function useChannelUsersOnlineQuery(baseOptions: Apollo.QueryHookOptions<ChannelUsersOnlineQuery, ChannelUsersOnlineQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<ChannelUsersOnlineQuery, ChannelUsersOnlineQueryVariables>(ChannelUsersOnlineDocument, options);
+      }
+export function useChannelUsersOnlineLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ChannelUsersOnlineQuery, ChannelUsersOnlineQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<ChannelUsersOnlineQuery, ChannelUsersOnlineQueryVariables>(ChannelUsersOnlineDocument, options);
+        }
+export type ChannelUsersOnlineQueryHookResult = ReturnType<typeof useChannelUsersOnlineQuery>;
+export type ChannelUsersOnlineLazyQueryHookResult = ReturnType<typeof useChannelUsersOnlineLazyQuery>;
+export type ChannelUsersOnlineQueryResult = Apollo.QueryResult<ChannelUsersOnlineQuery, ChannelUsersOnlineQueryVariables>;
 export const CreateChannelDocument = gql`
     mutation createChannel($input: CreateChannelInput!) {
   createChannel(input: $input) {

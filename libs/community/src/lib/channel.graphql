@@ -10,6 +10,14 @@ query communityChannels($name: String!) {
   }
 }
 
+query channelUsersOnline($channelId: String!) {
+  channelUsersOnline(channelId: $channelId) {
+    id
+    name
+    avatar
+  }
+}
+
 mutation createChannel($input: CreateChannelInput!) {
   createChannel(input: $input) {
     ...ChannelFields

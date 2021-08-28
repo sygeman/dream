@@ -15,6 +15,7 @@ import { Inject, UseGuards } from '@nestjs/common';
 import { CreateChannelInput } from './dto/createChannel.input';
 import { UpdateChannelInput } from './dto/updateChannel.input';
 import { AuthGuard } from '@dream/auth-api';
+import { User } from '@dream/user-api';
 
 @Resolver(() => Channel)
 export class ChannelResolver {
@@ -44,6 +45,21 @@ export class ChannelResolver {
   ) {
     return this.prisma.channel.findFirst({
       where: { name, communityId, deleted: false },
+    });
+  }
+
+  @Query(() => [User])
+  channelUsersOnline(
+    @Args({ name: 'channelId', type: () => String }) channelId: string
+  ) {
+    return this.prisma.user.findMany({
+      where: {
+        connection: {
+          some: {
+            channelId,
+          },
+        },
+      },
     });
   }
 

@@ -303,6 +303,7 @@ type Query {
   community(name: String!): Community!
   communities: [Community!]!
   channel(communityId: String!, name: String!): Channel!
+  channelUsersOnline(channelId: String!): [User!]!
   channels(name: String!): [Channel!]!
   channelMessages(channelId: ID!): [ChannelMessage!]!
   emojis(communityId: String!): [Emoji!]!

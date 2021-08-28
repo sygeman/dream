@@ -5,8 +5,6 @@ export const convertTextToEmojiCode = (text: string, emojis) => {
     .map((word) => {
       const emoji = emojis.find((e) => `:${e.alias}:` === word);
 
-      console.log(word, emoji);
-
       if (!emoji) return word;
 
       return `<:${emoji.alias}:${emoji.id}>`;

@@ -5150,31 +5150,31 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@prisma/client@npm:2.30.0":
-  version: 2.30.0
-  resolution: "@prisma/client@npm:2.30.0"
+"@prisma/client@npm:3.0.2":
+  version: 3.0.2
+  resolution: "@prisma/client@npm:3.0.2"
   dependencies:
-    "@prisma/engines-version": 2.30.0-28.60b19f4a1de4fe95741da371b4c44a92f4d1adcb
+    "@prisma/engines-version": 2.31.0-32.2452cc6313d52b8b9a96999ac0e974d0aedf88db
   peerDependencies:
     prisma: "*"
   peerDependenciesMeta:
     prisma:
       optional: true
-  checksum: c3f61aa8e7ba40cd51958617247d120482c8e70a21710a6fda04dd9e41e446bed057cc1e6dffc5ab01648ba52ac86e5349e3302f1254509b38415e9d1f8eef00
+  checksum: f72bae6cc67a8d848845669caf5c652def14fe93591651a3c4b107caefd6f20252edef712caffb32a9153d04633d950bfec6baa12edd1e17b38f4ea94c99bf9e
   languageName: node
   linkType: hard
 
-"@prisma/engines-version@npm:2.30.0-28.60b19f4a1de4fe95741da371b4c44a92f4d1adcb":
-  version: 2.30.0-28.60b19f4a1de4fe95741da371b4c44a92f4d1adcb
-  resolution: "@prisma/engines-version@npm:2.30.0-28.60b19f4a1de4fe95741da371b4c44a92f4d1adcb"
-  checksum: 347b620d6e41bdabfcec0c8b0114f152594a73afbf29cda078b14b38689a920061741b7957dd3524dcb9928401caebe87264b569a1d0f467cd73d3b25ccc3bc1
+"@prisma/engines-version@npm:2.31.0-32.2452cc6313d52b8b9a96999ac0e974d0aedf88db":
+  version: 2.31.0-32.2452cc6313d52b8b9a96999ac0e974d0aedf88db
+  resolution: "@prisma/engines-version@npm:2.31.0-32.2452cc6313d52b8b9a96999ac0e974d0aedf88db"
+  checksum: 62589b282f4b626d99903469be529b5de2e140f34f5c11ca41686a938338f74ae4be9cf8b23477f2c1cf4e270093f6a7fc9e8c5afc607b10f985ed5931cddbb5
   languageName: node
   linkType: hard
 
-"@prisma/engines@npm:2.30.0-28.60b19f4a1de4fe95741da371b4c44a92f4d1adcb":
-  version: 2.30.0-28.60b19f4a1de4fe95741da371b4c44a92f4d1adcb
-  resolution: "@prisma/engines@npm:2.30.0-28.60b19f4a1de4fe95741da371b4c44a92f4d1adcb"
-  checksum: ccf91dd7e5b854231c3bb8e251bb45a71735cae0ad5b6a0813d2a6fb1ed923413867794d97965db5422647719c91be1159d2366e01960ec781b96df8ef37c655
+"@prisma/engines@npm:2.31.0-32.2452cc6313d52b8b9a96999ac0e974d0aedf88db":
+  version: 2.31.0-32.2452cc6313d52b8b9a96999ac0e974d0aedf88db
+  resolution: "@prisma/engines@npm:2.31.0-32.2452cc6313d52b8b9a96999ac0e974d0aedf88db"
+  checksum: 17d5068e2505875400f9c0095989997b2ed5241894f6735db4cc6e65e98829516b3dedd32159c0a6459a127344046827759e3c8927a2843b9b3e940ea688cb13
   languageName: node
   linkType: hard
 
@@ -12761,7 +12761,7 @@ __metadata:
     "@nrwl/web": 12.7.2
     "@nrwl/workspace": 12.7.2
     "@popperjs/core": 2.10.1
-    "@prisma/client": 2.30.0
+    "@prisma/client": 3.0.2
     "@storybook/addon-essentials": ~6.3.8
     "@storybook/addon-postcss": 2.0.0
     "@storybook/addons": 6.3.8
@@ -12840,7 +12840,7 @@ __metadata:
     passport-twitch-new: 0.0.2
     postcss: 8.3.6
     prettier: 2.4.0
-    prisma: 2.30.0
+    prisma: 3.0.2
     rc-slider: 9.7.2
     react: 17.0.2
     react-dom: 17.0.2
@@ -22487,15 +22487,15 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"prisma@npm:2.30.0":
-  version: 2.30.0
-  resolution: "prisma@npm:2.30.0"
+"prisma@npm:3.0.2":
+  version: 3.0.2
+  resolution: "prisma@npm:3.0.2"
   dependencies:
-    "@prisma/engines": 2.30.0-28.60b19f4a1de4fe95741da371b4c44a92f4d1adcb
+    "@prisma/engines": 2.31.0-32.2452cc6313d52b8b9a96999ac0e974d0aedf88db
   bin:
     prisma: build/index.js
     prisma2: build/index.js
-  checksum: b465d2bccd5ae04490e18f00a1a50219501aaf17ce4daf4d9aea269a8f65153b3adc175d40dbc52bba7293a9a2105488f1bc91855d944ae93abe6ee378113721
+  checksum: 916d0c190724eec13a74c8fd68f2a84fde12e841041897cfaf242050a67ae2eef8c54ad5c2823126da7d0cf21d1f8819e5ca7efef82d59271b78dfa326025299
   languageName: node
   linkType: hard
 

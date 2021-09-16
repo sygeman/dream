@@ -38,6 +38,7 @@ import { YoutubeModeModule } from '@dream/mode/youtube/api';
     GraphQLModule.forRootAsync({
       imports: [AuthModule, ConnectionModule],
       inject: [AuthService, ConnectionService],
+      //@ts-ignore
       useFactory: async (
         authService: AuthService,
         connectionService: ConnectionService

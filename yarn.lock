@@ -12852,7 +12852,7 @@ __metadata:
     react-resize-detector: 6.7.6
     react-textarea-autosize: 8.3.3
     react-use: 17.3.1
-    react-virtuoso: 1.10.7
+    react-virtuoso: 2.0.5
     reflect-metadata: 0.1.13
     regenerator-runtime: 0.13.9
     rxjs: 7.3.0
@@ -23382,16 +23382,15 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"react-virtuoso@npm:1.10.7":
-  version: 1.10.7
-  resolution: "react-virtuoso@npm:1.10.7"
+"react-virtuoso@npm:2.0.5":
+  version: 2.0.5
+  resolution: "react-virtuoso@npm:2.0.5"
   dependencies:
     "@virtuoso.dev/react-urx": ^0.2.5
     "@virtuoso.dev/urx": ^0.2.5
-    resize-observer-polyfill: ^1.5.1
   peerDependencies:
     react: ">=16"
-  checksum: 9b384880bb42b9b1d102b4ab66fbb563a40d936e0a4b7737fa41d0770670c383ece7fc36e0e361188831fa29176f07ad007151956e60d9af941358cda8f1dccd
+  checksum: e2dff7117df944361d9ba8bbdebb72297d063e6df4df6ac9f3eefa529e465f7847ec3f8b418dd5d1c1db7b12bdd6dcebe13d7f9f285d90e76e9baa9712837523
   languageName: node
   linkType: hard
 

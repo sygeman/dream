@@ -1,21 +1,5 @@
 {
   "version": 1,
-  "cli": {
-    "defaultCollection": "@nrwl/next"
-  },
-  "schematics": {
-    "@nrwl/react": {
-      "application": {
-        "babel": true
-      }
-    },
-    "@nrwl/next": {
-      "application": {
-        "style": "css",
-        "linter": "eslint"
-      }
-    }
-  },
   "projects": {
     "api": {
       "root": "apps/api",
@@ -66,7 +50,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "app-panel": {
       "root": "libs/app-panel",
@@ -87,7 +72,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "auth": {
       "root": "libs/auth",
@@ -108,7 +94,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "auth-api": {
       "root": "libs/auth-api",
@@ -129,7 +116,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "chat": {
       "root": "libs/chat",
@@ -150,7 +138,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "community": {
       "root": "libs/community",
@@ -171,7 +160,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "community-api": {
       "root": "libs/community-api",
@@ -192,7 +182,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "components-modal": {
       "root": "libs/components/modal",
@@ -213,7 +204,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "components-modal-full": {
       "root": "libs/components/modal-full",
@@ -236,7 +228,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "components-save-form": {
       "root": "libs/components/save-form",
@@ -259,7 +252,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "components-switch-form-field": {
       "root": "libs/components/switch-form-field",
@@ -282,7 +276,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "connection-api": {
       "root": "libs/connection-api",
@@ -303,7 +298,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "dream": {
       "root": "apps/dream",
@@ -354,7 +350,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "external-api-spotify": {
       "root": "libs/external-api/spotify",
@@ -375,7 +372,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "external-api-tenor": {
       "root": "libs/external-api/tenor",
@@ -396,7 +394,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "external-api-youtube": {
       "root": "libs/external-api/youtube",
@@ -417,7 +416,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "layouts": {
       "root": "libs/layouts",
@@ -438,7 +438,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "mode-host-spotify-ui": {
       "root": "libs/mode/host-spotify/ui",
@@ -461,7 +462,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "mode-spotify-api": {
       "root": "libs/mode/spotify/api",
@@ -482,7 +484,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "mode-spotify-ui": {
       "root": "libs/mode/spotify/ui",
@@ -503,7 +506,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "mode-twitch-api": {
       "root": "libs/mode/twitch/api",
@@ -524,7 +528,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "mode-twitch-ui": {
       "root": "libs/mode/twitch/ui",
@@ -545,7 +550,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "mode-youtube-api": {
       "root": "libs/mode/youtube/api",
@@ -566,7 +572,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "mode-youtube-ui": {
       "root": "libs/mode/youtube/ui",
@@ -587,7 +594,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "prisma": {
       "root": "libs/prisma",
@@ -608,7 +616,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "spotify-now": {
       "root": "libs/spotify-now",
@@ -629,7 +638,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "storybook": {
       "root": "libs/storybook",
@@ -681,7 +691,8 @@
             }
           }
         }
-      }
+      },
+      "tags": []
     },
     "storybook-e2e": {
       "root": "apps/storybook-e2e",
@@ -707,7 +718,9 @@
             "lintFilePatterns": ["apps/storybook-e2e/**/*.{js,ts}"]
           }
         }
-      }
+      },
+      "tags": [],
+      "implicitDependencies": ["storybook"]
     },
     "types": {
       "root": "libs/types",
@@ -728,7 +741,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "user": {
       "root": "libs/user",
@@ -749,7 +763,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "user-api": {
       "root": "libs/user-api",
@@ -770,7 +785,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "utils": {
       "root": "libs/utils",
@@ -791,7 +807,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     }
   }
 }

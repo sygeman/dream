@@ -1,4 +1,11 @@
 {
-  "presets": ["@nrwl/web/babel"],
+  "presets": [
+    [
+      "@nrwl/web/babel",
+      {
+        "classProperties": { "loose": false }
+      }
+    ]
+  ],
   "babelrcRoots": ["*"]
 }

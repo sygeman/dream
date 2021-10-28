@@ -3216,9 +3216,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nestjs/config@npm:1.0.2":
-  version: 1.0.2
-  resolution: "@nestjs/config@npm:1.0.2"
+"@nestjs/config@npm:1.0.3":
+  version: 1.0.3
+  resolution: "@nestjs/config@npm:1.0.3"
   dependencies:
     dotenv: 10.0.0
     dotenv-expand: 5.1.0
@@ -3230,7 +3230,7 @@ __metadata:
     "@nestjs/common": ^7.0.0 || ^8.0.0
     reflect-metadata: ^0.1.13
     rxjs: ^6.0.0 || ^7.2.0
-  checksum: c0148ff4578cf2fd13b0306f9853ffd5fe53c79dc32d1aa742cbd44c3b3e95c5eda9849bead4b882ad388d45831a860415cbf1c345bd9c4f45d9964acaf9e329
+  checksum: e5bce87014ec513c3dfe81139ac49bfabf3379227c630fb4c401379f5acf1633ddbc35197500389430bec73d844e635e241b08496876b5d3b21fb31966b2e0ce
   languageName: node
   linkType: hard
 
@@ -3404,15 +3404,6 @@ __metadata:
   version: 12.0.1
   resolution: "@next/env@npm:12.0.1"
   checksum: 396fb1068456a6b160a9daeec27684bd2e5d75eb3497f17d36dfa5c670b47b5248c9441e96e5f45ca1496dce38fc55ef47836dfeba257125c085f0a237adc062
-  languageName: node
-  linkType: hard
-
-"@next/eslint-plugin-next@npm:12.0.0":
-  version: 12.0.0
-  resolution: "@next/eslint-plugin-next@npm:12.0.0"
-  dependencies:
-    glob: 7.1.7
-  checksum: ce970c6282fc8be9aa5c375784c8fc679c11d4f98f3bbf0db3c87d92d493b7ffd672f488771ba85544f23a46fd8438fcfa62a5573ee0a9009a050dc1600758bd
   languageName: node
   linkType: hard
 
@@ -6725,21 +6716,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@virtuoso.dev/react-urx@npm:^0.2.5":
-  version: 0.2.7
-  resolution: "@virtuoso.dev/react-urx@npm:0.2.7"
+"@virtuoso.dev/react-urx@npm:^0.2.8":
+  version: 0.2.8
+  resolution: "@virtuoso.dev/react-urx@npm:0.2.8"
   dependencies:
-    "@virtuoso.dev/urx": ^0.2.7
+    "@virtuoso.dev/urx": ^0.2.8
   peerDependencies:
     react: ">=16"
-  checksum: 25e5c770d2d043d39e1b074410a48037198dc898bb981578004907bb64e2fe52e8f5df223b38b91b24b8ebb7734003707f0384b3c346cc512fb15107df2ae35c
+  checksum: 515a3e716f42377d2e81853a3d36e74488af8c7080f759dd2369fe43ea8de49a26a8c25674e4f5e873138a15688220cbd29d7318bbd29dcb22f3a284379c9c96
   languageName: node
   linkType: hard
 
-"@virtuoso.dev/urx@npm:^0.2.5, @virtuoso.dev/urx@npm:^0.2.7":
-  version: 0.2.7
-  resolution: "@virtuoso.dev/urx@npm:0.2.7"
-  checksum: 1b54023bc643b087b02f0ee9a4a234169cbed4f47014ebe6a3dd3a4239eb0ce1cb8ef76264ae7537e7a90843a076c4baf8a1cb13800ae2684c6578a233485da8
+"@virtuoso.dev/urx@npm:^0.2.8":
+  version: 0.2.8
+  resolution: "@virtuoso.dev/urx@npm:0.2.8"
+  checksum: 309b0c9227a2d6032a34929c20e860bfb43ea9137ce21e7e09e4be3b8706b4061f0b4bdcfbca80473bfe15644787ad857b97671c5b7576fa5bbb920eec771147
   languageName: node
   linkType: hard
 
@@ -8059,7 +8050,25 @@ __metadata:
   languageName: node
   linkType: hard
 
-"autoprefixer@npm:10.3.7, autoprefixer@npm:^10.2.5":
+"autoprefixer@npm:10.4.0":
+  version: 10.4.0
+  resolution: "autoprefixer@npm:10.4.0"
+  dependencies:
+    browserslist: ^4.17.5
+    caniuse-lite: ^1.0.30001272
+    fraction.js: ^4.1.1
+    normalize-range: ^0.1.2
+    picocolors: ^1.0.0
+    postcss-value-parser: ^4.1.0
+  peerDependencies:
+    postcss: ^8.1.0
+  bin:
+    autoprefixer: bin/autoprefixer
+  checksum: 7d511c64daeaa13c7888b40b0394cd891fab1852a1f60165330c9e49ab70ac29ad1e3386665d86361661cf2bbe90cea42b78ea73cb77b373ffe30a8f4973a955
+  languageName: node
+  linkType: hard
+
+"autoprefixer@npm:^10.2.5":
   version: 10.3.7
   resolution: "autoprefixer@npm:10.3.7"
   dependencies:
@@ -9181,6 +9190,13 @@ __metadata:
   version: 1.0.30001271
   resolution: "caniuse-lite@npm:1.0.30001271"
   checksum: 0271e234e17c588fa203a34523f90c5a21ab62f41a2c3acabe96f0251593ac92f192cadd7a3dcbcf49bb28de4f57ca274d775c75700c3f38e9c42028d3becb0f
+  languageName: node
+  linkType: hard
+
+"caniuse-lite@npm:^1.0.30001272":
+  version: 1.0.30001272
+  resolution: "caniuse-lite@npm:1.0.30001272"
+  checksum: 5a08fc35ae298acef6846111634201bde7b4710fe0ccabb69ad5681115f77971265d9b6b5cd9bb976bc44d8d6ff0119cb28d9032753e063a2c70e1e30b630ad9
   languageName: node
   linkType: hard
 
@@ -11484,7 +11500,7 @@ __metadata:
     "@nestjs/axios": 0.0.3
     "@nestjs/bull": 0.4.2
     "@nestjs/common": 8.1.2
-    "@nestjs/config": 1.0.2
+    "@nestjs/config": 1.0.3
     "@nestjs/core": 8.1.2
     "@nestjs/graphql": 9.1.1
     "@nestjs/passport": 8.0.1
@@ -11534,7 +11550,7 @@ __metadata:
     "@typescript-eslint/parser": 5.2.0
     apollo-server: 3.4.0
     apollo-server-express: 3.4.0
-    autoprefixer: 10.3.7
+    autoprefixer: 10.4.0
     aws-sdk: 2.1016.0
     axios: 0.24.0
     axios-hooks: 2.7.0
@@ -11552,7 +11568,7 @@ __metadata:
     document-register-element: 1.14.10
     dotenv: 10.0.0
     eslint: 8.1.0
-    eslint-config-next: 12.0.0
+    eslint-config-next: 12.0.1
     eslint-config-prettier: 8.3.0
     eslint-plugin-cypress: 2.12.1
     eslint-plugin-import: 2.25.2
@@ -11596,7 +11612,7 @@ __metadata:
     react-resize-detector: 6.7.6
     react-textarea-autosize: 8.3.3
     react-use: 17.3.1
-    react-virtuoso: 2.2.5
+    react-virtuoso: 2.2.6
     reflect-metadata: 0.1.13
     regenerator-runtime: 0.13.9
     rxjs: 7.4.0
@@ -12042,31 +12058,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-config-next@npm:12.0.0":
-  version: 12.0.0
-  resolution: "eslint-config-next@npm:12.0.0"
-  dependencies:
-    "@next/eslint-plugin-next": 12.0.0
-    "@rushstack/eslint-patch": ^1.0.6
-    "@typescript-eslint/parser": ^4.20.0
-    eslint-import-resolver-node: ^0.3.4
-    eslint-import-resolver-typescript: ^2.4.0
-    eslint-plugin-import: ^2.22.1
-    eslint-plugin-jsx-a11y: ^6.4.1
-    eslint-plugin-react: ^7.23.1
-    eslint-plugin-react-hooks: ^4.2.0
-  peerDependencies:
-    eslint: ^7.23.0
-    next: ">=10.2.0"
-    typescript: ">=3.3.1"
-  peerDependenciesMeta:
-    typescript:
-      optional: true
-  checksum: fd84d5237d877a246ba81ccefaffb7009e217700ddb205f697e5f9f19f2ec103c06bfcf92fb5e7c3ee44612ec28730b1cc17eca88fce55853db04a5c42a91ed9
-  languageName: node
-  linkType: hard
-
-"eslint-config-next@npm:^12.0.0":
+"eslint-config-next@npm:12.0.1, eslint-config-next@npm:^12.0.0":
   version: 12.0.1
   resolution: "eslint-config-next@npm:12.0.1"
   dependencies:
@@ -21592,15 +21584,15 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"react-virtuoso@npm:2.2.5":
-  version: 2.2.5
-  resolution: "react-virtuoso@npm:2.2.5"
+"react-virtuoso@npm:2.2.6":
+  version: 2.2.6
+  resolution: "react-virtuoso@npm:2.2.6"
   dependencies:
-    "@virtuoso.dev/react-urx": ^0.2.5
-    "@virtuoso.dev/urx": ^0.2.5
+    "@virtuoso.dev/react-urx": ^0.2.8
+    "@virtuoso.dev/urx": ^0.2.8
   peerDependencies:
     react: ">=16"
-  checksum: af836c16ad225b6f52ba08704bc7225396de85af9745aff45176c4e982ce775a377da1282eea380a6ddeb3df6deb9fec7b75a7a1864051c57c512e64f90f4883
+  checksum: 8321f853475dc6440206c3c1d460df3ca1b64a093821809a6cf9e9e58d2b4cb52990ad30c625fd5126524d5f5ee715150f27948f2ee1f17c8e21c410d362ab96
   languageName: node
   linkType: hard
 

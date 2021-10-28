@@ -99,6 +99,8 @@ export const ChannelYoutubeModeCurrent = ({ current }) => {
             <ChannelModeWaitlistProgress
               start={current.startedAt}
               duration={current.duration}
+              imageUrl={current.cover}
+              name={current.title}
             />
             <div className="flex flex-col text-xs font-medium px-2 opacity-70 text-right ml-auto">
               <div className="text-accent">from</div>

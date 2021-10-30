@@ -24,10 +24,7 @@ import { YoutubeModeModule } from '@dream/mode/youtube/api';
     BullModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
-        redis: {
-          port: configService.get('db.redisPort'),
-          host: configService.get('db.redisHost'),
-        },
+        redis: configService.get('db.redisUrl'),
         defaultJobOptions: {
           removeOnComplete: true,
         },

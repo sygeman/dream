@@ -30,13 +30,6 @@ export const config = [
     baseURL: process.env.BASE_URL,
   })),
   registerAs('db', () => ({
-    redisUrl: `redis://${process.env.REDIS_HOST}:${parseInt(
-      process.env.REDIS_PORT,
-      10
-    )}`,
-    redisHost: process.env.REDIS_HOST,
-    redisPort: parseInt(process.env.REDIS_PORT, 10),
-    pgUrl: process.env.PG_URL,
-    pgSsl: !!process.env.PG_SSL || false,
+    redisUrl: process.env.REDIS_URL,
   })),
 ];

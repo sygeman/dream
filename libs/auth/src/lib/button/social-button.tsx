@@ -1,18 +1,29 @@
 import React from 'react';
 import clsx from 'clsx';
-import { signIn } from 'next-auth/react';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export const SocialButton = ({ provider, icon, className }) => {
+  const { asPath } = useRouter();
+
   return (
-    <button
-      className={clsx('btn-social', className)}
-      onClick={() => signIn(provider)}
+    <Link
+      href={`/api/auth/${provider}?continue=${asPath.replace(
+        'authModal=1',
+        ''
+      )}`}
     >
-      <FontAwesomeIcon icon={icon} className="text-white mr-2 h-6 opacity-90" />
-      <span className="text-white opacity-80 text-xs uppercase tracking-widest mx-5 text-center w-full">
-        Login with {provider}
-      </span>
-    </button>
+      <button className={clsx('btn-social', className)}>
+        <FontAwesomeIcon
+          icon={icon}
+          className="text-white mr-2 h-6 opacity-90"
+        />
+
+        <span className="text-white opacity-80 text-xs uppercase tracking-widest mx-5 text-center w-full">
+          Login with {provider}
+        </span>
+      </button>
+    </Link>
   );
 };

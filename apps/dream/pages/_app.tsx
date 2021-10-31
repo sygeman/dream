@@ -4,7 +4,6 @@ import App from 'next/app';
 import { IntlProvider } from 'react-intl';
 import { ApolloProvider } from '@apollo/client';
 import { useApollo } from '@dream/utils/apollo';
-import { SessionProvider } from 'next-auth/react';
 import 'simplebar/dist/simplebar.min.css';
 import 'overlayscrollbars/css/OverlayScrollbars.css';
 import 'rc-slider/assets/index.css';
@@ -63,11 +62,9 @@ function CustomApp({ Component, pageProps, locale }) {
   const apolloClient = useApollo(pageProps);
 
   return (
-    <SessionProvider session={pageProps?.session}>
-      <ApolloProvider client={apolloClient}>
-        <Inner Component={Component} pageProps={pageProps} locale={locale} />
-      </ApolloProvider>
-    </SessionProvider>
+    <ApolloProvider client={apolloClient}>
+      <Inner Component={Component} pageProps={pageProps} locale={locale} />
+    </ApolloProvider>
   );
 }
 

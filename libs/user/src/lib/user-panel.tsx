@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { UserCircleIcon } from '@heroicons/react/solid';
-import { useSession } from 'next-auth/react';
 import { useMeQuery, useUpdateConnectionStatusMutation } from '@dream/types';
 
 const UserPanelForGuest = () => {
@@ -27,10 +26,6 @@ const UserPanelForGuest = () => {
 };
 
 export const UserPanel = () => {
-  const { data: session } = useSession();
-
-  console.log(session);
-
   const router = useRouter();
   const { query } = router;
   const community =
@@ -57,7 +52,7 @@ export const UserPanel = () => {
   const name = user?.name;
   const avatar = user?.avatar;
 
-  if (!session) {
+  if (!user) {
     return <UserPanelForGuest />;
   }
 

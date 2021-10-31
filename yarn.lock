@@ -2734,15 +2734,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:7.15.3":
-  version: 7.15.3
-  resolution: "@babel/runtime@npm:7.15.3"
-  dependencies:
-    regenerator-runtime: ^0.13.4
-  checksum: 2f0b8d2d4e36035ab1d84af0ec26aafa098536870f27c8e07de0a0e398f7a394fdea68a88165535ffb52ded6a68912bdc3450bdf91f229eb132e1c89470789f5
-  languageName: node
-  linkType: hard
-
 "@babel/runtime@npm:7.15.4, @babel/runtime@npm:^7.0.0, @babel/runtime@npm:^7.1.2, @babel/runtime@npm:^7.10.1, @babel/runtime@npm:^7.10.2, @babel/runtime@npm:^7.11.1, @babel/runtime@npm:^7.11.2, @babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.14.0, @babel/runtime@npm:^7.14.8, @babel/runtime@npm:^7.15.4, @babel/runtime@npm:^7.3.1, @babel/runtime@npm:^7.5.0, @babel/runtime@npm:^7.5.5, @babel/runtime@npm:^7.7.2, @babel/runtime@npm:^7.7.6, @babel/runtime@npm:^7.8.4":
   version: 7.15.4
   resolution: "@babel/runtime@npm:7.15.4"
@@ -4555,6 +4546,15 @@ __metadata:
   dependencies:
     glob: 7.1.7
   checksum: 41d45cd98b4f8e8a15cc24ebe9ff7a28dc40fb39abccf021136343ef66273405b7a978ac731549d08a015012014790b586c7ff3a436ca9f1e0830d036bfc4004
+  languageName: node
+  linkType: hard
+
+"@next/eslint-plugin-next@npm:12.0.2":
+  version: 12.0.2
+  resolution: "@next/eslint-plugin-next@npm:12.0.2"
+  dependencies:
+    glob: 7.1.7
+  checksum: 1b776d475ac31b52ffb77ddbc9542f6811d856ec647c91af9ee4540d0a7716174bcd8de0e83e4ed9f6ae7f3ca78771f85b45c7eed30540a5c4f43cb1cadb82ca
   languageName: node
   linkType: hard
 
@@ -9243,9 +9243,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"aws-sdk@npm:2.1016.0":
-  version: 2.1016.0
-  resolution: "aws-sdk@npm:2.1016.0"
+"aws-sdk@npm:2.1018.0":
+  version: 2.1018.0
+  resolution: "aws-sdk@npm:2.1018.0"
   dependencies:
     buffer: 4.9.2
     events: 1.1.1
@@ -9256,7 +9256,7 @@ __metadata:
     url: 0.10.3
     uuid: 3.3.2
     xml2js: 0.4.19
-  checksum: 60544f675d78ea610eba20c8e5896a84644284aba84682553afcaa3e2063f75f91d1b60b5de31e488ffa61253f0b8746dba70f643a84d9dad1bd935240e9f0c3
+  checksum: b2deb6dff61ba705fbb306e47900c31b89d2e80e1d3cb84ac736d14ffb444d977de2bc834c4b6493b19103f0b6e23b5f53b1baf52039837ef8596672aa06c16f
   languageName: node
   linkType: hard
 
@@ -9267,17 +9267,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios-hooks@npm:2.7.0":
-  version: 2.7.0
-  resolution: "axios-hooks@npm:2.7.0"
+"axios-hooks@npm:3.0.0":
+  version: 3.0.0
+  resolution: "axios-hooks@npm:3.0.0"
   dependencies:
-    "@babel/runtime": 7.15.3
+    "@babel/runtime": 7.15.4
     dequal: 2.0.2
     lru-cache: 6.0.0
   peerDependencies:
-    axios: ^0.18.0 || ^0.19.0 || ^0.20.0 || ^0.21.0
+    axios: ^0.24.0
     react: ^16.8.0-0 || ^17.0.0
-  checksum: 996a724b941c4710273254eff7332452af33526cb41c9eae7a6abf12a5c7cae9db6ed9eceff516f7d20ac99de2738b6475e04459da230ee3c4c979ad7a23b097
+  checksum: 55529fd204aa093db53cf6542838c8be3534843033017cd2e5ca0bc35aae9f45578c9c0604ca82d7130870341c786c2f9dbc95a05209ec568cc16547364e953f
   languageName: node
   linkType: hard
 
@@ -10124,9 +10124,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bull@npm:4.0.0":
-  version: 4.0.0
-  resolution: "bull@npm:4.0.0"
+"bull@npm:4.1.0":
+  version: 4.1.0
+  resolution: "bull@npm:4.1.0"
   dependencies:
     cron-parser: ^2.13.0
     debuglog: ^1.0.0
@@ -10138,7 +10138,7 @@ __metadata:
     semver: ^7.3.2
     util.promisify: ^1.0.1
     uuid: ^8.3.0
-  checksum: d90b3ac4c5d51b1304a1966a4cb946676de3bfb7bec82fa1d1e7e166e848a8d3c8d62a199e6a7286e0e21e06e9a84c86bfb4f002943b6ccb760e5edab2d5a047
+  checksum: 8fc696346dc56d273e3fae0e3ca8f1d541098422d81e91bdd6a696aa43f7a785f0c7bc5a8f03d8dfd0a131b65de170d0c3fcd0cb38939703eb0712149b1d1173
   languageName: node
   linkType: hard
 
@@ -12720,12 +12720,12 @@ __metadata:
     apollo-server: 3.4.0
     apollo-server-express: 3.4.0
     autoprefixer: 10.4.0
-    aws-sdk: 2.1016.0
+    aws-sdk: 2.1018.0
     axios: 0.24.0
-    axios-hooks: 2.7.0
+    axios-hooks: 3.0.0
     babel-jest: 27.3.1
     babel-loader: 8.2.3
-    bull: 4.0.0
+    bull: 4.1.0
     class-transformer: 0.4.0
     class-validator: 0.13.1
     clsx: 1.1.1
@@ -12737,7 +12737,7 @@ __metadata:
     document-register-element: 1.14.10
     dotenv: 10.0.0
     eslint: 8.1.0
-    eslint-config-next: 12.0.1
+    eslint-config-next: 12.0.2
     eslint-config-prettier: 8.3.0
     eslint-plugin-cypress: 2.12.1
     eslint-plugin-import: 2.25.2
@@ -12786,7 +12786,7 @@ __metadata:
     regenerator-runtime: 0.13.9
     rxjs: 7.4.0
     simplebar-react: 2.3.6
-    tailwindcss: 2.2.17
+    tailwindcss: 2.2.19
     ts-jest: 27.0.7
     ts-node: 10.4.0
     tsconfig-paths-webpack-plugin: 3.5.1
@@ -12794,7 +12794,7 @@ __metadata:
     typescript: 4.4.4
     url-loader: 4.1.1
     use-debounce: 7.0.0
-    webpack: 5.60.0
+    webpack: 5.61.0
     yup: 0.32.11
   languageName: unknown
   linkType: soft
@@ -13227,7 +13227,31 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-config-next@npm:12.0.1, eslint-config-next@npm:^12.0.0":
+"eslint-config-next@npm:12.0.2":
+  version: 12.0.2
+  resolution: "eslint-config-next@npm:12.0.2"
+  dependencies:
+    "@next/eslint-plugin-next": 12.0.2
+    "@rushstack/eslint-patch": ^1.0.6
+    "@typescript-eslint/parser": ^4.20.0
+    eslint-import-resolver-node: ^0.3.4
+    eslint-import-resolver-typescript: ^2.4.0
+    eslint-plugin-import: ^2.22.1
+    eslint-plugin-jsx-a11y: ^6.4.1
+    eslint-plugin-react: ^7.23.1
+    eslint-plugin-react-hooks: ^4.2.0
+  peerDependencies:
+    eslint: ^7.23.0
+    next: ">=10.2.0"
+    typescript: ">=3.3.1"
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  checksum: fbf15687284ceb8e85c20adcce548ebd3625f4f9bc67f995067fed960758e90de2eead0412c44ad0cc791f2738ec8c57ed32e4837e675e344596756fdd47dace
+  languageName: node
+  linkType: hard
+
+"eslint-config-next@npm:^12.0.0":
   version: 12.0.1
   resolution: "eslint-config-next@npm:12.0.1"
   dependencies:
@@ -25303,9 +25327,9 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"tailwindcss@npm:2.2.17":
-  version: 2.2.17
-  resolution: "tailwindcss@npm:2.2.17"
+"tailwindcss@npm:2.2.19":
+  version: 2.2.19
+  resolution: "tailwindcss@npm:2.2.19"
   dependencies:
     arg: ^5.0.1
     bytes: ^3.0.0
@@ -25345,7 +25369,7 @@ resolve@^2.0.0-next.3:
   bin:
     tailwind: lib/cli.js
     tailwindcss: lib/cli.js
-  checksum: a0bff1a014f5283676faca321a60c6e97c5512d42f3fe89aae04dffde2b1425c47b7cc3562ee16a9d748fb5cb3a2b8782845c6d8c815de293c4ed6c035b024b0
+  checksum: 660e8086fa2758f273b7ec87067c041185454374c5c916c236f9691b1c60c48166b2556b6327b3d912f018f48712105fa979b7f717b2db3111ea0850059a2b62
   languageName: node
   linkType: hard
 
@@ -27158,7 +27182,44 @@ typescript@4.4.4:
   languageName: node
   linkType: hard
 
-"webpack@npm:5.60.0, webpack@npm:^5, webpack@npm:^5.58.1, webpack@npm:^5.9.0":
+"webpack@npm:5.61.0":
+  version: 5.61.0
+  resolution: "webpack@npm:5.61.0"
+  dependencies:
+    "@types/eslint-scope": ^3.7.0
+    "@types/estree": ^0.0.50
+    "@webassemblyjs/ast": 1.11.1
+    "@webassemblyjs/wasm-edit": 1.11.1
+    "@webassemblyjs/wasm-parser": 1.11.1
+    acorn: ^8.4.1
+    acorn-import-assertions: ^1.7.6
+    browserslist: ^4.14.5
+    chrome-trace-event: ^1.0.2
+    enhanced-resolve: ^5.8.3
+    es-module-lexer: ^0.9.0
+    eslint-scope: 5.1.1
+    events: ^3.2.0
+    glob-to-regexp: ^0.4.1
+    graceful-fs: ^4.2.4
+    json-parse-better-errors: ^1.0.2
+    loader-runner: ^4.2.0
+    mime-types: ^2.1.27
+    neo-async: ^2.6.2
+    schema-utils: ^3.1.0
+    tapable: ^2.1.1
+    terser-webpack-plugin: ^5.1.3
+    watchpack: ^2.2.0
+    webpack-sources: ^3.2.0
+  peerDependenciesMeta:
+    webpack-cli:
+      optional: true
+  bin:
+    webpack: bin/webpack.js
+  checksum: 442958ec48645c9e612a2628a815c411cbc18289b5cc7b3d1b5d0f8e5b41606ed225decf4f3684edc365e6390867bded244d20387c70fbb630c0ac08443c34c8
+  languageName: node
+  linkType: hard
+
+"webpack@npm:^5, webpack@npm:^5.58.1, webpack@npm:^5.9.0":
   version: 5.60.0
   resolution: "webpack@npm:5.60.0"
   dependencies:

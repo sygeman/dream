@@ -70,7 +70,7 @@
     "express-session": "1.17.2",
     "formik": "2.2.9",
     "framer-motion": "5.0.0",
-    "graphql": "15.7.1",
+    "graphql": "15.7.2",
     "graphql-depth-limit": "1.1.0",
     "graphql-redis-subscriptions": "2.4.0",
     "graphql-subscriptions": "1.2.1",

@@ -64,7 +64,7 @@ const CurrentMenu = () => {
   );
 };
 
-export const ChannelYoutubeModeCurrent = ({ current }) => {
+export const ChannelYoutubeModeCurrent = ({ current, muted = false }) => {
   const player = useRef<any>(null);
   const [isReady, setIsReady] = useState<boolean>(false);
 
@@ -91,7 +91,7 @@ export const ChannelYoutubeModeCurrent = ({ current }) => {
               height="100%"
               width="100%"
               playing
-              muted
+              muted={muted}
               onReady={() => setIsReady(true)}
             />
           </div>

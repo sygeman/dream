@@ -35,7 +35,7 @@ export const ChannelYoutubeModeOverlay = () => {
         className="absolute left-0 top-0 h-full w-full bg-center bg-no-repeat bg-cover transform scale-150"
         style={{ filter: 'blur(24px) brightness(0.1)' }}
       >
-        <ChannelYoutubeModeCurrent current={current} />
+        <ChannelYoutubeModeCurrent current={current} muted={true} />
       </div>
       <div className="absolute left-0 bottom-0 w-full flex flex-col">
         <div className="relative h-16">

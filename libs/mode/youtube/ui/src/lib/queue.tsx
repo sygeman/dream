@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import {
+  useMeQuery,
   useWaitlistYoutubeQueueQuery,
   useWaitlistYoutubeQueueUpdatedSubscription,
 } from '@dream/types';
@@ -12,6 +13,9 @@ import { useCommunityChannel } from '@dream/community';
 
 export const ChannelYoutubeModeQueue = ({ hidden = false, accent = false }) => {
   const router = useRouter();
+  const userQuery = useMeQuery();
+  const user = userQuery?.data?.me;
+  const isUser = !!user;
   const { channelId } = useCommunityChannel();
 
   const queueQuery = useWaitlistYoutubeQueueQuery({
@@ -46,7 +50,7 @@ export const ChannelYoutubeModeQueue = ({ hidden = false, accent = false }) => {
             pathname: router.route,
             query: {
               ...router.query,
-              waitlistYoutubeAddVideo: 1,
+              [isUser ? 'waitlistYoutubeAddVideo' : 'authModal']: 1,
             },
           }}
           passHref

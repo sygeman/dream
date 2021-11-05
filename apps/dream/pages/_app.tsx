@@ -1,9 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
 import { AppProps } from 'next/app';
-import 'simplebar/dist/simplebar.min.css';
-import 'overlayscrollbars/css/OverlayScrollbars.css';
-import 'rc-slider/assets/index.css';
 import '../styles.css';
 
 function CustomApp({ Component, pageProps }: AppProps) {

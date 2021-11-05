@@ -19,7 +19,7 @@ export function Index() {
   return (
     <div className="h-screen bg-background flex relative">
       <div
-        className="absolute h-full w-full scale-150"
+        className="absolute h-full w-full"
         style={{ filter: 'blur(14px) brightness(0.5)' }}
       >
         <ReactPlayer

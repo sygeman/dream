@@ -1,7 +1,7 @@
 FROM node:lts-alpine as base
 WORKDIR /app
 RUN ls
-COPY dist/apps/api .
+COPY dist/apps/pepega-api .
 COPY prisma ./prisma
 
 FROM base as dependencies

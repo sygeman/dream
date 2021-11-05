@@ -42,7 +42,7 @@ import { YoutubeModeModule } from '@dream/mode/youtube/api';
       ) => ({
         installSubscriptionHandlers: true,
         validationRules: [depthLimit(10)],
-        autoSchemaFile: 'apps/api/schema.gql',
+        autoSchemaFile: 'apps/pepega-api/schema.gql',
         context: (ctx) => ctx?.extra?.socket?.ctx,
         subscriptions: {
           'graphql-ws': {

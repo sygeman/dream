@@ -50,7 +50,7 @@ module.exports = {
   purge: {
     enabled: process.env.NODE_ENV === 'production',
     content: [
-      'apps/dream/pages/**/*.{js,ts,jsx,tsx}',
+      'apps/pepega/pages/**/*.{js,ts,jsx,tsx}',
       'libs/**/*.{js,ts,jsx,tsx}',
     ],
   },

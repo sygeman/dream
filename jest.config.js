@@ -2,7 +2,7 @@ module.exports = {
   projects: [
     '<rootDir>/apps/ravepro',
     '<rootDir>/libs/ui',
-    '<rootDir>/apps/api',
+    '<rootDir>/apps/pepega-api',
     '<rootDir>/libs/prisma',
     '<rootDir>/libs/utils',
     '<rootDir>/libs/chat',

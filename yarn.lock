@@ -5246,31 +5246,31 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@prisma/client@npm:3.4.0":
-  version: 3.4.0
-  resolution: "@prisma/client@npm:3.4.0"
+"@prisma/client@npm:3.4.1":
+  version: 3.4.1
+  resolution: "@prisma/client@npm:3.4.1"
   dependencies:
-    "@prisma/engines-version": 3.4.0-27.1c9fdaa9e2319b814822d6dbfd0a69e1fcc13a85
+    "@prisma/engines-version": 3.4.1-2.57771c0558568c7d08bd34c7248af5244ae16bd9
   peerDependencies:
     prisma: "*"
   peerDependenciesMeta:
     prisma:
       optional: true
-  checksum: b87d37665e4803117e4863c7d23dcddb341c698db5401d07e667811bad2415f9bc416e0966a5f70ceb40ec5c5aa987c39a3606bb9d5939d339ea0c20ac49b3dd
+  checksum: a5986a6831aac555c9d9bad2771a12ad76ee67692dbd09e9d15114dbf379644d1791465851ef4df31f986bfc014b76967f473772d225fe128856492462352fc4
   languageName: node
   linkType: hard
 
-"@prisma/engines-version@npm:3.4.0-27.1c9fdaa9e2319b814822d6dbfd0a69e1fcc13a85":
-  version: 3.4.0-27.1c9fdaa9e2319b814822d6dbfd0a69e1fcc13a85
-  resolution: "@prisma/engines-version@npm:3.4.0-27.1c9fdaa9e2319b814822d6dbfd0a69e1fcc13a85"
-  checksum: 74eb74f65b0683d47cff33fa54513dd2d9139bb74c2be14160c5e8c8a2378c329288f04808a8fd97f50d53e0bca251de33ddf6f5b86037dd25744a666743ae2f
+"@prisma/engines-version@npm:3.4.1-2.57771c0558568c7d08bd34c7248af5244ae16bd9":
+  version: 3.4.1-2.57771c0558568c7d08bd34c7248af5244ae16bd9
+  resolution: "@prisma/engines-version@npm:3.4.1-2.57771c0558568c7d08bd34c7248af5244ae16bd9"
+  checksum: 1216e7fcbdf49bdd7a6ec8d2a0c32df7b572120e7392953df451520c463b9cc9c0347f1417b546002a4beb77babb0ac0327978a9af2d8b22367f27d256f6308f
   languageName: node
   linkType: hard
 
-"@prisma/engines@npm:3.4.0-27.1c9fdaa9e2319b814822d6dbfd0a69e1fcc13a85":
-  version: 3.4.0-27.1c9fdaa9e2319b814822d6dbfd0a69e1fcc13a85
-  resolution: "@prisma/engines@npm:3.4.0-27.1c9fdaa9e2319b814822d6dbfd0a69e1fcc13a85"
-  checksum: 097ccfaab4e09cd2fb2d7acd83faa88a9916c754d4289abb9d5c383dd49a8570ab9eb982c9d92ebcef8285a89e40c20bf807f973e1fe508f2ec16a7917ac3911
+"@prisma/engines@npm:3.4.1-2.57771c0558568c7d08bd34c7248af5244ae16bd9":
+  version: 3.4.1-2.57771c0558568c7d08bd34c7248af5244ae16bd9
+  resolution: "@prisma/engines@npm:3.4.1-2.57771c0558568c7d08bd34c7248af5244ae16bd9"
+  checksum: 416821b6560dfb24f78e76ff34465c499b87cb1a212f2a80e7304d818dc9fb3fe905b12227ef664b316dbda84b3d5775e7dbaac9e68b39a5712767aa2ec75844
   languageName: node
   linkType: hard
 
@@ -8755,9 +8755,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"apollo-server-core@npm:^3.4.0":
-  version: 3.4.0
-  resolution: "apollo-server-core@npm:3.4.0"
+"apollo-server-core@npm:^3.4.1":
+  version: 3.4.1
+  resolution: "apollo-server-core@npm:3.4.1"
   dependencies:
     "@apollographql/apollo-tools": ^0.5.1
     "@apollographql/graphql-playground-html": 1.6.29
@@ -8782,7 +8782,7 @@ __metadata:
     uuid: ^8.0.0
   peerDependencies:
     graphql: ^15.3.0
-  checksum: 08455ef552104d3697b5a69a62f26f02b4938daf583c0e46bd72e25d275dfe9b7b42b2ba79fd3544dee9b87e40005382612ccd420a22177e9832d921e2099be4
+  checksum: 3c412f6a6a2847921f8759b373485593b3555261dacd6b278a019e6dcbced017869f9420b2bb11daa14f3a433561697b9a237a258185d98539ac78e7b5cc3df1
   languageName: node
   linkType: hard
 
@@ -8804,9 +8804,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"apollo-server-express@npm:3.4.0, apollo-server-express@npm:^3.4.0":
-  version: 3.4.0
-  resolution: "apollo-server-express@npm:3.4.0"
+"apollo-server-express@npm:3.4.1, apollo-server-express@npm:^3.4.1":
+  version: 3.4.1
+  resolution: "apollo-server-express@npm:3.4.1"
   dependencies:
     "@types/accepts": ^1.3.5
     "@types/body-parser": 1.19.1
@@ -8814,7 +8814,7 @@ __metadata:
     "@types/express": 4.17.13
     "@types/express-serve-static-core": 4.17.24
     accepts: ^1.3.5
-    apollo-server-core: ^3.4.0
+    apollo-server-core: ^3.4.1
     apollo-server-types: ^3.3.0
     body-parser: ^1.19.0
     cors: ^2.8.5
@@ -8822,7 +8822,7 @@ __metadata:
   peerDependencies:
     express: ^4.17.1
     graphql: ^15.3.0
-  checksum: c720238aab177151b89c197eb5524af3427d0369530f46f3bc0d52ac5d5641f97b03874c4439ee577e717508d80fb5bb364dead80ca4501fbe590630af576238
+  checksum: 1a1d9be562cb89bcc548e93445ddee6df0132d8b7dc5cb63a0cf4f30f1939f0b4d314018f9a106480fa2efa9b906101979882960c7fc4572a3cabdbbb83cadd5
   languageName: node
   linkType: hard
 
@@ -8850,16 +8850,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"apollo-server@npm:3.4.0":
-  version: 3.4.0
-  resolution: "apollo-server@npm:3.4.0"
+"apollo-server@npm:3.4.1":
+  version: 3.4.1
+  resolution: "apollo-server@npm:3.4.1"
   dependencies:
-    apollo-server-core: ^3.4.0
-    apollo-server-express: ^3.4.0
+    apollo-server-core: ^3.4.1
+    apollo-server-express: ^3.4.1
     express: ^4.17.1
   peerDependencies:
     graphql: ^15.3.0
-  checksum: e51e5529b4014cfa2bbf52038223b04a87c423b481a7948d8430a8861ab9766ef12d8bd08945434819f9f85ee5c0134cced6be2da7460b3bc29aa7185cb39bed
+  checksum: 6f440bb361c228829a42a138f4de515fc6a5115352d96f4c19ce6d1c9dd083522b1cbcab85826a6805644e2703eed12ed6aada42771ecb695c7bf9e9143eef07
   languageName: node
   linkType: hard
 
@@ -9291,9 +9291,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"aws-sdk@npm:2.1021.0":
-  version: 2.1021.0
-  resolution: "aws-sdk@npm:2.1021.0"
+"aws-sdk@npm:2.1022.0":
+  version: 2.1022.0
+  resolution: "aws-sdk@npm:2.1022.0"
   dependencies:
     buffer: 4.9.2
     events: 1.1.1
@@ -9304,7 +9304,7 @@ __metadata:
     url: 0.10.3
     uuid: 3.3.2
     xml2js: 0.4.19
-  checksum: 057bb0cc7571bfb3e66f7dfc437d369e2abb8af966bfc02f8ccff74a4dec98768cfe8b4eac9179c93d8d9a5986362289f298b31fcb9addeda8d2432736a1ab15
+  checksum: 48a5a6fb89eafb5790af0ec897d79dbc60395f844ec89e3f371db244c2596ea8e689430c65f4008bf198f1090b5d24fcdcbeaf236a56847be688a98d65f4d724
   languageName: node
   linkType: hard
 
@@ -12743,7 +12743,7 @@ __metadata:
     "@nrwl/web": 13.1.3
     "@nrwl/workspace": 13.1.3
     "@popperjs/core": 2.10.2
-    "@prisma/client": 3.4.0
+    "@prisma/client": 3.4.1
     "@storybook/addon-essentials": ~6.3.12
     "@storybook/addon-postcss": 2.0.0
     "@storybook/addons": 6.3.12
@@ -12772,10 +12772,10 @@ __metadata:
     "@types/yup": 0.29.13
     "@typescript-eslint/eslint-plugin": 5.3.0
     "@typescript-eslint/parser": 5.3.0
-    apollo-server: 3.4.0
-    apollo-server-express: 3.4.0
+    apollo-server: 3.4.1
+    apollo-server-express: 3.4.1
     autoprefixer: 10.4.0
-    aws-sdk: 2.1021.0
+    aws-sdk: 2.1022.0
     axios: 0.24.0
     axios-hooks: 3.0.0
     babel-jest: 27.3.1
@@ -12824,7 +12824,7 @@ __metadata:
     passport-twitch-new: 0.0.2
     postcss: 8.3.11
     prettier: 2.4.1
-    prisma: 3.4.0
+    prisma: 3.4.1
     rc-slider: 9.7.4
     react: 17.0.2
     react-dom: 17.0.2
@@ -21955,15 +21955,15 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"prisma@npm:3.4.0":
-  version: 3.4.0
-  resolution: "prisma@npm:3.4.0"
+"prisma@npm:3.4.1":
+  version: 3.4.1
+  resolution: "prisma@npm:3.4.1"
   dependencies:
-    "@prisma/engines": 3.4.0-27.1c9fdaa9e2319b814822d6dbfd0a69e1fcc13a85
+    "@prisma/engines": 3.4.1-2.57771c0558568c7d08bd34c7248af5244ae16bd9
   bin:
     prisma: build/index.js
     prisma2: build/index.js
-  checksum: 78e7157e3ff00da2802826191c04604bea6c06c027da7a466120e83d3f97a2965ad6dd1e5b06a15f0bde42215317f009ac8b0ca4837b3ed29eb02e969caaa12a
+  checksum: c4020c7b5fa07fbe243013e05f21063489198f0b60ef708b1eebc8cd96d53aaaa907c12c070f6dc5f2cbce14651c15c0cc4a03ac0f9a917ebf85c43f585afd9e
   languageName: node
   linkType: hard
 

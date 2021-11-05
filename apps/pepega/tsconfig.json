@@ -22,7 +22,5 @@
       "path": "./tsconfig.spec.json"
     }
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

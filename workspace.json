@@ -301,58 +301,6 @@
       },
       "tags": []
     },
-    "dream": {
-      "root": "apps/dream",
-      "sourceRoot": "apps/dream",
-      "projectType": "application",
-      "architect": {
-        "build": {
-          "builder": "@nrwl/next:build",
-          "outputs": ["{options.outputPath}"],
-          "options": {
-            "root": "apps/dream",
-            "outputPath": "dist/apps/dream"
-          },
-          "configurations": {
-            "production": {}
-          }
-        },
-        "serve": {
-          "builder": "@nrwl/next:server",
-          "options": {
-            "buildTarget": "dream:build",
-            "dev": true
-          },
-          "configurations": {
-            "production": {
-              "buildTarget": "dream:build:production",
-              "dev": false
-            }
-          }
-        },
-        "export": {
-          "builder": "@nrwl/next:export",
-          "options": {
-            "buildTarget": "dream:build:production"
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["apps/dream/**/*.{ts,tsx,js,jsx}"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/dream"],
-          "options": {
-            "jestConfig": "apps/dream/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      },
-      "tags": []
-    },
     "external-api-spotify": {
       "root": "libs/external-api/spotify",
       "sourceRoot": "libs/external-api/spotify/src",
@@ -591,6 +539,58 @@
           "outputs": ["coverage/libs/mode/youtube/ui"],
           "options": {
             "jestConfig": "libs/mode/youtube/ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "pepega": {
+      "root": "apps/pepega",
+      "sourceRoot": "apps/pepega",
+      "projectType": "application",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/next:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "root": "apps/pepega",
+            "outputPath": "dist/apps/pepega"
+          },
+          "configurations": {
+            "production": {}
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/next:server",
+          "options": {
+            "buildTarget": "pepega:build",
+            "dev": true
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "pepega:build:production",
+              "dev": false
+            }
+          }
+        },
+        "export": {
+          "builder": "@nrwl/next:export",
+          "options": {
+            "buildTarget": "pepega:build:production"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/pepega/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/pepega"],
+          "options": {
+            "jestConfig": "apps/pepega/jest.config.js",
             "passWithNoTests": true
           }
         }

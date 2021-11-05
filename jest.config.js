@@ -13,7 +13,7 @@ module.exports = {
     '<rootDir>/libs/connection-api',
     '<rootDir>/apps/pepega',
     '<rootDir>/libs/pepega-ui',
-    '<rootDir>/apps/dream',
+    '<rootDir>/apps/pepega',
     '<rootDir>/libs/layouts',
     '<rootDir>/libs/auth',
     '<rootDir>/libs/spotify-now',

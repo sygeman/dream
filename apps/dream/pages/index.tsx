@@ -41,7 +41,7 @@ export function Index() {
             <div className="font-medium text-accent flex justify-center">
               <SocialLink link="https://github.com/sygeman" icon={faGithub} />
               <SocialLink
-                link="hhttps://www.twitch.tv/sygeman"
+                link="https://www.twitch.tv/sygeman"
                 icon={faTwitch}
               />
               <SocialLink

@@ -37,5 +37,6 @@ module.exports = {
     '<rootDir>/libs/external-api/tenor',
     '<rootDir>/libs/storybook',
     '<rootDir>/libs/components/switch-form-field',
+    '<rootDir>/apps/dream',
   ],
 };

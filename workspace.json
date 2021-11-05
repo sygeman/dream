@@ -249,6 +249,60 @@
       },
       "tags": []
     },
+    "dream": {
+      "root": "apps/dream",
+      "sourceRoot": "apps/dream",
+      "projectType": "application",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/next:build",
+          "outputs": ["{options.outputPath}"],
+          "defaultConfiguration": "production",
+          "options": {
+            "root": "apps/dream",
+            "outputPath": "dist/apps/dream"
+          },
+          "configurations": {
+            "production": {}
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/next:server",
+          "options": {
+            "buildTarget": "dream:build",
+            "dev": true
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "dream:build:production",
+              "dev": false
+            }
+          }
+        },
+        "export": {
+          "builder": "@nrwl/next:export",
+          "options": {
+            "buildTarget": "dream:build:production"
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/dream"],
+          "options": {
+            "jestConfig": "apps/dream/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/dream/**/*.{ts,tsx,js,jsx}"]
+          }
+        }
+      },
+      "tags": []
+    },
     "external-api-spotify": {
       "root": "libs/external-api/spotify",
       "sourceRoot": "libs/external-api/spotify/src",

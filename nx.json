@@ -43,5 +43,6 @@
         "linter": "eslint"
       }
     }
-  }
+  },
+  "defaultProject": "dream"
 }

@@ -51,6 +51,7 @@ module.exports = {
     enabled: process.env.NODE_ENV === 'production',
     content: [
       'apps/pepega/pages/**/*.{js,ts,jsx,tsx}',
+      'apps/dream/pages/**/*.{js,ts,jsx,tsx}',
       'libs/**/*.{js,ts,jsx,tsx}',
     ],
   },

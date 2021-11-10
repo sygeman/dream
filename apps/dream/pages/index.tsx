@@ -1,3 +1,4 @@
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faGithub,
@@ -17,13 +18,18 @@ const SocialLink = ({ link, icon }) => (
 export function Index() {
   return (
     <div className="h-screen bg-background flex relative">
-      <div
-        className="absolute h-full w-full bg-no-repeat bg-cover"
-        style={{
-          filter: 'blur(14px) brightness(0.7)',
-          backgroundImage: 'url(/bg.gif)',
-        }}
-      ></div>
+      <div className="absolute h-full w-full filter blur-md brightness-50">
+        <video
+          loop
+          muted
+          autoPlay
+          playsInline
+          className="object-cover	w-screen h-screen"
+        >
+          <source src="bg.webm" type="video/webm" />
+        </video>
+        <div className="absolute h-full w-full opacity-80 bg-background z-10"></div>
+      </div>
       <div className="absolute h-full w-full z-10 flex justify-center items-center">
         <div className="text-center">
           <div className="text-4xl font-medium">SGMN.DEV</div>

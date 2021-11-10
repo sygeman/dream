@@ -1,4 +1,3 @@
-import ReactPlayer from 'react-player';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faGithub,
@@ -19,20 +18,12 @@ export function Index() {
   return (
     <div className="h-screen bg-background flex relative">
       <div
-        className="absolute h-full w-full"
-        style={{ filter: 'blur(14px) brightness(0.5)' }}
-      >
-        <ReactPlayer
-          url="https://www.youtube.com/watch?v=RR2EI8EEOOw"
-          width="100%"
-          height="100%"
-          muted
-          playing
-          loop
-          controls={false}
-        />
-        <div className="absolute h-full w-full opacity-80 bg-background z-10"></div>
-      </div>
+        className="absolute h-full w-full bg-no-repeat bg-cover"
+        style={{
+          filter: 'blur(14px) brightness(0.7)',
+          backgroundImage: 'url(/bg.gif)',
+        }}
+      ></div>
       <div className="absolute h-full w-full z-10 flex justify-center items-center">
         <div className="text-center">
           <div className="text-4xl font-medium">SGMN.DEV</div>

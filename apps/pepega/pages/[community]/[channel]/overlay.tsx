@@ -1,10 +1,10 @@
 import React from 'react';
-import { CommunityChannelOverlay } from '@dream/community';
+import { ChannelOverlay } from '@dream/channel/ui';
 
 export function CommunityChannelOverlayPage() {
   return (
     <div className="h-screen bg-background flex">
-      <CommunityChannelOverlay />
+      <ChannelOverlay />
     </div>
   );
 }

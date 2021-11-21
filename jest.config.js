@@ -38,5 +38,6 @@ module.exports = {
     '<rootDir>/libs/storybook',
     '<rootDir>/libs/components/switch-form-field',
     '<rootDir>/apps/dream',
+    '<rootDir>/libs/channel/ui',
   ],
 };

@@ -19,6 +19,7 @@
       "@dream/app-panel": ["libs/app-panel/src/index.ts"],
       "@dream/auth": ["libs/auth/src/index.ts"],
       "@dream/auth-api": ["libs/auth-api/src/index.ts"],
+      "@dream/channel/ui": ["libs/channel/ui/src/index.ts"],
       "@dream/chat": ["libs/chat/src/index.ts"],
       "@dream/community": ["libs/community/src/index.ts"],
       "@dream/community-api": ["libs/community-api/src/index.ts"],

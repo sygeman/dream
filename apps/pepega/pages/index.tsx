@@ -1,12 +1,17 @@
 import React from 'react';
-import { MainLayout } from '@dream/layouts/main';
 import { MainCommunities } from '@dream/community';
+import { AppPanel } from '@dream/app-panel';
+import { Modals } from '@dream/layouts/modals';
 
 export function IndexPage() {
   return (
-    <MainLayout>
-      <MainCommunities />
-    </MainLayout>
+    <div className="h-screen bg-background flex">
+      <AppPanel />
+      <div className="flex flex-1 h-full overflow-hidden rounded-l-xl">
+        <MainCommunities />
+      </div>
+      <Modals />
+    </div>
   );
 }
 

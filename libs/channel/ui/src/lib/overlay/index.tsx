@@ -4,7 +4,7 @@ import { ChannelYoutubeModeOverlay } from '@dream/mode/youtube/ui';
 import { ChannelMode } from '@dream/types';
 import { useCommunityChannel } from '../use-community-channel';
 
-export const CommunityChannelOverlay = () => {
+export const ChannelOverlay = () => {
   const { channel } = useCommunityChannel();
 
   switch (channel?.mode) {

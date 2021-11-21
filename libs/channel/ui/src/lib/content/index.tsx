@@ -6,7 +6,7 @@ import { ChannelMode } from '@dream/types';
 import { ChannelHeader } from './channel-header';
 import { useCommunityChannel } from '../use-community-channel';
 
-export const CommunityContent = () => {
+export const ChannelContent = () => {
   const { channel } = useCommunityChannel();
 
   const getContentView = () => {

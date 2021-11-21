@@ -67,6 +67,29 @@
       },
       "tags": []
     },
+    "channel-ui": {
+      "root": "libs/channel/ui",
+      "sourceRoot": "libs/channel/ui/src",
+      "projectType": "library",
+      "tags": [],
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/channel/ui/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/channel/ui"],
+          "options": {
+            "jestConfig": "libs/channel/ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "chat": {
       "root": "libs/chat",
       "sourceRoot": "libs/chat/src",

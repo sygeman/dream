@@ -46,6 +46,6 @@ jobs:
           context: .
           file: apps/pepega-api/Dockerfile
           push: true
-          tags: ghcr.io/${{ github.repository }}/api:latest, ghcr.io/${{ github.repository }}/api:${{GITHUB_SHA::6}}
+          tags: ghcr.io/${{ github.repository }}/api:latest, ghcr.io/${{ github.repository }}/api:${GITHUB_SHA::6}
           cache-from: type=registry,ref=ghcr.io/${{ github.repository }}/api:latest
           cache-to: type=inline

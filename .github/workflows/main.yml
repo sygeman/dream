@@ -44,6 +44,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
+          file: apps/pepega-api/Dockerfile
           push: true
           tags: ghcr.io/${{ github.repository }}/api:latest
           cache-from: type=registry,ref=ghcr.io/${{ github.repository }}/api:latest

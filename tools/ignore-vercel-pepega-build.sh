@@ -1,17 +1,14 @@
+# Add origin for git repositry
+git remote add origin $GIT_CREDENTIALS
 
-# Name of the app to check. Change this to your application name!
-APP=pepega
-
-# Determine version of Nx installed
-# NX_VERSION=$(node -e "console.log(require('./package.json').devDependencies['@nrwl/workspace'])")
-# TS_VERSION=$(node -e "console.log(require('./package.json').devDependencies['typescript'])")
+# Fetch remote main branch
+git fetch origin main 
 
 # Install @nrwl/workspace in order to run the affected command
-# yarn install --dev @nrwl/workspace@$NX_VERSION
-# yarn install --dev typescript@$TS_VERSION
+npm install --no-package-lock --no-save @nrwl/workspace typescript --prefer-offline
 
-# Run the affected command, comparing latest commit to the one before that
-yarn dlx nx affected:apps --plain --base HEAD~1 --head HEAD | grep $APP -q
+# Run the affected command, comparing latest commit to origin/main
+npx nx affected:libs --base=origin/main | grep $VERCEL_PROJECT_NAME -q
 
 # Store result of the previous command (grep)
 IS_AFFECTED=$?

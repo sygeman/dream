@@ -76,4 +76,4 @@ jobs:
           project_id: ${{ secrets.PROJECT_ID }}
           namespace: ${{ secrets.NAMESPACE }}
           deployment: ${{ secrets.DEPLOYMENT }}
-          docker_image: ghcr.io/${{ github.repository }}/api:latest
+          docker_image: ghcr.io/${{ github.repository }}/api:${{ steps.vars.outputs.sha_short }}

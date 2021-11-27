@@ -1,14 +1,13 @@
-# Add origin for git repositry
-git remote add origin $GIT_CREDENTIALS
 
-# Fetch remote main branch
-git fetch origin main 
+# Determine version of Nx installed
+# NX_VERSION=$(node -e "console.log(require('./package.json').devDependencies['@nrwl/workspace'])")
+# TS_VERSION=$(node -e "console.log(require('./package.json').devDependencies['typescript'])")
 
 # Install @nrwl/workspace in order to run the affected command
 npm install --no-package-lock --no-save @nrwl/workspace typescript --prefer-offline
 
-# Run the affected command, comparing latest commit to origin/main
-npx nx affected:libs --base=origin/main | grep $VERCEL_PROJECT_NAME -q
+# Run the affected command, comparing latest commit to the one before that
+npx nx affected:apps --plain --base HEAD~1 --head HEAD | grep $VERCEL_PROJECT_NAME -q
 
 # Store result of the previous command (grep)
 IS_AFFECTED=$?

@@ -1,6 +1,17 @@
 import React from 'react';
 import { AppPanel } from '@dream/app-panel';
-import { Modals } from './modals';
+import { UserSettingsModal } from '@dream/user';
+import { LoginModal, LogoutModal } from '@dream/auth';
+import {
+  NewCommunityModal,
+  DeleteCommunityModal,
+  CommunitySettingsModal,
+} from '@dream/community';
+import {
+  NewChannelModal,
+  DeleteChannelModal,
+  ChannelSettingsModal,
+} from '@dream/channel/ui';
 
 export const MainLayout: React.FC = ({ children }) => (
   <div className="h-screen bg-background flex">
@@ -8,6 +19,17 @@ export const MainLayout: React.FC = ({ children }) => (
     <div className="flex flex-1 h-full overflow-hidden rounded-l-xl">
       {children}
     </div>
-    <Modals />
+
+    <LoginModal />
+    <LogoutModal />
+    <UserSettingsModal />
+
+    <NewCommunityModal />
+    <DeleteCommunityModal />
+    <CommunitySettingsModal />
+
+    <NewChannelModal />
+    <DeleteChannelModal />
+    <ChannelSettingsModal />
   </div>
 );

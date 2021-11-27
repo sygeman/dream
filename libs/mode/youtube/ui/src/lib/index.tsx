@@ -7,6 +7,7 @@ import { ChannelYoutubeModeHistory } from './history';
 import { ChannelYoutubeModeQueue } from './queue';
 import { ChannelYoutubeModeCurrent } from './current';
 import { useCommunityChannel } from '@dream/community';
+import { YoutubeModeAddVideoModal } from '..';
 
 export const ChannelYoutubeMode = () => {
   const { channelId } = useCommunityChannel();
@@ -37,6 +38,7 @@ export const ChannelYoutubeMode = () => {
         <ChannelYoutubeModeCurrent current={current} />
         <ChannelYoutubeModeQueue accent />
       </div>
+      <YoutubeModeAddVideoModal />
     </div>
   );
 };

@@ -11,6 +11,7 @@ import { ChannelSpotifyModeHistory } from './history';
 import { ChannelSpotifyModeQueue } from './queue';
 import { ChannelSpotifyModeCurrent } from './current';
 import { useCommunityChannel } from '@dream/community';
+import { SpotifyModeAddTrackModal } from '..';
 
 const ChannelSpotifyModeAuth = () => (
   <div className="absolute left-0 top-0 w-full h-full flex items-center justify-center">
@@ -91,6 +92,7 @@ export const ChannelSpotifyMode = () => {
         <ChannelSpotifyModeQueue addTrackAccent={isConnected || !current} />
       </div>
       {!hasSpotifyAccount && <ChannelSpotifyModeAuth />}
+      <SpotifyModeAddTrackModal />
     </div>
   );
 };

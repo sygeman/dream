@@ -7,8 +7,8 @@ NX_VERSION=$(node -e "console.log(require('./package.json').devDependencies['@nr
 TS_VERSION=$(node -e "console.log(require('./package.json').devDependencies['typescript'])")
 
 # Install @nrwl/workspace in order to run the affected command
-yarn install -D @nrwl/workspace@$NX_VERSION --prefer-offline
-yarn install -D typescript@$TS_VERSION --prefer-offline
+yarn install --dev @nrwl/workspace@$NX_VERSION
+yarn install --dev typescript@$TS_VERSION
 
 # Run the affected command, comparing latest commit to the one before that
 yarn nx affected:apps --plain --base HEAD~1 --head HEAD | grep $APP -q

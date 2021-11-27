@@ -57,6 +57,7 @@ jobs:
   deploy_api:
     name: Deploy pepega-api app
     runs-on: ubuntu-latest
+    needs: build_api
     steps:
       - name: Set outputs
         id: vars

@@ -2,10 +2,9 @@ import {
   useWaitlistYoutubeCurrentQuery,
   useWaitlistYoutubeCurrentUpdatedSubscription,
 } from '@dream/types';
-import { ChannelYoutubeModeCurrent } from './current';
-import { Backgroud } from './components/background';
+import { ChannelYoutubeModeCurrent } from '../current';
 import { useCommunityChannel } from '@dream/community';
-import { ChannelModeWaitlistProgress } from './components/progress';
+import { ChannelModeWaitlistProgress } from './progress';
 
 export const ChannelYoutubeModeOverlay = () => {
   const { channelId } = useCommunityChannel();
@@ -50,12 +49,14 @@ export const ChannelYoutubeModeOverlay = () => {
                     imageUrl={current.cover}
                     name={current.title}
                   />
-                  <div className="flex flex-col text-xs font-medium px-2 opacity-70 text-right ml-2">
+                  <div className="flex flex-col text-sm font-medium px-2 opacity-70 text-right ml-2">
                     <div className="text-accent">from</div>
                     <div className="text-white">{current.author.name}</div>
                   </div>
-                  <div className="flex flex-shrink-0 rounded-full overflow-hidden h-8 w-8 bg-background mr-4">
-                    <img src={current.author.avatar} className="" alt="" />
+                  <div className="flex flex-shrink-0 rounded-full overflow-hidden h-10 w-10 bg-background mr-4">
+                    {current.author.avatar && (
+                      <img src={current.author.avatar} className="" alt="" />
+                    )}
                   </div>
                 </>
               )}

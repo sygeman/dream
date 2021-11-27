@@ -57,7 +57,7 @@ jobs:
           cache-to: type=inline
 
       - name: Deploy to cluster
-      - uses: sekassel-research/actions-rancher-update@2.0.2
+        uses: sekassel-research/actions-rancher-update@2.0.2
         with:
           rancher_url: https://rancher.sgmn.dev
           rancher_token: ${{ secrets.RANCHER_TOKEN }}

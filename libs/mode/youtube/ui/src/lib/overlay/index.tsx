@@ -25,11 +25,8 @@ export const ChannelYoutubeModeOverlay = () => {
 
   const current = currentQuery?.data?.waitlistYoutubeCurrent?.item;
 
-  console.log(current);
-
   return (
     <div className="h-screen w-full flex flex-1 flex-col relative overflow-hidden">
-      {/* <Backgroud imageUrl={current?.cover} /> */}
       <div
         className="absolute left-0 top-0 h-full w-full bg-center bg-no-repeat bg-cover transform scale-150"
         style={{ filter: 'blur(24px) brightness(0.1)' }}
@@ -65,12 +62,5 @@ export const ChannelYoutubeModeOverlay = () => {
         </div>
       </div>
     </div>
-
-    // <div className="h-screen w-full flex flex-1 flex-col relative overflow-hidden">
-    //   <Backgroud imageUrl={current?.cover} />
-    //   <div className="absolute left-0 top-0 w-full h-full flex flex-col">
-    //     <ChannelYoutubeModeCurrent current={current} />
-    //   </div>
-    // </div>
   );
 };

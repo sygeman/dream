@@ -55,3 +55,14 @@ jobs:
           tags: ghcr.io/${{ github.repository }}/api:latest, ghcr.io/${{ github.repository }}/api:${{ steps.vars.outputs.sha_short }}
           cache-from: type=registry,ref=ghcr.io/${{ github.repository }}/api:latest
           cache-to: type=inline
+
+      - name: Deploy to cluster
+      - uses: sekassel-research/actions-rancher-update@2.0.2
+        with:
+          rancher_url: https://rancher.sgmn.dev
+          rancher_token: ${{ secrets.RANCHER_TOKEN }}
+          cluster_id: ${{ secrets.CLUSTER_ID }}
+          project_id: ${{ secrets.PROJECT_ID }}
+          namespace: ${{ secrets.NAMESPACE }}
+          deployment: ${{ secrets.DEPLOYMENT }}
+          docker_image: ghcr.io/${{ github.repository }}/api:${{ steps.vars.outputs.sha_short }}

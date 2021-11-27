@@ -62,6 +62,8 @@ jobs:
       - name: Set outputs
         id: vars
         run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+      - name: Check outputs
+        run: echo ${{ steps.vars.outputs.sha_short }}
 
       - name: Deploy to cluster
         uses: sekassel-research/actions-rancher-update@2.0.2

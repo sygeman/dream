@@ -53,7 +53,10 @@
       "@dream/ui/*": ["libs/ui/src/lib/*"],
       "@dream/user": ["libs/user/src/index.ts"],
       "@dream/user-api": ["libs/user-api/src/index.ts"],
-      "@dream/utils-old/*": ["libs/utils-old/src/*"]
+      "@dream/utils-old/*": ["libs/utils-old/src/*"],
+      "@dream/utils/regexp/url-name": [
+        "libs/utils/regexp/url-name/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

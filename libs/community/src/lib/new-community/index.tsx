@@ -5,7 +5,7 @@ import { useCreateCommunityMutation } from '@dream/types';
 import { useRouter } from 'next/router';
 import * as Yup from 'yup';
 import clsx from 'clsx';
-import { urlNameRegExp } from '@dream/utils-old/regexp';
+import { urlNameRegExp } from '@dream/utils/regexp/url-name';
 
 const ValidationSchema = Yup.object().shape({
   title: Yup.string()

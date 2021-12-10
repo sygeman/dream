@@ -886,6 +886,29 @@
         }
       },
       "tags": []
+    },
+    "utils-regexp-url-name": {
+      "root": "libs/utils/regexp/url-name",
+      "sourceRoot": "libs/utils/regexp/url-name/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/utils/regexp/url-name/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/utils/regexp/url-name"],
+          "options": {
+            "jestConfig": "libs/utils/regexp/url-name/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
     }
   }
 }

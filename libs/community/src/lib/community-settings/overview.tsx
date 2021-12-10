@@ -3,7 +3,7 @@ import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import { useUpdateCommunityMutation } from '@dream/types';
 import { useCommunityChannel } from '../use-community-channel';
-import { urlNameRegExp } from '@dream/utils-old/regexp';
+import { urlNameRegExp } from '@dream/utils/regexp/url-name';
 import { SaveFormPanel } from '@dream/components/save-form';
 
 const ValidationSchema = Yup.object().shape({

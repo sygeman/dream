@@ -39,5 +39,6 @@ module.exports = {
     '<rootDir>/libs/components/switch-form-field',
     '<rootDir>/apps/dream',
     '<rootDir>/libs/channel/ui',
+    '<rootDir>/libs/utils/regexp/url-name',
   ],
 };

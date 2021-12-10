@@ -12,7 +12,7 @@ export const ChannelSettingsModeCard = ({
   return (
     <div
       className={clsx(
-        'flex flex-col flex-shrink-0 overflow-hidden items-center justify-center cursor-pointer',
+        'flex flex-col shrink-0 overflow-hidden items-center justify-center cursor-pointer',
         'bg-background m-2 rounded-xl',
         'border-2 border-transparent',
         active && `${mode?.borderColor}`

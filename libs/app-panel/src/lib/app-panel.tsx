@@ -20,7 +20,7 @@ const Logo = () => {
 
 export const AppPanel = () => {
   return (
-    <div className="h-screen flex flex-col flex-shrink-0 min-w-12 bg-background border-r border-background overflow-hidden">
+    <div className="h-screen flex flex-col shrink-0 min-w-12 bg-background border-r border-background overflow-hidden">
       <Logo />
       <AppPanelCommunities />
       <UserPanel />

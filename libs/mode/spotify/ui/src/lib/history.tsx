@@ -30,7 +30,7 @@ export const ChannelSpotifyModeHistory = ({ hidden = false }) => {
   return (
     <div
       className={clsx(
-        'flex flex-col flex-shrink-0 justify-end py-2 overflow-hidden',
+        'flex flex-col shrink-0 justify-end py-2 overflow-hidden',
         !hidden && 'flex-1'
       )}
     >

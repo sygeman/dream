@@ -12,7 +12,7 @@ const CommunityCard: React.FC<{
 }> = ({ title, name, online }) => {
   return (
     <Link href={`/${name}`}>
-      <div className="flex flex-col flex-shrink-0 overflow-hidden items-center justify-center  cursor-pointer hover:opacity-90 bg-surface-light m-4 rounded">
+      <div className="flex flex-col shrink-0 overflow-hidden items-center justify-center  cursor-pointer hover:opacity-90 bg-surface-light m-4 rounded">
         <div className="w-full bg-background aspect-w-16 aspect-h-9 relative">
           <div className="absolute h-full w-full flex justify-center items-center overflow-hidden text-accent opacity-25 text-3xl">
             {title}

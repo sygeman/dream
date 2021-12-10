@@ -45,15 +45,11 @@ const colors = {
 };
 
 module.exports = {
-  darkMode: 'media',
-  purge: {
-    enabled: process.env.NODE_ENV === 'production',
-    content: [
-      'apps/pepega/pages/**/*.{js,ts,jsx,tsx}',
-      'apps/dream/pages/**/*.{js,ts,jsx,tsx}',
-      'libs/**/*.{js,ts,jsx,tsx}',
-    ],
-  },
+  content: [
+    'apps/pepega/pages/**/*.{js,ts,jsx,tsx}',
+    'apps/dream/pages/**/*.{js,ts,jsx,tsx}',
+    'libs/**/*.{js,ts,jsx,tsx}',
+  ],
   theme: {
     extend: {
       colors,

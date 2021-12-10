@@ -47,7 +47,7 @@ export const ChannelSpotifyModeOverlay = () => {
                     <div className="text-accent">from</div>
                     <div className="text-white">{current.author.name}</div>
                   </div>
-                  <div className="flex flex-shrink-0 rounded-full overflow-hidden h-8 w-8 bg-background mr-4">
+                  <div className="flex shrink-0 rounded-full overflow-hidden h-8 w-8 bg-background mr-4">
                     <img src={current.author.avatar} className="" alt="" />
                   </div>
                 </>

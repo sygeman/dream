@@ -16,7 +16,7 @@ export const AppPanelMenuItem: React.FC<AppPanelMenuItemProps> = ({
     <div
       className={clsx(
         'group relative',
-        'flex flex-shrink-0 items-center justify-center',
+        'flex shrink-0 items-center justify-center',
         'w-12 h-12 cursor-pointer'
       )}
     >

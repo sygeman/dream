@@ -7,7 +7,7 @@ export const AppPanelNewCommunity: React.FC = () => {
     <div
       className={clsx(
         'group relative',
-        'flex flex-shrink-0 items-center justify-center',
+        'flex shrink-0 items-center justify-center',
         'w-12 h-12 cursor-pointer'
       )}
     >

@@ -18,7 +18,7 @@ export const CommunityLeftPanel = () => {
   const channels = communityChannelsQuery?.data?.channels || [];
 
   return (
-    <div className="h-screen flex flex-col flex-shrink-0 w-60 bg-surface">
+    <div className="h-screen flex flex-col shrink-0 w-60 bg-surface">
       <CommunityHeader />
 
       <div className="flex flex-1 w-full overflow-hidden">

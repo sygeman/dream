@@ -18,7 +18,7 @@ const SocialLink = ({ link, icon }) => (
 export function Index() {
   return (
     <div className="h-screen bg-background flex relative">
-      <div className="absolute h-full w-full filter blur-md brightness-50">
+      <div className="absolute h-full w-full blur-md brightness-50">
         <video
           loop
           muted

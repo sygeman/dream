@@ -83,7 +83,7 @@ export const Chat: React.FC<{ channelId: string }> = ({ channelId }) => {
               {[...Array(20).keys()].map((i) => (
                 <div
                   key={i}
-                  className="flex flex-shrink-0 rounded h-11 bg-surface-dark mx-2 my-1 opacity-20 animate-pulse"
+                  className="flex shrink-0 rounded h-11 bg-surface-dark mx-2 my-1 opacity-20 animate-pulse"
                 />
               ))}
             </div>

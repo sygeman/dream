@@ -37,7 +37,7 @@ export const ChannelYoutubeModeQueue = ({ hidden = false, accent = false }) => {
   return (
     <div
       className={clsx(
-        'flex flex-col flex-shrink-0 justify-start py-2 overflow-hidden',
+        'flex flex-col shrink-0 justify-start py-2 overflow-hidden',
         !hidden && 'flex-1'
       )}
     >

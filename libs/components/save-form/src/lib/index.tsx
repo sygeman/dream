@@ -14,11 +14,11 @@ export const SaveFormPanel: React.FC<SaveFormPanelProps> = ({
     className="flex w-full absolute left-0 bottom-4 p-2"
     show={show}
     enter="transition ease-out duration-200"
-    enterFrom="transform opacity-0 scale-95"
-    enterTo="transform opacity-100 scale-100"
+    enterFrom="opacity-0 scale-95"
+    enterTo="opacity-100 scale-100"
     leave="transition ease-in duration-75"
-    leaveFrom="transform opacity-100 scale-100"
-    leaveTo="transform opacity-0 scale-95"
+    leaveFrom="opacity-100 scale-100"
+    leaveTo="opacity-0 scale-95"
   >
     <div className="absolute top-0 left-0 w-full h-full px-4">
       <div className="w-full h-full bg-background opacity-75 rounded-md"></div>

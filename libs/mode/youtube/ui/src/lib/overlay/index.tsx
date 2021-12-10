@@ -28,7 +28,7 @@ export const ChannelYoutubeModeOverlay = () => {
   return (
     <div className="h-screen w-full flex flex-1 flex-col relative overflow-hidden">
       <div
-        className="absolute left-0 top-0 h-full w-full bg-center bg-no-repeat bg-cover transform scale-150"
+        className="absolute left-0 top-0 h-full w-full bg-center bg-no-repeat bg-cover scale-150"
         style={{ filter: 'blur(24px) brightness(0.1)' }}
       >
         <ChannelYoutubeModeCurrent current={current} muted={true} />
@@ -50,7 +50,7 @@ export const ChannelYoutubeModeOverlay = () => {
                     <div className="text-accent">from</div>
                     <div className="text-white">{current.author.name}</div>
                   </div>
-                  <div className="flex flex-shrink-0 rounded-full overflow-hidden h-10 w-10 bg-background mr-4">
+                  <div className="flex shrink-0 rounded-full overflow-hidden h-10 w-10 bg-background mr-4">
                     {current.author.avatar && (
                       <img src={current.author.avatar} className="" alt="" />
                     )}

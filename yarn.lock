@@ -13362,7 +13362,7 @@ __metadata:
     faker: 5.5.3
     formik: 2.2.9
     framer-motion: 5.4.5
-    graphql: 15.8.0
+    graphql: 15.7.2
     graphql-depth-limit: 1.1.0
     graphql-redis-subscriptions: 2.4.2
     graphql-subscriptions: 2.0.0
@@ -15937,10 +15937,10 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"graphql@npm:15.8.0":
-  version: 15.8.0
-  resolution: "graphql@npm:15.8.0"
-  checksum: 423325271db8858428641b9aca01699283d1fe5b40ef6d4ac622569ecca927019fce8196208b91dd1d8eb8114f00263fe661d241d0eb40c10e5bfd650f86ec5e
+"graphql@npm:15.7.2":
+  version: 15.7.2
+  resolution: "graphql@npm:15.7.2"
+  checksum: eacb746e2981d0c346ef7365601873963af5356f64ce4d890ab89d213c67bf5bc1ae957b93c3902198798774c842b55dff219f38bad858691765e4debc265750
   languageName: node
   linkType: hard
 

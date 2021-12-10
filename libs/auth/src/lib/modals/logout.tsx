@@ -2,7 +2,7 @@ import React from 'react';
 import clsx from 'clsx';
 import { useRouter } from 'next/router';
 import { useLogoutMutation } from '@dream/types';
-import { useModal } from '@dream/utils-old/use-modal';
+import { useModal } from '@dream/utils/use-modal';
 import { Modal } from '@dream/components/modal';
 
 export const LogoutModal = () => {

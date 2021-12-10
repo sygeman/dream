@@ -909,6 +909,21 @@
         }
       },
       "tags": []
+    },
+    "utils-use-modal": {
+      "root": "libs/utils/use-modal",
+      "sourceRoot": "libs/utils/use-modal/src",
+      "projectType": "library",
+      "tags": [],
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/utils/use-modal/**/*.{ts,tsx,js,jsx}"]
+          }
+        }
+      }
     }
   }
 }

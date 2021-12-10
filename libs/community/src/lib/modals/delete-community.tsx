@@ -1,6 +1,6 @@
 import React from 'react';
 import { Modal } from '@dream/components/modal';
-import { useModal } from '@dream/utils-old/use-modal';
+import { useModal } from '@dream/utils/use-modal';
 import { DeleteCommunity } from '../delete-community';
 
 export const DeleteCommunityModal = () => {

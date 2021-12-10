@@ -56,7 +56,8 @@
       "@dream/utils-old/*": ["libs/utils-old/src/*"],
       "@dream/utils/regexp/url-name": [
         "libs/utils/regexp/url-name/src/index.ts"
-      ]
+      ],
+      "@dream/utils/use-modal": ["libs/utils/use-modal/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

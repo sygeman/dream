@@ -54,6 +54,8 @@
       "@dream/user": ["libs/user/src/index.ts"],
       "@dream/user-api": ["libs/user-api/src/index.ts"],
       "@dream/utils-old/*": ["libs/utils-old/src/*"],
+      "@dream/utils/date": ["libs/utils/date/src/index.ts"],
+      "@dream/utils/emoji": ["libs/utils/emoji/src/index.ts"],
       "@dream/utils/regexp/url-name": [
         "libs/utils/regexp/url-name/src/index.ts"
       ],

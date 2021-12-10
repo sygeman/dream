@@ -1,5 +1,5 @@
 import React from 'react';
-import { dateDistanceInWordsToNow } from '@dream/utils-old/date';
+import { dateDistanceInWordsToNow } from '@dream/utils/date';
 import { DotsVerticalIcon } from '@heroicons/react/solid';
 
 export const TrackFromList = ({

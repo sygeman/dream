@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { dateDistanceInWordsToNow } from '@dream/utils-old/date';
-import { splitTextToEmojiArray } from '@dream/utils-old/emoji';
+import { dateDistanceInWordsToNow } from '@dream/utils/date';
+import { splitTextToEmojiArray } from '@dream/utils/emoji';
 import { GifContainer } from './gif';
 
 interface IProps {

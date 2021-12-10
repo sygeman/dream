@@ -865,22 +865,38 @@
       },
       "tags": []
     },
-    "utils-old": {
-      "root": "libs/utils-old",
-      "sourceRoot": "libs/utils-old/src",
+    "utils-date": {
+      "root": "libs/utils/date",
+      "sourceRoot": "libs/utils/date/src",
       "projectType": "library",
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
           "options": {
-            "lintFilePatterns": ["libs/utils-old/**/*.{ts,tsx,js,jsx}"]
+            "lintFilePatterns": ["libs/utils/date/**/*.ts"]
+          }
+        }
+      },
+      "tags": []
+    },
+    "utils-emoji": {
+      "root": "libs/utils/emoji",
+      "sourceRoot": "libs/utils/emoji/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/utils/emoji/**/*.ts"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/utils-old"],
+          "outputs": ["coverage/libs/utils/emoji"],
           "options": {
-            "jestConfig": "libs/utils-old/jest.config.js",
+            "jestConfig": "libs/utils/emoji/jest.config.js",
             "passWithNoTests": true
           }
         }

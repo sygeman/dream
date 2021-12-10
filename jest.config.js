@@ -4,7 +4,6 @@ module.exports = {
     '<rootDir>/libs/ui',
     '<rootDir>/apps/pepega-api',
     '<rootDir>/libs/prisma',
-    '<rootDir>/libs/utils-old',
     '<rootDir>/libs/chat',
     '<rootDir>/libs/chat-api',
     '<rootDir>/libs/community',
@@ -40,5 +39,6 @@ module.exports = {
     '<rootDir>/apps/dream',
     '<rootDir>/libs/channel/ui',
     '<rootDir>/libs/utils/regexp/url-name',
+    '<rootDir>/libs/utils/emoji',
   ],
 };

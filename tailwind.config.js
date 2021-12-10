@@ -45,7 +45,6 @@ const colors = {
 };
 
 module.exports = {
-  mode: 'jit',
   darkMode: 'media',
   purge: {
     enabled: process.env.NODE_ENV === 'production',

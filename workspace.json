@@ -865,22 +865,22 @@
       },
       "tags": []
     },
-    "utils": {
-      "root": "libs/utils",
-      "sourceRoot": "libs/utils/src",
+    "utils-old": {
+      "root": "libs/utils-old",
+      "sourceRoot": "libs/utils-old/src",
       "projectType": "library",
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/utils/**/*.{ts,tsx,js,jsx}"]
+            "lintFilePatterns": ["libs/utils-old/**/*.{ts,tsx,js,jsx}"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/utils"],
+          "outputs": ["coverage/libs/utils-old"],
           "options": {
-            "jestConfig": "libs/utils/jest.config.js",
+            "jestConfig": "libs/utils-old/jest.config.js",
             "passWithNoTests": true
           }
         }

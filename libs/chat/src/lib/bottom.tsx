@@ -1,7 +1,7 @@
 import React, { Fragment, useRef, useState } from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
 import { useCreateChannelMessageMutation, useEmojisQuery } from '@dream/types';
-import { convertTextToEmojiCode } from '@dream/utils/emoji';
+import { convertTextToEmojiCode } from '@dream/utils-old/emoji';
 import { Menu, Tab, Transition } from '@headlessui/react';
 import { GifPicker } from './components/gif-picker';
 import { PhotographIcon, EmojiHappyIcon } from '@heroicons/react/solid';

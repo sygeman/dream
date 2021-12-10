@@ -1,5 +1,5 @@
 import React from 'react';
-import { useModal } from '@dream/utils/use-modal';
+import { useModal } from '@dream/utils-old/use-modal';
 import { ModalFull } from '@dream/components/modal-full';
 import { CommunitySettings } from '../community-settings';
 import { CommunitySettingsMenu } from '../community-settings/menu';

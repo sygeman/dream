@@ -5,7 +5,7 @@ import {
   useWaitlistYoutubeHistoryUpdatedSubscription,
 } from '@dream/types';
 import { TrackFromList } from './components/track-from-list';
-import { dateDistanceInWordsToNow } from '@dream/utils/date';
+import { dateDistanceInWordsToNow } from '@dream/utils-old/date';
 import { useCommunityChannel } from '@dream/community';
 
 export const ChannelYoutubeModeHistory = ({ hidden = false }) => {

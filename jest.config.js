@@ -4,7 +4,7 @@ module.exports = {
     '<rootDir>/libs/ui',
     '<rootDir>/apps/pepega-api',
     '<rootDir>/libs/prisma',
-    '<rootDir>/libs/utils',
+    '<rootDir>/libs/utils-old',
     '<rootDir>/libs/chat',
     '<rootDir>/libs/chat-api',
     '<rootDir>/libs/community',

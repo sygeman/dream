@@ -1,5 +1,5 @@
 module.exports = {
-  displayName: 'utils',
+  displayName: 'utils-old',
   preset: '../../jest.preset.js',
   transform: {
     '^.+\\.[tj]sx?$': [
@@ -8,5 +8,5 @@ module.exports = {
     ],
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
-  coverageDirectory: '../../coverage/libs/utils',
+  coverageDirectory: '../../coverage/libs/utils-old',
 };

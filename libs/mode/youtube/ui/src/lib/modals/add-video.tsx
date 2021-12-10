@@ -1,5 +1,5 @@
 import React from 'react';
-import { useModal } from '@dream/utils/use-modal';
+import { useModal } from '@dream/utils-old/use-modal';
 import { Modal } from '@dream/components/modal';
 import { ChannelYoutubeModeAddVideo } from '../add-video';
 

@@ -114,6 +114,7 @@
     "@babel/preset-env": "7.16.4",
     "@babel/preset-react": "7.16.0",
     "@babel/preset-typescript": "7.16.0",
+    "@e-square/nx-ncc": "1.1.0",
     "@graphql-codegen/cli": "2.3.0",
     "@graphql-codegen/fragment-matcher": "3.2.0",
     "@graphql-codegen/introspection": "2.1.0",

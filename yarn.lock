@@ -5,6 +5,20 @@ __metadata:
   version: 5
   cacheKey: 8
 
+"@angular-devkit/core@npm:12.2.14":
+  version: 12.2.14
+  resolution: "@angular-devkit/core@npm:12.2.14"
+  dependencies:
+    ajv: 8.6.2
+    ajv-formats: 2.1.0
+    fast-json-stable-stringify: 2.1.0
+    magic-string: 0.25.7
+    rxjs: 6.6.7
+    source-map: 0.7.3
+  checksum: 28b5d6a0463aaffd6847c0653ed0677778fe3c130d8f61069a0a086649e6db4a5aa8ed2ceba2cd78b506c45cfc6437c443fac44bad8e1486fc3c488ad092d446
+  languageName: node
+  linkType: hard
+
 "@angular-devkit/core@npm:13.0.2":
   version: 13.0.2
   resolution: "@angular-devkit/core@npm:13.0.2"
@@ -34,6 +48,17 @@ __metadata:
     ora: 5.4.1
     rxjs: 6.6.7
   checksum: 8eef5b7237c184291bc80284571017e8d68d5cce83c4c7cd6d9cc950cca97f8280fcc78d5e61c2cadc6da9be8c02211440cf3c30ac687e30f53dcf9d6bbba079
+  languageName: node
+  linkType: hard
+
+"@angular-devkit/schematics@npm:^12.1.1":
+  version: 12.2.14
+  resolution: "@angular-devkit/schematics@npm:12.2.14"
+  dependencies:
+    "@angular-devkit/core": 12.2.14
+    ora: 5.4.1
+    rxjs: 6.6.7
+  checksum: 570418581587b4417224076b6b87c2bc76c1a540873f8816b4d6dabaacb9e54519816d3f72ee00f50e88a463b760d16f2ade8403c6bf8f0a07e1dc5f1e216f9f
   languageName: node
   linkType: hard
 
@@ -2969,6 +2994,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@e-square/nx-ncc@npm:1.1.0":
+  version: 1.1.0
+  resolution: "@e-square/nx-ncc@npm:1.1.0"
+  dependencies:
+    "@angular-devkit/schematics": ^12.1.1
+    "@nrwl/devkit": 13.1.2
+    "@nrwl/workspace": 13.1.2
+    rxjs: ^7.4.0
+    rxjs-for-await: 0.0.2
+  checksum: 1929d9cde4535049cd7bae3059cb920480aaf3406c0cd9b5e43b3f02df0fe5875f51544f424f4b3bbdd050cfad903cf6a06883e5e601a68d31b698b28d0e047a
+  languageName: node
+  linkType: hard
+
 "@emotion/cache@npm:^10.0.27":
   version: 10.0.29
   resolution: "@emotion/cache@npm:10.0.29"
@@ -4983,6 +5021,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@nrwl/cli@npm:13.1.2":
+  version: 13.1.2
+  resolution: "@nrwl/cli@npm:13.1.2"
+  dependencies:
+    "@nrwl/tao": 13.1.2
+    chalk: 4.1.0
+    enquirer: ~2.3.6
+    v8-compile-cache: 2.3.0
+    yargs: 15.4.1
+    yargs-parser: 20.0.0
+  bin:
+    nx: bin/nx.js
+  checksum: 1d322c69b8d3cec1a92b3c0b38927b4a174bd4106c37084337284a17a28259e5986dc6661b0eb61397be54b86f4dd31d89d8ed1a9a40f03bd37dd8e93d978ae4
+  languageName: node
+  linkType: hard
+
 "@nrwl/cli@npm:13.2.4":
   version: 13.2.4
   resolution: "@nrwl/cli@npm:13.2.4"
@@ -5026,6 +5080,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@nrwl/devkit@npm:13.1.2":
+  version: 13.1.2
+  resolution: "@nrwl/devkit@npm:13.1.2"
+  dependencies:
+    "@nrwl/tao": 13.1.2
+    ejs: ^3.1.5
+    ignore: ^5.0.4
+    rxjs: ^6.5.4
+    semver: 7.3.4
+    tslib: ^2.0.0
+  checksum: d81b03a0f42f9ff2ae90fdf3f492453e77446408af4441ae18136f40070225bf2626c11ad51f74da50f9d89d149f6e010d4040381235321c3ed51561477feda9
+  languageName: node
+  linkType: hard
+
 "@nrwl/devkit@npm:13.2.4":
   version: 13.2.4
   resolution: "@nrwl/devkit@npm:13.2.4"
@@ -5057,6 +5125,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@nrwl/jest@npm:13.1.2":
+  version: 13.1.2
+  resolution: "@nrwl/jest@npm:13.1.2"
+  dependencies:
+    "@jest/reporters": 27.2.2
+    "@jest/test-result": 27.2.2
+    "@nrwl/devkit": 13.1.2
+    chalk: 4.1.0
+    identity-obj-proxy: 3.0.0
+    jest-config: 27.2.2
+    jest-resolve: 27.2.2
+    jest-util: 27.2.0
+    rxjs: ^6.5.4
+    tslib: ^2.0.0
+  checksum: 7bfb71d55297c6af9287a595b94ff777cda85466476495bf30271e86f752880d80e20ed5a8611586cef98831847c094aecd9c82281083d51c0e1c8cee7853491
+  languageName: node
+  linkType: hard
+
 "@nrwl/jest@npm:13.2.4":
   version: 13.2.4
   resolution: "@nrwl/jest@npm:13.2.4"
@@ -5073,6 +5159,21 @@ __metadata:
     rxjs: ^6.5.4
     tslib: ^2.3.0
   checksum: 0c33b15fc7c81113bc08645701d47eba949dac7f5dd79a92c2949f293b711b255820098176fdc4fe5fdaf228a3d13baeb5171b66e058f2747d94ce6a24cd95de
+  languageName: node
+  linkType: hard
+
+"@nrwl/linter@npm:13.1.2":
+  version: 13.1.2
+  resolution: "@nrwl/linter@npm:13.1.2"
+  dependencies:
+    "@nrwl/devkit": 13.1.2
+    "@nrwl/jest": 13.1.2
+    eslint: 7.32.0
+    glob: 7.1.4
+    minimatch: 3.0.4
+    tmp: ~0.2.1
+    tslib: ^2.0.0
+  checksum: c38932497822d04b4dc2a41cd1bbe1ca02a134e4b0fb952693216789314a17a556e29dcaeee0110f13288d35dbda71d8ef85fa35fa323effe69f67ae18f80188
   languageName: node
   linkType: hard
 
@@ -5203,6 +5304,27 @@ __metadata:
     ts-loader: ^9.2.6
     tsconfig-paths-webpack-plugin: 3.4.1
   checksum: 8b75511c52d43aa51f75076995d0ef25cc5522048567109a3bf677db5dc61691b9e53d263d607c22a86bc2e1f1345d2741aedd33a6e2d2a11b2c4d0bcac08d3b
+  languageName: node
+  linkType: hard
+
+"@nrwl/tao@npm:13.1.2":
+  version: 13.1.2
+  resolution: "@nrwl/tao@npm:13.1.2"
+  dependencies:
+    chalk: 4.1.0
+    enquirer: ~2.3.6
+    fs-extra: ^9.1.0
+    jsonc-parser: 3.0.0
+    nx: 13.1.2
+    rxjs: ^6.5.4
+    rxjs-for-await: 0.0.2
+    semver: 7.3.4
+    tmp: ~0.2.1
+    tslib: ^2.0.0
+    yargs-parser: 20.0.0
+  bin:
+    tao: index.js
+  checksum: 30be2755d77c8947bbc9ac6a402879604cf4cccfa88c127b9b7f37c85fde0367e3d0487a448611fcd013caf2d72b9c1c7d388932204ff522d165dba1949f234a
   languageName: node
   linkType: hard
 
@@ -5338,6 +5460,41 @@ __metadata:
     webpack-subresource-integrity: ^1.5.2
     worker-plugin: 3.2.0
   checksum: e0de4f43e0857e7e13732f461b3f0f3d301855ad36d0b7445f8f7f0cc2275cf1becc85d85ac814abf213e411e61ff2dfe7f48af5e41f1341e84fff56b7b37cc1
+  languageName: node
+  linkType: hard
+
+"@nrwl/workspace@npm:13.1.2":
+  version: 13.1.2
+  resolution: "@nrwl/workspace@npm:13.1.2"
+  dependencies:
+    "@nrwl/cli": 13.1.2
+    "@nrwl/devkit": 13.1.2
+    "@nrwl/jest": 13.1.2
+    "@nrwl/linter": 13.1.2
+    "@parcel/watcher": 2.0.0-alpha.11
+    chalk: 4.1.0
+    chokidar: ^3.5.1
+    cosmiconfig: ^4.0.0
+    dotenv: ~10.0.0
+    enquirer: ~2.3.6
+    flat: ^5.0.2
+    fs-extra: ^9.1.0
+    glob: 7.1.4
+    ignore: ^5.0.4
+    minimatch: 3.0.4
+    npm-run-all: ^4.1.5
+    npm-run-path: ^4.0.1
+    open: ^7.4.2
+    rxjs: ^6.5.4
+    semver: 7.3.4
+    strip-ansi: 6.0.0
+    tmp: ~0.2.1
+    tslib: ^2.0.0
+    yargs: 15.4.1
+    yargs-parser: 20.0.0
+  peerDependencies:
+    prettier: ^2.3.0
+  checksum: da7aceb339fd9f8c762ac9a9cdc835bb914179cdd9f3d65eae773fac531074c4bc6f8fe6606c81b7afb4ed051838f9ba71992fe4af9189cf5423bbbba35735e8
   languageName: node
   linkType: hard
 
@@ -8991,6 +9148,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"ajv-formats@npm:2.1.0":
+  version: 2.1.0
+  resolution: "ajv-formats@npm:2.1.0"
+  dependencies:
+    ajv: ^8.0.0
+  peerDependencies:
+    ajv: ^8.0.0
+  peerDependenciesMeta:
+    ajv:
+      optional: true
+  checksum: fae7947f4118c3db374587d08c36c4e6584575dcb8281610feef64f25f59b6d918e253007fb30c174bbab320cb13a9161e44a9da3710cb0a93a8db47462c3df1
+  languageName: node
+  linkType: hard
+
 "ajv-formats@npm:2.1.1":
   version: 2.1.1
   resolution: "ajv-formats@npm:2.1.1"
@@ -9011,6 +9182,18 @@ __metadata:
   peerDependencies:
     ajv: ^6.9.1
   checksum: 7dc5e5931677a680589050f79dcbe1fefbb8fea38a955af03724229139175b433c63c68f7ae5f86cf8f65d55eb7c25f75a046723e2e58296707617ca690feae9
+  languageName: node
+  linkType: hard
+
+"ajv@npm:8.6.2":
+  version: 8.6.2
+  resolution: "ajv@npm:8.6.2"
+  dependencies:
+    fast-deep-equal: ^3.1.1
+    json-schema-traverse: ^1.0.0
+    require-from-string: ^2.0.2
+    uri-js: ^4.2.2
+  checksum: b86d6cb86c69abbd8ce71ab7d4ff272660bf6d34fa9fbe770f73e54da59d531b2546692e36e2b35bbcfb11d20db774b4c09189671335185b8c799d65194e5169
   languageName: node
   linkType: hard
 
@@ -13250,6 +13433,7 @@ __metadata:
     "@babel/preset-env": 7.16.4
     "@babel/preset-react": 7.16.0
     "@babel/preset-typescript": 7.16.0
+    "@e-square/nx-ncc": 1.1.0
     "@fortawesome/fontawesome-svg-core": 1.2.36
     "@fortawesome/free-brands-svg-icons": 5.15.4
     "@fortawesome/free-regular-svg-icons": 5.15.4
@@ -21136,6 +21320,17 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
+"nx@npm:13.1.2":
+  version: 13.1.2
+  resolution: "nx@npm:13.1.2"
+  dependencies:
+    "@nrwl/cli": "*"
+  bin:
+    nx: bin/nx.js
+  checksum: 83909833243f045cdb1a621b903076dc254b0dfd9e4f25145fe195b056d3d306fb50cccc097f936e70cda645a5d71cf26c51eb2bfd8d235e13840e9c9056a450
+  languageName: node
+  linkType: hard
+
 "nx@npm:13.2.4":
   version: 13.2.4
   resolution: "nx@npm:13.2.4"
@@ -24730,7 +24925,7 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"rxjs@npm:7.4.0":
+"rxjs@npm:7.4.0, rxjs@npm:^7.4.0":
   version: 7.4.0
   resolution: "rxjs@npm:7.4.0"
   dependencies:

@@ -6,7 +6,7 @@ COPY prisma ./prisma
 
 FROM base as dependencies
 RUN yarn --production
-# RUN yarn add apollo-server-express
+RUN yarn add apollo-server-express
 
 FROM dependencies as prisma
 RUN yarn add prisma --dev
@@ -16,4 +16,4 @@ FROM prisma as release
 ENV PORT=3333
 EXPOSE ${PORT}
 
-CMD node ./index.js
+CMD node ./main.js

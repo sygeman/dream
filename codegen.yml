@@ -1,5 +1,5 @@
 overwrite: true
-schema: 'apps/pepega-api/schema.gql'
+schema: 'schema.gql'
 documents: 'libs/**/*.graphql'
 generates:
   libs/types/src/index.tsx:

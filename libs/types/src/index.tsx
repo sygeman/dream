@@ -1,6 +1,7 @@
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 export type Maybe<T> = T | null;
+export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
@@ -190,8 +191,8 @@ export type MutationUpdateCommunityArgs = {
 
 
 export type MutationUpdateConnectionStatusArgs = {
-  channel?: Maybe<Scalars['String']>;
-  community?: Maybe<Scalars['String']>;
+  channel?: InputMaybe<Scalars['String']>;
+  community?: InputMaybe<Scalars['String']>;
 };
 
 
@@ -310,7 +311,7 @@ export type QueryTwitchStreamArgs = {
 
 
 export type QueryUserArgs = {
-  id?: Maybe<Scalars['ID']>;
+  id?: InputMaybe<Scalars['ID']>;
 };
 
 
@@ -523,11 +524,11 @@ export type TwitchStream = {
 export type UpdateChannelInput = {
   channelId: Scalars['ID'];
   communityId: Scalars['ID'];
-  gifAllowed?: Maybe<Scalars['Boolean']>;
-  name?: Maybe<Scalars['String']>;
-  nsfw?: Maybe<Scalars['Boolean']>;
-  slowmode?: Maybe<Scalars['Int']>;
-  title?: Maybe<Scalars['String']>;
+  gifAllowed?: InputMaybe<Scalars['Boolean']>;
+  name?: InputMaybe<Scalars['String']>;
+  nsfw?: InputMaybe<Scalars['Boolean']>;
+  slowmode?: InputMaybe<Scalars['Int']>;
+  title?: InputMaybe<Scalars['String']>;
 };
 
 export type UpdateCommunityInput = {
@@ -659,57 +660,6 @@ export type YoutubeModeQueueItemDataAuthor = {
   name: Scalars['String'];
 };
 
-export type ChannelMessagesQueryVariables = Exact<{
-  channelId: Scalars['ID'];
-}>;
-
-
-export type ChannelMessagesQuery = { __typename?: 'Query', channelMessages: Array<{ __typename?: 'ChannelMessage', id: string, content: string, createdAt: string, tenorGif?: { __typename?: 'TenorGif', id: string, height: number, width: number, preview: string, video: string } | null | undefined, user: { __typename?: 'User', id: string, name?: string | null | undefined, avatar?: string | null | undefined } }> };
-
-export type CreateChannelMessageMutationVariables = Exact<{
-  input: ChannelMessageCreateInput;
-}>;
-
-
-export type CreateChannelMessageMutation = { __typename?: 'Mutation', createChannelMessage: boolean };
-
-export type ChannelMessageCreatedSubscriptionVariables = Exact<{
-  channelId: Scalars['ID'];
-}>;
-
-
-export type ChannelMessageCreatedSubscription = { __typename?: 'Subscription', channelMessageCreated: { __typename?: 'ChannelMessage', id: string, content: string, createdAt: string, tenorGif?: { __typename?: 'TenorGif', id: string, height: number, width: number, preview: string, video: string } | null | undefined, user: { __typename?: 'User', id: string, name?: string | null | undefined, avatar?: string | null | undefined } } };
-
-export type ChannelMessageDeletedSubscriptionVariables = Exact<{
-  channelId: Scalars['ID'];
-}>;
-
-
-export type ChannelMessageDeletedSubscription = { __typename?: 'Subscription', channelMessageDeleted: { __typename?: 'ChannelMessage', id: string, content: string, createdAt: string, tenorGif?: { __typename?: 'TenorGif', id: string, height: number, width: number, preview: string, video: string } | null | undefined, user: { __typename?: 'User', id: string, name?: string | null | undefined, avatar?: string | null | undefined } } };
-
-export type ChannelMessageFieldsFragment = { __typename?: 'ChannelMessage', id: string, content: string, createdAt: string, tenorGif?: { __typename?: 'TenorGif', id: string, height: number, width: number, preview: string, video: string } | null | undefined, user: { __typename?: 'User', id: string, name?: string | null | undefined, avatar?: string | null | undefined } };
-
-export type MakeTwitchStreamModeCurrentMutationVariables = Exact<{
-  channelId: Scalars['String'];
-}>;
-
-
-export type MakeTwitchStreamModeCurrentMutation = { __typename?: 'Mutation', makeTwitchStreamModeCurrent: boolean };
-
-export type MakeSpotifyModeCurrentMutationVariables = Exact<{
-  channelId: Scalars['String'];
-}>;
-
-
-export type MakeSpotifyModeCurrentMutation = { __typename?: 'Mutation', makeSpotifyModeCurrent: boolean };
-
-export type MakeWaitlistYoutubeModeCurrentMutationVariables = Exact<{
-  channelId: Scalars['String'];
-}>;
-
-
-export type MakeWaitlistYoutubeModeCurrentMutation = { __typename?: 'Mutation', makeWaitlistYoutubeModeCurrent: boolean };
-
 export type ChannelQueryVariables = Exact<{
   name: Scalars['String'];
   communityId: Scalars['String'];
@@ -754,6 +704,57 @@ export type DeleteChannelMutationVariables = Exact<{
 export type DeleteChannelMutation = { __typename?: 'Mutation', deleteChannel: { __typename?: 'Channel', id: string, name: string, title: string, mode: ChannelMode, gifAllowed: boolean, nsfw: boolean, slowmode: number, state?: string | null | undefined, avatar?: string | null | undefined, onlineCount: number } };
 
 export type ChannelFieldsFragment = { __typename?: 'Channel', id: string, name: string, title: string, mode: ChannelMode, gifAllowed: boolean, nsfw: boolean, slowmode: number, state?: string | null | undefined, avatar?: string | null | undefined, onlineCount: number };
+
+export type MakeTwitchStreamModeCurrentMutationVariables = Exact<{
+  channelId: Scalars['String'];
+}>;
+
+
+export type MakeTwitchStreamModeCurrentMutation = { __typename?: 'Mutation', makeTwitchStreamModeCurrent: boolean };
+
+export type MakeSpotifyModeCurrentMutationVariables = Exact<{
+  channelId: Scalars['String'];
+}>;
+
+
+export type MakeSpotifyModeCurrentMutation = { __typename?: 'Mutation', makeSpotifyModeCurrent: boolean };
+
+export type MakeWaitlistYoutubeModeCurrentMutationVariables = Exact<{
+  channelId: Scalars['String'];
+}>;
+
+
+export type MakeWaitlistYoutubeModeCurrentMutation = { __typename?: 'Mutation', makeWaitlistYoutubeModeCurrent: boolean };
+
+export type ChannelMessagesQueryVariables = Exact<{
+  channelId: Scalars['ID'];
+}>;
+
+
+export type ChannelMessagesQuery = { __typename?: 'Query', channelMessages: Array<{ __typename?: 'ChannelMessage', id: string, content: string, createdAt: string, tenorGif?: { __typename?: 'TenorGif', id: string, height: number, width: number, preview: string, video: string } | null | undefined, user: { __typename?: 'User', id: string, name?: string | null | undefined, avatar?: string | null | undefined } }> };
+
+export type CreateChannelMessageMutationVariables = Exact<{
+  input: ChannelMessageCreateInput;
+}>;
+
+
+export type CreateChannelMessageMutation = { __typename?: 'Mutation', createChannelMessage: boolean };
+
+export type ChannelMessageCreatedSubscriptionVariables = Exact<{
+  channelId: Scalars['ID'];
+}>;
+
+
+export type ChannelMessageCreatedSubscription = { __typename?: 'Subscription', channelMessageCreated: { __typename?: 'ChannelMessage', id: string, content: string, createdAt: string, tenorGif?: { __typename?: 'TenorGif', id: string, height: number, width: number, preview: string, video: string } | null | undefined, user: { __typename?: 'User', id: string, name?: string | null | undefined, avatar?: string | null | undefined } } };
+
+export type ChannelMessageDeletedSubscriptionVariables = Exact<{
+  channelId: Scalars['ID'];
+}>;
+
+
+export type ChannelMessageDeletedSubscription = { __typename?: 'Subscription', channelMessageDeleted: { __typename?: 'ChannelMessage', id: string, content: string, createdAt: string, tenorGif?: { __typename?: 'TenorGif', id: string, height: number, width: number, preview: string, video: string } | null | undefined, user: { __typename?: 'User', id: string, name?: string | null | undefined, avatar?: string | null | undefined } } };
+
+export type ChannelMessageFieldsFragment = { __typename?: 'ChannelMessage', id: string, content: string, createdAt: string, tenorGif?: { __typename?: 'TenorGif', id: string, height: number, width: number, preview: string, video: string } | null | undefined, user: { __typename?: 'User', id: string, name?: string | null | undefined, avatar?: string | null | undefined } };
 
 export type CommunityQueryVariables = Exact<{
   name: Scalars['String'];
@@ -973,8 +974,8 @@ export type LogoutMutationVariables = Exact<{ [key: string]: never; }>;
 export type LogoutMutation = { __typename?: 'Mutation', logout: boolean };
 
 export type UpdateConnectionStatusMutationVariables = Exact<{
-  channel?: Maybe<Scalars['String']>;
-  community?: Maybe<Scalars['String']>;
+  channel?: InputMaybe<Scalars['String']>;
+  community?: InputMaybe<Scalars['String']>;
 }>;
 
 
@@ -987,6 +988,20 @@ export type SetUserLocaleMutationVariables = Exact<{
 
 export type SetUserLocaleMutation = { __typename?: 'Mutation', setUserLocale: Locale };
 
+export const ChannelFieldsFragmentDoc = gql`
+    fragment ChannelFields on Channel {
+  id
+  name
+  title
+  mode
+  gifAllowed
+  nsfw
+  slowmode
+  state
+  avatar
+  onlineCount
+}
+    `;
 export const ChannelMessageFieldsFragmentDoc = gql`
     fragment ChannelMessageFields on ChannelMessage {
   id
@@ -1004,20 +1019,6 @@ export const ChannelMessageFieldsFragmentDoc = gql`
     name
     avatar
   }
-}
-    `;
-export const ChannelFieldsFragmentDoc = gql`
-    fragment ChannelFields on Channel {
-  id
-  name
-  title
-  mode
-  gifAllowed
-  nsfw
-  slowmode
-  state
-  avatar
-  onlineCount
 }
     `;
 export const CommunityFieldsFragmentDoc = gql`
@@ -1042,225 +1043,6 @@ export const TwitchStreamFieldsFragmentDoc = gql`
   channelKey
 }
     `;
-export const ChannelMessagesDocument = gql`
-    query ChannelMessages($channelId: ID!) {
-  channelMessages(channelId: $channelId) {
-    ...ChannelMessageFields
-  }
-}
-    ${ChannelMessageFieldsFragmentDoc}`;
-
-/**
- * __useChannelMessagesQuery__
- *
- * To run a query within a React component, call `useChannelMessagesQuery` and pass it any options that fit your needs.
- * When your component renders, `useChannelMessagesQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useChannelMessagesQuery({
- *   variables: {
- *      channelId: // value for 'channelId'
- *   },
- * });
- */
-export function useChannelMessagesQuery(baseOptions: Apollo.QueryHookOptions<ChannelMessagesQuery, ChannelMessagesQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<ChannelMessagesQuery, ChannelMessagesQueryVariables>(ChannelMessagesDocument, options);
-      }
-export function useChannelMessagesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ChannelMessagesQuery, ChannelMessagesQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<ChannelMessagesQuery, ChannelMessagesQueryVariables>(ChannelMessagesDocument, options);
-        }
-export type ChannelMessagesQueryHookResult = ReturnType<typeof useChannelMessagesQuery>;
-export type ChannelMessagesLazyQueryHookResult = ReturnType<typeof useChannelMessagesLazyQuery>;
-export type ChannelMessagesQueryResult = Apollo.QueryResult<ChannelMessagesQuery, ChannelMessagesQueryVariables>;
-export const CreateChannelMessageDocument = gql`
-    mutation createChannelMessage($input: ChannelMessageCreateInput!) {
-  createChannelMessage(input: $input)
-}
-    `;
-export type CreateChannelMessageMutationFn = Apollo.MutationFunction<CreateChannelMessageMutation, CreateChannelMessageMutationVariables>;
-
-/**
- * __useCreateChannelMessageMutation__
- *
- * To run a mutation, you first call `useCreateChannelMessageMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useCreateChannelMessageMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [createChannelMessageMutation, { data, loading, error }] = useCreateChannelMessageMutation({
- *   variables: {
- *      input: // value for 'input'
- *   },
- * });
- */
-export function useCreateChannelMessageMutation(baseOptions?: Apollo.MutationHookOptions<CreateChannelMessageMutation, CreateChannelMessageMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<CreateChannelMessageMutation, CreateChannelMessageMutationVariables>(CreateChannelMessageDocument, options);
-      }
-export type CreateChannelMessageMutationHookResult = ReturnType<typeof useCreateChannelMessageMutation>;
-export type CreateChannelMessageMutationResult = Apollo.MutationResult<CreateChannelMessageMutation>;
-export type CreateChannelMessageMutationOptions = Apollo.BaseMutationOptions<CreateChannelMessageMutation, CreateChannelMessageMutationVariables>;
-export const ChannelMessageCreatedDocument = gql`
-    subscription ChannelMessageCreated($channelId: ID!) {
-  channelMessageCreated(channelId: $channelId) {
-    ...ChannelMessageFields
-  }
-}
-    ${ChannelMessageFieldsFragmentDoc}`;
-
-/**
- * __useChannelMessageCreatedSubscription__
- *
- * To run a query within a React component, call `useChannelMessageCreatedSubscription` and pass it any options that fit your needs.
- * When your component renders, `useChannelMessageCreatedSubscription` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the subscription, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useChannelMessageCreatedSubscription({
- *   variables: {
- *      channelId: // value for 'channelId'
- *   },
- * });
- */
-export function useChannelMessageCreatedSubscription(baseOptions: Apollo.SubscriptionHookOptions<ChannelMessageCreatedSubscription, ChannelMessageCreatedSubscriptionVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useSubscription<ChannelMessageCreatedSubscription, ChannelMessageCreatedSubscriptionVariables>(ChannelMessageCreatedDocument, options);
-      }
-export type ChannelMessageCreatedSubscriptionHookResult = ReturnType<typeof useChannelMessageCreatedSubscription>;
-export type ChannelMessageCreatedSubscriptionResult = Apollo.SubscriptionResult<ChannelMessageCreatedSubscription>;
-export const ChannelMessageDeletedDocument = gql`
-    subscription ChannelMessageDeleted($channelId: ID!) {
-  channelMessageDeleted(channelId: $channelId) {
-    ...ChannelMessageFields
-  }
-}
-    ${ChannelMessageFieldsFragmentDoc}`;
-
-/**
- * __useChannelMessageDeletedSubscription__
- *
- * To run a query within a React component, call `useChannelMessageDeletedSubscription` and pass it any options that fit your needs.
- * When your component renders, `useChannelMessageDeletedSubscription` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the subscription, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useChannelMessageDeletedSubscription({
- *   variables: {
- *      channelId: // value for 'channelId'
- *   },
- * });
- */
-export function useChannelMessageDeletedSubscription(baseOptions: Apollo.SubscriptionHookOptions<ChannelMessageDeletedSubscription, ChannelMessageDeletedSubscriptionVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useSubscription<ChannelMessageDeletedSubscription, ChannelMessageDeletedSubscriptionVariables>(ChannelMessageDeletedDocument, options);
-      }
-export type ChannelMessageDeletedSubscriptionHookResult = ReturnType<typeof useChannelMessageDeletedSubscription>;
-export type ChannelMessageDeletedSubscriptionResult = Apollo.SubscriptionResult<ChannelMessageDeletedSubscription>;
-export const MakeTwitchStreamModeCurrentDocument = gql`
-    mutation makeTwitchStreamModeCurrent($channelId: String!) {
-  makeTwitchStreamModeCurrent(channelId: $channelId)
-}
-    `;
-export type MakeTwitchStreamModeCurrentMutationFn = Apollo.MutationFunction<MakeTwitchStreamModeCurrentMutation, MakeTwitchStreamModeCurrentMutationVariables>;
-
-/**
- * __useMakeTwitchStreamModeCurrentMutation__
- *
- * To run a mutation, you first call `useMakeTwitchStreamModeCurrentMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useMakeTwitchStreamModeCurrentMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [makeTwitchStreamModeCurrentMutation, { data, loading, error }] = useMakeTwitchStreamModeCurrentMutation({
- *   variables: {
- *      channelId: // value for 'channelId'
- *   },
- * });
- */
-export function useMakeTwitchStreamModeCurrentMutation(baseOptions?: Apollo.MutationHookOptions<MakeTwitchStreamModeCurrentMutation, MakeTwitchStreamModeCurrentMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<MakeTwitchStreamModeCurrentMutation, MakeTwitchStreamModeCurrentMutationVariables>(MakeTwitchStreamModeCurrentDocument, options);
-      }
-export type MakeTwitchStreamModeCurrentMutationHookResult = ReturnType<typeof useMakeTwitchStreamModeCurrentMutation>;
-export type MakeTwitchStreamModeCurrentMutationResult = Apollo.MutationResult<MakeTwitchStreamModeCurrentMutation>;
-export type MakeTwitchStreamModeCurrentMutationOptions = Apollo.BaseMutationOptions<MakeTwitchStreamModeCurrentMutation, MakeTwitchStreamModeCurrentMutationVariables>;
-export const MakeSpotifyModeCurrentDocument = gql`
-    mutation makeSpotifyModeCurrent($channelId: String!) {
-  makeSpotifyModeCurrent(channelId: $channelId)
-}
-    `;
-export type MakeSpotifyModeCurrentMutationFn = Apollo.MutationFunction<MakeSpotifyModeCurrentMutation, MakeSpotifyModeCurrentMutationVariables>;
-
-/**
- * __useMakeSpotifyModeCurrentMutation__
- *
- * To run a mutation, you first call `useMakeSpotifyModeCurrentMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useMakeSpotifyModeCurrentMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [makeSpotifyModeCurrentMutation, { data, loading, error }] = useMakeSpotifyModeCurrentMutation({
- *   variables: {
- *      channelId: // value for 'channelId'
- *   },
- * });
- */
-export function useMakeSpotifyModeCurrentMutation(baseOptions?: Apollo.MutationHookOptions<MakeSpotifyModeCurrentMutation, MakeSpotifyModeCurrentMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<MakeSpotifyModeCurrentMutation, MakeSpotifyModeCurrentMutationVariables>(MakeSpotifyModeCurrentDocument, options);
-      }
-export type MakeSpotifyModeCurrentMutationHookResult = ReturnType<typeof useMakeSpotifyModeCurrentMutation>;
-export type MakeSpotifyModeCurrentMutationResult = Apollo.MutationResult<MakeSpotifyModeCurrentMutation>;
-export type MakeSpotifyModeCurrentMutationOptions = Apollo.BaseMutationOptions<MakeSpotifyModeCurrentMutation, MakeSpotifyModeCurrentMutationVariables>;
-export const MakeWaitlistYoutubeModeCurrentDocument = gql`
-    mutation makeWaitlistYoutubeModeCurrent($channelId: String!) {
-  makeWaitlistYoutubeModeCurrent(channelId: $channelId)
-}
-    `;
-export type MakeWaitlistYoutubeModeCurrentMutationFn = Apollo.MutationFunction<MakeWaitlistYoutubeModeCurrentMutation, MakeWaitlistYoutubeModeCurrentMutationVariables>;
-
-/**
- * __useMakeWaitlistYoutubeModeCurrentMutation__
- *
- * To run a mutation, you first call `useMakeWaitlistYoutubeModeCurrentMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useMakeWaitlistYoutubeModeCurrentMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [makeWaitlistYoutubeModeCurrentMutation, { data, loading, error }] = useMakeWaitlistYoutubeModeCurrentMutation({
- *   variables: {
- *      channelId: // value for 'channelId'
- *   },
- * });
- */
-export function useMakeWaitlistYoutubeModeCurrentMutation(baseOptions?: Apollo.MutationHookOptions<MakeWaitlistYoutubeModeCurrentMutation, MakeWaitlistYoutubeModeCurrentMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<MakeWaitlistYoutubeModeCurrentMutation, MakeWaitlistYoutubeModeCurrentMutationVariables>(MakeWaitlistYoutubeModeCurrentDocument, options);
-      }
-export type MakeWaitlistYoutubeModeCurrentMutationHookResult = ReturnType<typeof useMakeWaitlistYoutubeModeCurrentMutation>;
-export type MakeWaitlistYoutubeModeCurrentMutationResult = Apollo.MutationResult<MakeWaitlistYoutubeModeCurrentMutation>;
-export type MakeWaitlistYoutubeModeCurrentMutationOptions = Apollo.BaseMutationOptions<MakeWaitlistYoutubeModeCurrentMutation, MakeWaitlistYoutubeModeCurrentMutationVariables>;
 export const ChannelDocument = gql`
     query channel($name: String!, $communityId: String!) {
   channel(name: $name, communityId: $communityId) {
@@ -1468,6 +1250,225 @@ export function useDeleteChannelMutation(baseOptions?: Apollo.MutationHookOption
 export type DeleteChannelMutationHookResult = ReturnType<typeof useDeleteChannelMutation>;
 export type DeleteChannelMutationResult = Apollo.MutationResult<DeleteChannelMutation>;
 export type DeleteChannelMutationOptions = Apollo.BaseMutationOptions<DeleteChannelMutation, DeleteChannelMutationVariables>;
+export const MakeTwitchStreamModeCurrentDocument = gql`
+    mutation makeTwitchStreamModeCurrent($channelId: String!) {
+  makeTwitchStreamModeCurrent(channelId: $channelId)
+}
+    `;
+export type MakeTwitchStreamModeCurrentMutationFn = Apollo.MutationFunction<MakeTwitchStreamModeCurrentMutation, MakeTwitchStreamModeCurrentMutationVariables>;
+
+/**
+ * __useMakeTwitchStreamModeCurrentMutation__
+ *
+ * To run a mutation, you first call `useMakeTwitchStreamModeCurrentMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useMakeTwitchStreamModeCurrentMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [makeTwitchStreamModeCurrentMutation, { data, loading, error }] = useMakeTwitchStreamModeCurrentMutation({
+ *   variables: {
+ *      channelId: // value for 'channelId'
+ *   },
+ * });
+ */
+export function useMakeTwitchStreamModeCurrentMutation(baseOptions?: Apollo.MutationHookOptions<MakeTwitchStreamModeCurrentMutation, MakeTwitchStreamModeCurrentMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<MakeTwitchStreamModeCurrentMutation, MakeTwitchStreamModeCurrentMutationVariables>(MakeTwitchStreamModeCurrentDocument, options);
+      }
+export type MakeTwitchStreamModeCurrentMutationHookResult = ReturnType<typeof useMakeTwitchStreamModeCurrentMutation>;
+export type MakeTwitchStreamModeCurrentMutationResult = Apollo.MutationResult<MakeTwitchStreamModeCurrentMutation>;
+export type MakeTwitchStreamModeCurrentMutationOptions = Apollo.BaseMutationOptions<MakeTwitchStreamModeCurrentMutation, MakeTwitchStreamModeCurrentMutationVariables>;
+export const MakeSpotifyModeCurrentDocument = gql`
+    mutation makeSpotifyModeCurrent($channelId: String!) {
+  makeSpotifyModeCurrent(channelId: $channelId)
+}
+    `;
+export type MakeSpotifyModeCurrentMutationFn = Apollo.MutationFunction<MakeSpotifyModeCurrentMutation, MakeSpotifyModeCurrentMutationVariables>;
+
+/**
+ * __useMakeSpotifyModeCurrentMutation__
+ *
+ * To run a mutation, you first call `useMakeSpotifyModeCurrentMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useMakeSpotifyModeCurrentMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [makeSpotifyModeCurrentMutation, { data, loading, error }] = useMakeSpotifyModeCurrentMutation({
+ *   variables: {
+ *      channelId: // value for 'channelId'
+ *   },
+ * });
+ */
+export function useMakeSpotifyModeCurrentMutation(baseOptions?: Apollo.MutationHookOptions<MakeSpotifyModeCurrentMutation, MakeSpotifyModeCurrentMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<MakeSpotifyModeCurrentMutation, MakeSpotifyModeCurrentMutationVariables>(MakeSpotifyModeCurrentDocument, options);
+      }
+export type MakeSpotifyModeCurrentMutationHookResult = ReturnType<typeof useMakeSpotifyModeCurrentMutation>;
+export type MakeSpotifyModeCurrentMutationResult = Apollo.MutationResult<MakeSpotifyModeCurrentMutation>;
+export type MakeSpotifyModeCurrentMutationOptions = Apollo.BaseMutationOptions<MakeSpotifyModeCurrentMutation, MakeSpotifyModeCurrentMutationVariables>;
+export const MakeWaitlistYoutubeModeCurrentDocument = gql`
+    mutation makeWaitlistYoutubeModeCurrent($channelId: String!) {
+  makeWaitlistYoutubeModeCurrent(channelId: $channelId)
+}
+    `;
+export type MakeWaitlistYoutubeModeCurrentMutationFn = Apollo.MutationFunction<MakeWaitlistYoutubeModeCurrentMutation, MakeWaitlistYoutubeModeCurrentMutationVariables>;
+
+/**
+ * __useMakeWaitlistYoutubeModeCurrentMutation__
+ *
+ * To run a mutation, you first call `useMakeWaitlistYoutubeModeCurrentMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useMakeWaitlistYoutubeModeCurrentMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [makeWaitlistYoutubeModeCurrentMutation, { data, loading, error }] = useMakeWaitlistYoutubeModeCurrentMutation({
+ *   variables: {
+ *      channelId: // value for 'channelId'
+ *   },
+ * });
+ */
+export function useMakeWaitlistYoutubeModeCurrentMutation(baseOptions?: Apollo.MutationHookOptions<MakeWaitlistYoutubeModeCurrentMutation, MakeWaitlistYoutubeModeCurrentMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<MakeWaitlistYoutubeModeCurrentMutation, MakeWaitlistYoutubeModeCurrentMutationVariables>(MakeWaitlistYoutubeModeCurrentDocument, options);
+      }
+export type MakeWaitlistYoutubeModeCurrentMutationHookResult = ReturnType<typeof useMakeWaitlistYoutubeModeCurrentMutation>;
+export type MakeWaitlistYoutubeModeCurrentMutationResult = Apollo.MutationResult<MakeWaitlistYoutubeModeCurrentMutation>;
+export type MakeWaitlistYoutubeModeCurrentMutationOptions = Apollo.BaseMutationOptions<MakeWaitlistYoutubeModeCurrentMutation, MakeWaitlistYoutubeModeCurrentMutationVariables>;
+export const ChannelMessagesDocument = gql`
+    query ChannelMessages($channelId: ID!) {
+  channelMessages(channelId: $channelId) {
+    ...ChannelMessageFields
+  }
+}
+    ${ChannelMessageFieldsFragmentDoc}`;
+
+/**
+ * __useChannelMessagesQuery__
+ *
+ * To run a query within a React component, call `useChannelMessagesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useChannelMessagesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useChannelMessagesQuery({
+ *   variables: {
+ *      channelId: // value for 'channelId'
+ *   },
+ * });
+ */
+export function useChannelMessagesQuery(baseOptions: Apollo.QueryHookOptions<ChannelMessagesQuery, ChannelMessagesQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<ChannelMessagesQuery, ChannelMessagesQueryVariables>(ChannelMessagesDocument, options);
+      }
+export function useChannelMessagesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ChannelMessagesQuery, ChannelMessagesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<ChannelMessagesQuery, ChannelMessagesQueryVariables>(ChannelMessagesDocument, options);
+        }
+export type ChannelMessagesQueryHookResult = ReturnType<typeof useChannelMessagesQuery>;
+export type ChannelMessagesLazyQueryHookResult = ReturnType<typeof useChannelMessagesLazyQuery>;
+export type ChannelMessagesQueryResult = Apollo.QueryResult<ChannelMessagesQuery, ChannelMessagesQueryVariables>;
+export const CreateChannelMessageDocument = gql`
+    mutation createChannelMessage($input: ChannelMessageCreateInput!) {
+  createChannelMessage(input: $input)
+}
+    `;
+export type CreateChannelMessageMutationFn = Apollo.MutationFunction<CreateChannelMessageMutation, CreateChannelMessageMutationVariables>;
+
+/**
+ * __useCreateChannelMessageMutation__
+ *
+ * To run a mutation, you first call `useCreateChannelMessageMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateChannelMessageMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createChannelMessageMutation, { data, loading, error }] = useCreateChannelMessageMutation({
+ *   variables: {
+ *      input: // value for 'input'
+ *   },
+ * });
+ */
+export function useCreateChannelMessageMutation(baseOptions?: Apollo.MutationHookOptions<CreateChannelMessageMutation, CreateChannelMessageMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateChannelMessageMutation, CreateChannelMessageMutationVariables>(CreateChannelMessageDocument, options);
+      }
+export type CreateChannelMessageMutationHookResult = ReturnType<typeof useCreateChannelMessageMutation>;
+export type CreateChannelMessageMutationResult = Apollo.MutationResult<CreateChannelMessageMutation>;
+export type CreateChannelMessageMutationOptions = Apollo.BaseMutationOptions<CreateChannelMessageMutation, CreateChannelMessageMutationVariables>;
+export const ChannelMessageCreatedDocument = gql`
+    subscription ChannelMessageCreated($channelId: ID!) {
+  channelMessageCreated(channelId: $channelId) {
+    ...ChannelMessageFields
+  }
+}
+    ${ChannelMessageFieldsFragmentDoc}`;
+
+/**
+ * __useChannelMessageCreatedSubscription__
+ *
+ * To run a query within a React component, call `useChannelMessageCreatedSubscription` and pass it any options that fit your needs.
+ * When your component renders, `useChannelMessageCreatedSubscription` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the subscription, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useChannelMessageCreatedSubscription({
+ *   variables: {
+ *      channelId: // value for 'channelId'
+ *   },
+ * });
+ */
+export function useChannelMessageCreatedSubscription(baseOptions: Apollo.SubscriptionHookOptions<ChannelMessageCreatedSubscription, ChannelMessageCreatedSubscriptionVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useSubscription<ChannelMessageCreatedSubscription, ChannelMessageCreatedSubscriptionVariables>(ChannelMessageCreatedDocument, options);
+      }
+export type ChannelMessageCreatedSubscriptionHookResult = ReturnType<typeof useChannelMessageCreatedSubscription>;
+export type ChannelMessageCreatedSubscriptionResult = Apollo.SubscriptionResult<ChannelMessageCreatedSubscription>;
+export const ChannelMessageDeletedDocument = gql`
+    subscription ChannelMessageDeleted($channelId: ID!) {
+  channelMessageDeleted(channelId: $channelId) {
+    ...ChannelMessageFields
+  }
+}
+    ${ChannelMessageFieldsFragmentDoc}`;
+
+/**
+ * __useChannelMessageDeletedSubscription__
+ *
+ * To run a query within a React component, call `useChannelMessageDeletedSubscription` and pass it any options that fit your needs.
+ * When your component renders, `useChannelMessageDeletedSubscription` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the subscription, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useChannelMessageDeletedSubscription({
+ *   variables: {
+ *      channelId: // value for 'channelId'
+ *   },
+ * });
+ */
+export function useChannelMessageDeletedSubscription(baseOptions: Apollo.SubscriptionHookOptions<ChannelMessageDeletedSubscription, ChannelMessageDeletedSubscriptionVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useSubscription<ChannelMessageDeletedSubscription, ChannelMessageDeletedSubscriptionVariables>(ChannelMessageDeletedDocument, options);
+      }
+export type ChannelMessageDeletedSubscriptionHookResult = ReturnType<typeof useChannelMessageDeletedSubscription>;
+export type ChannelMessageDeletedSubscriptionResult = Apollo.SubscriptionResult<ChannelMessageDeletedSubscription>;
 export const CommunityDocument = gql`
     query community($name: String!) {
   community(name: $name) {

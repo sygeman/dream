@@ -3,6 +3,7 @@ WORKDIR /app
 
 COPY dist/apps/pepega-api .
 COPY prisma ./prisma
+COPY schema.gql ./schema.gql
 
 FROM base as dependencies
 RUN yarn --production

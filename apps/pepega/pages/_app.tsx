@@ -34,7 +34,7 @@ const Inner = ({ Component, pageProps, locale }) => {
   return (
     <IntlProvider locale={locale} messages={lang[locale]}>
       <Head>
-        <title>PepegaCom</title>
+        <title>Pepega</title>
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link
           href="https://fonts.googleapis.com/css?family=Orbitron:500|Roboto:300,400,500&subset=cyrillic-ext"

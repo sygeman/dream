@@ -40,5 +40,6 @@ module.exports = {
     '<rootDir>/libs/channel/ui',
     '<rootDir>/libs/utils/regexp/url-name',
     '<rootDir>/libs/utils/emoji',
+    '<rootDir>/libs/emoji/api',
   ],
 };

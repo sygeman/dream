@@ -34,6 +34,7 @@
       ],
       "@dream/connection-api": ["libs/connection-api/src/index.ts"],
       "@dream/containers/*": ["libs/containers/src/*"],
+      "@dream/emoji/api": ["libs/emoji/api/src/index.ts"],
       "@dream/external-api/spotify": ["libs/external-api/spotify/src/index.ts"],
       "@dream/external-api/tenor": ["libs/external-api/tenor/src/index.ts"],
       "@dream/external-api/youtube": ["libs/external-api/youtube/src/index.ts"],

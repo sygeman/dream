@@ -14,6 +14,7 @@ import { BullModule } from '@nestjs/bull';
 import { SpotifyModeModule } from '@dream/mode/spotify/api';
 import { TwitchModeModule } from '@dream/mode/twitch/api';
 import { YoutubeModeModule } from '@dream/mode/youtube/api';
+import { EmojiModule } from '@dream/emoji/api';
 
 @Module({
   imports: [
@@ -88,6 +89,7 @@ import { YoutubeModeModule } from '@dream/mode/youtube/api';
     SpotifyModeModule,
     TwitchModeModule,
     YoutubeModeModule,
+    EmojiModule,
   ],
 })
 export class AppModule {}

@@ -79,15 +79,6 @@ type ChannelMessage {
   tenorGif: TenorGif
 }
 
-type Emoji {
-  id: String!
-  alias: String!
-  communityId: String!
-  authorId: String!
-  author: User!
-  createdAt: String!
-}
-
 type SpotifyNow {
   id: String!
   imageUrl: String!
@@ -296,6 +287,15 @@ enum YoutubeModeQueueAction {
   ADD_VIDEO
 }
 
+type Emoji {
+  id: String!
+  alias: String!
+  communityId: String!
+  authorId: String!
+  author: User!
+  createdAt: String!
+}
+
 type Query {
   uniqCount: Int!
   user(id: ID): User
@@ -306,7 +306,6 @@ type Query {
   channelUsersOnline(channelId: String!): [User!]!
   channels(name: String!): [Channel!]!
   channelMessages(channelId: ID!): [ChannelMessage!]!
-  emojis(communityId: String!): [Emoji!]!
   spotifyMode(channelId: String!): SpotifyMode!
   spotifyModeHistory(channelId: String!): SpotifyModeHistory!
   spotifyModeCurrent(channelId: String!): SpotifyModeCurrent
@@ -317,6 +316,7 @@ type Query {
   waitlistYoutubeHistory(channelId: String!): YoutubeModeHistory!
   waitlistYoutubeCurrent(channelId: String!): YoutubeModeCurrent
   waitlistYoutubeQueue(channelId: String!): YoutubeModeQueue!
+  emojis(communityId: String!): [Emoji!]!
 }
 
 type Mutation {

@@ -31,5 +31,7 @@ export const config = [
   })),
   registerAs('db', () => ({
     redisUrl: process.env.REDIS_URL,
+    minioAccessKey: process.env.MINIO_ACCESS_KEY,
+    minioSecretKey: process.env.MINIO_SECRET_KEY,
   })),
 ];

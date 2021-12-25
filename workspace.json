@@ -326,6 +326,29 @@
       },
       "tags": []
     },
+    "emoji-api": {
+      "root": "libs/emoji/api",
+      "sourceRoot": "libs/emoji/api/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/emoji/api/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/emoji/api"],
+          "options": {
+            "jestConfig": "libs/emoji/api/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
     "external-api-spotify": {
       "root": "libs/external-api/spotify",
       "sourceRoot": "libs/external-api/spotify/src",

@@ -5,7 +5,13 @@ import { useCommunityChannel } from '../use-community-channel';
 
 export const ChannelSettingsEmoji = () => {
   const { getRootProps, getInputProps, open, acceptedFiles } = useDropzone({
-    onDropAccepted: (files) => {
+    onDropAccepted: async (files) => {
+      const token = await fetch('/api/auth/token')
+        .then((res) => res.json())
+        .then((data) => data?.token);
+
+      console.log(token);
+
       const formData = new FormData();
       formData.append('file', files[0]);
 

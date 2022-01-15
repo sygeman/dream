@@ -290,6 +290,7 @@ enum YoutubeModeQueueAction {
 type Emoji {
   id: String!
   alias: String!
+  type: String!
   communityId: String!
   authorId: String!
   author: User!
@@ -316,6 +317,7 @@ type Query {
   waitlistYoutubeHistory(channelId: String!): YoutubeModeHistory!
   waitlistYoutubeCurrent(channelId: String!): YoutubeModeCurrent
   waitlistYoutubeQueue(channelId: String!): YoutubeModeQueue!
+  emoji(emojiId: String!): Emoji!
   emojis(communityId: String!): [Emoji!]!
 }
 
@@ -341,6 +343,8 @@ type Mutation {
   makeWaitlistYoutubeModeCurrent(channelId: String!): Boolean!
   waitlistYoutubeQueueAddVideo(videoId: String!, channelId: String!): Boolean!
   waitlistYoutubeQueueSkipVideo(channelId: String!): Boolean!
+  updateEmojiAlias(alias: String!, emojiId: String!): Emoji!
+  deleteEmoji(emojiId: String!): Boolean!
 }
 
 input CreateCommunityInput {

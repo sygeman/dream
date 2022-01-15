@@ -10,6 +10,9 @@ export class Emoji {
   alias: string;
 
   @Field()
+  type: string;
+
+  @Field()
   communityId: string;
 
   @Field()

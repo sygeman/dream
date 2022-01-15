@@ -86,6 +86,7 @@ export type Emoji = {
   communityId: Scalars['String'];
   createdAt: Scalars['String'];
   id: Scalars['String'];
+  type: Scalars['String'];
 };
 
 export enum Locale {
@@ -100,6 +101,7 @@ export type Mutation = {
   createCommunity: Community;
   deleteChannel: Channel;
   deleteCommunity: Community;
+  deleteEmoji: Scalars['Boolean'];
   logout: Scalars['Boolean'];
   makeSpotifyModeCurrent: Scalars['Boolean'];
   makeTwitchStreamModeCurrent: Scalars['Boolean'];
@@ -112,6 +114,7 @@ export type Mutation = {
   updateChannel: Channel;
   updateCommunity: Community;
   updateConnectionStatus: Scalars['Boolean'];
+  updateEmojiAlias: Emoji;
   updateSpotifyMode: SpotifyMode;
   updateTwitchStream: TwitchStream;
   waitlistYoutubeQueueAddVideo: Scalars['Boolean'];
@@ -141,6 +144,11 @@ export type MutationDeleteChannelArgs = {
 
 export type MutationDeleteCommunityArgs = {
   communityId: Scalars['ID'];
+};
+
+
+export type MutationDeleteEmojiArgs = {
+  emojiId: Scalars['String'];
 };
 
 
@@ -196,6 +204,12 @@ export type MutationUpdateConnectionStatusArgs = {
 };
 
 
+export type MutationUpdateEmojiAliasArgs = {
+  alias: Scalars['String'];
+  emojiId: Scalars['String'];
+};
+
+
 export type MutationUpdateSpotifyModeArgs = {
   input: UpdateSpotifyModeInput;
 };
@@ -232,6 +246,7 @@ export type Query = {
   channels: Array<Channel>;
   communities: Array<Community>;
   community: Community;
+  emoji: Emoji;
   emojis: Array<Emoji>;
   me: User;
   spotifyMode: SpotifyMode;
@@ -272,6 +287,11 @@ export type QueryChannelsArgs = {
 
 export type QueryCommunityArgs = {
   name: Scalars['String'];
+};
+
+
+export type QueryEmojiArgs = {
+  emojiId: Scalars['String'];
 };
 
 
@@ -768,12 +788,34 @@ export type CommunitiesQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type CommunitiesQuery = { __typename?: 'Query', communities: Array<{ __typename?: 'Community', id: string, name?: string | null | undefined, title: string, avatar?: string | null | undefined, onlineCount: number }> };
 
+export type EmojiQueryVariables = Exact<{
+  emojiId: Scalars['String'];
+}>;
+
+
+export type EmojiQuery = { __typename?: 'Query', emoji: { __typename?: 'Emoji', id: string, type: string, alias: string, authorId: string, createdAt: string, author: { __typename?: 'User', id: string, name?: string | null | undefined, avatar?: string | null | undefined } } };
+
 export type EmojisQueryVariables = Exact<{
   communityId: Scalars['String'];
 }>;
 
 
-export type EmojisQuery = { __typename?: 'Query', emojis: Array<{ __typename?: 'Emoji', id: string, alias: string, authorId: string, createdAt: string, author: { __typename?: 'User', id: string, name?: string | null | undefined, avatar?: string | null | undefined } }> };
+export type EmojisQuery = { __typename?: 'Query', emojis: Array<{ __typename?: 'Emoji', id: string, type: string, alias: string, authorId: string, createdAt: string, author: { __typename?: 'User', id: string, name?: string | null | undefined, avatar?: string | null | undefined } }> };
+
+export type UpdateEmojiAliasMutationVariables = Exact<{
+  emojiId: Scalars['String'];
+  alias: Scalars['String'];
+}>;
+
+
+export type UpdateEmojiAliasMutation = { __typename?: 'Mutation', updateEmojiAlias: { __typename?: 'Emoji', id: string, type: string, alias: string, authorId: string, createdAt: string, author: { __typename?: 'User', id: string, name?: string | null | undefined, avatar?: string | null | undefined } } };
+
+export type DeleteEmojiMutationVariables = Exact<{
+  emojiId: Scalars['String'];
+}>;
+
+
+export type DeleteEmojiMutation = { __typename?: 'Mutation', deleteEmoji: boolean };
 
 export type UniqCountQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -802,6 +844,8 @@ export type DeleteCommunityMutationVariables = Exact<{
 export type DeleteCommunityMutation = { __typename?: 'Mutation', deleteCommunity: { __typename?: 'Community', id: string, name?: string | null | undefined, title: string, avatar?: string | null | undefined, onlineCount: number } };
 
 export type CommunityFieldsFragment = { __typename?: 'Community', id: string, name?: string | null | undefined, title: string, avatar?: string | null | undefined, onlineCount: number };
+
+export type EmojiFieldsFragment = { __typename?: 'Emoji', id: string, type: string, alias: string, authorId: string, createdAt: string, author: { __typename?: 'User', id: string, name?: string | null | undefined, avatar?: string | null | undefined } };
 
 export type SpotifyModeFieldsFragment = { __typename?: 'SpotifyMode', id: string, hostId?: string | null | undefined, strategy: SpotifyModeStrategy };
 
@@ -1028,6 +1072,20 @@ export const CommunityFieldsFragmentDoc = gql`
   title
   avatar
   onlineCount
+}
+    `;
+export const EmojiFieldsFragmentDoc = gql`
+    fragment EmojiFields on Emoji {
+  id
+  type
+  alias
+  authorId
+  author {
+    id
+    name
+    avatar
+  }
+  createdAt
 }
     `;
 export const SpotifyModeFieldsFragmentDoc = gql`
@@ -1538,21 +1596,48 @@ export function useCommunitiesLazyQuery(baseOptions?: Apollo.LazyQueryHookOption
 export type CommunitiesQueryHookResult = ReturnType<typeof useCommunitiesQuery>;
 export type CommunitiesLazyQueryHookResult = ReturnType<typeof useCommunitiesLazyQuery>;
 export type CommunitiesQueryResult = Apollo.QueryResult<CommunitiesQuery, CommunitiesQueryVariables>;
+export const EmojiDocument = gql`
+    query emoji($emojiId: String!) {
+  emoji(emojiId: $emojiId) {
+    ...EmojiFields
+  }
+}
+    ${EmojiFieldsFragmentDoc}`;
+
+/**
+ * __useEmojiQuery__
+ *
+ * To run a query within a React component, call `useEmojiQuery` and pass it any options that fit your needs.
+ * When your component renders, `useEmojiQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useEmojiQuery({
+ *   variables: {
+ *      emojiId: // value for 'emojiId'
+ *   },
+ * });
+ */
+export function useEmojiQuery(baseOptions: Apollo.QueryHookOptions<EmojiQuery, EmojiQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<EmojiQuery, EmojiQueryVariables>(EmojiDocument, options);
+      }
+export function useEmojiLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<EmojiQuery, EmojiQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<EmojiQuery, EmojiQueryVariables>(EmojiDocument, options);
+        }
+export type EmojiQueryHookResult = ReturnType<typeof useEmojiQuery>;
+export type EmojiLazyQueryHookResult = ReturnType<typeof useEmojiLazyQuery>;
+export type EmojiQueryResult = Apollo.QueryResult<EmojiQuery, EmojiQueryVariables>;
 export const EmojisDocument = gql`
     query emojis($communityId: String!) {
   emojis(communityId: $communityId) {
-    id
-    alias
-    authorId
-    author {
-      id
-      name
-      avatar
-    }
-    createdAt
+    ...EmojiFields
   }
 }
-    `;
+    ${EmojiFieldsFragmentDoc}`;
 
 /**
  * __useEmojisQuery__
@@ -1581,6 +1666,71 @@ export function useEmojisLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Emo
 export type EmojisQueryHookResult = ReturnType<typeof useEmojisQuery>;
 export type EmojisLazyQueryHookResult = ReturnType<typeof useEmojisLazyQuery>;
 export type EmojisQueryResult = Apollo.QueryResult<EmojisQuery, EmojisQueryVariables>;
+export const UpdateEmojiAliasDocument = gql`
+    mutation updateEmojiAlias($emojiId: String!, $alias: String!) {
+  updateEmojiAlias(emojiId: $emojiId, alias: $alias) {
+    ...EmojiFields
+  }
+}
+    ${EmojiFieldsFragmentDoc}`;
+export type UpdateEmojiAliasMutationFn = Apollo.MutationFunction<UpdateEmojiAliasMutation, UpdateEmojiAliasMutationVariables>;
+
+/**
+ * __useUpdateEmojiAliasMutation__
+ *
+ * To run a mutation, you first call `useUpdateEmojiAliasMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateEmojiAliasMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateEmojiAliasMutation, { data, loading, error }] = useUpdateEmojiAliasMutation({
+ *   variables: {
+ *      emojiId: // value for 'emojiId'
+ *      alias: // value for 'alias'
+ *   },
+ * });
+ */
+export function useUpdateEmojiAliasMutation(baseOptions?: Apollo.MutationHookOptions<UpdateEmojiAliasMutation, UpdateEmojiAliasMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateEmojiAliasMutation, UpdateEmojiAliasMutationVariables>(UpdateEmojiAliasDocument, options);
+      }
+export type UpdateEmojiAliasMutationHookResult = ReturnType<typeof useUpdateEmojiAliasMutation>;
+export type UpdateEmojiAliasMutationResult = Apollo.MutationResult<UpdateEmojiAliasMutation>;
+export type UpdateEmojiAliasMutationOptions = Apollo.BaseMutationOptions<UpdateEmojiAliasMutation, UpdateEmojiAliasMutationVariables>;
+export const DeleteEmojiDocument = gql`
+    mutation deleteEmoji($emojiId: String!) {
+  deleteEmoji(emojiId: $emojiId)
+}
+    `;
+export type DeleteEmojiMutationFn = Apollo.MutationFunction<DeleteEmojiMutation, DeleteEmojiMutationVariables>;
+
+/**
+ * __useDeleteEmojiMutation__
+ *
+ * To run a mutation, you first call `useDeleteEmojiMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteEmojiMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteEmojiMutation, { data, loading, error }] = useDeleteEmojiMutation({
+ *   variables: {
+ *      emojiId: // value for 'emojiId'
+ *   },
+ * });
+ */
+export function useDeleteEmojiMutation(baseOptions?: Apollo.MutationHookOptions<DeleteEmojiMutation, DeleteEmojiMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<DeleteEmojiMutation, DeleteEmojiMutationVariables>(DeleteEmojiDocument, options);
+      }
+export type DeleteEmojiMutationHookResult = ReturnType<typeof useDeleteEmojiMutation>;
+export type DeleteEmojiMutationResult = Apollo.MutationResult<DeleteEmojiMutation>;
+export type DeleteEmojiMutationOptions = Apollo.BaseMutationOptions<DeleteEmojiMutation, DeleteEmojiMutationVariables>;
 export const UniqCountDocument = gql`
     query uniqCount {
   uniqCount

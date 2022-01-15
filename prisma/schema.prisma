@@ -120,6 +120,7 @@ model TenorGif {
 model Emoji {
   id          String     @id @default(cuid())
   alias       String
+  type        String     @default("image/png")
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @default(now()) @updatedAt
   community   Community? @relation(fields: [communityId], references: [id])

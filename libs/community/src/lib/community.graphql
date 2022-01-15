@@ -10,18 +10,26 @@ query communities {
   }
 }
 
+query emoji($emojiId: String!) {
+  emoji(emojiId: $emojiId) {
+    ...EmojiFields
+  }
+}
+
 query emojis($communityId: String!) {
   emojis(communityId: $communityId) {
-    id
-    alias
-    authorId
-    author {
-      id
-      name
-      avatar
-    }
-    createdAt
+    ...EmojiFields
   }
+}
+
+mutation updateEmojiAlias($emojiId: String!, $alias: String!) {
+  updateEmojiAlias(emojiId: $emojiId, alias: $alias) {
+    ...EmojiFields
+  }
+}
+
+mutation deleteEmoji($emojiId: String!) {
+  deleteEmoji(emojiId: $emojiId)
 }
 
 query uniqCount {
@@ -52,4 +60,17 @@ fragment CommunityFields on Community {
   title
   avatar
   onlineCount
+}
+
+fragment EmojiFields on Emoji {
+  id
+  type
+  alias
+  authorId
+  author {
+    id
+    name
+    avatar
+  }
+  createdAt
 }

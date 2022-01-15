@@ -34,7 +34,9 @@ const EmojiPicker: React.FC<{ onSelect: (alias: string) => void }> = ({
         >
           <img
             className="w-6 h-6 object-contain"
-            src={`https://dream.sgmn.dev/emojis/${emoji.id}.gif`}
+            src={`https://cdn.sgmn.dev/emojis/${emoji.id}.${
+              emoji.type.split('/')[1]
+            }`}
           />
         </div>
       ))}

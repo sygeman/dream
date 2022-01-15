@@ -1,22 +1,30 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useEmojiQuery } from '@dream/types';
 import { dateDistanceInWordsToNow } from '@dream/utils/date';
 import { splitTextToEmojiArray } from '@dream/utils/emoji';
 import { GifContainer } from './gif';
 
-interface IProps {
-  id?: string;
-  name: string;
-}
+export const Emoji: React.FC<{ emojiId: string }> = ({ emojiId }) => {
+  const emojiQuery = useEmojiQuery({
+    variables: { emojiId },
+    fetchPolicy: 'cache-first',
+  });
+  const emoji = emojiQuery?.data?.emoji;
 
-export const Emoji: React.FC<IProps> = ({ name, id }) => (
-  <span className="h-6 w-6">
-    <img
-      className="object-contain h-6 w-6"
-      alt={`:${name}: `}
-      src={`/emojis/${id ? id : name}.gif`}
-    />
-  </span>
-);
+  return (
+    <span className="h-6 w-6">
+      {emoji && (
+        <img
+          className="object-contain h-6 w-6"
+          alt={`:${emoji.alias}: `}
+          src={`https://cdn.sgmn.dev/emojis/${emoji.id}.${
+            emoji.type.split('/')[1]
+          }`}
+        />
+      )}
+    </span>
+  );
+};
 
 const renderMessageText = (text: string) => {
   return splitTextToEmojiArray(text).map((elm, index) => {
@@ -25,7 +33,7 @@ const renderMessageText = (text: string) => {
     }
 
     if (elm.type === 'emoji' && elm.name) {
-      return <Emoji key={index} name={elm.name} id={elm.id} />;
+      return <Emoji key={index} emojiId={elm.id} />;
     }
   });
 };

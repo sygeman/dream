@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { Context } from 'graphql-ws';
 import { GraphQLModule } from '@nestjs/graphql';
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import * as depthLimit from 'graphql-depth-limit';
 import { AuthModule, AuthService } from '@dream/auth-api';
@@ -33,7 +34,8 @@ import { EmojiModule } from '@dream/emoji/api';
       inject: [ConfigService],
     }),
     SharedModule,
-    GraphQLModule.forRootAsync({
+    GraphQLModule.forRootAsync<ApolloDriverConfig>({
+      driver: ApolloDriver,
       imports: [AuthModule, ConnectionModule],
       inject: [AuthService, ConnectionService],
       //@ts-ignore

@@ -303,7 +303,7 @@ type Query {
   me: User!
   community(name: String!): Community!
   communities: [Community!]!
-  channel(communityId: String!, name: String!): Channel!
+  channel(name: String!, communityId: String!): Channel!
   channelUsersOnline(channelId: String!): [User!]!
   channels(name: String!): [Channel!]!
   channelMessages(channelId: ID!): [ChannelMessage!]!
@@ -323,7 +323,7 @@ type Query {
 
 type Mutation {
   logout: Boolean!
-  updateConnectionStatus(channel: String, community: String): Boolean!
+  updateConnectionStatus(community: String, channel: String): Boolean!
   setUserLocale(locale: Locale!): Locale!
   createCommunity(input: CreateCommunityInput!): Community!
   updateCommunity(input: UpdateCommunityInput!): Community!
@@ -334,16 +334,16 @@ type Mutation {
   createChannelMessage(input: ChannelMessageCreateInput!): Boolean!
   updateSpotifyMode(input: UpdateSpotifyModeInput!): SpotifyMode!
   makeSpotifyModeCurrent(channelId: String!): Boolean!
-  spotifyModeQueueAddTrack(trackId: String!, channelId: String!): Boolean!
+  spotifyModeQueueAddTrack(channelId: String!, trackId: String!): Boolean!
   spotifyModeQueueSkipTrack(channelId: String!): Boolean!
   spotifyModeUserSync(channelId: String!): Boolean!
   refreshSpotifyToken: String!
   makeTwitchStreamModeCurrent(channelId: String!): Boolean!
   updateTwitchStream(input: UpdateTwitchStreamInput!): TwitchStream!
   makeWaitlistYoutubeModeCurrent(channelId: String!): Boolean!
-  waitlistYoutubeQueueAddVideo(videoId: String!, channelId: String!): Boolean!
+  waitlistYoutubeQueueAddVideo(channelId: String!, videoId: String!): Boolean!
   waitlistYoutubeQueueSkipVideo(channelId: String!): Boolean!
-  updateEmojiAlias(alias: String!, emojiId: String!): Emoji!
+  updateEmojiAlias(emojiId: String!, alias: String!): Emoji!
   deleteEmoji(emojiId: String!): Boolean!
 }
 

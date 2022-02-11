@@ -1,13 +1,11 @@
 import React, { useCallback } from 'react';
-import { ScrollerProps } from 'react-virtuoso';
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
 
-export const Scroller: React.ComponentType<ScrollerProps> = React.forwardRef(
-  ({ children, style }, ref) => {
+export const Scroller = React.forwardRef(
+  ({ children, className, style, ...props }, ref) => {
     const refSetter = useCallback(
       (scrollbarsRef) => {
         if (scrollbarsRef) {
-          //@ts-ignore
           ref.current = scrollbarsRef.osInstance().getElements().viewport;
         }
       },
@@ -15,7 +13,12 @@ export const Scroller: React.ComponentType<ScrollerProps> = React.forwardRef(
     );
 
     return (
-      <OverlayScrollbarsComponent ref={refSetter} style={style}>
+      <OverlayScrollbarsComponent
+        ref={refSetter}
+        className={className}
+        style={style}
+        {...props}
+      >
         {children}
       </OverlayScrollbarsComponent>
     );

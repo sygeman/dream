@@ -34,7 +34,6 @@ module.exports = {
     '<rootDir>/libs/external-api/spotify',
     '<rootDir>/libs/mode/host-spotify/ui',
     '<rootDir>/libs/external-api/tenor',
-    '<rootDir>/libs/storybook',
     '<rootDir>/libs/components/switch-form-field',
     '<rootDir>/apps/dream',
     '<rootDir>/libs/channel/ui',

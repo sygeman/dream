@@ -49,7 +49,6 @@
       "@dream/pepega-ui/*": ["libs/pepega-ui/src/lib/*"],
       "@dream/prisma": ["libs/prisma/src/index.ts"],
       "@dream/spotify-now": ["libs/spotify-now/src/index.ts"],
-      "@dream/storybook": ["libs/storybook/src/index.ts"],
       "@dream/types": ["libs/types/src/index.tsx"],
       "@dream/ui/*": ["libs/ui/src/lib/*"],
       "@dream/user": ["libs/user/src/index.ts"],

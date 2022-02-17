@@ -6207,13 +6207,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@popperjs/core@npm:2.11.2":
-  version: 2.11.2
-  resolution: "@popperjs/core@npm:2.11.2"
-  checksum: 5695bf020eda54636e16a62dc9b5fdd92beaf7b2d19f62fcef049d57c5cff92773562d80cbf760b217c3ec928da310eb24994ab6a00fd39dffa0af9b5dfc01a6
-  languageName: node
-  linkType: hard
-
 "@prisma/client@npm:3.9.2":
   version: 3.9.2
   resolution: "@prisma/client@npm:3.9.2"
@@ -7345,15 +7338,6 @@ __metadata:
     "@types/qs": "*"
     "@types/serve-static": "*"
   checksum: 12a2a0e6c4b993fc0854bec665906788aea0d8ee4392389d7a98a5de1eefdd33c9e1e40a91f3afd274011119c506f7b4126acb97fae62ae20b654974d44cba12
-  languageName: node
-  linkType: hard
-
-"@types/faker@npm:6.6.9":
-  version: 6.6.9
-  resolution: "@types/faker@npm:6.6.9"
-  dependencies:
-    faker: "*"
-  checksum: 8fb069b6f2bf2cefec42a214395f49695b881d70e651a215a61c2fa7494bb173d1a598c895882ff89df3702ab51c49c23433b3d4bcfd8323cf4f608ed9fb6ce8
   languageName: node
   linkType: hard
 
@@ -11789,7 +11773,6 @@ __metadata:
     "@nrwl/tao": 13.8.2
     "@nrwl/web": 13.8.2
     "@nrwl/workspace": 13.8.2
-    "@popperjs/core": 2.11.2
     "@prisma/client": 3.9.2
     "@react-three/drei": 8.10.0
     "@react-three/fiber": 7.0.26
@@ -11802,7 +11785,6 @@ __metadata:
     "@types/bull": 3.15.8
     "@types/connect-redis": 0.0.18
     "@types/express-session": 1.17.4
-    "@types/faker": 6.6.9
     "@types/graphql-depth-limit": 1.1.3
     "@types/jest": 27.4.0
     "@types/minio": 7.0.12
@@ -11843,7 +11825,6 @@ __metadata:
     eslint-plugin-react: 7.28.0
     eslint-plugin-react-hooks: 4.3.0
     express-session: 1.17.2
-    faker: 6.6.6
     formik: 2.2.9
     framer-motion: 6.2.6
     graphql: 15.8.0
@@ -11876,24 +11857,20 @@ __metadata:
     react-intl: 5.24.6
     react-is: 17.0.2
     react-player: 2.9.0
-    react-popper: 2.2.5
     react-resize-detector: 7.0.0
     react-test-renderer: 17.0.2
     react-textarea-autosize: 8.3.3
     react-use: 17.3.2
     react-virtuoso: 2.7.1
     reflect-metadata: 0.1.13
-    regenerator-runtime: 0.13.9
     rxjs: 7.5.4
     simplebar-react: 2.3.6
     tailwindcss: 3.0.23
     three: 0.137.5
     ts-jest: 27.1.3
     ts-node: 10.5.0
-    tsconfig-paths-webpack-plugin: 3.5.2
     tslib: 2.3.1
     typescript: 4.5.5
-    url-loader: 4.1.1
     use-debounce: 7.0.1
     webpack: 5.69.0
     yup: 0.32.11
@@ -12944,13 +12921,6 @@ __metadata:
   version: 9.0.0
   resolution: "extract-files@npm:9.0.0"
   checksum: c31781d090f8d8f62cc541f1023b39ea863f24bd6fb3d4011922d71cbded70cef8191f2b70b43ec6cb5c5907cdad1dc5e9f29f78228936c10adc239091d8ab64
-  languageName: node
-  linkType: hard
-
-"faker@npm:*, faker@npm:6.6.6":
-  version: 6.6.6
-  resolution: "faker@npm:6.6.6"
-  checksum: bfb0d581ab4d76095f2c6bff213fe1735ce077f0f8df849c144ad26035e105bce1b7a704cc030366338c52e25b636ac097a712426a78c9b8804af78f6f2bffe7
   languageName: node
   linkType: hard
 
@@ -19909,19 +19879,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-popper@npm:2.2.5":
-  version: 2.2.5
-  resolution: "react-popper@npm:2.2.5"
-  dependencies:
-    react-fast-compare: ^3.0.1
-    warning: ^4.0.2
-  peerDependencies:
-    "@popperjs/core": ^2.0.0
-    react: ^16.8.0 || ^17
-  checksum: 915fcf08e1da4fd48a200074fcdd936f601ee2173f1e730cfed8a54fd47716aa8bf9cce2392463e3bcbe64a096d0baf463809ed2874b94d3a9d430ae6d817b5d
-  languageName: node
-  linkType: hard
-
 "react-reconciler@npm:^0.26.2":
   version: 0.26.2
   resolution: "react-reconciler@npm:0.26.2"
@@ -20172,7 +20129,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"regenerator-runtime@npm:0.13.9, regenerator-runtime@npm:^0.13.4":
+"regenerator-runtime@npm:^0.13.4":
   version: 0.13.9
   resolution: "regenerator-runtime@npm:0.13.9"
   checksum: 65ed455fe5afd799e2897baf691ca21c2772e1a969d19bb0c4695757c2d96249eb74ee3553ea34a91062b2a676beedf630b4c1551cc6299afb937be1426ec55e
@@ -22845,7 +22802,7 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"url-loader@npm:4.1.1, url-loader@npm:^4.1.1":
+"url-loader@npm:^4.1.1":
   version: 4.1.1
   resolution: "url-loader@npm:4.1.1"
   dependencies:
@@ -23086,15 +23043,6 @@ resolve@^2.0.0-next.3:
   dependencies:
     makeerror: 1.0.12
   checksum: ad7a257ea1e662e57ef2e018f97b3c02a7240ad5093c392186ce0bcf1f1a60bbadd520d073b9beb921ed99f64f065efb63dfc8eec689a80e569f93c1c5d5e16c
-  languageName: node
-  linkType: hard
-
-"warning@npm:^4.0.2":
-  version: 4.0.3
-  resolution: "warning@npm:4.0.3"
-  dependencies:
-    loose-envify: ^1.0.0
-  checksum: 4f2cb6a9575e4faf71ddad9ad1ae7a00d0a75d24521c193fa464f30e6b04027bd97aa5d9546b0e13d3a150ab402eda216d59c1d0f2d6ca60124d96cd40dfa35c
   languageName: node
   linkType: hard
 

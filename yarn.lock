@@ -231,9 +231,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/core@npm:7.17.4":
-  version: 7.17.4
-  resolution: "@babel/core@npm:7.17.4"
+"@babel/core@npm:7.17.5":
+  version: 7.17.5
+  resolution: "@babel/core@npm:7.17.5"
   dependencies:
     "@ampproject/remapping": ^2.1.0
     "@babel/code-frame": ^7.16.7
@@ -250,7 +250,7 @@ __metadata:
     gensync: ^1.0.0-beta.2
     json5: ^2.1.2
     semver: ^6.3.0
-  checksum: d367259b188fde69493fea407a1c134d6bb7a0d859cbe2c0f0d1f2464143bdee0fdfd3c8d45a2cdabdf321b95dd392cbc4f55e2d0c41a842a581d37fee4cef64
+  checksum: c5e7dddb4feaacb91175d22a6edc8e93804242328a82b80732c6e84a0647bc0a9c9d5b05f3ce13138b8e59bf7aba4ff9f7b7446302f141f243ba51df02c318a5
   languageName: node
   linkType: hard
 
@@ -4348,55 +4348,55 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-codegen/typescript-operations@npm:2.3.1":
-  version: 2.3.1
-  resolution: "@graphql-codegen/typescript-operations@npm:2.3.1"
+"@graphql-codegen/typescript-operations@npm:2.3.2":
+  version: 2.3.2
+  resolution: "@graphql-codegen/typescript-operations@npm:2.3.2"
   dependencies:
     "@graphql-codegen/plugin-helpers": ^2.4.0
-    "@graphql-codegen/typescript": ^2.4.4
-    "@graphql-codegen/visitor-plugin-common": 2.7.0
+    "@graphql-codegen/typescript": ^2.4.5
+    "@graphql-codegen/visitor-plugin-common": 2.7.1
     auto-bind: ~4.0.0
     tslib: ~2.3.0
   peerDependencies:
     graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
-  checksum: 1a79a8fc739333e0b8dfe7b56a4245d6df302d4f541f672b8b2c1ae4d1461a9f082c1e51d3b3e210336621a6e73d40e13140f05c5f4cacf9bf4b2bb478227d39
+  checksum: 7d6046ecf3c9b7449b02db71c0c2f670a2a589c55f86d299c411973a660ed60aadcc5f3c7ba244958c8ae00964c19ce32ebdda62cee411b3566eea010ac5895a
   languageName: node
   linkType: hard
 
-"@graphql-codegen/typescript-react-apollo@npm:3.2.7":
-  version: 3.2.7
-  resolution: "@graphql-codegen/typescript-react-apollo@npm:3.2.7"
+"@graphql-codegen/typescript-react-apollo@npm:3.2.8":
+  version: 3.2.8
+  resolution: "@graphql-codegen/typescript-react-apollo@npm:3.2.8"
   dependencies:
     "@graphql-codegen/plugin-helpers": ^2.4.0
-    "@graphql-codegen/visitor-plugin-common": 2.7.0
+    "@graphql-codegen/visitor-plugin-common": 2.7.1
     auto-bind: ~4.0.0
     change-case-all: 1.0.14
     tslib: ~2.3.0
   peerDependencies:
     graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
     graphql-tag: ^2.0.0
-  checksum: 08239ad9d02b24502e2a4551dec856e9925369e24bb36389ba6cd946cd2e7ef054c69bb1fafb907970c27b07110fb4e265b3fefffa61ed55e409a549ccbc0e00
+  checksum: 075a76225e09c20ceec4a83fbfa5a8ccf135da1ff4292857786d8cde9ddb809eb01b32ae9229ff2dd67b62a11acbeabab0b719aadaa94f5d6973378d2a10e870
   languageName: node
   linkType: hard
 
-"@graphql-codegen/typescript@npm:2.4.4, @graphql-codegen/typescript@npm:^2.4.4":
-  version: 2.4.4
-  resolution: "@graphql-codegen/typescript@npm:2.4.4"
+"@graphql-codegen/typescript@npm:2.4.5, @graphql-codegen/typescript@npm:^2.4.5":
+  version: 2.4.5
+  resolution: "@graphql-codegen/typescript@npm:2.4.5"
   dependencies:
     "@graphql-codegen/plugin-helpers": ^2.4.0
     "@graphql-codegen/schema-ast": ^2.4.1
-    "@graphql-codegen/visitor-plugin-common": 2.7.0
+    "@graphql-codegen/visitor-plugin-common": 2.7.1
     auto-bind: ~4.0.0
     tslib: ~2.3.0
   peerDependencies:
     graphql: ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
-  checksum: 8c6a9e50c51cee66b3c26967decb838169968ec5a7c8d29f1ae716ff4b7f41caed871056e55ed71e1bf95b51e7e71ff7dca17d6aaf6203fa34448341b9522de7
+  checksum: 7e206242c8eaaac725993b6c8393a01e38c685640f0c32a7b81b7961efef26ca08192fc8137d0fdb0ff9562149d2d6290d05dce4d56f4f37bdf107573853c5dc
   languageName: node
   linkType: hard
 
-"@graphql-codegen/visitor-plugin-common@npm:2.7.0":
-  version: 2.7.0
-  resolution: "@graphql-codegen/visitor-plugin-common@npm:2.7.0"
+"@graphql-codegen/visitor-plugin-common@npm:2.7.1":
+  version: 2.7.1
+  resolution: "@graphql-codegen/visitor-plugin-common@npm:2.7.1"
   dependencies:
     "@graphql-codegen/plugin-helpers": ^2.4.0
     "@graphql-tools/optimize": ^1.0.1
@@ -4410,7 +4410,7 @@ __metadata:
     tslib: ~2.3.0
   peerDependencies:
     graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
-  checksum: 959eb3e8c837075901741187e10f17a6e91af16cbef0b71c1f1cec05874d06dd4046e02b70442283b99f3e7ed04723ef7bf2357dde597eba9ec4a04dd54cd31c
+  checksum: 6b446d6357d822259adbe2a066836d0f5c047d929f5a7a73f7f917984c06c1990049e05c006519ec1d0db58b918c371aa1013a2bec86aa2627d74ebb8ba2e876
   languageName: node
   linkType: hard
 
@@ -4840,13 +4840,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@headlessui/react@npm:1.4.3":
-  version: 1.4.3
-  resolution: "@headlessui/react@npm:1.4.3"
+"@headlessui/react@npm:1.5.0":
+  version: 1.5.0
+  resolution: "@headlessui/react@npm:1.5.0"
   peerDependencies:
     react: ^16 || ^17 || ^18
     react-dom: ^16 || ^17 || ^18
-  checksum: 0c55bba6dc09a81576ec7d41320e3beb57b3f4576637ac4aad6048af851d5fe5434fd0d10dfb5c7b2db16eca6ded5eb3368822ddb87ff4dcb99fc3592ef63b0a
+  checksum: e3373dfb73936950d659a87718fb9fdedc599b344b30cb0d8b1ef0a2ec13d6f405c653fa51284236788658840ece82c6a8538a5a5931e595274e9590b2020079
   languageName: node
   linkType: hard
 
@@ -5323,9 +5323,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nestjs/apollo@npm:10.0.2":
-  version: 10.0.2
-  resolution: "@nestjs/apollo@npm:10.0.2"
+"@nestjs/apollo@npm:10.0.3":
+  version: 10.0.3
+  resolution: "@nestjs/apollo@npm:10.0.3"
   dependencies:
     iterall: 1.3.0
     lodash.omit: 4.5.0
@@ -5333,6 +5333,7 @@ __metadata:
     "@apollo/gateway": ^0.44.1 || ^0.46.0 || ^0.48.0
     "@nestjs/common": ^8.2.3
     "@nestjs/core": ^8.2.3
+    "@nestjs/graphql": ^10.0.0
     apollo-server-core: ^3.5.0
     apollo-server-express: ^3.5.0
     apollo-server-fastify: ^3.5.0
@@ -5345,7 +5346,7 @@ __metadata:
       optional: true
     apollo-server-fastify:
       optional: true
-  checksum: babd6b5beab92031c777a6950a0972777a0d2d5931469a3ce04c48cdda6d5e589267fc58e8341b64758bc85dc1176436ab90be19514f16a27b252627400693d8
+  checksum: 6d333a072f7bfb0f3d4fef9a532fa7a4283358a4a927ad26404f5b8b8b35de7da56f344347599a2fd42db0065a53ba5746714bb0921b48c386d1d530a2f67b79
   languageName: node
   linkType: hard
 
@@ -5443,9 +5444,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nestjs/graphql@npm:10.0.2":
-  version: 10.0.2
-  resolution: "@nestjs/graphql@npm:10.0.2"
+"@nestjs/graphql@npm:10.0.3":
+  version: 10.0.3
+  resolution: "@nestjs/graphql@npm:10.0.3"
   dependencies:
     "@graphql-tools/merge": 8.2.2
     "@graphql-tools/schema": 8.3.1
@@ -5473,7 +5474,7 @@ __metadata:
       optional: true
     ts-morph:
       optional: true
-  checksum: f4a4e37e826a6ca6ad50c143cf9ce35c9a7fd37b80e480394fbc0151f64786ecb0f075d3a860b68b7d6c04cab30930f7d5424af1cf6d331af2b361e93b9c8b2a
+  checksum: d60ac140db94c5295214f8ff401e74604d4735eb2c799605b78cc4e417f4757c48096ddfad73686ab0b8048482e0c6fff325d6754a3126318c7b73ee70b65ead
   languageName: node
   linkType: hard
 
@@ -5570,10 +5571,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@next/env@npm:12.0.10":
-  version: 12.0.10
-  resolution: "@next/env@npm:12.0.10"
-  checksum: 22e9200919a58eeb9ab03e18504ef689120075cb0301189b1f76d96d98cb73de448a54f96d2b388b1f3b6c08bf55021144f0c2bffd0b69720d6b23e1fd2cf27a
+"@next/env@npm:12.1.0":
+  version: 12.1.0
+  resolution: "@next/env@npm:12.1.0"
+  checksum: 31037e019846a2c3eeb106d64d54084e0b86d1b9b92fdb7332eeb39d94cb4a8e11ddab1a088088f7aea7b60a4cb57781815539676fddedf4305f19f8c8bf5b7f
   languageName: node
   linkType: hard
 
@@ -5586,88 +5587,88 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@next/eslint-plugin-next@npm:12.0.10":
-  version: 12.0.10
-  resolution: "@next/eslint-plugin-next@npm:12.0.10"
+"@next/eslint-plugin-next@npm:12.1.0":
+  version: 12.1.0
+  resolution: "@next/eslint-plugin-next@npm:12.1.0"
   dependencies:
     glob: 7.1.7
-  checksum: ceb95880458ab6fc67fb58350e9f87ca8ac0adf0b50bf099e03bb84b4d7d48888d29518e09cf281a1181d9c240d3babdfb5b8649e7dad79332f77f0f7d01293c
+  checksum: d6875f65e102f62fe90495229862f838fed00508980edff376c8c0e8ddf6c47a1a030fc2f8906890e08e34740cd174e5d70ecefa9ace81edda9949fa7ad06763
   languageName: node
   linkType: hard
 
-"@next/swc-android-arm64@npm:12.0.10":
-  version: 12.0.10
-  resolution: "@next/swc-android-arm64@npm:12.0.10"
+"@next/swc-android-arm64@npm:12.1.0":
+  version: 12.1.0
+  resolution: "@next/swc-android-arm64@npm:12.1.0"
   conditions: os=android & cpu=arm64
   languageName: node
   linkType: hard
 
-"@next/swc-darwin-arm64@npm:12.0.10":
-  version: 12.0.10
-  resolution: "@next/swc-darwin-arm64@npm:12.0.10"
+"@next/swc-darwin-arm64@npm:12.1.0":
+  version: 12.1.0
+  resolution: "@next/swc-darwin-arm64@npm:12.1.0"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@next/swc-darwin-x64@npm:12.0.10":
-  version: 12.0.10
-  resolution: "@next/swc-darwin-x64@npm:12.0.10"
+"@next/swc-darwin-x64@npm:12.1.0":
+  version: 12.1.0
+  resolution: "@next/swc-darwin-x64@npm:12.1.0"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@next/swc-linux-arm-gnueabihf@npm:12.0.10":
-  version: 12.0.10
-  resolution: "@next/swc-linux-arm-gnueabihf@npm:12.0.10"
+"@next/swc-linux-arm-gnueabihf@npm:12.1.0":
+  version: 12.1.0
+  resolution: "@next/swc-linux-arm-gnueabihf@npm:12.1.0"
   conditions: os=linux & cpu=arm
   languageName: node
   linkType: hard
 
-"@next/swc-linux-arm64-gnu@npm:12.0.10":
-  version: 12.0.10
-  resolution: "@next/swc-linux-arm64-gnu@npm:12.0.10"
+"@next/swc-linux-arm64-gnu@npm:12.1.0":
+  version: 12.1.0
+  resolution: "@next/swc-linux-arm64-gnu@npm:12.1.0"
   conditions: os=linux & cpu=arm64
   languageName: node
   linkType: hard
 
-"@next/swc-linux-arm64-musl@npm:12.0.10":
-  version: 12.0.10
-  resolution: "@next/swc-linux-arm64-musl@npm:12.0.10"
+"@next/swc-linux-arm64-musl@npm:12.1.0":
+  version: 12.1.0
+  resolution: "@next/swc-linux-arm64-musl@npm:12.1.0"
   conditions: os=linux & cpu=arm64
   languageName: node
   linkType: hard
 
-"@next/swc-linux-x64-gnu@npm:12.0.10":
-  version: 12.0.10
-  resolution: "@next/swc-linux-x64-gnu@npm:12.0.10"
+"@next/swc-linux-x64-gnu@npm:12.1.0":
+  version: 12.1.0
+  resolution: "@next/swc-linux-x64-gnu@npm:12.1.0"
   conditions: os=linux & cpu=x64
   languageName: node
   linkType: hard
 
-"@next/swc-linux-x64-musl@npm:12.0.10":
-  version: 12.0.10
-  resolution: "@next/swc-linux-x64-musl@npm:12.0.10"
+"@next/swc-linux-x64-musl@npm:12.1.0":
+  version: 12.1.0
+  resolution: "@next/swc-linux-x64-musl@npm:12.1.0"
   conditions: os=linux & cpu=x64
   languageName: node
   linkType: hard
 
-"@next/swc-win32-arm64-msvc@npm:12.0.10":
-  version: 12.0.10
-  resolution: "@next/swc-win32-arm64-msvc@npm:12.0.10"
+"@next/swc-win32-arm64-msvc@npm:12.1.0":
+  version: 12.1.0
+  resolution: "@next/swc-win32-arm64-msvc@npm:12.1.0"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"@next/swc-win32-ia32-msvc@npm:12.0.10":
-  version: 12.0.10
-  resolution: "@next/swc-win32-ia32-msvc@npm:12.0.10"
+"@next/swc-win32-ia32-msvc@npm:12.1.0":
+  version: 12.1.0
+  resolution: "@next/swc-win32-ia32-msvc@npm:12.1.0"
   conditions: os=win32 & cpu=ia32
   languageName: node
   linkType: hard
 
-"@next/swc-win32-x64-msvc@npm:12.0.10":
-  version: 12.0.10
-  resolution: "@next/swc-win32-x64-msvc@npm:12.0.10"
+"@next/swc-win32-x64-msvc@npm:12.1.0":
+  version: 12.1.0
+  resolution: "@next/swc-win32-x64-msvc@npm:12.1.0"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
@@ -6376,9 +6377,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-three/drei@npm:8.10.0":
-  version: 8.10.0
-  resolution: "@react-three/drei@npm:8.10.0"
+"@react-three/drei@npm:8.10.1":
+  version: 8.10.1
+  resolution: "@react-three/drei@npm:8.10.1"
   dependencies:
     "@babel/runtime": ^7.11.2
     "@react-spring/three": ^9.3.1
@@ -6404,7 +6405,7 @@ __metadata:
   peerDependenciesMeta:
     react-dom:
       optional: true
-  checksum: 66964fb23761d1fedc5344c1952f8b87bc329f66d4b474c5c7c09160f894847f8d57c9b0506f0c480f613e0a18ebf015fa52a0ea08a9d1126bee9b27df2b1549
+  checksum: 04d1174c9ce31f14730bc0ca534f7a6202961869795db8aa666fd5e8bc154f15bf1c6712af9248c397b2c037460a6a1e24da80e8ea22137b09781692eddc38ac
   languageName: node
   linkType: hard
 
@@ -11735,7 +11736,7 @@ __metadata:
   resolution: "dream@workspace:."
   dependencies:
     "@apollo/client": 3.5.9
-    "@babel/core": 7.17.4
+    "@babel/core": 7.17.5
     "@babel/preset-env": 7.16.11
     "@babel/preset-react": 7.16.7
     "@babel/preset-typescript": 7.16.7
@@ -11747,18 +11748,18 @@ __metadata:
     "@graphql-codegen/cli": 2.6.2
     "@graphql-codegen/fragment-matcher": 3.2.1
     "@graphql-codegen/introspection": 2.1.1
-    "@graphql-codegen/typescript": 2.4.4
-    "@graphql-codegen/typescript-operations": 2.3.1
-    "@graphql-codegen/typescript-react-apollo": 3.2.7
-    "@headlessui/react": 1.4.3
+    "@graphql-codegen/typescript": 2.4.5
+    "@graphql-codegen/typescript-operations": 2.3.2
+    "@graphql-codegen/typescript-react-apollo": 3.2.8
+    "@headlessui/react": 1.5.0
     "@heroicons/react": 1.0.5
-    "@nestjs/apollo": 10.0.2
+    "@nestjs/apollo": 10.0.3
     "@nestjs/axios": 0.0.5
     "@nestjs/bull": 0.5.0
     "@nestjs/common": 8.3.1
     "@nestjs/config": 1.2.0
     "@nestjs/core": 8.3.1
-    "@nestjs/graphql": 10.0.2
+    "@nestjs/graphql": 10.0.3
     "@nestjs/passport": 8.2.1
     "@nestjs/platform-express": 8.3.1
     "@nestjs/schematics": 8.0.6
@@ -11774,7 +11775,7 @@ __metadata:
     "@nrwl/web": 13.8.2
     "@nrwl/workspace": 13.8.2
     "@prisma/client": 3.9.2
-    "@react-three/drei": 8.10.0
+    "@react-three/drei": 8.10.1
     "@react-three/fiber": 7.0.26
     "@svgr/webpack": 6.2.1
     "@tailwindcss/aspect-ratio": 0.4.0
@@ -11817,7 +11818,7 @@ __metadata:
     document-register-element: 1.14.10
     dotenv: 16.0.0
     eslint: 8.9.0
-    eslint-config-next: 12.0.10
+    eslint-config-next: 12.1.0
     eslint-config-prettier: 8.3.0
     eslint-plugin-cypress: 2.12.1
     eslint-plugin-import: 2.25.4
@@ -11839,7 +11840,7 @@ __metadata:
     minio: 7.0.26
     ms: 2.1.3
     nanoid: 3.3.1
-    next: 12.0.10
+    next: 12.1.0
     next-iron-session: 4.2.0
     next-transpile-modules: 9.0.0
     overlayscrollbars: 1.13.1
@@ -11872,7 +11873,7 @@ __metadata:
     tslib: 2.3.1
     typescript: 4.5.5
     use-debounce: 7.0.1
-    webpack: 5.69.0
+    webpack: 5.69.1
     yup: 0.32.11
   languageName: unknown
   linkType: soft
@@ -12028,16 +12029,6 @@ __metadata:
     graceful-fs: ^4.2.4
     tapable: ^2.2.0
   checksum: d79fbe531106448b768bb0673fb623ec0202d7ee70373ab7d4f4745d5dfe0806f38c9db7e7da8c941288fe475ab3d538db3791fce522056eeea40ca398c9e287
-  languageName: node
-  linkType: hard
-
-"enhanced-resolve@npm:^5.9.0":
-  version: 5.9.0
-  resolution: "enhanced-resolve@npm:5.9.0"
-  dependencies:
-    graceful-fs: ^4.2.4
-    tapable: ^2.2.0
-  checksum: 06435f52670229eb7fd8d92ea2d988a275f9a1b8c08b9023ba45767c6ed844bc87aa9c9c7e6d044eef99ad73fc3b066b78101163696e5c53121909e5bf8efe8b
   languageName: node
   linkType: hard
 
@@ -12214,11 +12205,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-config-next@npm:12.0.10":
-  version: 12.0.10
-  resolution: "eslint-config-next@npm:12.0.10"
+"eslint-config-next@npm:12.1.0":
+  version: 12.1.0
+  resolution: "eslint-config-next@npm:12.1.0"
   dependencies:
-    "@next/eslint-plugin-next": 12.0.10
+    "@next/eslint-plugin-next": 12.1.0
     "@rushstack/eslint-patch": ^1.0.8
     "@typescript-eslint/parser": ^5.0.0
     eslint-import-resolver-node: ^0.3.4
@@ -12234,7 +12225,7 @@ __metadata:
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 37f84056f8c957fc4341e4c32e14ab227ebfc56526612ea0b775812602215311b98e062506732dc43ceca1ef98e259dedd2de776c2e584a0819d6abfca15f1cf
+  checksum: 38664b2fdc6643c5c35f40612606f208350d0472ff12f177e6dc8a2065f59f0c092f494d568c681212eda60a74660c2ffe329132d74938739ae5c668ffe989c8
   languageName: node
   linkType: hard
 
@@ -17597,29 +17588,29 @@ __metadata:
   languageName: node
   linkType: hard
 
-"next@npm:12.0.10":
-  version: 12.0.10
-  resolution: "next@npm:12.0.10"
+"next@npm:12.1.0":
+  version: 12.1.0
+  resolution: "next@npm:12.1.0"
   dependencies:
-    "@next/env": 12.0.10
-    "@next/swc-android-arm64": 12.0.10
-    "@next/swc-darwin-arm64": 12.0.10
-    "@next/swc-darwin-x64": 12.0.10
-    "@next/swc-linux-arm-gnueabihf": 12.0.10
-    "@next/swc-linux-arm64-gnu": 12.0.10
-    "@next/swc-linux-arm64-musl": 12.0.10
-    "@next/swc-linux-x64-gnu": 12.0.10
-    "@next/swc-linux-x64-musl": 12.0.10
-    "@next/swc-win32-arm64-msvc": 12.0.10
-    "@next/swc-win32-ia32-msvc": 12.0.10
-    "@next/swc-win32-x64-msvc": 12.0.10
+    "@next/env": 12.1.0
+    "@next/swc-android-arm64": 12.1.0
+    "@next/swc-darwin-arm64": 12.1.0
+    "@next/swc-darwin-x64": 12.1.0
+    "@next/swc-linux-arm-gnueabihf": 12.1.0
+    "@next/swc-linux-arm64-gnu": 12.1.0
+    "@next/swc-linux-arm64-musl": 12.1.0
+    "@next/swc-linux-x64-gnu": 12.1.0
+    "@next/swc-linux-x64-musl": 12.1.0
+    "@next/swc-win32-arm64-msvc": 12.1.0
+    "@next/swc-win32-ia32-msvc": 12.1.0
+    "@next/swc-win32-x64-msvc": 12.1.0
     caniuse-lite: ^1.0.30001283
     postcss: 8.4.5
     styled-jsx: 5.0.0
     use-subscription: 1.5.1
   peerDependencies:
     fibers: ">= 3.1.0"
-    node-sass: ^4.0.0 || ^5.0.0 || ^6.0.0
+    node-sass: ^6.0.0 || ^7.0.0
     react: ^17.0.2 || ^18.0.0-0
     react-dom: ^17.0.2 || ^18.0.0-0
     sass: ^1.3.0
@@ -17655,7 +17646,7 @@ __metadata:
       optional: true
   bin:
     next: dist/bin/next
-  checksum: e92ff09c1f831a5131c4ca6bd5b917bf2ed0ba6c176fe10109096bbd35b5a72e6d8015aa6dc95d635175b4f3d58b1130471c2797088292dec58b10eb38d66662
+  checksum: 36dbafd5e640c420446dc05077f858ae4a8aaf5f91feb3c6c16c1b3f50b9fb63f743ef282a3bf0c68645442bef8aee643492f6dc62388a17f87064cde064d181
   languageName: node
   linkType: hard
 
@@ -23226,9 +23217,9 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"webpack@npm:5.69.0":
-  version: 5.69.0
-  resolution: "webpack@npm:5.69.0"
+"webpack@npm:5.69.1":
+  version: 5.69.1
+  resolution: "webpack@npm:5.69.1"
   dependencies:
     "@types/eslint-scope": ^3.7.3
     "@types/estree": ^0.0.51
@@ -23239,7 +23230,7 @@ resolve@^2.0.0-next.3:
     acorn-import-assertions: ^1.7.6
     browserslist: ^4.14.5
     chrome-trace-event: ^1.0.2
-    enhanced-resolve: ^5.9.0
+    enhanced-resolve: ^5.8.3
     es-module-lexer: ^0.9.0
     eslint-scope: 5.1.1
     events: ^3.2.0
@@ -23259,7 +23250,7 @@ resolve@^2.0.0-next.3:
       optional: true
   bin:
     webpack: bin/webpack.js
-  checksum: 0b0fc2ffcb926fc7506ec56901ae9a69f1ae969a6afc63395a3ed56f938d385c1d16d1dea39fd56dbb9362189c05da49174219904e5a337040aed5a46080e926
+  checksum: 490a6e9e4cd9d0ed3b6c7ca08015da2628919fda8fcf9c36f0f6c0e3ad71eaaaf4b0d12753109f22a4faf79fe9a9063552d9708e0ee2352cf8568433b8e296a7
   languageName: node
   linkType: hard
 

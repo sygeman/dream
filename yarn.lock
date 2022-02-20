@@ -6368,9 +6368,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-three/drei@npm:8.10.2":
-  version: 8.10.2
-  resolution: "@react-three/drei@npm:8.10.2"
+"@react-three/cannon@npm:4.7.0":
+  version: 4.7.0
+  resolution: "@react-three/cannon@npm:4.7.0"
+  dependencies:
+    cannon-es: ^0.18.0
+    cannon-es-debugger: ^1.0.0
+  peerDependencies:
+    react: ">=17.0"
+    react-dom: ">=17.0"
+  checksum: 862a6769142fda31880ba255230eb4c93b5abe8f264a6c8e666d42c6fd420db23d1943499c6ed884b1cd88191fc62fa279c3a3bf2dc6126fa3af52fef76dd839
+  languageName: node
+  linkType: hard
+
+"@react-three/drei@npm:8.10.6":
+  version: 8.10.6
+  resolution: "@react-three/drei@npm:8.10.6"
   dependencies:
     "@babel/runtime": ^7.11.2
     "@react-spring/three": ^9.3.1
@@ -6384,7 +6397,7 @@ __metadata:
     stats.js: ^0.17.0
     suspend-react: ^0.0.8
     three-mesh-bvh: ^0.5.4
-    three-stdlib: ^2.8.6
+    three-stdlib: ^2.8.7
     troika-three-text: ^0.45.0
     utility-types: ^3.10.0
     zustand: ^3.5.13
@@ -6396,7 +6409,7 @@ __metadata:
   peerDependenciesMeta:
     react-dom:
       optional: true
-  checksum: 30cf8b11469d9c0ec16a20f5b423a8b7249e66cf4d310721e54b0dc44afcd9e8210aabcdde7cf7a9a4a4fb031d72706c7dcbe10ba738c3c1a779c23cc1dbfb56
+  checksum: 04f209ea6755bb220a456de3e409c673f483d669925dab756a1d095c9d4907510294e5ca37334188df33731c2c28d81ef1f54c98fbfbf326918d4fcdef772745
   languageName: node
   linkType: hard
 
@@ -9786,9 +9799,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bull@npm:4.5.5":
-  version: 4.5.5
-  resolution: "bull@npm:4.5.5"
+"bull@npm:4.5.6":
+  version: 4.5.6
+  resolution: "bull@npm:4.5.6"
   dependencies:
     cron-parser: ^4.2.1
     debuglog: ^1.0.0
@@ -9799,7 +9812,7 @@ __metadata:
     p-timeout: ^3.2.0
     semver: ^7.3.2
     uuid: ^8.3.0
-  checksum: 6cdb110870c33730975f93b150f2554bf18fd636e4e21ca7ed1020545fc946ca80aca564f5944911c59d2981b5e178fed9bb75a92b8a19d6f7bd5b7b48bcd4bc
+  checksum: fc2c364171db60378f1f6f3fd432f0ed7b294d0a9601c898a31aae2c4f5f06d4a461ff16496616fd10f019019e3a87997d14927ab5a55f6998330a777e2e011b
   languageName: node
   linkType: hard
 
@@ -9972,6 +9985,27 @@ __metadata:
   version: 1.0.30001299
   resolution: "caniuse-lite@npm:1.0.30001299"
   checksum: c770f60ebf3e0cc8043ba4db0ebec12d7a595a6b50cb4437c3c5c55b04de9d2413f711f2828be761e8c37bb46b927a8abe6b199b8f0ffc1a34af0ebdee84be27
+  languageName: node
+  linkType: hard
+
+"cannon-es-debugger@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "cannon-es-debugger@npm:1.0.0"
+  peerDependencies:
+    cannon-es: 0.x
+    three: 0.x
+    typescript: ">=3.8"
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  checksum: 4d50b1250db46e5f7f005980ba38bcb5b21682c8851bef7e6077a1c20c7490ed05dcd286ca36f47cb7c5f9de47ff77b633c18c49ef6b1b44297985a9f7b5f58b
+  languageName: node
+  linkType: hard
+
+"cannon-es@npm:^0.18.0":
+  version: 0.18.0
+  resolution: "cannon-es@npm:0.18.0"
+  checksum: 87ee3c44579764b25defdee58a97c29df50ee0bfc380130a078c5fa625c4c9e745f042fef1ba611fe49f913d85351ec865b7ec8b83d598b9e11a10fd07a85d50
   languageName: node
   linkType: hard
 
@@ -11690,7 +11724,8 @@ __metadata:
     "@nrwl/web": 13.8.3
     "@nrwl/workspace": 13.8.3
     "@prisma/client": 3.9.2
-    "@react-three/drei": 8.10.2
+    "@react-three/cannon": 4.7.0
+    "@react-three/drei": 8.10.6
     "@react-three/fiber": 7.0.26
     "@svgr/webpack": 6.2.1
     "@tailwindcss/aspect-ratio": 0.4.0
@@ -11721,7 +11756,7 @@ __metadata:
     axios-hooks: 3.0.1
     babel-jest: 27.5.1
     babel-loader: 8.2.3
-    bull: 4.5.5
+    bull: 4.5.6
     class-transformer: 0.5.1
     class-validator: 0.13.2
     clsx: 1.1.1
@@ -21863,9 +21898,9 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"three-stdlib@npm:^2.8.6":
-  version: 2.8.6
-  resolution: "three-stdlib@npm:2.8.6"
+"three-stdlib@npm:^2.8.7":
+  version: 2.8.7
+  resolution: "three-stdlib@npm:2.8.7"
   dependencies:
     "@babel/runtime": ^7.16.7
     "@webgpu/glslang": ^0.0.15
@@ -21879,7 +21914,7 @@ resolve@^2.0.0-next.3:
     zstddec: ^0.0.2
   peerDependencies:
     three: ">=0.137.0"
-  checksum: 285f8757d7b27b25ee2a05df6bab0735578e8a86782ccffad0af2aa15b96598f55fb34330a7ca6a84d2b36adfa6c8af03bcafb6722f8c9c019f424a1ecccf5a5
+  checksum: 7aca002548d621428d2984850806a585d49bc634ca4cfee7372662404ae0fedae6f623cbc328eccd16ce19d9c337336ae8eefca224f767e1ad57039df091fc1f
   languageName: node
   linkType: hard
 

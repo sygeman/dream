@@ -46,6 +46,9 @@
       "@dream/mode/twitch/ui": ["libs/mode/twitch/ui/src/index.ts"],
       "@dream/mode/youtube/api": ["libs/mode/youtube/api/src/index.ts"],
       "@dream/mode/youtube/ui": ["libs/mode/youtube/ui/src/index.ts"],
+      "@dream/modules/connection-status": [
+        "libs/modules/connection-status/src/index.ts"
+      ],
       "@dream/pepega-ui/*": ["libs/pepega-ui/src/lib/*"],
       "@dream/prisma": ["libs/prisma/src/index.ts"],
       "@dream/spotify-now": ["libs/spotify-now/src/index.ts"],

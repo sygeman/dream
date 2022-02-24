@@ -593,6 +593,31 @@
       },
       "tags": []
     },
+    "modules-connection-status": {
+      "root": "libs/modules/connection-status",
+      "sourceRoot": "libs/modules/connection-status/src",
+      "projectType": "library",
+      "tags": [],
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": [
+              "libs/modules/connection-status/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/modules/connection-status"],
+          "options": {
+            "jestConfig": "libs/modules/connection-status/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "pepega": {
       "root": "apps/pepega",
       "sourceRoot": "apps/pepega",

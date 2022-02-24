@@ -12,6 +12,7 @@ import {
   DeleteChannelModal,
   ChannelSettingsModal,
 } from '@dream/channel/ui';
+import { ConnectionStatus } from '@dream/modules/connection-status';
 
 export const MainLayout: React.FC = ({ children }) => (
   <div className="h-screen bg-background flex">
@@ -31,5 +32,7 @@ export const MainLayout: React.FC = ({ children }) => (
     <NewChannelModal />
     <DeleteChannelModal />
     <ChannelSettingsModal />
+
+    <ConnectionStatus />
   </div>
 );

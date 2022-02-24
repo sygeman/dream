@@ -3,29 +3,44 @@ import { ApolloClient, InMemoryCache } from '@apollo/client';
 import merge from 'deepmerge';
 import isEqual from 'lodash/isEqual';
 import { WebSocketLink } from './web-socket-link';
-import WebSocket from 'isomorphic-ws';
+import { disconnectedVar } from '@dream/modules/connection-status';
 
 export const APOLLO_STATE_PROP_NAME = '__APOLLO_STATE__';
 
 let apolloClient;
 
 function createApolloClient() {
-  return new ApolloClient({
-    link: new WebSocketLink({
+  let link;
+
+  if (typeof window !== 'undefined') {
+    link = new WebSocketLink({
       url: `wss://${process.env.NEXT_PUBLIC_API}/graphql`,
-      webSocketImpl: WebSocket,
-      // options: {
-      //   reconnect: true,
+      lazy: false,
+      isFatalConnectionProblem: () => false,
+      retryAttempts: 10,
       connectionParams: async () => {
         const token = await fetch('/api/auth/token')
           .then((res) => res.json())
           .then((data) => data?.token);
 
         return { token };
-        // },
       },
-    }),
-    ssrMode: typeof window === 'undefined',
+      on: {
+        closed: () => {
+          disconnectedVar(true);
+        },
+        connected: () => {
+          if (disconnectedVar()) {
+            disconnectedVar(false);
+          }
+        },
+      },
+    });
+  }
+
+  return new ApolloClient({
+    link,
+    ssrMode: false,
     cache: new InMemoryCache(),
   });
 }

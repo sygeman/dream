@@ -40,5 +40,6 @@ module.exports = {
     '<rootDir>/libs/utils/regexp/url-name',
     '<rootDir>/libs/utils/emoji',
     '<rootDir>/libs/emoji/api',
+    '<rootDir>/libs/modules/connection-status',
   ],
 };

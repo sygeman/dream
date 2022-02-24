@@ -8,7 +8,7 @@ import { print, GraphQLError } from 'graphql';
 import { createClient, ClientOptions, Client } from 'graphql-ws';
 
 export class WebSocketLink extends ApolloLink {
-  private client: Client;
+  public client: Client;
 
   constructor(options: ClientOptions) {
     super();

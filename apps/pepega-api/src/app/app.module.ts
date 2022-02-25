@@ -38,7 +38,6 @@ import { EmojiModule } from '@dream/emoji/api';
       driver: ApolloDriver,
       imports: [AuthModule, ConnectionModule],
       inject: [AuthService, ConnectionService],
-      //@ts-ignore
       useFactory: async (
         authService: AuthService,
         connectionService: ConnectionService

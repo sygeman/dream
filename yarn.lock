@@ -78,9 +78,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@apollo/client@npm:3.5.9":
-  version: 3.5.9
-  resolution: "@apollo/client@npm:3.5.9"
+"@apollo/client@npm:3.5.10":
+  version: 3.5.10
+  resolution: "@apollo/client@npm:3.5.10"
   dependencies:
     "@graphql-typed-document-node/core": ^3.0.0
     "@wry/context": ^0.6.0
@@ -96,14 +96,17 @@ __metadata:
     zen-observable-ts: ^1.2.0
   peerDependencies:
     graphql: ^14.0.0 || ^15.0.0 || ^16.0.0
+    graphql-ws: ^5.5.5
     react: ^16.8.0 || ^17.0.0
     subscriptions-transport-ws: ^0.9.0 || ^0.11.0
   peerDependenciesMeta:
+    graphql-ws:
+      optional: true
     react:
       optional: true
     subscriptions-transport-ws:
       optional: true
-  checksum: b5d827f82ea565e57371c8697b627a1f2944712b8e32d04c6859495cfb11516644f5c7799c7f44d5a898fbd4204a412e5288adf42c69a2f89da0fa1591b358e5
+  checksum: 0228b9de82e1f25b4d63439944f81675579db2fc33eead06c62c603f3d48e8b6dae7d41232a754b03b3b8290b13ca8cdcea9962948cc1991ccefe4d16d942e7f
   languageName: node
   linkType: hard
 
@@ -6390,9 +6393,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-three/drei@npm:8.10.6":
-  version: 8.10.6
-  resolution: "@react-three/drei@npm:8.10.6"
+"@react-three/drei@npm:8.10.7":
+  version: 8.10.7
+  resolution: "@react-three/drei@npm:8.10.7"
   dependencies:
     "@babel/runtime": ^7.11.2
     "@react-spring/three": ^9.3.1
@@ -6418,7 +6421,7 @@ __metadata:
   peerDependenciesMeta:
     react-dom:
       optional: true
-  checksum: 04f209ea6755bb220a456de3e409c673f483d669925dab756a1d095c9d4907510294e5ca37334188df33731c2c28d81ef1f54c98fbfbf326918d4fcdef772745
+  checksum: 2e789885607652d0be285525594179adba16bfccda4626229684a375c33d790c3733ad516b1d61628aa85f9b388a20975312f2042ab733d69a8c49de234d4f7d
   languageName: node
   linkType: hard
 
@@ -7144,14 +7147,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@swc/jest@npm:0.2.17":
-  version: 0.2.17
-  resolution: "@swc/jest@npm:0.2.17"
+"@swc/jest@npm:0.2.20":
+  version: 0.2.20
+  resolution: "@swc/jest@npm:0.2.20"
   dependencies:
     "@jest/create-cache-key-function": ^27.4.2
   peerDependencies:
     "@swc/core": "*"
-  checksum: 33e08c71adaa3d46f47b888b954c8f61513804a1b3ee24fdc13ccbbb89ca6c96b474eef4002b96edcd6090a308a1aafd313073ae4bcd6339fcc3a22e2f29f1b7
+  checksum: 160a2d0336c416ec38ad267892ba67696c853318b207cfc9924da09a3318345bc37ca255782764ef651399cb8c0e9976ebdf90284799acb6b0c45c5d8bc4edbc
   languageName: node
   linkType: hard
 
@@ -11860,7 +11863,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "dream@workspace:."
   dependencies:
-    "@apollo/client": 3.5.9
+    "@apollo/client": 3.5.10
     "@babel/core": 7.17.5
     "@babel/preset-env": 7.16.11
     "@babel/preset-react": 7.16.7
@@ -11901,11 +11904,11 @@ __metadata:
     "@nrwl/workspace": 13.8.3
     "@prisma/client": 3.10.0
     "@react-three/cannon": 4.7.0
-    "@react-three/drei": 8.10.6
+    "@react-three/drei": 8.10.7
     "@react-three/fiber": 7.0.26
     "@svgr/webpack": 6.2.1
     "@swc/core": 1.2.145
-    "@swc/jest": 0.2.17
+    "@swc/jest": 0.2.20
     "@tailwindcss/aspect-ratio": 0.4.0
     "@tailwindcss/forms": 0.4.0
     "@tailwindcss/line-clamp": 0.3.1
@@ -11951,7 +11954,7 @@ __metadata:
     eslint-plugin-cypress: 2.12.1
     eslint-plugin-import: 2.25.4
     eslint-plugin-jsx-a11y: 6.5.1
-    eslint-plugin-react: 7.28.0
+    eslint-plugin-react: 7.29.0
     eslint-plugin-react-hooks: 4.3.0
     express-session: 1.17.2
     formik: 2.2.9
@@ -11975,7 +11978,7 @@ __metadata:
     passport: 0.5.2
     passport-spotify: 2.0.0
     passport-twitch-new: 0.0.2
-    postcss: 8.4.6
+    postcss: 8.4.7
     prettier: 2.5.1
     prisma: 3.10.0
     rc-slider: 9.7.5
@@ -12503,27 +12506,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-react@npm:7.28.0":
-  version: 7.28.0
-  resolution: "eslint-plugin-react@npm:7.28.0"
+"eslint-plugin-react@npm:7.29.0":
+  version: 7.29.0
+  resolution: "eslint-plugin-react@npm:7.29.0"
   dependencies:
     array-includes: ^3.1.4
     array.prototype.flatmap: ^1.2.5
     doctrine: ^2.1.0
     estraverse: ^5.3.0
     jsx-ast-utils: ^2.4.1 || ^3.0.0
-    minimatch: ^3.0.4
+    minimatch: ^3.1.2
     object.entries: ^1.1.5
     object.fromentries: ^2.0.5
     object.hasown: ^1.1.0
     object.values: ^1.1.5
-    prop-types: ^15.7.2
+    prop-types: ^15.8.1
     resolve: ^2.0.0-next.3
     semver: ^6.3.0
     string.prototype.matchall: ^4.0.6
   peerDependencies:
     eslint: ^3 || ^4 || ^5 || ^6 || ^7 || ^8
-  checksum: 90293d0fd53bb1f735ffd32141cdd211fb1120c9f7bbe5342f9e923261a39e52a2b2575d4e46c9cd77d257f42db4a99b8b339689fc5b5c1c26048929f69b1784
+  checksum: 2951ec2758a56ae2bc6f3729906043d2b67f1f5a971f070c4ba85ee37fe5fca32bc6097e5bd185d472c90031176611b43d1751e934080d1bb8e2e096fdaf0abb
   languageName: node
   linkType: hard
 
@@ -17265,6 +17268,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"minimatch@npm:^3.1.2":
+  version: 3.1.2
+  resolution: "minimatch@npm:3.1.2"
+  dependencies:
+    brace-expansion: ^1.1.7
+  checksum: c154e566406683e7bcb746e000b84d74465b3a832c45d59912b9b55cd50dee66e5c4b1e5566dba26154040e51672f9aa450a9aef0c97cfc7336b78b7afb9540a
+  languageName: node
+  linkType: hard
+
 "minimatch@npm:^4.0.0":
   version: 4.2.1
   resolution: "minimatch@npm:4.2.1"
@@ -17537,7 +17549,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nanoid@npm:3.3.1":
+"nanoid@npm:3.3.1, nanoid@npm:^3.3.1":
   version: 3.3.1
   resolution: "nanoid@npm:3.3.1"
   bin:
@@ -19287,7 +19299,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:8.4.6, postcss@npm:^8.2.13, postcss@npm:^8.4.6":
+"postcss@npm:8.4.7":
+  version: 8.4.7
+  resolution: "postcss@npm:8.4.7"
+  dependencies:
+    nanoid: ^3.3.1
+    picocolors: ^1.0.0
+    source-map-js: ^1.0.2
+  checksum: a515ed36622edbee1d3ba153298d3b62ae9826dfa6de19204c2a6f975c8d3ad36808423b5119a9d82b78efd486de3ce35a1faf882a36ac8aa09492be4fbb7fe1
+  languageName: node
+  linkType: hard
+
+"postcss@npm:^8.2.13, postcss@npm:^8.4.6":
   version: 8.4.6
   resolution: "postcss@npm:8.4.6"
   dependencies:

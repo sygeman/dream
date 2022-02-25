@@ -1,8 +1,8 @@
 import React from 'react';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
-import { useUpdateCommunityMutation } from '@dream/types';
-import { useCommunityChannel } from '../use-community-channel';
+import { useUpdateCommunitySettingsMutation } from './types';
+import { useCommunity } from './use-community';
 import { urlNameRegExp } from '@dream/utils/regexp/url-name';
 import { SaveFormPanel } from '@dream/components/save-form';
 
@@ -19,16 +19,16 @@ const ValidationSchema = Yup.object().shape({
     .required('Required'),
 });
 
-export const ChannelSettingsOverview = () => {
+export const CommunitySettingsOverview: React.FC = () => {
   const origin = typeof window !== 'undefined' ? window?.location?.origin : '';
-  const { community, communityId } = useCommunityChannel();
+  const { communitySettings, communityId } = useCommunity();
 
-  const [updateCommunity] = useUpdateCommunityMutation({
+  const [updateCommunitySettings] = useUpdateCommunitySettingsMutation({
     onCompleted: (data) => {
       formik.resetForm({
         values: {
-          name: data?.updateCommunity?.name,
-          title: data?.updateCommunity?.title,
+          name: data?.updateCommunitySettings?.name,
+          title: data?.updateCommunitySettings?.title,
         },
       });
     },
@@ -36,13 +36,13 @@ export const ChannelSettingsOverview = () => {
 
   const formik = useFormik({
     initialValues: {
-      name: community?.name,
-      title: community?.title,
+      name: communitySettings?.name,
+      title: communitySettings?.title,
     },
     enableReinitialize: true,
     validationSchema: ValidationSchema,
     onSubmit: (values) => {
-      updateCommunity({
+      updateCommunitySettings({
         variables: { input: { ...values, communityId } },
       });
     },

@@ -297,6 +297,13 @@ type Emoji {
   createdAt: String!
 }
 
+type CommunitySettings {
+  id: String!
+  name: String
+  title: String!
+  avatar: String
+}
+
 type Query {
   uniqCount: Int!
   user(id: ID): User
@@ -307,6 +314,7 @@ type Query {
   channelUsersOnline(channelId: String!): [User!]!
   channels(name: String!): [Channel!]!
   channelMessages(channelId: ID!): [ChannelMessage!]!
+  communitySettings(name: String!): CommunitySettings!
   spotifyMode(channelId: String!): SpotifyMode!
   spotifyModeHistory(channelId: String!): SpotifyModeHistory!
   spotifyModeCurrent(channelId: String!): SpotifyModeCurrent
@@ -332,6 +340,7 @@ type Mutation {
   updateChannel(input: UpdateChannelInput!): Channel!
   deleteChannel(channelId: ID!): Channel!
   createChannelMessage(input: ChannelMessageCreateInput!): Boolean!
+  updateCommunitySettings(input: UpdateCommunitySettingsInput!): CommunitySettings!
   updateSpotifyMode(input: UpdateSpotifyModeInput!): SpotifyMode!
   makeSpotifyModeCurrent(channelId: String!): Boolean!
   spotifyModeQueueAddTrack(channelId: String!, trackId: String!): Boolean!
@@ -377,6 +386,12 @@ input UpdateChannelInput {
 input ChannelMessageCreateInput {
   content: String!
   channelId: String!
+}
+
+input UpdateCommunitySettingsInput {
+  communityId: ID!
+  name: String!
+  title: String!
 }
 
 input UpdateSpotifyModeInput {

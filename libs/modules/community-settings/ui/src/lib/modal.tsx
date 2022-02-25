@@ -1,10 +1,10 @@
 import React from 'react';
 import { useModal } from '@dream/utils/use-modal';
 import { ModalFull } from '@dream/components/modal-full';
-import { CommunitySettings } from '../community-settings';
-import { CommunitySettingsMenu } from '../community-settings/menu';
+import { CommunitySettings } from './community-settings';
+import { CommunitySettingsMenu } from './menu';
 
-export const CommunitySettingsModal = () => {
+export const CommunitySettingsModal: React.FC = () => {
   const modalProps = useModal();
 
   return (

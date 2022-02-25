@@ -2,11 +2,8 @@ import React from 'react';
 import { AppPanel } from '@dream/app-panel';
 import { UserSettingsModal } from '@dream/user';
 import { LoginModal, LogoutModal } from '@dream/auth';
-import {
-  NewCommunityModal,
-  DeleteCommunityModal,
-  CommunitySettingsModal,
-} from '@dream/community';
+import { NewCommunityModal, DeleteCommunityModal } from '@dream/community';
+import { CommunitySettingsModal } from '@dream/modules/community-settings/ui';
 import {
   NewChannelModal,
   DeleteChannelModal,

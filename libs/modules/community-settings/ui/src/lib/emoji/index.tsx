@@ -1,14 +1,16 @@
-import {
-  useEmojisQuery,
-  useDeleteEmojiMutation,
-  useUpdateEmojiAliasMutation,
-  Emoji,
-} from '@dream/types';
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { TrashIcon } from '@heroicons/react/solid';
-import { useCommunityChannel } from '../use-community-channel';
+import {
+  Emoji,
+  useEmojisQuery,
+  useDeleteEmojiMutation,
+  useUpdateEmojiAliasMutation,
+} from '../types';
+import { useCommunity } from '../use-community';
+
+// TODO: This is must be a part of EmojiModule
 
 const EmojiAliasInput: React.FC<{
   emoji: Emoji;
@@ -29,8 +31,8 @@ const EmojiAliasInput: React.FC<{
   );
 };
 
-export const ChannelSettingsEmoji = () => {
-  const { communityId } = useCommunityChannel();
+export const CommunitySettingsEmoji = () => {
+  const { communityId } = useCommunity();
 
   const emojisQuery = useEmojisQuery({
     variables: { communityId },

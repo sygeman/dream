@@ -1,8 +1,16 @@
 overwrite: true
 schema: 'schema.gql'
-documents: 'libs/**/*.graphql'
 generates:
   libs/types/src/index.tsx:
+    documents:
+      - 'libs/**/*.graphql'
+      - '!libs/modules/**/*.graphql'
+    plugins:
+      - 'typescript'
+      - 'typescript-operations'
+      - 'typescript-react-apollo'
+  libs/modules/community-settings/ui/src/lib/types.tsx:
+    documents: 'libs/modules/community-settings/ui/**/*.graphql'
     plugins:
       - 'typescript'
       - 'typescript-operations'

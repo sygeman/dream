@@ -1,0 +1,18 @@
+query communitySettings($name: String!) {
+  communitySettings(name: $name) {
+    ...CommunitySettingsFields
+  }
+}
+
+mutation updateCommunitySettings($input: UpdateCommunitySettingsInput!) {
+  updateCommunitySettings(input: $input) {
+    ...CommunitySettingsFields
+  }
+}
+
+fragment CommunitySettingsFields on CommunitySettings {
+  id
+  name
+  title
+  avatar
+}

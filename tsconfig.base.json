@@ -46,6 +46,12 @@
       "@dream/mode/twitch/ui": ["libs/mode/twitch/ui/src/index.ts"],
       "@dream/mode/youtube/api": ["libs/mode/youtube/api/src/index.ts"],
       "@dream/mode/youtube/ui": ["libs/mode/youtube/ui/src/index.ts"],
+      "@dream/modules/community-settings/api": [
+        "libs/modules/community-settings/api/src/index.ts"
+      ],
+      "@dream/modules/community-settings/ui": [
+        "libs/modules/community-settings/ui/src/index.ts"
+      ],
       "@dream/modules/connection-status": [
         "libs/modules/connection-status/src/index.ts"
       ],

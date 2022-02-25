@@ -41,5 +41,7 @@ module.exports = {
     '<rootDir>/libs/utils/emoji',
     '<rootDir>/libs/emoji/api',
     '<rootDir>/libs/modules/connection-status',
+    '<rootDir>/libs/modules/community-settings/ui',
+    '<rootDir>/libs/modules/community-settings/api',
   ],
 };

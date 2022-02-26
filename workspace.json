@@ -593,6 +593,54 @@
       },
       "tags": []
     },
+    "modules-channel-settings-api": {
+      "root": "libs/modules/channel-settings/api",
+      "sourceRoot": "libs/modules/channel-settings/api/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/modules/channel-settings/api/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/modules/channel-settings/api"],
+          "options": {
+            "jestConfig": "libs/modules/channel-settings/api/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "modules-channel-settings-ui": {
+      "root": "libs/modules/channel-settings/ui",
+      "sourceRoot": "libs/modules/channel-settings/ui/src",
+      "projectType": "library",
+      "tags": [],
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": [
+              "libs/modules/channel-settings/ui/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/modules/channel-settings/ui"],
+          "options": {
+            "jestConfig": "libs/modules/channel-settings/ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "modules-community-settings-api": {
       "root": "libs/modules/community-settings/api",
       "sourceRoot": "libs/modules/community-settings/api/src",

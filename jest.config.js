@@ -43,5 +43,7 @@ module.exports = {
     '<rootDir>/libs/modules/connection-status',
     '<rootDir>/libs/modules/community-settings/ui',
     '<rootDir>/libs/modules/community-settings/api',
+    '<rootDir>/libs/modules/channel-settings/ui',
+    '<rootDir>/libs/modules/channel-settings/api',
   ],
 };

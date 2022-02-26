@@ -9,3 +9,20 @@ mutation makeSpotifyModeCurrent($channelId: String!) {
 mutation makeWaitlistYoutubeModeCurrent($channelId: String!) {
   makeWaitlistYoutubeModeCurrent(channelId: $channelId)
 }
+
+mutation updateChannelSettings($input: UpdateChannelSettingsInput!) {
+  updateChannelSettings(input: $input) {
+    ...ChannelSettingsFields
+  }
+}
+
+fragment ChannelSettingsFields on ChannelSettings {
+  id
+  name
+  title
+  mode
+  gifAllowed
+  nsfw
+  slowmode
+  avatar
+}

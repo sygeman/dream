@@ -56,6 +56,20 @@ export enum ChannelMode {
   Youtube = 'YOUTUBE'
 }
 
+export type ChannelSettings = {
+  __typename?: 'ChannelSettings';
+  avatar?: Maybe<Scalars['String']>;
+  createdAt: Scalars['DateTime'];
+  gifAllowed: Scalars['Boolean'];
+  id: Scalars['String'];
+  mode: ChannelMode;
+  name: Scalars['String'];
+  nsfw: Scalars['Boolean'];
+  slowmode: Scalars['Int'];
+  title: Scalars['String'];
+  updatedAt: Scalars['DateTime'];
+};
+
 export type Community = {
   __typename?: 'Community';
   avatar?: Maybe<Scalars['String']>;
@@ -120,6 +134,7 @@ export type Mutation = {
   spotifyModeQueueSkipTrack: Scalars['Boolean'];
   spotifyModeUserSync: Scalars['Boolean'];
   updateChannel: Channel;
+  updateChannelSettings: ChannelSettings;
   updateCommunity: Community;
   updateCommunitySettings: CommunitySettings;
   updateConnectionStatus: Scalars['Boolean'];
@@ -199,6 +214,11 @@ export type MutationSpotifyModeUserSyncArgs = {
 
 export type MutationUpdateChannelArgs = {
   input: UpdateChannelInput;
+};
+
+
+export type MutationUpdateChannelSettingsArgs = {
+  input: UpdateChannelSettingsInput;
 };
 
 
@@ -571,6 +591,16 @@ export type UpdateChannelInput = {
   title?: InputMaybe<Scalars['String']>;
 };
 
+export type UpdateChannelSettingsInput = {
+  channelId: Scalars['ID'];
+  communityId: Scalars['ID'];
+  gifAllowed?: InputMaybe<Scalars['Boolean']>;
+  name?: InputMaybe<Scalars['String']>;
+  nsfw?: InputMaybe<Scalars['Boolean']>;
+  slowmode?: InputMaybe<Scalars['Int']>;
+  title?: InputMaybe<Scalars['String']>;
+};
+
 export type UpdateCommunityInput = {
   communityId: Scalars['ID'];
   name: Scalars['String'];
@@ -735,13 +765,6 @@ export type CreateChannelMutationVariables = Exact<{
 
 export type CreateChannelMutation = { __typename?: 'Mutation', createChannel: { __typename?: 'Channel', id: string, name: string, title: string, mode: ChannelMode, gifAllowed: boolean, nsfw: boolean, slowmode: number, state?: string | null, avatar?: string | null, onlineCount: number } };
 
-export type UpdateChannelMutationVariables = Exact<{
-  input: UpdateChannelInput;
-}>;
-
-
-export type UpdateChannelMutation = { __typename?: 'Mutation', updateChannel: { __typename?: 'Channel', id: string, name: string, title: string, mode: ChannelMode, gifAllowed: boolean, nsfw: boolean, slowmode: number, state?: string | null, avatar?: string | null, onlineCount: number } };
-
 export type DeleteChannelMutationVariables = Exact<{
   channelId: Scalars['ID'];
 }>;
@@ -750,27 +773,6 @@ export type DeleteChannelMutationVariables = Exact<{
 export type DeleteChannelMutation = { __typename?: 'Mutation', deleteChannel: { __typename?: 'Channel', id: string, name: string, title: string, mode: ChannelMode, gifAllowed: boolean, nsfw: boolean, slowmode: number, state?: string | null, avatar?: string | null, onlineCount: number } };
 
 export type ChannelFieldsFragment = { __typename?: 'Channel', id: string, name: string, title: string, mode: ChannelMode, gifAllowed: boolean, nsfw: boolean, slowmode: number, state?: string | null, avatar?: string | null, onlineCount: number };
-
-export type MakeTwitchStreamModeCurrentMutationVariables = Exact<{
-  channelId: Scalars['String'];
-}>;
-
-
-export type MakeTwitchStreamModeCurrentMutation = { __typename?: 'Mutation', makeTwitchStreamModeCurrent: boolean };
-
-export type MakeSpotifyModeCurrentMutationVariables = Exact<{
-  channelId: Scalars['String'];
-}>;
-
-
-export type MakeSpotifyModeCurrentMutation = { __typename?: 'Mutation', makeSpotifyModeCurrent: boolean };
-
-export type MakeWaitlistYoutubeModeCurrentMutationVariables = Exact<{
-  channelId: Scalars['String'];
-}>;
-
-
-export type MakeWaitlistYoutubeModeCurrentMutation = { __typename?: 'Mutation', makeWaitlistYoutubeModeCurrent: boolean };
 
 export type ChannelMessagesQueryVariables = Exact<{
   channelId: Scalars['ID'];
@@ -1268,39 +1270,6 @@ export function useCreateChannelMutation(baseOptions?: Apollo.MutationHookOption
 export type CreateChannelMutationHookResult = ReturnType<typeof useCreateChannelMutation>;
 export type CreateChannelMutationResult = Apollo.MutationResult<CreateChannelMutation>;
 export type CreateChannelMutationOptions = Apollo.BaseMutationOptions<CreateChannelMutation, CreateChannelMutationVariables>;
-export const UpdateChannelDocument = gql`
-    mutation updateChannel($input: UpdateChannelInput!) {
-  updateChannel(input: $input) {
-    ...ChannelFields
-  }
-}
-    ${ChannelFieldsFragmentDoc}`;
-export type UpdateChannelMutationFn = Apollo.MutationFunction<UpdateChannelMutation, UpdateChannelMutationVariables>;
-
-/**
- * __useUpdateChannelMutation__
- *
- * To run a mutation, you first call `useUpdateChannelMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useUpdateChannelMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [updateChannelMutation, { data, loading, error }] = useUpdateChannelMutation({
- *   variables: {
- *      input: // value for 'input'
- *   },
- * });
- */
-export function useUpdateChannelMutation(baseOptions?: Apollo.MutationHookOptions<UpdateChannelMutation, UpdateChannelMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<UpdateChannelMutation, UpdateChannelMutationVariables>(UpdateChannelDocument, options);
-      }
-export type UpdateChannelMutationHookResult = ReturnType<typeof useUpdateChannelMutation>;
-export type UpdateChannelMutationResult = Apollo.MutationResult<UpdateChannelMutation>;
-export type UpdateChannelMutationOptions = Apollo.BaseMutationOptions<UpdateChannelMutation, UpdateChannelMutationVariables>;
 export const DeleteChannelDocument = gql`
     mutation deleteChannel($channelId: ID!) {
   deleteChannel(channelId: $channelId) {
@@ -1334,99 +1303,6 @@ export function useDeleteChannelMutation(baseOptions?: Apollo.MutationHookOption
 export type DeleteChannelMutationHookResult = ReturnType<typeof useDeleteChannelMutation>;
 export type DeleteChannelMutationResult = Apollo.MutationResult<DeleteChannelMutation>;
 export type DeleteChannelMutationOptions = Apollo.BaseMutationOptions<DeleteChannelMutation, DeleteChannelMutationVariables>;
-export const MakeTwitchStreamModeCurrentDocument = gql`
-    mutation makeTwitchStreamModeCurrent($channelId: String!) {
-  makeTwitchStreamModeCurrent(channelId: $channelId)
-}
-    `;
-export type MakeTwitchStreamModeCurrentMutationFn = Apollo.MutationFunction<MakeTwitchStreamModeCurrentMutation, MakeTwitchStreamModeCurrentMutationVariables>;
-
-/**
- * __useMakeTwitchStreamModeCurrentMutation__
- *
- * To run a mutation, you first call `useMakeTwitchStreamModeCurrentMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useMakeTwitchStreamModeCurrentMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [makeTwitchStreamModeCurrentMutation, { data, loading, error }] = useMakeTwitchStreamModeCurrentMutation({
- *   variables: {
- *      channelId: // value for 'channelId'
- *   },
- * });
- */
-export function useMakeTwitchStreamModeCurrentMutation(baseOptions?: Apollo.MutationHookOptions<MakeTwitchStreamModeCurrentMutation, MakeTwitchStreamModeCurrentMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<MakeTwitchStreamModeCurrentMutation, MakeTwitchStreamModeCurrentMutationVariables>(MakeTwitchStreamModeCurrentDocument, options);
-      }
-export type MakeTwitchStreamModeCurrentMutationHookResult = ReturnType<typeof useMakeTwitchStreamModeCurrentMutation>;
-export type MakeTwitchStreamModeCurrentMutationResult = Apollo.MutationResult<MakeTwitchStreamModeCurrentMutation>;
-export type MakeTwitchStreamModeCurrentMutationOptions = Apollo.BaseMutationOptions<MakeTwitchStreamModeCurrentMutation, MakeTwitchStreamModeCurrentMutationVariables>;
-export const MakeSpotifyModeCurrentDocument = gql`
-    mutation makeSpotifyModeCurrent($channelId: String!) {
-  makeSpotifyModeCurrent(channelId: $channelId)
-}
-    `;
-export type MakeSpotifyModeCurrentMutationFn = Apollo.MutationFunction<MakeSpotifyModeCurrentMutation, MakeSpotifyModeCurrentMutationVariables>;
-
-/**
- * __useMakeSpotifyModeCurrentMutation__
- *
- * To run a mutation, you first call `useMakeSpotifyModeCurrentMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useMakeSpotifyModeCurrentMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [makeSpotifyModeCurrentMutation, { data, loading, error }] = useMakeSpotifyModeCurrentMutation({
- *   variables: {
- *      channelId: // value for 'channelId'
- *   },
- * });
- */
-export function useMakeSpotifyModeCurrentMutation(baseOptions?: Apollo.MutationHookOptions<MakeSpotifyModeCurrentMutation, MakeSpotifyModeCurrentMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<MakeSpotifyModeCurrentMutation, MakeSpotifyModeCurrentMutationVariables>(MakeSpotifyModeCurrentDocument, options);
-      }
-export type MakeSpotifyModeCurrentMutationHookResult = ReturnType<typeof useMakeSpotifyModeCurrentMutation>;
-export type MakeSpotifyModeCurrentMutationResult = Apollo.MutationResult<MakeSpotifyModeCurrentMutation>;
-export type MakeSpotifyModeCurrentMutationOptions = Apollo.BaseMutationOptions<MakeSpotifyModeCurrentMutation, MakeSpotifyModeCurrentMutationVariables>;
-export const MakeWaitlistYoutubeModeCurrentDocument = gql`
-    mutation makeWaitlistYoutubeModeCurrent($channelId: String!) {
-  makeWaitlistYoutubeModeCurrent(channelId: $channelId)
-}
-    `;
-export type MakeWaitlistYoutubeModeCurrentMutationFn = Apollo.MutationFunction<MakeWaitlistYoutubeModeCurrentMutation, MakeWaitlistYoutubeModeCurrentMutationVariables>;
-
-/**
- * __useMakeWaitlistYoutubeModeCurrentMutation__
- *
- * To run a mutation, you first call `useMakeWaitlistYoutubeModeCurrentMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useMakeWaitlistYoutubeModeCurrentMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [makeWaitlistYoutubeModeCurrentMutation, { data, loading, error }] = useMakeWaitlistYoutubeModeCurrentMutation({
- *   variables: {
- *      channelId: // value for 'channelId'
- *   },
- * });
- */
-export function useMakeWaitlistYoutubeModeCurrentMutation(baseOptions?: Apollo.MutationHookOptions<MakeWaitlistYoutubeModeCurrentMutation, MakeWaitlistYoutubeModeCurrentMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<MakeWaitlistYoutubeModeCurrentMutation, MakeWaitlistYoutubeModeCurrentMutationVariables>(MakeWaitlistYoutubeModeCurrentDocument, options);
-      }
-export type MakeWaitlistYoutubeModeCurrentMutationHookResult = ReturnType<typeof useMakeWaitlistYoutubeModeCurrentMutation>;
-export type MakeWaitlistYoutubeModeCurrentMutationResult = Apollo.MutationResult<MakeWaitlistYoutubeModeCurrentMutation>;
-export type MakeWaitlistYoutubeModeCurrentMutationOptions = Apollo.BaseMutationOptions<MakeWaitlistYoutubeModeCurrentMutation, MakeWaitlistYoutubeModeCurrentMutationVariables>;
 export const ChannelMessagesDocument = gql`
     query ChannelMessages($channelId: ID!) {
   channelMessages(channelId: $channelId) {

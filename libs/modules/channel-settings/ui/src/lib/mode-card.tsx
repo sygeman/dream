@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { CheckCircleIcon } from '@heroicons/react/outline';
 
-export const ChannelSettingsModeCard = ({
+export const ChannelSettingsModeCard: React.FC = ({
   mode,
   active,
   openSettings,

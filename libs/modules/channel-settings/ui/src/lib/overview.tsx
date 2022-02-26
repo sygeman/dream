@@ -1,8 +1,8 @@
 import React from 'react';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
-import { useUpdateChannelMutation } from '@dream/types';
-import { useCommunityChannel } from '../use-community-channel';
+import { useUpdateChannelSettingsMutation } from './types';
+import { useCommunityChannel } from './use-community-channel';
 import { urlNameRegExp } from '@dream/utils/regexp/url-name';
 import { SaveFormPanel } from '@dream/components/save-form';
 
@@ -19,7 +19,7 @@ const ValidationSchema = Yup.object().shape({
     .required('Required'),
 });
 
-export const ChannelSettingsOverview = () => {
+export const ChannelSettingsOverview: React.FC = () => {
   const origin = typeof window !== 'undefined' ? window?.location?.origin : '';
   const { community, channel, channelId, communityId } = useCommunityChannel();
 
@@ -30,18 +30,18 @@ export const ChannelSettingsOverview = () => {
     },
     validationSchema: ValidationSchema,
     onSubmit: (values) => {
-      updateChannel({
+      updateChannelSettings({
         variables: { input: { ...values, communityId, channelId } },
       });
     },
   });
 
-  const [updateChannel] = useUpdateChannelMutation({
+  const [updateChannelSettings] = useUpdateChannelSettingsMutation({
     onCompleted: (data) => {
       formik.resetForm({
         values: {
-          name: data?.updateChannel?.name,
-          title: data?.updateChannel?.title,
+          name: data?.updateChannelSettings?.name,
+          title: data?.updateChannelSettings?.title,
         },
       });
     },

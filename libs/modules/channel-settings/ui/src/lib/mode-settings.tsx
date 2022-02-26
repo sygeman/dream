@@ -1,13 +1,18 @@
 import React from 'react';
-import { ChannelMode } from '@dream/types';
+import clsx from 'clsx';
+import { ChannelMode } from './types';
 import { ChannelTwitchModeSettings } from '@dream/mode/twitch/ui';
 import { ChannelSpotifyModeSettings } from '@dream/mode/spotify/ui';
-import { channelMods } from '../channel-mode';
+import { channelMods } from './channel-mode';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ArrowLeftIcon } from '@heroicons/react/outline';
-import clsx from 'clsx';
 
-export const ModeSettings = ({ active, modeKey, onClose, makeCurrent }) => {
+export const ModeSettings: React.FC<{
+  active: any;
+  modeKey: any;
+  onClose: any;
+  makeCurrent: any;
+}> = ({ active, modeKey, onClose, makeCurrent }) => {
   const mode = channelMods.find((m) => m?.value === modeKey);
 
   const getSettingsView = () => {

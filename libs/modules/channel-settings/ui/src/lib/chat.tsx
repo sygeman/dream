@@ -2,8 +2,8 @@ import React from 'react';
 import * as Yup from 'yup';
 import Slider from 'rc-slider';
 import { useFormik } from 'formik';
-import { useUpdateChannelMutation } from '@dream/types';
-import { useCommunityChannel } from '../use-community-channel';
+import { useUpdateChannelSettingsMutation } from './types';
+import { useCommunityChannel } from './use-community-channel';
 import { SaveFormPanel } from '@dream/components/save-form';
 import { SwitchFormField } from '@dream/components/switch-form-field';
 
@@ -13,7 +13,7 @@ const ValidationSchema = Yup.object().shape({
   slowmode: Yup.number().required('Required'),
 });
 
-export const ChannelSettingsChat = () => {
+export const ChannelSettingsChat: React.FC = () => {
   const { channel, channelId, communityId } = useCommunityChannel();
 
   const formik = useFormik({
@@ -25,19 +25,19 @@ export const ChannelSettingsChat = () => {
     enableReinitialize: true,
     validationSchema: ValidationSchema,
     onSubmit: (values) => {
-      updateChannel({
+      updateChannelSettings({
         variables: { input: { ...values, communityId, channelId } },
       });
     },
   });
 
-  const [updateChannel] = useUpdateChannelMutation({
+  const [updateChannelSettings] = useUpdateChannelSettingsMutation({
     onCompleted: (data) => {
       formik.resetForm({
         values: {
-          gifAllowed: data?.updateChannel?.gifAllowed,
-          nsfw: data?.updateChannel?.nsfw,
-          slowmode: data?.updateChannel?.slowmode,
+          gifAllowed: data?.updateChannelSettings?.gifAllowed,
+          nsfw: data?.updateChannelSettings?.nsfw,
+          slowmode: data?.updateChannelSettings?.slowmode,
         },
       });
     },

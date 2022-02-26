@@ -24,12 +24,6 @@ mutation createChannel($input: CreateChannelInput!) {
   }
 }
 
-mutation updateChannel($input: UpdateChannelInput!) {
-  updateChannel(input: $input) {
-    ...ChannelFields
-  }
-}
-
 mutation deleteChannel($channelId: ID!) {
   deleteChannel(channelId: $channelId) {
     ...ChannelFields

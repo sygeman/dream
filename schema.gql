@@ -304,6 +304,19 @@ type CommunitySettings {
   avatar: String
 }
 
+type ChannelSettings {
+  id: String!
+  name: String!
+  title: String!
+  mode: ChannelMode!
+  gifAllowed: Boolean!
+  nsfw: Boolean!
+  slowmode: Int!
+  avatar: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
 type Query {
   uniqCount: Int!
   user(id: ID): User
@@ -341,6 +354,7 @@ type Mutation {
   deleteChannel(channelId: ID!): Channel!
   createChannelMessage(input: ChannelMessageCreateInput!): Boolean!
   updateCommunitySettings(input: UpdateCommunitySettingsInput!): CommunitySettings!
+  updateChannelSettings(input: UpdateChannelSettingsInput!): ChannelSettings!
   updateSpotifyMode(input: UpdateSpotifyModeInput!): SpotifyMode!
   makeSpotifyModeCurrent(channelId: String!): Boolean!
   spotifyModeQueueAddTrack(channelId: String!, trackId: String!): Boolean!
@@ -392,6 +406,16 @@ input UpdateCommunitySettingsInput {
   communityId: ID!
   name: String!
   title: String!
+}
+
+input UpdateChannelSettingsInput {
+  channelId: ID!
+  communityId: ID!
+  name: String
+  gifAllowed: Boolean
+  nsfw: Boolean
+  slowmode: Int
+  title: String
 }
 
 input UpdateSpotifyModeInput {

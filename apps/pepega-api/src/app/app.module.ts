@@ -17,6 +17,7 @@ import { TwitchModeModule } from '@dream/mode/twitch/api';
 import { YoutubeModeModule } from '@dream/mode/youtube/api';
 import { EmojiModule } from '@dream/emoji/api';
 import { CommunitySettingsModule } from '@dream/modules/community-settings/api';
+import { ChannelSettingsModule } from '@dream/modules/channel-settings/api';
 
 @Module({
   imports: [
@@ -89,6 +90,7 @@ import { CommunitySettingsModule } from '@dream/modules/community-settings/api';
     ConnectionModule,
     CommunityModule,
     CommunitySettingsModule,
+    ChannelSettingsModule,
     SpotifyModeModule,
     TwitchModeModule,
     YoutubeModeModule,

@@ -15,3 +15,9 @@ generates:
       - 'typescript'
       - 'typescript-operations'
       - 'typescript-react-apollo'
+  libs/modules/channel-settings/ui/src/lib/types.tsx:
+    documents: 'libs/modules/channel-settings/ui/**/*.graphql'
+    plugins:
+      - 'typescript'
+      - 'typescript-operations'
+      - 'typescript-react-apollo'

@@ -1,9 +1,10 @@
 import React from 'react';
-import { ChannelSettings, ChannelSettingsMenu } from '@dream/channel/ui';
 import { useModal } from '@dream/utils/use-modal';
 import { ModalFull } from '@dream/components/modal-full';
+import { ChannelSettings } from './channel-settings';
+import { ChannelSettingsMenu } from './menu';
 
-export const ChannelSettingsModal = () => {
+export const ChannelSettingsModal: React.FC = () => {
   const modalProps = useModal();
 
   return (

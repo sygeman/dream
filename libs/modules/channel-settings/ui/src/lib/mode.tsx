@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import clsx from 'clsx';
 import { Transition } from '@headlessui/react';
 import SimpleBar from 'simplebar-react';
-import { channelMods } from '../channel-mode';
+import { channelMods } from './channel-mode';
 import { ChannelSettingsModeCard } from './mode-card';
 import { ModeSettings } from './mode-settings';
 import { useMakeModeCurrent } from './use-make-mode-current';
-import { useCommunityChannel } from '../use-community-channel';
+import { useCommunityChannel } from './use-community-channel';
 
-export const ChannelSettingsMode = () => {
+export const ChannelSettingsMode: React.FC = () => {
   const [selectedChannelMode, setSelectedChannelMode] = useState(null);
   const { channel } = useCommunityChannel();
 

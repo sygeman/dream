@@ -4,7 +4,7 @@ import { ChannelSettingsOverview } from './overview';
 import { ChannelSettingsMode } from './mode';
 import { ChannelSettingsChat } from './chat';
 
-export const ChannelSettings = () => {
+export const ChannelSettings: React.FC = () => {
   const router = useRouter();
   const section = router.query['channelSettings'];
 

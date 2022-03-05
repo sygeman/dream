@@ -1,15 +1,38 @@
 import React from 'react';
-import { useModal } from '@dream/utils/use-modal';
-import { ModalFull } from '@dream/components/modal-full';
-import { UserSettings } from '../settings';
-import { UserSettingsMenu } from '../settings/menu';
+import { useIntl } from 'react-intl';
+import { SettingsLayout } from '@dream/layouts/settings';
+import { UserSettingsLanguage } from '../settings/language';
 
-export const UserSettingsModal = () => {
-  const modalProps = useModal();
+export const UserSettingsModal: React.FC = () => {
+  const { formatMessage } = useIntl();
 
   return (
-    <ModalFull id="userSettings" menu={<UserSettingsMenu />} {...modalProps}>
-      <UserSettings />
-    </ModalFull>
+    <SettingsLayout
+      id="userSettings"
+      menu={[
+        {
+          label: formatMessage({ id: 'userSettingsMenuLabel' }),
+          items: [
+            {
+              key: 'language',
+              label: formatMessage({ id: 'userSettingsLanguageMenuItemLabel' }),
+              content: <UserSettingsLanguage />,
+            },
+          ],
+        },
+        {
+          items: [
+            {
+              key: 'logout',
+              label: formatMessage({ id: 'userSettingsLogoutMenuItemLabel' }),
+              query: ({ query }) => {
+                const { userSettings, ...q } = query;
+                return { ...q, logout: 1 };
+              },
+            },
+          ],
+        },
+      ]}
+    />
   );
 };

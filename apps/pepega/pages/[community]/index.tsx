@@ -1,5 +1,5 @@
 import React from 'react';
-import { MainLayout } from '@dream/layouts/main';
+import { MainLayout } from '../../layouts/main';
 import { CommunityLeftPanel, CommunityWelcome } from '@dream/community';
 
 export function CommunityPage() {

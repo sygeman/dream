@@ -13,7 +13,7 @@ import { ChannelMessage } from './models/message.model';
 import { RedisPubSub } from 'graphql-redis-subscriptions';
 import { Inject, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@dream/auth-api';
-import { TenorService } from 'libs/external-api/tenor/src/lib/tenor.service';
+import { TenorService } from '@dream/external-api/tenor';
 
 @Resolver(() => ChannelMessage)
 export class ChannelMessageResolver {

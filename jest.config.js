@@ -13,7 +13,6 @@ module.exports = {
     '<rootDir>/apps/pepega',
     '<rootDir>/libs/pepega-ui',
     '<rootDir>/apps/pepega',
-    '<rootDir>/libs/layouts',
     '<rootDir>/libs/auth',
     '<rootDir>/libs/spotify-now',
     '<rootDir>/libs/user',
@@ -45,5 +44,6 @@ module.exports = {
     '<rootDir>/libs/modules/community-settings/api',
     '<rootDir>/libs/modules/channel-settings/ui',
     '<rootDir>/libs/modules/channel-settings/api',
+    '<rootDir>/libs/layouts/settings',
   ],
 };

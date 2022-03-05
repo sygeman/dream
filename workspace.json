@@ -415,27 +415,28 @@
       },
       "tags": []
     },
-    "layouts": {
-      "root": "libs/layouts",
-      "sourceRoot": "libs/layouts/src",
+    "layouts-settings": {
+      "root": "libs/layouts/settings",
+      "sourceRoot": "libs/layouts/settings/src",
       "projectType": "library",
+      "tags": [],
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
           "options": {
-            "lintFilePatterns": ["libs/layouts/**/*.{ts,tsx,js,jsx}"]
+            "lintFilePatterns": ["libs/layouts/settings/**/*.{ts,tsx,js,jsx}"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/layouts"],
+          "outputs": ["coverage/libs/layouts/settings"],
           "options": {
-            "jestConfig": "libs/layouts/jest.config.js",
+            "jestConfig": "libs/layouts/settings/jest.config.js",
             "passWithNoTests": true
           }
         }
-      },
-      "tags": []
+      }
     },
     "mode-host-spotify-ui": {
       "root": "libs/mode/host-spotify/ui",

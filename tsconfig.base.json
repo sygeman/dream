@@ -39,6 +39,7 @@
       "@dream/external-api/tenor": ["libs/external-api/tenor/src/index.ts"],
       "@dream/external-api/youtube": ["libs/external-api/youtube/src/index.ts"],
       "@dream/layouts/*": ["libs/layouts/src/*"],
+      "@dream/layouts/settings": ["libs/layouts/settings/src/index.ts"],
       "@dream/mode/host-spotify/ui": ["libs/mode/host-spotify/ui/src/index.ts"],
       "@dream/mode/spotify/api": ["libs/mode/spotify/api/src/index.ts"],
       "@dream/mode/spotify/ui": ["libs/mode/spotify/ui/src/index.ts"],

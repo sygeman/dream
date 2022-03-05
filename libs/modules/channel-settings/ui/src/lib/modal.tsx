@@ -1,19 +1,47 @@
 import React from 'react';
-import { useModal } from '@dream/utils/use-modal';
-import { ModalFull } from '@dream/components/modal-full';
-import { ChannelSettings } from './channel-settings';
-import { ChannelSettingsMenu } from './menu';
+import { SettingsLayout } from '@dream/layouts/settings';
+import { ChannelSettingsOverview } from './overview';
+import { ChannelSettingsMode } from './mode';
+import { ChannelSettingsChat } from './chat';
 
 export const ChannelSettingsModal: React.FC = () => {
-  const modalProps = useModal();
-
   return (
-    <ModalFull
+    <SettingsLayout
       id="channelSettings"
-      menu={<ChannelSettingsMenu />}
-      {...modalProps}
-    >
-      <ChannelSettings />
-    </ModalFull>
+      menu={[
+        {
+          label: 'Channel Settings',
+          items: [
+            {
+              key: 'overview',
+              label: 'Overview',
+              content: <ChannelSettingsOverview />,
+            },
+            {
+              key: 'mode',
+              label: 'Mode',
+              content: <ChannelSettingsMode />,
+            },
+            {
+              key: 'chat',
+              label: 'Chat',
+              content: <ChannelSettingsChat />,
+            },
+          ],
+        },
+        {
+          items: [
+            {
+              key: 'delete-channel',
+              label: 'Delete Channel',
+              query: ({ query }) => {
+                const { channelSettings, ...q } = query;
+                return { ...q, deleteChannel: 1 };
+              },
+            },
+          ],
+        },
+      ]}
+    />
   );
 };

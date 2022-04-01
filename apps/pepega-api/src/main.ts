@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import * as session from 'express-session';
 import * as connectRedis from 'connect-redis';
-import * as Redis from 'ioredis';
+import Redis from 'ioredis';
 import { AppModule } from './app/app.module';
 import { ConfigService } from '@nestjs/config';
 

@@ -1,6 +1,6 @@
-import { RedisPubSub } from 'graphql-redis-subscriptions';
+import Redis from 'ioredis';
 import { ConfigService } from '@nestjs/config';
-import * as Redis from 'ioredis';
+import { RedisPubSub } from 'graphql-redis-subscriptions';
 
 export const pubSubFactory = {
   provide: 'PUB_SUB',

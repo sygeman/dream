@@ -2,14 +2,16 @@ import {
   useWaitlistYoutubeCurrentQuery,
   useWaitlistYoutubeCurrentUpdatedSubscription,
 } from '@dream/types';
-import { Backgroud } from './components/background';
 import { ChannelYoutubeModeHistory } from './history';
 import { ChannelYoutubeModeQueue } from './queue';
 import { ChannelYoutubeModeCurrent } from './current';
 import { useCommunityChannel } from '@dream/community';
 import { YoutubeModeAddVideoModal } from '..';
+import { PlayQueueLayout } from '@dream/layouts/play-queue';
+import { useState } from 'react';
 
 export const ChannelYoutubeMode = () => {
+  const [minimal, setMinimal] = useState(false);
   const { channelId } = useCommunityChannel();
 
   const currentQuery = useWaitlistYoutubeCurrentQuery({
@@ -31,14 +33,18 @@ export const ChannelYoutubeMode = () => {
   console.log(current);
 
   return (
-    <div className="h-screen w-full flex flex-1 flex-col relative overflow-hidden">
-      <Backgroud imageUrl={current?.cover} />
-      <div className="absolute left-0 top-0 w-full h-full flex flex-col">
-        <ChannelYoutubeModeHistory />
-        <ChannelYoutubeModeCurrent current={current} />
-        <ChannelYoutubeModeQueue accent />
-      </div>
+    <PlayQueueLayout
+      backgroudImageUrl={current?.cover}
+      history={<ChannelYoutubeModeHistory />}
+      current={
+        <ChannelYoutubeModeCurrent current={current} minimal={minimal} />
+      }
+      queue={<ChannelYoutubeModeQueue />}
+      addActionLabel="Add Video"
+      addActionModalKey="waitlistYoutubeAddVideo"
+      onMinimalContentChanged={setMinimal}
+    >
       <YoutubeModeAddVideoModal />
-    </div>
+    </PlayQueueLayout>
   );
 };

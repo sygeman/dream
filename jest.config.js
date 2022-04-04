@@ -45,5 +45,6 @@ module.exports = {
     '<rootDir>/libs/modules/channel-settings/ui',
     '<rootDir>/libs/modules/channel-settings/api',
     '<rootDir>/libs/layouts/settings',
+    '<rootDir>/libs/layouts/play-queue',
   ],
 };

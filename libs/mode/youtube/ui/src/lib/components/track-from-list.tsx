@@ -14,12 +14,12 @@ export const TrackFromList = ({
     <div>
       <img src={cover} className="h-8 w-8" alt="" />
     </div>
-    <div className="flex flex-col text-xs px-2">
-      <div className="text-xs">{artists}</div>
-      <div className="text-xs text-accent">{title}</div>
+    <div className="flex flex-col text-sm px-2">
+      <div className="text-sm">{artists}</div>
+      <div className="text-sm text-accent">{title}</div>
     </div>
     <div className="flex items-center h-full ml-auto">
-      <div className="text-xs px-2 text-accent">{info}</div>
+      <div className="text-sm px-2 text-accent">{info}</div>
       <div
         className="flex rounded-full overflow-hidden h-6 w-6 bg-surface"
         title={username}

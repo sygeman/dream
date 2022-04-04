@@ -6,12 +6,12 @@ import {
   useSpotifyModeUserSyncMutation,
 } from '@dream/types';
 import { AuthButtonSpotify } from '@dream/auth';
-import { Backgroud } from './components/background';
 import { ChannelSpotifyModeHistory } from './history';
 import { ChannelSpotifyModeQueue } from './queue';
 import { ChannelSpotifyModeCurrent } from './current';
 import { useCommunityChannel } from '@dream/community';
 import { SpotifyModeAddTrackModal } from '..';
+import { PlayQueueLayout } from '@dream/layouts/play-queue';
 
 const ChannelSpotifyModeAuth = () => (
   <div className="absolute left-0 top-0 w-full h-full flex items-center justify-center">
@@ -70,29 +70,26 @@ export const ChannelSpotifyMode = () => {
   const current = currentQuery?.data?.spotifyModeCurrent;
 
   return (
-    <div className="h-screen w-full flex flex-1 flex-col relative overflow-hidden">
-      <Backgroud imageUrl={current?.item?.cover} />
-      <div
-        className="absolute left-0 top-0 w-full h-full flex flex-col"
-        style={
-          hasSpotifyAccount
-            ? undefined
-            : {
-                filter: 'blur(2px)',
-                opacity: 0.5,
-              }
-        }
-      >
-        <ChannelSpotifyModeHistory />
+    <PlayQueueLayout
+      backgroudImageUrl={current?.item?.cover}
+      hideWithBlur={!hasSpotifyAccount}
+      history={<ChannelSpotifyModeHistory />}
+      current={
         <ChannelSpotifyModeCurrent
           current={current}
           isConnected={isConnected}
           setIsConnected={setIsConnected}
         />
+      }
+      queue={
         <ChannelSpotifyModeQueue addTrackAccent={isConnected || !current} />
-      </div>
+      }
+      addActionModalKey="spotifyModeAddTrack"
+      addActionAccent={isConnected || !current}
+      addActionLabel="Add Track"
+    >
       {!hasSpotifyAccount && <ChannelSpotifyModeAuth />}
       <SpotifyModeAddTrackModal />
-    </div>
+    </PlayQueueLayout>
   );
 };

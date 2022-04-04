@@ -415,6 +415,29 @@
       },
       "tags": []
     },
+    "layouts-play-queue": {
+      "root": "libs/layouts/play-queue",
+      "sourceRoot": "libs/layouts/play-queue/src",
+      "projectType": "library",
+      "tags": [],
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/layouts/play-queue/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/layouts/play-queue"],
+          "options": {
+            "jestConfig": "libs/layouts/play-queue/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "layouts-settings": {
       "root": "libs/layouts/settings",
       "sourceRoot": "libs/layouts/settings/src",

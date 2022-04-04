@@ -1,11 +1,6 @@
 import React, { Fragment, useEffect, useRef, useState } from 'react';
 import ReactPlayer from 'react-player';
-import {
-  DotsVerticalIcon,
-  FastForwardIcon,
-  PlayIcon,
-  StopIcon,
-} from '@heroicons/react/solid';
+import { DotsVerticalIcon, FastForwardIcon } from '@heroicons/react/solid';
 import { ChannelModeWaitlistProgress } from './components/progress';
 import { Menu, Transition } from '@headlessui/react';
 import clsx from 'clsx';
@@ -64,7 +59,11 @@ const CurrentMenu = () => {
   );
 };
 
-export const ChannelYoutubeModeCurrent = ({ current, muted = false }) => {
+export const ChannelYoutubeModeCurrent = ({
+  current,
+  muted = false,
+  minimal = false,
+}) => {
   const player = useRef<any>(null);
   const [isReady, setIsReady] = useState<boolean>(false);
 
@@ -84,7 +83,12 @@ export const ChannelYoutubeModeCurrent = ({ current, muted = false }) => {
     <div className="relative">
       {current ? (
         <div>
-          <div className="aspect-w-16 aspect-h-9 z-10">
+          <div
+            className={clsx(
+              'aspect-w-16 aspect-h-9 z-10',
+              minimal && 'absolute'
+            )}
+          >
             <ReactPlayer
               ref={player}
               url={`https://www.youtube.com/watch?v=${current.videoId}`}
@@ -106,7 +110,7 @@ export const ChannelYoutubeModeCurrent = ({ current, muted = false }) => {
               <div className="text-accent">from</div>
               <div className="text-white">{current.author.name}</div>
             </div>
-            <div className="flex rounded-full overflow-hidden h-8 w-8 rounded-full bg-background mr-2">
+            <div className="flex rounded-full overflow-hidden h-8 w-8 bg-background mr-2">
               <img src={current.author.avatar} className="" alt="" />
             </div>
             <CurrentMenu />

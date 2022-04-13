@@ -8,11 +8,6 @@ function CustomApp({ Component, pageProps }: AppProps) {
     <>
       <Head>
         <title>SGMN.DEV</title>
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link
-          href="https://fonts.googleapis.com/css?family=Orbitron:500|Roboto:300,400,500&subset=cyrillic-ext"
-          rel="stylesheet"
-        />
       </Head>
       <Component {...pageProps} />
     </>

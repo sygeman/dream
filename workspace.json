@@ -16,7 +16,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/app-panel"],
           "options": {
-            "jestConfig": "libs/app-panel/jest.config.js",
+            "jestConfig": "libs/app-panel/jest.config.ts",
             "passWithNoTests": true
           }
         }
@@ -38,7 +38,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/auth"],
           "options": {
-            "jestConfig": "libs/auth/jest.config.js",
+            "jestConfig": "libs/auth/jest.config.ts",
             "passWithNoTests": true
           }
         }
@@ -60,7 +60,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/auth-api"],
           "options": {
-            "jestConfig": "libs/auth-api/jest.config.js",
+            "jestConfig": "libs/auth-api/jest.config.ts",
             "passWithNoTests": true
           }
         }
@@ -84,7 +84,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/channel/ui"],
           "options": {
-            "jestConfig": "libs/channel/ui/jest.config.js",
+            "jestConfig": "libs/channel/ui/jest.config.ts",
             "passWithNoTests": true
           }
         }
@@ -105,7 +105,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/chat"],
           "options": {
-            "jestConfig": "libs/chat/jest.config.js",
+            "jestConfig": "libs/chat/jest.config.ts",
             "passWithNoTests": true
           }
         }
@@ -127,7 +127,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/community"],
           "options": {
-            "jestConfig": "libs/community/jest.config.js",
+            "jestConfig": "libs/community/jest.config.ts",
             "passWithNoTests": true
           }
         }
@@ -149,7 +149,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/community-api"],
           "options": {
-            "jestConfig": "libs/community-api/jest.config.js",
+            "jestConfig": "libs/community-api/jest.config.ts",
             "passWithNoTests": true
           }
         }
@@ -171,7 +171,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/components/modal"],
           "options": {
-            "jestConfig": "libs/components/modal/jest.config.js",
+            "jestConfig": "libs/components/modal/jest.config.ts",
             "passWithNoTests": true
           }
         }
@@ -195,7 +195,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/components/modal-full"],
           "options": {
-            "jestConfig": "libs/components/modal-full/jest.config.js",
+            "jestConfig": "libs/components/modal-full/jest.config.ts",
             "passWithNoTests": true
           }
         }
@@ -219,7 +219,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/components/save-form"],
           "options": {
-            "jestConfig": "libs/components/save-form/jest.config.js",
+            "jestConfig": "libs/components/save-form/jest.config.ts",
             "passWithNoTests": true
           }
         }
@@ -243,7 +243,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/components/switch-form-field"],
           "options": {
-            "jestConfig": "libs/components/switch-form-field/jest.config.js",
+            "jestConfig": "libs/components/switch-form-field/jest.config.ts",
             "passWithNoTests": true
           }
         }
@@ -265,7 +265,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/connection-api"],
           "options": {
-            "jestConfig": "libs/connection-api/jest.config.js",
+            "jestConfig": "libs/connection-api/jest.config.ts",
             "passWithNoTests": true
           }
         }
@@ -286,7 +286,8 @@
             "outputPath": "dist/apps/dream"
           },
           "configurations": {
-            "production": {}
+            "production": {},
+            "development": {}
           }
         },
         "serve": {
@@ -299,8 +300,13 @@
             "production": {
               "buildTarget": "dream:build:production",
               "dev": false
+            },
+            "development": {
+              "buildTarget": "dream:build:development",
+              "dev": true
             }
-          }
+          },
+          "defaultConfiguration": "development"
         },
         "export": {
           "builder": "@nrwl/next:export",
@@ -312,7 +318,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/apps/dream"],
           "options": {
-            "jestConfig": "apps/dream/jest.config.js",
+            "jestConfig": "apps/dream/jest.config.ts",
             "passWithNoTests": true
           }
         },
@@ -342,7 +348,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/emoji/api"],
           "options": {
-            "jestConfig": "libs/emoji/api/jest.config.js",
+            "jestConfig": "libs/emoji/api/jest.config.ts",
             "passWithNoTests": true
           }
         }
@@ -364,7 +370,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/external-api/spotify"],
           "options": {
-            "jestConfig": "libs/external-api/spotify/jest.config.js",
+            "jestConfig": "libs/external-api/spotify/jest.config.ts",
             "passWithNoTests": true
           }
         }
@@ -386,7 +392,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/external-api/tenor"],
           "options": {
-            "jestConfig": "libs/external-api/tenor/jest.config.js",
+            "jestConfig": "libs/external-api/tenor/jest.config.ts",
             "passWithNoTests": true
           }
         }
@@ -408,7 +414,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/external-api/youtube"],
           "options": {
-            "jestConfig": "libs/external-api/youtube/jest.config.js",
+            "jestConfig": "libs/external-api/youtube/jest.config.ts",
             "passWithNoTests": true
           }
         }
@@ -432,7 +438,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/layouts/play-queue"],
           "options": {
-            "jestConfig": "libs/layouts/play-queue/jest.config.js",
+            "jestConfig": "libs/layouts/play-queue/jest.config.ts",
             "passWithNoTests": true
           }
         }
@@ -455,7 +461,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/layouts/settings"],
           "options": {
-            "jestConfig": "libs/layouts/settings/jest.config.js",
+            "jestConfig": "libs/layouts/settings/jest.config.ts",
             "passWithNoTests": true
           }
         }
@@ -500,7 +506,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/mode/spotify/api"],
           "options": {
-            "jestConfig": "libs/mode/spotify/api/jest.config.js",
+            "jestConfig": "libs/mode/spotify/api/jest.config.ts",
             "passWithNoTests": true
           }
         }
@@ -522,7 +528,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/mode/spotify/ui"],
           "options": {
-            "jestConfig": "libs/mode/spotify/ui/jest.config.js",
+            "jestConfig": "libs/mode/spotify/ui/jest.config.ts",
             "passWithNoTests": true
           }
         }
@@ -544,7 +550,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/mode/twitch/api"],
           "options": {
-            "jestConfig": "libs/mode/twitch/api/jest.config.js",
+            "jestConfig": "libs/mode/twitch/api/jest.config.ts",
             "passWithNoTests": true
           }
         }
@@ -566,7 +572,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/mode/twitch/ui"],
           "options": {
-            "jestConfig": "libs/mode/twitch/ui/jest.config.js",
+            "jestConfig": "libs/mode/twitch/ui/jest.config.ts",
             "passWithNoTests": true
           }
         }
@@ -588,7 +594,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/mode/youtube/api"],
           "options": {
-            "jestConfig": "libs/mode/youtube/api/jest.config.js",
+            "jestConfig": "libs/mode/youtube/api/jest.config.ts",
             "passWithNoTests": true
           }
         }
@@ -610,7 +616,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/mode/youtube/ui"],
           "options": {
-            "jestConfig": "libs/mode/youtube/ui/jest.config.js",
+            "jestConfig": "libs/mode/youtube/ui/jest.config.ts",
             "passWithNoTests": true
           }
         }
@@ -633,7 +639,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/modules/channel-settings/api"],
           "options": {
-            "jestConfig": "libs/modules/channel-settings/api/jest.config.js",
+            "jestConfig": "libs/modules/channel-settings/api/jest.config.ts",
             "passWithNoTests": true
           }
         }
@@ -659,7 +665,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/modules/channel-settings/ui"],
           "options": {
-            "jestConfig": "libs/modules/channel-settings/ui/jest.config.js",
+            "jestConfig": "libs/modules/channel-settings/ui/jest.config.ts",
             "passWithNoTests": true
           }
         }
@@ -681,7 +687,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/modules/community-settings/api"],
           "options": {
-            "jestConfig": "libs/modules/community-settings/api/jest.config.js",
+            "jestConfig": "libs/modules/community-settings/api/jest.config.ts",
             "passWithNoTests": true
           }
         }
@@ -707,7 +713,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/modules/community-settings/ui"],
           "options": {
-            "jestConfig": "libs/modules/community-settings/ui/jest.config.js",
+            "jestConfig": "libs/modules/community-settings/ui/jest.config.ts",
             "passWithNoTests": true
           }
         }
@@ -732,7 +738,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/modules/connection-status"],
           "options": {
-            "jestConfig": "libs/modules/connection-status/jest.config.js",
+            "jestConfig": "libs/modules/connection-status/jest.config.ts",
             "passWithNoTests": true
           }
         }
@@ -751,8 +757,10 @@
             "outputPath": "dist/apps/pepega"
           },
           "configurations": {
-            "production": {}
-          }
+            "production": {},
+            "development": {}
+          },
+          "defaultConfiguration": "production"
         },
         "serve": {
           "builder": "@nrwl/next:server",
@@ -764,8 +772,13 @@
             "production": {
               "buildTarget": "pepega:build:production",
               "dev": false
+            },
+            "development": {
+              "buildTarget": "pepega:build:development",
+              "dev": true
             }
-          }
+          },
+          "defaultConfiguration": "development"
         },
         "export": {
           "builder": "@nrwl/next:export",
@@ -783,7 +796,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/apps/pepega"],
           "options": {
-            "jestConfig": "apps/pepega/jest.config.js",
+            "jestConfig": "apps/pepega/jest.config.ts",
             "passWithNoTests": true
           }
         }
@@ -835,7 +848,7 @@
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "apps/pepega-api/jest.config.js",
+            "jestConfig": "apps/pepega-api/jest.config.ts",
             "passWithNoTests": true
           }
         }
@@ -857,7 +870,7 @@
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/prisma/jest.config.js",
+            "jestConfig": "libs/prisma/jest.config.ts",
             "passWithNoTests": true
           }
         }
@@ -879,7 +892,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/spotify-now"],
           "options": {
-            "jestConfig": "libs/spotify-now/jest.config.js",
+            "jestConfig": "libs/spotify-now/jest.config.ts",
             "passWithNoTests": true
           }
         }
@@ -901,7 +914,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/types"],
           "options": {
-            "jestConfig": "libs/types/jest.config.js",
+            "jestConfig": "libs/types/jest.config.ts",
             "passWithNoTests": true
           }
         }
@@ -923,7 +936,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/user"],
           "options": {
-            "jestConfig": "libs/user/jest.config.js",
+            "jestConfig": "libs/user/jest.config.ts",
             "passWithNoTests": true
           }
         }
@@ -945,7 +958,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/user-api"],
           "options": {
-            "jestConfig": "libs/user-api/jest.config.js",
+            "jestConfig": "libs/user-api/jest.config.ts",
             "passWithNoTests": true
           }
         }
@@ -983,7 +996,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/utils/emoji"],
           "options": {
-            "jestConfig": "libs/utils/emoji/jest.config.js",
+            "jestConfig": "libs/utils/emoji/jest.config.ts",
             "passWithNoTests": true
           }
         }
@@ -1006,7 +1019,7 @@
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/utils/regexp/url-name"],
           "options": {
-            "jestConfig": "libs/utils/regexp/url-name/jest.config.js",
+            "jestConfig": "libs/utils/regexp/url-name/jest.config.ts",
             "passWithNoTests": true
           }
         }

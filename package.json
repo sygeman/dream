@@ -86,7 +86,7 @@
     "passport": "0.5.2",
     "passport-spotify": "2.0.0",
     "passport-twitch-new": "0.0.2",
-    "rc-slider": "9.7.5",
+    "rc-slider": "10.0.0",
     "react": "18.1.0",
     "react-dom": "18.1.0",
     "react-dropzone": "12.1.0",
@@ -103,7 +103,7 @@
     "rxjs": "7.5.5",
     "simplebar-react": "2.3.7",
     "tslib": "2.4.0",
-    "use-debounce": "7.0.1",
+    "use-debounce": "8.0.1",
     "yup": "0.32.11"
   },
   "devDependencies": {
@@ -168,7 +168,7 @@
     "prisma": "3.13.0",
     "react-test-renderer": "18.1.0",
     "tailwindcss": "3.0.24",
-    "ts-jest": "27.1.4",
+    "ts-jest": "28.0.1",
     "ts-node": "10.7.0",
     "typescript": "4.6.4",
     "webpack": "5.72.0"

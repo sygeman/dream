@@ -78,9 +78,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@apollo/client@npm:3.6.3":
-  version: 3.6.3
-  resolution: "@apollo/client@npm:3.6.3"
+"@apollo/client@npm:3.6.2":
+  version: 3.6.2
+  resolution: "@apollo/client@npm:3.6.2"
   dependencies:
     "@graphql-typed-document-node/core": ^3.1.1
     "@wry/context": ^0.6.0
@@ -91,7 +91,7 @@ __metadata:
     optimism: ^0.16.1
     prop-types: ^15.7.2
     symbol-observable: ^4.0.0
-    ts-invariant: ^0.10.2
+    ts-invariant: ^0.10.0
     tslib: ^2.3.0
     use-sync-external-store: ^1.0.0
     zen-observable-ts: ^1.2.0
@@ -107,7 +107,7 @@ __metadata:
       optional: true
     subscriptions-transport-ws:
       optional: true
-  checksum: d1ccf3377ef5c629f605bea6216864266f2151f62ef95ea153f7887940609bab909f1265f7aca8b0f7fd8681a9aa3e8b9283db669513c499540d0387e4188bc2
+  checksum: 6363506861a0adeeff1b70bf51892f2493f940beeccaca1bf5894f1a9bc88929b9fcef39cde81b48c20304f7025f14b06d3063b8406f8407a0a080d540d11063
   languageName: node
   linkType: hard
 
@@ -12154,7 +12154,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "dream@workspace:."
   dependencies:
-    "@apollo/client": 3.6.3
+    "@apollo/client": 3.6.2
     "@babel/core": 7.17.10
     "@babel/preset-env": 7.17.10
     "@babel/preset-react": 7.16.7
@@ -12271,7 +12271,7 @@ __metadata:
     rc-slider: 10.0.0
     react: 18.1.0
     react-dom: 18.1.0
-    react-dropzone: 12.1.0
+    react-dropzone: 14.2.1
     react-intl: 5.25.1
     react-is: 18.1.0
     react-player: 2.10.0
@@ -13512,12 +13512,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"file-selector@npm:^0.5.0":
-  version: 0.5.0
-  resolution: "file-selector@npm:0.5.0"
+"file-selector@npm:^0.6.0":
+  version: 0.6.0
+  resolution: "file-selector@npm:0.6.0"
   dependencies:
-    tslib: ^2.0.3
-  checksum: f95a06938123a2b765d136a4430cc8b19165f06a53e7ae1dcca4947716d61e9181453fcfeb2358c2660cbcecf96d7334f0528ba60071fed81f8bd358ea08454a
+    tslib: ^2.4.0
+  checksum: 7d051b6e5d793f3c6e2ab287ba5e7c2c6a0971bccc9d56e044c8047ba483e18f60fc0b5771c951dc707c0d15f4f36ccb4f1f1aaf385d21ec8f7700dadf8325ba
   languageName: node
   linkType: hard
 
@@ -20267,16 +20267,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dropzone@npm:12.1.0":
-  version: 12.1.0
-  resolution: "react-dropzone@npm:12.1.0"
+"react-dropzone@npm:14.2.1":
+  version: 14.2.1
+  resolution: "react-dropzone@npm:14.2.1"
   dependencies:
     attr-accept: ^2.2.2
-    file-selector: ^0.5.0
+    file-selector: ^0.6.0
     prop-types: ^15.8.1
   peerDependencies:
-    react: ">= 16.8"
-  checksum: 1be37433cf42b8a9f98c8f59678e30fffc1e9b8e3fdb20f3a376557948f727156123ca0a7e45cd3882606184d945ea1139f17da0e1e5ba0b646a23be0ed65fb3
+    react: ">= 16.8 || 18.0.0"
+  checksum: 8556d997d66bad79fe165a30d6dc8f917c67d8c7d23069c417eb2a0da6df824ba71b84b532707711e184da105122f6a6e81104341dc5b8c0f96e318267fdda91
   languageName: node
   linkType: hard
 
@@ -22751,7 +22751,7 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"ts-invariant@npm:^0.10.2":
+"ts-invariant@npm:^0.10.0":
   version: 0.10.2
   resolution: "ts-invariant@npm:0.10.2"
   dependencies:
@@ -22953,7 +22953,7 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"tslib@npm:2.4.0, tslib@npm:~2.4.0":
+"tslib@npm:2.4.0, tslib@npm:^2.4.0, tslib@npm:~2.4.0":
   version: 2.4.0
   resolution: "tslib@npm:2.4.0"
   checksum: 8c4aa6a3c5a754bf76aefc38026134180c053b7bd2f81338cb5e5ebf96fefa0f417bff221592bf801077f5bf990562f6264fecbc42cd3309b33872cb6fc3b113

@@ -70,7 +70,9 @@ export const CommunitySettingsEmoji = () => {
 
       emojisQuery.refetch();
     },
-    accept: 'image/jpeg, image/png, image/gif',
+    accept: {
+      'image/*': ['.jpeg', '.png', '.gif'],
+    },
     // Disable click and keydown behavior
     noClick: true,
     noKeyboard: true,

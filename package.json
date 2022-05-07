@@ -30,7 +30,7 @@
   },
   "private": true,
   "dependencies": {
-    "@apollo/client": "3.6.3",
+    "@apollo/client": "3.6.2",
     "@fortawesome/fontawesome-svg-core": "6.1.1",
     "@fortawesome/free-brands-svg-icons": "6.1.1",
     "@fortawesome/free-regular-svg-icons": "6.1.1",
@@ -89,7 +89,7 @@
     "rc-slider": "10.0.0",
     "react": "18.1.0",
     "react-dom": "18.1.0",
-    "react-dropzone": "12.1.0",
+    "react-dropzone": "14.2.1",
     "react-intl": "5.25.1",
     "react-is": "18.1.0",
     "react-player": "2.10.0",

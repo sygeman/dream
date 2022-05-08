@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 import Layout from '../layouts/Main';
 import { useQuery } from '@apollo/react-hooks';
-import { Communities } from '@pepega/containers/Community/Communities';
+import { Communities } from '../containers/Community/Communities';
 
 const GET_COMMUNITIES = gql`
   query communities {

@@ -1,15 +1,15 @@
 import gql from 'graphql-tag';
 import { FC } from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import { Button } from '@pepega/components';
+import { Button } from '../../../components';
 import { useRouter } from 'next/router';
-import { useAccess } from '@pepega/utils/useAccess';
-import * as LeftMenu from '@pepega/components/LeftMenu';
+import { useAccess } from '../../../utils/useAccess';
+import * as LeftMenu from '../../../components/LeftMenu';
 import styled from 'styled-components';
 import {
   Favorite,
   KeyboardArrowDown as ArrowDownIcon,
-  KeyboardArrowUp as ArrowUpIcon
+  KeyboardArrowUp as ArrowUpIcon,
 } from 'styled-icons/material';
 import getConfig from 'next/config';
 const { publicRuntimeConfig } = getConfig();
@@ -67,7 +67,7 @@ const FollowsInner = () => {
   const { loading, data, fetchMore, refetch } = useQuery(
     GET_USER_TWITCH_FOLLOWS,
     {
-      variables: { first: FIRST_SIZE, after: undefined }
+      variables: { first: FIRST_SIZE, after: undefined },
     }
   );
 
@@ -90,7 +90,7 @@ const FollowsInner = () => {
     fetchMore({
       variables: {
         after: data.twitchFollows.pagination.cursor,
-        first: PAGE_SIZE
+        first: PAGE_SIZE,
       },
       updateQuery: (prev, { fetchMoreResult }) => {
         if (!fetchMoreResult) {
@@ -105,11 +105,11 @@ const FollowsInner = () => {
               //@ts-ignore
               ...prev.twitchFollows.data,
               //@ts-ignore
-              ...fetchMoreResult.twitchFollows.data
-            ]
-          }
+              ...fetchMoreResult.twitchFollows.data,
+            ],
+          },
         };
-      }
+      },
     });
   };
 

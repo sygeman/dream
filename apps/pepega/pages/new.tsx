@@ -1,5 +1,5 @@
 import Layout from '../layouts/Main';
-import { Clips } from '@pepega/containers/Clips';
+import { Clips } from '../containers/Clips';
 
 const NewPage = () => (
   <Layout streams>

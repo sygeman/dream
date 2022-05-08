@@ -2,7 +2,7 @@ import { rgba } from 'polished';
 import { FC, useEffect, useRef, useState } from 'react';
 import ResizeObserver from 'resize-observer-polyfill';
 import styled from 'styled-components';
-import { humanNumbers } from '@pepega/utils/count';
+import { humanNumbers } from '../../utils/count';
 import { RemoveRedEye } from 'styled-icons/material';
 
 const Box = styled.div`
@@ -115,7 +115,7 @@ export const VideoPreview: FC<IProps> = ({
   spoiler,
   date,
   watched,
-  views
+  views,
 }) => {
   const [width, setWidth] = useState(0);
   const ref = useRef(null);
@@ -141,7 +141,7 @@ export const VideoPreview: FC<IProps> = ({
           <PreviewImg
             style={{
               background: `url("${cover}") no-repeat center center / cover`,
-              filter: nsfw || spoiler ? `blur(20px)` : 'none'
+              filter: nsfw || spoiler ? `blur(20px)` : 'none',
             }}
           />
           <PreviewLeftTags width={width}>

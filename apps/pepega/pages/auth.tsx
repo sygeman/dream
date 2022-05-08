@@ -1,7 +1,7 @@
 import { lighten } from 'polished';
 import { FC } from 'react';
 import styled from 'styled-components';
-import Auth from '@pepega/containers/Auth';
+import Auth from '../containers/Auth';
 import Layout from '../layouts/Main';
 
 const Box = styled.div`

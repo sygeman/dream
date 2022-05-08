@@ -1,5 +1,5 @@
 import Layout from '../layouts/Main';
-import { ClipsHistory } from '@pepega/containers/Clips/History';
+import { ClipsHistory } from '../containers/Clips/History';
 
 const ClipHistoryPage = () => {
   return (

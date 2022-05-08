@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import { lighten } from 'polished';
 import styled from 'styled-components';
-import { CoinIconGold, CoinIconGreen } from '@pepega/components';
+import { CoinIconGold, CoinIconGreen } from '../../../components';
 import { useRouter } from 'next/router';
-import { useAccess } from '@pepega/utils/useAccess';
+import { useAccess } from '../../../utils/useAccess';
 import { WalletBalance } from './WalletBalance';
 import { LeftNavMenuUserBlock } from './UserBlock';
 import { AddCircleOutline as AddCircleOutlineIcon } from 'styled-icons/material/AddCircleOutline';
@@ -91,8 +91,8 @@ export const UserBox = () => {
             pathname: router.route,
             query: {
               ...router.query,
-              authModal: 1
-            }
+              authModal: 1,
+            },
           }}
           passHref
         >
@@ -121,8 +121,8 @@ export const UserBox = () => {
                 pathname: router.route,
                 query: {
                   ...router.query,
-                  buyCoinsModal: 1
-                }
+                  buyCoinsModal: 1,
+                },
               }}
               passHref
             >

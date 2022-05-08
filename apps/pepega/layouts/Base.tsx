@@ -3,15 +3,15 @@ import { lighten, rgba } from 'polished';
 import { ReactNode, useState, FC } from 'react';
 import Scrollbars from 'react-custom-scrollbars';
 import styled from 'styled-components';
-import Auth from '@pepega/containers/Auth';
-import { BuyCoins } from '@pepega/containers/BuyCoins';
-import { CreateCommunityClip } from '@pepega/containers/Community/Clip/Create';
-import { CreateCommunity } from '@pepega/containers/Community/Create';
-import TopNav from '@pepega/containers/Nav/Top';
-import { PromoterHelp } from '@pepega/containers/Help/Promoter';
-import { Modal } from '@pepega/components/Modal';
-import { ClipModal } from '@pepega/containers/Clip/ClipModal';
-import { UserBox } from '@pepega/containers/Nav/Left/User';
+import Auth from '../containers/Auth';
+import { BuyCoins } from '../containers/BuyCoins';
+import { CreateCommunityClip } from '../containers/Community/Clip/Create';
+import { CreateCommunity } from '../containers/Community/Create';
+import TopNav from '../containers/Nav/Top';
+import { PromoterHelp } from '../containers/Help/Promoter';
+import { Modal } from '../components/Modal';
+import { ClipModal } from '../containers/Clip/ClipModal';
+import { UserBox } from '../containers/Nav/Left/User';
 
 const LEFT_MENU_WIDTH = 240;
 

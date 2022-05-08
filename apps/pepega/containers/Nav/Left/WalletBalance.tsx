@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 import React, { FC, useEffect } from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import { shortNumbers, humanNumbers } from '@pepega/utils/count';
+import { shortNumbers, humanNumbers } from '../../../utils/count';
 
 const GET_WALLET = gql`
   query getWallet($where: WalletWhereInput!) {
@@ -29,7 +29,7 @@ interface IProps {
 
 export const WalletBalance: FC<IProps> = ({ currency }) => {
   const { loading, error, data, subscribeToMore } = useQuery(GET_WALLET, {
-    variables: { where: { currency } }
+    variables: { where: { currency } },
   });
 
   useEffect(() => {
@@ -48,10 +48,10 @@ export const WalletBalance: FC<IProps> = ({ currency }) => {
             ...prev,
             wallet: {
               ...prev.wallet,
-              ...updatedData
-            }
+              ...updatedData,
+            },
           };
-        }
+        },
       });
     }
   }, [loading]);

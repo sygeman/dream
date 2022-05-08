@@ -1,8 +1,8 @@
 import { FC, memo } from 'react';
 import styled from 'styled-components';
-import { VideoPreview, CardMedia } from '@pepega/components';
+import { VideoPreview, CardMedia } from '../../components';
 import { isEqual } from 'lodash';
-import { dateDistanceInWordsToNow } from '@pepega/utils/date';
+import { dateDistanceInWordsToNow } from '../../utils/date';
 import { ThumbUp as ThumbUpIcon } from 'styled-icons/material/ThumbUp';
 
 const PreviewContent = styled.div`
@@ -46,9 +46,7 @@ export const GridView: FC<IProps> = memo(
         countIcon={
           clip && clip.reactionStats.rating > 0 ? (
             <ThumbUpIcon size="11px" />
-          ) : (
-            undefined
-          )
+          ) : undefined
         }
       />
     );

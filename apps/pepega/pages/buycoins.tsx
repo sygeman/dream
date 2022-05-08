@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { BuyCoins } from '@pepega/containers/BuyCoins';
+import { BuyCoins } from '../containers/BuyCoins';
 import Layout from '../layouts/Main';
 
 const Box = styled.div`

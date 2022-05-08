@@ -1,4 +1,4 @@
-import { Clips } from '@pepega/containers/Clips';
+import { Clips } from '../../containers/Clips';
 import Layout from '../../layouts/Main';
 
 const TopAllPage = () => (

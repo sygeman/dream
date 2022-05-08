@@ -1,4 +1,4 @@
-import Dashboard from '@pepega/containers/Manage/Dashboard';
+import Dashboard from '../containers/Manage/Dashboard';
 import Layout from '../layouts/Manage';
 
 const ManagePage = () => (

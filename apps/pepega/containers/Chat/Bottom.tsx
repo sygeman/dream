@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import { FC, useRef } from 'react';
 import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks';
-import { useAccess } from '@pepega/utils/useAccess';
-import { convertTextToEmojiCode } from '@pepega/utils/emoji';
+import { useAccess } from '../../utils/useAccess';
+import { convertTextToEmojiCode } from '../../utils/emoji';
 
 const CREATE_CHAT_MESSAGE = gql`
   mutation createChatMessage($input: ChatMessageCreateInput!) {
@@ -41,12 +41,12 @@ export const ChatMessagesBottom: FC<IProps> = ({ chatId }) => {
   let lock = false;
 
   const [createChatMessage] = useMutation(CREATE_CHAT_MESSAGE, {
-    onCompleted: data => {
+    onCompleted: (data) => {
       if (data.createChatMessage && textInput.current) {
         textInput.current.value = '';
         lock = false;
       }
-    }
+    },
   });
 
   return (
@@ -58,7 +58,7 @@ export const ChatMessagesBottom: FC<IProps> = ({ chatId }) => {
         maxLength={500}
         type="text"
         placeholder="Написать сообщение..."
-        onKeyPress={e => {
+        onKeyPress={(e) => {
           if (!textInput.current) {
             return null;
           }
@@ -68,7 +68,7 @@ export const ChatMessagesBottom: FC<IProps> = ({ chatId }) => {
           if (e.key === 'Enter' && !lock && text.length > 0) {
             lock = true;
             createChatMessage({
-              variables: { input: { chatId, text } }
+              variables: { input: { chatId, text } },
             });
           }
         }}

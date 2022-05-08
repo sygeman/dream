@@ -2,7 +2,7 @@ import { darken } from 'polished';
 import { FC } from 'react';
 import { Line, LineChart } from 'recharts';
 import styled from 'styled-components';
-import { humanNumbers } from '@pepega/utils/count';
+import { humanNumbers } from '../../utils/count';
 
 const Box = styled.div`
   border-radius: 5px;
@@ -61,7 +61,7 @@ export const DashCount: FC<IProps> = ({
   count,
   count2,
   chart,
-  history
+  history,
 }) => (
   <Box>
     <Left>

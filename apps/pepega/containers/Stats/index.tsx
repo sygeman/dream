@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
-import { humanNumbers } from '@pepega/utils/count';
+import { humanNumbers } from '../../utils/count';
 import { FC } from 'react';
-import { Flex } from '@pepega/components';
+import { Flex } from '../../components';
 import { useRouter } from 'next/router';
 
 const GET_TOP_USERS = gql`

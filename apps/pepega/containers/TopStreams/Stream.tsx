@@ -1,13 +1,13 @@
 import { FC } from 'react';
 import styled from 'styled-components';
-import { CardMedia, TwitchPlayer, VideoPreview } from '@pepega/components';
+import { CardMedia, TwitchPlayer, VideoPreview } from '../../components';
 import { Circle as CircleIcon } from 'styled-icons/boxicons-regular/Circle';
 
 interface IProcess {
   browser: boolean;
 }
 
-declare var process: IProcess;
+declare let process: IProcess;
 
 const PreviewContent = styled.div`
   position: absolute;
@@ -47,7 +47,7 @@ export const Stream: FC<IProps> = ({
   name,
   title,
   avatar,
-  livePreview
+  livePreview,
 }) => {
   const descriptionLink = `https://www.twitch.tv/${name}`;
   const previewImg = `https://static-cdn.jtvnw.net/previews-ttv/live_user_${name}-${290}x${163}.jpg`;

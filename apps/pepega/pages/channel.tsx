@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import Channel from '@pepega/containers/Channel';
+import Channel from '../containers/Channel';
 import Layout from '../layouts/Main';
 
 const ChannelPage = () => {

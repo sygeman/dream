@@ -1,7 +1,7 @@
 import { lighten } from 'polished';
 import { FC } from 'react';
 import styled from 'styled-components';
-import { CreateCommunityClip } from '@pepega/containers/Community/Clip/Create';
+import { CreateCommunityClip } from '../containers/Community/Clip/Create';
 import Layout from '../layouts/Main';
 
 const Box = styled.div`

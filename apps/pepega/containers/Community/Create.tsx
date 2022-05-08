@@ -3,7 +3,7 @@ import Router from 'next/router';
 import { FC, useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import styled from 'styled-components';
-import { Flex, Button, Input, CoinIconGold } from '@pepega/components';
+import { Flex, Button, Input, CoinIconGold } from '../../components';
 
 const CREATE_COMMUNITY = gql`
   mutation createCommunity($input: CommunityCreateInput!) {
@@ -27,10 +27,10 @@ export const CreateCommunity: FC = () => {
   const [name, setName] = useState('');
 
   const [createCommunity] = useMutation(CREATE_COMMUNITY, {
-    onCompleted: data => {
+    onCompleted: (data) => {
       const communityId = data.createCommunity.id;
       Router.push(`/community?id=${communityId}`);
-    }
+    },
   });
 
   return (
@@ -38,7 +38,7 @@ export const CreateCommunity: FC = () => {
       <Input
         autoFocus
         placeholder="Название"
-        onChange={e => setName(e.target.value)}
+        onChange={(e) => setName(e.target.value)}
       />
       <Bottom>
         <Flex fontSize="13px" px="20px" alignItems="center">
@@ -49,9 +49,9 @@ export const CreateCommunity: FC = () => {
             createCommunity({
               variables: {
                 input: {
-                  name
-                }
-              }
+                  name,
+                },
+              },
             })
           }
         >

@@ -3,7 +3,7 @@ import { FC, useEffect } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import Scrollbars from 'react-custom-scrollbars';
 import styled from 'styled-components';
-import { Flex } from '@pepega/components';
+import { Flex } from '../../components';
 import { lighten } from 'polished';
 import { Clips } from '../Clips';
 import { CommunityRight } from './Right';
@@ -49,7 +49,7 @@ interface IProps {
 export const Community: FC<IProps> = ({ id }) => {
   const { loading, error, data, subscribeToMore } = useQuery(GET_COMMUNITY, {
     variables: { id },
-    ssr: false
+    ssr: false,
   });
 
   useEffect(() => {
@@ -65,10 +65,10 @@ export const Community: FC<IProps> = ({ id }) => {
           ...prev,
           community: {
             ...prev.community,
-            ...subscriptionData.data.community
-          }
+            ...subscriptionData.data.community,
+          },
         };
-      }
+      },
     });
   }, []);
 
@@ -84,7 +84,7 @@ export const Community: FC<IProps> = ({ id }) => {
         <Scrollbars
           autoHide
           universal
-          renderView={props => <div {...props} id="mainScroll" />}
+          renderView={(props) => <div {...props} id="mainScroll" />}
         >
           <Clips
             orderBy={{ name: 'communityClipCreatedAt', type: 'DESC' }}

@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { darken } from 'polished';
 import { PureComponent } from 'react';
 import styled from 'styled-components';
-import { Grid } from '@pepega/components';
+import { Grid } from '../../components';
 import ClipGridView from './GridView';
 
 const SectionBox = styled.div`
@@ -50,7 +50,7 @@ interface IProcess {
   browser: boolean;
 }
 
-declare var process: IProcess;
+declare let process: IProcess;
 
 export class ClipsView extends PureComponent<IProps, IState> {
   public loadLock = false;
@@ -59,11 +59,11 @@ export class ClipsView extends PureComponent<IProps, IState> {
     super(props);
 
     this.state = {
-      layoutInLoadArea: false
+      layoutInLoadArea: false,
     };
   }
 
-  scrollHandler = e => {
+  scrollHandler = (e) => {
     const el = e.target;
     const offset = el.scrollHeight - el.scrollTop - el.clientHeight;
     const layoutInLoadArea = offset <= 250;
@@ -138,7 +138,7 @@ export class ClipsView extends PureComponent<IProps, IState> {
         maxRows={rows}
         items={clips}
         elementWidth={320}
-        itemRender={clip => (
+        itemRender={(clip) => (
           <PostContainer key={clip.id}>
             <ClipGridView clip={clip} onPlay={() => onPlay(clip.id)} />
           </PostContainer>

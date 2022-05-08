@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { darken } from 'polished';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
-import { Button } from '@pepega/components';
+import { Button } from '../../../components';
 import { Restore as HistoryIcon } from 'styled-icons/material/Restore';
 
 const Box = styled.div`
@@ -60,8 +60,8 @@ export const ClipsHistoryGuest = () => {
             pathname: router.route,
             query: {
               ...router.query,
-              authModal: 1
-            }
+              authModal: 1,
+            },
           }}
           passHref
         >

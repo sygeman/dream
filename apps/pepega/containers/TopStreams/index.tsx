@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 import { FC } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import styled from 'styled-components';
-import { Grid } from '@pepega/components';
+import { Grid } from '../../components';
 import { Stream } from './Stream';
 import { StreamAdd } from './StreamAdd';
 
@@ -107,5 +107,5 @@ TopStreams.defaultProps = {
   live: 2,
   position: 'line',
   interval: 10e3,
-  noAddStream: false
+  noAddStream: false,
 };

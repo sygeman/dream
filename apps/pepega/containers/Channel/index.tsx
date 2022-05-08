@@ -5,8 +5,8 @@ import styled from 'styled-components';
 import { useRouter } from 'next/router';
 import { darken } from 'polished';
 import subDays from 'date-fns/subDays';
-import { Grid, VideoPreview, CardMedia } from '@pepega/components';
-import { dateDistanceInWordsToNow } from '@pepega/utils/date';
+import { Grid, VideoPreview, CardMedia } from '../../components';
+import { dateDistanceInWordsToNow } from '../../utils/date';
 
 const GET_TWITCH_USER = gql`
   query twitchUser($userId: String!) {
@@ -149,7 +149,7 @@ interface IProps {
 const ChannelUser = ({ userId }) => {
   const { loading, error, data } = useQuery(GET_TWITCH_USER, {
     variables: { userId },
-    ssr: false
+    ssr: false,
   });
 
   let avatar = null;
@@ -197,9 +197,9 @@ const Channel: FC<IProps> = ({ userId }) => {
     variables: {
       broadcaster_id: userId,
       started_at,
-      first: 50
+      first: 50,
     },
-    ssr: false
+    ssr: false,
   });
 
   if (!data || !data.twitchClips) {
@@ -213,8 +213,8 @@ const Channel: FC<IProps> = ({ userId }) => {
         query: {
           clipId,
           backPath: router.asPath,
-          ...router.query
-        }
+          ...router.query,
+        },
       },
       `/clip?id=${clipId}`,
       { shallow: true }
@@ -226,7 +226,7 @@ const Channel: FC<IProps> = ({ userId }) => {
       <Grid
         beforeRender={<ChannelUser userId={userId} />}
         items={data.twitchClips.data}
-        itemRender={clip => (
+        itemRender={(clip) => (
           <ClipContainer key={clip.id}>
             <CardMedia
               media={

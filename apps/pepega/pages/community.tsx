@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import CommunityLayout from '../layouts/Community';
-import { Community } from '@pepega/containers/Community';
+import { Community } from '../containers/Community';
 
 const CommunityPage = () => {
   const router = useRouter();

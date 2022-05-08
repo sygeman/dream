@@ -1,8 +1,8 @@
 import { FC, ReactNode } from 'react';
-import { useAccess } from '@pepega/hooks/useAccess';
-import * as LeftMenu from '@pepega/components/LeftMenu';
+import { useAccess } from '../utils/useAccess';
+import * as LeftMenu from '../components/LeftMenu';
 import BaseLayout from './Base';
-import { LogoBox } from '@pepega/containers/Nav/Left/Logo';
+import { LogoBox } from '../containers/Nav/Left/Logo';
 import { InsertChart } from 'styled-icons/material';
 
 interface IProps {

@@ -1,8 +1,8 @@
 import { darken, lighten } from 'polished';
 import styled from 'styled-components';
 import getConfig from 'next/config';
-import { Button, CoinIconGreen } from '@pepega/components';
-import { humanNumbers } from '@pepega/utils/count';
+import { Button, CoinIconGreen } from '../components';
+import { humanNumbers } from '../utils/count';
 const { publicRuntimeConfig } = getConfig();
 
 const Box = styled.div`
@@ -48,7 +48,7 @@ const realCoinPacks = {
   1000: 20,
   5000: 30,
   10000: 40,
-  25000: 60
+  25000: 60,
 };
 
 const BuyCoinsPack = ({ packKey }) => {
@@ -74,7 +74,7 @@ export const BuyCoins = () => (
     <PercentComment>
       * Цены указаны без учета комиссий платежных систем
     </PercentComment>
-    {Object.keys(realCoinPacks).map(packKey => (
+    {Object.keys(realCoinPacks).map((packKey) => (
       <BuyCoinsPack key={packKey} packKey={packKey} />
     ))}
   </Box>

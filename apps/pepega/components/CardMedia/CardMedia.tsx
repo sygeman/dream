@@ -1,7 +1,7 @@
 import { darken, lighten } from 'polished';
 import { FC, ReactNode } from 'react';
 import styled from 'styled-components';
-import { shortNumbers } from '@pepega/utils/count';
+import { shortNumbers } from '../../utils/count';
 
 const Box = styled.div`
   display: flex;
@@ -147,7 +147,7 @@ export const CardMedia: FC<IProps> = ({
             <Title>{title}</Title>
             <Description>
               {description && (
-                <a href={descriptionLink} target="_blank">
+                <a href={descriptionLink} target="_blank" rel="noreferrer">
                   {description}
                 </a>
               )}

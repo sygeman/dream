@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
-import { Clip } from '@pepega/containers/Clip/Clip';
+import { Clip } from '../containers/Clip/Clip';
 import Layout from '../layouts/Main';
-import { TopStreams } from '@pepega/containers/TopStreams';
+import { TopStreams } from '../containers/TopStreams';
 
 const Box = styled.div`
   margin: 0 auto;

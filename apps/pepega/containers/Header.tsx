@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import styled from 'styled-components';
-import { Button } from '@pepega/components';
+import { Button } from '../components';
 import { useRouter } from 'next/router';
-import { useAccess } from '@pepega/utils/useAccess';
+import { useAccess } from '../utils/useAccess';
 
 const Left = styled.div`
   display: flex;
@@ -55,8 +55,8 @@ export const Header = () => {
                 pathname: router.route,
                 query: {
                   ...router.query,
-                  [isUser ? 'newClip' : 'authModal']: 1
-                }
+                  [isUser ? 'newClip' : 'authModal']: 1,
+                },
               }}
               passHref
             >

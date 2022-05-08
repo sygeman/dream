@@ -4,9 +4,9 @@ import { darken, lighten } from 'polished';
 import React, { FC } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import styled from 'styled-components';
-import { useAccess } from '@pepega/utils/useAccess';
-import { Dropdown, Emoji } from '@pepega/components';
-import { splitTextToEmojiArray } from '@pepega/utils/emoji';
+import { useAccess } from '../../../utils/useAccess';
+import { Dropdown, Emoji } from '../../../components';
+import { splitTextToEmojiArray } from '../../../utils/emoji';
 
 const REMOVE_CLIP_COMMENT = gql`
   mutation removeClipComment($id: ID!) {
@@ -41,7 +41,7 @@ const AvatarImg = styled.img`
   height: 26px;
   border-radius: 100%;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  background: ${props => props.theme.colors.surface};
+  background: ${(props) => props.theme.colors.surface};
 `;
 
 const AvatarNone = styled.div`
@@ -49,7 +49,7 @@ const AvatarNone = styled.div`
   height: 26px;
   border-radius: 100%;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  background: ${props => props.theme.colors.accent};
+  background: ${(props) => props.theme.colors.accent};
 `;
 
 const Header = styled.div`
@@ -61,7 +61,7 @@ const Header = styled.div`
 
 const Username = styled('div')<{ userColor?: string }>`
   font-weight: 500;
-  color: ${props =>
+  color: ${(props) =>
     props.userColor
       ? props.userColor
       : lighten('0.15', props.theme.colors.accent)};
@@ -69,7 +69,7 @@ const Username = styled('div')<{ userColor?: string }>`
 `;
 
 const Date = styled.div`
-  color: ${props => props.theme.colors.accent};
+  color: ${(props) => props.theme.colors.accent};
   font-size: 12px;
   text-align: right;
   padding: 0 16px;
@@ -80,7 +80,7 @@ const Content = styled.div`
 `;
 
 const Text = styled.div`
-  color: ${props => props.theme.colors.accent};
+  color: ${(props) => props.theme.colors.accent};
   padding: 4px 10px 4px 50px;
   overflow: hidden;
   overflow-wrap: break-word;
@@ -105,11 +105,11 @@ const ManageMenu = styled.div`
 
 const ManageItem = styled.div`
   padding: 0 3px;
-  color: ${props => props.theme.colors.accent};
+  color: ${(props) => props.theme.colors.accent};
 
   i {
     font-size: 17px;
-    color: ${props => props.theme.colors.accent};
+    color: ${(props) => props.theme.colors.accent};
   }
 
   :hover {
@@ -165,14 +165,14 @@ export const ClipComment: FC<IProps> = ({ id, content, compact, author }) => {
 
   const usernameColors = {
     admin: 'rgb(194, 121, 121)',
-    mod: 'rgb(124, 194, 121)'
+    mod: 'rgb(124, 194, 121)',
   };
 
   const userColor = usernameColors[author.role]
     ? usernameColors[author.role]
     : undefined;
 
-  const [{ allow: isAllowRemoveClipComment }] = useAccess(currentUser => {
+  const [{ allow: isAllowRemoveClipComment }] = useAccess((currentUser) => {
     return currentUser.role === 'mod' || currentUser.role === 'admin';
   });
 

@@ -1,7 +1,7 @@
 import { FC, useEffect } from 'react';
 import gql from 'graphql-tag';
 import { useQuery, useMutation } from '@apollo/react-hooks';
-import { Button } from '@pepega/components';
+import { Button } from '../../components';
 
 const GET_COMMUNITY_FOLLOW = gql`
   query getCommunityFollow($communityId: ID!) {
@@ -42,7 +42,7 @@ export const CommunityFollow: FC<Props> = ({ communityId }) => {
     GET_COMMUNITY_FOLLOW,
     {
       variables: { communityId },
-      ssr: false
+      ssr: false,
     }
   );
 
@@ -59,10 +59,10 @@ export const CommunityFollow: FC<Props> = ({ communityId }) => {
           ...prev,
           communityFollow: {
             ...prev.communityFollow,
-            ...subscriptionData.data.communityFollow
-          }
+            ...subscriptionData.data.communityFollow,
+          },
         };
-      }
+      },
     });
   }, []);
 
@@ -81,9 +81,9 @@ export const CommunityFollow: FC<Props> = ({ communityId }) => {
           variables: {
             input: {
               communityId,
-              follow: !isFollow
-            }
-          }
+              follow: !isFollow,
+            },
+          },
         })
       }
     >

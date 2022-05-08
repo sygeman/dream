@@ -4,8 +4,8 @@ import { useQuery } from '@apollo/react-hooks';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
 import { darken } from 'polished';
-import { Grid, VideoPreview, CardMedia } from '@pepega/components';
-import { dateDistanceInWordsToNow } from '@pepega/utils/date';
+import { Grid, VideoPreview, CardMedia } from '../../components';
+import { dateDistanceInWordsToNow } from '../../utils/date';
 
 const GET_TWITCH_GAME = gql`
   query twitchGame($id: String) {
@@ -129,8 +129,8 @@ const TwitchGameClips = ({ game }) => {
   const { loading, error, data } = useQuery(GET_TWITCH_CHANNEL_TOP_CLIPS, {
     variables: {
       game: game ? title : undefined,
-      limit: 50
-    }
+      limit: 50,
+    },
   });
 
   if (error || !data || !data.twitchTopClips) {
@@ -144,8 +144,8 @@ const TwitchGameClips = ({ game }) => {
         query: {
           clipId,
           backPath: router.asPath,
-          ...router.query
-        }
+          ...router.query,
+        },
       },
       `/clip?id=${clipId}`,
       { shallow: true }
@@ -172,7 +172,7 @@ const TwitchGameClips = ({ game }) => {
         </SectionBox>
       }
       items={data.twitchTopClips}
-      itemRender={clip => (
+      itemRender={(clip) => (
         <ClipContainer key={clip.id}>
           <CardMedia
             media={
@@ -216,8 +216,8 @@ const TwitchGame: FC<IProps> = ({ gameId }) => {
 
   const { error, data } = useQuery(GET_TWITCH_GAME, {
     variables: {
-      id: gameId
-    }
+      id: gameId,
+    },
   });
 
   if (error || !data) {

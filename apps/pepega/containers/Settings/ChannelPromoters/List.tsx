@@ -3,10 +3,10 @@ import { lighten } from 'polished';
 import { FC, useRef } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import styled from 'styled-components';
-import { Input, Button } from '@pepega/components';
+import { Input, Button } from '../../../components';
 import ChannelPromoter from './ChannelPromoter';
-import { parseTwitchChannelName } from '@pepega/utils/parseTwitchChannelName';
-import { useAccess } from '@pepega/utils/useAccess';
+import { parseTwitchChannelName } from '../../../utils/parseTwitchChannelName';
+import { useAccess } from '../../../utils/useAccess';
 
 const CREATE_CHANNEL = gql`
   mutation createChannelPromoter($channelName: String!) {
@@ -74,7 +74,7 @@ export const ChannelPromotersList: FC<IProps> = ({ channelPromoters }) => {
     }
 
     createChannelPromoter({
-      variables: { channelName }
+      variables: { channelName },
     });
 
     textInput.current.value = '';
@@ -101,7 +101,7 @@ export const ChannelPromotersList: FC<IProps> = ({ channelPromoters }) => {
                 ? `Название или ссылка на twitch канал`
                 : `Войдите чтобы добавить канал для продвижения`
             }
-            onKeyPress={e => {
+            onKeyPress={(e) => {
               if (e.key === 'Enter') {
                 addChannel();
               }

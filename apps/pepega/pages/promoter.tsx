@@ -1,4 +1,4 @@
-import { ChannelPromotersManage } from '@pepega/containers/Settings/ChannelPromoters';
+import { ChannelPromotersManage } from '../containers/Settings/ChannelPromoters';
 import Layout from '../layouts/Main';
 
 const PromoterPage = () => (

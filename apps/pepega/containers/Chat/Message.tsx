@@ -4,10 +4,10 @@ import { darken, lighten, rgba } from 'polished';
 import React, { FC } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import styled from 'styled-components';
-import { useAccess } from '@pepega/utils/useAccess';
-import { Dropdown, Emoji } from '@pepega/components';
-import { splitTextToEmojiArray } from '@pepega/utils/emoji';
-import { dateDistanceInWordsToNow } from '@pepega/utils/date';
+import { useAccess } from '../../utils/useAccess';
+import { Dropdown, Emoji } from '../../components';
+import { splitTextToEmojiArray } from '../../utils/emoji';
+import { dateDistanceInWordsToNow } from '../../utils/date';
 
 const DELETE_CHAT_MESSAGE = gql`
   mutation deleteChatMessage($id: ID!) {

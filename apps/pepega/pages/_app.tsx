@@ -4,7 +4,7 @@ import Head from 'next/head';
 import Router from 'next/router';
 import NProgress from 'nprogress';
 import 'resize-observer-polyfill';
-import { withApollo } from '@pepega/utils/apollo';
+import { withApollo } from '../utils/apollo';
 import { ThemeProvider } from 'styled-components';
 // import { version } from '../../package.json';
 import { GlobalStyle, themes } from '../themes';

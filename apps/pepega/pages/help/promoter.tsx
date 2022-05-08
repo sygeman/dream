@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { PromoterHelp } from '@pepega/containers/Help/Promoter';
+import { PromoterHelp } from '../../containers/Help/Promoter';
 import Layout from '../../layouts/Main';
 
 const Box = styled.div`

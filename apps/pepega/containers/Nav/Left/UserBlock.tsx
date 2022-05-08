@@ -3,8 +3,8 @@ import { darken, lighten } from 'polished';
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import styled from 'styled-components';
-import { Avatar, Dropdown } from '@pepega/components';
-import { useAccess } from '@pepega/utils/useAccess';
+import { Avatar, Dropdown } from '../../../components';
+import { useAccess } from '../../../utils/useAccess';
 import { MoreVert as MoreVertIcon } from 'styled-icons/material/MoreVert';
 import getConfig from 'next/config';
 const { publicRuntimeConfig } = getConfig();
@@ -73,7 +73,7 @@ const UserCaratBox = styled.div`
 
 export const LeftNavMenuUserBlock = () => {
   const [{ allow: isAdmin }] = useAccess(
-    currentUser => currentUser.role === 'admin'
+    (currentUser) => currentUser.role === 'admin'
   );
   const { loading, error, data } = useQuery(GET_USER, { ssr: false });
 

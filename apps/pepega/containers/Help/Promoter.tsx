@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { lighten } from 'polished';
-import { Rectangle169 } from '@pepega/components';
+import { Rectangle169 } from '../../components';
 
 const Box = styled.div`
   width: 1000px;

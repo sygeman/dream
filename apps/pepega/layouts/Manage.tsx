@@ -7,6 +7,7 @@ import { InsertChart } from 'styled-icons/material';
 
 interface IProps {
   fixedTopContent?: ReactNode;
+  children?: React.ReactNode;
 }
 
 const ManageLayout: FC<IProps> = ({ children, fixedTopContent }) => {

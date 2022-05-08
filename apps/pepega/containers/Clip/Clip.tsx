@@ -2,7 +2,7 @@ import { FC, useEffect } from 'react';
 import gql from 'graphql-tag';
 import { darken } from 'polished';
 import styled from 'styled-components';
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/client';
 import { TwitchClipPlayer } from '../../components';
 import { ClipReaction } from './Reactions';
 import { ClipShare } from './Share';

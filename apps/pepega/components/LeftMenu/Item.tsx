@@ -61,6 +61,7 @@ interface IProps {
   showContentAlways?: boolean;
   noClick?: boolean;
   badge?: any;
+  children?: React.ReactNode;
 }
 
 export const MenuItem: FC<IProps> = ({
@@ -71,7 +72,7 @@ export const MenuItem: FC<IProps> = ({
   equal,
   showContentAlways,
   noClick,
-  badge
+  badge,
 }) => {
   const router = useRouter();
 

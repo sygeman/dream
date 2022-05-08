@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 import { FC, useEffect } from 'react';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import Scrollbars from 'react-custom-scrollbars';
 import styled from 'styled-components';
 import { Flex } from '../../components';

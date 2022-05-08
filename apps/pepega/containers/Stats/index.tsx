@@ -1,5 +1,5 @@
 import gql from 'graphql-tag';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import { humanNumbers } from '../../utils/count';
 import { FC } from 'react';
 import { Flex } from '../../components';

@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 import { FC } from 'react';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import { useRouter } from 'next/router';
 import * as LeftMenu from '../../../components/LeftMenu';
 import { Apps } from 'styled-icons/material';

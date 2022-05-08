@@ -17,6 +17,7 @@ import { CommunityHeader } from '../containers/Community/Header';
 
 interface IProps {
   fixedTopContent?: ReactNode;
+  children?: React.ReactNode;
 }
 
 const CommunityLayout: FC<IProps> = ({ children, fixedTopContent }) => (

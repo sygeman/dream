@@ -1,3 +1,4 @@
+import { join } from 'path';
 import { Module } from '@nestjs/common';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -59,19 +60,19 @@ import { AppQueue } from './app.queue';
         authVKConfig,
         baseConfig,
         dbConfig,
-        robokassaConfig
-      ]
+        robokassaConfig,
+      ],
     }),
     TypeOrmModule.forRootAsync({
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
         type: 'postgres',
         url: configService.get('db.pgUrl'),
-        entities: [__dirname + '/**/*.entity.*'],
+        entities: [join(__dirname, './**/*.entity{.ts,.js}')],
         synchronize: true,
         cache: false,
-        ssl: configService.get('db.pgSsl')
-      })
+        ssl: configService.get('db.pgSsl'),
+      }),
     }),
     SharedModule,
     AuthModule,
@@ -149,7 +150,7 @@ import { AppQueue } from './app.queue';
 
               const connection = await connectionsService.create({
                 userId,
-                ip
+                ip,
               });
 
               return {
@@ -157,17 +158,17 @@ import { AppQueue } from './app.queue';
                 user,
                 userId,
                 userData: jwtPayload,
-                connectionId: connection.id
+                connectionId: connection.id,
               };
             },
             onDisconnect: async (webSocket, context) => {
               const data = await context.initPromise;
               await connectionsService.remove(data.connectionId);
-            }
-          }
-        }
-      })
-    })
-  ]
+            },
+          },
+        },
+      }),
+    }),
+  ],
 })
 export class AppModule {}

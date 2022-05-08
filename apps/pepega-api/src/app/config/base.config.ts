@@ -1,9 +1,9 @@
-import * as uuid from 'uuid/v4';
+import { nanoid } from 'nanoid';
 import { registerAs } from '@nestjs/config';
 
 export default registerAs('base', () => ({
-  instanceId: uuid(),
+  instanceId: nanoid(),
   baseURL: process.env.BASE_URL,
   apiURL: process.env.API_URL,
-  appPrefix: process.env.APP_PREFIX
+  appPrefix: process.env.APP_PREFIX,
 }));

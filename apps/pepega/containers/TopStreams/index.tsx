@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 import { FC } from 'react';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import styled from 'styled-components';
 import { Grid } from '../../components';
 import { Stream } from './Stream';

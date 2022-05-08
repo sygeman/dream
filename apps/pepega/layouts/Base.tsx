@@ -112,6 +112,7 @@ const Overlay = styled.div<{ leftMenuIsOpen: boolean }>`
 interface IProps {
   fixedTopContent?: ReactNode;
   leftMenu?: ReactNode;
+  children?: React.ReactNode;
 }
 
 const BaseLayout: FC<IProps> = ({ children, fixedTopContent, leftMenu }) => {

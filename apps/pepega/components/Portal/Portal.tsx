@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom';
 
 interface IProps {
   selector: string;
+  children?: React.ReactNode;
 }
 
 export const Portal: FC<IProps> = ({ selector, children }) => {

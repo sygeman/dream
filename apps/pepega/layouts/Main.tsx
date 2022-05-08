@@ -20,6 +20,7 @@ import { Header } from '../containers/Header';
 interface IProps {
   fixedTopContent?: ReactNode;
   streams?: boolean;
+  children?: React.ReactNode;
 }
 
 const MainLayout: FC<IProps> = ({ children, fixedTopContent, streams }) => (

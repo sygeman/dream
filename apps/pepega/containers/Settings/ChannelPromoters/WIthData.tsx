@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 import { useEffect } from 'react';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import { ChannelPromotersList } from './List';
 
 const GET_CHANNEL_PROMOTERS = gql`
@@ -43,17 +43,18 @@ export const ChannelPromotersWithData = () => {
         const channelPromoter = subscriptionData.data.channelPromoterCreated;
 
         if (
-          prev.channelPromoters.findIndex(c => c.id === channelPromoter.id) < 0
+          prev.channelPromoters.findIndex((c) => c.id === channelPromoter.id) <
+          0
         ) {
           return {
             ...prev,
             channelPromoters: [
               ...prev.channelPromoters.slice(-50),
-              channelPromoter
-            ]
+              channelPromoter,
+            ],
           };
         }
-      }
+      },
     });
   }, []);
 
@@ -69,9 +70,11 @@ export const ChannelPromotersWithData = () => {
 
         return {
           ...prev,
-          channelPromoters: [...prev.channelPromoters.filter(c => c.id !== id)]
+          channelPromoters: [
+            ...prev.channelPromoters.filter((c) => c.id !== id),
+          ],
         };
-      }
+      },
     });
   }, []);
 

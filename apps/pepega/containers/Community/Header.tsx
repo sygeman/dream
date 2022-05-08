@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 import Link from 'next/link';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import { Flex, Button } from '../../components';

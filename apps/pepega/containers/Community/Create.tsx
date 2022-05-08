@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 import Router from 'next/router';
 import { FC, useState } from 'react';
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/client';
 import styled from 'styled-components';
 import { Flex, Button, Input, CoinIconGold } from '../../components';
 

@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 import Layout from '../layouts/Main';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import { Communities } from '../containers/Community/Communities';
 
 const GET_COMMUNITIES = gql`

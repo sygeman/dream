@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 import { FC, useEffect } from 'react';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import styled from 'styled-components';
 import { ChatMessages } from './Messages';
 import { ChatMessagesBottom } from './Bottom';
@@ -84,13 +84,13 @@ export const Chat: FC<IProps> = ({ id }) => {
 
         const chatMessage = subscriptionData.data.chatMessageCreated;
 
-        if (prev.chatMessages.findIndex(c => c.id === chatMessage.id) < 0) {
+        if (prev.chatMessages.findIndex((c) => c.id === chatMessage.id) < 0) {
           return {
             ...prev,
-            chatMessages: [...prev.chatMessages.slice(-limit), chatMessage]
+            chatMessages: [...prev.chatMessages.slice(-limit), chatMessage],
           };
         }
-      }
+      },
     });
   }, []);
 
@@ -107,9 +107,9 @@ export const Chat: FC<IProps> = ({ id }) => {
 
         return {
           ...prev,
-          chatMessages: [...prev.chatMessages.filter(c => c.id !== id)]
+          chatMessages: [...prev.chatMessages.filter((c) => c.id !== id)],
         };
-      }
+      },
     });
   }, []);
 

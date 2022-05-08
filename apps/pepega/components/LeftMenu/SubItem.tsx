@@ -37,6 +37,7 @@ const SubItem = styled('a')<{
 interface IProps {
   route: string;
   active?: boolean;
+  children?: React.ReactNode;
 }
 
 export const SubItemMenu: FC<IProps> = ({ route, active, children }) => {

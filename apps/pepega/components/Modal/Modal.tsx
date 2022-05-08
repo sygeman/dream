@@ -165,6 +165,7 @@ export type IModalProps = {
   visible: boolean;
   minimal: boolean;
   noBackgroud: boolean;
+  children?: React.ReactNode;
 };
 
 export const Modal: FC<IModalProps> & {
@@ -178,11 +179,11 @@ export const Modal: FC<IModalProps> & {
   minimal,
   noBackgroud,
   onOpen,
-  onClose
+  onClose,
 }) => {
   const close = () => onClose();
 
-  const escapeHandler = e => {
+  const escapeHandler = (e) => {
     if (e.keyCode === 27 && visible) {
       onClose();
     }
@@ -247,5 +248,5 @@ Modal.defaultProps = {
   noBackgroud: false,
   title: '',
   onOpen: () => undefined,
-  onClose: () => undefined
+  onClose: () => undefined,
 };

@@ -1,6 +1,6 @@
 import { FC, useEffect } from 'react';
 import gql from 'graphql-tag';
-import { useQuery, useMutation } from '@apollo/react-hooks';
+import { useQuery, useMutation } from '@apollo/client';
 import { Button } from '../../components';
 
 const GET_COMMUNITY_FOLLOW = gql`

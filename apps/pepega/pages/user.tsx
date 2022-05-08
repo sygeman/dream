@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 import Head from 'next/head';
 import * as React from 'react';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 import { Clips } from '../containers/Clips';
 import UserPanelProfile from '../containers/User/UserPanelProfile';
 import { useRouter } from 'next/router';

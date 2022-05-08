@@ -29,6 +29,7 @@ const MenuButton = styled.div`
 
 interface IProps {
   leftMenuTrigger: () => void;
+  children?: React.ReactNode;
 }
 
 const TopNav: FC<IProps> = ({ leftMenuTrigger, children }) => {

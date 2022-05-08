@@ -1,8 +1,7 @@
-import { Strategy } from 'passport-twitch-helix';
+import { Strategy } from 'passport-twitch-new';
 import { PassportStrategy } from '@nestjs/passport';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { ProfilePayload } from '../../profile/types/ProfilePayload';
 
 @Injectable()
 export class TwitchStrategy extends PassportStrategy(Strategy, 'twitch') {
@@ -10,15 +9,15 @@ export class TwitchStrategy extends PassportStrategy(Strategy, 'twitch') {
     super(config.get('authTwitch'));
   }
 
-  async validate(accessToken, refreshToken, profile): Promise<ProfilePayload> {
+  async validate(accessToken, refreshToken, profile) {
     return {
-      serviceId: profile.id,
-      serviceName: 'twitch',
-      name: profile.displayName,
-      email: profile._json.email,
-      avatar: profile._json.profile_image_url,
       accessToken,
-      refreshToken
+      refreshToken,
+      provider: 'twitch',
+      serviceId: profile?.id,
+      name: profile?.display_name,
+      email: profile?.email,
+      avatar: profile?.profile_image_url,
     };
   }
 }

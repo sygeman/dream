@@ -4,6 +4,6 @@ export default registerAs('db', () => ({
   redisUrl: process.env.REDIS_URL,
   redisHost: 'redis',
   redisPort: 6379,
-  pgUrl: process.env.PG_URL,
-  pgSsl: !!process.env.PG_SSL || false
+  pgUrl: 'postgresql://postgres:postgres@postgres:5432/pepega',
+  pgSsl: !!process.env.PG_SSL || false,
 }));

@@ -50,8 +50,8 @@ jobs:
           context: .
           file: apps/mono-api/Dockerfile
           push: true
-          tags: ghcr.io/${{ github.repository }}/api:latest, ghcr.io/${{ github.repository }}/api:${{ steps.vars.outputs.sha_short }}
-          cache-from: type=registry,ref=ghcr.io/${{ github.repository }}/api:latest
+          tags: ghcr.io/${{ github.repository }}/mono-api:latest, ghcr.io/${{ github.repository }}/mono-api:${{ steps.vars.outputs.sha_short }}
+          cache-from: type=registry,ref=ghcr.io/${{ github.repository }}/mono-api:latest
           cache-to: type=inline
 
   deploy_api:
@@ -76,4 +76,4 @@ jobs:
           project_id: ${{ secrets.PROJECT_ID }}
           namespace: ${{ secrets.NAMESPACE }}
           deployment: ${{ secrets.DEPLOYMENT }}
-          docker_image: ghcr.io/${{ github.repository }}/api:${{ steps.vars.outputs.sha_short }}
+          docker_image: ghcr.io/${{ github.repository }}/mono-api:${{ steps.vars.outputs.sha_short }}

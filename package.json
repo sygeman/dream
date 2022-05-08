@@ -122,7 +122,7 @@
     "subscriptions-transport-ws": "0.9.16",
     "tslib": "2.4.0",
     "type-graphql": "1.1.1",
-    "typeorm": "0.2.22",
+    "typeorm": "0.2.25",
     "use-debounce": "8.0.1",
     "yup": "0.32.11"
   },

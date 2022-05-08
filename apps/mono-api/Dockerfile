@@ -1,7 +1,7 @@
 FROM node:lts-alpine as base
 WORKDIR /app
 
-COPY dist/apps/pepega-api .
+COPY dist/apps/mono-api .
 COPY prisma ./prisma
 COPY schema.gql ./schema.gql
 

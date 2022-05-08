@@ -744,17 +744,17 @@
         }
       }
     },
-    "pepega": {
-      "root": "apps/pepega",
-      "sourceRoot": "apps/pepega",
+    "mono": {
+      "root": "apps/mono",
+      "sourceRoot": "apps/mono",
       "projectType": "application",
       "architect": {
         "build": {
           "builder": "@nrwl/next:build",
           "outputs": ["{options.outputPath}"],
           "options": {
-            "root": "apps/pepega",
-            "outputPath": "dist/apps/pepega"
+            "root": "apps/mono",
+            "outputPath": "dist/apps/mono"
           },
           "configurations": {
             "production": {},
@@ -765,16 +765,16 @@
         "serve": {
           "builder": "@nrwl/next:server",
           "options": {
-            "buildTarget": "pepega:build",
+            "buildTarget": "mono:build",
             "dev": true
           },
           "configurations": {
             "production": {
-              "buildTarget": "pepega:build:production",
+              "buildTarget": "mono:build:production",
               "dev": false
             },
             "development": {
-              "buildTarget": "pepega:build:development",
+              "buildTarget": "mono:build:development",
               "dev": true
             }
           },
@@ -783,13 +783,118 @@
         "export": {
           "builder": "@nrwl/next:export",
           "options": {
-            "buildTarget": "pepega:build:production"
+            "buildTarget": "mono:build:production"
           }
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/pepega/**/*.{ts,tsx,js,jsx}"]
+            "lintFilePatterns": ["apps/mono/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/mono"],
+          "options": {
+            "jestConfig": "apps/mono/jest.config.ts",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "mono-api": {
+      "root": "apps/mono-api",
+      "sourceRoot": "apps/mono-api/src",
+      "projectType": "application",
+      "prefix": "api",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:webpack",
+          "options": {
+            "outputPath": "dist/apps/mono-api",
+            "main": "apps/mono-api/src/main.ts",
+            "tsConfig": "apps/mono-api/tsconfig.app.json",
+            "assets": ["apps/mono-api/src/assets"],
+            "generatePackageJson": true
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/mono-api/src/environments/environment.ts",
+                  "with": "apps/mono-api/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:node",
+          "options": {
+            "buildTarget": "mono-api:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/mono-api/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/mono-api/jest.config.ts",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "pepega": {
+      "root": "apps/pepega",
+      "sourceRoot": "apps/pepega",
+      "projectType": "application",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/next:build",
+          "outputs": ["{options.outputPath}"],
+          "defaultConfiguration": "production",
+          "options": {
+            "root": "apps/pepega",
+            "outputPath": "dist/apps/pepega"
+          },
+          "configurations": {
+            "development": {},
+            "production": {}
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/next:server",
+          "defaultConfiguration": "development",
+          "options": {
+            "buildTarget": "pepega:build",
+            "dev": true
+          },
+          "configurations": {
+            "development": {
+              "buildTarget": "pepega:build:development",
+              "dev": true
+            },
+            "production": {
+              "buildTarget": "pepega:build:production",
+              "dev": false
+            }
+          }
+        },
+        "export": {
+          "builder": "@nrwl/next:export",
+          "options": {
+            "buildTarget": "pepega:build:production"
           }
         },
         "test": {
@@ -799,6 +904,13 @@
             "jestConfig": "apps/pepega/jest.config.ts",
             "passWithNoTests": true
           }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/pepega/**/*.{ts,tsx,js,jsx}"]
+          }
         }
       },
       "tags": []
@@ -807,17 +919,15 @@
       "root": "apps/pepega-api",
       "sourceRoot": "apps/pepega-api/src",
       "projectType": "application",
-      "prefix": "api",
-      "schematics": {},
       "architect": {
         "build": {
           "builder": "@nrwl/node:webpack",
+          "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/apps/pepega-api",
             "main": "apps/pepega-api/src/main.ts",
             "tsConfig": "apps/pepega-api/tsconfig.app.json",
-            "assets": ["apps/pepega-api/src/assets"],
-            "generatePackageJson": true
+            "assets": ["apps/pepega-api/src/assets"]
           },
           "configurations": {
             "production": {
@@ -841,12 +951,14 @@
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
           "options": {
             "lintFilePatterns": ["apps/pepega-api/**/*.ts"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/pepega-api"],
           "options": {
             "jestConfig": "apps/pepega-api/jest.config.ts",
             "passWithNoTests": true

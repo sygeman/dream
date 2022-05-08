@@ -1,7 +1,8 @@
+import * as Redis from 'ioredis';
 import { NestFactory } from '@nestjs/core';
+import * as cookieParser from 'cookie-parser';
 import * as session from 'express-session';
 import * as connectRedis from 'connect-redis';
-import Redis from 'ioredis';
 import { AppModule } from './app/app.module';
 import { ConfigService } from '@nestjs/config';
 
@@ -13,6 +14,8 @@ async function bootstrap() {
   });
 
   const config = app.get(ConfigService);
+
+  app.use(cookieParser());
 
   const RedisStore = connectRedis(session);
 
@@ -29,7 +32,7 @@ async function bootstrap() {
   );
 
   await app.startAllMicroservices();
-  await app.listen(3333);
+  await app.listen(3000);
 }
 
 bootstrap();

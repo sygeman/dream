@@ -1,13 +1,30 @@
-import React from 'react';
-import { MainCommunities } from '@dream/community';
-import { MainLayout } from '../layouts/main';
+import subDays from 'date-fns/subDays';
+import { Clips } from '@pepega/containers/Clips';
+import Layout from '../layouts/Main';
 
-export function IndexPage() {
+const IndexPage = () => {
+  const now = new Date();
+  now.setHours(0, 0, 0, 0);
+  const startedAt = new Date(subDays(now, 1)).toISOString();
+
   return (
-    <MainLayout>
-      <MainCommunities />
-    </MainLayout>
+    <Layout streams>
+      <Clips
+        orderBy={{ name: 'clipRating', type: 'DESC' }}
+        ratingMin={1}
+        startedAt={startedAt}
+        title="Топ за день"
+        description="Клипы за 24 часа с самым высоким рейтингом"
+        titleLink="/top/day"
+        rows={2}
+      />
+      <Clips
+        title="Новое"
+        description="Самые последние предложенные клипы"
+        titleLink="/new"
+      />
+    </Layout>
   );
-}
+};
 
 export default IndexPage;

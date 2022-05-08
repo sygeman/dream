@@ -2,7 +2,7 @@ module.exports = {
   projects: [
     '<rootDir>/apps/ravepro',
     '<rootDir>/libs/ui',
-    '<rootDir>/apps/pepega-api',
+    '<rootDir>/apps/mono-api',
     '<rootDir>/libs/prisma',
     '<rootDir>/libs/chat',
     '<rootDir>/libs/chat-api',
@@ -10,7 +10,7 @@ module.exports = {
     '<rootDir>/libs/auth-api',
     '<rootDir>/libs/user-api',
     '<rootDir>/libs/connection-api',
-    '<rootDir>/apps/pepega',
+    '<rootDir>/apps/mono',
     '<rootDir>/libs/pepega-ui',
     '<rootDir>/apps/pepega',
     '<rootDir>/libs/auth',
@@ -46,5 +46,6 @@ module.exports = {
     '<rootDir>/libs/modules/channel-settings/api',
     '<rootDir>/libs/layouts/settings',
     '<rootDir>/libs/layouts/play-queue',
+    '<rootDir>/apps/pepega-api',
   ],
 };

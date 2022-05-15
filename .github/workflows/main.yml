@@ -87,7 +87,7 @@ jobs:
           rancher_token: ${{ secrets.RANCHER_TOKEN }}
           cluster_id: ${{ secrets.CLUSTER_ID }}
           project_id: ${{ secrets.PROJECT_ID }}
-          namespace: ${{ secrets.NAMESPACE }}
+          namespace: mono
           deployment: ${{ secrets.DEPLOYMENT }}
           docker_image: ghcr.io/${{ github.repository }}/mono-api:${{ steps.vars.outputs.sha_short }}
 
@@ -111,6 +111,6 @@ jobs:
           rancher_token: ${{ secrets.RANCHER_TOKEN }}
           cluster_id: ${{ secrets.CLUSTER_ID }}
           project_id: ${{ secrets.PROJECT_ID }}
-          namespace: ${{ secrets.NAMESPACE }}
+          namespace: pepega
           deployment: ${{ secrets.DEPLOYMENT }}
           docker_image: ghcr.io/${{ github.repository }}/pepega-api:${{ steps.vars.outputs.sha_short }}

@@ -3,8 +3,8 @@ import { FC, MouseEventHandler } from 'react';
 
 interface IProps {
   onClick?: MouseEventHandler<HTMLElement>;
-  overlay: React.ReactNode;
-  children?: React.ReactNode;
+  overlay: React.ReactElement;
+  children?: React.ReactElement;
 }
 
 export const Dropdown: FC<IProps> = ({ children, overlay }) => (

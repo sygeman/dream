@@ -66,10 +66,7 @@ const MainLayout: FC<IProps> = ({ children, fixedTopContent, streams }) => (
       universal
       renderView={(props) => <div {...props} id="mainScroll" />}
     >
-      <>
-        {/* {streams && <TopStreams max={6} live={2} />} */}
-        {children}
-      </>
+      <>{children}</>
     </Scrollbars>
   </BaseLayout>
 );

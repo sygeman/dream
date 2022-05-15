@@ -3,7 +3,7 @@ export const promiseTimeout = (ms: number, promise) => {
     const id = setTimeout(() => {
       clearTimeout(id);
       reject('Timed out in ' + ms + 'ms.');
-      resolve();
+      resolve(null);
     }, ms);
   });
 

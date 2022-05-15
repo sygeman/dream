@@ -2,7 +2,6 @@ import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import { Clip } from '../containers/Clip/Clip';
 import Layout from '../layouts/Main';
-import { TopStreams } from '../containers/TopStreams';
 
 const Box = styled.div`
   margin: 0 auto;
@@ -39,9 +38,7 @@ const ClipPage = () => {
         <Left>
           <Clip clipId={clipId} />
         </Left>
-        <Right>
-          <TopStreams position="column" max={3} />
-        </Right>
+        <Right></Right>
       </Box>
     </Layout>
   );

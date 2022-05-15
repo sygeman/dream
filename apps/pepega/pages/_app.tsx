@@ -21,6 +21,13 @@ function CustomApp({ Component, pageProps, locale }) {
         <>
           <Head>
             <title>PepegaCom</title>
+            <meta property="og:locale" content="ru_RU" />
+            <meta property="og:type" content="website" />
+            <meta
+              name="viewport"
+              content="initial-scale=1.0, width=device-width"
+              key="viewport"
+            />
           </Head>
           <Component {...pageProps} />
           <GlobalStyle />

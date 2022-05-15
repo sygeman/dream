@@ -11,7 +11,7 @@ RUN yarn add apollo-server-express
 
 FROM dependencies as prisma
 RUN yarn add prisma --dev
-RUN yarn prisma generate
+RUN yarn nx run-many --target=generate --all
 
 FROM prisma as release
 ENV PORT=3333

@@ -8,7 +8,9 @@ import { ChannelSettingsModal } from '@dream/modules/channel-settings/ui';
 import { NewChannelModal, DeleteChannelModal } from '@dream/channel/ui';
 import { ConnectionStatus } from '@dream/modules/connection-status';
 
-export const MainLayout: React.FC = ({ children }) => (
+export const MainLayout: React.FC<{ children?: React.ReactNode }> = ({
+  children,
+}) => (
   <div className="h-screen bg-background flex">
     <AppPanel />
     <div className="flex flex-1 h-full overflow-hidden rounded-l-xl">

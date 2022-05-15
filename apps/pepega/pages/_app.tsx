@@ -6,7 +6,7 @@ import 'resize-observer-polyfill';
 import { ApolloProvider } from '@apollo/client';
 import { useApollo } from '../utils/apollo';
 import { ThemeProvider } from 'styled-components';
-import { GlobalStyle, themes } from '../themes';
+import '../styles.css';
 
 Router.events.on('routeChangeStart', () => NProgress.start());
 Router.events.on('routeChangeComplete', () => NProgress.done());
@@ -17,7 +17,17 @@ function CustomApp({ Component, pageProps, locale }) {
 
   return (
     <ApolloProvider client={apolloClient}>
-      <ThemeProvider theme={themes.dark}>
+      <ThemeProvider
+        theme={{
+          colors: {
+            primary: '#6441A4',
+            surface: '#262841',
+            background: '#1D1E31',
+            accent: '#968A9D',
+            text: '#EEEEEE',
+          },
+        }}
+      >
         <>
           <Head>
             <title>PepegaCom</title>
@@ -30,7 +40,6 @@ function CustomApp({ Component, pageProps, locale }) {
             />
           </Head>
           <Component {...pageProps} />
-          <GlobalStyle />
         </>
       </ThemeProvider>
     </ApolloProvider>

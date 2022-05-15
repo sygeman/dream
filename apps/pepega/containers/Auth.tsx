@@ -3,6 +3,7 @@ import { FC } from 'react';
 import styled from 'styled-components';
 import { Twitch as TwitchIcon } from 'styled-icons/fa-brands';
 import getConfig from 'next/config';
+import { AuthButtonTwitch } from '@dream/auth';
 const { publicRuntimeConfig } = getConfig();
 
 const AuthBox = styled.div`
@@ -72,14 +73,9 @@ const SocialButton = ({ bgColor, path, icon, title }) => (
 
 export const Auth: FC = () => (
   <AuthBox>
-    <SocialForm>
-      <SocialButton
-        bgColor={'#6542a6'}
-        path="twitch"
-        icon={<TwitchIcon size="18px" />}
-        title="TWITCH"
-      />
-    </SocialForm>
+    <div className="flex flex-col px-4 py-2">
+      <AuthButtonTwitch />
+    </div>
   </AuthBox>
 );
 

@@ -6,18 +6,11 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import * as depthLimit from 'graphql-depth-limit';
 import { AuthModule, AuthService } from '@dream/auth-api';
 import { UserModule } from '@dream/user-api';
-import { CommunityModule } from '@dream/community-api';
 import { ConnectionModule, ConnectionService } from '@dream/connection-api';
 import { SharedModule } from './shared.module';
 import { config } from './config';
 import { nanoid } from 'nanoid';
 import { BullModule } from '@nestjs/bull';
-import { SpotifyModeModule } from '@dream/mode/spotify/api';
-import { TwitchModeModule } from '@dream/mode/twitch/api';
-import { YoutubeModeModule } from '@dream/mode/youtube/api';
-import { EmojiModule } from '@dream/emoji/api';
-import { CommunitySettingsModule } from '@dream/modules/community-settings/api';
-import { ChannelSettingsModule } from '@dream/modules/channel-settings/api';
 import { join } from 'path';
 
 @Module({
@@ -89,13 +82,6 @@ import { join } from 'path';
     AuthModule,
     UserModule,
     ConnectionModule,
-    CommunityModule,
-    CommunitySettingsModule,
-    ChannelSettingsModule,
-    SpotifyModeModule,
-    TwitchModeModule,
-    YoutubeModeModule,
-    EmojiModule,
   ],
 })
 export class AppModule {}

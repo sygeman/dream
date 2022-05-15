@@ -8,6 +8,7 @@ export type ModalProps = {
   onClose: (id: string) => void;
   title?: string;
   minimal?: boolean;
+  children?: React.ReactNode;
 };
 
 export const Modal: React.FC<ModalProps> = ({
@@ -18,7 +19,7 @@ export const Modal: React.FC<ModalProps> = ({
   title = '',
   children,
 }) => {
-  let completeButtonRef = useRef(null);
+  const completeButtonRef = useRef(null);
   const open = isOpen(id);
   const close = () => onClose(id);
 

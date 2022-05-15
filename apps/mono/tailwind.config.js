@@ -51,6 +51,12 @@ module.exports = {
     join(__dirname, '/**/*!(*.stories|*.spec).{ts,tsx,html}'),
     ...createGlobPatternsForDependencies(__dirname),
   ],
+  safelist: [
+    { pattern: /text-(youtube|twitch|spotify)/ },
+    { pattern: /border-(youtube|twitch|spotify)-light/ },
+    { pattern: /bg-(youtube|twitch|spotify)/ },
+    { pattern: /bg-(youtube|twitch|spotify)-light/ },
+  ],
   theme: {
     extend: {
       colors,

@@ -26,6 +26,9 @@ jobs:
         run: yarn --frozen-lockfile
 
       - name: Build apps
+        run: yarn generate
+
+      - name: Build apps
         run: yarn build mono-api
 
       # Docker

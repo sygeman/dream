@@ -2,7 +2,7 @@ import { InjectQueue, Process, Processor } from '@nestjs/bull';
 import { Inject, Logger } from '@nestjs/common';
 import { Job, Queue } from 'bull';
 import { SpotifyModeHostService } from './services/host.service';
-import { PrismaService } from '@dream/prisma';
+import { PrismaService } from '@dream/prisma/mono';
 import { RedisPubSub } from 'graphql-redis-subscriptions';
 import { SpotifyModeCurrentService } from './services/current.service';
 

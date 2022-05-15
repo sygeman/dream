@@ -1,6 +1,6 @@
 import { Module, OnApplicationBootstrap } from '@nestjs/common';
 import { BullModule, InjectQueue } from '@nestjs/bull';
-import { PrismaModule } from '@dream/prisma';
+import { PrismaModule } from '@dream/prisma/mono';
 import { ConnectionService } from './connection.service';
 import { ConnectionResolver } from './connection.resolver';
 import { ConnectionProcessor } from './connection.processor';

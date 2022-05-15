@@ -1,9 +1,9 @@
 import { Args, Context, ID, Mutation, Query, Resolver } from '@nestjs/graphql';
-import { PrismaService } from '@dream/prisma';
+import { PrismaService } from '@dream/prisma/mono';
 import { User } from './models/user.model';
 import { UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@dream/auth-api';
-import { Locale } from '@prisma/client';
+import { Locale } from '@prisma/mono';
 
 @Resolver(() => User)
 export class UserResolver {

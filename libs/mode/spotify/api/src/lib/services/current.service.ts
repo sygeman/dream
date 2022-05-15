@@ -1,5 +1,5 @@
 import { SpotifyService } from '@dream/external-api/spotify';
-import { PrismaService } from '@dream/prisma';
+import { PrismaService } from '@dream/prisma/mono';
 import { InjectQueue } from '@nestjs/bull';
 import { Inject, Injectable, Logger } from '@nestjs/common';
 import { Queue } from 'bull';

@@ -1,5 +1,5 @@
 import { Args, Context, Mutation, Query, Resolver } from '@nestjs/graphql';
-import { PrismaService } from '@dream/prisma';
+import { PrismaService } from '@dream/prisma/mono';
 import { CommunitySettings } from './models/community-settings.model';
 import { UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@dream/auth-api';

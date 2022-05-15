@@ -8,7 +8,7 @@ import {
   ResolveField,
   Resolver,
 } from '@nestjs/graphql';
-import { PrismaService } from '@dream/prisma';
+import { PrismaService } from '@dream/prisma/mono';
 import { Community } from './models/community.model';
 import { UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@dream/auth-api';

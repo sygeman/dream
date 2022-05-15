@@ -4,11 +4,8 @@ import { ReactNode, useState, FC } from 'react';
 import Scrollbars from 'react-custom-scrollbars';
 import styled from 'styled-components';
 import Auth from '../containers/Auth';
-import { BuyCoins } from '../containers/BuyCoins';
-import { CreateCommunityClip } from '../containers/Community/Clip/Create';
-import { CreateCommunity } from '../containers/Community/Create';
+// import { CreateCommunityClip } from '../containers/Community/Clip/Create';
 import TopNav from '../containers/Nav/Top';
-import { PromoterHelp } from '../containers/Help/Promoter';
 import { Modal } from '../components/Modal';
 import { ClipModal } from '../containers/Clip/ClipModal';
 import { UserBox } from '../containers/Nav/Left/User';
@@ -146,15 +143,6 @@ const BaseLayout: FC<IProps> = ({ children, fixedTopContent, leftMenu }) => {
         >
           <ClipModal clipId={clipId} />
         </Modal>
-
-        <Modal
-          title="Купить PepeCoin"
-          visible={router.query.buyCoinsModal === '1'}
-          onClose={() => router.back()}
-        >
-          <BuyCoins />
-        </Modal>
-
         <Modal
           minimal
           visible={router.query.authModal === '1'}
@@ -162,29 +150,13 @@ const BaseLayout: FC<IProps> = ({ children, fixedTopContent, leftMenu }) => {
         >
           <Auth />
         </Modal>
-        <Modal
+        {/* <Modal
           title="Предложить клип сообществу"
           visible={router.query.newClip === '1'}
           onClose={() => router.back()}
         >
           <CreateCommunityClip />
-        </Modal>
-        <Modal
-          title="Новое сообщество"
-          visible={router.query.newCommunity === '1'}
-          onClose={() => router.back()}
-        >
-          <CreateCommunity />
-        </Modal>
-
-        <Modal
-          minimal
-          title="Как работает продвижение"
-          visible={router.query.howToPromoter === '1'}
-          onClose={() => router.back()}
-        >
-          <PromoterHelp />
-        </Modal>
+        </Modal> */}
 
         <ContentBox>
           <Content>

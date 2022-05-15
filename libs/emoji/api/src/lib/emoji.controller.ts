@@ -10,7 +10,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { AuthService } from '@dream/auth-api';
 import { ConfigService } from '@nestjs/config';
 import * as Minio from 'minio';
-import { PrismaService } from '@dream/prisma';
+import { PrismaService } from '@dream/prisma/mono';
 
 @Controller()
 export class EmojiController {

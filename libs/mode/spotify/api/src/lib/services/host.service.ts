@@ -1,12 +1,12 @@
 // const current = (await this.spotifyService.getMePlayer(userId))?.data;
 
-import { PrismaService } from '@dream/prisma';
+import { PrismaService } from '@dream/prisma/mono';
 import { SpotifyService } from '@dream/external-api/spotify';
 import { InjectQueue } from '@nestjs/bull';
 import { Injectable, Logger, OnApplicationBootstrap } from '@nestjs/common';
 import { Queue } from 'bull';
 import { SpotifyModeCurrentService } from './current.service';
-import { SpotifyMode } from '@prisma/client';
+import { SpotifyMode } from '@prisma/mono';
 
 @Injectable()
 export class SpotifyModeHostService implements OnApplicationBootstrap {

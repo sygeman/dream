@@ -3,7 +3,6 @@ module.exports = {
     '<rootDir>/apps/ravepro',
     '<rootDir>/libs/ui',
     '<rootDir>/apps/mono-api',
-    '<rootDir>/libs/prisma',
     '<rootDir>/libs/chat',
     '<rootDir>/libs/chat-api',
     '<rootDir>/libs/community',
@@ -47,5 +46,7 @@ module.exports = {
     '<rootDir>/libs/layouts/settings',
     '<rootDir>/libs/layouts/play-queue',
     '<rootDir>/apps/pepega-api',
+    '<rootDir>/libs/prisma/mono',
+    '<rootDir>/libs/prisma/pepega',
   ],
 };

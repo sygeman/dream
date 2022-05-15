@@ -1,5 +1,5 @@
 import { Args, Context, Mutation, Resolver } from '@nestjs/graphql';
-import { PrismaService } from '@dream/prisma';
+import { PrismaService } from '@dream/prisma/mono';
 import { ChannelSettings } from './models/channel-settings.model';
 import { RedisPubSub } from 'graphql-redis-subscriptions';
 import { Inject, UseGuards } from '@nestjs/common';

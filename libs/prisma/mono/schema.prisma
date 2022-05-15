@@ -1,0 +1,247 @@
+generator client {
+  provider      = "prisma-client-js"
+  output        = "../../../node_modules/@prisma/mono"
+  binaryTargets = ["native", "rhel-openssl-1.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = "postgresql://postgres:postgres@postgres:5432/mono?schema=public"
+}
+
+model Token {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+}
+
+model Connection {
+  id         String   @id @default(cuid())
+  instanceId String?
+  ipHash     String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @default(now()) @updatedAt
+  user       User?    @relation(fields: [userId], references: [id])
+  channel    Channel? @relation(fields: [channelId], references: [id])
+  userId     String?
+  channelId  String?
+}
+
+enum Locale {
+  en_US
+  ru_RU
+}
+
+model User {
+  id              String            @id @default(cuid())
+  name            String?
+  avatar          String?
+  locale          Locale?           @default(en_US)
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @default(now()) @updatedAt
+  profiles        Profile[]
+  tokens          Token[]
+  connection      Connection[]
+  communities     Community[]
+  channelMessages ChannelMessage[]
+  spotifyModeItem SpotifyModeItem[]
+  youtubeModeItem YoutubeModeItem[]
+  spotifyMode     SpotifyMode[]
+  emojis          Emoji[]
+}
+
+model Profile {
+  id           String  @id @default(cuid())
+  provider     String
+  serviceId    String
+  name         String?
+  avatar       String?
+  email        String?
+  accessToken  String?
+  refreshToken String?
+  user         User    @relation(fields: [userId], references: [id])
+  userId       String
+}
+
+enum ChannelMode {
+  NONE
+  TWITCH
+  YOUTUBE
+  SPOTIFY
+}
+
+model Community {
+  id        String    @id @default(cuid())
+  name      String?   @unique
+  title     String
+  avatar    String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now()) @updatedAt
+  channels  Channel[]
+  owner     User      @relation(fields: [ownerId], references: [id])
+  ownerId   String
+  deleted   Boolean   @default(false)
+  emojis    Emoji[]
+}
+
+model Channel {
+  id              String            @id @default(cuid())
+  name            String
+  title           String
+  avatar          String?
+  state           String?
+  mode            ChannelMode       @default(NONE)
+  gifAllowed      Boolean           @default(true)
+  nsfw            Boolean           @default(false)
+  slowmode        Int               @default(0)
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @default(now()) @updatedAt
+  community       Community         @relation(fields: [communityId], references: [id])
+  deleted         Boolean           @default(false)
+  messages        ChannelMessage[]
+  connections     Connection[]
+  communityId     String
+  spotifyModeItem SpotifyModeItem[]
+  spotifyMode     SpotifyMode[]
+  twitchMode      TwitchMode[]
+  modeYotubeItem  YoutubeModeItem[]
+  youtubeMode     YoutubeMode[]
+}
+
+model TenorGif {
+  id             String           @unique
+  height         Int
+  width          Int
+  preview        String
+  video          String
+  ChannelMessage ChannelMessage[]
+}
+
+model Emoji {
+  id          String     @id @default(cuid())
+  alias       String
+  type        String     @default("image/png")
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @default(now()) @updatedAt
+  community   Community? @relation(fields: [communityId], references: [id])
+  communityId String
+  author      User       @relation(fields: [authorId], references: [id])
+  authorId    String
+}
+
+model ChannelMessage {
+  id         String    @id @default(cuid())
+  content    String
+  deleted    Boolean   @default(false)
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @default(now()) @updatedAt
+  channel    Channel?  @relation(fields: [channelId], references: [id])
+  user       User      @relation(fields: [userId], references: [id])
+  tenorGif   TenorGif? @relation(fields: [tenorGifId], references: [id])
+  tenorGifId String?
+  channelId  String?
+  userId     String
+}
+
+// External API
+model SpotifyTrack {
+  id              String            @id
+  artists         String
+  title           String
+  cover           String?
+  duration        Int
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @default(now()) @updatedAt
+  spotifyModeItem SpotifyModeItem[]
+}
+
+model YoutubeVideo {
+  id              String            @id
+  title           String
+  cover           String?
+  duration        Int
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @default(now()) @updatedAt
+  youtubeModeItem YoutubeModeItem[]
+}
+
+model SpotifyModeItem {
+  id          String        @id @default(cuid())
+  duration    Int?          @default(0)
+  start       Int?          @default(0) // (Start track position (0))
+  end         Int? // (End track position (=duration))
+  skipped     Boolean?      @default(false) // (Manual skip (=flase))
+  canceled    Boolean?      @default(false) // (Manual remove from Queue (=false))
+  track       SpotifyTrack? @relation(fields: [trackId], references: [id])
+  trackId     String?
+  channel     Channel?      @relation(fields: [channelId], references: [id])
+  channelId   String?
+  author      User?         @relation(fields: [authorId], references: [id])
+  authorId    String?
+  startedAt   DateTime? // (Update after .itemId changed)
+  endedAt     DateTime? // (Update after skip (process or manual))
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @default(now()) @updatedAt
+  spotifyMode SpotifyMode[]
+}
+
+enum SpotifyModeStrategy {
+  QUEUE
+  HOST
+}
+
+model SpotifyMode {
+  id                   String               @id @default(cuid())
+  item                 SpotifyModeItem?     @relation(fields: [itemId], references: [id])
+  itemId               String?
+  hostId               String?
+  host                 User?                @relation(fields: [hostId], references: [id])
+  hostCurrentId        String?
+  collectionPlaylistId String?
+  channel              Channel?             @relation(fields: [channelId], references: [id])
+  channelId            String?
+  strategy             SpotifyModeStrategy? @default(QUEUE)
+  createdAt            DateTime             @default(now())
+  updatedAt            DateTime             @default(now()) @updatedAt
+}
+
+model TwitchMode {
+  id         String   @id @default(cuid())
+  channelKey String?
+  channel    Channel? @relation(fields: [channelId], references: [id])
+  channelId  String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @default(now()) @updatedAt
+}
+
+model YoutubeModeItem {
+  id          String        @id @default(cuid())
+  duration    Int?          @default(0)
+  start       Int?          @default(0) // (Start video position (0))
+  end         Int? // (End video position (=duration))
+  skipped     Boolean?      @default(false) // (Manual skip (=flase))
+  canceled    Boolean?      @default(false) // (Manual remove from Queue (=false))
+  video       YoutubeVideo? @relation(fields: [videoId], references: [id])
+  videoId     String?
+  channel     Channel?      @relation(fields: [channelId], references: [id])
+  channelId   String?
+  author      User?         @relation(fields: [authorId], references: [id])
+  authorId    String?
+  startedAt   DateTime? // (Update after .itemId changed)
+  endedAt     DateTime? // (Update after skip (process or manual))
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @default(now()) @updatedAt
+  youtubeMode YoutubeMode[]
+}
+
+model YoutubeMode {
+  id        String           @id @default(cuid())
+  item      YoutubeModeItem? @relation(fields: [itemId], references: [id])
+  itemId    String?
+  channel   Channel?         @relation(fields: [channelId], references: [id])
+  channelId String?
+  createdAt DateTime         @default(now())
+  updatedAt DateTime         @default(now()) @updatedAt
+}

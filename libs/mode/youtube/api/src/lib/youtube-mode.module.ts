@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { BullModule } from '@nestjs/bull';
-import { PrismaModule } from '@dream/prisma';
+import { PrismaModule } from '@dream/prisma/mono';
 import { YoutubeModule } from '@dream/external-api/youtube';
 import { WaitlistYoutubeResolver } from './youtube-mode.resolver';
 import { WaitlistYoutubeProcessor } from './youtube-mode.processor';

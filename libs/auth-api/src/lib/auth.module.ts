@@ -1,5 +1,5 @@
 import { Global, Module } from '@nestjs/common';
-import { PrismaModule } from '@dream/prisma';
+import { PrismaModule } from '@dream/prisma/mono';
 import { PassportModule } from '@nestjs/passport';
 import { AuthController } from './auth.controller';
 import { AuthResolver } from './auth.resolver';

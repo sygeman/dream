@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { HttpModule } from '@nestjs/axios';
-import { PrismaModule } from '@dream/prisma';
+import { PrismaModule } from '@dream/prisma/mono';
 import { UserResolver } from './user.resolver';
 
 @Module({

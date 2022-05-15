@@ -8,7 +8,7 @@ import {
   Subscription,
 } from '@nestjs/graphql';
 import { ChannelMessageCreateInput } from './dto/channelMessage.create.input';
-import { PrismaService } from '@dream/prisma';
+import { PrismaService } from '@dream/prisma/mono';
 import { ChannelMessage } from './models/message.model';
 import { RedisPubSub } from 'graphql-redis-subscriptions';
 import { Inject, UseGuards } from '@nestjs/common';

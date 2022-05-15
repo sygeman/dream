@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { BullModule } from '@nestjs/bull';
-import { PrismaModule } from '@dream/prisma';
+import { PrismaModule } from '@dream/prisma/mono';
 import { SpotifyModule } from '@dream/external-api/spotify';
 import { SpotifyModeResolver } from './spotify-mode.resolver';
 import { SpotifyModeProcessor } from './spotify-mode.processor';

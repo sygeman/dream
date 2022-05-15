@@ -6,7 +6,7 @@ import {
   Resolver,
   Subscription,
 } from '@nestjs/graphql';
-import { PrismaService } from '@dream/prisma';
+import { PrismaService } from '@dream/prisma/mono';
 import { Inject, UseGuards } from '@nestjs/common';
 import { RedisPubSub } from 'graphql-redis-subscriptions';
 import { AuthGuard } from '@dream/auth-api';
@@ -18,7 +18,7 @@ import { YoutubeModeCurrentAction } from './models/current/action';
 import { YoutubeModeHistory } from './models/history/model';
 import { YoutubeModeCurrent } from './models/current/model';
 import { YoutubeModeQueue } from './models/queue/model';
-import { ChannelMode } from '@prisma/client';
+import { ChannelMode } from '@prisma/mono';
 
 @Resolver()
 export class WaitlistYoutubeResolver {

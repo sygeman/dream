@@ -467,30 +467,6 @@
         }
       }
     },
-    "mode-host-spotify-ui": {
-      "root": "libs/mode/host-spotify/ui",
-      "sourceRoot": "libs/mode/host-spotify/ui/src",
-      "projectType": "library",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/mode/host-spotify/ui/**/*.{ts,tsx,js,jsx}"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/mode/host-spotify/ui"],
-          "options": {
-            "jestConfig": "libs/mode/host-spotify/ui/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      },
-      "tags": []
-    },
     "mode-spotify-api": {
       "root": "libs/mode/spotify/api",
       "sourceRoot": "libs/mode/spotify/api/src",
@@ -851,6 +827,27 @@
             "jestConfig": "apps/mono-api/jest.config.ts",
             "passWithNoTests": true
           }
+        },
+        "generate": {
+          "builder": "@nrwl/workspace:run-commands",
+          "outputs": [],
+          "options": {
+            "command": "prisma generate --schema ./libs/prisma/mono/schema.prisma"
+          }
+        },
+        "dbpush": {
+          "builder": "@nrwl/workspace:run-commands",
+          "outputs": [],
+          "options": {
+            "command": "prisma db push --schema ./libs/prisma/mono/schema.prisma"
+          }
+        },
+        "studio": {
+          "builder": "@nrwl/workspace:run-commands",
+          "outputs": [],
+          "options": {
+            "command": "prisma studio --schema ./libs/prisma/mono/schema.prisma"
+          }
         }
       },
       "tags": []
@@ -963,26 +960,71 @@
             "jestConfig": "apps/pepega-api/jest.config.ts",
             "passWithNoTests": true
           }
+        },
+        "generate": {
+          "builder": "@nrwl/workspace:run-commands",
+          "outputs": [],
+          "options": {
+            "command": "prisma generate --schema ./libs/prisma/pepega/schema.prisma"
+          }
+        },
+        "dbpush": {
+          "builder": "@nrwl/workspace:run-commands",
+          "outputs": [],
+          "options": {
+            "command": "prisma db push --schema ./libs/prisma/pepega/schema.prisma"
+          }
+        },
+        "studio": {
+          "builder": "@nrwl/workspace:run-commands",
+          "outputs": [],
+          "options": {
+            "command": "prisma studio --schema ./libs/prisma/pepega/schema.prisma"
+          }
         }
       },
       "tags": []
     },
-    "prisma": {
-      "root": "libs/prisma",
-      "sourceRoot": "libs/prisma/src",
+    "prisma-mono": {
+      "root": "libs/prisma/mono",
+      "sourceRoot": "libs/prisma/mono/src",
       "projectType": "library",
-      "schematics": {},
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
           "options": {
-            "lintFilePatterns": ["libs/prisma/**/*.ts"]
+            "lintFilePatterns": ["libs/prisma/mono/**/*.ts"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/prisma/mono"],
           "options": {
-            "jestConfig": "libs/prisma/jest.config.ts",
+            "jestConfig": "libs/prisma/mono/jest.config.ts",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "prisma-pepega": {
+      "root": "libs/prisma/pepega",
+      "sourceRoot": "libs/prisma/pepega/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/prisma/pepega/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/prisma/pepega"],
+          "options": {
+            "jestConfig": "libs/prisma/pepega/jest.config.ts",
             "passWithNoTests": true
           }
         }

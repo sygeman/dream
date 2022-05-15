@@ -41,7 +41,6 @@
       "@dream/layouts/*": ["libs/layouts/src/*"],
       "@dream/layouts/play-queue": ["libs/layouts/play-queue/src/index.ts"],
       "@dream/layouts/settings": ["libs/layouts/settings/src/index.ts"],
-      "@dream/mode/host-spotify/ui": ["libs/mode/host-spotify/ui/src/index.ts"],
       "@dream/mode/spotify/api": ["libs/mode/spotify/api/src/index.ts"],
       "@dream/mode/spotify/ui": ["libs/mode/spotify/ui/src/index.ts"],
       "@dream/mode/twitch/api": ["libs/mode/twitch/api/src/index.ts"],
@@ -64,7 +63,8 @@
         "libs/modules/connection-status/src/index.ts"
       ],
       "@dream/pepega-ui/*": ["libs/pepega-ui/src/lib/*"],
-      "@dream/prisma": ["libs/prisma/src/index.ts"],
+      "@dream/prisma/mono": ["libs/prisma/mono/src/index.ts"],
+      "@dream/prisma/pepega": ["libs/prisma/pepega/src/index.ts"],
       "@dream/spotify-now": ["libs/spotify-now/src/index.ts"],
       "@dream/types": ["libs/types/src/index.tsx"],
       "@dream/ui/*": ["libs/ui/src/lib/*"],

@@ -1,11 +1,11 @@
 import { Args, Context, Mutation, Query, Resolver } from '@nestjs/graphql';
-import { PrismaService } from '@dream/prisma';
+import { PrismaService } from '@dream/prisma/mono';
 import { TwitchStream } from './models/twitch-stream.model';
 import { UseGuards } from '@nestjs/common';
 import { UpdateTwitchStreamInput } from './dto/update-twitch-stream.input';
 import { AuthGuard } from '@dream/auth-api';
 import { TwitchModeService } from './twitch-mode.service';
-import { ChannelMode } from '@prisma/client';
+import { ChannelMode } from '@prisma/mono';
 
 @Resolver()
 export class TwitchModeResolver {

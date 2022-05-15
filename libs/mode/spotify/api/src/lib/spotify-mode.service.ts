@@ -1,7 +1,7 @@
-import { PrismaService } from '@dream/prisma';
+import { PrismaService } from '@dream/prisma/mono';
 import { SpotifyService } from '@dream/external-api/spotify';
 import { Injectable, Logger } from '@nestjs/common';
-import { SpotifyModeStrategy } from '@prisma/client';
+import { SpotifyModeStrategy } from '@prisma/mono';
 
 @Injectable()
 export class SpotifyModeService {

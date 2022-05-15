@@ -1,11 +1,7 @@
 import { lighten } from 'polished';
 import { FC } from 'react';
 import styled from 'styled-components';
-import {
-  Twitch as TwitchIcon,
-  Vk as VkIcon,
-  Google as GoogleIcon
-} from 'styled-icons/fa-brands';
+import { Twitch as TwitchIcon } from 'styled-icons/fa-brands';
 import getConfig from 'next/config';
 const { publicRuntimeConfig } = getConfig();
 
@@ -15,15 +11,6 @@ const AuthBox = styled.div`
   padding: 20px 40px;
   max-width: 500px;
   width: 500px;
-`;
-
-const AuthTitle = styled.div`
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  font-size: 15px;
-  padding: 16px 0 20px;
-  color: ${({ theme }) => theme.colors.accent};
 `;
 
 const SocialForm = styled.div`
@@ -45,10 +32,10 @@ const LoginButton = styled('a')<{
   cursor: pointer;
   transition: all 0.3s ease;
   font-weight: 500;
-  background: ${props => props.cColor};
+  background: ${(props) => props.cColor};
 
   :hover {
-    background: ${props => lighten(0.1, props.cColor)};
+    background: ${(props) => lighten(0.1, props.cColor)};
   }
 `;
 
@@ -85,20 +72,7 @@ const SocialButton = ({ bgColor, path, icon, title }) => (
 
 export const Auth: FC = () => (
   <AuthBox>
-    <AuthTitle>Выберите наиболее удобную для Вас платформу</AuthTitle>
     <SocialForm>
-      <SocialButton
-        bgColor={'#507299'}
-        path="vkontakte"
-        icon={<VkIcon size="21px" />}
-        title="VK"
-      />
-      <SocialButton
-        bgColor={'#DB4437'}
-        path="google"
-        icon={<GoogleIcon size="18px" />}
-        title="GOOGLE"
-      />
       <SocialButton
         bgColor={'#6542a6'}
         path="twitch"

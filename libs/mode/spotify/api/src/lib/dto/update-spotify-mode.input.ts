@@ -1,5 +1,5 @@
 import { Field, ID, InputType } from '@nestjs/graphql';
-import { SpotifyModeStrategy } from '@prisma/client';
+import { SpotifyModeStrategy } from '@prisma/mono';
 
 @InputType()
 export class UpdateSpotifyModeInput {

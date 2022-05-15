@@ -1,4 +1,4 @@
-import { SpotifyModeStrategy } from '@prisma/client';
+import { SpotifyModeStrategy } from '@prisma/mono';
 import { Field, ObjectType, registerEnumType } from '@nestjs/graphql';
 
 registerEnumType(SpotifyModeStrategy, {

@@ -1,5 +1,5 @@
 import { AuthModule } from '@dream/auth-api';
-import { PrismaModule } from '@dream/prisma';
+import { PrismaModule } from '@dream/prisma/mono';
 import { Module } from '@nestjs/common';
 import { EmojiController } from './emoji.controller';
 import { EmojiResolver } from './emoji.resolver';

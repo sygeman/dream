@@ -1,174 +1,101 @@
-// import { join } from 'path';
 import { Module } from '@nestjs/common';
-// import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
-// import { TypeOrmModule } from '@nestjs/typeorm';
-// import { GraphQLModule } from '@nestjs/graphql';
+import { Context } from 'graphql-ws';
+import { GraphQLModule } from '@nestjs/graphql';
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-// import * as depthLimit from 'graphql-depth-limit';
-
-import authConfig from './config/auth.config';
-import authGoogleConfig from './config/authGoogle.config';
-import authTwitchConfig from './config/authTwitch.config';
-import authVKConfig from './config/authVK.config';
-import baseConfig from './config/base.config';
-import dbConfig from './config/db.config';
-import robokassaConfig from './config/robokassa.config';
-
-// import { SharedModule } from './modules/shared/shared.module';
-
-// import { UserModule } from './modules/user/user.module';
-// import { ProfileModule } from './modules/profile/profile.module';
-// import { AuthModule } from './modules/auth/auth.module';
-// import { ConnectionModule } from './modules/connection/connection.module';
-
-// import { TwitchModule } from './modules/twitch/twitch.module';
-
-// import { WalletModule } from './modules/wallet/wallet.module';
-// import { RobokassaModule } from './modules/robokassa/robokassa.module';
-
-// import { ChannelModule } from './modules/channel/channel.module';
-// import { ChannelPromoterModule } from './modules/channelPromoter/channelPromoter.module';
-
-// import { ClipModule } from './modules/clip/clip.module';
-// import { ClipHistoryModule } from './modules/clipHistory/clipHistory.module';
-// import { ClipCommentModule } from './modules/clipComment/clipComment.module';
-// import { ClipReactionModule } from './modules/clipReaction/clipReaction.module';
-// import { ClipCollectionModule } from './modules/clipCollection/clipCollection.module';
-// import { ClipCollectorModule } from './modules/clipCollector/clipCollector.module';
-
-// import { CommunityModule } from './modules/community/community.module';
-// import { CommunityFollowModule } from './modules/communityFollow/communityFollow.module';
-// import { CommunityClipModule } from './modules/communityClip/communityClip.module';
-
-// import { ChatModule } from './modules/chat/chat.module';
-
-// import { AuthService } from './modules/auth/auth.service';
-// import { UsersService } from './modules/user/user.service';
-// import { ConnectionsService } from './modules/connection/connection.service';
-
-// import { AppQueue } from './app.queue';
+import * as depthLimit from 'graphql-depth-limit';
+import { AuthModule, AuthService } from '@dream/auth-api';
+import { UserModule } from '@dream/user-api';
+import { CommunityModule } from '@dream/community-api';
+import { ConnectionModule, ConnectionService } from '@dream/connection-api';
+import { SharedModule } from './shared.module';
+import { config } from './config';
+import { nanoid } from 'nanoid';
+import { BullModule } from '@nestjs/bull';
+import { SpotifyModeModule } from '@dream/mode/spotify/api';
+import { TwitchModeModule } from '@dream/mode/twitch/api';
+import { YoutubeModeModule } from '@dream/mode/youtube/api';
+import { EmojiModule } from '@dream/emoji/api';
+import { CommunitySettingsModule } from '@dream/modules/community-settings/api';
+import { ChannelSettingsModule } from '@dream/modules/channel-settings/api';
+import { join } from 'path';
 
 @Module({
-  // providers: [AppQueue],
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      load: [
-        authConfig,
-        authGoogleConfig,
-        authTwitchConfig,
-        authVKConfig,
-        baseConfig,
-        dbConfig,
-        robokassaConfig,
-      ],
+      load: config,
     }),
-    //   TypeOrmModule.forRootAsync({
-    //     inject: [ConfigService],
-    //     useFactory: (configService: ConfigService) => ({
-    //       type: 'postgres',
-    //       url: configService.get('db.pgUrl'),
-    //       entities: [join(__dirname, './**/*.entity{.ts,.js}')],
-    //       synchronize: true,
-    //       cache: false,
-    //       ssl: configService.get('db.pgSsl'),
-    //     }),
-    //   }),
-    //   SharedModule,
-    //   AuthModule,
-    //   ClipModule,
-    //   UserModule,
-    //   ProfileModule,
-    //   CommunityClipModule,
-    //   ClipReactionModule,
-    //   TwitchModule,
-    //   ConnectionModule,
-    //   CommunityModule,
-    //   CommunityFollowModule,
-    //   ChatModule,
-    //   WalletModule,
-    //   ClipCommentModule,
-    //   ClipCollectionModule,
-    //   ClipCollectorModule,
-    //   RobokassaModule,
-    //   ChannelModule,
-    //   ClipHistoryModule,
-    //   ChannelPromoterModule,
-    //   GraphQLModule.forRootAsync<ApolloDriverConfig>({
-    //     driver: ApolloDriver,
-    //     imports: [ConnectionModule, UserModule, AuthModule],
-    //     inject: [ConnectionsService, UsersService, AuthService],
-    //     useFactory: async (
-    //       connectionsService: ConnectionsService,
-    //       usersService: UsersService,
-    //       authService: AuthService
-    //     ) => ({
-    //       installSubscriptionHandlers: true,
-    //       validationRules: [depthLimit(10)],
-    //       autoSchemaFile: 'schema.gql',
-    //       context: async ({ req, connection }) => {
-    //         if (connection) {
-    //           return connection.context;
-    //         }
+    BullModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: async (configService: ConfigService) => ({
+        redis: configService.get('db.redisUrl'),
+        defaultJobOptions: {
+          removeOnComplete: true,
+        },
+      }),
+      inject: [ConfigService],
+    }),
+    SharedModule,
+    GraphQLModule.forRootAsync<ApolloDriverConfig>({
+      driver: ApolloDriver,
+      imports: [AuthModule, ConnectionModule],
+      inject: [AuthService, ConnectionService],
+      useFactory: async (
+        authService: AuthService,
+        connectionService: ConnectionService
+      ) => ({
+        installSubscriptionHandlers: true,
+        validationRules: [depthLimit(10)],
+        autoSchemaFile: join(process.cwd(), 'apps/pepega-api/schema.gql'),
+        context: (ctx) => ctx?.extra?.socket?.ctx,
+        subscriptions: {
+          'graphql-ws': {
+            onConnect: async (ctx: Context<any>) => {
+              const token = ctx?.connectionParams?.token as string;
 
-    //         const userData: any = authService.parseAuthToken(
-    //           req.headers.authorization
-    //         );
-    //         const userId = userData ? userData.userId : null;
-    //         let user = null;
+              let ipHash;
 
-    //         if (userId) {
-    //           user = await usersService.findOne({ where: { id: userId } });
-    //         }
+              const xForwardedFor =
+                ctx?.extra?.request?.headers['x-original-forwarded-for'];
 
-    //         return { user, userId, userData };
-    //       },
-    //       subscriptions: {
-    //         'subscriptions-transport-ws': {
-    //           onConnect: async (connectionParams, webSocket, context) => {
-    //             const jwtPayload: any = authService.jwtValidation(
-    //               connectionParams.accessToken
-    //             );
-    //             let userId = jwtPayload ? jwtPayload.userId : null;
-    //             let user = null;
-    //             let ip = '0.0.0.0';
+              if (xForwardedFor && typeof xForwardedFor === 'string') {
+                const ip = xForwardedFor.split(/\s*,\s*/)[0];
+                ipHash = Buffer.from(ip).toString('base64');
+              }
 
-    //             const xForwardedFor =
-    //               context.request.headers['x-original-forwarded-for'];
+              const { userId } = await authService.getTokenData(token);
 
-    //             if (xForwardedFor && typeof xForwardedFor === 'string') {
-    //               ip = xForwardedFor.split(/\s*,\s*/)[0];
-    //             }
+              const connectionId = nanoid();
 
-    //             if (userId) {
-    //               user = await usersService.findOne({ where: { id: userId } });
+              const data = { token, userId, ipHash, connectionId };
 
-    //               if (!user) {
-    //                 userId = null;
-    //               }
-    //             }
+              ctx.extra.socket.ctx = data;
 
-    //             const connection = await connectionsService.create({
-    //               userId,
-    //               ip,
-    //             });
+              return data;
+            },
+            onDisconnect: async (ctx: Context<any>) => {
+              const data = ctx?.extra?.socket?.ctx;
 
-    //             return {
-    //               ip,
-    //               user,
-    //               userId,
-    //               userData: jwtPayload,
-    //               connectionId: connection.id,
-    //             };
-    //           },
-    //           onDisconnect: async (webSocket, context) => {
-    //             const data = await context.initPromise;
-    //             await connectionsService.remove(data.connectionId);
-    //           },
-    //         },
-    //       },
-    //     }),
-    //   }),
+              const connectionId = data.connectionId;
+              if (connectionId) {
+                await connectionService.remove(connectionId);
+              }
+            },
+          },
+        },
+      }),
+    }),
+    AuthModule,
+    UserModule,
+    ConnectionModule,
+    CommunityModule,
+    CommunitySettingsModule,
+    ChannelSettingsModule,
+    SpotifyModeModule,
+    TwitchModeModule,
+    YoutubeModeModule,
+    EmojiModule,
   ],
 })
 export class AppModule {}

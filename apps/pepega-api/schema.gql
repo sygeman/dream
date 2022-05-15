@@ -1,0 +1,440 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Profile {
+  id: String!
+  name: String
+  avatar: String
+  provider: String!
+}
+
+type User {
+  id: String!
+  name: String
+  avatar: String
+  locale: Locale!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  profiles: [Profile!]
+}
+
+enum Locale {
+  en_US
+  ru_RU
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Community {
+  id: String!
+  name: String
+  title: String!
+  avatar: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  onlineCount: Float!
+}
+
+type Channel {
+  id: String!
+  name: String!
+  title: String!
+  state: String
+  mode: ChannelMode!
+  gifAllowed: Boolean!
+  nsfw: Boolean!
+  slowmode: Int!
+  avatar: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  onlineCount: Float!
+}
+
+enum ChannelMode {
+  NONE
+  TWITCH
+  YOUTUBE
+  SPOTIFY
+}
+
+type TenorGif {
+  id: String!
+  height: Float!
+  width: Float!
+  preview: String!
+  video: String!
+}
+
+type ChannelMessage {
+  id: String!
+  content: String!
+  channelId: String!
+  userId: String!
+  user: User!
+  createdAt: String!
+  tenorGif: TenorGif
+}
+
+type SpotifyNow {
+  id: String!
+  imageUrl: String!
+  artist: String!
+  name: String!
+  progress: Float!
+}
+
+type SpotifyModeHistoryItemDataAuthor {
+  id: String!
+  name: String!
+  avatar: String
+}
+
+type SpotifyModeHistoryItemData {
+  id: String!
+  trackId: String!
+  duration: Int!
+  cover: String!
+  artists: String!
+  title: String!
+  startedAt: String
+  endedAt: String
+  author: SpotifyModeHistoryItemDataAuthor!
+}
+
+type SpotifyModeHistoryItem {
+  actions: [SpotifyModeHistoryItemAction!]!
+  data: SpotifyModeHistoryItemData!
+}
+
+enum SpotifyModeHistoryItemAction {
+  ADD_TO_QUEUE
+}
+
+type SpotifyModeHistory {
+  items: [SpotifyModeHistoryItem!]!
+}
+
+type SpotifyModeCurrentItemAuthor {
+  id: String!
+  name: String!
+  avatar: String
+}
+
+type SpotifyModeCurrentItem {
+  id: String!
+  trackId: String!
+  duration: Int!
+  start: Int!
+  end: Int!
+  cover: String!
+  artists: String!
+  title: String!
+  startedAt: String
+  author: SpotifyModeCurrentItemAuthor!
+}
+
+type SpotifyModeCurrent {
+  actions: [SpotifyModeCurrentAction!]!
+  item: SpotifyModeCurrentItem
+}
+
+enum SpotifyModeCurrentAction {
+  SKIP
+}
+
+type SpotifyModeQueueItemDataAuthor {
+  id: String!
+  name: String!
+  avatar: String
+}
+
+type SpotifyModeQueueItemData {
+  id: String!
+  trackId: String!
+  duration: Int!
+  cover: String!
+  artists: String!
+  title: String!
+  author: SpotifyModeQueueItemDataAuthor!
+}
+
+type SpotifyModeQueueItem {
+  actions: [SpotifyModeQueueItemAction!]!
+  data: SpotifyModeQueueItemData!
+}
+
+enum SpotifyModeQueueItemAction {
+  CANCEL
+}
+
+type SpotifyModeQueue {
+  actions: [SpotifyModeQueueAction!]!
+  items: [SpotifyModeQueueItem!]!
+}
+
+enum SpotifyModeQueueAction {
+  ADD_TRACK
+}
+
+type SpotifyMode {
+  id: String!
+  hostId: String
+  strategy: SpotifyModeStrategy!
+}
+
+enum SpotifyModeStrategy {
+  QUEUE
+  HOST
+}
+
+type TwitchStream {
+  id: String!
+  channelKey: String
+}
+
+type YoutubeModeHistoryItemDataAuthor {
+  id: String!
+  name: String!
+  avatar: String
+}
+
+type YoutubeModeHistoryItemData {
+  id: String!
+  videoId: String!
+  duration: Int!
+  cover: String!
+  artists: String!
+  title: String!
+  startedAt: String
+  endedAt: String
+  author: YoutubeModeHistoryItemDataAuthor!
+}
+
+type YoutubeModeHistoryItem {
+  actions: [YoutubeModeHistoryItemAction!]!
+  data: YoutubeModeHistoryItemData!
+}
+
+enum YoutubeModeHistoryItemAction {
+  ADD_TO_QUEUE
+}
+
+type YoutubeModeHistory {
+  items: [YoutubeModeHistoryItem!]!
+}
+
+type YoutubeModeCurrentItemAuthor {
+  id: String!
+  name: String!
+  avatar: String
+}
+
+type YoutubeModeCurrentItem {
+  id: String!
+  videoId: String!
+  duration: Int!
+  cover: String!
+  artists: String!
+  title: String!
+  startedAt: String
+  author: YoutubeModeCurrentItemAuthor!
+}
+
+type YoutubeModeCurrent {
+  actions: [YoutubeModeCurrentAction!]!
+  item: YoutubeModeCurrentItem
+}
+
+enum YoutubeModeCurrentAction {
+  SKIP
+}
+
+type YoutubeModeQueueItemDataAuthor {
+  id: String!
+  name: String!
+  avatar: String
+}
+
+type YoutubeModeQueueItemData {
+  id: String!
+  videoId: String!
+  duration: Int!
+  cover: String!
+  artists: String!
+  title: String!
+  author: YoutubeModeQueueItemDataAuthor!
+}
+
+type YoutubeModeQueueItem {
+  actions: [YoutubeModeQueueItemAction!]!
+  data: YoutubeModeQueueItemData!
+}
+
+enum YoutubeModeQueueItemAction {
+  CANCEL
+}
+
+type YoutubeModeQueue {
+  actions: [YoutubeModeQueueAction!]!
+  items: [YoutubeModeQueueItem!]!
+}
+
+enum YoutubeModeQueueAction {
+  ADD_VIDEO
+}
+
+type Emoji {
+  id: String!
+  alias: String!
+  type: String!
+  communityId: String!
+  authorId: String!
+  author: User!
+  createdAt: String!
+}
+
+type CommunitySettings {
+  id: String!
+  name: String
+  title: String!
+  avatar: String
+}
+
+type ChannelSettings {
+  id: String!
+  name: String!
+  title: String!
+  mode: ChannelMode!
+  gifAllowed: Boolean!
+  nsfw: Boolean!
+  slowmode: Int!
+  avatar: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Query {
+  uniqCount: Int!
+  user(id: ID): User
+  me: User!
+  community(name: String!): Community!
+  communities: [Community!]!
+  channel(name: String!, communityId: String!): Channel!
+  channelUsersOnline(channelId: String!): [User!]!
+  channels(name: String!): [Channel!]!
+  channelMessages(channelId: ID!): [ChannelMessage!]!
+  communitySettings(name: String!): CommunitySettings!
+  spotifyMode(channelId: String!): SpotifyMode!
+  spotifyModeHistory(channelId: String!): SpotifyModeHistory!
+  spotifyModeCurrent(channelId: String!): SpotifyModeCurrent
+  spotifyModeQueue(channelId: String!): SpotifyModeQueue!
+  spotifyNow(userId: String!): SpotifyNow
+  spotifyToken: String!
+  twitchStream(channelId: String!): TwitchStream!
+  waitlistYoutubeHistory(channelId: String!): YoutubeModeHistory!
+  waitlistYoutubeCurrent(channelId: String!): YoutubeModeCurrent
+  waitlistYoutubeQueue(channelId: String!): YoutubeModeQueue!
+  emoji(emojiId: String!): Emoji!
+  emojis(communityId: String!): [Emoji!]!
+}
+
+type Mutation {
+  logout: Boolean!
+  updateConnectionStatus(community: String, channel: String): Boolean!
+  setUserLocale(locale: Locale!): Locale!
+  createCommunity(input: CreateCommunityInput!): Community!
+  updateCommunity(input: UpdateCommunityInput!): Community!
+  deleteCommunity(communityId: ID!): Community!
+  createChannel(input: CreateChannelInput!): Channel!
+  updateChannel(input: UpdateChannelInput!): Channel!
+  deleteChannel(channelId: ID!): Channel!
+  createChannelMessage(input: ChannelMessageCreateInput!): Boolean!
+  updateCommunitySettings(input: UpdateCommunitySettingsInput!): CommunitySettings!
+  updateChannelSettings(input: UpdateChannelSettingsInput!): ChannelSettings!
+  updateSpotifyMode(input: UpdateSpotifyModeInput!): SpotifyMode!
+  makeSpotifyModeCurrent(channelId: String!): Boolean!
+  spotifyModeQueueAddTrack(channelId: String!, trackId: String!): Boolean!
+  spotifyModeQueueSkipTrack(channelId: String!): Boolean!
+  spotifyModeUserSync(channelId: String!): Boolean!
+  refreshSpotifyToken: String!
+  makeTwitchStreamModeCurrent(channelId: String!): Boolean!
+  updateTwitchStream(input: UpdateTwitchStreamInput!): TwitchStream!
+  makeWaitlistYoutubeModeCurrent(channelId: String!): Boolean!
+  waitlistYoutubeQueueAddVideo(channelId: String!, videoId: String!): Boolean!
+  waitlistYoutubeQueueSkipVideo(channelId: String!): Boolean!
+  updateEmojiAlias(emojiId: String!, alias: String!): Emoji!
+  deleteEmoji(emojiId: String!): Boolean!
+}
+
+input CreateCommunityInput {
+  name: String!
+  title: String!
+}
+
+input UpdateCommunityInput {
+  communityId: ID!
+  name: String!
+  title: String!
+}
+
+input CreateChannelInput {
+  communityId: ID!
+  name: String!
+  title: String!
+}
+
+input UpdateChannelInput {
+  channelId: ID!
+  communityId: ID!
+  name: String
+  gifAllowed: Boolean
+  nsfw: Boolean
+  slowmode: Int
+  title: String
+}
+
+input ChannelMessageCreateInput {
+  content: String!
+  channelId: String!
+}
+
+input UpdateCommunitySettingsInput {
+  communityId: ID!
+  name: String!
+  title: String!
+}
+
+input UpdateChannelSettingsInput {
+  channelId: ID!
+  communityId: ID!
+  name: String
+  gifAllowed: Boolean
+  nsfw: Boolean
+  slowmode: Int
+  title: String
+}
+
+input UpdateSpotifyModeInput {
+  channelId: ID!
+  strategy: SpotifyModeStrategy!
+}
+
+input UpdateTwitchStreamInput {
+  channelId: ID!
+  channelKey: String!
+}
+
+type Subscription {
+  channelMessageCreated(channelId: ID!): ChannelMessage!
+  channelMessageDeleted(channelId: ID!): ChannelMessage!
+  spotifyModeCurrentUpdated(channelId: String!): Boolean!
+  spotifyModeQueueUpdated(channelId: String!): Boolean!
+  spotifyModeHistoryUpdated(channelId: String!): Boolean!
+  waitlistYoutubeCurrentUpdated(channelId: String!): Boolean!
+  waitlistYoutubeQueueUpdated(channelId: String!): Boolean!
+  waitlistYoutubeHistoryUpdated(channelId: String!): Boolean!
+}

@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
   build_api:
-    name: Build mono-api app
+    name: Build api apps
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -29,7 +29,7 @@ jobs:
         run: yarn generate
 
       - name: Build apps
-        run: yarn build mono-api
+        run: yarn nx run-many --target=build --projects=mono-api,pepega-api
 
       # Docker
 
@@ -47,7 +47,7 @@ jobs:
         id: vars
         run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
 
-      - name: Build and export
+      - name: Build and export mono-api
         uses: docker/build-push-action@v2
         with:
           context: .
@@ -57,7 +57,17 @@ jobs:
           cache-from: type=registry,ref=ghcr.io/${{ github.repository }}/mono-api:latest
           cache-to: type=inline
 
-  deploy_api:
+      - name: Build and export pepega-api
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: apps/pepega-api/Dockerfile
+          push: true
+          tags: ghcr.io/${{ github.repository }}/pepega-api:latest, ghcr.io/${{ github.repository }}/pepega-api:${{ steps.vars.outputs.sha_short }}
+          cache-from: type=registry,ref=ghcr.io/${{ github.repository }}/pepega-api:latest
+          cache-to: type=inline
+
+  deploy_mono_api:
     name: Deploy mono-api app
     runs-on: ubuntu-latest
     needs: build_api
@@ -80,3 +90,27 @@ jobs:
           namespace: ${{ secrets.NAMESPACE }}
           deployment: ${{ secrets.DEPLOYMENT }}
           docker_image: ghcr.io/${{ github.repository }}/mono-api:${{ steps.vars.outputs.sha_short }}
+
+  deploy_pepega_api:
+    name: Deploy pepega-api app
+    runs-on: ubuntu-latest
+    needs: build_api
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set outputs
+        id: vars
+        run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+      - name: Check outputs
+        run: echo ${{ steps.vars.outputs.sha_short }}
+
+      - name: Deploy to cluster
+        uses: sekassel-research/actions-rancher-update@2.0.2
+        with:
+          rancher_url: https://rancher.sgmn.dev
+          rancher_token: ${{ secrets.RANCHER_TOKEN }}
+          cluster_id: ${{ secrets.CLUSTER_ID }}
+          project_id: ${{ secrets.PROJECT_ID }}
+          namespace: ${{ secrets.NAMESPACE }}
+          deployment: ${{ secrets.DEPLOYMENT }}
+          docker_image: ghcr.io/${{ github.repository }}/pepega-api:${{ steps.vars.outputs.sha_short }}

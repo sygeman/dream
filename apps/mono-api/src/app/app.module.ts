@@ -18,6 +18,7 @@ import { YoutubeModeModule } from '@dream/mode/youtube/api';
 import { EmojiModule } from '@dream/emoji/api';
 import { CommunitySettingsModule } from '@dream/modules/community-settings/api';
 import { ChannelSettingsModule } from '@dream/modules/channel-settings/api';
+import { join } from 'path';
 
 @Module({
   imports: [
@@ -46,7 +47,7 @@ import { ChannelSettingsModule } from '@dream/modules/channel-settings/api';
       ) => ({
         installSubscriptionHandlers: true,
         validationRules: [depthLimit(10)],
-        autoSchemaFile: 'schema.gql',
+        autoSchemaFile: join(process.cwd(), 'apps/mono-api/schema.gql'),
         context: (ctx) => ctx?.extra?.socket?.ctx,
         subscriptions: {
           'graphql-ws': {

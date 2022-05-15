@@ -1,5 +1,5 @@
 overwrite: true
-schema: 'schema.gql'
+schema: 'apps/mono-api/schema.gql'
 generates:
   libs/types/src/index.tsx:
     documents:

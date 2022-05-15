@@ -924,7 +924,8 @@
             "outputPath": "dist/apps/pepega-api",
             "main": "apps/pepega-api/src/main.ts",
             "tsConfig": "apps/pepega-api/tsconfig.app.json",
-            "assets": ["apps/pepega-api/src/assets"]
+            "assets": ["apps/pepega-api/src/assets"],
+            "generatePackageJson": true
           },
           "configurations": {
             "production": {

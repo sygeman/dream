@@ -3,7 +3,7 @@ import {
   faSpotify,
   faYoutube,
 } from '@fortawesome/free-brands-svg-icons';
-import { ChannelMode } from './types';
+import { ChannelMode } from '@dream/types';
 
 const youtubeStyle = {
   color: 'text-youtube',

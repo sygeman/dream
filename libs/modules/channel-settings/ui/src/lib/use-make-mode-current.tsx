@@ -3,7 +3,7 @@ import {
   useMakeTwitchStreamModeCurrentMutation,
   useMakeSpotifyModeCurrentMutation,
   useMakeWaitlistYoutubeModeCurrentMutation,
-} from './types';
+} from '@dream/types';
 
 export const useMakeModeCurrent = () => {
   const [makeTwitchStreamModeCurrentMutation] =

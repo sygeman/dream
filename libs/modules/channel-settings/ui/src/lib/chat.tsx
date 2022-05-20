@@ -2,7 +2,7 @@ import React from 'react';
 import * as Yup from 'yup';
 import Slider from 'rc-slider';
 import { useFormik } from 'formik';
-import { useUpdateChannelSettingsMutation } from './types';
+import { useUpdateChannelSettingsMutation } from '@dream/types';
 import { useCommunityChannel } from './use-community-channel';
 import { SaveFormPanel } from '@dream/components/save-form';
 import { SwitchFormField } from '@dream/components/switch-form-field';

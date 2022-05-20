@@ -1,6 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
-import { ChannelMode } from './types';
+import { ChannelMode } from '@dream/types';
 import { ChannelTwitchModeSettings } from '@dream/mode/twitch/ui';
 import { ChannelSpotifyModeSettings } from '@dream/mode/spotify/ui';
 import { channelMods } from './channel-mode';

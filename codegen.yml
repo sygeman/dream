@@ -1,22 +1,9 @@
 overwrite: true
-schema: 'apps/mono-api/schema.gql'
 generates:
   libs/types/src/index.tsx:
+    schema: 'apps/mono-api/schema.gql'
     documents:
       - 'libs/**/*.graphql'
-      - '!libs/modules/**/*.graphql'
-    plugins:
-      - 'typescript'
-      - 'typescript-operations'
-      - 'typescript-react-apollo'
-  libs/modules/community-settings/ui/src/lib/types.tsx:
-    documents: 'libs/modules/community-settings/ui/**/*.graphql'
-    plugins:
-      - 'typescript'
-      - 'typescript-operations'
-      - 'typescript-react-apollo'
-  libs/modules/channel-settings/ui/src/lib/types.tsx:
-    documents: 'libs/modules/channel-settings/ui/**/*.graphql'
     plugins:
       - 'typescript'
       - 'typescript-operations'

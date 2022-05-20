@@ -7,7 +7,7 @@ import {
   useEmojisQuery,
   useDeleteEmojiMutation,
   useUpdateEmojiAliasMutation,
-} from '../types';
+} from '@dream/types';
 import { useCommunity } from '../use-community';
 
 // TODO: This is must be a part of EmojiModule

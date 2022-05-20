@@ -1,4 +1,4 @@
-import { useChannelQuery, useCommunityQuery } from '@dream/types';
+import { useChannelQuery, useCommunityQuery } from './community-channel.api';
 import { useRouter } from 'next/router';
 
 export const useCommunityChannel = () => {

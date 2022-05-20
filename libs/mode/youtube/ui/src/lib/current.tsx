@@ -4,8 +4,8 @@ import { DotsVerticalIcon, FastForwardIcon } from '@heroicons/react/solid';
 import { ChannelModeWaitlistProgress } from './components/progress';
 import { Menu, Transition } from '@headlessui/react';
 import clsx from 'clsx';
-import { useWaitlistYoutubeQueueSkipVideoMutation } from '@dream/types';
-import { useCommunityChannel } from '@dream/community';
+import { useWaitlistYoutubeQueueSkipVideoMutation } from './mode-waitlist.api';
+import { useCommunityChannel } from '@dream/utils/use-community-channel';
 
 const CurrentMenu = () => {
   const { channelId } = useCommunityChannel();

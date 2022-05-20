@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import SimpleBar from 'simplebar-react';
-import { useCommunityChannelsQuery } from '@dream/types';
+import { useCommunityChannelsQuery } from '../community.api';
 import { CommunityHeader } from './community-header';
 import { ChannelItem } from './channel-item';
 

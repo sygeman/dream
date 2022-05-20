@@ -35,6 +35,7 @@
       "@dream/connection-api": ["libs/connection-api/src/index.ts"],
       "@dream/containers/*": ["libs/containers/src/*"],
       "@dream/emoji/api": ["libs/emoji/api/src/index.ts"],
+      "@dream/emoji/ui": ["libs/emoji/ui/src/index.ts"],
       "@dream/external-api/spotify": ["libs/external-api/spotify/src/index.ts"],
       "@dream/external-api/tenor": ["libs/external-api/tenor/src/index.ts"],
       "@dream/external-api/youtube": ["libs/external-api/youtube/src/index.ts"],
@@ -75,6 +76,9 @@
       "@dream/utils/emoji": ["libs/utils/emoji/src/index.ts"],
       "@dream/utils/regexp/url-name": [
         "libs/utils/regexp/url-name/src/index.ts"
+      ],
+      "@dream/utils/use-community-channel": [
+        "libs/utils/use-community-channel/src/index.ts"
       ],
       "@dream/utils/use-modal": ["libs/utils/use-modal/src/index.ts"]
     }

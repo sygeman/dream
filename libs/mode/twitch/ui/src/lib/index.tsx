@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactPlayer from 'react-player';
-import { useTwitchStreamQuery } from '@dream/types';
-import { useCommunityChannel } from '@dream/community';
+import { useTwitchStreamQuery } from './twitch-stream.api';
+import { useCommunityChannel } from '@dream/utils/use-community-channel';
 
 export const ChannelTwitchMode = () => {
   const { channelId } = useCommunityChannel();

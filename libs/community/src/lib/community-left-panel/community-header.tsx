@@ -10,7 +10,7 @@ import {
   XIcon,
   CogIcon,
 } from '@heroicons/react/solid';
-import { useCommunityChannel } from '../use-community-channel';
+import { useCommunityChannel } from '@dream/utils/use-community-channel';
 
 const MenuItem = ({ Icon, label }) => {
   return (

@@ -48,5 +48,7 @@ module.exports = {
     '<rootDir>/apps/pepega-api',
     '<rootDir>/libs/prisma/mono',
     '<rootDir>/libs/prisma/pepega',
+    '<rootDir>/libs/utils/use-community-channel',
+    '<rootDir>/libs/emoji/ui',
   ],
 };

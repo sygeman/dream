@@ -1,5 +1,5 @@
 import React from 'react';
-import { useCommunityChannel } from '../use-community-channel';
+import { useCommunityChannel } from '@dream/utils/use-community-channel';
 
 export const CommunityWelcome = () => {
   const { community } = useCommunityChannel();

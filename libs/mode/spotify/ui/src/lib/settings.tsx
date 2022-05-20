@@ -7,11 +7,11 @@ import { useFormik } from 'formik';
 import {
   useSpotifyModeQuery,
   useUpdateSpotifyModeMutation,
-} from '@dream/types';
+} from './mode-waitlist.api';
 import { SaveFormPanel } from '@dream/components/save-form';
 import clsx from 'clsx';
 import { strategies } from './strategies';
-import { useCommunityChannel } from '@dream/community';
+import { useCommunityChannel } from '@dream/utils/use-community-channel';
 
 const ValidationSchema = Yup.object().shape({
   strategy: Yup.string().required('Required'),

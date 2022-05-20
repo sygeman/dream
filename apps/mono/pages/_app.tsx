@@ -8,7 +8,8 @@ import 'simplebar/dist/simplebar.min.css';
 import 'overlayscrollbars/css/OverlayScrollbars.css';
 import 'rc-slider/assets/index.css';
 import '../styles.css';
-import { Locale, useMeQuery } from '@dream/types';
+import { Locale } from '@dream/types';
+import { useMe } from '@dream/user';
 import { lang } from '../lang';
 
 const getMessages = (locales: string | string[] = ['en-US']) => {
@@ -26,8 +27,8 @@ const getMessages = (locales: string | string[] = ['en-US']) => {
 };
 
 const Inner = ({ Component, pageProps, locale }) => {
-  const userQuery = useMeQuery();
-  const userLocale = userQuery?.data?.me?.locale;
+  const user = useMe();
+  const userLocale = user?.locale;
 
   locale = (userLocale || locale || Locale.EnUs).replace('_', '-');
 

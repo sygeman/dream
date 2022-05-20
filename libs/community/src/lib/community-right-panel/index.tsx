@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Chat } from '@dream/chat';
 import { XIcon, UsersIcon, AnnotationIcon } from '@heroicons/react/solid';
 import { Transition } from '@headlessui/react';
-import { useCommunityChannel } from '../use-community-channel';
-import { useChannelUsersOnlineQuery } from '@dream/types';
+import { useCommunityChannel } from '@dream/utils/use-community-channel';
+import { useChannelUsersOnlineQuery } from '../community.api';
 
 const Users = ({ onClose }) => {
   const [usersFilter, setUsersFilter] = useState('');

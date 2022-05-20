@@ -22,6 +22,33 @@ query emojis($communityId: String!) {
   }
 }
 
+query me {
+  me {
+    id
+    name
+    avatar
+    locale
+    profiles {
+      id
+      provider
+    }
+  }
+}
+
+query channelUsersOnline($channelId: String!) {
+  channelUsersOnline(channelId: $channelId) {
+    id
+    name
+    avatar
+  }
+}
+
+query communityChannels($name: String!) {
+  channels(name: $name) {
+    ...ChannelFields
+  }
+}
+
 mutation updateEmojiAlias($emojiId: String!, $alias: String!) {
   updateEmojiAlias(emojiId: $emojiId, alias: $alias) {
     ...EmojiFields
@@ -73,4 +100,17 @@ fragment EmojiFields on Emoji {
     avatar
   }
   createdAt
+}
+
+fragment ChannelFields on Channel {
+  id
+  name
+  title
+  mode
+  gifAllowed
+  nsfw
+  slowmode
+  state
+  avatar
+  onlineCount
 }

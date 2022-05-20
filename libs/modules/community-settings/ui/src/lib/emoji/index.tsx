@@ -3,11 +3,11 @@ import React, { useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { TrashIcon } from '@heroicons/react/solid';
 import {
-  Emoji,
   useEmojisQuery,
   useDeleteEmojiMutation,
   useUpdateEmojiAliasMutation,
-} from '@dream/types';
+} from './emoji-settings.api';
+import { Emoji } from '@dream/types';
 import { useCommunity } from '../use-community';
 
 // TODO: This is must be a part of EmojiModule

@@ -1,9 +1,9 @@
 import {
   useWaitlistYoutubeCurrentQuery,
   useWaitlistYoutubeCurrentUpdatedSubscription,
-} from '@dream/types';
+} from '../mode-waitlist.api';
 import { ChannelYoutubeModeCurrent } from '../current';
-import { useCommunityChannel } from '@dream/community';
+import { useCommunityChannel } from '@dream/utils/use-community-channel';
 import { ChannelModeWaitlistProgress } from './progress';
 
 export const ChannelYoutubeModeOverlay = () => {

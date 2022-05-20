@@ -4,12 +4,12 @@ import {
   useSpotifyModeCurrentQuery,
   useSpotifyModeCurrentUpdatedSubscription,
   useSpotifyModeUserSyncMutation,
-} from '@dream/types';
+} from './mode-waitlist.api';
 import { AuthButtonSpotify } from '@dream/auth';
 import { ChannelSpotifyModeHistory } from './history';
 import { ChannelSpotifyModeQueue } from './queue';
 import { ChannelSpotifyModeCurrent } from './current';
-import { useCommunityChannel } from '@dream/community';
+import { useCommunityChannel } from '@dream/utils/use-community-channel';
 import { SpotifyModeAddTrackModal } from '..';
 import { PlayQueueLayout } from '@dream/layouts/play-queue';
 

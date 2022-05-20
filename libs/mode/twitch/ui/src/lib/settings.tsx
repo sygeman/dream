@@ -4,9 +4,9 @@ import { useFormik } from 'formik';
 import {
   useTwitchStreamQuery,
   useUpdateTwitchStreamMutation,
-} from '@dream/types';
+} from './twitch-stream.api';
 import { SaveFormPanel } from '@dream/components/save-form';
-import { useCommunityChannel } from '@dream/community';
+import { useCommunityChannel } from '@dream/utils/use-community-channel';
 
 const ValidationSchema = Yup.object().shape({
   channelKey: Yup.string()

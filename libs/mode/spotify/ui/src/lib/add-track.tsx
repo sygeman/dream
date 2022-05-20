@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
 import { useRouter } from 'next/router';
-import { useSpotifyModeQueueAddTrackMutation } from '@dream/types';
-import { useCommunityChannel } from '@dream/community';
+import { useSpotifyModeQueueAddTrackMutation } from './mode-waitlist.api';
+import { useCommunityChannel } from '@dream/utils/use-community-channel';
 
 export const ChannelSpotifyModeAddTrack = () => {
   const [trackId, setTrackId] = useState('');

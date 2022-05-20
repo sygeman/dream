@@ -1,9 +1,9 @@
+import { ChannelMode } from '@dream/types';
 import {
-  ChannelMode,
   useMakeTwitchStreamModeCurrentMutation,
   useMakeSpotifyModeCurrentMutation,
   useMakeWaitlistYoutubeModeCurrentMutation,
-} from '@dream/types';
+} from './channel-settings.api';
 
 export const useMakeModeCurrent = () => {
   const [makeTwitchStreamModeCurrentMutation] =

@@ -1,8 +1,8 @@
 import React from 'react';
 import clsx from 'clsx';
 import { useRouter } from 'next/router';
-import { useDeleteCommunityMutation } from '@dream/types';
-import { useCommunityChannel } from '../use-community-channel';
+import { useDeleteCommunityMutation } from '../community.api';
+import { useCommunityChannel } from '@dream/utils/use-community-channel';
 
 export const DeleteCommunity = () => {
   const router = useRouter();

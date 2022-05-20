@@ -1,5 +1,6 @@
 import React from 'react';
-import { Locale, useMeQuery, useSetUserLocaleMutation } from '@dream/types';
+import { Locale } from '@dream/types';
+import { useMeQuery, useSetUserLocaleMutation } from '../user.api';
 import { RadioGroup } from '@headlessui/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircle, faDotCircle } from '@fortawesome/free-regular-svg-icons';

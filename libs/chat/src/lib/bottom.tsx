@@ -1,48 +1,16 @@
 import React, { Fragment, useRef, useState } from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
-import { useCreateChannelMessageMutation, useEmojisQuery } from '@dream/types';
+import { useCreateChannelMessageMutation, useEmojisQuery } from './chat.api';
 import { convertTextToEmojiCode } from '@dream/utils/emoji';
 import { Menu, Tab, Transition } from '@headlessui/react';
-import { GifPicker } from './components/gif-picker';
-import { PhotographIcon, EmojiHappyIcon } from '@heroicons/react/solid';
+import { EmojiHappyIcon } from '@heroicons/react/solid';
 import clsx from 'clsx';
-import { useCommunityChannel } from '@dream/community';
+import { EmojiPicker } from '@dream/emoji/ui';
+import { useCommunityChannel } from '@dream/utils/use-community-channel';
 
 interface ChatBottomProps {
   channelId: string;
 }
-
-const EmojiPicker: React.FC<{ onSelect: (alias: string) => void }> = ({
-  onSelect,
-}) => {
-  const { communityId } = useCommunityChannel();
-
-  const emojisQuery = useEmojisQuery({
-    variables: { communityId },
-    skip: !communityId,
-  });
-
-  const emojis = emojisQuery?.data?.emojis || [];
-
-  return (
-    <div className="flex px-1">
-      {emojis.map((emoji) => (
-        <div
-          key={emoji.id}
-          onClick={() => onSelect(emoji.alias)}
-          className="p-1 m-1 hover:bg-surface rounded cursor-pointer"
-        >
-          <img
-            className="w-6 h-6 object-contain"
-            src={`https://cdn.sgmn.dev/emojis/${emoji.id}.${
-              emoji.type.split('/')[1]
-            }`}
-          />
-        </div>
-      ))}
-    </div>
-  );
-};
 
 const PickerTab: React.FC<{ selected: boolean }> = ({ selected, children }) => (
   <div

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSpotifyNowQuery } from '@dream/types';
+import { useSpotifyNowQuery } from './spotify-now.api';
 import { TrackInfo } from './components/track-info';
 
 export const SpotifyNow = ({ userId = '' }) => {

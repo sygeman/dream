@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { useCommunitySettingsQuery } from '@dream/types';
+import { useCommunitySettingsQuery } from './community-settings.api';
 
 export const useCommunity = () => {
   const router = useRouter();

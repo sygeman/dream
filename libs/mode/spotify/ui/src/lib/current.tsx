@@ -8,11 +8,9 @@ import {
 import { ChannelModeWaitlistProgress } from './components/progress';
 import { Menu, Transition } from '@headlessui/react';
 import clsx from 'clsx';
-import {
-  SpotifyModeCurrentAction,
-  useSpotifyModeQueueSkipTrackMutation,
-} from '@dream/types';
-import { useCommunityChannel } from '@dream/community';
+import { SpotifyModeCurrentAction } from '@dream/types';
+import { useSpotifyModeQueueSkipTrackMutation } from './mode-waitlist.api';
+import { useCommunityChannel } from '@dream/utils/use-community-channel';
 
 const MenuItem = ({ action, label, icon }) => {
   return (

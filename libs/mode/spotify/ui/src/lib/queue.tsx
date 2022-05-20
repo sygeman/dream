@@ -2,9 +2,9 @@ import React from 'react';
 import {
   useSpotifyModeQueueQuery,
   useSpotifyModeQueueUpdatedSubscription,
-} from '@dream/types';
+} from './mode-waitlist.api';
 import { TrackFromList } from './components/track-from-list';
-import { useCommunityChannel } from '@dream/community';
+import { useCommunityChannel } from '@dream/utils/use-community-channel';
 
 export const ChannelSpotifyModeQueue = () => {
   const { channelId } = useCommunityChannel();

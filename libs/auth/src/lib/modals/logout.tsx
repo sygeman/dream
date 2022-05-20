@@ -1,7 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 import { useRouter } from 'next/router';
-import { useLogoutMutation } from '@dream/types';
+import { useLogoutMutation } from '../auth.api';
 import { useModal } from '@dream/utils/use-modal';
 import { Modal } from '@dream/components/modal';
 

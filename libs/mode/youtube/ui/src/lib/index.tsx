@@ -1,11 +1,11 @@
 import {
   useWaitlistYoutubeCurrentQuery,
   useWaitlistYoutubeCurrentUpdatedSubscription,
-} from '@dream/types';
+} from './mode-waitlist.api';
 import { ChannelYoutubeModeHistory } from './history';
 import { ChannelYoutubeModeQueue } from './queue';
 import { ChannelYoutubeModeCurrent } from './current';
-import { useCommunityChannel } from '@dream/community';
+import { useCommunityChannel } from '@dream/utils/use-community-channel';
 import { YoutubeModeAddVideoModal } from '..';
 import { PlayQueueLayout } from '@dream/layouts/play-queue';
 import { useState } from 'react';

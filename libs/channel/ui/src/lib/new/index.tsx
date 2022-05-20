@@ -3,9 +3,9 @@ import clsx from 'clsx';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import { useRouter } from 'next/router';
-import { useCreateChannelMutation } from '@dream/types';
+import { useCreateChannelMutation } from '../channel.api';
 import { urlNameRegExp } from '@dream/utils/regexp/url-name';
-import { useCommunityChannel } from '../use-community-channel';
+import { useCommunityChannel } from '@dream/utils/use-community-channel';
 
 const ValidationSchema = Yup.object().shape({
   title: Yup.string()

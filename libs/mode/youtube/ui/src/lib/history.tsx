@@ -1,10 +1,10 @@
 import {
   useWaitlistYoutubeHistoryQuery,
   useWaitlistYoutubeHistoryUpdatedSubscription,
-} from '@dream/types';
+} from './mode-waitlist.api';
 import { TrackFromList } from './components/track-from-list';
 import { dateDistanceInWordsToNow } from '@dream/utils/date';
-import { useCommunityChannel } from '@dream/community';
+import { useCommunityChannel } from '@dream/utils/use-community-channel';
 
 export const ChannelYoutubeModeHistory = () => {
   const { channelId } = useCommunityChannel();

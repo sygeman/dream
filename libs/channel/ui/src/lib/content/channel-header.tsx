@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { CogIcon } from '@heroicons/react/solid';
 import { channelMods } from '../channel-mode';
-import { useCommunityChannel } from '../use-community-channel';
+import { useCommunityChannel } from '@dream/utils/use-community-channel';
 
 export const ChannelHeader = () => {
   const router = useRouter();

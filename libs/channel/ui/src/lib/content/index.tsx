@@ -4,7 +4,7 @@ import { ChannelTwitchMode } from '@dream/mode/twitch/ui';
 import { ChannelYoutubeMode } from '@dream/mode/youtube/ui';
 import { ChannelMode } from '@dream/types';
 import { ChannelHeader } from './channel-header';
-import { useCommunityChannel } from '../use-community-channel';
+import { useCommunityChannel } from '@dream/utils/use-community-channel';
 
 export const ChannelContent = () => {
   const { channel } = useCommunityChannel();

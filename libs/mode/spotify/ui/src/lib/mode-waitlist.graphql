@@ -1,3 +1,16 @@
+query me {
+  me {
+    id
+    name
+    avatar
+    locale
+    profiles {
+      id
+      provider
+    }
+  }
+}
+
 fragment SpotifyModeFields on SpotifyMode {
   id
   hostId

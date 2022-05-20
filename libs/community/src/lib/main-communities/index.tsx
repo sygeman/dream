@@ -2,7 +2,7 @@ import React from 'react';
 import clsx from 'clsx';
 import Link from 'next/link';
 import SimpleBar from 'simplebar-react';
-import { useCommunitiesQuery, useMeQuery } from '@dream/types';
+import { useCommunitiesQuery, useMeQuery } from '../community.api';
 import { useRouter } from 'next/router';
 
 const CommunityCard: React.FC<{

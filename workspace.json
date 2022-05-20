@@ -355,6 +355,29 @@
       },
       "tags": []
     },
+    "emoji-ui": {
+      "root": "libs/emoji/ui",
+      "sourceRoot": "libs/emoji/ui/src",
+      "projectType": "library",
+      "tags": [],
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/emoji/ui/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/emoji/ui"],
+          "options": {
+            "jestConfig": "libs/emoji/ui/jest.config.ts",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "external-api-spotify": {
       "root": "libs/external-api/spotify",
       "sourceRoot": "libs/external-api/spotify/src",
@@ -1180,6 +1203,31 @@
         }
       },
       "tags": []
+    },
+    "utils-use-community-channel": {
+      "root": "libs/utils/use-community-channel",
+      "sourceRoot": "libs/utils/use-community-channel/src",
+      "projectType": "library",
+      "tags": [],
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": [
+              "libs/utils/use-community-channel/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/utils/use-community-channel"],
+          "options": {
+            "jestConfig": "libs/utils/use-community-channel/jest.config.ts",
+            "passWithNoTests": true
+          }
+        }
+      }
     },
     "utils-use-modal": {
       "root": "libs/utils/use-modal",

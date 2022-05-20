@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { UserCircleIcon } from '@heroicons/react/solid';
-import { useMeQuery, useUpdateConnectionStatusMutation } from '@dream/types';
+import { useMeQuery, useUpdateConnectionStatusMutation } from './user.api';
 
 const UserPanelForGuest = () => {
   const router = useRouter();

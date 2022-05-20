@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useEmojiQuery } from '@dream/types';
+import { useEmojiQuery } from '../../chat.api';
 import { dateDistanceInWordsToNow } from '@dream/utils/date';
 import { splitTextToEmojiArray } from '@dream/utils/emoji';
 import { GifContainer } from './gif';

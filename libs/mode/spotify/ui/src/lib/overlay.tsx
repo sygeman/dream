@@ -2,10 +2,10 @@ import React from 'react';
 import {
   useSpotifyModeCurrentQuery,
   useSpotifyModeCurrentUpdatedSubscription,
-} from '@dream/types';
+} from './mode-waitlist.api';
 import { ChannelModeWaitlistProgress } from './components/progress';
 import { Backgroud } from './components/background';
-import { useCommunityChannel } from '@dream/community';
+import { useCommunityChannel } from '@dream/utils/use-community-channel';
 
 export const ChannelSpotifyModeOverlay = () => {
   const { channelId } = useCommunityChannel();

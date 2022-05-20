@@ -6,7 +6,7 @@ import { channelMods } from './channel-mode';
 import { ChannelSettingsModeCard } from './mode-card';
 import { ModeSettings } from './mode-settings';
 import { useMakeModeCurrent } from './use-make-mode-current';
-import { useCommunityChannel } from './use-community-channel';
+import { useCommunityChannel } from '@dream/utils/use-community-channel';
 
 export const ChannelSettingsMode: React.FC = () => {
   const [selectedChannelMode, setSelectedChannelMode] = useState(null);

@@ -4,6 +4,18 @@ query ChannelMessages($channelId: ID!) {
   }
 }
 
+query emoji($emojiId: String!) {
+  emoji(emojiId: $emojiId) {
+    ...EmojiFields
+  }
+}
+
+query emojis($communityId: String!) {
+  emojis(communityId: $communityId) {
+    ...EmojiFields
+  }
+}
+
 mutation createChannelMessage($input: ChannelMessageCreateInput!) {
   createChannelMessage(input: $input)
 }
@@ -36,4 +48,17 @@ fragment ChannelMessageFields on ChannelMessage {
     name
     avatar
   }
+}
+
+fragment EmojiFields on Emoji {
+  id
+  type
+  alias
+  authorId
+  author {
+    id
+    name
+    avatar
+  }
+  createdAt
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
-import { useUpdateCommunitySettingsMutation } from '@dream/types';
+import { useUpdateCommunitySettingsMutation } from './community-settings.api';
 import { useCommunity } from './use-community';
 import { urlNameRegExp } from '@dream/utils/regexp/url-name';
 import { SaveFormPanel } from '@dream/components/save-form';

@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import SimpleBar from 'simplebar-react';
 import { HeartIcon } from '@heroicons/react/solid';
-import { useCommunitiesQuery, useMeQuery } from '@dream/types';
+import { useCommunitiesQuery, useMeQuery } from '../community.api';
 import { AppPanelMenuItem } from './menu-item';
 import { AppPanelNewCommunity } from './new';
 

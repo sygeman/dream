@@ -1,4 +1,4 @@
-import * as Types from '@dream/mono/types';
+import * as Types from '@dream/mono-types';
 
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';

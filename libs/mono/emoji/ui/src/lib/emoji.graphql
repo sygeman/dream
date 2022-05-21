@@ -1,0 +1,34 @@
+query emoji($emojiId: String!) {
+  emoji(emojiId: $emojiId) {
+    ...EmojiFields
+  }
+}
+
+query emojis($communityId: String!) {
+  emojis(communityId: $communityId) {
+    ...EmojiFields
+  }
+}
+
+mutation updateEmojiAlias($emojiId: String!, $alias: String!) {
+  updateEmojiAlias(emojiId: $emojiId, alias: $alias) {
+    ...EmojiFields
+  }
+}
+
+mutation deleteEmoji($emojiId: String!) {
+  deleteEmoji(emojiId: $emojiId)
+}
+
+fragment EmojiFields on Emoji {
+  id
+  type
+  alias
+  authorId
+  author {
+    id
+    name
+    avatar
+  }
+  createdAt
+}

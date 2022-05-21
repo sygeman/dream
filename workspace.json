@@ -1,277 +1,6 @@
 {
   "version": 1,
   "projects": {
-    "app-panel": {
-      "root": "libs/app-panel",
-      "sourceRoot": "libs/app-panel/src",
-      "projectType": "library",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/app-panel/**/*.{ts,tsx,js,jsx}"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/app-panel"],
-          "options": {
-            "jestConfig": "libs/app-panel/jest.config.ts",
-            "passWithNoTests": true
-          }
-        }
-      },
-      "tags": []
-    },
-    "auth": {
-      "root": "libs/auth",
-      "sourceRoot": "libs/auth/src",
-      "projectType": "library",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/auth/**/*.{ts,tsx,js,jsx}"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/auth"],
-          "options": {
-            "jestConfig": "libs/auth/jest.config.ts",
-            "passWithNoTests": true
-          }
-        }
-      },
-      "tags": []
-    },
-    "auth-api": {
-      "root": "libs/auth-api",
-      "sourceRoot": "libs/auth-api/src",
-      "projectType": "library",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/auth-api/**/*.ts"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/auth-api"],
-          "options": {
-            "jestConfig": "libs/auth-api/jest.config.ts",
-            "passWithNoTests": true
-          }
-        }
-      },
-      "tags": []
-    },
-    "channel-ui": {
-      "root": "libs/channel/ui",
-      "sourceRoot": "libs/channel/ui/src",
-      "projectType": "library",
-      "tags": [],
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
-          "options": {
-            "lintFilePatterns": ["libs/channel/ui/**/*.{ts,tsx,js,jsx}"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/channel/ui"],
-          "options": {
-            "jestConfig": "libs/channel/ui/jest.config.ts",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "chat": {
-      "root": "libs/chat",
-      "sourceRoot": "libs/chat/src",
-      "projectType": "library",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/chat/**/*.ts"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/chat"],
-          "options": {
-            "jestConfig": "libs/chat/jest.config.ts",
-            "passWithNoTests": true
-          }
-        }
-      },
-      "tags": []
-    },
-    "community": {
-      "root": "libs/community",
-      "sourceRoot": "libs/community/src",
-      "projectType": "library",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/community/**/*.{ts,tsx,js,jsx}"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/community"],
-          "options": {
-            "jestConfig": "libs/community/jest.config.ts",
-            "passWithNoTests": true
-          }
-        }
-      },
-      "tags": []
-    },
-    "community-api": {
-      "root": "libs/community-api",
-      "sourceRoot": "libs/community-api/src",
-      "projectType": "library",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/community-api/**/*.ts"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/community-api"],
-          "options": {
-            "jestConfig": "libs/community-api/jest.config.ts",
-            "passWithNoTests": true
-          }
-        }
-      },
-      "tags": []
-    },
-    "components-modal": {
-      "root": "libs/components/modal",
-      "sourceRoot": "libs/components/modal/src",
-      "projectType": "library",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/components/modal/**/*.{ts,tsx,js,jsx}"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/components/modal"],
-          "options": {
-            "jestConfig": "libs/components/modal/jest.config.ts",
-            "passWithNoTests": true
-          }
-        }
-      },
-      "tags": []
-    },
-    "components-modal-full": {
-      "root": "libs/components/modal-full",
-      "sourceRoot": "libs/components/modal-full/src",
-      "projectType": "library",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/components/modal-full/**/*.{ts,tsx,js,jsx}"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/components/modal-full"],
-          "options": {
-            "jestConfig": "libs/components/modal-full/jest.config.ts",
-            "passWithNoTests": true
-          }
-        }
-      },
-      "tags": []
-    },
-    "components-save-form": {
-      "root": "libs/components/save-form",
-      "sourceRoot": "libs/components/save-form/src",
-      "projectType": "library",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/components/save-form/**/*.{ts,tsx,js,jsx}"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/components/save-form"],
-          "options": {
-            "jestConfig": "libs/components/save-form/jest.config.ts",
-            "passWithNoTests": true
-          }
-        }
-      },
-      "tags": []
-    },
-    "components-switch-form-field": {
-      "root": "libs/components/switch-form-field",
-      "sourceRoot": "libs/components/switch-form-field/src",
-      "projectType": "library",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/components/switch-form-field/**/*.{ts,tsx,js,jsx}"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/components/switch-form-field"],
-          "options": {
-            "jestConfig": "libs/components/switch-form-field/jest.config.ts",
-            "passWithNoTests": true
-          }
-        }
-      },
-      "tags": []
-    },
-    "connection-api": {
-      "root": "libs/connection-api",
-      "sourceRoot": "libs/connection-api/src",
-      "projectType": "library",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/connection-api/**/*.ts"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/connection-api"],
-          "options": {
-            "jestConfig": "libs/connection-api/jest.config.ts",
-            "passWithNoTests": true
-          }
-        }
-      },
-      "tags": []
-    },
     "dream": {
       "root": "apps/dream",
       "sourceRoot": "apps/dream",
@@ -331,417 +60,6 @@
         }
       },
       "tags": []
-    },
-    "emoji-api": {
-      "root": "libs/emoji/api",
-      "sourceRoot": "libs/emoji/api/src",
-      "projectType": "library",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
-          "options": {
-            "lintFilePatterns": ["libs/emoji/api/**/*.ts"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/emoji/api"],
-          "options": {
-            "jestConfig": "libs/emoji/api/jest.config.ts",
-            "passWithNoTests": true
-          }
-        }
-      },
-      "tags": []
-    },
-    "emoji-ui": {
-      "root": "libs/emoji/ui",
-      "sourceRoot": "libs/emoji/ui/src",
-      "projectType": "library",
-      "tags": [],
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
-          "options": {
-            "lintFilePatterns": ["libs/emoji/ui/**/*.{ts,tsx,js,jsx}"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/emoji/ui"],
-          "options": {
-            "jestConfig": "libs/emoji/ui/jest.config.ts",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "external-api-spotify": {
-      "root": "libs/external-api/spotify",
-      "sourceRoot": "libs/external-api/spotify/src",
-      "projectType": "library",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/external-api/spotify/**/*.ts"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/external-api/spotify"],
-          "options": {
-            "jestConfig": "libs/external-api/spotify/jest.config.ts",
-            "passWithNoTests": true
-          }
-        }
-      },
-      "tags": []
-    },
-    "external-api-tenor": {
-      "root": "libs/external-api/tenor",
-      "sourceRoot": "libs/external-api/tenor/src",
-      "projectType": "library",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/external-api/tenor/**/*.ts"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/external-api/tenor"],
-          "options": {
-            "jestConfig": "libs/external-api/tenor/jest.config.ts",
-            "passWithNoTests": true
-          }
-        }
-      },
-      "tags": []
-    },
-    "external-api-youtube": {
-      "root": "libs/external-api/youtube",
-      "sourceRoot": "libs/external-api/youtube/src",
-      "projectType": "library",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/external-api/youtube/**/*.ts"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/external-api/youtube"],
-          "options": {
-            "jestConfig": "libs/external-api/youtube/jest.config.ts",
-            "passWithNoTests": true
-          }
-        }
-      },
-      "tags": []
-    },
-    "layouts-play-queue": {
-      "root": "libs/layouts/play-queue",
-      "sourceRoot": "libs/layouts/play-queue/src",
-      "projectType": "library",
-      "tags": [],
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
-          "options": {
-            "lintFilePatterns": ["libs/layouts/play-queue/**/*.{ts,tsx,js,jsx}"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/layouts/play-queue"],
-          "options": {
-            "jestConfig": "libs/layouts/play-queue/jest.config.ts",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "layouts-settings": {
-      "root": "libs/layouts/settings",
-      "sourceRoot": "libs/layouts/settings/src",
-      "projectType": "library",
-      "tags": [],
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
-          "options": {
-            "lintFilePatterns": ["libs/layouts/settings/**/*.{ts,tsx,js,jsx}"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/layouts/settings"],
-          "options": {
-            "jestConfig": "libs/layouts/settings/jest.config.ts",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "mode-spotify-api": {
-      "root": "libs/mode/spotify/api",
-      "sourceRoot": "libs/mode/spotify/api/src",
-      "projectType": "library",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/mode/spotify/api/**/*.ts"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/mode/spotify/api"],
-          "options": {
-            "jestConfig": "libs/mode/spotify/api/jest.config.ts",
-            "passWithNoTests": true
-          }
-        }
-      },
-      "tags": []
-    },
-    "mode-spotify-ui": {
-      "root": "libs/mode/spotify/ui",
-      "sourceRoot": "libs/mode/spotify/ui/src",
-      "projectType": "library",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/mode/spotify/ui/**/*.{ts,tsx,js,jsx}"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/mode/spotify/ui"],
-          "options": {
-            "jestConfig": "libs/mode/spotify/ui/jest.config.ts",
-            "passWithNoTests": true
-          }
-        }
-      },
-      "tags": []
-    },
-    "mode-twitch-api": {
-      "root": "libs/mode/twitch/api",
-      "sourceRoot": "libs/mode/twitch/api/src",
-      "projectType": "library",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/mode/twitch/api/**/*.ts"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/mode/twitch/api"],
-          "options": {
-            "jestConfig": "libs/mode/twitch/api/jest.config.ts",
-            "passWithNoTests": true
-          }
-        }
-      },
-      "tags": []
-    },
-    "mode-twitch-ui": {
-      "root": "libs/mode/twitch/ui",
-      "sourceRoot": "libs/mode/twitch/ui/src",
-      "projectType": "library",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/mode/twitch/ui/**/*.{ts,tsx,js,jsx}"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/mode/twitch/ui"],
-          "options": {
-            "jestConfig": "libs/mode/twitch/ui/jest.config.ts",
-            "passWithNoTests": true
-          }
-        }
-      },
-      "tags": []
-    },
-    "mode-youtube-api": {
-      "root": "libs/mode/youtube/api",
-      "sourceRoot": "libs/mode/youtube/api/src",
-      "projectType": "library",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/mode/youtube/api/**/*.ts"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/mode/youtube/api"],
-          "options": {
-            "jestConfig": "libs/mode/youtube/api/jest.config.ts",
-            "passWithNoTests": true
-          }
-        }
-      },
-      "tags": []
-    },
-    "mode-youtube-ui": {
-      "root": "libs/mode/youtube/ui",
-      "sourceRoot": "libs/mode/youtube/ui/src",
-      "projectType": "library",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/mode/youtube/ui/**/*.{ts,tsx,js,jsx}"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/mode/youtube/ui"],
-          "options": {
-            "jestConfig": "libs/mode/youtube/ui/jest.config.ts",
-            "passWithNoTests": true
-          }
-        }
-      },
-      "tags": []
-    },
-    "modules-channel-settings-api": {
-      "root": "libs/modules/channel-settings/api",
-      "sourceRoot": "libs/modules/channel-settings/api/src",
-      "projectType": "library",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
-          "options": {
-            "lintFilePatterns": ["libs/modules/channel-settings/api/**/*.ts"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/modules/channel-settings/api"],
-          "options": {
-            "jestConfig": "libs/modules/channel-settings/api/jest.config.ts",
-            "passWithNoTests": true
-          }
-        }
-      },
-      "tags": []
-    },
-    "modules-channel-settings-ui": {
-      "root": "libs/modules/channel-settings/ui",
-      "sourceRoot": "libs/modules/channel-settings/ui/src",
-      "projectType": "library",
-      "tags": [],
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
-          "options": {
-            "lintFilePatterns": [
-              "libs/modules/channel-settings/ui/**/*.{ts,tsx,js,jsx}"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/modules/channel-settings/ui"],
-          "options": {
-            "jestConfig": "libs/modules/channel-settings/ui/jest.config.ts",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "modules-community-settings-api": {
-      "root": "libs/modules/community-settings/api",
-      "sourceRoot": "libs/modules/community-settings/api/src",
-      "projectType": "library",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
-          "options": {
-            "lintFilePatterns": ["libs/modules/community-settings/api/**/*.ts"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/modules/community-settings/api"],
-          "options": {
-            "jestConfig": "libs/modules/community-settings/api/jest.config.ts",
-            "passWithNoTests": true
-          }
-        }
-      },
-      "tags": []
-    },
-    "modules-community-settings-ui": {
-      "root": "libs/modules/community-settings/ui",
-      "sourceRoot": "libs/modules/community-settings/ui/src",
-      "projectType": "library",
-      "tags": [],
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
-          "options": {
-            "lintFilePatterns": [
-              "libs/modules/community-settings/ui/**/*.{ts,tsx,js,jsx}"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/modules/community-settings/ui"],
-          "options": {
-            "jestConfig": "libs/modules/community-settings/ui/jest.config.ts",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "modules-connection-status": {
-      "root": "libs/modules/connection-status",
-      "sourceRoot": "libs/modules/connection-status/src",
-      "projectType": "library",
-      "tags": [],
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
-          "options": {
-            "lintFilePatterns": [
-              "libs/modules/connection-status/**/*.{ts,tsx,js,jsx}"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/modules/connection-status"],
-          "options": {
-            "jestConfig": "libs/modules/connection-status/jest.config.ts",
-            "passWithNoTests": true
-          }
-        }
-      }
     },
     "mono": {
       "root": "apps/mono",
@@ -855,25 +173,935 @@
           "builder": "@nrwl/workspace:run-commands",
           "outputs": [],
           "options": {
-            "command": "prisma generate --schema ./libs/prisma/mono/schema.prisma"
+            "command": "prisma generate --schema ./libs/mono/prisma/schema.prisma"
           }
         },
         "dbpush": {
           "builder": "@nrwl/workspace:run-commands",
           "outputs": [],
           "options": {
-            "command": "prisma db push --schema ./libs/prisma/mono/schema.prisma"
+            "command": "prisma db push --schema ./libs/mono/prisma/schema.prisma"
           }
         },
         "studio": {
           "builder": "@nrwl/workspace:run-commands",
           "outputs": [],
           "options": {
-            "command": "prisma studio --schema ./libs/prisma/mono/schema.prisma"
+            "command": "prisma studio --schema ./libs/mono/prisma/schema.prisma"
           }
         }
       },
       "tags": []
+    },
+    "mono-app-panel": {
+      "root": "libs/mono/app-panel",
+      "sourceRoot": "libs/mono/app-panel/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/mono/app-panel/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/mono/app-panel"],
+          "options": {
+            "jestConfig": "libs/mono/app-panel/jest.config.ts",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "mono-auth-api": {
+      "root": "libs/mono/auth/api",
+      "sourceRoot": "libs/mono/auth/api/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/mono/auth/api/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/mono/auth/api"],
+          "options": {
+            "jestConfig": "libs/mono/auth/api/jest.config.ts",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "mono-auth-ui": {
+      "root": "libs/mono/auth/ui",
+      "sourceRoot": "libs/mono/auth/ui/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/mono/auth/ui/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/mono/auth/ui"],
+          "options": {
+            "jestConfig": "libs/mono/auth/ui/jest.config.ts",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "mono-channel-settings-api": {
+      "root": "libs/mono/channel-settings/api",
+      "sourceRoot": "libs/mono/channel-settings/api/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/mono/channel-settings/api/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/mono/channel-settings/api"],
+          "options": {
+            "jestConfig": "libs/mono/channel-settings/api/jest.config.ts",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "mono-channel-settings-ui": {
+      "root": "libs/mono/channel-settings/ui",
+      "sourceRoot": "libs/mono/channel-settings/ui/src",
+      "projectType": "library",
+      "tags": [],
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": [
+              "libs/mono/channel-settings/ui/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/mono/channel-settings/ui"],
+          "options": {
+            "jestConfig": "libs/mono/channel-settings/ui/jest.config.ts",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "mono-channel-ui": {
+      "root": "libs/mono/channel/ui",
+      "sourceRoot": "libs/mono/channel/ui/src",
+      "projectType": "library",
+      "tags": [],
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/mono/channel/ui/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/mono/channel/ui"],
+          "options": {
+            "jestConfig": "libs/mono/channel/ui/jest.config.ts",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "mono-chat-ui": {
+      "root": "libs/mono/chat/ui",
+      "sourceRoot": "libs/mono/chat/ui/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/mono/chat/ui/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/mono/chat/ui"],
+          "options": {
+            "jestConfig": "libs/mono/chat/ui/jest.config.ts",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "mono-community-api": {
+      "root": "libs/mono/community/api",
+      "sourceRoot": "libs/mono/community/api/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/mono/community/api/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/mono/community/api"],
+          "options": {
+            "jestConfig": "libs/mono/community/api/jest.config.ts",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "mono-community-settings-api": {
+      "root": "libs/mono/community-settings/api",
+      "sourceRoot": "libs/mono/community-settings/api/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/mono/community-settings/api/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/mono/community-settings/api"],
+          "options": {
+            "jestConfig": "libs/mono/community-settings/api/jest.config.ts",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "mono-community-settings-ui": {
+      "root": "libs/mono/community-settings/ui",
+      "sourceRoot": "libs/mono/community-settings/ui/src",
+      "projectType": "library",
+      "tags": [],
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": [
+              "libs/mono/community-settings/ui/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/mono/community-settings/ui"],
+          "options": {
+            "jestConfig": "libs/mono/community-settings/ui/jest.config.ts",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "mono-community-ui": {
+      "root": "libs/mono/community/ui",
+      "sourceRoot": "libs/mono/community/ui/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/mono/community/ui/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/mono/community/ui"],
+          "options": {
+            "jestConfig": "libs/mono/community/ui/jest.config.ts",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "mono-components-modal": {
+      "root": "libs/mono/components/modal",
+      "sourceRoot": "libs/mono/components/modal/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/mono/components/modal/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/mono/components/modal"],
+          "options": {
+            "jestConfig": "libs/mono/components/modal/jest.config.ts",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "mono-components-modal-full": {
+      "root": "libs/mono/components/modal-full",
+      "sourceRoot": "libs/mono/components/modal-full/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/mono/components/modal-full/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/mono/components/modal-full"],
+          "options": {
+            "jestConfig": "libs/mono/components/modal-full/jest.config.ts",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "mono-components-save-form": {
+      "root": "libs/mono/components/save-form",
+      "sourceRoot": "libs/mono/components/save-form/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/mono/components/save-form/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/mono/components/save-form"],
+          "options": {
+            "jestConfig": "libs/mono/components/save-form/jest.config.ts",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "mono-components-switch-form-field": {
+      "root": "libs/mono/components/switch-form-field",
+      "sourceRoot": "libs/mono/components/switch-form-field/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/mono/components/switch-form-field/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/mono/components/switch-form-field"],
+          "options": {
+            "jestConfig": "libs/mono/components/switch-form-field/jest.config.ts",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "mono-connection-api": {
+      "root": "libs/mono/connection/api",
+      "sourceRoot": "libs/mono/connection/api/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/mono/connection/api/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/mono/connection/api"],
+          "options": {
+            "jestConfig": "libs/mono/connection/api/jest.config.ts",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "mono-connection-status-ui": {
+      "root": "libs/mono/connection-status/ui",
+      "sourceRoot": "libs/mono/connection-status/ui/src",
+      "projectType": "library",
+      "tags": [],
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": [
+              "libs/mono/connection-status/ui/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/mono/connection-status/ui"],
+          "options": {
+            "jestConfig": "libs/mono/connection-status/ui/jest.config.ts",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "mono-emoji-api": {
+      "root": "libs/mono/emoji/api",
+      "sourceRoot": "libs/mono/emoji/api/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/mono/emoji/api/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/mono/emoji/api"],
+          "options": {
+            "jestConfig": "libs/mono/emoji/api/jest.config.ts",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "mono-emoji-ui": {
+      "root": "libs/mono/emoji/ui",
+      "sourceRoot": "libs/mono/emoji/ui/src",
+      "projectType": "library",
+      "tags": [],
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/mono/emoji/ui/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/mono/emoji/ui"],
+          "options": {
+            "jestConfig": "libs/mono/emoji/ui/jest.config.ts",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "mono-external-spotify": {
+      "root": "libs/mono/external/spotify",
+      "sourceRoot": "libs/mono/external/spotify/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/mono/external/spotify/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/mono/external/spotify"],
+          "options": {
+            "jestConfig": "libs/mono/external/spotify/jest.config.ts",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "mono-external-tenor": {
+      "root": "libs/mono/external/tenor",
+      "sourceRoot": "libs/mono/external/tenor/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/mono/external/tenor/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/mono/external/tenor"],
+          "options": {
+            "jestConfig": "libs/mono/external/tenor/jest.config.ts",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "mono-external-youtube": {
+      "root": "libs/mono/external/youtube",
+      "sourceRoot": "libs/mono/external/youtube/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/mono/external/youtube/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/mono/external/youtube"],
+          "options": {
+            "jestConfig": "libs/mono/external/youtube/jest.config.ts",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "mono-layouts-play-queue": {
+      "root": "libs/mono/layouts/play-queue",
+      "sourceRoot": "libs/mono/layouts/play-queue/src",
+      "projectType": "library",
+      "tags": [],
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": [
+              "libs/mono/layouts/play-queue/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/mono/layouts/play-queue"],
+          "options": {
+            "jestConfig": "libs/mono/layouts/play-queue/jest.config.ts",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "mono-layouts-settings": {
+      "root": "libs/mono/layouts/settings",
+      "sourceRoot": "libs/mono/layouts/settings/src",
+      "projectType": "library",
+      "tags": [],
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": [
+              "libs/mono/layouts/settings/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/mono/layouts/settings"],
+          "options": {
+            "jestConfig": "libs/mono/layouts/settings/jest.config.ts",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "mono-mode-spotify-api": {
+      "root": "libs/mono/mode/spotify/api",
+      "sourceRoot": "libs/mono/mode/spotify/api/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/mono/mode/spotify/api/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/mono/mode/spotify/api"],
+          "options": {
+            "jestConfig": "libs/mono/mode/spotify/api/jest.config.ts",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "mono-mode-spotify-ui": {
+      "root": "libs/mono/mode/spotify/ui",
+      "sourceRoot": "libs/mono/mode/spotify/ui/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/mono/mode/spotify/ui/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/mono/mode/spotify/ui"],
+          "options": {
+            "jestConfig": "libs/mono/mode/spotify/ui/jest.config.ts",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "mono-mode-twitch-api": {
+      "root": "libs/mono/mode/twitch/api",
+      "sourceRoot": "libs/mono/mode/twitch/api/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/mono/mode/twitch/api/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/mono/mode/twitch/api"],
+          "options": {
+            "jestConfig": "libs/mono/mode/twitch/api/jest.config.ts",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "mono-mode-twitch-ui": {
+      "root": "libs/mono/mode/twitch/ui",
+      "sourceRoot": "libs/mono/mode/twitch/ui/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/mono/mode/twitch/ui/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/mono/mode/twitch/ui"],
+          "options": {
+            "jestConfig": "libs/mono/mode/twitch/ui/jest.config.ts",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "mono-mode-youtube-api": {
+      "root": "libs/mono/mode/youtube/api",
+      "sourceRoot": "libs/mono/mode/youtube/api/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/mono/mode/youtube/api/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/mono/mode/youtube/api"],
+          "options": {
+            "jestConfig": "libs/mono/mode/youtube/api/jest.config.ts",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "mono-mode-youtube-ui": {
+      "root": "libs/mono/mode/youtube/ui",
+      "sourceRoot": "libs/mono/mode/youtube/ui/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/mono/mode/youtube/ui/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/mono/mode/youtube/ui"],
+          "options": {
+            "jestConfig": "libs/mono/mode/youtube/ui/jest.config.ts",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "mono-prisma": {
+      "root": "libs/mono/prisma",
+      "sourceRoot": "libs/mono/prisma/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/mono/prisma/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/mono/prisma"],
+          "options": {
+            "jestConfig": "libs/mono/prisma/jest.config.ts",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "mono-spotify-now-ui": {
+      "root": "libs/mono/spotify-now/ui",
+      "sourceRoot": "libs/mono/spotify-now/ui/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/mono/spotify-now/ui/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/mono/spotify-now/ui"],
+          "options": {
+            "jestConfig": "libs/mono/spotify-now/ui/jest.config.ts",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "mono-types": {
+      "root": "libs/mono/types",
+      "sourceRoot": "libs/mono/types/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/mono/types/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/mono/types"],
+          "options": {
+            "jestConfig": "libs/mono/types/jest.config.ts",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "mono-use-community-channel": {
+      "root": "libs/mono/use-community-channel",
+      "sourceRoot": "libs/mono/use-community-channel/src",
+      "projectType": "library",
+      "tags": [],
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": [
+              "libs/mono/use-community-channel/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/mono/use-community-channel"],
+          "options": {
+            "jestConfig": "libs/mono/use-community-channel/jest.config.ts",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "mono-user-api": {
+      "root": "libs/mono/user/api",
+      "sourceRoot": "libs/mono/user/api/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/mono/user/api/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/mono/user/api"],
+          "options": {
+            "jestConfig": "libs/mono/user/api/jest.config.ts",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "mono-user-ui": {
+      "root": "libs/mono/user/ui",
+      "sourceRoot": "libs/mono/user/ui/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/mono/user/ui/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/mono/user/ui"],
+          "options": {
+            "jestConfig": "libs/mono/user/ui/jest.config.ts",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "mono-utils-date": {
+      "root": "libs/mono/utils/date",
+      "sourceRoot": "libs/mono/utils/date/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/mono/utils/date/**/*.ts"]
+          }
+        }
+      },
+      "tags": []
+    },
+    "mono-utils-emoji": {
+      "root": "libs/mono/utils/emoji",
+      "sourceRoot": "libs/mono/utils/emoji/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/mono/utils/emoji/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/mono/utils/emoji"],
+          "options": {
+            "jestConfig": "libs/mono/utils/emoji/jest.config.ts",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "mono-utils-regexp-url-name": {
+      "root": "libs/mono/utils/regexp/url-name",
+      "sourceRoot": "libs/mono/utils/regexp/url-name/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/mono/utils/regexp/url-name/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/mono/utils/regexp/url-name"],
+          "options": {
+            "jestConfig": "libs/mono/utils/regexp/url-name/jest.config.ts",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "mono-utils-use-modal": {
+      "root": "libs/mono/utils/use-modal",
+      "sourceRoot": "libs/mono/utils/use-modal/src",
+      "projectType": "library",
+      "tags": [],
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": [
+              "libs/mono/utils/use-modal/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        }
+      }
     },
     "pepega": {
       "root": "apps/pepega",
@@ -989,260 +1217,48 @@
           "builder": "@nrwl/workspace:run-commands",
           "outputs": [],
           "options": {
-            "command": "prisma generate --schema ./libs/prisma/pepega/schema.prisma"
+            "command": "prisma generate --schema ./libs/pepega/prisma/schema.prisma"
           }
         },
         "dbpush": {
           "builder": "@nrwl/workspace:run-commands",
           "outputs": [],
           "options": {
-            "command": "prisma db push --schema ./libs/prisma/pepega/schema.prisma"
+            "command": "prisma db push --schema ./libs/pepega/prisma/schema.prisma"
           }
         },
         "studio": {
           "builder": "@nrwl/workspace:run-commands",
           "outputs": [],
           "options": {
-            "command": "prisma studio --schema ./libs/prisma/pepega/schema.prisma"
+            "command": "prisma studio --schema ./libs/pepega/prisma/schema.prisma"
           }
         }
       },
       "tags": []
     },
-    "prisma-mono": {
-      "root": "libs/prisma/mono",
-      "sourceRoot": "libs/prisma/mono/src",
+    "pepega-prisma": {
+      "root": "libs/pepega/prisma",
+      "sourceRoot": "libs/pepega/prisma/src",
       "projectType": "library",
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "outputs": ["{options.outputFile}"],
           "options": {
-            "lintFilePatterns": ["libs/prisma/mono/**/*.ts"]
+            "lintFilePatterns": ["libs/pepega/prisma/**/*.ts"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/prisma/mono"],
+          "outputs": ["coverage/libs/pepega/prisma"],
           "options": {
-            "jestConfig": "libs/prisma/mono/jest.config.ts",
+            "jestConfig": "libs/pepega/prisma/jest.config.ts",
             "passWithNoTests": true
           }
         }
       },
       "tags": []
-    },
-    "prisma-pepega": {
-      "root": "libs/prisma/pepega",
-      "sourceRoot": "libs/prisma/pepega/src",
-      "projectType": "library",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
-          "options": {
-            "lintFilePatterns": ["libs/prisma/pepega/**/*.ts"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/prisma/pepega"],
-          "options": {
-            "jestConfig": "libs/prisma/pepega/jest.config.ts",
-            "passWithNoTests": true
-          }
-        }
-      },
-      "tags": []
-    },
-    "spotify-now": {
-      "root": "libs/spotify-now",
-      "sourceRoot": "libs/spotify-now/src",
-      "projectType": "library",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/spotify-now/**/*.{ts,tsx,js,jsx}"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/spotify-now"],
-          "options": {
-            "jestConfig": "libs/spotify-now/jest.config.ts",
-            "passWithNoTests": true
-          }
-        }
-      },
-      "tags": []
-    },
-    "types": {
-      "root": "libs/types",
-      "sourceRoot": "libs/types/src",
-      "projectType": "library",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/types/**/*.{ts,tsx,js,jsx}"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/types"],
-          "options": {
-            "jestConfig": "libs/types/jest.config.ts",
-            "passWithNoTests": true
-          }
-        }
-      },
-      "tags": []
-    },
-    "user": {
-      "root": "libs/user",
-      "sourceRoot": "libs/user/src",
-      "projectType": "library",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/user/**/*.{ts,tsx,js,jsx}"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/user"],
-          "options": {
-            "jestConfig": "libs/user/jest.config.ts",
-            "passWithNoTests": true
-          }
-        }
-      },
-      "tags": []
-    },
-    "user-api": {
-      "root": "libs/user-api",
-      "sourceRoot": "libs/user-api/src",
-      "projectType": "library",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/user-api/**/*.ts"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/user-api"],
-          "options": {
-            "jestConfig": "libs/user-api/jest.config.ts",
-            "passWithNoTests": true
-          }
-        }
-      },
-      "tags": []
-    },
-    "utils-date": {
-      "root": "libs/utils/date",
-      "sourceRoot": "libs/utils/date/src",
-      "projectType": "library",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
-          "options": {
-            "lintFilePatterns": ["libs/utils/date/**/*.ts"]
-          }
-        }
-      },
-      "tags": []
-    },
-    "utils-emoji": {
-      "root": "libs/utils/emoji",
-      "sourceRoot": "libs/utils/emoji/src",
-      "projectType": "library",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
-          "options": {
-            "lintFilePatterns": ["libs/utils/emoji/**/*.ts"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/utils/emoji"],
-          "options": {
-            "jestConfig": "libs/utils/emoji/jest.config.ts",
-            "passWithNoTests": true
-          }
-        }
-      },
-      "tags": []
-    },
-    "utils-regexp-url-name": {
-      "root": "libs/utils/regexp/url-name",
-      "sourceRoot": "libs/utils/regexp/url-name/src",
-      "projectType": "library",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
-          "options": {
-            "lintFilePatterns": ["libs/utils/regexp/url-name/**/*.ts"]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/utils/regexp/url-name"],
-          "options": {
-            "jestConfig": "libs/utils/regexp/url-name/jest.config.ts",
-            "passWithNoTests": true
-          }
-        }
-      },
-      "tags": []
-    },
-    "utils-use-community-channel": {
-      "root": "libs/utils/use-community-channel",
-      "sourceRoot": "libs/utils/use-community-channel/src",
-      "projectType": "library",
-      "tags": [],
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
-          "options": {
-            "lintFilePatterns": [
-              "libs/utils/use-community-channel/**/*.{ts,tsx,js,jsx}"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/utils/use-community-channel"],
-          "options": {
-            "jestConfig": "libs/utils/use-community-channel/jest.config.ts",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "utils-use-modal": {
-      "root": "libs/utils/use-modal",
-      "sourceRoot": "libs/utils/use-modal/src",
-      "projectType": "library",
-      "tags": [],
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
-          "options": {
-            "lintFilePatterns": ["libs/utils/use-modal/**/*.{ts,tsx,js,jsx}"]
-          }
-        }
-      }
     }
   }
 }

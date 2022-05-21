@@ -1,7 +1,10 @@
 import React from 'react';
 import { MainLayout } from '../../../layouts/main';
-import { CommunityLeftPanel, CommunityRightPanel } from '@dream/community';
-import { ChannelContent } from '@dream/channel/ui';
+import {
+  CommunityLeftPanel,
+  CommunityRightPanel,
+} from '@dream/mono-community-ui';
+import { ChannelContent } from '@dream/mono-channel-ui';
 
 export function CommunityChannelPage() {
   return (

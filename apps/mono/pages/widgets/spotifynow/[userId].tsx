@@ -1,5 +1,5 @@
 import React from 'react';
-import { SpotifyNow } from '@dream/spotify-now';
+import { SpotifyNow } from '@dream/mono-spotify-now-ui';
 import { useRouter } from 'next/router';
 
 export function SpotifyNowPage() {

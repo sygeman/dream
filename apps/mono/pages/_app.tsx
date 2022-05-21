@@ -8,8 +8,8 @@ import 'simplebar/dist/simplebar.min.css';
 import 'overlayscrollbars/css/OverlayScrollbars.css';
 import 'rc-slider/assets/index.css';
 import '../styles.css';
-import { Locale } from '@dream/types';
-import { useMe } from '@dream/user';
+import { Locale } from '@dream/mono-types';
+import { useMe } from '@dream/mono-user-ui';
 import { lang } from '../lang';
 
 const getMessages = (locales: string | string[] = ['en-US']) => {

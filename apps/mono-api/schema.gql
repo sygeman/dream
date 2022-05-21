@@ -318,7 +318,6 @@ type ChannelSettings {
 }
 
 type Query {
-  uniqCount: Int!
   user(id: ID): User
   me: User!
   community(name: String!): Community!

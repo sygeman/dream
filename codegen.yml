@@ -1,21 +1,21 @@
 overwrite: true
-schema: 'apps/mono-api/schema.gql'
-documents:
-  - '!libs/**/(*.api).{ts,tsx}'
-  - 'libs/**/*.graphql'
 generates:
-  libs/types/src/index.tsx:
+  libs/mono/types/src/index.tsx:
+    schema: 'apps/mono-api/schema.gql'
+    documents:
+      - '!libs/mono/**/(*.api).{ts,tsx}'
+      - 'libs/mono/**/*.graphql'
     plugins:
       - typescript
-  libs/:
+  libs/mono/:
+    schema: 'apps/mono-api/schema.gql'
+    documents:
+      - '!libs/mono/**/(*.api).{ts,tsx}'
+      - 'libs/mono/**/*.graphql'
     preset: near-operation-file
     presetConfig:
       extension: .api.tsx
-      baseTypesPath: ~@dream/types
+      baseTypesPath: ~@dream/mono/types
     plugins:
       - typescript-operations
       - typescript-react-apollo
-hooks:
-  afterAllFileWrite:
-    - prettier --write
-    - eslint --fix

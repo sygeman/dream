@@ -4,20 +4,23 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import * as depthLimit from 'graphql-depth-limit';
-import { AuthModule, AuthService } from '@dream/auth-api';
-import { UserModule } from '@dream/user-api';
-import { CommunityModule } from '@dream/community-api';
-import { ConnectionModule, ConnectionService } from '@dream/connection-api';
+import { AuthModule, AuthService } from '@dream/mono-auth-api';
+import { UserModule } from '@dream/mono-user-api';
+import { CommunityModule } from '@dream/mono-community-api';
+import {
+  ConnectionModule,
+  ConnectionService,
+} from '@dream/mono-connection-api';
 import { SharedModule } from './shared.module';
 import { config } from './config';
 import { nanoid } from 'nanoid';
 import { BullModule } from '@nestjs/bull';
-import { SpotifyModeModule } from '@dream/mode/spotify/api';
-import { TwitchModeModule } from '@dream/mode/twitch/api';
-import { YoutubeModeModule } from '@dream/mode/youtube/api';
-import { EmojiModule } from '@dream/emoji/api';
-import { CommunitySettingsModule } from '@dream/modules/community-settings/api';
-import { ChannelSettingsModule } from '@dream/modules/channel-settings/api';
+import { SpotifyModeModule } from '@dream/mono-mode-spotify-api';
+import { TwitchModeModule } from '@dream/mono-mode-twitch-api';
+import { YoutubeModeModule } from '@dream/mono-mode-youtube-api';
+import { EmojiModule } from '@dream/mono-emoji-api';
+import { CommunitySettingsModule } from '@dream/mono-community-settings-api';
+import { ChannelSettingsModule } from '@dream/mono-channel-settings-api';
 import { join } from 'path';
 
 @Module({

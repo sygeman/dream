@@ -3,7 +3,7 @@ import { FC } from 'react';
 import styled from 'styled-components';
 import { Twitch as TwitchIcon } from 'styled-icons/fa-brands';
 import getConfig from 'next/config';
-import { AuthButtonTwitch } from '@dream/auth';
+import { AuthButtonTwitch } from '@dream/mono-auth-ui';
 const { publicRuntimeConfig } = getConfig();
 
 const AuthBox = styled.div`

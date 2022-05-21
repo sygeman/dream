@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChannelOverlay } from '@dream/channel/ui';
+import { ChannelOverlay } from '@dream/mono-channel-ui';
 
 export function CommunityChannelOverlayPage() {
   return (

@@ -1,6 +1,6 @@
 import React from 'react';
 import { MainLayout } from '../../layouts/main';
-import { CommunityLeftPanel, CommunityWelcome } from '@dream/community';
+import { CommunityLeftPanel, CommunityWelcome } from '@dream/mono-community-ui';
 
 export function CommunityPage() {
   return (

@@ -16,71 +16,87 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@dream/app-panel": ["libs/app-panel/src/index.ts"],
-      "@dream/auth": ["libs/auth/src/index.ts"],
-      "@dream/auth-api": ["libs/auth-api/src/index.ts"],
-      "@dream/channel/ui": ["libs/channel/ui/src/index.ts"],
-      "@dream/chat": ["libs/chat/src/index.ts"],
-      "@dream/community": ["libs/community/src/index.ts"],
-      "@dream/community-api": ["libs/community-api/src/index.ts"],
       "@dream/components/*": ["libs/components/src/lib/*"],
-      "@dream/components/modal": ["libs/components/modal/src/index.ts"],
-      "@dream/components/modal-full": [
-        "libs/components/modal-full/src/index.ts"
-      ],
-      "@dream/components/save-form": ["libs/components/save-form/src/index.ts"],
-      "@dream/components/switch-form-field": [
-        "libs/components/switch-form-field/src/index.ts"
-      ],
-      "@dream/connection-api": ["libs/connection-api/src/index.ts"],
       "@dream/containers/*": ["libs/containers/src/*"],
-      "@dream/emoji/api": ["libs/emoji/api/src/index.ts"],
-      "@dream/emoji/ui": ["libs/emoji/ui/src/index.ts"],
-      "@dream/external-api/spotify": ["libs/external-api/spotify/src/index.ts"],
-      "@dream/external-api/tenor": ["libs/external-api/tenor/src/index.ts"],
-      "@dream/external-api/youtube": ["libs/external-api/youtube/src/index.ts"],
       "@dream/layouts/*": ["libs/layouts/src/*"],
-      "@dream/layouts/play-queue": ["libs/layouts/play-queue/src/index.ts"],
-      "@dream/layouts/settings": ["libs/layouts/settings/src/index.ts"],
-      "@dream/mode/spotify/api": ["libs/mode/spotify/api/src/index.ts"],
-      "@dream/mode/spotify/ui": ["libs/mode/spotify/ui/src/index.ts"],
-      "@dream/mode/twitch/api": ["libs/mode/twitch/api/src/index.ts"],
-      "@dream/mode/twitch/ui": ["libs/mode/twitch/ui/src/index.ts"],
-      "@dream/mode/youtube/api": ["libs/mode/youtube/api/src/index.ts"],
-      "@dream/mode/youtube/ui": ["libs/mode/youtube/ui/src/index.ts"],
-      "@dream/modules/channel-settings/api": [
-        "libs/modules/channel-settings/api/src/index.ts"
+      "@dream/mono-app-panel": ["libs/mono/app-panel/src/index.ts"],
+      "@dream/mono-auth-api": ["libs/mono/auth/api/src/index.ts"],
+      "@dream/mono-auth-ui": ["libs/mono/auth/ui/src/index.ts"],
+      "@dream/mono-channel-settings-api": [
+        "libs/mono/channel-settings/api/src/index.ts"
       ],
-      "@dream/modules/channel-settings/ui": [
-        "libs/modules/channel-settings/ui/src/index.ts"
+      "@dream/mono-channel-settings-ui": [
+        "libs/mono/channel-settings/ui/src/index.ts"
       ],
-      "@dream/modules/community-settings/api": [
-        "libs/modules/community-settings/api/src/index.ts"
+      "@dream/mono-channel-ui": ["libs/mono/channel/ui/src/index.ts"],
+      "@dream/mono-chat-ui": ["libs/mono/chat/ui/src/index.ts"],
+      "@dream/mono-community-api": ["libs/mono/community/api/src/index.ts"],
+      "@dream/mono-community-settings-api": [
+        "libs/mono/community-settings/api/src/index.ts"
       ],
-      "@dream/modules/community-settings/ui": [
-        "libs/modules/community-settings/ui/src/index.ts"
+      "@dream/mono-community-settings-ui": [
+        "libs/mono/community-settings/ui/src/index.ts"
       ],
-      "@dream/modules/connection-status": [
-        "libs/modules/connection-status/src/index.ts"
+      "@dream/mono-community-ui": ["libs/mono/community/ui/src/index.ts"],
+      "@dream/mono-components-modal": [
+        "libs/mono/components/modal/src/index.ts"
       ],
+      "@dream/mono-components-modal-full": [
+        "libs/mono/components/modal-full/src/index.ts"
+      ],
+      "@dream/mono-components-save-form": [
+        "libs/mono/components/save-form/src/index.ts"
+      ],
+      "@dream/mono-components-switch-form-field": [
+        "libs/mono/components/switch-form-field/src/index.ts"
+      ],
+      "@dream/mono-connection-api": ["libs/mono/connection/api/src/index.ts"],
+      "@dream/mono-connection-status-ui": [
+        "libs/mono/connection-status/ui/src/index.ts"
+      ],
+      "@dream/mono-emoji-api": ["libs/mono/emoji/api/src/index.ts"],
+      "@dream/mono-emoji-ui": ["libs/mono/emoji/ui/src/index.ts"],
+      "@dream/mono-external-spotify": [
+        "libs/mono/external/spotify/src/index.ts"
+      ],
+      "@dream/mono-external-tenor": ["libs/mono/external/tenor/src/index.ts"],
+      "@dream/mono-external-youtube": [
+        "libs/mono/external/youtube/src/index.ts"
+      ],
+      "@dream/mono-layouts-play-queue": [
+        "libs/mono/layouts/play-queue/src/index.ts"
+      ],
+      "@dream/mono-layouts-settings": [
+        "libs/mono/layouts/settings/src/index.ts"
+      ],
+      "@dream/mono-mode-spotify-api": [
+        "libs/mono/mode/spotify/api/src/index.ts"
+      ],
+      "@dream/mono-mode-spotify-ui": ["libs/mono/mode/spotify/ui/src/index.ts"],
+      "@dream/mono-mode-twitch-api": ["libs/mono/mode/twitch/api/src/index.ts"],
+      "@dream/mono-mode-twitch-ui": ["libs/mono/mode/twitch/ui/src/index.ts"],
+      "@dream/mono-mode-youtube-api": [
+        "libs/mono/mode/youtube/api/src/index.ts"
+      ],
+      "@dream/mono-mode-youtube-ui": ["libs/mono/mode/youtube/ui/src/index.ts"],
+      "@dream/mono-prisma": ["libs/mono/prisma/src/index.ts"],
+      "@dream/mono-spotify-now-ui": ["libs/mono/spotify-now/ui/src/index.ts"],
+      "@dream/mono-types": ["libs/mono/types/src/index.tsx"],
+      "@dream/mono-use-community-channel": [
+        "libs/mono/use-community-channel/src/index.ts"
+      ],
+      "@dream/mono-user-api": ["libs/mono/user/api/src/index.ts"],
+      "@dream/mono-user-ui": ["libs/mono/user/ui/src/index.ts"],
+      "@dream/mono-utils-date": ["libs/mono/utils/date/src/index.ts"],
+      "@dream/mono-utils-emoji": ["libs/mono/utils/emoji/src/index.ts"],
+      "@dream/mono-utils-regexp-url-name": [
+        "libs/mono/utils/regexp/url-name/src/index.ts"
+      ],
+      "@dream/mono-utils-use-modal": ["libs/mono/utils/use-modal/src/index.ts"],
+      "@dream/pepega-prisma": ["libs/pepega/prisma/src/index.ts"],
       "@dream/pepega-ui/*": ["libs/pepega-ui/src/lib/*"],
-      "@dream/prisma/mono": ["libs/prisma/mono/src/index.ts"],
-      "@dream/prisma/pepega": ["libs/prisma/pepega/src/index.ts"],
-      "@dream/spotify-now": ["libs/spotify-now/src/index.ts"],
-      "@dream/types": ["libs/types/src/index.tsx"],
       "@dream/ui/*": ["libs/ui/src/lib/*"],
-      "@dream/user": ["libs/user/src/index.ts"],
-      "@dream/user-api": ["libs/user-api/src/index.ts"],
-      "@dream/utils-old/*": ["libs/utils-old/src/*"],
-      "@dream/utils/date": ["libs/utils/date/src/index.ts"],
-      "@dream/utils/emoji": ["libs/utils/emoji/src/index.ts"],
-      "@dream/utils/regexp/url-name": [
-        "libs/utils/regexp/url-name/src/index.ts"
-      ],
-      "@dream/utils/use-community-channel": [
-        "libs/utils/use-community-channel/src/index.ts"
-      ],
-      "@dream/utils/use-modal": ["libs/utils/use-modal/src/index.ts"]
+      "@dream/utils-old/*": ["libs/utils-old/src/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]

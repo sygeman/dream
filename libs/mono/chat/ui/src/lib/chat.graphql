@@ -1,0 +1,39 @@
+query channelMessages($channelId: ID!) {
+  channelMessages(channelId: $channelId) {
+    ...ChannelMessageFields
+  }
+}
+
+mutation createChannelMessage($input: ChannelMessageCreateInput!) {
+  createChannelMessage(input: $input)
+}
+
+subscription channelMessageCreated($channelId: ID!) {
+  channelMessageCreated(channelId: $channelId) {
+    ...ChannelMessageFields
+  }
+}
+
+subscription channelMessageDeleted($channelId: ID!) {
+  channelMessageDeleted(channelId: $channelId) {
+    ...ChannelMessageFields
+  }
+}
+
+fragment ChannelMessageFields on ChannelMessage {
+  id
+  content
+  createdAt
+  tenorGif {
+    id
+    height
+    width
+    preview
+    video
+  }
+  user {
+    id
+    name
+    avatar
+  }
+}

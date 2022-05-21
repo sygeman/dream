@@ -3,7 +3,7 @@ import { ApolloClient, InMemoryCache } from '@apollo/client';
 import merge from 'deepmerge';
 import isEqual from 'lodash/isEqual';
 import { WebSocketLink } from './web-socket-link';
-import { disconnectedVar } from '@dream/modules/connection-status';
+import { disconnectedVar } from '@dream/mono-connection-status-ui';
 
 export const APOLLO_STATE_PROP_NAME = '__APOLLO_STATE__';
 

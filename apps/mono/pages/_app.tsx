@@ -3,14 +3,14 @@ import Head from 'next/head';
 import App from 'next/app';
 import { IntlProvider } from 'react-intl';
 import { ApolloProvider } from '@apollo/client';
+import { Locale } from '@dream/mono-types';
+import { useMeQuery } from '@dream/mono-user-ui';
+import { lang } from '../lang';
 import { useApollo } from '../lib/apollo';
 import 'simplebar/dist/simplebar.min.css';
 import 'overlayscrollbars/css/OverlayScrollbars.css';
 import 'rc-slider/assets/index.css';
 import '../styles.css';
-import { Locale } from '@dream/mono-types';
-import { useMe } from '@dream/mono-user-ui';
-import { lang } from '../lang';
 
 const getMessages = (locales: string | string[] = ['en-US']) => {
   let locale = 'en-US';
@@ -27,8 +27,8 @@ const getMessages = (locales: string | string[] = ['en-US']) => {
 };
 
 const Inner = ({ Component, pageProps, locale }) => {
-  const user = useMe();
-  const userLocale = user?.locale;
+  const userQuery = useMeQuery();
+  const userLocale = userQuery?.data?.me?.locale;
 
   locale = (userLocale || locale || Locale.EnUs).replace('_', '-');
 

@@ -5,3 +5,5 @@ export * from './lib/content';
 
 export * from './lib/modals/new-channel';
 export * from './lib/modals/delete-channel';
+
+export * from './lib/channel.api';

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import {
-  useMeQuery,
   useSpotifyModeCurrentQuery,
   useSpotifyModeCurrentUpdatedSubscription,
   useSpotifyModeUserSyncMutation,
 } from './mode-waitlist.api';
+import { useMeQuery } from '@dream/mono-user-ui';
 import { AuthButtonSpotify } from '@dream/mono-auth-ui';
 import { ChannelSpotifyModeHistory } from './history';
 import { ChannelSpotifyModeQueue } from './queue';

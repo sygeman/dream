@@ -3,7 +3,7 @@ import { Chat } from '@dream/mono-chat-ui';
 import { XIcon, UsersIcon, AnnotationIcon } from '@heroicons/react/solid';
 import { Transition } from '@headlessui/react';
 import { useCommunityChannel } from '@dream/mono-use-community-channel';
-import { useChannelUsersOnlineQuery } from '../community.api';
+import { useChannelUsersOnlineQuery } from '@dream/mono-channel-ui';
 
 const Users = ({ onClose }) => {
   const [usersFilter, setUsersFilter] = useState('');

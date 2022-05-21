@@ -16,9 +16,6 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@dream/components/*": ["libs/components/src/lib/*"],
-      "@dream/containers/*": ["libs/containers/src/*"],
-      "@dream/layouts/*": ["libs/layouts/src/*"],
       "@dream/mono-app-panel": ["libs/mono/app-panel/src/index.ts"],
       "@dream/mono-auth-api": ["libs/mono/auth/api/src/index.ts"],
       "@dream/mono-auth-ui": ["libs/mono/auth/ui/src/index.ts"],
@@ -93,10 +90,7 @@
         "libs/mono/utils/regexp/url-name/src/index.ts"
       ],
       "@dream/mono-utils-use-modal": ["libs/mono/utils/use-modal/src/index.ts"],
-      "@dream/pepega-prisma": ["libs/pepega/prisma/src/index.ts"],
-      "@dream/pepega-ui/*": ["libs/pepega-ui/src/lib/*"],
-      "@dream/ui/*": ["libs/ui/src/lib/*"],
-      "@dream/utils-old/*": ["libs/utils-old/src/*"]
+      "@dream/pepega-prisma": ["libs/pepega/prisma/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

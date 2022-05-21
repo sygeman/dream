@@ -1,6 +1,6 @@
 import subDays from 'date-fns/subDays';
-import { Clips } from '../../containers/Clips';
-import Layout from '../../layouts/Main';
+import { Clips } from '@dream/pepega/containers-old';
+import { MainLayout } from '@dream/pepega/layouts/main';
 
 const TopWeekPage = () => {
   const now = new Date();
@@ -8,7 +8,7 @@ const TopWeekPage = () => {
   const startedAtWeek = new Date(subDays(now, 14)).toISOString();
 
   return (
-    <Layout streams>
+    <MainLayout streams>
       <Clips
         title="Топ за неделю"
         description="Клипы за неделю с самым высоким рейтингом"
@@ -16,7 +16,7 @@ const TopWeekPage = () => {
         startedAt={startedAtWeek}
         orderBy={{ name: 'clipRating', type: 'DESC' }}
       />
-    </Layout>
+    </MainLayout>
   );
 };
 

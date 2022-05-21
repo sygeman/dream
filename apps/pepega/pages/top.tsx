@@ -1,6 +1,6 @@
 import subDays from 'date-fns/subDays';
-import { Clips } from '../containers/Clips';
-import Layout from '../layouts/Main';
+import { Clips } from '@dream/pepega/containers-old';
+import { MainLayout } from '@dream/pepega/layouts/main';
 
 const TopPage = () => {
   const now = new Date();
@@ -10,7 +10,7 @@ const TopPage = () => {
   const startedAtMonth = new Date(subDays(now, 30)).toISOString();
 
   return (
-    <Layout streams>
+    <MainLayout streams>
       <Clips
         title="Топ за день"
         description="Клипы за 24 часа с самым высоким рейтингом"
@@ -42,7 +42,7 @@ const TopPage = () => {
         orderBy={{ name: 'clipRating', type: 'DESC' }}
         rows={1}
       />
-    </Layout>
+    </MainLayout>
   );
 };
 

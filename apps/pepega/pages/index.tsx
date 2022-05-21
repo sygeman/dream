@@ -1,6 +1,6 @@
 import subDays from 'date-fns/subDays';
-import { Clips } from '../containers/Clips';
-import Layout from '../layouts/Main';
+import { Clips } from '@dream/pepega/containers-old';
+import { MainLayout } from '@dream/pepega/layouts/main';
 
 const IndexPage = () => {
   const now = new Date();
@@ -8,7 +8,7 @@ const IndexPage = () => {
   const startedAt = new Date(subDays(now, 1)).toISOString();
 
   return (
-    <Layout streams>
+    <MainLayout streams>
       <Clips
         orderBy={{ name: 'clipRating', type: 'DESC' }}
         ratingMin={1}
@@ -23,7 +23,7 @@ const IndexPage = () => {
         description="Самые последние предложенные клипы"
         titleLink="/new"
       />
-    </Layout>
+    </MainLayout>
   );
 };
 

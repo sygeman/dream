@@ -1237,6 +1237,82 @@
       },
       "tags": []
     },
+    "pepega-components-avatar": {
+      "root": "libs/pepega/components/avatar",
+      "sourceRoot": "libs/pepega/components/avatar/src",
+      "projectType": "library",
+      "tags": [],
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": [
+              "libs/pepega/components/avatar/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/pepega/components/avatar"],
+          "options": {
+            "jestConfig": "libs/pepega/components/avatar/jest.config.ts",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "pepega-components-old": {
+      "root": "libs/pepega/components-old",
+      "sourceRoot": "libs/pepega/components-old/src",
+      "projectType": "library",
+      "tags": [],
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": [
+              "libs/pepega/components-old/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        }
+      }
+    },
+    "pepega-containers-old": {
+      "root": "libs/pepega/containers-old",
+      "sourceRoot": "libs/pepega/containers-old/src",
+      "projectType": "library",
+      "tags": [],
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": [
+              "libs/pepega/containers-old/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        }
+      }
+    },
+    "pepega-layouts-main": {
+      "root": "libs/pepega/layouts/main",
+      "sourceRoot": "libs/pepega/layouts/main/src",
+      "projectType": "library",
+      "tags": [],
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": [
+              "libs/pepega/layouts/main/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        }
+      }
+    },
     "pepega-prisma": {
       "root": "libs/pepega/prisma",
       "sourceRoot": "libs/pepega/prisma/src",
@@ -1259,6 +1335,21 @@
         }
       },
       "tags": []
+    },
+    "pepega-utils-old": {
+      "root": "libs/pepega/utils-old",
+      "sourceRoot": "libs/pepega/utils-old/src",
+      "projectType": "library",
+      "tags": [],
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/pepega/utils-old/**/*.{ts,tsx,js,jsx}"]
+          }
+        }
+      }
     }
   }
 }

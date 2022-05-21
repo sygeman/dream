@@ -1,16 +1,5 @@
 import { Component } from 'react';
-import styled from 'styled-components';
-import Layout from '../layouts/Main';
-
-const ErrorBox = styled.div`
-  display: flex;
-  height: 100%;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-  color: ${({ theme }) => theme.accent1Color};
-`;
+import { MainLayout } from '@dream/pepega/layouts/main';
 
 interface IProps {
   statusCode?: any;
@@ -26,13 +15,13 @@ class ErrorPage extends Component<IProps> {
     const { statusCode } = this.props;
 
     return (
-      <Layout>
-        <ErrorBox>
+      <MainLayout>
+        <div className="flex h-full w-full items-center justify-center text-lg">
           {statusCode
             ? '404. Такой страницы не существует'
             : `Ошибка ${statusCode}`}
-        </ErrorBox>
-      </Layout>
+        </div>
+      </MainLayout>
     );
   }
 }

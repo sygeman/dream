@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
-import Channel from '../containers/Channel';
-import Layout from '../layouts/Main';
+import { Channel } from '@dream/pepega/containers-old';
+import { MainLayout } from '@dream/pepega/layouts/main';
 
 const ChannelPage = () => {
   const router = useRouter();
@@ -11,9 +11,9 @@ const ChannelPage = () => {
   }
 
   return (
-    <Layout streams>
+    <MainLayout streams>
       <Channel userId={userId} />
-    </Layout>
+    </MainLayout>
   );
 };
 

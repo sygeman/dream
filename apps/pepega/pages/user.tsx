@@ -2,10 +2,10 @@ import gql from 'graphql-tag';
 import Head from 'next/head';
 import * as React from 'react';
 import { useQuery } from '@apollo/client';
-import { Clips } from '../containers/Clips';
-import UserPanelProfile from '../containers/User/UserPanelProfile';
+import { Clips } from '@dream/pepega/containers-old';
+import { UserPanelProfile } from '@dream/pepega/containers-old';
 import { useRouter } from 'next/router';
-import Layout from '../layouts/Main';
+import { MainLayout } from '@dream/pepega/layouts/main';
 import styled from 'styled-components';
 
 const GET_USER = gql`
@@ -52,7 +52,7 @@ const UserPage = () => {
   }
 
   return (
-    <Layout fixedTopContent={<UserPanelProfile user={data.user} />}>
+    <MainLayout fixedTopContent={<UserPanelProfile user={data.user} />}>
       <Box>
         <Head>
           <title>{data.user.name}</title>
@@ -65,7 +65,7 @@ const UserPage = () => {
           />
         </PostsBox>
       </Box>
-    </Layout>
+    </MainLayout>
   );
 };
 

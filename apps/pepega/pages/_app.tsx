@@ -4,7 +4,7 @@ import Router from 'next/router';
 import NProgress from 'nprogress';
 import 'resize-observer-polyfill';
 import { ApolloProvider } from '@apollo/client';
-import { useApollo } from '../utils/apollo';
+import { useApollo } from '@dream/pepega/utils-old';
 import { ThemeProvider } from 'styled-components';
 import '../styles.css';
 

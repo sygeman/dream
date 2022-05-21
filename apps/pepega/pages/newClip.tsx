@@ -1,8 +1,8 @@
 import { lighten } from 'polished';
 import { FC } from 'react';
 import styled from 'styled-components';
-import { CreateCommunityClip } from '../containers/Clip/Create';
-import Layout from '../layouts/Main';
+import { CreateCommunityClip } from '@dream/pepega/containers-old';
+import { MainLayout } from '@dream/pepega/layouts/main';
 
 const Box = styled.div`
   display: flex;
@@ -21,13 +21,13 @@ const Container = styled.div`
 `;
 
 const NewCommunityClipPage: FC = () => (
-  <Layout>
+  <MainLayout>
     <Box>
       <Container>
         <CreateCommunityClip />
       </Container>
     </Box>
-  </Layout>
+  </MainLayout>
 );
 
 export default NewCommunityClipPage;

@@ -1,10 +1,10 @@
-import Layout from '../layouts/Main';
-import { ClipsLikes } from '../containers/Clips/Likes';
+import { MainLayout } from '@dream/pepega/layouts/main';
+import { ClipsLikes } from '@dream/pepega/containers-old';
 
 const ClipLikesPage = () => (
-  <Layout>
+  <MainLayout>
     <ClipsLikes />
-  </Layout>
+  </MainLayout>
 );
 
 export default ClipLikesPage;

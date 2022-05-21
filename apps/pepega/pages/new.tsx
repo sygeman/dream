@@ -1,10 +1,10 @@
-import Layout from '../layouts/Main';
-import { Clips } from '../containers/Clips';
+import { MainLayout } from '@dream/pepega/layouts/main';
+import { Clips } from '@dream/pepega/containers-old';
 
 const NewPage = () => (
-  <Layout streams>
+  <MainLayout streams>
     <Clips title="Новое" description="Самые последние предложенные клипы" />
-  </Layout>
+  </MainLayout>
 );
 
 export default NewPage;

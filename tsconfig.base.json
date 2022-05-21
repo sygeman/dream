@@ -90,7 +90,18 @@
         "libs/mono/utils/regexp/url-name/src/index.ts"
       ],
       "@dream/mono-utils-use-modal": ["libs/mono/utils/use-modal/src/index.ts"],
-      "@dream/pepega-prisma": ["libs/pepega/prisma/src/index.ts"]
+      "@dream/pepega-prisma": ["libs/pepega/prisma/src/index.ts"],
+      "@dream/pepega/components-old": [
+        "libs/pepega/components-old/src/index.ts"
+      ],
+      "@dream/pepega/components/avatar": [
+        "libs/pepega/components/avatar/src/index.ts"
+      ],
+      "@dream/pepega/containers-old": [
+        "libs/pepega/containers-old/src/index.ts"
+      ],
+      "@dream/pepega/layouts/main": ["libs/pepega/layouts/main/src/index.ts"],
+      "@dream/pepega/utils-old": ["libs/pepega/utils-old/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

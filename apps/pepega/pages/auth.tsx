@@ -1,8 +1,8 @@
 import { lighten } from 'polished';
 import { FC } from 'react';
 import styled from 'styled-components';
-import Auth from '../containers/Auth';
-import Layout from '../layouts/Main';
+import { Auth } from '@dream/pepega/containers-old';
+import { MainLayout } from '@dream/pepega/layouts/main';
 
 const Box = styled.div`
   display: flex;
@@ -21,13 +21,13 @@ const Container = styled.div`
 `;
 
 const AuthPage: FC = () => (
-  <Layout>
+  <MainLayout>
     <Box>
       <Container>
         <Auth />
       </Container>
     </Box>
-  </Layout>
+  </MainLayout>
 );
 
 export default AuthPage;

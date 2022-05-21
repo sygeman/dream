@@ -1,11 +1,11 @@
-import Layout from '../layouts/Main';
-import { ClipsHistory } from '../containers/Clips/History';
+import { MainLayout } from '@dream/pepega/layouts/main';
+import { ClipsHistory } from '@dream/pepega/containers-old';
 
 const ClipHistoryPage = () => {
   return (
-    <Layout>
+    <MainLayout>
       <ClipsHistory />
-    </Layout>
+    </MainLayout>
   );
 };
 

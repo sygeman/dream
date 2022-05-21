@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
-import { Clip } from '../containers/Clip/Clip';
-import Layout from '../layouts/Main';
+import { Clip } from '@dream/pepega/containers-old';
+import { MainLayout } from '@dream/pepega/layouts/main';
 
 const Box = styled.div`
   margin: 0 auto;
@@ -33,14 +33,14 @@ const ClipPage = () => {
   }
 
   return (
-    <Layout>
+    <MainLayout>
       <Box>
         <Left>
           <Clip clipId={clipId} />
         </Left>
         <Right></Right>
       </Box>
-    </Layout>
+    </MainLayout>
   );
 };
 

@@ -19,7 +19,7 @@ const ReactionButtonAnim = posed.div({
   pressable: true,
   init: { scale: 1 },
   press: { scale: 1.5 },
-  pressEnd: { scale: 1 }
+  pressEnd: { scale: 1 },
 });
 
 const ReactionButton = styled(ReactionButtonAnim)<IReactionButton>`
@@ -30,13 +30,13 @@ const ReactionButton = styled(ReactionButtonAnim)<IReactionButton>`
 
   svg {
     fill: ${({ theme, active }) =>
-      active ? lighten(0.15, theme.colors.primary) : theme.colors.accent};
+      active ? lighten(0.15, '#6441A4') : '#968A9D'};
   }
 `;
 
 const ReactionsCount = styled('div')<IReactionButton>`
   color: ${({ theme, active }) =>
-    active ? lighten(0.15, theme.colors.primary) : theme.colors.accent};
+    active ? lighten(0.15, '#6441A4') : '#968A9D'};
   margin-left: 10px;
   font-weight: 500;
   user-select: none;
@@ -53,7 +53,7 @@ export const ClipReactionButton: FC<IProps> = ({
   onClick,
   active,
   icon,
-  count
+  count,
 }) => (
   <Box>
     <ReactionButton active={active} onClick={() => onClick()}>

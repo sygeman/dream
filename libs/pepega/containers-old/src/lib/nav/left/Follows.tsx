@@ -33,7 +33,7 @@ const FollowsGuest = styled.div`
   font-size: 13px;
   text-align: center;
   padding: 10px 20px;
-  color: ${({ theme }) => theme.colors.accent};
+  color: ${({ theme }) => '#968A9D'};
 `;
 
 const FollowsGuestText = styled.div`

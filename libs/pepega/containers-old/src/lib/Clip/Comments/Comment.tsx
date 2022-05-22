@@ -41,7 +41,7 @@ const AvatarImg = styled.img`
   height: 26px;
   border-radius: 100%;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  background: ${(props) => props.theme.colors.surface};
+  background: ${(props) => '#262841'};
 `;
 
 const AvatarNone = styled.div`
@@ -49,7 +49,7 @@ const AvatarNone = styled.div`
   height: 26px;
   border-radius: 100%;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  background: ${(props) => props.theme.colors.accent};
+  background: ${(props) => '#968A9D'};
 `;
 
 const Header = styled.div`
@@ -62,14 +62,12 @@ const Header = styled.div`
 const Username = styled('div')<{ userColor?: string }>`
   font-weight: 500;
   color: ${(props) =>
-    props.userColor
-      ? props.userColor
-      : lighten('0.15', props.theme.colors.accent)};
+    props.userColor ? props.userColor : lighten('0.15', '#968A9D')};
   flex: 1;
 `;
 
 const Date = styled.div`
-  color: ${(props) => props.theme.colors.accent};
+  color: ${(props) => '#968A9D'};
   font-size: 12px;
   text-align: right;
   padding: 0 16px;
@@ -80,7 +78,7 @@ const Content = styled.div`
 `;
 
 const Text = styled.div`
-  color: ${(props) => props.theme.colors.accent};
+  color: ${(props) => '#968A9D'};
   padding: 4px 10px 4px 50px;
   overflow: hidden;
   overflow-wrap: break-word;
@@ -105,11 +103,11 @@ const ManageMenu = styled.div`
 
 const ManageItem = styled.div`
   padding: 0 3px;
-  color: ${(props) => props.theme.colors.accent};
+  color: ${(props) => '#968A9D'};
 
   i {
     font-size: 17px;
-    color: ${(props) => props.theme.colors.accent};
+    color: ${(props) => '#968A9D'};
   }
 
   :hover {
@@ -122,7 +120,7 @@ const ManageItem = styled.div`
 `;
 
 const UserMenu = styled.div`
-  background: ${({ theme }) => theme.colors.background};
+  background: ${({ theme }) => '#1D1E31'};
   border-radius: 3px;
   overflow: hidden;
   margin: 5px;
@@ -136,7 +134,7 @@ const UserMenuItem = styled.div`
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 
   :hover {
-    background: ${({ theme }) => darken(0.05, theme.colors.background)};
+    background: ${({ theme }) => darken(0.05, '#1D1E31')};
   }
 `;
 

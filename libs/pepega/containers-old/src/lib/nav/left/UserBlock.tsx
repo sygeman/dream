@@ -23,13 +23,13 @@ const Box = styled.div`
   height: 42px;
   align-items: center;
   display: flex;
-  background: ${({ theme }) => lighten(0.1, theme.colors.surface)};
+  background: ${({ theme }) => lighten(0.1, '#262841')};
 `;
 
 const UserMenu = styled.div`
   display: flex;
   flex-direction: column;
-  background: ${({ theme }) => theme.colors.surface};
+  background: ${({ theme }) => '#262841'};
   border-radius: 3px;
   overflow: hidden;
   margin-left: -174px;
@@ -45,7 +45,7 @@ const UserMenuItem = styled.div`
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 
   :hover {
-    background: ${({ theme }) => darken(0.1, theme.colors.primary)};
+    background: ${({ theme }) => darken(0.1, '#6441A4')};
   }
 `;
 
@@ -59,7 +59,7 @@ const UserNameBox = styled.div`
   align-items: center;
   font-size: 13px;
   padding: 0 5px;
-  color: ${({ theme }) => lighten(0.6, theme.colors.surface)};
+  color: ${({ theme }) => lighten(0.6, '#262841')};
 `;
 
 const UserCaratBox = styled.div`

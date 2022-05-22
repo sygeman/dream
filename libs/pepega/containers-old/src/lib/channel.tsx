@@ -83,7 +83,7 @@ const ChannelAvatar = styled.div`
 const ChannelAvatarMock = styled.div`
   height: 100%;
   width: 100%;
-  background: ${({ theme }) => theme.colors.surface};
+  background: ${({ theme }) => '#262841'};
 `;
 
 const ChannelAvatarImg = styled.img`
@@ -112,7 +112,7 @@ const SectionTitle = styled.div`
 `;
 
 const SectionTitleMock = styled.div`
-  background: ${({ theme }) => theme.colors.surface};
+  background: ${({ theme }) => '#262841'};
   width: 100px;
   height: 16px;
 `;
@@ -123,11 +123,11 @@ const SectionDescription = styled.div`
   width: 100%;
   font-size: 12px;
   height: 16px;
-  color: ${({ theme }) => darken(0.4, theme.colors.text)};
+  color: ${({ theme }) => darken(0.4, '#EEEEEE')};
 `;
 
 const SectionDescriptionMock = styled.div`
-  background: ${({ theme }) => theme.colors.surface};
+  background: ${({ theme }) => '#262841'};
   width: 150px;
   height: 11px;
 `;
@@ -139,7 +139,7 @@ const NoClips = styled.div`
   justify-content: center;
   height: 100px;
   font-size: 14px;
-  color: ${({ theme }) => darken(0.4, theme.colors.text)};
+  color: ${({ theme }) => darken(0.4, '#EEEEEE')};
 `;
 
 interface IProps {

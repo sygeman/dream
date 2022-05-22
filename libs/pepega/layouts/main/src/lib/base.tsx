@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
-import { lighten, rgba } from 'polished';
+import { lighten } from 'polished';
+import clsx from 'clsx';
 import { ReactNode, useState, FC } from 'react';
 import Scrollbars from 'react-custom-scrollbars';
 import styled from 'styled-components';
@@ -12,7 +13,7 @@ import { UserBox, TopNav } from '@dream/pepega/containers-old';
 const LEFT_MENU_WIDTH = 240;
 
 const Left = styled.div<{ isOpen: boolean }>`
-  background: ${({ theme }) => lighten(0.03, theme.colors.background)};
+  background: ${({ theme }) => lighten(0.03, '#1D1E31')};
   width: ${LEFT_MENU_WIDTH}px;
   position: absolute;
   left: 0;
@@ -37,21 +38,6 @@ const PostsBox = styled.div<{ noLeftMenu?: boolean }>`
 
   @media (min-width: 700px) {
     padding-left: ${({ noLeftMenu }) => (noLeftMenu ? 0 : LEFT_MENU_WIDTH)}px;
-  }
-`;
-
-const Overlay = styled.div<{ leftMenuIsOpen: boolean }>`
-  display: none;
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: ${({ theme }) => rgba(theme.colors.background, 0.95)};
-  z-index: 50;
-
-  @media (max-width: 700px) {
-    ${({ leftMenuIsOpen }) => leftMenuIsOpen && 'display: block;'}
   }
 `;
 
@@ -132,8 +118,11 @@ export const BaseLayout: FC<IProps> = ({
                 {children}
               </PostsBox>
             </div>
-            <Overlay
-              leftMenuIsOpen={leftMenuIsOpen}
+            <div
+              className={clsx(
+                'hidden absolute left-0 top-0 w-full h-full z-50 bg-background/95',
+                leftMenuIsOpen && '' // @media (max-width: 700px)  display: block
+              )}
               onClick={() => setLeftMenuIsOpen(false)}
             />
           </div>

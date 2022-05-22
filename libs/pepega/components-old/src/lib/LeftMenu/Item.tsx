@@ -6,8 +6,7 @@ import { useRouter } from 'next/router';
 
 const Item = styled.a<{ active: boolean; noHover: boolean }>`
   border-left: 4px solid transparent;
-  border-color: ${({ active, theme }) =>
-    active && darken(0.1, theme.colors.primary)};
+  border-color: ${({ active, theme }) => active && darken(0.1, '#6441A4')};
   border-radius: 0;
   margin: 0;
   font-size: 13px;
@@ -19,17 +18,16 @@ const Item = styled.a<{ active: boolean; noHover: boolean }>`
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  background: ${({ active, theme }) =>
-    active && lighten(0.06, theme.colors.background)};
+  background: ${({ active, theme }) => active && lighten(0.06, '#1D1E31')};
 
   :hover {
     background: ${({ theme, noHover }) =>
-      noHover ? 'inherit' : lighten(0.06, theme.colors.background)};
+      noHover ? 'inherit' : lighten(0.06, '#1D1E31')};
   }
 
   svg {
     fill: ${({ theme, active }) =>
-      active ? lighten(0.7, theme.colors.accent) : theme.colors.accent};
+      active ? lighten(0.7, '#968A9D') : '#968A9D'};
   }
 `;
 
@@ -48,7 +46,7 @@ const ItemTitle = styled.div`
 const ItemBadge = styled.div<{ active: boolean }>`
   padding: 0 20px;
   color: ${({ theme, active }) =>
-    active ? lighten(0.2, theme.colors.accent) : theme.colors.accent};
+    active ? lighten(0.2, '#968A9D') : '#968A9D'};
 `;
 
 const SubItemMenuBox = styled.div``;

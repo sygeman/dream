@@ -5,7 +5,6 @@ import NProgress from 'nprogress';
 import 'resize-observer-polyfill';
 import { ApolloProvider } from '@apollo/client';
 import { useApollo } from '@dream/pepega/utils-old';
-import { ThemeProvider } from 'styled-components';
 import '../styles.css';
 
 Router.events.on('routeChangeStart', () => NProgress.start());
@@ -17,31 +16,17 @@ function CustomApp({ Component, pageProps, locale }) {
 
   return (
     <ApolloProvider client={apolloClient}>
-      <ThemeProvider
-        theme={{
-          colors: {
-            primary: '#6441A4',
-            surface: '#262841',
-            background: '#1D1E31',
-            accent: '#968A9D',
-            text: '#EEEEEE',
-          },
-        }}
-      >
-        <>
-          <Head>
-            <title>PepegaCom</title>
-            <meta property="og:locale" content="ru_RU" />
-            <meta property="og:type" content="website" />
-            <meta
-              name="viewport"
-              content="initial-scale=1.0, width=device-width"
-              key="viewport"
-            />
-          </Head>
-          <Component {...pageProps} />
-        </>
-      </ThemeProvider>
+      <Head>
+        <title>PepegaCom</title>
+        <meta property="og:locale" content="ru_RU" />
+        <meta property="og:type" content="website" />
+        <meta
+          name="viewport"
+          content="initial-scale=1.0, width=device-width"
+          key="viewport"
+        />
+      </Head>
+      <Component {...pageProps} />
     </ApolloProvider>
   );
 }

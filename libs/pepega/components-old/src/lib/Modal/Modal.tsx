@@ -21,7 +21,7 @@ const BGOut = styled.div`
   width: 100%;
   top: 0;
   left: 0;
-  background: ${({ theme }) => darken(0.05, theme.colors.background)};
+  background: ${({ theme }) => darken(0.05, '#1D1E31')};
   opacity: 0.95;
   z-index: 3000;
 `;
@@ -44,15 +44,14 @@ const BoxNav = styled.div`
   align-items: center;
   min-width: 60px;
   justify-content: center;
-  color: ${({ theme }) =>
-    theme.colors.accent && rgba(theme.colors.accent, 0.5)};
+  color: ${({ theme }) => '#968A9D' && rgba('#968A9D', 0.5)};
 
   i {
     font-size: 40px;
   }
 
   :hover {
-    color: ${({ theme }) => theme.colors.accent};
+    color: ${({ theme }) => '#968A9D'};
   }
 
   @media (max-width: 700px) {
@@ -76,9 +75,7 @@ const ModalB = styled('div')<{
   noBackgroud: boolean;
 }>`
   background: ${({ theme, noBackgroud }) =>
-    noBackgroud
-      ? 'transparent'
-      : theme.colors.surface && lighten(0.01, theme.colors.surface)};
+    noBackgroud ? 'transparent' : '#262841' && lighten(0.01, '#262841')};
   border-radius: 4px;
   overflow: hidden;
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -90,7 +87,7 @@ const Header = styled('div')<{
   display: ${({ minimal }) => (minimal ? 'none' : 'flex')};
   align-items: center;
   height: 46px;
-  background: ${({ theme }) => darken(0.1, theme.colors.primary)};
+  background: ${({ theme }) => darken(0.1, '#6441A4')};
   border-radius: 4px 4px 0 0;
 
   @media (max-width: 700px) {
@@ -102,7 +99,7 @@ const Header = styled('div')<{
 const Title = styled.div`
   padding: 0 20px;
   font-size: 15px;
-  color: ${({ theme }) => theme.colors.text};
+  color: ${({ theme }) => '#EEEEEE'};
 `;
 
 const CloseBox = styled.div`
@@ -111,12 +108,12 @@ const CloseBox = styled.div`
   margin-left: auto;
   padding: 0 20px;
   font-size: 22px;
-  color: ${({ theme }) => theme.colors.text};
+  color: ${({ theme }) => '#EEEEEE'};
   cursor: pointer;
-  color: ${({ theme }) => lighten(0.3, theme.colors.primary)};
+  color: ${({ theme }) => lighten(0.3, '#6441A4')};
 
   :hover {
-    color: ${({ theme }) => theme.colors.text};
+    color: ${({ theme }) => '#EEEEEE'};
   }
 
   @media (max-width: 700px) {
@@ -136,12 +133,11 @@ const CloseOut = styled.div`
   width: 60px;
   justify-content: center;
   font-size: 30px;
-  color: ${({ theme }) =>
-    theme.colors.accent && rgba(theme.colors.accent, 0.5)};
+  color: ${({ theme }) => '#968A9D' && rgba('#968A9D', 0.5)};
   cursor: pointer;
 
   :hover {
-    color: ${({ theme }) => theme.colors.accent};
+    color: ${({ theme }) => '#968A9D'};
   }
 
   @media (max-width: 700px) {

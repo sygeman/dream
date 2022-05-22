@@ -1,4 +1,4 @@
-import * as Types from '@dream/pepega-types';
+import * as Types from '@dream/pepega/types';
 
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';

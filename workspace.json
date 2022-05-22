@@ -1358,6 +1358,21 @@
       },
       "tags": []
     },
+    "pepega-types": {
+      "root": "libs/pepega/types",
+      "sourceRoot": "libs/pepega/types/src",
+      "projectType": "library",
+      "tags": [],
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/pepega/types/**/*.{ts,tsx,js,jsx}"]
+          }
+        }
+      }
+    },
     "pepega-user-api": "libs/pepega/user/api",
     "pepega-user-coin-api": "libs/pepega/user-coin/api",
     "pepega-utils-old": {

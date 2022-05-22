@@ -22,13 +22,13 @@ const ShareButton = styled.div`
   cursor: pointer;
 
   svg {
-    fill: ${({ theme }) => theme.colors.accent};
+    fill: ${({ theme }) => '#968A9D'};
   }
 `;
 
 const ShareMenu = styled.div`
   display: flex;
-  background: ${({ theme }) => theme.colors.background};
+  background: ${({ theme }) => '#1D1E31'};
   border-radius: 3px;
   overflow: hidden;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
@@ -41,7 +41,7 @@ const ShareMenuItem = styled.div`
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 
   :hover {
-    background: ${({ theme }) => darken(0.05, theme.colors.background)};
+    background: ${({ theme }) => darken(0.05, '#1D1E31')};
   }
 `;
 
@@ -52,7 +52,7 @@ const CopyLinkButton = styled.div`
   align-items: center;
   justify-content: center;
   font-size: 16px;
-  background: ${({ theme }) => theme.colors.primary};
+  background: ${({ theme }) => '#6441A4'};
 `;
 
 interface IProps {

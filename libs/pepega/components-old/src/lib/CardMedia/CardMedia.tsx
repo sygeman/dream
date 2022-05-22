@@ -16,14 +16,14 @@ const Media = styled.div`
   position: relative;
   padding-bottom: 56.25%;
   width: 100%;
-  background: ${({ theme }) => darken(0.1, theme.colors.surface)};
+  background: ${({ theme }) => darken(0.1, '#262841')};
 `;
 
 const Content = styled.div`
   display: flex;
   font-size: 11.5px;
-  background: ${({ theme }) => theme.colors.surface};
-  color: ${({ theme }) => darken(0.4, theme.colors.text)};
+  background: ${({ theme }) => '#262841'};
+  color: ${({ theme }) => darken(0.4, '#EEEEEE')};
   width: 100%;
   height: 50px;
   padding: 0 5px;
@@ -42,7 +42,7 @@ const AvatarBox = styled.div`
   height: 30px;
   border-radius: 100%;
   overflow: hidden;
-  background: ${({ theme }) => lighten(0.1, theme.colors.surface)};
+  background: ${({ theme }) => lighten(0.1, '#262841')};
 `;
 
 const AvatarImg = styled.img`
@@ -70,7 +70,7 @@ const Title = styled.div`
   text-overflow: ellipsis;
   width: 100%;
   text-align: left;
-  color: ${({ theme }) => theme.colors.text};
+  color: ${({ theme }) => '#EEEEEE'};
 `;
 
 const Description = styled.div`
@@ -84,7 +84,7 @@ const Count = styled.div`
   justify-content: center;
   height: 100%;
   font-size: 11.5px;
-  color: ${({ theme }) => lighten(0.5, theme.colors.surface)};
+  color: ${({ theme }) => lighten(0.5, '#262841')};
   font-weight: 500;
 
   span {
@@ -93,7 +93,7 @@ const Count = styled.div`
     height: 30px;
     padding: 0 8px;
     border-radius: 4px;
-    background: ${({ theme }) => lighten(0.1, theme.colors.surface)};
+    background: ${({ theme }) => lighten(0.1, '#262841')};
   }
 `;
 
@@ -107,7 +107,7 @@ const Overlay = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  background: ${({ theme }) => darken(0.1, theme.colors.surface)};
+  background: ${({ theme }) => darken(0.1, '#262841')};
   width: 100%;
   height: 100%;
 `;

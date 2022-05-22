@@ -7,7 +7,7 @@ const LogoLink = styled.a`
   align-items: center;
   height: 100%;
   height: 42px;
-  background: ${({ theme }) => rgba(darken(0.06, theme.colors.primary), 0.9)};
+  background: ${({ theme }) => rgba(darken(0.06, '#6441A4'), 0.9)};
   margin-bottom: 10px;
 `;
 
@@ -17,14 +17,14 @@ const LogoImg = styled.img`
   margin-left: 18px;
   padding: 5px;
   cursor: pointer;
-  background: ${({ theme }) => lighten(0.05, theme.colors.primary)};
+  background: ${({ theme }) => lighten(0.05, '#6441A4')};
   border-radius: 5px;
 `;
 
 const LogoTitle = styled.div`
   font-size: 13px;
   margin-left: 15px;
-  color: ${({ theme }) => lighten(0.4, theme.colors.primary)};
+  color: ${({ theme }) => lighten(0.4, '#6441A4')};
   letter-spacing: 0.5px;
   font-weight: 500;
 `;

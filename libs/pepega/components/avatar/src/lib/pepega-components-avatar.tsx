@@ -31,8 +31,7 @@ const Dot = styled('div')<{ dotColor: string }>`
   height: 12px;
   width: 12px;
   border-radius: 100%;
-  border: ${DOT_BORDER}px solid
-    ${({ theme }) => lighten(0.1, theme.colors.surface)};
+  border: ${DOT_BORDER}px solid ${({ theme }) => lighten(0.1, '#262841')};
   background: ${({ dotColor }) => dotColor};
   display: flex;
   align-items: center;

@@ -54,7 +54,7 @@ const PreviewRightTags = styled.div<{ width: number }>`
 const PreviewBlurText = styled.div`
   padding: 4px 8px;
   background: #000000a3;
-  color: ${({ theme }) => rgba(theme.colors.text, 0.8)};
+  color: ${({ theme }) => rgba('#EEEEEE', 0.8)};
   border-radius: 3px;
   margin-left: 5px;
 `;
@@ -63,7 +63,7 @@ const Views = styled.div<{ width: number }>`
   display: flex;
   align-items: center;
   background: #000000a3;
-  color: ${({ theme }) => rgba(theme.colors.text, 0.8)};
+  color: ${({ theme }) => rgba('#EEEEEE', 0.8)};
   padding: 5px 10px;
   border-radius: 5px;
 
@@ -77,7 +77,7 @@ const Views = styled.div<{ width: number }>`
 const Date = styled.div`
   display: flex;
   background: #000000a3;
-  color: ${({ theme }) => rgba(theme.colors.text, 0.8)};
+  color: ${({ theme }) => rgba('#EEEEEE', 0.8)};
   padding: 5px 10px;
   border-radius: 5px;
 `;
@@ -90,7 +90,7 @@ const Bottom = styled.div<{ width: number }>`
   padding: ${({ width }) => width * (1 / 40)}px;
   width: 100%;
   font-size: ${({ width }) => width * (1 / 27)}px;
-  color: ${({ theme }) => rgba(theme.colors.text, 0.8)};
+  color: ${({ theme }) => rgba('#EEEEEE', 0.8)};
 `;
 
 const BottomRight = styled.div`

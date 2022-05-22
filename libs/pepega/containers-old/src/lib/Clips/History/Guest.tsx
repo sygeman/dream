@@ -16,7 +16,7 @@ const IconBox = styled.div`
   margin: 20px 0;
 
   svg {
-    color: ${({ theme }) => darken(0.1, theme.colors.accent)};
+    color: ${({ theme }) => darken(0.1, '#968A9D')};
   }
 `;
 
@@ -32,7 +32,7 @@ const Description = styled.div`
   justify-content: center;
   font-size: 14px;
   margin: 10px 0;
-  color: ${({ theme }) => darken(0.1, theme.colors.accent)};
+  color: ${({ theme }) => darken(0.1, '#968A9D')};
 `;
 
 const ActionBox = styled.div`

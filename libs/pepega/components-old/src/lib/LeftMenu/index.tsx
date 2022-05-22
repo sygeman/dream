@@ -9,7 +9,7 @@ export const Box = styled.div``;
 export const Divider = styled.div`
   margin: 8px 0;
   height: 1px;
-  background: ${({ theme }) => theme.colors.background};
+  background: ${({ theme }) => '#1D1E31'};
 `;
 
 export const LoadMore = styled.div`
@@ -18,12 +18,12 @@ export const LoadMore = styled.div`
   justify-content: center;
   height: 30px;
   font-size: 13px;
-  color: ${({ theme }) => theme.colors.accent};
-  background: ${({ theme }) => lighten(0.001, theme.colors.surface)};
+  color: ${({ theme }) => '#968A9D'};
+  background: ${({ theme }) => lighten(0.001, '#262841')};
   cursor: pointer;
 
   :hover {
-    background: ${({ theme }) => lighten(0.01, theme.colors.surface)};
+    background: ${({ theme }) => lighten(0.01, '#262841')};
   }
 
   i {

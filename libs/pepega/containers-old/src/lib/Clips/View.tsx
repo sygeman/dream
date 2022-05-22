@@ -23,7 +23,7 @@ const SectionDescription = styled.div`
   display: flex;
   width: 100%;
   font-size: 12px;
-  color: ${({ theme }) => darken(0.4, theme.colors.text)};
+  color: ${({ theme }) => darken(0.4, '#EEEEEE')};
 `;
 
 const PostContainer = styled.div`

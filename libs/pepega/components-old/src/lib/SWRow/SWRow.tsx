@@ -7,7 +7,7 @@ const Box = styled.div`
   display: flex;
   width: 100%;
   padding: 10px 0;
-  /* border-bottom: 1px solid ${({ theme }) => theme.colors.background}; */
+  /* border-bottom: 1px solid ${({ theme }) => '#1D1E31'}; */
   align-items: center;
 
   &:last-child {
@@ -27,13 +27,13 @@ const SRowTitle = styled.div`
   font-size: 14px;
   display: flex;
   align-items: center;
-  color: ${({ theme }) => theme.colors.text};
+  color: ${({ theme }) => '#EEEEEE'};
 `;
 
 const SRowDescription = styled.div`
   padding-top: 5px;
   font-size: 12.5px;
-  color: ${({ theme }) => darken(0.4, theme.colors.text)};
+  color: ${({ theme }) => darken(0.4, '#EEEEEE')};
 `;
 
 const SRowRight = styled.div`
@@ -61,7 +61,7 @@ export const SWRow: FC<IProps> = ({
   active,
   onChange,
   activeColor,
-  inactiveColor
+  inactiveColor,
 }) => (
   <Box>
     <SRowLeft>

@@ -19,13 +19,13 @@ const Box = styled.div`
   flex-direction: column;
   display: flex;
   flex: 1;
-  background: ${({ theme }) => theme.colors.surface};
+  background: ${({ theme }) => '#262841'};
   border-radius: 5px;
   overflow: hidden;
 `;
 
 const ContentBox = styled.div`
-  background: ${({ theme }) => darken(0.1, theme.colors.surface)};
+  background: ${({ theme }) => darken(0.1, '#262841')};
 `;
 
 const Bottom = styled.div`
@@ -38,7 +38,7 @@ const CommentsBox = styled.div`
   display: flex;
   flex: 1;
   position: relative;
-  background: ${({ theme }) => theme.colors.surface};
+  background: ${({ theme }) => '#262841'};
   border-top: 1px solid #1e1d22;
   border-radius: 0 0 5px 5px;
   overflow: hidden;

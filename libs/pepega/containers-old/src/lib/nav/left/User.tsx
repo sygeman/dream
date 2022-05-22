@@ -9,19 +9,19 @@ import { LeftNavMenuUserBlock } from './UserBlock';
 import { AddCircleOutline as AddCircleOutlineIcon } from 'styled-icons/material/AddCircleOutline';
 
 const Box = styled.div`
-  background: ${({ theme }) => lighten(0.05, theme.colors.surface)};
+  background: ${({ theme }) => lighten(0.05, '#262841')};
   overflow: hidden;
   min-height: 84px;
 `;
 
 const GuestBox = styled.div`
-  background: ${({ theme }) => lighten(0.05, theme.colors.surface)};
+  background: ${({ theme }) => lighten(0.05, '#262841')};
   overflow: hidden;
   min-height: 42px;
 `;
 
 const PointsCount = styled.div`
-  color: ${({ theme }) => lighten(0.4, theme.colors.primary)};
+  color: ${({ theme }) => lighten(0.4, '#6441A4')};
   font-size: 13px;
   font-weight: 500;
   display: flex;
@@ -32,7 +32,7 @@ const PointsBox = styled.div`
   align-items: center;
   justify-content: space-between;
   height: 42px;
-  background: ${({ theme }) => theme.colors.surface};
+  background: ${({ theme }) => '#262841'};
   padding: 1px 0;
 `;
 
@@ -43,12 +43,12 @@ const Points = styled.div`
   padding: 0 10px;
   height: 100%;
   width: 119.5px;
-  background: ${({ theme }) => lighten(0.05, theme.colors.surface)};
+  background: ${({ theme }) => lighten(0.05, '#262841')};
 `;
 
 const BuyCoinsLink = styled.a`
   margin-left: 10px;
-  color: ${({ theme }) => lighten(0.4, theme.colors.surface)};
+  color: ${({ theme }) => lighten(0.4, '#262841')};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -63,7 +63,7 @@ const BuyCoinsLink = styled.a`
 
 const TopLink = styled.a`
   padding: 0 10px;
-  color: ${({ theme }) => lighten(0.65, theme.colors.surface)};
+  color: ${({ theme }) => lighten(0.65, '#262841')};
   font-size: 11.7px;
   display: flex;
   align-items: center;
@@ -74,7 +74,7 @@ const TopLink = styled.a`
   text-transform: uppercase;
 
   :hover {
-    color: ${({ theme }) => lighten(0.6, theme.colors.accent)};
+    color: ${({ theme }) => lighten(0.6, '#968A9D')};
   }
 `;
 

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const Box = styled.div`
   display: flex;
-  background: ${({ theme }) => darken(0.01, theme.colors.surface)};
+  background: ${({ theme }) => darken(0.01, '#262841')};
   min-height: 42px;
 `;
 
@@ -59,7 +59,7 @@ const MenuItem = styled.div`
   align-items: center;
   padding: 0 5px;
   font-size: 12px;
-  color: ${({ theme }) => lighten(0.6, theme.colors.surface)};
+  color: ${({ theme }) => lighten(0.6, '#262841')};
 `;
 
 const MenuItemTitle = styled.div`

@@ -18,12 +18,12 @@ const SubItem = styled('a')<{
   text-overflow: ellipsis;
   font-size: 13px;
   cursor: pointer;
-  color: ${({ theme, active }) => darken(active ? 0 : 0.3, theme.colors.text)};
+  color: ${({ theme, active }) => darken(active ? 0 : 0.3, '#EEEEEE')};
   background: ${({ theme, active }) =>
-    active ? lighten(0.05, theme.colors.background) : 'transparent'};
+    active ? lighten(0.05, '#1D1E31') : 'transparent'};
 
   :hover {
-    background: ${({ theme }) => lighten(0.05, theme.colors.background)};
+    background: ${({ theme }) => lighten(0.05, '#1D1E31')};
   }
 
   span {

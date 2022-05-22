@@ -18,7 +18,7 @@ const SubItemSkeleton = styled('a')<{
 
   div {
     display: flex;
-    background: ${({ theme }) => lighten(0.06, theme.colors.background)};
+    background: ${({ theme }) => lighten(0.06, '#1D1E31')};
     width: ${({ width }) => width}%;
     height: 13px;
     border-radius: 20px;

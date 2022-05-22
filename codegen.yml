@@ -35,7 +35,7 @@ generates:
     preset: near-operation-file
     presetConfig:
       extension: .api.tsx
-      baseTypesPath: ~@dream/pepega-types
+      baseTypesPath: ~@dream/pepega/types
     plugins:
       - typescript-operations
       - typescript-react-apollo

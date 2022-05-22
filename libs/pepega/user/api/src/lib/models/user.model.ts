@@ -1,8 +1,12 @@
-import { Locale } from '@prisma/pepega';
+import { Locale, UserRole } from '@prisma/pepega';
 import { Field, ObjectType, registerEnumType } from '@nestjs/graphql';
 
 registerEnumType(Locale, {
   name: 'Locale',
+});
+
+registerEnumType(UserRole, {
+  name: 'UserRole',
 });
 
 @ObjectType()
@@ -24,6 +28,9 @@ export class Profile {
 export class User {
   @Field()
   id: string;
+
+  @Field(() => UserRole, { nullable: true })
+  role?: UserRole;
 
   @Field({ nullable: true })
   name?: string;

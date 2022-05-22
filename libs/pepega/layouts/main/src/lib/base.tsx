@@ -3,7 +3,7 @@ import { lighten, rgba } from 'polished';
 import { ReactNode, useState, FC } from 'react';
 import Scrollbars from 'react-custom-scrollbars';
 import styled from 'styled-components';
-import { Auth } from '@dream/pepega/containers-old';
+import { Auth } from '@dream/pepega/auth/ui';
 import { Modal } from '@dream/pepega/components-old';
 import { CreateCommunityClip } from '@dream/pepega/containers-old';
 import { ClipModal } from '@dream/pepega/containers-old';

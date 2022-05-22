@@ -82,31 +82,6 @@ export class AuthController {
     return res.redirect(`${codeHandler}token=${token}&redirect=${redirectUri}`);
   }
 
-  // Spotify
-  @Get('auth/spotify')
-  authSpotify(
-    @Request() req,
-    @Response() res,
-    @Query('code_handler') codeHandler,
-    @Query('redirect_uri') redirectUri
-  ) {
-    req.session.codeHandler = codeHandler;
-    req.session.redirectUri = redirectUri;
-    res.redirect(`${this.config.get('base.apiURL')}authwr/spotify`);
-  }
-
-  @Get('authwr/spotify')
-  @UseGuards(AuthGuard('spotify'))
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  authWRSpotify() {}
-
-  @Get('authend/spotify')
-  @UseGuards(AuthGuard('spotify'))
-  async authendSpotify(@Request() req, @Response() res) {
-    return this.authend(req, res);
-  }
-
-  // Twitch
   @Get('auth/twitch')
   authTwitch(
     @Request() req,

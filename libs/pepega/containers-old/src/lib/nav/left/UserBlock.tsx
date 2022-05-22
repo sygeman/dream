@@ -6,8 +6,8 @@ import styled from 'styled-components';
 import { Avatar, Dropdown } from '@dream/pepega/components-old';
 import { useAccess } from '@dream/pepega/utils-old';
 import { MoreVert as MoreVertIcon } from 'styled-icons/material/MoreVert';
-import getConfig from 'next/config';
-const { publicRuntimeConfig } = getConfig();
+import { useLogoutMutation } from '@dream/pepega/auth/ui';
+import { useRouter } from 'next/router';
 
 const GET_USER = gql`
   query getUser($id: ID) {
@@ -72,6 +72,14 @@ const UserCaratBox = styled.div`
 `;
 
 export const LeftNavMenuUserBlock = () => {
+  const router = useRouter();
+
+  const [logout] = useLogoutMutation({
+    onCompleted: () => {
+      router.push('/api/auth/logout');
+    },
+  });
+
   const [{ allow: isAdmin }] = useAccess(
     (currentUser) => currentUser.role === 'admin'
   );
@@ -100,7 +108,7 @@ export const LeftNavMenuUserBlock = () => {
                 <UserMenuItem>Панель управления</UserMenuItem>
               </Link>
             )}
-            <a href={`${publicRuntimeConfig.apiUrl}logout`}>
+            <a onClick={() => logout()}>
               <UserMenuItem>Выход</UserMenuItem>
             </a>
           </UserMenu>

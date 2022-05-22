@@ -92,6 +92,7 @@
       "@dream/mono-utils-use-modal": ["libs/mono/utils/use-modal/src/index.ts"],
       "@dream/pepega-prisma": ["libs/pepega/prisma/src/index.ts"],
       "@dream/pepega/auth/api": ["libs/pepega/auth/api/src/index.ts"],
+      "@dream/pepega/auth/ui": ["libs/pepega/auth/ui/src/index.ts"],
       "@dream/pepega/components-old": [
         "libs/pepega/components-old/src/index.ts"
       ],

@@ -1,7 +1,7 @@
 import { lighten } from 'polished';
 import { FC } from 'react';
 import styled from 'styled-components';
-import { Auth } from '@dream/pepega/containers-old';
+import { Auth } from '@dream/pepega/auth/ui';
 import { MainLayout } from '@dream/pepega/layouts/main';
 
 const Box = styled.div`

@@ -1,4 +1,3 @@
-export * from './lib/auth';
 export * from './lib/user-panel-profile';
 export * from './lib/channel';
 

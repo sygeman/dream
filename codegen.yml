@@ -19,3 +19,23 @@ generates:
     plugins:
       - typescript-operations
       - typescript-react-apollo
+
+  libs/pepega/types/src/index.tsx:
+    schema: 'apps/pepega-api/schema.gql'
+    documents:
+      - '!libs/pepega/**/(*.api).{ts,tsx}'
+      - 'libs/pepega/**/*.graphql'
+    plugins:
+      - typescript
+  libs/pepega/:
+    schema: 'apps/pepega-api/schema.gql'
+    documents:
+      - '!libs/pepega/**/(*.api).{ts,tsx}'
+      - 'libs/pepega/**/*.graphql'
+    preset: near-operation-file
+    presetConfig:
+      extension: .api.tsx
+      baseTypesPath: ~@dream/pepega-types
+    plugins:
+      - typescript-operations
+      - typescript-react-apollo

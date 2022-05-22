@@ -11,12 +11,19 @@ type Profile {
 
 type User {
   id: String!
+  role: UserRole
   name: String
   avatar: String
   locale: Locale!
   createdAt: DateTime!
   updatedAt: DateTime!
   profiles: [Profile!]
+}
+
+enum UserRole {
+  User
+  Admin
+  Mod
 }
 
 enum Locale {

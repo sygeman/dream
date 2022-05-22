@@ -102,7 +102,9 @@
       "@dream/pepega/clip-score/api": [
         "libs/pepega/clip-score/api/src/index.ts"
       ],
+      "@dream/pepega/clip-score/ui": ["libs/pepega/clip-score/ui/src/index.ts"],
       "@dream/pepega/clip/api": ["libs/pepega/clip/api/src/index.ts"],
+      "@dream/pepega/clip/ui": ["libs/pepega/clip/ui/src/index.ts"],
       "@dream/pepega/components-old": [
         "libs/pepega/components-old/src/index.ts"
       ],

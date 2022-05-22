@@ -38,9 +38,21 @@ export enum Locale {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  decreaseClipScore: Scalars['Boolean'];
+  increaseClipScore: Scalars['Boolean'];
   logout: Scalars['Boolean'];
   setUserLocale: Locale;
   updateConnectionStatus: Scalars['Boolean'];
+};
+
+
+export type MutationDecreaseClipScoreArgs = {
+  clipId: Scalars['String'];
+};
+
+
+export type MutationIncreaseClipScoreArgs = {
+  clipId: Scalars['String'];
 };
 
 
@@ -66,7 +78,7 @@ export type Query = {
 
 
 export type QueryClipArgs = {
-  id?: InputMaybe<Scalars['ID']>;
+  id: Scalars['String'];
 };
 
 

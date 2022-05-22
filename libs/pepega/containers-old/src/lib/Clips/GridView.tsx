@@ -38,13 +38,13 @@ export const GridView: FC<IProps> = memo(
           </PreviewContent>
         }
         title={clip && clip.title}
-        description={clip.channel.name}
-        descriptionLink={`https://www.twitch.tv/${clip.channel.name}`}
+        description={clip.channel?.name}
+        descriptionLink={`https://www.twitch.tv/${clip?.channel?.name}`}
         count={
-          clip && clip.reactionStats.rating > 0 && clip.reactionStats.rating
+          clip && clip?.reactionStats?.rating > 0 && clip.reactionStats.rating
         }
         countIcon={
-          clip && clip.reactionStats.rating > 0 ? (
+          clip && clip?.reactionStats?.rating > 0 ? (
             <ThumbUpIcon size="11px" />
           ) : undefined
         }

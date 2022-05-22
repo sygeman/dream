@@ -1257,6 +1257,38 @@
     "pepega-clip-comment-api": "libs/pepega/clip-comment/api",
     "pepega-clip-history-api": "libs/pepega/clip-history/api",
     "pepega-clip-score-api": "libs/pepega/clip-score/api",
+    "pepega-clip-score-ui": {
+      "root": "libs/pepega/clip-score/ui",
+      "sourceRoot": "libs/pepega/clip-score/ui/src",
+      "projectType": "library",
+      "tags": [],
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": [
+              "libs/pepega/clip-score/ui/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        }
+      }
+    },
+    "pepega-clip-ui": {
+      "root": "libs/pepega/clip/ui",
+      "sourceRoot": "libs/pepega/clip/ui/src",
+      "projectType": "library",
+      "tags": [],
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/pepega/clip/ui/**/*.{ts,tsx,js,jsx}"]
+          }
+        }
+      }
+    },
     "pepega-components-avatar": {
       "root": "libs/pepega/components/avatar",
       "sourceRoot": "libs/pepega/components/avatar/src",

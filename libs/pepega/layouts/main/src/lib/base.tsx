@@ -3,43 +3,11 @@ import { lighten } from 'polished';
 import clsx from 'clsx';
 import { ReactNode, useState, FC } from 'react';
 import Scrollbars from 'react-custom-scrollbars';
-import styled from 'styled-components';
 import { Auth } from '@dream/pepega/auth/ui';
 import { Modal } from '@dream/pepega/components-old';
 import { CreateCommunityClip } from '@dream/pepega/containers-old';
 import { ClipModal } from '@dream/pepega/containers-old';
 import { UserBox, TopNav } from '@dream/pepega/containers-old';
-
-const LEFT_MENU_WIDTH = 240;
-
-const Left = styled.div<{ isOpen: boolean }>`
-  background: ${({ theme }) => lighten(0.03, '#1D1E31')};
-  width: ${LEFT_MENU_WIDTH}px;
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  z-index: 100;
-  transition: 0.3s;
-  display: flex;
-  flex-direction: column;
-
-  @media (max-width: 700px) {
-    left: ${({ isOpen }) => (isOpen ? 0 : -LEFT_MENU_WIDTH)}px;
-  }
-`;
-
-const PostsBox = styled.div<{ noLeftMenu?: boolean }>`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  padding-left: 0;
-  transition: 0.3s;
-
-  @media (min-width: 700px) {
-    padding-left: ${({ noLeftMenu }) => (noLeftMenu ? 0 : LEFT_MENU_WIDTH)}px;
-  }
-`;
 
 interface IProps {
   fixedTopContent?: ReactNode;
@@ -100,28 +68,40 @@ export const BaseLayout: FC<IProps> = ({
           <div className="flex-1 overflow-hidden relative">
             <div className="h-full flex">
               {leftMenu && (
-                <Left isOpen={leftMenuIsOpen}>
+                <div
+                  className={clsx(
+                    'w-[240px] flex flex-col absolute top-0 h-full z-[100] transition-all delay-150',
+                    leftMenuIsOpen ? 'left-0' : 'left-[-240px] sm:left-0'
+                  )}
+                  style={{ backgroundColor: lighten(0.03, '#1D1E31') }}
+                >
                   <div className="flex flex-1">
                     <Scrollbars autoHide universal>
                       {leftMenu}
                     </Scrollbars>
                   </div>
                   <UserBox />
-                </Left>
+                </div>
               )}
-              <PostsBox id="layoutContent" noLeftMenu={!leftMenu}>
+              <div
+                id="layoutContent"
+                className={clsx(
+                  'flex flex-col w-full transition-all delay-150',
+                  leftMenu && 'sm:pl-[240px]'
+                )}
+              >
                 <TopNav
                   leftMenuTrigger={() => setLeftMenuIsOpen(!leftMenuIsOpen)}
                 >
                   {fixedTopContent}
                 </TopNav>
                 {children}
-              </PostsBox>
+              </div>
             </div>
             <div
               className={clsx(
-                'hidden absolute left-0 top-0 w-full h-full z-50 bg-background/95',
-                leftMenuIsOpen && '' // @media (max-width: 700px)  display: block
+                'absolute left-0 top-0 w-full h-full z-50 bg-background/95 transition-all delay-150',
+                leftMenuIsOpen ? 'sm:hidden' : 'hidden'
               )}
               onClick={() => setLeftMenuIsOpen(false)}
             />

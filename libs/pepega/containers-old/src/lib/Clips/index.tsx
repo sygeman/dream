@@ -4,47 +4,7 @@ import { useQuery } from '@apollo/client';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
 import { ClipsView } from './View';
-
-export const GET_CLIPS = gql`
-  query clips(
-    $orderBy: ClipOrderByInput
-    $startedAt: String
-    $ratingMin: Int
-    $likedUserId: String
-    $communityId: String
-    $communityClipAuthorId: String
-    $historyUserId: String
-    $limit: Int
-    $offset: Int
-  ) {
-    clips(
-      orderBy: $orderBy
-      startedAt: $startedAt
-      ratingMin: $ratingMin
-      likedUserId: $likedUserId
-      communityId: $communityId
-      communityClipAuthorId: $communityClipAuthorId
-      historyUserId: $historyUserId
-      limit: $limit
-      offset: $offset
-    ) {
-      count
-      clips {
-        id
-        title
-        channel {
-          name
-        }
-        thumbnail_url
-        created_at
-        reactionStats {
-          rating
-        }
-        watched
-      }
-    }
-  }
-`;
+import { useClipsQuery } from '@dream/pepega/clip/ui';
 
 const Box = styled.div`
   display: flex;
@@ -82,32 +42,18 @@ export const Clips: FC<IProps> = ({
   rows,
   titleLink,
 }) => {
-  const limit: number = 25;
   const router = useRouter();
 
-  let variables: any = {
-    orderBy,
-    startedAt,
-    ratingMin,
-    likedUserId,
-    communityId,
-    communityClipAuthorId,
-    historyUserId,
-    offset: 0,
-    limit: rows ? rows * 6 : limit,
-  };
-
-  const { loading, error, data, fetchMore } = useQuery(GET_CLIPS, {
+  const { loading, error, data, fetchMore } = useClipsQuery({
     fetchPolicy: 'cache-and-network',
     ssr: false,
-    variables,
   });
 
   if (error || !data || !data.clips) {
     return null;
   }
 
-  let clips = data.clips.clips;
+  let clips = data.clips;
 
   if (typeof rows === 'number' && rows > 0) {
     clips = clips.slice(0, rows * 6);
@@ -119,7 +65,7 @@ export const Clips: FC<IProps> = ({
     return null;
   }
 
-  const hasMore = data.clips.count - currentCount > 0;
+  const hasMore = false; //data.clips.count - currentCount > 0;
 
   return (
     <Box style={{ padding: '0 20px' }}>
@@ -145,25 +91,26 @@ export const Clips: FC<IProps> = ({
             { shallow: true }
           );
         }}
-        loadMore={() =>
-          fetchMore({
-            variables: {
-              offset: currentCount,
-            },
-            updateQuery: (prev, { fetchMoreResult }) => {
-              if (!fetchMoreResult) {
-                return prev;
-              }
+        loadMore={
+          () => {}
+          // fetchMore({
+          //   variables: {
+          //     offset: currentCount,
+          //   },
+          //   updateQuery: (prev, { fetchMoreResult }) => {
+          //     if (!fetchMoreResult) {
+          //       return prev;
+          //     }
 
-              return {
-                ...prev,
-                clips: {
-                  ...prev.clips,
-                  clips: [...prev.clips.clips, ...fetchMoreResult.clips.clips],
-                },
-              };
-            },
-          })
+          //     return {
+          //       ...prev,
+          //       clips: {
+          //         ...prev.clips,
+          //         clips: [...prev.clips.clips, ...fetchMoreResult.clips.clips],
+          //       },
+          //     };
+          //   },
+          // })
         }
       />
     </Box>

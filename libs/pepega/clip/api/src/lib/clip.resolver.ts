@@ -1,4 +1,4 @@
-import { Args, Context, ID, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { Args, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql';
 import { PrismaService } from '@dream/pepega-prisma';
 import { Clip } from './models/clip.model';
 
@@ -6,9 +6,14 @@ import { Clip } from './models/clip.model';
 export class ClipResolver {
   constructor(private prisma: PrismaService) {}
 
+  @ResolveField()
+  async sourceUrl(@Parent() clip: Clip) {
+    return clip.thumbnail_url.replace(/\-\bpreview\-\b.+/, '.mp4');
+  }
+
   @Query(() => Clip, { nullable: true })
   async clip(
-    @Args({ name: 'id', type: () => ID, nullable: true })
+    @Args({ name: 'id', type: () => String })
     id: string
   ) {
     // find or create

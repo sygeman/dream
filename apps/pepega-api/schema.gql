@@ -55,7 +55,7 @@ type Clip {
 type Query {
   user(id: ID): User
   me: User!
-  clip(id: ID): Clip
+  clip(id: String!): Clip
   clips: [Clip!]
 }
 
@@ -63,4 +63,6 @@ type Mutation {
   logout: Boolean!
   updateConnectionStatus: Boolean!
   setUserLocale(locale: Locale!): Locale!
+  increaseClipScore(clipId: String!): Boolean!
+  decreaseClipScore(clipId: String!): Boolean!
 }

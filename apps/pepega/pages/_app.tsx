@@ -4,7 +4,7 @@ import Router from 'next/router';
 import NProgress from 'nprogress';
 import 'resize-observer-polyfill';
 import { ApolloProvider } from '@apollo/client';
-import { useApollo } from '@dream/pepega/utils-old';
+import { useApollo } from '../lib/apollo';
 import '../styles.css';
 
 Router.events.on('routeChangeStart', () => NProgress.start());

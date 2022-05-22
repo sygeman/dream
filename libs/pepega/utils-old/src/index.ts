@@ -1,4 +1,3 @@
-export * from './lib/apollo';
 export * from './lib/count';
 export * from './lib/date';
 export * from './lib/emoji';

@@ -23,15 +23,15 @@ export class TwitchService {
       select: ['accessToken'],
       where: { accessToken: Not(IsNull()), serviceName: 'twitch' },
       order: {
-        updatedAt: 'DESC'
-      }
+        updatedAt: 'DESC',
+      },
     });
 
     try {
       const { accessToken } = profile;
 
       const headers = {
-        'Client-ID': this.config.get('authTwitch.clientID')
+        'Client-ID': this.config.get('authTwitch.clientID'),
       };
 
       if (profile) {
@@ -53,7 +53,7 @@ export class TwitchService {
     }
 
     const params: any = {
-      first: 1
+      first: 1,
     };
 
     if (userName) {
@@ -72,7 +72,7 @@ export class TwitchService {
     }
 
     const params: any = {
-      first: 1
+      first: 1,
     };
 
     if (userName) {
@@ -122,76 +122,10 @@ export class TwitchService {
   async clip(id: string) {
     const query = await this.httpService
       .get(`https://api.twitch.tv/kraken/clips/${id}`, {
-        headers: this.headers
+        headers: this.headers,
       })
       .toPromise();
 
     return query.data;
-  }
-
-  async followsOld({ twitchUserId, limit = 20, offset = 0 }) {
-    const query = await this.httpService
-      .get(
-        `https://api.twitch.tv/kraken/users/${twitchUserId}/follows/channels`,
-        {
-          params: {
-            limit,
-            offset,
-            sortby: 'last_broadcast'
-          },
-          headers: this.headers
-        }
-      )
-      .toPromise();
-
-    return {
-      count: query.data._total,
-      follows: query.data.follows.map(({ channel }) => ({
-        title: channel.display_name,
-        name: channel.name
-      }))
-    };
-  }
-
-  async topClips(topClipsArgs: {
-    channel?;
-    game?;
-    language: string;
-    limit?: number;
-  }) {
-    const { channel, game, language, limit } = topClipsArgs;
-
-    const params = {
-      channel,
-      game,
-      language,
-      period: 'day',
-      limit: limit || 15
-    };
-
-    const query = await this.httpService
-      .get(`https://api.twitch.tv/kraken/clips/top`, {
-        params,
-        headers: this.headers
-      })
-      .toPromise()
-      .catch(error => {
-        Logger.error(error);
-        return null;
-      });
-
-    if (!query) {
-      return [];
-    }
-
-    return query.data.clips.map(clip => ({
-      id: clip.slug,
-      channel: clip.broadcaster.name,
-      title: clip.title,
-      createdAt: clip.created_at,
-      thumbnails: clip.thumbnails,
-      broadcaster: clip.broadcaster,
-      viewsCount: clip.views
-    }));
   }
 }

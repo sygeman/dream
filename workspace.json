@@ -1237,6 +1237,7 @@
       },
       "tags": []
     },
+    "pepega-auth-api": "libs/pepega/auth/api",
     "pepega-components-avatar": {
       "root": "libs/pepega/components/avatar",
       "sourceRoot": "libs/pepega/components/avatar/src",
@@ -1279,6 +1280,7 @@
         }
       }
     },
+    "pepega-connection-api": "libs/pepega/connection/api",
     "pepega-containers-old": {
       "root": "libs/pepega/containers-old",
       "sourceRoot": "libs/pepega/containers-old/src",
@@ -1337,6 +1339,7 @@
       },
       "tags": []
     },
+    "pepega-user-api": "libs/pepega/user/api",
     "pepega-utils-old": {
       "root": "libs/pepega/utils-old",
       "sourceRoot": "libs/pepega/utils-old/src",

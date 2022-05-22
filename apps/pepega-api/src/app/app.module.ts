@@ -4,12 +4,12 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import * as depthLimit from 'graphql-depth-limit';
-import { AuthModule, AuthService } from '@dream/mono-auth-api';
-import { UserModule } from '@dream/mono-user-api';
+import { AuthModule, AuthService } from '@dream/pepega/auth/api';
+import { UserModule } from '@dream/pepega/user/api';
 import {
   ConnectionModule,
   ConnectionService,
-} from '@dream/mono-connection-api';
+} from '@dream/pepega/connection/api';
 import { SharedModule } from './shared.module';
 import { config } from './config';
 import { nanoid } from 'nanoid';

@@ -5,7 +5,7 @@ import Scrollbars from 'react-custom-scrollbars';
 import styled from 'styled-components';
 import { Auth } from '@dream/pepega/containers-old';
 import { Modal } from '@dream/pepega/components-old';
-// import { CreateCommunityClip } from '../containers/Community/Clip/Create';
+import { CreateCommunityClip } from '@dream/pepega/components-old';
 import { ClipModal } from '@dream/pepega/containers-old';
 import { UserBox, TopNav } from '@dream/pepega/containers-old';
 
@@ -102,13 +102,13 @@ export const BaseLayout: FC<IProps> = ({
         >
           <Auth />
         </Modal>
-        {/* <Modal
+        <Modal
           title="Предложить клип сообществу"
           visible={router.query.newClip === '1'}
           onClose={() => router.back()}
         >
           <CreateCommunityClip />
-        </Modal> */}
+        </Modal>
 
         <div className="relative w-full h-full overflow-hidden flex flex-col">
           <div className="flex-1 overflow-hidden relative">

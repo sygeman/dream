@@ -5,7 +5,7 @@ import Scrollbars from 'react-custom-scrollbars';
 import styled from 'styled-components';
 import { Auth } from '@dream/pepega/containers-old';
 import { Modal } from '@dream/pepega/components-old';
-import { CreateCommunityClip } from '@dream/pepega/components-old';
+import { CreateCommunityClip } from '@dream/pepega/containers-old';
 import { ClipModal } from '@dream/pepega/containers-old';
 import { UserBox, TopNav } from '@dream/pepega/containers-old';
 

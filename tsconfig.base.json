@@ -101,6 +101,9 @@
         "libs/pepega/containers-old/src/index.ts"
       ],
       "@dream/pepega/layouts/main": ["libs/pepega/layouts/main/src/index.ts"],
+      "@dream/pepega/modules-api-old": [
+        "libs/pepega/modules-api-old/src/index.ts"
+      ],
       "@dream/pepega/utils-old": ["libs/pepega/utils-old/src/index.ts"]
     }
   },

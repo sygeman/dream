@@ -9,7 +9,7 @@ const IndexPage = () => {
 
   return (
     <MainLayout streams>
-      <Clips
+      {/* <Clips
         orderBy={{ name: 'clipRating', type: 'DESC' }}
         ratingMin={1}
         startedAt={startedAt}
@@ -17,7 +17,7 @@ const IndexPage = () => {
         description="Клипы за 24 часа с самым высоким рейтингом"
         titleLink="/top/day"
         rows={2}
-      />
+      /> */}
       <Clips
         title="Новое"
         description="Самые последние предложенные клипы"

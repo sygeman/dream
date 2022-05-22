@@ -20,26 +20,8 @@ export class ConnectionService {
     });
   }
 
-  async updateConnectionStatus({
-    connectionId,
-    ipHash,
-    userId,
-    community,
-    channel,
-  }) {
+  async updateConnectionStatus({ connectionId, ipHash, userId }) {
     const instanceId = this.config.get('base.instanceId');
-
-    let channelId = null;
-
-    if (channel) {
-      const channelData = await this.prisma.channel.findFirst({
-        where: { name: channel, community: { name: community } },
-      });
-
-      if (channelData) {
-        channelId = channelData.id;
-      }
-    }
 
     try {
       await this.prisma.connection.upsert({
@@ -51,10 +33,8 @@ export class ConnectionService {
           ipHash,
           instanceId,
           userId,
-          channelId,
         },
         update: {
-          channelId,
           updatedAt: new Date(),
         },
       });

@@ -1253,6 +1253,10 @@
         }
       }
     },
+    "pepega-clip-api": "libs/pepega/clip/api",
+    "pepega-clip-comment-api": "libs/pepega/clip-comment/api",
+    "pepega-clip-history-api": "libs/pepega/clip-history/api",
+    "pepega-clip-score-api": "libs/pepega/clip-score/api",
     "pepega-components-avatar": {
       "root": "libs/pepega/components/avatar",
       "sourceRoot": "libs/pepega/components/avatar/src",
@@ -1355,6 +1359,7 @@
       "tags": []
     },
     "pepega-user-api": "libs/pepega/user/api",
+    "pepega-user-coin-api": "libs/pepega/user-coin/api",
     "pepega-utils-old": {
       "root": "libs/pepega/utils-old",
       "sourceRoot": "libs/pepega/utils-old/src",

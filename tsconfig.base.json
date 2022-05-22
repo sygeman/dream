@@ -93,6 +93,16 @@
       "@dream/pepega-prisma": ["libs/pepega/prisma/src/index.ts"],
       "@dream/pepega/auth/api": ["libs/pepega/auth/api/src/index.ts"],
       "@dream/pepega/auth/ui": ["libs/pepega/auth/ui/src/index.ts"],
+      "@dream/pepega/clip-comment/api": [
+        "libs/pepega/clip-comment/api/src/index.ts"
+      ],
+      "@dream/pepega/clip-history/api": [
+        "libs/pepega/clip-history/api/src/index.ts"
+      ],
+      "@dream/pepega/clip-score/api": [
+        "libs/pepega/clip-score/api/src/index.ts"
+      ],
+      "@dream/pepega/clip/api": ["libs/pepega/clip/api/src/index.ts"],
       "@dream/pepega/components-old": [
         "libs/pepega/components-old/src/index.ts"
       ],
@@ -109,6 +119,7 @@
       "@dream/pepega/modules-api-old": [
         "libs/pepega/modules-api-old/src/index.ts"
       ],
+      "@dream/pepega/user-coin/api": ["libs/pepega/user-coin/api/src/index.ts"],
       "@dream/pepega/user/api": ["libs/pepega/user/api/src/index.ts"],
       "@dream/pepega/utils-old": ["libs/pepega/utils-old/src/index.ts"]
     }

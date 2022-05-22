@@ -55,5 +55,10 @@ module.exports = {
     '<rootDir>/libs/pepega/auth/api',
     '<rootDir>/libs/pepega/user/api',
     '<rootDir>/libs/pepega/connection/api',
+    '<rootDir>/libs/pepega/clip/api',
+    '<rootDir>/libs/pepega/user-coin/api',
+    '<rootDir>/libs/pepega/clip-history/api',
+    '<rootDir>/libs/pepega/clip-score/api',
+    '<rootDir>/libs/pepega/clip-comment/api',
   ],
 };

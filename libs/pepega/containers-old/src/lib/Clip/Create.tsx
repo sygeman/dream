@@ -87,32 +87,6 @@ export const CreateCommunityClip = () => {
         placeholder="Ссылка на Twitch клип"
         onChange={setSourceData}
       />
-      <Input
-        placeholder="Название"
-        maxLength={100}
-        onChange={(e) => setTitle(e.target.value)}
-      />
-      {clipId && <TwitchClipPlayer sourceId={clipId} />}
-      <SWRow
-        title="NSFW"
-        description={`
-              Обнажённая натура, гуро, порнография и обсценная лексика
-            `}
-        onChange={() => setNfws(!nfws)}
-        active={nfws}
-        inactiveColor={'#1D1E30'}
-      />
-      <SWRow
-        title="Спойлер"
-        description={`
-              Информация о сюжете книги, фильма или компьютерной игры,
-              которая, будучи преждевременно раскрытой,
-              лишает некоторых читателей части удовольствия от сюжета.
-            `}
-        onChange={() => setSpoiler(!spoiler)}
-        active={spoiler}
-        inactiveColor={'#1D1E30'}
-      />
       <Bottom>
         {costCreateClip > 0 && (
           <Flex fontSize="13px" px="20px" alignItems="center">

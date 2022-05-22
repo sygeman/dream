@@ -14,6 +14,23 @@ export type Scalars = {
   DateTime: any;
 };
 
+export type Clip = {
+  __typename?: 'Clip';
+  broadcaster_id: Scalars['String'];
+  createdAt: Scalars['String'];
+  created_at: Scalars['String'];
+  creator_id: Scalars['String'];
+  game_id: Scalars['String'];
+  id: Scalars['String'];
+  language: Scalars['String'];
+  score: Scalars['Float'];
+  sourceUrl: Scalars['String'];
+  thumbnail_url: Scalars['String'];
+  title: Scalars['String'];
+  updatedAt: Scalars['String'];
+  video_id: Scalars['String'];
+};
+
 export enum Locale {
   EnUs = 'en_US',
   RuRu = 'ru_RU'
@@ -31,12 +48,6 @@ export type MutationSetUserLocaleArgs = {
   locale: Locale;
 };
 
-
-export type MutationUpdateConnectionStatusArgs = {
-  channel?: InputMaybe<Scalars['String']>;
-  community?: InputMaybe<Scalars['String']>;
-};
-
 export type Profile = {
   __typename?: 'Profile';
   avatar?: Maybe<Scalars['String']>;
@@ -47,8 +58,15 @@ export type Profile = {
 
 export type Query = {
   __typename?: 'Query';
+  clip?: Maybe<Clip>;
+  clips?: Maybe<Array<Clip>>;
   me: User;
   user?: Maybe<User>;
+};
+
+
+export type QueryClipArgs = {
+  id?: InputMaybe<Scalars['ID']>;
 };
 
 

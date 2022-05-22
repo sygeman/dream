@@ -15,6 +15,11 @@ import { config } from './config';
 import { nanoid } from 'nanoid';
 import { BullModule } from '@nestjs/bull';
 import { join } from 'path';
+import { ClipModule } from '@dream/pepega/clip/api';
+import { ClipCommentModule } from '@dream/pepega/clip-comment/api';
+import { ClipHistoryModule } from '@dream/pepega/clip-history/api';
+import { ClipScoreModule } from '@dream/pepega/clip-score/api';
+import { UserCoinModule } from '@dream/pepega/user-coin/api';
 
 @Module({
   imports: [
@@ -85,6 +90,11 @@ import { join } from 'path';
     AuthModule,
     UserModule,
     ConnectionModule,
+    ClipModule,
+    ClipCommentModule,
+    ClipHistoryModule,
+    ClipScoreModule,
+    UserCoinModule,
   ],
 })
 export class AppModule {}

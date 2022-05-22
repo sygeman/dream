@@ -31,7 +31,7 @@ export const TwitchClipPlayer: FC<IProps> = ({ sourceId, autoPlay }) => {
         <Iframe
           src={`https://clips.twitch.tv/embed?clip=${sourceId}&muted=false&autoplay=${
             autoPlay ? 'true' : 'false'
-          }`}
+          }&parent=${window?.location?.host}`}
           frameBorder="0"
           height="100%"
           allowFullScreen

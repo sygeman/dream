@@ -39,17 +39,22 @@ enum UserRole {
 }
 
 model User {
-  id         String       @id @default(cuid())
-  name       String?
-  avatar     String?
-  role       UserRole?    @default(User)
-  banned     Boolean?     @default(false)
-  locale     Locale?      @default(en_US)
-  createdAt  DateTime     @default(now())
-  updatedAt  DateTime     @default(now()) @updatedAt
-  profiles   Profile[]
-  tokens     Token[]
-  connection Connection[]
+  id           String        @id @default(cuid())
+  name         String?
+  avatar       String?
+  role         UserRole?     @default(User)
+  banned       Boolean?      @default(false)
+  locale       Locale?       @default(en_US)
+  coins        Int           @default(100)
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @default(now()) @updatedAt
+  profiles     Profile[]
+  tokens       Token[]
+  connection   Connection[]
+  clipScores   ClipScore[]
+  clipComments ClipComment[]
+  clipHistory  ClipHistory[]
+  userCoins    UserCoin[]
 }
 
 model Profile {
@@ -63,4 +68,83 @@ model Profile {
   refreshToken String?
   user         User    @relation(fields: [userId], references: [id])
   userId       String
+}
+
+model Clip {
+  id               String        @id
+  broadcaster_id   String
+  broadcaster_name String
+  creator_id       String
+  creator_name     String
+  video_id         String
+  game_id          String
+  language         String
+  title            String
+  view_count       Int
+  created_at       String
+  thumbnail_url    String
+  duration         Float
+  score            Int?          @default(0)
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @default(now()) @updatedAt
+  scores           ClipScore[]
+  comments         ClipComment[]
+  hisotry          ClipHistory[]
+  userCoins        UserCoin[]
+}
+
+enum ClipScoreAction {
+  INCREASE
+  DECREASE
+}
+
+model ClipScore {
+  id        String          @id @default(cuid())
+  user      User            @relation(fields: [userId], references: [id])
+  userId    String
+  clip      Clip            @relation(fields: [clipId], references: [id])
+  clipId    String
+  action    ClipScoreAction
+  coins     Int
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @default(now()) @updatedAt
+}
+
+model ClipComment {
+  id        String   @id @default(cuid())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+  clip      Clip     @relation(fields: [clipId], references: [id])
+  clipId    String
+  content   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+}
+
+model ClipHistory {
+  id        String   @id @default(cuid())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+  clip      Clip     @relation(fields: [clipId], references: [id])
+  clipId    String
+  count     Int      @default(1)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+}
+
+enum UserCoinAction {
+  INCREASE
+  DECREASE
+}
+
+model UserCoin {
+  id        String         @id @default(cuid())
+  user      User           @relation(fields: [userId], references: [id])
+  userId    String
+  clip      Clip           @relation(fields: [clipId], references: [id])
+  clipId    String
+  action    UserCoinAction
+  coins     Int
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @default(now()) @updatedAt
 }

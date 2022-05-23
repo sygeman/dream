@@ -1,17 +1,8 @@
 import { FC, memo } from 'react';
-import styled from 'styled-components';
 import { VideoPreview, CardMedia } from '@dream/pepega/components-old';
 import { isEqual } from 'lodash';
 import { dateDistanceInWordsToNow } from '@dream/pepega/utils-old';
 import { Clip } from '@dream/pepega/types';
-
-const PreviewContent = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-`;
 
 interface IProps {
   clip: Clip;
@@ -26,7 +17,7 @@ export const GridView: FC<IProps> = memo(
     return (
       <CardMedia
         media={
-          <PreviewContent>
+          <div className="absolute top-0 left-0 w-full h-full">
             {clip && (
               <VideoPreview
                 onClick={() => onPlay()}
@@ -35,10 +26,9 @@ export const GridView: FC<IProps> = memo(
                 watched={false}
               />
             )}
-          </PreviewContent>
+          </div>
         }
         title={clip?.title}
-        descriptionLink={`https://www.twitch.tv/${clip?.channel?.name}`}
         count={clip?.score}
       />
     );

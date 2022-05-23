@@ -21,6 +21,10 @@ export class ClipScoreResolver {
     // get clip
     console.log('increaseClipScore', clipId);
     const clip = await this.clipService.clip(clipId);
+    await this.prisma.clip.update({
+      where: { id: clip.id },
+      data: { score: { increment: 10 } },
+    });
     console.log(clip);
     return true;
   }

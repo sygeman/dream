@@ -7,14 +7,21 @@ import {
 } from '@dream/pepega/components-old';
 import { parseSource } from '@dream/pepega/utils-old';
 import { useIncreaseClipScoreMutation } from '@dream/pepega/clip-score/ui';
+import { useRouter } from 'next/router';
 
 export const CreateCommunityClip = () => {
-  const costCreateClip = 0;
+  const router = useRouter();
+  const costCreateClip = 10;
   const [clipId, setClipId] = useState('');
 
   const [increaseClipScoreMutation] = useIncreaseClipScoreMutation();
   const increaseClipScore = (clipId: string) =>
-    increaseClipScoreMutation({ variables: { clipId } });
+    increaseClipScoreMutation({
+      variables: { clipId },
+      onCompleted: () => {
+        router.push(`/clip/${clipId}`);
+      },
+    });
 
   const setSourceData = (e) => {
     const soruceData = parseSource(e.target.value);
@@ -33,7 +40,7 @@ export const CreateCommunityClip = () => {
       />
       {clipId && <TwitchClipPlayer sourceId={clipId} />}
       <div className="mt-5 flex justify-end">
-        {costCreateClip === 0 && (
+        {costCreateClip > 0 && (
           <div className="flex px-5 items-center">
             <CoinIconGold /> {costCreateClip}
           </div>

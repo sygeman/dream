@@ -1,6 +1,4 @@
-import gql from 'graphql-tag';
 import { FC } from 'react';
-import { useQuery } from '@apollo/client';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
 import { ClipsView } from './View';
@@ -92,7 +90,7 @@ export const Clips: FC<IProps> = ({
           );
         }}
         loadMore={
-          () => {}
+          async () => null
           // fetchMore({
           //   variables: {
           //     offset: currentCount,

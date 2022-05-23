@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { VideoPreview, CardMedia } from '@dream/pepega/components-old';
 import { isEqual } from 'lodash';
 import { dateDistanceInWordsToNow } from '@dream/pepega/utils-old';
-import { ThumbUp as ThumbUpIcon } from 'styled-icons/material/ThumbUp';
+import { Clip } from '@dream/pepega/types';
 
 const PreviewContent = styled.div`
   position: absolute;
@@ -14,7 +14,7 @@ const PreviewContent = styled.div`
 `;
 
 interface IProps {
-  clip: any;
+  clip: Clip;
   onPlay: () => void;
 }
 
@@ -32,22 +32,14 @@ export const GridView: FC<IProps> = memo(
                 onClick={() => onPlay()}
                 cover={clip.thumbnail_url}
                 date={date}
-                watched={clip.watched}
+                watched={false}
               />
             )}
           </PreviewContent>
         }
-        title={clip && clip.title}
-        description={clip.channel?.name}
+        title={clip?.title}
         descriptionLink={`https://www.twitch.tv/${clip?.channel?.name}`}
-        count={
-          clip && clip?.reactionStats?.rating > 0 && clip.reactionStats.rating
-        }
-        countIcon={
-          clip && clip?.reactionStats?.rating > 0 ? (
-            <ThumbUpIcon size="11px" />
-          ) : undefined
-        }
+        count={clip?.score}
       />
     );
   },

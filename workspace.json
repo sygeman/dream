@@ -1390,6 +1390,7 @@
       },
       "tags": []
     },
+    "pepega-twitch-api": "libs/pepega/twitch/api",
     "pepega-types": {
       "root": "libs/pepega/types",
       "sourceRoot": "libs/pepega/types/src",

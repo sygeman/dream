@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
-import { HttpModule } from '@nestjs/axios';
 import { PrismaModule } from '@dream/pepega-prisma';
 import { ClipResolver } from './clip.resolver';
 import { ClipService } from './clip.service';
+import { TwitchModule } from '@dream/pepega/twitch/api';
 
 @Module({
-  imports: [PrismaModule, HttpModule],
+  imports: [PrismaModule, TwitchModule],
   providers: [ClipResolver, ClipService],
   exports: [ClipService],
 })

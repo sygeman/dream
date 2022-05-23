@@ -60,5 +60,6 @@ module.exports = {
     '<rootDir>/libs/pepega/clip-history/api',
     '<rootDir>/libs/pepega/clip-score/api',
     '<rootDir>/libs/pepega/clip-comment/api',
+    '<rootDir>/libs/pepega/twitch/api',
   ],
 };

@@ -13,7 +13,8 @@ const isTwitchClip = (sourceUrl: string) => {
   const regexps = [
     'https:\\/\\/clips\\.twitch\\.tv\\/(?:embed\\?clip\\=|)([^\\/?"]+)',
     'https:\\/\\/clips\\.twitch\\.tv\\/([^/?]+)\\/?',
-    'https:\\/\\/www\\.twitch\\.tv\\/[^/]+\\/clip\\/([^\\/?"]+)\\/?'
+    'https:\\/\\/www\\.twitch\\.tv\\/[^/]+\\/clip\\/([^\\/?"]+)\\/?',
+    'https://www.twitch.tv/[^/]+/clip/([^\\/?"]+)',
   ];
 
   let result: any = null;
@@ -26,8 +27,8 @@ const isTwitchClip = (sourceUrl: string) => {
         type: 'twitchClip',
         payload: {
           sourceId: regexpResult[1],
-          sourceType: 'twitchClip'
-        }
+          sourceType: 'twitchClip',
+        },
       };
 
       break;
@@ -38,7 +39,7 @@ const isTwitchClip = (sourceUrl: string) => {
 };
 
 const allMethods = {
-  isTwitchClip
+  isTwitchClip,
 };
 
 export const parseSource = (sourceUrl: string): ISource | null => {

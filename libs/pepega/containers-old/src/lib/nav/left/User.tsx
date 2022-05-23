@@ -42,7 +42,7 @@ const Points = styled.div`
   justify-content: center;
   padding: 0 10px;
   height: 100%;
-  width: 119.5px;
+  width: 100%;
   background: ${({ theme }) => lighten(0.05, '#262841')};
 `;
 
@@ -85,19 +85,9 @@ export const UserBox = () => {
   if (loading || !isUser) {
     return (
       <GuestBox>
-        <Link
-          as={`/auth?continue=${router.asPath}`}
-          href={{
-            pathname: router.route,
-            query: {
-              ...router.query,
-              authModal: 1,
-            },
-          }}
-          passHref
-        >
+        <a href={`/api/auth/twitch?continue=/`}>
           <TopLink>Войти</TopLink>
-        </Link>
+        </a>
       </GuestBox>
     );
   }
@@ -111,7 +101,7 @@ export const UserBox = () => {
             <WalletBalance currency="coin" />
           </PointsCount>
         </Points>
-        <Points>
+        {/* <Points>
           <CoinIconGreen />
           <PointsCount>
             <WalletBalance currency="real" />
@@ -131,7 +121,7 @@ export const UserBox = () => {
               </BuyCoinsLink>
             </Link>
           </PointsCount>
-        </Points>
+        </Points> */}
       </PointsBox>
       <LeftNavMenuUserBlock />
     </Box>

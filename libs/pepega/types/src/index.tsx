@@ -74,6 +74,7 @@ export type Query = {
   clips?: Maybe<Array<Clip>>;
   me: User;
   user?: Maybe<User>;
+  userCoins: Scalars['Int'];
 };
 
 
@@ -84,6 +85,11 @@ export type QueryClipArgs = {
 
 export type QueryUserArgs = {
   id?: InputMaybe<Scalars['ID']>;
+};
+
+export type Subscription = {
+  __typename?: 'Subscription';
+  userCoinsUpdated: Scalars['Int'];
 };
 
 export type User = {

@@ -124,6 +124,7 @@
       "@dream/pepega/twitch/api": ["libs/pepega/twitch/api/src/index.ts"],
       "@dream/pepega/types": ["libs/pepega/types/src/index.tsx"],
       "@dream/pepega/user-coin/api": ["libs/pepega/user-coin/api/src/index.ts"],
+      "@dream/pepega/user-coin/ui": ["libs/pepega/user-coin/ui/src/index.ts"],
       "@dream/pepega/user/api": ["libs/pepega/user/api/src/index.ts"],
       "@dream/pepega/utils-old": ["libs/pepega/utils-old/src/index.ts"]
     }

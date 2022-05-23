@@ -1,66 +1,32 @@
-import gql from 'graphql-tag';
-import React, { FC, useEffect } from 'react';
-import { useQuery } from '@apollo/client';
+import React from 'react';
 import { shortNumbers, humanNumbers } from '@dream/pepega/utils-old';
-
-const GET_WALLET = gql`
-  query getWallet($where: WalletWhereInput!) {
-    wallet(where: $where) {
-      id
-      balance
-      currency
-    }
-  }
-`;
-
-const UPDATED_WALLET = gql`
-  subscription wallet($id: ID!) {
-    wallet(id: $id) {
-      id
-      balance
-      currency
-    }
-  }
-`;
+import {
+  useUserCoinsQuery,
+  useUserCoinsUpdatedSubscription,
+} from '@dream/pepega/user-coin/ui';
 
 interface IProps {
   currency: string;
 }
 
-export const WalletBalance: FC<IProps> = ({ currency }) => {
-  const { loading, error, data, subscribeToMore } = useQuery(GET_WALLET, {
-    variables: { where: { currency } },
+export const WalletBalance: React.FC<IProps> = ({ currency }) => {
+  const userCoinsQuery = useUserCoinsQuery();
+  const userCoins = userCoinsQuery?.data?.userCoins || 0;
+
+  useUserCoinsUpdatedSubscription({
+    onSubscriptionData: ({ subscriptionData }) => {
+      if (!subscriptionData.data) return;
+
+      const userCoinsUpdated = subscriptionData.data.userCoinsUpdated;
+
+      userCoinsQuery.updateQuery((prev) => {
+        return {
+          ...prev,
+          userCoins: userCoinsUpdated,
+        };
+      });
+    },
   });
 
-  useEffect(() => {
-    if (data && data.wallet) {
-      subscribeToMore({
-        document: UPDATED_WALLET,
-        variables: { id: data.wallet.id },
-        updateQuery: (prev, { subscriptionData }) => {
-          if (!subscriptionData.data) {
-            return prev;
-          }
-
-          const updatedData = subscriptionData.data.wallet;
-
-          return {
-            ...prev,
-            wallet: {
-              ...prev.wallet,
-              ...updatedData,
-            },
-          };
-        },
-      });
-    }
-  }, [loading]);
-
-  const wallet = loading || error || !data || !data.wallet ? null : data.wallet;
-
-  return (
-    <span title={humanNumbers(wallet ? wallet.balance : 0)}>
-      {shortNumbers(wallet ? wallet.balance : 0)}
-    </span>
-  );
+  return <span title={humanNumbers(userCoins)}>{shortNumbers(userCoins)}</span>;
 };

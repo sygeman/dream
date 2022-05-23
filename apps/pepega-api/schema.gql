@@ -57,6 +57,7 @@ type Query {
   me: User!
   clip(id: String!): Clip
   clips: [Clip!]
+  userCoins: Int!
 }
 
 type Mutation {
@@ -65,4 +66,8 @@ type Mutation {
   setUserLocale(locale: Locale!): Locale!
   increaseClipScore(clipId: String!): Boolean!
   decreaseClipScore(clipId: String!): Boolean!
+}
+
+type Subscription {
+  userCoinsUpdated: Int!
 }

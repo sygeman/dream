@@ -1408,6 +1408,23 @@
     },
     "pepega-user-api": "libs/pepega/user/api",
     "pepega-user-coin-api": "libs/pepega/user-coin/api",
+    "pepega-user-coin-ui": {
+      "root": "libs/pepega/user-coin/ui",
+      "sourceRoot": "libs/pepega/user-coin/ui/src",
+      "projectType": "library",
+      "tags": [],
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": [
+              "libs/pepega/user-coin/ui/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        }
+      }
+    },
     "pepega-utils-old": {
       "root": "libs/pepega/utils-old",
       "sourceRoot": "libs/pepega/utils-old/src",

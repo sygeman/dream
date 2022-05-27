@@ -1399,7 +1399,6 @@
         }
       }
     },
-    "pepega-modules-api-old": "libs/pepega/modules-api-old",
     "pepega-prisma": {
       "root": "libs/pepega/prisma",
       "sourceRoot": "libs/pepega/prisma/src",

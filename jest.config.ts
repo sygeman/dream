@@ -51,7 +51,6 @@ module.exports = {
     '<rootDir>/libs/mono/use-community-channel',
     '<rootDir>/libs/mono/emoji/ui',
     '<rootDir>/libs/pepega/components/avatar',
-    '<rootDir>/libs/pepega/modules-api-old',
     '<rootDir>/libs/pepega/auth/api',
     '<rootDir>/libs/pepega/user/api',
     '<rootDir>/libs/pepega/connection/api',

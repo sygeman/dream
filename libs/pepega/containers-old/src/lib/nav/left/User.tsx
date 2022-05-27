@@ -1,12 +1,41 @@
 import Link from 'next/link';
 import { lighten } from 'polished';
 import styled from 'styled-components';
-import { CoinIconGold, CoinIconGreen } from '@dream/pepega/components-old';
+import {
+  Button,
+  CoinIconGold,
+  CoinIconGreen,
+} from '@dream/pepega/components-old';
 import { useRouter } from 'next/router';
 import { useAccess } from '@dream/pepega/utils-old';
 import { WalletBalance } from './WalletBalance';
 import { LeftNavMenuUserBlock } from './UserBlock';
 import { AddCircleOutline as AddCircleOutlineIcon } from 'styled-icons/material/AddCircleOutline';
+
+const AddClip = () => {
+  const router = useRouter();
+  const [{ allow: isUser, loading }] = useAccess();
+
+  if (loading) return null;
+
+  return (
+    <div className="flex w-full">
+      <Link
+        as={isUser ? `/newClip` : `/auth?continue=/newClip`}
+        href={{
+          pathname: router.route,
+          query: {
+            ...router.query,
+            [isUser ? 'newClip' : 'authModal']: 1,
+          },
+        }}
+        passHref
+      >
+        <Button className="w-full font-medium">Предложить клип</Button>
+      </Link>
+    </div>
+  );
+};
 
 const Box = styled.div`
   background: ${({ theme }) => lighten(0.05, '#262841')};
@@ -85,6 +114,7 @@ export const UserBox = () => {
   if (loading || !isUser) {
     return (
       <GuestBox>
+        <AddClip />
         <a href={`/api/auth/twitch?continue=/`}>
           <TopLink>Войти</TopLink>
         </a>
@@ -94,6 +124,7 @@ export const UserBox = () => {
 
   return (
     <Box>
+      <AddClip />
       <PointsBox>
         <Points>
           <CoinIconGold />

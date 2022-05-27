@@ -4,7 +4,7 @@ import { darken } from 'polished';
 import styled from 'styled-components';
 import { useMutation } from '@apollo/client';
 import { TwitchClipPlayer } from '@dream/pepega/components-old';
-import { ClipReaction } from './Reactions';
+import { ClipScore } from '@dream/pepega/clip-score/ui';
 import { ClipShare } from './Share';
 import { ClipComments } from './Comments';
 import { useAccess } from '@dream/pepega/utils-old';
@@ -69,8 +69,8 @@ export const Clip: FC<IProps> = ({ clipId, autoPlay }) => {
         <TwitchClipPlayer sourceId={clipId} autoPlay={autoPlay} />
       </ContentBox>
       <Bottom>
-        <ClipReaction clipId={clipId} />
-        <ClipShare clipId={clipId} />
+        <ClipScore clipId={clipId} />
+        {/* <ClipShare clipId={clipId} /> */}
       </Bottom>
       <CommentsBox>
         <ClipComments clipId={clipId} />

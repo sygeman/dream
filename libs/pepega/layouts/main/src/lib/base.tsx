@@ -90,11 +90,11 @@ export const BaseLayout: FC<IProps> = ({
                   leftMenu && 'sm:pl-[240px]'
                 )}
               >
-                <TopNav
+                {/* <TopNav
                   leftMenuTrigger={() => setLeftMenuIsOpen(!leftMenuIsOpen)}
                 >
                   {fixedTopContent}
-                </TopNav>
+                </TopNav> */}
                 {children}
               </div>
             </div>

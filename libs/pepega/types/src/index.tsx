@@ -71,6 +71,7 @@ export type Profile = {
 export type Query = {
   __typename?: 'Query';
   clip?: Maybe<Clip>;
+  clipScore: Scalars['Int'];
   clips?: Maybe<Array<Clip>>;
   me: User;
   user?: Maybe<User>;
@@ -83,13 +84,24 @@ export type QueryClipArgs = {
 };
 
 
+export type QueryClipScoreArgs = {
+  clipId: Scalars['String'];
+};
+
+
 export type QueryUserArgs = {
   id?: InputMaybe<Scalars['ID']>;
 };
 
 export type Subscription = {
   __typename?: 'Subscription';
+  clipScoreUpdated: Scalars['Int'];
   userCoinsUpdated: Scalars['Int'];
+};
+
+
+export type SubscriptionClipScoreUpdatedArgs = {
+  clipId: Scalars['String'];
 };
 
 export type User = {

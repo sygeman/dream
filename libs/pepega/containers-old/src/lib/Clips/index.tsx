@@ -85,7 +85,7 @@ export const Clips: FC<IProps> = ({
                 ...router.query,
               },
             },
-            `/clip?id=${clipId}`,
+            `/clip/${clipId}`,
             { shallow: true }
           );
         }}

@@ -3,6 +3,13 @@ import * as Types from '@dream/pepega/types';
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
+export type ClipScoreQueryVariables = Types.Exact<{
+  clipId: Types.Scalars['String'];
+}>;
+
+
+export type ClipScoreQuery = { __typename?: 'Query', clipScore: number };
+
 export type IncreaseClipScoreMutationVariables = Types.Exact<{
   clipId: Types.Scalars['String'];
 }>;
@@ -17,7 +24,47 @@ export type DecreaseClipScoreMutationVariables = Types.Exact<{
 
 export type DecreaseClipScoreMutation = { __typename?: 'Mutation', decreaseClipScore: boolean };
 
+export type ClipScoreUpdatedSubscriptionVariables = Types.Exact<{
+  clipId: Types.Scalars['String'];
+}>;
 
+
+export type ClipScoreUpdatedSubscription = { __typename?: 'Subscription', clipScoreUpdated: number };
+
+
+export const ClipScoreDocument = gql`
+    query clipScore($clipId: String!) {
+  clipScore(clipId: $clipId)
+}
+    `;
+
+/**
+ * __useClipScoreQuery__
+ *
+ * To run a query within a React component, call `useClipScoreQuery` and pass it any options that fit your needs.
+ * When your component renders, `useClipScoreQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useClipScoreQuery({
+ *   variables: {
+ *      clipId: // value for 'clipId'
+ *   },
+ * });
+ */
+export function useClipScoreQuery(baseOptions: Apollo.QueryHookOptions<ClipScoreQuery, ClipScoreQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<ClipScoreQuery, ClipScoreQueryVariables>(ClipScoreDocument, options);
+      }
+export function useClipScoreLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ClipScoreQuery, ClipScoreQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<ClipScoreQuery, ClipScoreQueryVariables>(ClipScoreDocument, options);
+        }
+export type ClipScoreQueryHookResult = ReturnType<typeof useClipScoreQuery>;
+export type ClipScoreLazyQueryHookResult = ReturnType<typeof useClipScoreLazyQuery>;
+export type ClipScoreQueryResult = Apollo.QueryResult<ClipScoreQuery, ClipScoreQueryVariables>;
 export const IncreaseClipScoreDocument = gql`
     mutation increaseClipScore($clipId: String!) {
   increaseClipScore(clipId: $clipId)
@@ -80,3 +127,31 @@ export function useDecreaseClipScoreMutation(baseOptions?: Apollo.MutationHookOp
 export type DecreaseClipScoreMutationHookResult = ReturnType<typeof useDecreaseClipScoreMutation>;
 export type DecreaseClipScoreMutationResult = Apollo.MutationResult<DecreaseClipScoreMutation>;
 export type DecreaseClipScoreMutationOptions = Apollo.BaseMutationOptions<DecreaseClipScoreMutation, DecreaseClipScoreMutationVariables>;
+export const ClipScoreUpdatedDocument = gql`
+    subscription clipScoreUpdated($clipId: String!) {
+  clipScoreUpdated(clipId: $clipId)
+}
+    `;
+
+/**
+ * __useClipScoreUpdatedSubscription__
+ *
+ * To run a query within a React component, call `useClipScoreUpdatedSubscription` and pass it any options that fit your needs.
+ * When your component renders, `useClipScoreUpdatedSubscription` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the subscription, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useClipScoreUpdatedSubscription({
+ *   variables: {
+ *      clipId: // value for 'clipId'
+ *   },
+ * });
+ */
+export function useClipScoreUpdatedSubscription(baseOptions: Apollo.SubscriptionHookOptions<ClipScoreUpdatedSubscription, ClipScoreUpdatedSubscriptionVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useSubscription<ClipScoreUpdatedSubscription, ClipScoreUpdatedSubscriptionVariables>(ClipScoreUpdatedDocument, options);
+      }
+export type ClipScoreUpdatedSubscriptionHookResult = ReturnType<typeof useClipScoreUpdatedSubscription>;
+export type ClipScoreUpdatedSubscriptionResult = Apollo.SubscriptionResult<ClipScoreUpdatedSubscription>;

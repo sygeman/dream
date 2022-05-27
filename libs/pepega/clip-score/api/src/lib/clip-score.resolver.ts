@@ -1,8 +1,18 @@
-import { Args, Context, ID, Mutation, Query, Resolver } from '@nestjs/graphql';
+import {
+  Args,
+  Context,
+  ID,
+  Int,
+  Mutation,
+  Query,
+  Resolver,
+  Subscription,
+} from '@nestjs/graphql';
+import { RedisPubSub } from 'graphql-redis-subscriptions';
 import { AuthGuard } from '@dream/pepega/auth/api';
 import { PrismaService } from '@dream/pepega-prisma';
 import { ClipScore } from './models/clip-score.model';
-import { Logger, UseGuards } from '@nestjs/common';
+import { Inject, Logger, UseGuards } from '@nestjs/common';
 import { ClipService } from '@dream/pepega/clip/api';
 import { UserCoinService } from '@dream/pepega/user-coin/api';
 
@@ -15,8 +25,18 @@ export class ClipScoreResolver {
   constructor(
     private prisma: PrismaService,
     private clipService: ClipService,
-    private userCoinService: UserCoinService
+    private userCoinService: UserCoinService,
+    @Inject('PUB_SUB') private readonly pubsub: RedisPubSub
   ) {}
+
+  @Query(() => Int)
+  async clipScore(
+    @Args({ name: 'clipId', type: () => String })
+    clipId: string
+  ) {
+    const clip = await this.prisma.clip.findUnique({ where: { id: clipId } });
+    return clip.score;
+  }
 
   @UseGuards(AuthGuard)
   @Mutation(() => Boolean)
@@ -30,9 +50,14 @@ export class ClipScoreResolver {
 
     await this.userCoinService.decrease(userId, CHANGE_SCORE_COST);
 
-    await this.prisma.clip.update({
+    const clipUpdated = await this.prisma.clip.update({
       where: { id: clip.id },
       data: { score: { increment: CHANGE_SCORE_COST } },
+    });
+
+    this.pubsub.publish('clipScoreUpdated', {
+      clipId: clipUpdated.id,
+      clipScoreUpdated: clipUpdated.score,
     });
 
     return true;
@@ -50,10 +75,25 @@ export class ClipScoreResolver {
 
     await this.userCoinService.decrease(userId, CHANGE_SCORE_COST);
 
-    await this.prisma.clip.update({
+    const clipUpdated = await this.prisma.clip.update({
       where: { id: clip.id },
-      data: { score: { decrement: 10 } },
+      data: { score: { decrement: CHANGE_SCORE_COST } },
     });
+
+    this.pubsub.publish('clipScoreUpdated', {
+      clipId: clipUpdated.id,
+      clipScoreUpdated: clipUpdated.score,
+    });
+
     return true;
+  }
+
+  @Subscription(() => Int, {
+    filter: ({ clipId }, args) => clipId === args.clipId,
+  })
+  clipScoreUpdated(
+    @Args({ name: 'clipId', type: () => String }) clipId: string
+  ) {
+    return this.pubsub.asyncIterator('clipScoreUpdated');
   }
 }

@@ -52,11 +52,29 @@ type Clip {
   updatedAt: String!
 }
 
+type ClipCommentUser {
+  id: String!
+  role: UserRole
+  name: String
+  avatar: String
+}
+
+type ClipComment {
+  id: String!
+  userId: String!
+  user: ClipCommentUser!
+  clipId: String!
+  content: String!
+  createdAt: String!
+  updatedAt: String!
+}
+
 type Query {
   user(id: ID): User
   me: User!
   clip(id: String!): Clip
   clips: [Clip!]
+  clipComments(clipId: ID!): [ClipComment!]!
   userCoins: Int!
   clipScore(clipId: String!): Int!
 }
@@ -65,12 +83,21 @@ type Mutation {
   logout: Boolean!
   updateConnectionStatus: Boolean!
   setUserLocale(locale: Locale!): Locale!
+  createClipComment(input: ClipCommentCreateInput!): Boolean!
+  removeClipComment(id: ID!): Boolean!
   setClipHistory(clipId: String!): Boolean!
   increaseClipScore(clipId: String!): Boolean!
   decreaseClipScore(clipId: String!): Boolean!
 }
 
+input ClipCommentCreateInput {
+  content: String!
+  clipId: String!
+}
+
 type Subscription {
+  clipCommentCreated(clipId: ID!): ClipComment!
+  clipCommentRemoved(clipId: ID!): ID!
   userCoinsUpdated: Int!
   clipScoreUpdated(clipId: String!): Int!
 }

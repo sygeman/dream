@@ -1382,23 +1382,6 @@
       }
     },
     "pepega-connection-api": "libs/pepega/connection/api",
-    "pepega-containers-old": {
-      "root": "libs/pepega/containers-old",
-      "sourceRoot": "libs/pepega/containers-old/src",
-      "projectType": "library",
-      "tags": [],
-      "targets": {
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
-          "options": {
-            "lintFilePatterns": [
-              "libs/pepega/containers-old/**/*.{ts,tsx,js,jsx}"
-            ]
-          }
-        }
-      }
-    },
     "pepega-layouts-main": {
       "root": "libs/pepega/layouts/main",
       "sourceRoot": "libs/pepega/layouts/main/src",

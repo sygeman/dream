@@ -1,4 +1,4 @@
-import { Clips } from '@dream/pepega/containers-old';
+import { Clips } from '@dream/pepega/clip/ui';
 import { MainLayout } from '@dream/pepega/layouts/main';
 
 const IndexPage = () => {

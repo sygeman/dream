@@ -5,9 +5,9 @@ import { ReactNode, useState, FC } from 'react';
 import Scrollbars from 'react-custom-scrollbars';
 import { Auth } from '@dream/pepega/auth/ui';
 import { Modal } from '@dream/pepega/components-old';
-import { CreateCommunityClip } from '@dream/pepega/containers-old';
-import { ClipModal } from '@dream/pepega/containers-old';
-import { UserBox, TopNav } from '@dream/pepega/containers-old';
+import { CreateCommunityClip } from '@dream/pepega/clip/ui';
+import { ClipModal } from '@dream/pepega/clip/ui';
+import { UserBox } from './User';
 
 interface IProps {
   fixedTopContent?: ReactNode;
@@ -90,11 +90,6 @@ export const BaseLayout: FC<IProps> = ({
                   leftMenu && 'sm:pl-[240px]'
                 )}
               >
-                {/* <TopNav
-                  leftMenuTrigger={() => setLeftMenuIsOpen(!leftMenuIsOpen)}
-                >
-                  {fixedTopContent}
-                </TopNav> */}
                 {children}
               </div>
             </div>

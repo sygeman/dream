@@ -120,9 +120,6 @@
       "@dream/pepega/connection/api": [
         "libs/pepega/connection/api/src/index.ts"
       ],
-      "@dream/pepega/containers-old": [
-        "libs/pepega/containers-old/src/index.ts"
-      ],
       "@dream/pepega/layouts/main": ["libs/pepega/layouts/main/src/index.ts"],
       "@dream/pepega/modules-api-old": [
         "libs/pepega/modules-api-old/src/index.ts"

@@ -4,7 +4,7 @@ import Scrollbars from 'react-custom-scrollbars';
 import { LeftMenu } from '@dream/pepega/components-old';
 import { BaseLayout } from './base';
 import { Header } from './header';
-import { LogoBox } from '@dream/pepega/containers-old';
+import { LogoBox } from './Logo';
 
 interface IProps {
   fixedTopContent?: ReactNode;

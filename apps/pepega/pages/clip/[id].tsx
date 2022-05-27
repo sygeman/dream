@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
-import { Clip } from '@dream/pepega/containers-old';
+import { Clip } from '@dream/pepega/clip/ui';
 import { MainLayout } from '@dream/pepega/layouts/main';
 
 const Box = styled.div`

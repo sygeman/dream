@@ -96,8 +96,14 @@
       "@dream/pepega/clip-comment/api": [
         "libs/pepega/clip-comment/api/src/index.ts"
       ],
+      "@dream/pepega/clip-comment/ui": [
+        "libs/pepega/clip-comment/ui/src/index.ts"
+      ],
       "@dream/pepega/clip-history/api": [
         "libs/pepega/clip-history/api/src/index.ts"
+      ],
+      "@dream/pepega/clip-history/ui": [
+        "libs/pepega/clip-history/ui/src/index.ts"
       ],
       "@dream/pepega/clip-score/api": [
         "libs/pepega/clip-score/api/src/index.ts"

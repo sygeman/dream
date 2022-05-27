@@ -57,19 +57,20 @@ type Query {
   me: User!
   clip(id: String!): Clip
   clips: [Clip!]
-  clipScore(clipId: String!): Int!
   userCoins: Int!
+  clipScore(clipId: String!): Int!
 }
 
 type Mutation {
   logout: Boolean!
   updateConnectionStatus: Boolean!
   setUserLocale(locale: Locale!): Locale!
+  setClipHistory(clipId: String!): Boolean!
   increaseClipScore(clipId: String!): Boolean!
   decreaseClipScore(clipId: String!): Boolean!
 }
 
 type Subscription {
-  clipScoreUpdated(clipId: String!): Int!
   userCoinsUpdated: Int!
+  clipScoreUpdated(clipId: String!): Int!
 }

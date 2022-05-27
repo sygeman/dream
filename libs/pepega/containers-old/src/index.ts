@@ -10,7 +10,6 @@ export * from './lib/nav/left/User';
 export * from './lib/nav/left/UserBlock';
 export * from './lib/nav/left/WalletBalance';
 
-export * from './lib/Clip/Clip';
 export * from './lib/Clip/Create';
 export * from './lib/Clip/ClipModal';
 export * from './lib/Clips';

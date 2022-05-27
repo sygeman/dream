@@ -1255,7 +1255,57 @@
     },
     "pepega-clip-api": "libs/pepega/clip/api",
     "pepega-clip-comment-api": "libs/pepega/clip-comment/api",
+    "pepega-clip-comment-ui": {
+      "root": "libs/pepega/clip-comment/ui",
+      "sourceRoot": "libs/pepega/clip-comment/ui/src",
+      "projectType": "library",
+      "tags": [],
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": [
+              "libs/pepega/clip-comment/ui/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/pepega/clip-comment/ui"],
+          "options": {
+            "jestConfig": "libs/pepega/clip-comment/ui/jest.config.ts",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "pepega-clip-history-api": "libs/pepega/clip-history/api",
+    "pepega-clip-history-ui": {
+      "root": "libs/pepega/clip-history/ui",
+      "sourceRoot": "libs/pepega/clip-history/ui/src",
+      "projectType": "library",
+      "tags": [],
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": [
+              "libs/pepega/clip-history/ui/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/pepega/clip-history/ui"],
+          "options": {
+            "jestConfig": "libs/pepega/clip-history/ui/jest.config.ts",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "pepega-clip-score-api": "libs/pepega/clip-score/api",
     "pepega-clip-score-ui": {
       "root": "libs/pepega/clip-score/ui",

@@ -1,19 +1,14 @@
 import { FC } from 'react';
-import styled from 'styled-components';
-import { Clip } from './Clip';
+import { Clip } from '@dream/pepega/clip/ui';
 
-const Box = styled.div`
-  width: 1000px;
-`;
-
-interface IProps {
+interface ClipModalProps {
   clipId: string;
 }
 
-export const ClipModal: FC<IProps> = ({ clipId }) => {
+export const ClipModal: FC<ClipModalProps> = ({ clipId }) => {
   return (
-    <Box>
+    <div className="w-[1000px]">
       <Clip clipId={clipId} autoPlay />
-    </Box>
+    </div>
   );
 };

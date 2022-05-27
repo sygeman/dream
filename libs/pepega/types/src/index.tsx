@@ -41,6 +41,7 @@ export type Mutation = {
   decreaseClipScore: Scalars['Boolean'];
   increaseClipScore: Scalars['Boolean'];
   logout: Scalars['Boolean'];
+  setClipHistory: Scalars['Boolean'];
   setUserLocale: Locale;
   updateConnectionStatus: Scalars['Boolean'];
 };
@@ -52,6 +53,11 @@ export type MutationDecreaseClipScoreArgs = {
 
 
 export type MutationIncreaseClipScoreArgs = {
+  clipId: Scalars['String'];
+};
+
+
+export type MutationSetClipHistoryArgs = {
   clipId: Scalars['String'];
 };
 

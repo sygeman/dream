@@ -5,7 +5,7 @@ import { ReactNode, useState, FC } from 'react';
 import Scrollbars from 'react-custom-scrollbars';
 import { Auth } from '@dream/pepega/auth/ui';
 import { Modal } from '@dream/pepega/components-old';
-import { CreateCommunityClip } from '@dream/pepega/clip/ui';
+import { CreateClip } from '@dream/pepega/clip/ui';
 import { ClipModal } from '@dream/pepega/clip/ui';
 import { UserBox } from './User';
 
@@ -61,7 +61,7 @@ export const BaseLayout: FC<IProps> = ({
           visible={router.query.newClip === '1'}
           onClose={() => router.back()}
         >
-          <CreateCommunityClip />
+          <CreateClip />
         </Modal>
 
         <div className="relative w-full h-full overflow-hidden flex flex-col">

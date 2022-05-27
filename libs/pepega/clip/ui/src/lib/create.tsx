@@ -9,7 +9,7 @@ import { parseSource } from '@dream/pepega/utils-old';
 import { useIncreaseClipScoreMutation } from '@dream/pepega/clip-score/ui';
 import { useRouter } from 'next/router';
 
-export const CreateCommunityClip = () => {
+export const CreateClip = () => {
   const router = useRouter();
   const costCreateClip = 10;
   const [clipId, setClipId] = useState('');

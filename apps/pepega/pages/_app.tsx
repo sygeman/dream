@@ -1,16 +1,10 @@
 import React from 'react';
 import Head from 'next/head';
-import Router from 'next/router';
-import NProgress from 'nprogress';
 import { ApolloProvider } from '@apollo/client';
 import { useApollo } from '../lib/apollo';
 import '../styles.css';
 
-Router.events.on('routeChangeStart', () => NProgress.start());
-Router.events.on('routeChangeComplete', () => NProgress.done());
-Router.events.on('routeChangeError', () => NProgress.done());
-
-function CustomApp({ Component, pageProps, locale }) {
+function CustomApp({ Component, pageProps }) {
   const apolloClient = useApollo(pageProps);
 
   return (

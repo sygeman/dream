@@ -12637,7 +12637,6 @@ __metadata:
     next: 12.1.6
     next-iron-session: 4.2.0
     next-transpile-modules: 9.0.0
-    nprogress: 0.2.0
     nx: 14.1.9
     overlayscrollbars: 1.13.1
     overlayscrollbars-react: 0.2.3
@@ -18792,13 +18791,6 @@ __metadata:
     gauge: ~2.7.3
     set-blocking: ~2.0.0
   checksum: edbda9f95ec20957a892de1839afc6fb735054c3accf6fbefe767bac9a639fd5cea2baeac6bd2bcd50a85cb54924d57d9886c81c7fbc2332c2ddd19227504192
-  languageName: node
-  linkType: hard
-
-"nprogress@npm:0.2.0":
-  version: 0.2.0
-  resolution: "nprogress@npm:0.2.0"
-  checksum: 66b7bec5d563ecf2d1c3d2815e6d5eb74ed815eee8563e0afa63d3f185ab1b9cf2ddd97e1ded263b9995c5019d26d600320e849e50f3747984daa033744619dc
   languageName: node
   linkType: hard
 

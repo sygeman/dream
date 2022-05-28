@@ -29,17 +29,15 @@ export const MainLayout = ({ children }: { children?: React.ReactNode }) => {
                 style={{ backgroundColor: lighten(0.03, '#1D1E31') }}
               >
                 <div className="flex flex-1">
-                  <Scrollbars autoHide universal>
-                    <div>
-                      <Logo />
-                      <LeftMenuItem
-                        route="/"
-                        equal
-                        icon={<HomeIcon className="h-4" />}
-                        title="Главная"
-                      />
-                    </div>
-                  </Scrollbars>
+                  <div>
+                    <Logo />
+                    <LeftMenuItem
+                      route="/"
+                      equal
+                      icon={<HomeIcon className="h-4" />}
+                      title="Главная"
+                    />
+                  </div>
                 </div>
                 <UserBox />
               </div>

@@ -10,6 +10,13 @@ export type ClipCommentsQueryVariables = Types.Exact<{
 
 export type ClipCommentsQuery = { __typename?: 'Query', clipComments: Array<{ __typename?: 'ClipComment', id: string, userId: string, content: string, createdAt: string, user: { __typename?: 'ClipCommentUser', id: string, role?: Types.UserRole | null, name?: string | null, avatar?: string | null } }> };
 
+export type CreateClipCommentMutationVariables = Types.Exact<{
+  input: Types.ClipCommentCreateInput;
+}>;
+
+
+export type CreateClipCommentMutation = { __typename?: 'Mutation', createClipComment: boolean };
+
 export type RemoveClipCommentMutationVariables = Types.Exact<{
   id: Types.Scalars['ID'];
 }>;
@@ -82,6 +89,37 @@ export function useClipCommentsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptio
 export type ClipCommentsQueryHookResult = ReturnType<typeof useClipCommentsQuery>;
 export type ClipCommentsLazyQueryHookResult = ReturnType<typeof useClipCommentsLazyQuery>;
 export type ClipCommentsQueryResult = Apollo.QueryResult<ClipCommentsQuery, ClipCommentsQueryVariables>;
+export const CreateClipCommentDocument = gql`
+    mutation createClipComment($input: ClipCommentCreateInput!) {
+  createClipComment(input: $input)
+}
+    `;
+export type CreateClipCommentMutationFn = Apollo.MutationFunction<CreateClipCommentMutation, CreateClipCommentMutationVariables>;
+
+/**
+ * __useCreateClipCommentMutation__
+ *
+ * To run a mutation, you first call `useCreateClipCommentMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateClipCommentMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createClipCommentMutation, { data, loading, error }] = useCreateClipCommentMutation({
+ *   variables: {
+ *      input: // value for 'input'
+ *   },
+ * });
+ */
+export function useCreateClipCommentMutation(baseOptions?: Apollo.MutationHookOptions<CreateClipCommentMutation, CreateClipCommentMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateClipCommentMutation, CreateClipCommentMutationVariables>(CreateClipCommentDocument, options);
+      }
+export type CreateClipCommentMutationHookResult = ReturnType<typeof useCreateClipCommentMutation>;
+export type CreateClipCommentMutationResult = Apollo.MutationResult<CreateClipCommentMutation>;
+export type CreateClipCommentMutationOptions = Apollo.BaseMutationOptions<CreateClipCommentMutation, CreateClipCommentMutationVariables>;
 export const RemoveClipCommentDocument = gql`
     mutation removeClipComment($id: ID!) {
   removeClipComment(id: $id)

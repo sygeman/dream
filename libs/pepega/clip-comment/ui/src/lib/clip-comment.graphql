@@ -4,6 +4,10 @@ query clipComments($clipId: ID!) {
   }
 }
 
+mutation createClipComment($input: ClipCommentCreateInput!) {
+  createClipComment(input: $input)
+}
+
 mutation removeClipComment($id: ID!) {
   removeClipComment(id: $id)
 }

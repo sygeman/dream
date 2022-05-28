@@ -1,44 +1,13 @@
-import gql from 'graphql-tag';
-import { FC, useRef } from 'react';
-import { useMutation } from '@apollo/client';
-import styled from 'styled-components';
+import { useRef } from 'react';
 import { useAccess } from '@dream/pepega/auth/ui';
+import { useCreateClipCommentMutation } from './clip-comment.api';
 
-const CREATE_CLIP_COMMENT = gql`
-  mutation createClipComment($input: ClipCommentCreateInput!) {
-    createClipComment(input: $input)
-  }
-`;
-
-const CommentsBottom = styled.div`
-  height: 60px;
-  display: flex;
-  position: relative;
-
-  input {
-    width: calc(100% - 20px);
-    padding: 0 30px 0 10px;
-    height: 36px;
-    color: #fff;
-    background: #00000040;
-    border: none;
-    border-radius: 4px;
-    font-size: 12px;
-    outline: none;
-    margin: auto;
-  }
-`;
-
-interface IProps {
-  clipId: string;
-}
-
-export const ClipCommentBottom: FC<IProps> = ({ clipId }) => {
+export const ClipCommentBottom = ({ clipId }: { clipId: string }) => {
   const textInput = useRef<HTMLInputElement>(null);
   const [{ allow: isAllow }] = useAccess();
   let lock = false;
 
-  const [createClipComment] = useMutation(CREATE_CLIP_COMMENT, {
+  const [createClipComment] = useCreateClipCommentMutation({
     onCompleted: (data) => {
       if (data.createClipComment && textInput.current) {
         textInput.current.value = '';
@@ -48,8 +17,9 @@ export const ClipCommentBottom: FC<IProps> = ({ clipId }) => {
   });
 
   return (
-    <CommentsBottom>
+    <div className="h-16 flex relative">
       <input
+        className="w-[calc(100%-20px)] px-4 h-8 bg-background rounded text-sm outline-none m-2"
         disabled={!isAllow}
         ref={textInput}
         maxLength={500}
@@ -60,9 +30,7 @@ export const ClipCommentBottom: FC<IProps> = ({ clipId }) => {
             : 'Войдите чтобы писать комментарии'
         }
         onKeyPress={(e) => {
-          if (!textInput.current) {
-            return null;
-          }
+          if (!textInput.current) return null;
 
           const content = textInput.current.value.trim();
 
@@ -74,6 +42,6 @@ export const ClipCommentBottom: FC<IProps> = ({ clipId }) => {
           }
         }}
       />
-    </CommentsBottom>
+    </div>
   );
 };

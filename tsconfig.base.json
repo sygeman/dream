@@ -114,9 +114,6 @@
       "@dream/pepega/components/avatar": [
         "libs/pepega/components/avatar/src/index.ts"
       ],
-      "@dream/pepega/components/button": [
-        "libs/pepega/components/button/src/index.ts"
-      ],
       "@dream/pepega/components/card-media": [
         "libs/pepega/components/card-media/src/index.ts"
       ],
@@ -125,9 +122,6 @@
       ],
       "@dream/pepega/components/coin-icon": [
         "libs/pepega/components/coin-icon/src/index.ts"
-      ],
-      "@dream/pepega/components/dropdown": [
-        "libs/pepega/components/dropdown/src/index.ts"
       ],
       "@dream/pepega/components/grid": [
         "libs/pepega/components/grid/src/index.ts"

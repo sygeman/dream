@@ -1,15 +1,11 @@
-import React from 'react';
+import { CoinIconGold } from '@dream/pepega/components/coin-icon';
 import { shortNumbers, humanNumbers } from '@dream/pepega/utils/count';
 import {
   useUserCoinsQuery,
   useUserCoinsUpdatedSubscription,
 } from '@dream/pepega/user-coin/ui';
 
-interface IProps {
-  currency: string;
-}
-
-export const WalletBalance: React.FC<IProps> = ({ currency }) => {
+export const Coins = () => {
   const userCoinsQuery = useUserCoinsQuery();
   const userCoins = userCoinsQuery?.data?.userCoins || 0;
 
@@ -28,5 +24,10 @@ export const WalletBalance: React.FC<IProps> = ({ currency }) => {
     },
   });
 
-  return <span title={humanNumbers(userCoins)}>{shortNumbers(userCoins)}</span>;
+  return (
+    <div className="flex items-center justify-center h-10 w-full text-sm font-medium text-white/90">
+      <CoinIconGold />
+      <span title={humanNumbers(userCoins)}>{shortNumbers(userCoins)}</span>
+    </div>
+  );
 };

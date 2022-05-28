@@ -1,28 +1,6 @@
 import { useRouter } from 'next/router';
-import styled from 'styled-components';
 import { Clip } from '@dream/pepega/clip/ui';
 import { MainLayout } from '@dream/pepega/layouts/main';
-
-const Box = styled.div`
-  margin: 0 auto;
-  margin-top: 20px;
-  display: flex;
-  max-width: 1200px;
-`;
-
-const Left = styled.div`
-  flex: 1;
-  padding: 0 20px;
-`;
-
-const Right = styled.div`
-  width: 320px;
-  margin-right: 10px;
-
-  @media (max-width: 1000px) {
-    display: none;
-  }
-`;
 
 const ClipPage = () => {
   const router = useRouter();
@@ -34,12 +12,14 @@ const ClipPage = () => {
 
   return (
     <MainLayout>
-      <Box>
-        <Left>
-          <Clip clipId={clipId} />
-        </Left>
-        <Right></Right>
-      </Box>
+      <div className="flex w-full justify-center">
+        <div className="flex flex-1 m-4 max-w-[1200px]">
+          <div className="flex flex-1 px-5">
+            <Clip clipId={clipId} />
+          </div>
+          <div className="w-80 mr-2 hidden xl:flex" />
+        </div>
+      </div>
     </MainLayout>
   );
 };

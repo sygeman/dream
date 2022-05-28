@@ -1,43 +1,21 @@
-import { FC } from 'react';
-import styled from 'styled-components';
-
-const Box = styled.div`
-  position: relative;
-  padding-bottom: 56.25%;
-`;
-
-const ContentBox = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-`;
-
-const Iframe = styled.iframe`
-  width: 100%;
-  height: 100%;
-`;
-
-interface IProps {
+export const TwitchClipPlayer = ({
+  sourceId,
+  autoPlay,
+}: {
   autoPlay?: boolean;
   sourceId?: string;
-}
-
-export const TwitchClipPlayer: FC<IProps> = ({ sourceId, autoPlay }) => {
-  return (
-    <Box>
-      <ContentBox>
-        <Iframe
-          src={`https://clips.twitch.tv/embed?clip=${sourceId}&muted=false&autoplay=${
-            autoPlay ? 'true' : 'false'
-          }&parent=${window?.location?.host}`}
-          frameBorder="0"
-          height="100%"
-          allowFullScreen
-          width="100%"
-        />
-      </ContentBox>
-    </Box>
-  );
-};
+}) => (
+  <div className="aspect-w-16 aspect-h-9">
+    <div className=" absolute top-0 left-0 w-full h-full">
+      <iframe
+        title="twitch-player"
+        className="w-full h-full relative"
+        src={`https://clips.twitch.tv/embed?clip=${sourceId}&muted=false&autoplay=${
+          autoPlay ? 'true' : 'false'
+        }&parent=${window?.location?.host}`}
+        frameBorder="0"
+        allowFullScreen
+      />
+    </div>
+  </div>
+);

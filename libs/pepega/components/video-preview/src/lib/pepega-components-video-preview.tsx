@@ -1,168 +1,34 @@
-import { rgba } from 'polished';
-import { FC, useEffect, useRef, useState } from 'react';
-import ResizeObserver from 'resize-observer-polyfill';
-import styled from 'styled-components';
-import { humanNumbers } from '@dream/pepega/utils/count';
-import { EyeIcon } from '@heroicons/react/solid';
-
-const Box = styled.div`
-  position: relative;
-  padding-bottom: 56.25%;
-`;
-
-const ContentBox = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-`;
-
-const PreviewBox = styled.div`
-  position: relative;
-  cursor: pointer;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-`;
-
-const PreviewImg = styled.div`
-  width: 100%;
-  height: 100%;
-`;
-
-const PreviewLeftTags = styled.div<{ width: number }>`
-  position: absolute;
-  left: 0;
-  top: 0;
-  display: flex;
-  margin: 10px;
-  text-transform: uppercase;
-  font-size: ${({ width }) => width * (1 / 27)}px;
-`;
-
-const PreviewRightTags = styled.div<{ width: number }>`
-  position: absolute;
-  right: 0;
-  top: 0;
-  display: flex;
-  margin: 10px;
-  text-transform: uppercase;
-  font-size: ${({ width }) => width * (1 / 27)}px;
-`;
-
-const PreviewBlurText = styled.div`
-  padding: 4px 8px;
-  background: #000000a3;
-  color: ${({ theme }) => rgba('#EEEEEE', 0.8)};
-  border-radius: 3px;
-  margin-left: 5px;
-`;
-
-const Views = styled.div<{ width: number }>`
-  display: flex;
-  align-items: center;
-  background: #000000a3;
-  color: ${({ theme }) => rgba('#EEEEEE', 0.8)};
-  padding: 5px 10px;
-  border-radius: 5px;
-
-  i {
-    display: flex;
-    align-items: center;
-    margin-right: ${({ width }) => width * (1 / 40)}px;
-  }
-`;
-
-const Date = styled.div`
-  display: flex;
-  background: #000000a3;
-  color: ${({ theme }) => rgba('#EEEEEE', 0.8)};
-  padding: 5px 10px;
-  border-radius: 5px;
-`;
-
-const Bottom = styled.div<{ width: number }>`
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  display: flex;
-  padding: ${({ width }) => width * (1 / 40)}px;
-  width: 100%;
-  font-size: ${({ width }) => width * (1 / 27)}px;
-  color: ${({ theme }) => rgba('#EEEEEE', 0.8)};
-`;
-
-const BottomRight = styled.div`
-  display: flex;
-  margin-left: auto;
-`;
-
-interface IProps {
-  onClick?: () => void;
-  cover?: string;
-  nsfw?: boolean;
-  spoiler?: boolean;
-  date?: string;
-  views?: number;
-  watched?: boolean;
-}
-
-export const VideoPreview: FC<IProps> = ({
+export const VideoPreview = ({
   onClick,
   cover,
-  nsfw,
-  spoiler,
   date,
-  watched,
-  views,
-}) => {
-  const [width, setWidth] = useState(0);
-  const ref = useRef(null);
-
-  useEffect(() => {
-    const resizeObserver = new ResizeObserver(([entry]) => {
-      const containerWidth = entry.contentRect.width;
-      setWidth(containerWidth);
-    });
-
-    if (ref.current) {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      //@ts-ignore
-      resizeObserver.observe(ref.current);
-    }
-
-    return () => resizeObserver.disconnect();
-  }, []);
-
-  return (
-    <Box ref={ref}>
-      <ContentBox>
-        <PreviewBox onClick={onClick}>
-          <PreviewImg
-            style={{
-              background: `url("${cover}") no-repeat center center / cover`,
-              filter: nsfw || spoiler ? `blur(20px)` : 'none',
-            }}
-          />
-          <PreviewLeftTags width={width}>
-            {watched && <PreviewBlurText>Просмотрено</PreviewBlurText>}
-          </PreviewLeftTags>
-          <PreviewRightTags width={width}>
-            {nsfw && <PreviewBlurText>NSFW</PreviewBlurText>}
-            {spoiler && <PreviewBlurText>Спойлер</PreviewBlurText>}
-          </PreviewRightTags>
-          <Bottom width={width}>
-            {views && (
-              <Views width={width}>
-                <EyeIcon className="h-3 mr-2" />
-                {humanNumbers(views)}
-              </Views>
+}: {
+  onClick?: () => void;
+  cover?: string;
+  date?: string;
+}) => (
+  <div className="aspect-w-16 aspect-h-9 relative">
+    <div className="absolute top-0 left-0 w-full h-full">
+      <div
+        className="relative w-full h-full overflow-hidden cursor-pointer"
+        onClick={onClick}
+      >
+        <div
+          className="w-full h-full"
+          style={{
+            background: `url("${cover}") no-repeat center center / cover`,
+          }}
+        />
+        <div className="absolute p-1 left-0 bottom-0 flex w-full">
+          <div className="flex ml-auto">
+            {date && (
+              <div className="flex px-2 py-1 rounded bg-black/75 text-xs">
+                {date}
+              </div>
             )}
-            <BottomRight>{date && <Date>{date}</Date>}</BottomRight>
-          </Bottom>
-        </PreviewBox>
-      </ContentBox>
-    </Box>
-  );
-};
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+);

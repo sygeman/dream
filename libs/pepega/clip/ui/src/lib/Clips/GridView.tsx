@@ -10,7 +10,7 @@ interface IProps {
   onPlay: () => void;
 }
 
-export const GridView: FC<IProps> = memo(
+export const ClipGridView: FC<IProps> = memo(
   ({ clip, onPlay }) => {
     const date =
       clip && clip.created_at && dateDistanceInWordsToNow(clip.created_at);
@@ -24,7 +24,6 @@ export const GridView: FC<IProps> = memo(
                 onClick={() => onPlay()}
                 cover={clip.thumbnail_url}
                 date={date}
-                watched={false}
               />
             )}
           </div>
@@ -38,5 +37,3 @@ export const GridView: FC<IProps> = memo(
     return isEqual(prevProps.clip, nextProps.clip);
   }
 );
-
-export default GridView;

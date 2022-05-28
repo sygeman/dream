@@ -1,13 +1,15 @@
-import styled from 'styled-components';
+import React from 'react';
 
-export const Input = styled.input`
-  padding: 10px;
-  margin: 5px 0;
-  border: none;
-  background: ${({ theme }) => '#1D1E31'};
-  border-radius: 4px;
-  color: ${({ theme }) => '#EEEEEE'};
-  outline: none;
-  width: 100%;
-  font-size: 13px;
-`;
+export const Input = (
+  props: React.DetailedHTMLProps<
+    React.InputHTMLAttributes<HTMLInputElement>,
+    HTMLInputElement
+  >
+) => {
+  return (
+    <input
+      className="p-2 my-2 border-none bg-background rounded outline-none w-full text-sm"
+      {...props}
+    />
+  );
+};

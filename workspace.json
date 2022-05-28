@@ -1364,31 +1364,6 @@
         }
       }
     },
-    "pepega-components-button": {
-      "root": "libs/pepega/components/button",
-      "sourceRoot": "libs/pepega/components/button/src",
-      "projectType": "library",
-      "tags": [],
-      "targets": {
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
-          "options": {
-            "lintFilePatterns": [
-              "libs/pepega/components/button/**/*.{ts,tsx,js,jsx}"
-            ]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/pepega/components/button"],
-          "options": {
-            "jestConfig": "libs/pepega/components/button/jest.config.ts",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
     "pepega-components-card-media": {
       "root": "libs/pepega/components/card-media",
       "sourceRoot": "libs/pepega/components/card-media/src",
@@ -1459,31 +1434,6 @@
           "outputs": ["coverage/libs/pepega/components/coin-icon"],
           "options": {
             "jestConfig": "libs/pepega/components/coin-icon/jest.config.ts",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "pepega-components-dropdown": {
-      "root": "libs/pepega/components/dropdown",
-      "sourceRoot": "libs/pepega/components/dropdown/src",
-      "projectType": "library",
-      "tags": [],
-      "targets": {
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
-          "options": {
-            "lintFilePatterns": [
-              "libs/pepega/components/dropdown/**/*.{ts,tsx,js,jsx}"
-            ]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/pepega/components/dropdown"],
-          "options": {
-            "jestConfig": "libs/pepega/components/dropdown/jest.config.ts",
             "passWithNoTests": true
           }
         }

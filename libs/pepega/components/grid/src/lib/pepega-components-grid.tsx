@@ -1,30 +1,5 @@
-import { FC, ReactNode, useEffect, useRef, useState } from 'react';
-import ResizeObserver from 'resize-observer-polyfill';
-import styled from 'styled-components';
-
-const Container = styled.div`
-  display: flex;
-  width: 100%;
-  overflow: hidden;
-`;
-
-const ContainerInner = styled.div<{ innerWidth: number }>`
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  width: ${({ innerWidth }) => innerWidth}px;
-`;
-
-const MainGrid = styled.div<{ elementWidth: number }>`
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(
-    auto-fit,
-    ${({ elementWidth }) => elementWidth}px
-  );
-  overflow-y: hidden;
-`;
+import { FC, ReactNode, useEffect, useState } from 'react';
+import { useResizeDetector } from 'react-resize-detector';
 
 type Props = {
   items: any[];
@@ -45,7 +20,7 @@ export const Grid: FC<Props> & { defaultProps: Partial<Props> } = ({
   maxOnRow,
   elementWidth,
 }) => {
-  const ref = useRef(null);
+  const { width, ref } = useResizeDetector({ handleHeight: false });
   const [innerWidth, setInnerWidth] = useState(0);
 
   if (maxRows) {
@@ -53,42 +28,42 @@ export const Grid: FC<Props> & { defaultProps: Partial<Props> } = ({
   }
 
   useEffect(() => {
-    const resizeObserver = new ResizeObserver(([entry]) => {
-      const containerWidth = entry.contentRect.width;
+    const containerWidth = width || 0;
+    let countOnRow = Math.floor(containerWidth / elementWidth);
 
-      let countOnRow = Math.floor(containerWidth / elementWidth);
-
-      if (countOnRow < 1) {
-        countOnRow = 1;
-      } else if (countOnRow > maxOnRow) {
-        countOnRow = maxOnRow;
-      }
-
-      let gridWidth = countOnRow * elementWidth;
-
-      if (gridWidth < elementWidth) {
-        gridWidth = elementWidth;
-      }
-
-      setInnerWidth(gridWidth);
-    });
-
-    if (ref && ref.current) {
-      //@ts-ignore
-      resizeObserver.observe(ref.current);
+    if (countOnRow < 1) {
+      countOnRow = 1;
+    } else if (countOnRow > maxOnRow) {
+      countOnRow = maxOnRow;
     }
 
-    return () => resizeObserver.disconnect();
-  }, [ref.current, maxOnRow, elementWidth]);
+    let gridWidth = countOnRow * elementWidth;
+
+    if (gridWidth < elementWidth) {
+      gridWidth = elementWidth;
+    }
+
+    setInnerWidth(gridWidth);
+  }, [width, maxOnRow, elementWidth]);
 
   return (
-    <Container ref={ref}>
-      <ContainerInner innerWidth={innerWidth}>
+    <div ref={ref} className="flex w-full overflow-hidden">
+      <div
+        className="flex flex-col overflow-hidden"
+        style={{ width: innerWidth, margin: '0 auto' }}
+      >
         {beforeRender}
-        <MainGrid elementWidth={elementWidth}>{items.map(itemRender)}</MainGrid>
+        <div
+          className="w-full grid overflow-y-hidden"
+          style={{
+            gridTemplateColumns: `repeat(auto-fit,${elementWidth}px)`,
+          }}
+        >
+          {items.map(itemRender)}
+        </div>
         {afterRedner}
-      </ContainerInner>
-    </Container>
+      </div>
+    </div>
   );
 };
 

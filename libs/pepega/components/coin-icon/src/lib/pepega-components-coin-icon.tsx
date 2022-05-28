@@ -1,22 +1,11 @@
-import styled from 'styled-components';
+import clsx from 'clsx';
 
-const CoinIcon = styled.div`
-  height: 10px;
-  width: 10px;
-  border-radius: 100%;
-  background: transparent;
-  border: 2px solid;
-  margin: 0 10px 0 0;
-  font-size: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-export const CoinIconGold = styled(CoinIcon)`
-  border-color: #a48b3f;
-`;
-
-export const CoinIconGreen = styled(CoinIcon)`
-  border-color: #3fa447;
-`;
+export const CoinIconGold = () => (
+  <div
+    className={clsx(
+      'h-2.5 w-2.5 mr-2.5 rounded-full text-sm',
+      'flex items-center justify-center',
+      'border-2 border-[#a48b3f]'
+    )}
+  />
+);

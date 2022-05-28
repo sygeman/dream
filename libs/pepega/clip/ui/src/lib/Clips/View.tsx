@@ -1,34 +1,6 @@
-import Link from 'next/link';
-import { darken } from 'polished';
 import { PureComponent } from 'react';
-import styled from 'styled-components';
 import { Grid } from '@dream/pepega/components/grid';
-import ClipGridView from './GridView';
-
-const SectionBox = styled.div`
-  padding: 40px 5px 10px;
-`;
-
-const SectionTitle = styled.div`
-  display: flex;
-  width: 100%;
-  font-size: 16px;
-
-  a {
-    cursor: pointer;
-  }
-`;
-
-const SectionDescription = styled.div`
-  display: flex;
-  width: 100%;
-  font-size: 12px;
-  color: ${({ theme }) => darken(0.4, '#EEEEEE')};
-`;
-
-const PostContainer = styled.div`
-  margin: 6px;
-`;
+import { ClipGridView } from './GridView';
 
 interface IProps {
   clips: any;
@@ -107,41 +79,22 @@ export class ClipsView extends PureComponent<IProps, IState> {
   }
 
   public render() {
-    const { clips, onPlay, title, description, rows, titleLink } = this.props;
+    const { clips, onPlay, title, description } = this.props;
 
     return (
       <Grid
         beforeRender={
-          <>
-            {title && !titleLink && (
-              <SectionBox>
-                <SectionTitle>{title}</SectionTitle>
-                {description && (
-                  <SectionDescription>{description}</SectionDescription>
-                )}
-              </SectionBox>
-            )}
-            {title && titleLink && (
-              <SectionBox>
-                <SectionTitle>
-                  <Link href={titleLink} passHref>
-                    <a>{title}</a>
-                  </Link>
-                </SectionTitle>
-                {description && (
-                  <SectionDescription>{description}</SectionDescription>
-                )}
-              </SectionBox>
-            )}
-          </>
+          <div className="px-2 pt-8">
+            <div className="">{title}</div>
+            <div className="text-xs text-white/50">{description}</div>
+          </div>
         }
-        maxRows={rows}
         items={clips}
         elementWidth={320}
         itemRender={(clip) => (
-          <PostContainer key={clip.id}>
+          <div key={clip.id} className="m-2">
             <ClipGridView clip={clip} onPlay={() => onPlay(clip.id)} />
-          </PostContainer>
+          </div>
         )}
       />
     );

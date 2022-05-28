@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Input } from '@dream/pepega/components/input';
 import { CoinIconGold } from '@dream/pepega/components/coin-icon';
 import { TwitchClipPlayer } from '@dream/pepega/components/clip-player';
-import { Button } from '@dream/pepega/components/button';
 import { parseSource } from './parse-source';
 import { useIncreaseClipScoreMutation } from '@dream/pepega/clip-score/ui';
 import { useRouter } from 'next/router';
@@ -43,7 +42,12 @@ export const CreateClip = () => {
             <CoinIconGold /> {costCreateClip}
           </div>
         )}
-        <Button onClick={() => increaseClipScore(clipId)}>Предложить</Button>
+        <button
+          className="btn btn-primary"
+          onClick={() => increaseClipScore(clipId)}
+        >
+          Предложить
+        </button>
       </div>
     </div>
   );

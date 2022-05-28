@@ -1,45 +1,14 @@
 import { FC } from 'react';
-import styled from 'styled-components';
 import { useRouter } from 'next/router';
 import { ClipsView } from './View';
 import { useClipsQuery } from '@dream/pepega/clip/ui';
 
-const Box = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-`;
-
-interface IProps {
-  orderBy?: any;
-  startedAt?: string;
-  ratingMin?: number;
-  likedUserId?: string;
-  communityId?: string;
-  communityClipAuthorId?: string;
-  historyUserId?: string;
+interface ClipsProps {
   title?: string;
   description?: string;
-  rows?: number;
-  limit?: number;
-  noMore?: boolean;
-  titleLink?: string;
 }
 
-export const Clips: FC<IProps> = ({
-  orderBy,
-  startedAt,
-  ratingMin,
-  likedUserId,
-  communityId,
-  communityClipAuthorId,
-  historyUserId,
-  title,
-  description,
-  noMore,
-  rows,
-  titleLink,
-}) => {
+export const Clips: FC<ClipsProps> = ({ title, description }) => {
   const router = useRouter();
 
   const { loading, error, data, fetchMore } = useClipsQuery({
@@ -52,43 +21,32 @@ export const Clips: FC<IProps> = ({
   }
 
   let clips = data.clips;
-
-  if (typeof rows === 'number' && rows > 0) {
-    clips = clips.slice(0, rows * 6);
-  }
-
   const currentCount = clips.length;
 
-  if (currentCount === 0) {
-    return null;
-  }
+  if (currentCount === 0) return null;
 
   const hasMore = false; //data.clips.count - currentCount > 0;
 
   return (
-    <Box style={{ padding: '0 20px' }}>
+    <div className="flex flex-col w-full px-5">
       <ClipsView
         title={title}
         description={description}
-        titleLink={titleLink}
         clips={clips}
         loading={loading}
-        rows={rows}
-        hasMore={hasMore && !rows && !noMore}
-        onPlay={(clipId) => {
+        hasMore={hasMore}
+        onPlay={(clipId) =>
           router.push(
             {
               pathname: router.route,
               query: {
                 clipId,
-                backPath: router.asPath,
                 ...router.query,
               },
             },
-            `/clip/${clipId}`,
-            { shallow: true }
-          );
-        }}
+            `/clip/${clipId}`
+          )
+        }
         loadMore={
           async () => null
           // fetchMore({
@@ -111,6 +69,6 @@ export const Clips: FC<IProps> = ({
           // })
         }
       />
-    </Box>
+    </div>
   );
 };

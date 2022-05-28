@@ -51,3 +51,7 @@ body {
 .rc-dropdown-hidden {
   display: none;
 }
+
+/* .virtuoso-grid-list {
+  @apply grid grid-cols-3;
+} */

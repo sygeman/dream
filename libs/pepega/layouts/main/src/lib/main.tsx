@@ -1,7 +1,6 @@
 import { lighten } from 'polished';
 import clsx from 'clsx';
 import React, { useState } from 'react';
-import Scrollbars from 'react-custom-scrollbars';
 import { CreateClipModal } from '@dream/pepega/clip/ui';
 import { ClipModal } from '@dream/pepega/clip/ui';
 import { UserBox } from './user';
@@ -28,33 +27,24 @@ export const MainLayout = ({ children }: { children?: React.ReactNode }) => {
                 )}
                 style={{ backgroundColor: lighten(0.03, '#1D1E31') }}
               >
-                <div className="flex flex-1">
-                  <div>
-                    <Logo />
-                    <LeftMenuItem
-                      route="/"
-                      equal
-                      icon={<HomeIcon className="h-4" />}
-                      title="Главная"
-                    />
-                  </div>
+                <div className="flex flex-col w-full flex-1">
+                  <Logo />
+                  <LeftMenuItem
+                    route="/"
+                    equal
+                    icon={<HomeIcon className="h-4" />}
+                    title="Главная"
+                  />
                 </div>
                 <UserBox />
               </div>
-
               <div
                 id="layoutContent"
                 className={clsx(
                   'flex flex-col w-full transition-all delay-150 sm:pl-[240px]'
                 )}
               >
-                <Scrollbars
-                  autoHide
-                  universal
-                  renderView={(props) => <div {...props} id="mainScroll" />}
-                >
-                  {children}
-                </Scrollbars>
+                {children}
               </div>
             </div>
             <div

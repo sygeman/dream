@@ -15,7 +15,7 @@ interface IProps {
 
 export const CardMedia: FC<IProps> = ({ media, title, overlay, count = 0 }) => (
   <div className="flex flex-col items-center rounded overflow-hidden relative">
-    <div className="relative w-full aspect-w-16 aspect-h-9 bg-background">
+    <div className="relative w-full aspect-w-16 aspect-h-9 bg-surface/50">
       {media}
     </div>
     <div className="flex bg-surface w-full h-12 px-1 text-sm">

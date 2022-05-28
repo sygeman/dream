@@ -2,6 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 import { ApolloProvider } from '@apollo/client';
 import { useApollo } from '../lib/apollo';
+import 'overlayscrollbars/css/OverlayScrollbars.css';
 import '../styles.css';
 
 function CustomApp({ Component, pageProps }) {

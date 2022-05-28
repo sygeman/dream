@@ -3,7 +3,7 @@ import { FC, useEffect, useRef, useState } from 'react';
 import ResizeObserver from 'resize-observer-polyfill';
 import styled from 'styled-components';
 import { humanNumbers } from '@dream/pepega/utils/count';
-import { RemoveRedEye } from 'styled-icons/material';
+import { EyeIcon } from '@heroicons/react/solid';
 
 const Box = styled.div`
   position: relative;
@@ -155,7 +155,7 @@ export const VideoPreview: FC<IProps> = ({
           <Bottom width={width}>
             {views && (
               <Views width={width}>
-                <RemoveRedEye size="13px" style={{ marginRight: '5px' }} />
+                <EyeIcon className="h-3 mr-2" />
                 {humanNumbers(views)}
               </Views>
             )}

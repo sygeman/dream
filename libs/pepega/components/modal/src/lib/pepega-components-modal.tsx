@@ -1,7 +1,7 @@
+import { XIcon } from '@heroicons/react/solid';
 import { darken, lighten, rgba } from 'polished';
 import { FC, useEffect } from 'react';
 import styled from 'styled-components';
-import { Close, ChevronLeft, ChevronRight } from 'styled-icons/material';
 import { Portal } from './portal';
 
 const BG = styled.div`
@@ -207,29 +207,29 @@ export const Modal: FC<IModalProps> & {
         <BGOut onClick={close} />
         <BoxW>
           <Box minimal={minimal}>
-            {minimal && (
+            {/* {minimal && (
               <BoxNav onClick={() => (onLeftClick ? onLeftClick() : close())}>
                 {onLeftClick && <ChevronLeft />}
               </BoxNav>
-            )}
+            )} */}
             <ModalB noBackgroud={noBackgroud}>
               <Header minimal={minimal}>
                 <Title>{title}</Title>
                 <CloseBox onClick={close}>
-                  <Close size="28px" />
+                  <XIcon className="h-6" />
                 </CloseBox>
               </Header>
               <Content minimal={minimal}>{children}</Content>
             </ModalB>
-            {minimal && (
+            {/* {minimal && (
               <BoxNav onClick={() => (onRightClick ? onRightClick() : close())}>
                 {onRightClick && <ChevronRight />}
               </BoxNav>
-            )}
+            )} */}
           </Box>
           {minimal && (
             <CloseOut onClick={close}>
-              <Close size="28px" />
+              <XIcon className="h-6" />
             </CloseOut>
           )}
         </BoxW>

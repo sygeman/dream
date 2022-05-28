@@ -6,9 +6,9 @@ import styled from 'styled-components';
 import { Dropdown } from '@dream/pepega/components/dropdown';
 import { Avatar } from '@dream/pepega/components/avatar';
 import { useAccess } from '@dream/pepega/auth/ui';
-import { MoreVert as MoreVertIcon } from 'styled-icons/material/MoreVert';
 import { useLogoutMutation } from '@dream/pepega/auth/ui';
 import { useRouter } from 'next/router';
+import { DotsVerticalIcon } from '@heroicons/react/solid';
 
 const GET_USER = gql`
   query getUser($id: ID) {
@@ -116,7 +116,7 @@ export const LeftNavMenuUserBlock = () => {
         }
       >
         <UserCaratBox>
-          <MoreVertIcon size="16px" />
+          <DotsVerticalIcon className="h-4" />
         </UserCaratBox>
       </Dropdown>
     </Box>

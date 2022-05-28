@@ -1,10 +1,10 @@
 import { FC, ReactNode } from 'react';
-import { Home } from 'styled-icons/material';
 import Scrollbars from 'react-custom-scrollbars';
 import * as LeftMenu from './left-menu';
 import { BaseLayout } from './base';
 import { Header } from './header';
 import { LogoBox } from './Logo';
+import { HomeIcon } from '@heroicons/react/solid';
 
 interface IProps {
   fixedTopContent?: ReactNode;
@@ -25,7 +25,7 @@ export const MainLayout: FC<IProps> = ({
         <LeftMenu.Item
           route="/"
           equal
-          icon={<Home size="18px" />}
+          icon={<HomeIcon className="h-4" />}
           title="Главная"
         />
       </LeftMenu.Box>

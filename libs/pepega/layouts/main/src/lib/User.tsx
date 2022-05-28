@@ -1,16 +1,12 @@
 import Link from 'next/link';
 import { lighten } from 'polished';
 import styled from 'styled-components';
-import {
-  Button,
-  CoinIconGold,
-  CoinIconGreen,
-} from '@dream/pepega/components-old';
+import { CoinIconGold } from '@dream/pepega/components/coin-icon';
+import { Button } from '@dream/pepega/components/button';
 import { useRouter } from 'next/router';
-import { useAccess } from '@dream/pepega/utils-old';
+import { useAccess } from '@dream/pepega/auth/ui';
 import { WalletBalance } from './WalletBalance';
 import { LeftNavMenuUserBlock } from './UserBlock';
-import { AddCircleOutline as AddCircleOutlineIcon } from 'styled-icons/material/AddCircleOutline';
 
 const AddClip = () => {
   const router = useRouter();
@@ -75,21 +71,6 @@ const Points = styled.div`
   background: ${({ theme }) => lighten(0.05, '#262841')};
 `;
 
-const BuyCoinsLink = styled.a`
-  margin-left: 10px;
-  color: ${({ theme }) => lighten(0.4, '#262841')};
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-
-  cursor: pointer;
-
-  i {
-    font-size: 17px;
-  }
-`;
-
 const TopLink = styled.a`
   padding: 0 10px;
   color: ${({ theme }) => lighten(0.65, '#262841')};
@@ -108,7 +89,6 @@ const TopLink = styled.a`
 `;
 
 export const UserBox = () => {
-  const router = useRouter();
   const [{ allow: isUser, loading }] = useAccess();
 
   if (loading || !isUser) {
@@ -132,27 +112,6 @@ export const UserBox = () => {
             <WalletBalance currency="coin" />
           </PointsCount>
         </Points>
-        {/* <Points>
-          <CoinIconGreen />
-          <PointsCount>
-            <WalletBalance currency="real" />
-            <Link
-              as={`/buycoins`}
-              href={{
-                pathname: router.route,
-                query: {
-                  ...router.query,
-                  buyCoinsModal: 1,
-                },
-              }}
-              passHref
-            >
-              <BuyCoinsLink>
-                <AddCircleOutlineIcon size="16px" />
-              </BuyCoinsLink>
-            </Link>
-          </PointsCount>
-        </Points> */}
       </PointsBox>
       <LeftNavMenuUserBlock />
     </Box>

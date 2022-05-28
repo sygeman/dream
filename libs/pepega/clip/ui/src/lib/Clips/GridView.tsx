@@ -1,7 +1,8 @@
 import { FC, memo } from 'react';
-import { VideoPreview, CardMedia } from '@dream/pepega/components-old';
+import { VideoPreview } from '@dream/pepega/components/video-preview';
+import { CardMedia } from '@dream/pepega/components/card-media';
 import { isEqual } from 'lodash';
-import { dateDistanceInWordsToNow } from '@dream/pepega/utils-old';
+import { dateDistanceInWordsToNow } from './date-distance-in-words-to-now';
 import { Clip } from '@dream/pepega/types';
 
 interface IProps {

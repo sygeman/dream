@@ -1364,9 +1364,9 @@
         }
       }
     },
-    "pepega-components-old": {
-      "root": "libs/pepega/components-old",
-      "sourceRoot": "libs/pepega/components-old/src",
+    "pepega-components-button": {
+      "root": "libs/pepega/components/button",
+      "sourceRoot": "libs/pepega/components/button/src",
       "projectType": "library",
       "tags": [],
       "targets": {
@@ -1375,8 +1375,216 @@
           "outputs": ["{options.outputFile}"],
           "options": {
             "lintFilePatterns": [
-              "libs/pepega/components-old/**/*.{ts,tsx,js,jsx}"
+              "libs/pepega/components/button/**/*.{ts,tsx,js,jsx}"
             ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/pepega/components/button"],
+          "options": {
+            "jestConfig": "libs/pepega/components/button/jest.config.ts",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "pepega-components-card-media": {
+      "root": "libs/pepega/components/card-media",
+      "sourceRoot": "libs/pepega/components/card-media/src",
+      "projectType": "library",
+      "tags": [],
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": [
+              "libs/pepega/components/card-media/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/pepega/components/card-media"],
+          "options": {
+            "jestConfig": "libs/pepega/components/card-media/jest.config.ts",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "pepega-components-clip-player": {
+      "root": "libs/pepega/components/clip-player",
+      "sourceRoot": "libs/pepega/components/clip-player/src",
+      "projectType": "library",
+      "tags": [],
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": [
+              "libs/pepega/components/clip-player/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/pepega/components/clip-player"],
+          "options": {
+            "jestConfig": "libs/pepega/components/clip-player/jest.config.ts",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "pepega-components-coin-icon": {
+      "root": "libs/pepega/components/coin-icon",
+      "sourceRoot": "libs/pepega/components/coin-icon/src",
+      "projectType": "library",
+      "tags": [],
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": [
+              "libs/pepega/components/coin-icon/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/pepega/components/coin-icon"],
+          "options": {
+            "jestConfig": "libs/pepega/components/coin-icon/jest.config.ts",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "pepega-components-dropdown": {
+      "root": "libs/pepega/components/dropdown",
+      "sourceRoot": "libs/pepega/components/dropdown/src",
+      "projectType": "library",
+      "tags": [],
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": [
+              "libs/pepega/components/dropdown/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/pepega/components/dropdown"],
+          "options": {
+            "jestConfig": "libs/pepega/components/dropdown/jest.config.ts",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "pepega-components-grid": {
+      "root": "libs/pepega/components/grid",
+      "sourceRoot": "libs/pepega/components/grid/src",
+      "projectType": "library",
+      "tags": [],
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": [
+              "libs/pepega/components/grid/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/pepega/components/grid"],
+          "options": {
+            "jestConfig": "libs/pepega/components/grid/jest.config.ts",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "pepega-components-input": {
+      "root": "libs/pepega/components/input",
+      "sourceRoot": "libs/pepega/components/input/src",
+      "projectType": "library",
+      "tags": [],
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": [
+              "libs/pepega/components/input/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/pepega/components/input"],
+          "options": {
+            "jestConfig": "libs/pepega/components/input/jest.config.ts",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "pepega-components-modal": {
+      "root": "libs/pepega/components/modal",
+      "sourceRoot": "libs/pepega/components/modal/src",
+      "projectType": "library",
+      "tags": [],
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": [
+              "libs/pepega/components/modal/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/pepega/components/modal"],
+          "options": {
+            "jestConfig": "libs/pepega/components/modal/jest.config.ts",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "pepega-components-video-preview": {
+      "root": "libs/pepega/components/video-preview",
+      "sourceRoot": "libs/pepega/components/video-preview/src",
+      "projectType": "library",
+      "tags": [],
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": [
+              "libs/pepega/components/video-preview/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/pepega/components/video-preview"],
+          "options": {
+            "jestConfig": "libs/pepega/components/video-preview/jest.config.ts",
+            "passWithNoTests": true
           }
         }
       }
@@ -1457,20 +1665,28 @@
         }
       }
     },
-    "pepega-utils-old": {
-      "root": "libs/pepega/utils-old",
-      "sourceRoot": "libs/pepega/utils-old/src",
+    "pepega-utils-count": {
+      "root": "libs/pepega/utils/count",
+      "sourceRoot": "libs/pepega/utils/count/src",
       "projectType": "library",
-      "tags": [],
       "targets": {
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "outputs": ["{options.outputFile}"],
           "options": {
-            "lintFilePatterns": ["libs/pepega/utils-old/**/*.{ts,tsx,js,jsx}"]
+            "lintFilePatterns": ["libs/pepega/utils/count/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/pepega/utils/count"],
+          "options": {
+            "jestConfig": "libs/pepega/utils/count/jest.config.ts",
+            "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     }
   }
 }

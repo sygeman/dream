@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useAccess } from '@dream/pepega/utils-old';
-import { Button } from '@dream/pepega/components-old';
+import { useAccess } from '@dream/pepega/auth/ui';
+import { Button } from '@dream/pepega/components/button';
 
 export const Header = () => {
   const router = useRouter();

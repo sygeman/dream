@@ -1,5 +1,5 @@
 import React from 'react';
-import { shortNumbers, humanNumbers } from '@dream/pepega/utils-old';
+import { shortNumbers, humanNumbers } from '@dream/pepega/utils/count';
 import {
   useUserCoinsQuery,
   useUserCoinsUpdatedSubscription,

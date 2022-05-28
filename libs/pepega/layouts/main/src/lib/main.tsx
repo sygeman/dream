@@ -1,7 +1,7 @@
 import { FC, ReactNode } from 'react';
 import { Home } from 'styled-icons/material';
 import Scrollbars from 'react-custom-scrollbars';
-import { LeftMenu } from '@dream/pepega/components-old';
+import * as LeftMenu from './left-menu';
 import { BaseLayout } from './base';
 import { Header } from './header';
 import { LogoBox } from './Logo';

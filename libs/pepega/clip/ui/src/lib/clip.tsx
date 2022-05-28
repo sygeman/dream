@@ -1,6 +1,6 @@
 import { FC, useEffect } from 'react';
-import { useAccess } from '@dream/pepega/utils-old';
-import { TwitchClipPlayer } from '@dream/pepega/components-old';
+import { useAccess } from '@dream/pepega/auth/ui';
+import { TwitchClipPlayer } from '@dream/pepega/components/clip-player';
 import { ClipScore } from '@dream/pepega/clip-score/ui';
 import { ClipComments } from '@dream/pepega/clip-comment/ui';
 import { useSetClipHistoryMutation } from '@dream/pepega/clip-history/ui';

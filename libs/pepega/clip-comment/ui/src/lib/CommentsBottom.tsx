@@ -2,8 +2,7 @@ import gql from 'graphql-tag';
 import { FC, useRef } from 'react';
 import { useMutation } from '@apollo/client';
 import styled from 'styled-components';
-import { useAccess } from '@dream/pepega/utils-old';
-import { convertTextToEmojiCode } from '@dream/pepega/utils-old';
+import { useAccess } from '@dream/pepega/auth/ui';
 
 const CREATE_CLIP_COMMENT = gql`
   mutation createClipComment($input: ClipCommentCreateInput!) {
@@ -65,9 +64,7 @@ export const ClipCommentBottom: FC<IProps> = ({ clipId }) => {
             return null;
           }
 
-          const content = convertTextToEmojiCode(
-            textInput.current.value.trim()
-          );
+          const content = textInput.current.value.trim();
 
           if (e.key === 'Enter' && !lock && content.length > 0) {
             lock = true;

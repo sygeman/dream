@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import styled from 'styled-components';
-import { useAccess } from '@dream/pepega/utils-old';
+import { useAccess } from '@dream/pepega/auth/ui';
 import { XIcon } from '@heroicons/react/solid';
 import { useRemoveClipCommentMutation } from './clip-comment.api';
 

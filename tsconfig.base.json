@@ -111,11 +111,35 @@
       "@dream/pepega/clip-score/ui": ["libs/pepega/clip-score/ui/src/index.ts"],
       "@dream/pepega/clip/api": ["libs/pepega/clip/api/src/index.ts"],
       "@dream/pepega/clip/ui": ["libs/pepega/clip/ui/src/index.ts"],
-      "@dream/pepega/components-old": [
-        "libs/pepega/components-old/src/index.ts"
-      ],
       "@dream/pepega/components/avatar": [
         "libs/pepega/components/avatar/src/index.ts"
+      ],
+      "@dream/pepega/components/button": [
+        "libs/pepega/components/button/src/index.ts"
+      ],
+      "@dream/pepega/components/card-media": [
+        "libs/pepega/components/card-media/src/index.ts"
+      ],
+      "@dream/pepega/components/clip-player": [
+        "libs/pepega/components/clip-player/src/index.ts"
+      ],
+      "@dream/pepega/components/coin-icon": [
+        "libs/pepega/components/coin-icon/src/index.ts"
+      ],
+      "@dream/pepega/components/dropdown": [
+        "libs/pepega/components/dropdown/src/index.ts"
+      ],
+      "@dream/pepega/components/grid": [
+        "libs/pepega/components/grid/src/index.ts"
+      ],
+      "@dream/pepega/components/input": [
+        "libs/pepega/components/input/src/index.ts"
+      ],
+      "@dream/pepega/components/modal": [
+        "libs/pepega/components/modal/src/index.ts"
+      ],
+      "@dream/pepega/components/video-preview": [
+        "libs/pepega/components/video-preview/src/index.ts"
       ],
       "@dream/pepega/connection/api": [
         "libs/pepega/connection/api/src/index.ts"
@@ -126,7 +150,7 @@
       "@dream/pepega/user-coin/api": ["libs/pepega/user-coin/api/src/index.ts"],
       "@dream/pepega/user-coin/ui": ["libs/pepega/user-coin/ui/src/index.ts"],
       "@dream/pepega/user/api": ["libs/pepega/user/api/src/index.ts"],
-      "@dream/pepega/utils-old": ["libs/pepega/utils-old/src/index.ts"]
+      "@dream/pepega/utils/count": ["libs/pepega/utils/count/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

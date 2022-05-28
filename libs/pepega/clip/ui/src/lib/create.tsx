@@ -1,11 +1,9 @@
 import { useState } from 'react';
-import {
-  Button,
-  Input,
-  CoinIconGold,
-  TwitchClipPlayer,
-} from '@dream/pepega/components-old';
-import { parseSource } from '@dream/pepega/utils-old';
+import { Input } from '@dream/pepega/components/input';
+import { CoinIconGold } from '@dream/pepega/components/coin-icon';
+import { TwitchClipPlayer } from '@dream/pepega/components/clip-player';
+import { Button } from '@dream/pepega/components/button';
+import { parseSource } from './parse-source';
 import { useIncreaseClipScoreMutation } from '@dream/pepega/clip-score/ui';
 import { useRouter } from 'next/router';
 

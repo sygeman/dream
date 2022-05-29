@@ -12625,7 +12625,6 @@ __metadata:
     passport: 0.6.0
     passport-spotify: 2.0.0
     passport-twitch-new: 0.0.2
-    polished: 3.7.2
     postcss: 8.4.14
     prettier: 2.6.2
     prisma: 3.14.0
@@ -19720,15 +19719,6 @@ __metadata:
   version: 8.0.0
   resolution: "pluralize@npm:8.0.0"
   checksum: 08931d4a6a4a5561a7f94f67a31c17e6632cb21e459ab3ff4f6f629d9a822984cf8afef2311d2005fbea5d7ef26016ebb090db008e2d8bce39d0a9a9d218736e
-  languageName: node
-  linkType: hard
-
-"polished@npm:3.7.2":
-  version: 3.7.2
-  resolution: "polished@npm:3.7.2"
-  dependencies:
-    "@babel/runtime": ^7.12.5
-  checksum: 2f6172fef712e716e20563ca9505162c57e2713579a90806738068b3de0b2622ed2e2d62c578ebd752fcab4c527ddde2036ece5d6f4cdefee09c92eb410a288f
   languageName: node
   linkType: hard
 

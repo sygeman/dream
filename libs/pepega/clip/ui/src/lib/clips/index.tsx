@@ -94,7 +94,7 @@ export const Clips = () => {
 
   return (
     <div ref={ref} className="w-full h-full py-4">
-      <style global>{`
+      <style>{`
         .virtuoso-grid-list {
           margin: 0 auto;
           width: ${innerWidth}px;

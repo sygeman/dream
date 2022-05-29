@@ -1,4 +1,3 @@
-import { lighten } from 'polished';
 import clsx from 'clsx';
 import React, { useState } from 'react';
 import { CreateClipModal } from '@dream/pepega/clip/ui';
@@ -22,10 +21,9 @@ export const MainLayout = ({ children }: { children?: React.ReactNode }) => {
             <div className="h-full flex">
               <div
                 className={clsx(
-                  'w-[240px] flex flex-col absolute top-0 h-full z-[100] transition-all delay-150',
+                  'w-[240px] flex flex-col absolute top-0 h-full z-[100] transition-all delay-150 bg-surface',
                   leftMenuIsOpen ? 'left-0' : 'left-[-240px] sm:left-0'
                 )}
-                style={{ backgroundColor: lighten(0.03, '#1D1E31') }}
               >
                 <div className="flex flex-col w-full flex-1">
                   <Logo />

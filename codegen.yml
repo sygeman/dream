@@ -1,5 +1,6 @@
 overwrite: true
 generates:
+  # Mono
   libs/mono/types/src/index.tsx:
     schema: 'apps/mono-api/schema.gql'
     documents:
@@ -20,6 +21,7 @@ generates:
       - typescript-operations
       - typescript-react-apollo
 
+  # Pepega
   libs/pepega/types/src/index.tsx:
     schema: 'apps/pepega-api/schema.gql'
     documents:
@@ -36,6 +38,27 @@ generates:
     presetConfig:
       extension: .api.tsx
       baseTypesPath: ~@dream/pepega/types
+    plugins:
+      - typescript-operations
+      - typescript-react-apollo
+
+  # Server State
+  libs/server-state/types/src/index.tsx:
+    schema: 'apps/server-state-api/schema.gql'
+    documents:
+      - '!libs/server-state/**/(*.api).{ts,tsx}'
+      - 'libs/server-state/**/*.graphql'
+    plugins:
+      - typescript
+  libs/server-state/:
+    schema: 'apps/server-state-api/schema.gql'
+    documents:
+      - '!libs/server-state/**/(*.api).{ts,tsx}'
+      - 'libs/server-state/**/*.graphql'
+    preset: near-operation-file
+    presetConfig:
+      extension: .api.tsx
+      baseTypesPath: ~@dream/server-state/types
     plugins:
       - typescript-operations
       - typescript-react-apollo

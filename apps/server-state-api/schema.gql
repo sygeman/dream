@@ -11,24 +11,11 @@ type Profile {
 
 type User {
   id: String!
-  role: UserRole
   name: String
   avatar: String
-  locale: Locale!
   createdAt: DateTime!
   updatedAt: DateTime!
   profiles: [Profile!]
-}
-
-enum UserRole {
-  User
-  Admin
-  Mod
-}
-
-enum Locale {
-  en_US
-  ru_RU
 }
 
 """
@@ -44,5 +31,4 @@ type Query {
 type Mutation {
   logout: Boolean!
   updateConnectionStatus: Boolean!
-  setUserLocale(locale: Locale!): Locale!
 }

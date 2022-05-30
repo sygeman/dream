@@ -72,5 +72,9 @@ module.exports = {
     '<rootDir>/libs/pepega/utils/count',
     '<rootDir>/apps/server-state',
     '<rootDir>/apps/server-state-api',
+    '<rootDir>/libs/server-state/prisma',
+    '<rootDir>/libs/server-state/auth/api',
+    '<rootDir>/libs/server-state/connection/api',
+    '<rootDir>/libs/server-state/user/api',
   ],
 };

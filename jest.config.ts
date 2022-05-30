@@ -70,5 +70,6 @@ module.exports = {
     '<rootDir>/libs/pepega/components/clip-player',
     '<rootDir>/libs/pepega/components/video-preview',
     '<rootDir>/libs/pepega/utils/count',
+    '<rootDir>/apps/server-state',
   ],
 };

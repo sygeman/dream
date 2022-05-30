@@ -23,12 +23,35 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+type Project {
+  id: String!
+  title: String!
+  alias: String
+  stateId: String
+  createdAt: String!
+  updatedAt: String!
+}
+
+type ProjectState {
+  id: String!
+  count: Float!
+  createdAt: String!
+  updatedAt: String!
+}
+
 type Query {
   user(id: ID): User
   me: User!
+  project(id: String!): Project!
+  projectState(id: String!): ProjectState!
 }
 
 type Mutation {
   logout: Boolean!
   updateConnectionStatus: Boolean!
+  incrementCount(projectId: String!): Boolean!
+}
+
+type Subscription {
+  projectStateUpdated(projectId: String!): String!
 }

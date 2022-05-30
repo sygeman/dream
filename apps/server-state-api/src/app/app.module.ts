@@ -15,6 +15,7 @@ import { config } from './config';
 import { nanoid } from 'nanoid';
 import { BullModule } from '@nestjs/bull';
 import { join } from 'path';
+import { ProjectModule } from '@dream/server-state/project/api';
 
 @Module({
   imports: [
@@ -85,6 +86,7 @@ import { join } from 'path';
     AuthModule,
     UserModule,
     ConnectionModule,
+    ProjectModule,
   ],
 })
 export class AppModule {}

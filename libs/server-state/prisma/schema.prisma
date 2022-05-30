@@ -54,12 +54,20 @@ model Profile {
 }
 
 model Project {
-  id    String  @id @default(cuid())
-  title String
-  alias String?
+  id        String         @id @default(cuid())
+  title     String
+  alias     String?
+  stateId   String?
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @default(now()) @updatedAt
+  states    ProjectState[]
 }
 
 model ProjectState {
-  id    String @id @default(cuid())
-  count Int
+  id        String   @id @default(cuid())
+  count     Int
+  projectId String?
+  project   Project? @relation(fields: [projectId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
 }

@@ -1774,6 +1774,32 @@
     "server-state-auth-api": "libs/server-state/auth/api",
     "server-state-connection-api": "libs/server-state/connection/api",
     "server-state-prisma": "libs/server-state/prisma",
+    "server-state-project-api": "libs/server-state/project/api",
+    "server-state-project-ui": {
+      "root": "libs/server-state/project/ui",
+      "sourceRoot": "libs/server-state/project/ui/src",
+      "projectType": "library",
+      "tags": [],
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": [
+              "libs/server-state/project/ui/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/server-state/project/ui"],
+          "options": {
+            "jestConfig": "libs/server-state/project/ui/jest.config.ts",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "server-state-types": {
       "root": "libs/server-state/types",
       "sourceRoot": "libs/server-state/types/src",

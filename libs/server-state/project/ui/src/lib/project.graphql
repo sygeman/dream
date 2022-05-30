@@ -1,0 +1,35 @@
+query project($id: String!) {
+  project(id: $id) {
+    ...ProjectFields
+  }
+}
+
+query projectState($id: String!) {
+  projectState(id: $id) {
+    ...ProjectStateFields
+  }
+}
+
+mutation incrementCount($projectId: String!) {
+  incrementCount(projectId: $projectId)
+}
+
+subscription projectStateUpdated($projectId: String!) {
+  projectStateUpdated(projectId: $projectId)
+}
+
+fragment ProjectFields on Project {
+  id
+  title
+  alias
+  stateId
+  createdAt
+  updatedAt
+}
+
+fragment ProjectStateFields on ProjectState {
+  id
+  count
+  createdAt
+  updatedAt
+}

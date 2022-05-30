@@ -71,5 +71,6 @@ module.exports = {
     '<rootDir>/libs/pepega/components/video-preview',
     '<rootDir>/libs/pepega/utils/count',
     '<rootDir>/apps/server-state',
+    '<rootDir>/apps/server-state-api',
   ],
 };

@@ -13,6 +13,7 @@ export const useProjectState = () => {
   const projectState = projectStateQuery?.data?.projectState;
 
   return {
+    stateId,
     state: projectState,
     loading: projectStateQuery.loading,
   };

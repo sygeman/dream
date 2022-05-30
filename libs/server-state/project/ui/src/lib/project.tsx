@@ -1,8 +1,9 @@
+import { useReactiveVar } from '@apollo/client';
 import Head from 'next/head';
 import { useEffect } from 'react';
+import { ProjectClicker } from './clicker';
 import { ProjectCount } from './count';
 import {
-  useIncrementCountMutation,
   useProjectQuery,
   useProjectStateUpdatedSubscription,
 } from './project.api';
@@ -13,19 +14,16 @@ interface ProjectProps {
 }
 
 export const Project = ({ id }: ProjectProps) => {
+  const stateId = useReactiveVar(stateIdVar);
+
   const projectQuery = useProjectQuery({ variables: { id }, skip: !id });
   const project = projectQuery?.data?.project;
 
   useEffect(() => {
-    if (project?.stateId) {
+    if (project?.stateId && !stateId) {
       stateIdVar(project?.stateId);
     }
-  }, [project?.stateId]);
-
-  const [incrementCountMutation] = useIncrementCountMutation();
-
-  const incrementCount = () =>
-    incrementCountMutation({ variables: { projectId: id } });
+  }, [project?.stateId, stateId]);
 
   useProjectStateUpdatedSubscription({
     onSubscriptionData: ({ subscriptionData }) => {
@@ -36,22 +34,17 @@ export const Project = ({ id }: ProjectProps) => {
   });
 
   return (
-    <div>
+    <>
       <Head>
         <title>{project?.title}</title>
       </Head>
-      <div className="absolute top-0 left-0 h-full w-full flex items-center justify-center">
+      <div className="h-full w-full flex items-center justify-center">
         <div className="flex flex-col items-center">
           <div className="text-4xl">{project?.title}</div>
           <ProjectCount />
-          <button
-            className="px-2 p-1 bg-gray-700 text-white rounded hover:bg-gray-600 transition-colors delay-75"
-            onClick={incrementCount}
-          >
-            Click me
-          </button>
+          <ProjectClicker id={id} />
         </div>
       </div>
-    </div>
+    </>
   );
 };

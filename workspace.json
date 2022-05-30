@@ -1772,7 +1772,41 @@
       "tags": []
     },
     "server-state-auth-api": "libs/server-state/auth/api",
+    "server-state-auth-ui": {
+      "root": "libs/server-state/auth/ui",
+      "sourceRoot": "libs/server-state/auth/ui/src",
+      "projectType": "library",
+      "tags": [],
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": [
+              "libs/server-state/auth/ui/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        }
+      }
+    },
     "server-state-connection-api": "libs/server-state/connection/api",
+    "server-state-layouts-main": {
+      "root": "libs/server-state/layouts/main",
+      "sourceRoot": "libs/server-state/layouts/main/src",
+      "projectType": "library",
+      "tags": [],
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": [
+              "libs/server-state/layouts/main/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        }
+      }
+    },
     "server-state-prisma": "libs/server-state/prisma",
     "server-state-project-api": "libs/server-state/project/api",
     "server-state-project-ui": {
@@ -1815,6 +1849,23 @@
         }
       }
     },
-    "server-state-user-api": "libs/server-state/user/api"
+    "server-state-user-api": "libs/server-state/user/api",
+    "server-state-user-ui": {
+      "root": "libs/server-state/user/ui",
+      "sourceRoot": "libs/server-state/user/ui/src",
+      "projectType": "library",
+      "tags": [],
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": [
+              "libs/server-state/user/ui/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        }
+      }
+    }
   }
 }

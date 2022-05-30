@@ -148,8 +148,12 @@
       "@dream/server-state/auth/api": [
         "libs/server-state/auth/api/src/index.ts"
       ],
+      "@dream/server-state/auth/ui": ["libs/server-state/auth/ui/src/index.ts"],
       "@dream/server-state/connection/api": [
         "libs/server-state/connection/api/src/index.ts"
+      ],
+      "@dream/server-state/layouts/main": [
+        "libs/server-state/layouts/main/src/index.ts"
       ],
       "@dream/server-state/prisma": ["libs/server-state/prisma/src/index.ts"],
       "@dream/server-state/project/api": [
@@ -158,10 +162,11 @@
       "@dream/server-state/project/ui": [
         "libs/server-state/project/ui/src/index.ts"
       ],
-      "@dream/server-state/types": ["libs/server-state/types/src/index.ts"],
+      "@dream/server-state/types": ["libs/server-state/types/src/index.tsx"],
       "@dream/server-state/user/api": [
         "libs/server-state/user/api/src/index.ts"
-      ]
+      ],
+      "@dream/server-state/user/ui": ["libs/server-state/user/ui/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

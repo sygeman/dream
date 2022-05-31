@@ -1,0 +1,24 @@
+{
+  "sourceRoot": "libs/pepega/components/clip-player/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/pepega/components/clip-player/**/*.{ts,tsx,js,jsx}"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/pepega/components/clip-player"],
+      "options": {
+        "jestConfig": "libs/pepega/components/clip-player/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  }
+}

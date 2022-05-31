@@ -1,0 +1,23 @@
+{
+  "sourceRoot": "libs/mono/components/modal-full/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/mono/components/modal-full/**/*.{ts,tsx,js,jsx}"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/mono/components/modal-full"],
+      "options": {
+        "jestConfig": "libs/mono/components/modal-full/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

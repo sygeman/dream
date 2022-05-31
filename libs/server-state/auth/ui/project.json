@@ -1,0 +1,14 @@
+{
+  "sourceRoot": "libs/server-state/auth/ui/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/server-state/auth/ui/**/*.{ts,tsx,js,jsx}"]
+      }
+    }
+  }
+}

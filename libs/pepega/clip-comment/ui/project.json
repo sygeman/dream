@@ -1,0 +1,22 @@
+{
+  "sourceRoot": "libs/pepega/clip-comment/ui/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/pepega/clip-comment/ui/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/pepega/clip-comment/ui"],
+      "options": {
+        "jestConfig": "libs/pepega/clip-comment/ui/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  }
+}

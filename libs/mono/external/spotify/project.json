@@ -1,0 +1,21 @@
+{
+  "sourceRoot": "libs/mono/external/spotify/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["libs/mono/external/spotify/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/mono/external/spotify"],
+      "options": {
+        "jestConfig": "libs/mono/external/spotify/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

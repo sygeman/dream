@@ -1,0 +1,14 @@
+{
+  "sourceRoot": "libs/pepega/layouts/main/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/pepega/layouts/main/**/*.{ts,tsx,js,jsx}"]
+      }
+    }
+  }
+}

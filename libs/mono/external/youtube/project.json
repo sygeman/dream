@@ -1,0 +1,21 @@
+{
+  "sourceRoot": "libs/mono/external/youtube/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["libs/mono/external/youtube/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/mono/external/youtube"],
+      "options": {
+        "jestConfig": "libs/mono/external/youtube/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

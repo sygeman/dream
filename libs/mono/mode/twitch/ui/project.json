@@ -1,0 +1,21 @@
+{
+  "sourceRoot": "libs/mono/mode/twitch/ui/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["libs/mono/mode/twitch/ui/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/mono/mode/twitch/ui"],
+      "options": {
+        "jestConfig": "libs/mono/mode/twitch/ui/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

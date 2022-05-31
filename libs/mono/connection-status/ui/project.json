@@ -1,0 +1,24 @@
+{
+  "sourceRoot": "libs/mono/connection-status/ui/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/mono/connection-status/ui/**/*.{ts,tsx,js,jsx}"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/mono/connection-status/ui"],
+      "options": {
+        "jestConfig": "libs/mono/connection-status/ui/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  }
+}

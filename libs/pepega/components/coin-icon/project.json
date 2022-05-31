@@ -1,0 +1,24 @@
+{
+  "sourceRoot": "libs/pepega/components/coin-icon/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/pepega/components/coin-icon/**/*.{ts,tsx,js,jsx}"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/pepega/components/coin-icon"],
+      "options": {
+        "jestConfig": "libs/pepega/components/coin-icon/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  }
+}

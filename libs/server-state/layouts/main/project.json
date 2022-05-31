@@ -1,0 +1,16 @@
+{
+  "sourceRoot": "libs/server-state/layouts/main/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/server-state/layouts/main/**/*.{ts,tsx,js,jsx}"
+        ]
+      }
+    }
+  }
+}

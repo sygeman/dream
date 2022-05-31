@@ -1,0 +1,72 @@
+{
+  "sourceRoot": "apps/server-state-api/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/node:webpack",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/server-state-api",
+        "main": "apps/server-state-api/src/main.ts",
+        "tsConfig": "apps/server-state-api/tsconfig.app.json",
+        "assets": ["apps/server-state-api/src/assets"]
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "apps/server-state-api/src/environments/environment.ts",
+              "with": "apps/server-state-api/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/node:node",
+      "options": {
+        "buildTarget": "server-state-api:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/server-state-api/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/server-state-api"],
+      "options": {
+        "jestConfig": "apps/server-state-api/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "generate": {
+      "executor": "@nrwl/workspace:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "prisma generate --schema ./libs/server-state/prisma/schema.prisma"
+      }
+    },
+    "dbpush": {
+      "executor": "@nrwl/workspace:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "prisma db push --schema ./libs/server-state/prisma/schema.prisma"
+      }
+    },
+    "studio": {
+      "executor": "@nrwl/workspace:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "prisma studio --schema ./libs/server-state/prisma/schema.prisma"
+      }
+    }
+  },
+  "tags": []
+}

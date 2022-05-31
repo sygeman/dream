@@ -1,0 +1,21 @@
+{
+  "sourceRoot": "libs/mono/mode/spotify/ui/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["libs/mono/mode/spotify/ui/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/mono/mode/spotify/ui"],
+      "options": {
+        "jestConfig": "libs/mono/mode/spotify/ui/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

@@ -1,0 +1,24 @@
+{
+  "sourceRoot": "libs/mono/layouts/play-queue/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/mono/layouts/play-queue/**/*.{ts,tsx,js,jsx}"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/mono/layouts/play-queue"],
+      "options": {
+        "jestConfig": "libs/mono/layouts/play-queue/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "sourceRoot": "libs/pepega/components/card-media/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/pepega/components/card-media/**/*.{ts,tsx,js,jsx}"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/pepega/components/card-media"],
+      "options": {
+        "jestConfig": "libs/pepega/components/card-media/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  }
+}

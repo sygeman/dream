@@ -1,0 +1,14 @@
+{
+  "sourceRoot": "libs/mono/utils/use-modal/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/mono/utils/use-modal/**/*.{ts,tsx,js,jsx}"]
+      }
+    }
+  }
+}

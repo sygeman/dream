@@ -1,3 +1,9 @@
+query projects {
+  projects {
+    ...ProjectFields
+  }
+}
+
 query project($id: String!) {
   project(id: $id) {
     ...ProjectFields
@@ -7,6 +13,12 @@ query project($id: String!) {
 query projectState($id: String!) {
   projectState(id: $id) {
     ...ProjectStateFields
+  }
+}
+
+mutation createProject {
+  createProject {
+    ...ProjectFields
   }
 }
 

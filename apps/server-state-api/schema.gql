@@ -43,12 +43,14 @@ type Query {
   user(id: ID): User
   me: User!
   project(id: String!): Project!
+  projects: [Project!]!
   projectState(id: String!): ProjectState!
 }
 
 type Mutation {
   logout: Boolean!
   updateConnectionStatus: Boolean!
+  createProject: Project!
   incrementCount(projectId: String!): Boolean!
 }
 

@@ -16,6 +16,7 @@ export type Scalars = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  createProject: Project;
   incrementCount: Scalars['Boolean'];
   logout: Scalars['Boolean'];
   updateConnectionStatus: Scalars['Boolean'];
@@ -57,6 +58,7 @@ export type Query = {
   me: User;
   project: Project;
   projectState: ProjectState;
+  projects: Array<Project>;
   user?: Maybe<User>;
 };
 

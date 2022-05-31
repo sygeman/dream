@@ -3,6 +3,11 @@ import * as Types from '@dream/server-state/types';
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
+export type ProjectsQueryVariables = Types.Exact<{ [key: string]: never; }>;
+
+
+export type ProjectsQuery = { __typename?: 'Query', projects: Array<{ __typename?: 'Project', id: string, title: string, alias?: string | null, stateId?: string | null, createdAt: string, updatedAt: string }> };
+
 export type ProjectQueryVariables = Types.Exact<{
   id: Types.Scalars['String'];
 }>;
@@ -16,6 +21,11 @@ export type ProjectStateQueryVariables = Types.Exact<{
 
 
 export type ProjectStateQuery = { __typename?: 'Query', projectState: { __typename?: 'ProjectState', id: string, count: number, createdAt: string, updatedAt: string } };
+
+export type CreateProjectMutationVariables = Types.Exact<{ [key: string]: never; }>;
+
+
+export type CreateProjectMutation = { __typename?: 'Mutation', createProject: { __typename?: 'Project', id: string, title: string, alias?: string | null, stateId?: string | null, createdAt: string, updatedAt: string } };
 
 export type IncrementCountMutationVariables = Types.Exact<{
   projectId: Types.Scalars['String'];
@@ -53,6 +63,40 @@ export const ProjectStateFieldsFragmentDoc = gql`
   updatedAt
 }
     `;
+export const ProjectsDocument = gql`
+    query projects {
+  projects {
+    ...ProjectFields
+  }
+}
+    ${ProjectFieldsFragmentDoc}`;
+
+/**
+ * __useProjectsQuery__
+ *
+ * To run a query within a React component, call `useProjectsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useProjectsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useProjectsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useProjectsQuery(baseOptions?: Apollo.QueryHookOptions<ProjectsQuery, ProjectsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<ProjectsQuery, ProjectsQueryVariables>(ProjectsDocument, options);
+      }
+export function useProjectsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ProjectsQuery, ProjectsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<ProjectsQuery, ProjectsQueryVariables>(ProjectsDocument, options);
+        }
+export type ProjectsQueryHookResult = ReturnType<typeof useProjectsQuery>;
+export type ProjectsLazyQueryHookResult = ReturnType<typeof useProjectsLazyQuery>;
+export type ProjectsQueryResult = Apollo.QueryResult<ProjectsQuery, ProjectsQueryVariables>;
 export const ProjectDocument = gql`
     query project($id: String!) {
   project(id: $id) {
@@ -123,6 +167,38 @@ export function useProjectStateLazyQuery(baseOptions?: Apollo.LazyQueryHookOptio
 export type ProjectStateQueryHookResult = ReturnType<typeof useProjectStateQuery>;
 export type ProjectStateLazyQueryHookResult = ReturnType<typeof useProjectStateLazyQuery>;
 export type ProjectStateQueryResult = Apollo.QueryResult<ProjectStateQuery, ProjectStateQueryVariables>;
+export const CreateProjectDocument = gql`
+    mutation createProject {
+  createProject {
+    ...ProjectFields
+  }
+}
+    ${ProjectFieldsFragmentDoc}`;
+export type CreateProjectMutationFn = Apollo.MutationFunction<CreateProjectMutation, CreateProjectMutationVariables>;
+
+/**
+ * __useCreateProjectMutation__
+ *
+ * To run a mutation, you first call `useCreateProjectMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateProjectMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createProjectMutation, { data, loading, error }] = useCreateProjectMutation({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useCreateProjectMutation(baseOptions?: Apollo.MutationHookOptions<CreateProjectMutation, CreateProjectMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateProjectMutation, CreateProjectMutationVariables>(CreateProjectDocument, options);
+      }
+export type CreateProjectMutationHookResult = ReturnType<typeof useCreateProjectMutation>;
+export type CreateProjectMutationResult = Apollo.MutationResult<CreateProjectMutation>;
+export type CreateProjectMutationOptions = Apollo.BaseMutationOptions<CreateProjectMutation, CreateProjectMutationVariables>;
 export const IncrementCountDocument = gql`
     mutation incrementCount($projectId: String!) {
   incrementCount(projectId: $projectId)

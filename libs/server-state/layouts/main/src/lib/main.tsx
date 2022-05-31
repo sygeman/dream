@@ -13,7 +13,6 @@ export function MainLayout({ children }: MainLayoutProps) {
         <div>
           <ProjectTitle />
         </div>
-
         <div>
           <NavProfile />
         </div>

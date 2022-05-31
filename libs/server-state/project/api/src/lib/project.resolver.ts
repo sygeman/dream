@@ -1,7 +1,6 @@
 import {
   Args,
   Context,
-  Int,
   Mutation,
   Parent,
   Query,
@@ -41,6 +40,12 @@ export class ProjectResolver {
     return project;
   }
 
+  @Query(() => [Project])
+  async projects(@Context('userId') userId: string) {
+    const projects = await this.prisma.project.findMany();
+    return projects;
+  }
+
   @Query(() => ProjectState)
   async projectState(
     @Args({ name: 'id', type: () => String })
@@ -51,6 +56,20 @@ export class ProjectResolver {
       where: { id },
     });
     return state;
+  }
+
+  @Mutation(() => Project)
+  async createProject(@Context('userId') userId: string) {
+    return this.prisma.project.create({
+      data: {
+        title: 'New Project',
+        states: {
+          create: {
+            count: 0,
+          },
+        },
+      },
+    });
   }
 
   @Mutation(() => Boolean)
@@ -74,6 +93,19 @@ export class ProjectResolver {
       projectId,
       projectStateUpdated: newState.id,
     });
+
+    const uselessState = await this.prisma.projectState.findFirst({
+      where: { projectId, deleted: false },
+      orderBy: { createdAt: 'desc' },
+      skip: 50,
+    });
+
+    if (uselessState) {
+      await this.prisma.projectState.update({
+        where: { id: uselessState.id },
+        data: { deleted: true },
+      });
+    }
 
     return true;
   }

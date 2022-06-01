@@ -19,6 +19,6 @@ export class ProjectModule implements OnApplicationBootstrap {
   constructor(@InjectQueue('project') private readonly projectQueue: Queue) {}
 
   onApplicationBootstrap() {
-    this.projectQueue.add('cleanup', null, { repeat: { every: 4e3 } });
+    this.projectQueue.add('cleanup', null, { repeat: { every: 2e3 } });
   }
 }

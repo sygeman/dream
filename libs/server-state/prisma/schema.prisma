@@ -63,12 +63,20 @@ model Project {
   states    ProjectState[]
 }
 
+model ProjectStateDate {
+  id             String        @id @default(cuid())
+  date           String
+  projectState   ProjectState? @relation(fields: [projectStateId], references: [id], onDelete: Cascade)
+  projectStateId String
+}
+
 model ProjectState {
-  id        String   @id @default(cuid())
+  id        String             @id @default(cuid())
   count     Int
   projectId String?
-  project   Project? @relation(fields: [projectId], references: [id])
-  deleted   Boolean? @default(false)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now()) @updatedAt
+  project   Project?           @relation(fields: [projectId], references: [id])
+  deleted   Boolean?           @default(false)
+  createdAt DateTime           @default(now())
+  updatedAt DateTime           @default(now()) @updatedAt
+  dates     ProjectStateDate[]
 }

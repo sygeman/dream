@@ -13,12 +13,15 @@ import { RedisPubSub } from 'graphql-redis-subscriptions';
 import { Inject } from '@nestjs/common';
 import { Project } from './models/project.model';
 import { ProjectState } from './models/project-state';
+import { Queue } from 'bull';
+import { InjectQueue } from '@nestjs/bull';
 
 @Resolver(() => Project)
 export class ProjectResolver {
   constructor(
     private prisma: PrismaService,
-    @Inject('PUB_SUB') private readonly pubsub: RedisPubSub
+    @Inject('PUB_SUB') private readonly pubsub: RedisPubSub,
+    @InjectQueue('project') private readonly projectQueue: Queue
   ) {}
 
   @ResolveField()
@@ -78,35 +81,7 @@ export class ProjectResolver {
     projectId: string,
     @Context('userId') userId: string
   ) {
-    const state = await this.prisma.projectState.findFirst({
-      where: { projectId },
-      orderBy: { createdAt: 'desc' },
-    });
-
-    const prevCount = state?.count || 0;
-
-    const newState = await this.prisma.projectState.create({
-      data: { projectId, count: prevCount + 1 },
-    });
-
-    this.pubsub.publish('projectStateUpdated', {
-      projectId,
-      projectStateUpdated: newState.id,
-    });
-
-    const uselessState = await this.prisma.projectState.findFirst({
-      where: { projectId, deleted: false },
-      orderBy: { createdAt: 'desc' },
-      skip: 50,
-    });
-
-    if (uselessState) {
-      await this.prisma.projectState.update({
-        where: { id: uselessState.id },
-        data: { deleted: true },
-      });
-    }
-
+    this.projectQueue.add('incrementCount', { projectId });
     return true;
   }
 

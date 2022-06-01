@@ -4,6 +4,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import * as depthLimit from 'graphql-depth-limit';
+import { ThrottlerModule } from '@nestjs/throttler';
 import { AuthModule, AuthService } from '@dream/server-state/auth/api';
 import { UserModule } from '@dream/server-state/user/api';
 import {
@@ -22,6 +23,14 @@ import { ProjectModule } from '@dream/server-state/project/api';
     ConfigModule.forRoot({
       isGlobal: true,
       load: config,
+    }),
+    ThrottlerModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (config: ConfigService) => ({
+        ttl: 60,
+        limit: 10,
+      }),
     }),
     BullModule.forRootAsync({
       imports: [ConfigModule],

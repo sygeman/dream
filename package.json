@@ -47,6 +47,7 @@
     "@nestjs/graphql": "10.0.13",
     "@nestjs/passport": "8.2.1",
     "@nestjs/platform-express": "8.4.5",
+    "@nestjs/throttler": "2.0.1",
     "@nrwl/next": "14.1.9",
     "@prisma/client": "3.14.0",
     "@tailwindcss/aspect-ratio": "0.4.0",

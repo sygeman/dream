@@ -17,7 +17,7 @@ export const Project = ({ id }: ProjectProps) => {
   const stateId = useReactiveVar(stateIdVar);
 
   const projectQuery = useProjectQuery({ variables: { id }, skip: !id });
-  const project = projectQuery?.data?.project;
+  const project = projectQuery.data?.project;
 
   useEffect(() => {
     if (project?.stateId && !stateId) {

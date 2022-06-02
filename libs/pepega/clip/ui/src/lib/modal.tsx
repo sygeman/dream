@@ -17,7 +17,10 @@ export const ClipModal = () => {
 
   return (
     <Modal id="clipId" minimal {...modalProps}>
-      <div className="w-[1000px]">
+      <div
+        className="max-w-[1000px] min-w-[320px] w-[1000px] rounded overflow-hidden"
+        onClick={(e) => e.stopPropagation()}
+      >
         <Clip clipId={clipId} autoPlay />
       </div>
     </Modal>

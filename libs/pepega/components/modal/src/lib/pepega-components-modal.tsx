@@ -27,7 +27,7 @@ export const Modal: React.FC<ModalProps> = ({
     <Transition show={open} as={Fragment}>
       <Dialog
         as="div"
-        className="fixed inset-0 z-10 overflow-y-auto min-h-screen"
+        className="fixed inset-0 z-[150] overflow-y-auto min-h-screen"
         static
         open={open}
         onClose={close}
@@ -53,22 +53,18 @@ export const Modal: React.FC<ModalProps> = ({
             leaveTo="opacity-0 scale-95"
           >
             <div className="inline-block w-full max-w-fit my-8 overflow-hidden text-left align-middle transition-all transform bg-surface shadow-xl rounded-lg">
-              <div className="m-auto z-30 bg-surface rounded-lg overflow-hidden">
-                {!minimal && (
-                  <div className="bg-surface-light px-4 py-2 flex items-center">
-                    <div className="flex flex-1 text-white text-sm">
-                      {title}
-                    </div>
-                    <button
-                      className="btn h-6 w-6 p-1 hover:bg-surface focus:outline-none text-accent"
-                      onClick={close}
-                    >
-                      <XIcon />
-                    </button>
-                  </div>
-                )}
-                <div className={!minimal ? 'p-4' : undefined}>{children}</div>
-              </div>
+              {!minimal && (
+                <div className="bg-surface-light px-4 py-2 flex items-center">
+                  <div className="flex flex-1 text-white text-sm">{title}</div>
+                  <button
+                    className="btn h-6 w-6 p-1 hover:bg-surface focus:outline-none text-accent"
+                    onClick={close}
+                  >
+                    <XIcon />
+                  </button>
+                </div>
+              )}
+              <div className={!minimal ? 'p-4' : undefined}>{children}</div>
             </div>
           </Transition.Child>
         </div>

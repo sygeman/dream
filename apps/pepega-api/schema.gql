@@ -52,6 +52,11 @@ type Clip {
   updatedAt: String!
 }
 
+type Clips {
+  clips: [Clip!]!
+  cursor: String
+}
+
 type ClipCommentUser {
   id: String!
   role: UserRole
@@ -73,10 +78,14 @@ type Query {
   user(id: ID): User
   me: User!
   clip(id: String!): Clip
-  clips: [Clip!]
+  clips(input: ClipsInput!): Clips!
   clipComments(clipId: ID!): [ClipComment!]!
   userCoins: Int!
   clipScore(clipId: String!): Int!
+}
+
+input ClipsInput {
+  cursor: ID!
 }
 
 type Mutation {

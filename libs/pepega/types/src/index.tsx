@@ -55,6 +55,16 @@ export type ClipCommentUser = {
   role?: Maybe<UserRole>;
 };
 
+export type Clips = {
+  __typename?: 'Clips';
+  clips: Array<Clip>;
+  cursor?: Maybe<Scalars['String']>;
+};
+
+export type ClipsInput = {
+  cursor: Scalars['ID'];
+};
+
 export enum Locale {
   EnUs = 'en_US',
   RuRu = 'ru_RU'
@@ -115,7 +125,7 @@ export type Query = {
   clip?: Maybe<Clip>;
   clipComments: Array<ClipComment>;
   clipScore: Scalars['Int'];
-  clips?: Maybe<Array<Clip>>;
+  clips: Clips;
   me: User;
   user?: Maybe<User>;
   userCoins: Scalars['Int'];
@@ -134,6 +144,11 @@ export type QueryClipCommentsArgs = {
 
 export type QueryClipScoreArgs = {
   clipId: Scalars['String'];
+};
+
+
+export type QueryClipsArgs = {
+  input: ClipsInput;
 };
 
 

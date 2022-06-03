@@ -4,9 +4,12 @@ query clip($id: String!) {
   }
 }
 
-query clips {
-  clips {
-    ...ClipFields
+query clips($input: ClipsInput!) {
+  clips(input: $input) {
+    cursor
+    clips {
+      ...ClipFields
+    }
   }
 }
 

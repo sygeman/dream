@@ -10,10 +10,12 @@ export type ClipQueryVariables = Types.Exact<{
 
 export type ClipQuery = { __typename?: 'Query', clip?: { __typename?: 'Clip', id: string, sourceUrl: string, title: string, thumbnail_url: string, language: string, broadcaster_id: string, creator_id: string, video_id: string, game_id: string, created_at: string, score: number, createdAt: string, updatedAt: string } | null };
 
-export type ClipsQueryVariables = Types.Exact<{ [key: string]: never; }>;
+export type ClipsQueryVariables = Types.Exact<{
+  input: Types.ClipsInput;
+}>;
 
 
-export type ClipsQuery = { __typename?: 'Query', clips?: Array<{ __typename?: 'Clip', id: string, sourceUrl: string, title: string, thumbnail_url: string, language: string, broadcaster_id: string, creator_id: string, video_id: string, game_id: string, created_at: string, score: number, createdAt: string, updatedAt: string }> | null };
+export type ClipsQuery = { __typename?: 'Query', clips: { __typename?: 'Clips', cursor?: string | null, clips: Array<{ __typename?: 'Clip', id: string, sourceUrl: string, title: string, thumbnail_url: string, language: string, broadcaster_id: string, creator_id: string, video_id: string, game_id: string, created_at: string, score: number, createdAt: string, updatedAt: string }> } };
 
 export type ClipFieldsFragment = { __typename?: 'Clip', id: string, sourceUrl: string, title: string, thumbnail_url: string, language: string, broadcaster_id: string, creator_id: string, video_id: string, game_id: string, created_at: string, score: number, createdAt: string, updatedAt: string };
 
@@ -70,9 +72,12 @@ export type ClipQueryHookResult = ReturnType<typeof useClipQuery>;
 export type ClipLazyQueryHookResult = ReturnType<typeof useClipLazyQuery>;
 export type ClipQueryResult = Apollo.QueryResult<ClipQuery, ClipQueryVariables>;
 export const ClipsDocument = gql`
-    query clips {
-  clips {
-    ...ClipFields
+    query clips($input: ClipsInput!) {
+  clips(input: $input) {
+    cursor
+    clips {
+      ...ClipFields
+    }
   }
 }
     ${ClipFieldsFragmentDoc}`;
@@ -89,10 +94,11 @@ export const ClipsDocument = gql`
  * @example
  * const { data, loading, error } = useClipsQuery({
  *   variables: {
+ *      input: // value for 'input'
  *   },
  * });
  */
-export function useClipsQuery(baseOptions?: Apollo.QueryHookOptions<ClipsQuery, ClipsQueryVariables>) {
+export function useClipsQuery(baseOptions: Apollo.QueryHookOptions<ClipsQuery, ClipsQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
         return Apollo.useQuery<ClipsQuery, ClipsQueryVariables>(ClipsDocument, options);
       }

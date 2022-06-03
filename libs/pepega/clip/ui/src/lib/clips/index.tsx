@@ -19,7 +19,8 @@ export const Clips = () => {
   });
   const [innerWidth, setInnerWidth] = useState(0);
 
-  const { data } = useClipsQuery({
+  const { data, fetchMore } = useClipsQuery({
+    variables: { input: { cursor: '' } },
     fetchPolicy: 'cache-and-network',
     ssr: false,
   });
@@ -43,7 +44,7 @@ export const Clips = () => {
     setInnerWidth(gridWidth);
   }, [width, maxOnRow, elementWidth]);
 
-  const clips = data?.clips || [];
+  const clips = data?.clips?.clips || [];
   const currentCount = clips.length;
 
   const getClipByIndex = (index: number) => {
@@ -112,6 +113,9 @@ export const Clips = () => {
           ScrollSeekPlaceholder: ({ index }) => getClipByIndex(index),
         }}
         itemContent={(index) => getClipByIndex(index)}
+        endReached={() =>
+          fetchMore({ variables: { input: { cursor: data?.clips?.cursor } } })
+        }
       />
     </div>
   );

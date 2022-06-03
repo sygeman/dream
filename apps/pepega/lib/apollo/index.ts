@@ -41,7 +41,37 @@ function createApolloClient() {
   return new ApolloClient({
     link,
     ssrMode: false,
-    cache: new InMemoryCache(),
+    cache: new InMemoryCache({
+      typePolicies: {
+        Query: {
+          fields: {
+            clips: {
+              merge(existing, incoming, { readField }) {
+                const clips = existing ? { ...existing.clips } : {};
+                incoming.clips.forEach((clip) => {
+                  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                  // @ts-ignore
+                  clips[readField('id', clip)] = clip;
+                });
+                return {
+                  cursor: incoming.cursor,
+                  clips,
+                };
+              },
+
+              read(existing) {
+                if (existing) {
+                  return {
+                    cursor: existing.cursor,
+                    clips: Object.values(existing.clips),
+                  };
+                }
+              },
+            },
+          },
+        },
+      },
+    }),
   });
 }
 

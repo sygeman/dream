@@ -1,6 +1,8 @@
 import { Args, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql';
 import { PrismaService } from '@dream/pepega-prisma';
 import { Clip } from './models/clip.model';
+import { Clips } from './models/clips.model';
+import { ClipsInput } from './dto/clips.input';
 
 @Resolver(() => Clip)
 export class ClipResolver {
@@ -21,10 +23,22 @@ export class ClipResolver {
     return this.prisma.clip.findFirst({ where: { id } });
   }
 
-  @Query(() => [Clip], { nullable: true })
+  @Query(() => Clips)
   // clips(orderBy: createdAt|score, period: day|week|month|all)
-  async clips() {
-    // find or create
-    return this.prisma.clip.findMany({ orderBy: { score: 'desc' } });
+  async clips(
+    @Args({ name: 'input', type: () => ClipsInput })
+    input: ClipsInput
+  ) {
+    const clips = await this.prisma.clip.findMany({
+      skip: input?.cursor ? 1 : 0,
+      cursor: input.cursor ? { id: input.cursor } : undefined,
+      orderBy: { score: 'desc' },
+      take: 30,
+    });
+
+    const clipsCount = clips.length;
+    const cursor = clipsCount > 0 ? clips[clipsCount - 1]?.id : null;
+
+    return { clips, cursor };
   }
 }

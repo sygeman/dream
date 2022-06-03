@@ -43,7 +43,7 @@ export const Modal: React.FC<ModalProps> = ({
           leaveTo="opacity-0 scale-95"
         >
           <div
-            className="w-full flex justify-center rounded overflow-hidden"
+            className="w-full flex justify-center rounded overflow-hidden z-10"
             onClick={close}
           >
             {children}

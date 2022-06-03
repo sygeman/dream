@@ -11,7 +11,6 @@ export const AddClip = () => {
   return (
     <div className="flex w-full px-4">
       <Link
-        as={isUser ? `/newClip` : `/auth?continue=/`}
         href={{
           pathname: router.route,
           query: {

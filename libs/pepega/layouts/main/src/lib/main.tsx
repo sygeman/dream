@@ -6,6 +6,7 @@ import { UserBox } from './user';
 import { LeftMenuItem } from './left-menu-item';
 import { Logo } from './logo';
 import { HomeIcon } from '@heroicons/react/solid';
+import { AuthModal } from '@dream/pepega/auth/ui';
 
 export const MainLayout = ({ children }: { children?: React.ReactNode }) => {
   const [leftMenuIsOpen, setLeftMenuIsOpen] = useState(false);
@@ -16,6 +17,7 @@ export const MainLayout = ({ children }: { children?: React.ReactNode }) => {
       <div className="absolute top-0 left-0 w-full h-full bg-background/95">
         <ClipModal />
         <CreateClipModal />
+        <AuthModal />
         <div className="relative w-full h-full overflow-hidden flex flex-col">
           <div className="flex-1 overflow-hidden relative">
             <div className="h-full flex">

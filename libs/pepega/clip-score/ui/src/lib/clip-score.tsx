@@ -6,6 +6,8 @@ import {
 } from './clip-score.api';
 import { PlusSmIcon, MinusSmIcon } from '@heroicons/react/solid';
 import React from 'react';
+import { useRouter } from 'next/router';
+import { useAccess } from '@dream/pepega/auth/ui';
 
 const ScoreButton = ({
   action,
@@ -14,10 +16,22 @@ const ScoreButton = ({
   action: () => void;
   children?: React.ReactNode;
 }) => {
+  const router = useRouter();
+  const [{ allow: isUser }] = useAccess();
+
+  const openAuth = () =>
+    router.push({
+      pathname: router.route,
+      query: {
+        ...router.query,
+        authModal: 1,
+      },
+    });
+
   return (
     <button
       className="px-4 py-2 hover:bg-twitch/50 text-white transition-colors delay-75"
-      onClick={action}
+      onClick={() => (isUser ? action() : openAuth())}
     >
       {children}
     </button>

@@ -7922,13 +7922,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/cookie@npm:^0.4.0":
-  version: 0.4.1
-  resolution: "@types/cookie@npm:0.4.1"
-  checksum: 3275534ed69a76c68eb1a77d547d75f99fedc80befb75a3d1d03662fb08d697e6f8b1274e12af1a74c6896071b11510631ba891f64d30c78528d0ec45a9c1a18
-  languageName: node
-  linkType: hard
-
 "@types/cookie@npm:^0.5.1":
   version: 0.5.1
   resolution: "@types/cookie@npm:0.5.1"
@@ -9678,7 +9671,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"array.prototype.flat@npm:^1.2.4, array.prototype.flat@npm:^1.2.5":
+"array.prototype.flat@npm:^1.2.5":
   version: 1.2.5
   resolution: "array.prototype.flat@npm:1.2.5"
   dependencies:
@@ -11142,13 +11135,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"clone@npm:^2.1.2":
-  version: 2.1.2
-  resolution: "clone@npm:2.1.2"
-  checksum: aaf106e9bc025b21333e2f4c12da539b568db4925c0501a1bf4070836c9e848c892fa22c35548ce0d1132b08bbbfa17a00144fe58fccdab6fa900fec4250f67d
-  languageName: node
-  linkType: hard
-
 "clsx@npm:1.1.1":
   version: 1.1.1
   resolution: "clsx@npm:1.1.1"
@@ -11465,13 +11451,6 @@ __metadata:
   version: 0.5.0
   resolution: "cookie@npm:0.5.0"
   checksum: 1f4bd2ca5765f8c9689a7e8954183f5332139eb72b6ff783d8947032ec1fdf43109852c178e21a953a30c0dd42257828185be01b49d1eb1a67fd054ca588a180
-  languageName: node
-  linkType: hard
-
-"cookie@npm:^0.4.1":
-  version: 0.4.1
-  resolution: "cookie@npm:0.4.1"
-  checksum: bd7c47f5d94ab70ccdfe8210cde7d725880d2fcda06d8e375afbdd82de0c8d3b73541996e9ce57d35f67f672c4ee6d60208adec06b3c5fc94cebb85196084cf8
   languageName: node
   linkType: hard
 
@@ -12659,7 +12638,6 @@ __metadata:
     ms: 2.1.3
     nanoid: 3.3.4
     next: 12.1.6
-    next-iron-session: 4.2.0
     next-transpile-modules: 9.0.0
     nx: 14.1.9
     overlayscrollbars: 1.13.2
@@ -15570,16 +15548,6 @@ __metadata:
     next:
       optional: true
   checksum: 809dbe0c76337cf304e98ba22186faad7b47975e0497b9f39c51d95e3c7b6f4f072cc7f356460f21bb27466681dc17cce177b55aa0d9a7d403b6aebced67c4e8
-  languageName: node
-  linkType: hard
-
-"iron-store@npm:^1.3.0":
-  version: 1.3.5
-  resolution: "iron-store@npm:1.3.5"
-  dependencies:
-    "@hapi/iron": ^6.0.0
-    clone: ^2.1.2
-  checksum: 7ad0af41c72cac87adbdb3a796ecfdad4d6d04ebec988da5724ec5e113324011267abb12e06b69ab9a06f978dd0f57d98322bc81b6ec7369bd8e3d803ea5c4c7
   languageName: node
   linkType: hard
 
@@ -18571,20 +18539,6 @@ __metadata:
   version: 2.6.2
   resolution: "neo-async@npm:2.6.2"
   checksum: deac9f8d00eda7b2e5cd1b2549e26e10a0faa70adaa6fdadca701cc55f49ee9018e427f424bac0c790b7c7e2d3068db97f3093f1093975f2acb8f8818b936ed9
-  languageName: node
-  linkType: hard
-
-"next-iron-session@npm:4.2.0":
-  version: 4.2.0
-  resolution: "next-iron-session@npm:4.2.0"
-  dependencies:
-    "@types/cookie": ^0.4.0
-    array.prototype.flat: ^1.2.4
-    clone: ^2.1.2
-    cookie: ^0.4.1
-    debug: ^4.3.1
-    iron-store: ^1.3.0
-  checksum: 51351f20a252e8a6362b11cd1c11a8adc6dbbf6c937881c858c7cd7456c0bb9b25853d63ce42871bb6010d86264405e909c712aee38a634111c659d56ffe87cd
   languageName: node
   linkType: hard
 

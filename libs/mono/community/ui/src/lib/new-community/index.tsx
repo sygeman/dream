@@ -1,24 +1,15 @@
 import React from 'react';
-import { useFormik } from 'formik';
-import { useIntl } from 'react-intl';
-import { useCreateCommunityMutation } from '../community.api';
-import { useRouter } from 'next/router';
-import * as Yup from 'yup';
 import clsx from 'clsx';
+import { useIntl } from 'react-intl';
+import { useRouter } from 'next/router';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import { urlNameRegExp } from '@dream/mono-utils-regexp-url-name';
+import { useCreateCommunityMutation } from '../community.api';
 
-const ValidationSchema = Yup.object().shape({
-  title: Yup.string()
-    .min(1, 'Too Short!')
-    .max(50, 'Too Long!')
-    .required('Required'),
-  name: Yup.string()
-    .min(1, 'Too Short!')
-    .max(50, 'Too Long!')
-    .matches(urlNameRegExp)
-    .lowercase()
-    .required('Required'),
-});
+interface IFormInput {
+  name: string;
+  title: string;
+}
 
 export const NewCommunity = () => {
   const router = useRouter();
@@ -31,52 +22,46 @@ export const NewCommunity = () => {
     },
   });
 
-  const formik = useFormik({
-    initialValues: {
-      name: '',
-      title: '',
-    },
-    validationSchema: ValidationSchema,
-    onSubmit: (values) => {
-      createCommunity({
-        variables: { input: { ...values } },
-      });
-    },
-  });
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<IFormInput>();
+  const onSubmit: SubmitHandler<IFormInput> = (data) => {
+    createCommunity({
+      variables: { input: { ...data } },
+    });
+  };
 
-  const isError = Object.keys(formik.errors).length > 0;
+  const name = watch('name');
+
+  const isError = Object.keys(errors).length > 0;
 
   return (
-    <form onSubmit={formik.handleSubmit}>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <label htmlFor="title" className="text-accent text-xs">
         {intl.formatMessage({ id: 'newCommunityTitleLabel' })}
       </label>
       <input
-        id="title"
-        name="title"
-        type="text"
+        {...register('title', { required: true, minLength: 1, maxLength: 50 })}
         autoFocus
-        minLength={1}
-        maxLength={50}
         placeholder={intl.formatMessage({ id: 'newCommunityTitlePlaceholder' })}
-        onChange={formik.handleChange}
-        value={formik.values.title}
         className="bg-background text-white text-xs p-2 rounded w-full focus:outline-none focus:ring-1 mb-2"
       />
 
       <label htmlFor="name" className="text-accent text-sm">
         <span>{host}/</span>
-        <span className="text-white">{formik.values.name || 'awesome'}</span>
+        <span className="text-white">{name || 'awesome'}</span>
       </label>
       <input
-        id="name"
-        name="name"
-        type="text"
-        minLength={1}
-        maxLength={50}
+        {...register('name', {
+          required: true,
+          minLength: 1,
+          maxLength: 50,
+          pattern: urlNameRegExp,
+        })}
         placeholder="awesome"
-        onChange={formik.handleChange}
-        value={formik.values.name}
         className="bg-background text-white text-xs p-2 rounded w-full focus:outline-none focus:ring-1 mb-2"
       />
 

@@ -1,6 +1,8 @@
 name: API
 
-on: [push]
+on:
+  push:
+    branches: [main]
 
 jobs:
   build_api:
@@ -8,9 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - uses: nrwl/nx-set-shas@v2
 
       - name: Use Node.js
         uses: actions/setup-node@v1
@@ -32,7 +31,7 @@ jobs:
         run: yarn generate
 
       - name: Build apps
-        run: yarn affected --target=build --parallel=3
+        run: yarn nx run-many --target=build --projects=mono-api,pepega-api
 
       # Docker
 

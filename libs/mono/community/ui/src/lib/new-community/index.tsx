@@ -35,7 +35,6 @@ export const NewCommunity = () => {
   };
 
   const name = watch('name');
-
   const isError = Object.keys(errors).length > 0;
 
   return (

@@ -1,24 +1,14 @@
-import React from 'react';
 import clsx from 'clsx';
-import * as Yup from 'yup';
-import { useFormik } from 'formik';
 import { useRouter } from 'next/router';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import { useCreateChannelMutation } from '../channel.api';
 import { urlNameRegExp } from '@dream/mono-utils-regexp-url-name';
 import { useCommunityChannel } from '@dream/mono-use-community-channel';
 
-const ValidationSchema = Yup.object().shape({
-  title: Yup.string()
-    .min(1, 'Too Short!')
-    .max(50, 'Too Long!')
-    .required('Required'),
-  name: Yup.string()
-    .min(1, 'Too Short!')
-    .max(50, 'Too Long!')
-    .matches(urlNameRegExp)
-    .lowercase()
-    .required('Required'),
-});
+interface IFormInput {
+  name: string;
+  title: string;
+}
 
 export const NewChannel = () => {
   const router = useRouter();
@@ -34,36 +24,28 @@ export const NewChannel = () => {
     },
   });
 
-  const formik = useFormik({
-    initialValues: {
-      name: '',
-      title: '',
-    },
-    validationSchema: ValidationSchema,
-    onSubmit: (values) => {
-      createChannel({
-        variables: { input: { ...values, communityId } },
-      });
-    },
-  });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IFormInput>();
+  const onSubmit: SubmitHandler<IFormInput> = (data) => {
+    createChannel({
+      variables: { input: { ...data, communityId } },
+    });
+  };
 
-  const isError = Object.keys(formik.errors).length > 0;
+  const isError = Object.keys(errors).length > 0;
 
   return (
-    <form onSubmit={formik.handleSubmit}>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <label htmlFor="title" className="text-accent text-xs">
         Title
       </label>
       <input
-        id="title"
-        name="title"
-        type="text"
         autoFocus
-        minLength={1}
-        maxLength={50}
+        {...register('title', { required: true, minLength: 1, maxLength: 50 })}
         placeholder="Awesome Channel"
-        onChange={formik.handleChange}
-        value={formik.values.title}
         className="bg-background text-white text-xs p-2 rounded w-full focus:outline-none focus:ring-1 mb-2"
       />
 
@@ -72,14 +54,13 @@ export const NewChannel = () => {
           {origin}/{community?.name}/
         </label>
         <input
-          id="name"
-          name="name"
-          type="text"
-          minLength={1}
-          maxLength={50}
+          {...register('name', {
+            required: true,
+            minLength: 1,
+            maxLength: 50,
+            pattern: urlNameRegExp,
+          })}
           placeholder="awesome"
-          onChange={formik.handleChange}
-          value={formik.values.name}
           className="bg-background text-white text-xs p-2 rounded w-full focus:outline-none focus:ring-1"
         />
       </div>

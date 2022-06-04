@@ -1,6 +1,8 @@
 {
   "version": 2,
   "projects": {
+    "auth-api": "libs/auth/api",
+    "auth-ui": "libs/auth/ui",
     "dream": "apps/dream",
     "mono": "apps/mono",
     "mono-api": "apps/mono-api",

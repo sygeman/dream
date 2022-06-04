@@ -78,5 +78,6 @@ module.exports = {
     '<rootDir>/libs/server-state/user/api',
     '<rootDir>/libs/server-state/project/api',
     '<rootDir>/libs/server-state/project/ui',
+    '<rootDir>/libs/auth/api',
   ],
 };

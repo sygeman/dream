@@ -1,47 +1,51 @@
-import React from 'react';
-import * as Yup from 'yup';
+import React, { useEffect } from 'react';
 import Slider from 'rc-slider';
-import { useFormik } from 'formik';
+import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import { useUpdateChannelSettingsMutation } from './channel-settings.api';
 import { useCommunityChannel } from '@dream/mono-use-community-channel';
 import { SaveFormPanel } from '@dream/mono-components-save-form';
 import { SwitchFormField } from '@dream/mono-components-switch-form-field';
 
-const ValidationSchema = Yup.object().shape({
-  gifAllowed: Yup.boolean(),
-  nsfw: Yup.boolean(),
-  slowmode: Yup.number().required('Required'),
-});
+interface IFormInput {
+  gifAllowed: boolean;
+  nsfw: boolean;
+  slowmode: number;
+}
 
 export const ChannelSettingsChat: React.FC = () => {
   const { channel, channelId, communityId } = useCommunityChannel();
+  const defaultValues = {
+    gifAllowed: channel?.gifAllowed,
+    nsfw: channel?.nsfw,
+    slowmode: channel?.slowmode,
+  };
 
-  const formik = useFormik({
-    initialValues: {
-      gifAllowed: channel?.gifAllowed,
-      nsfw: channel?.nsfw,
-      slowmode: channel?.slowmode,
-    },
-    enableReinitialize: true,
-    validationSchema: ValidationSchema,
-    onSubmit: (values) => {
-      updateChannelSettings({
-        variables: { input: { ...values, communityId, channelId } },
-      });
-    },
-  });
+  const {
+    control,
+    handleSubmit,
+    reset,
+    formState: { isDirty },
+  } = useForm<IFormInput>();
 
   const [updateChannelSettings] = useUpdateChannelSettingsMutation({
     onCompleted: (data) => {
-      formik.resetForm({
-        values: {
-          gifAllowed: data?.updateChannelSettings?.gifAllowed,
-          nsfw: data?.updateChannelSettings?.nsfw,
-          slowmode: data?.updateChannelSettings?.slowmode,
-        },
+      reset({
+        gifAllowed: data?.updateChannelSettings?.gifAllowed,
+        nsfw: data?.updateChannelSettings?.nsfw,
+        slowmode: data?.updateChannelSettings?.slowmode,
       });
     },
   });
+
+  const onSubmit: SubmitHandler<IFormInput> = (data) => {
+    updateChannelSettings({
+      variables: { input: { ...data, communityId, channelId } },
+    });
+  };
+
+  useEffect(() => {
+    reset(defaultValues);
+  }, [channel]);
 
   const marks = {
     0: 'Off',
@@ -52,41 +56,62 @@ export const ChannelSettingsChat: React.FC = () => {
   };
 
   return (
-    <form onSubmit={formik.handleSubmit}>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <div className="divide-surface-light divide-y">
-        <SwitchFormField
-          title="Allow Gif"
-          description="Allow the use of gifs in chat"
-          checked={formik.values.gifAllowed}
-          onChange={(gifAllowed) =>
-            formik.setFieldValue('gifAllowed', gifAllowed)
-          }
+        <Controller
+          render={({ field }) => (
+            <SwitchFormField
+              title="Allow Gif"
+              description="Allow the use of gifs in chat"
+              checked={field.value}
+              onChange={field.onChange}
+            />
+          )}
+          name="gifAllowed"
+          control={control}
+          defaultValue={channel?.gifAllowed}
         />
-        <SwitchFormField
-          title="NSFW"
-          description="Users will need to confirm they are of over legal age to the
-          content in this channel."
-          checked={formik.values.nsfw}
-          onChange={(nsfw) => formik.setFieldValue('nsfw', nsfw)}
+
+        <Controller
+          render={({ field }) => (
+            <SwitchFormField
+              title="NSFW"
+              description="Users will need to confirm they are of over legal age to the
+            content in this channel."
+              checked={field.value}
+              onChange={field.onChange}
+            />
+          )}
+          name="nsfw"
+          control={control}
+          defaultValue={channel?.nsfw}
         />
+
         <div className="p-2">
           <div className="text-sm text-accent">Slowmode</div>
           <div className="p-2">
-            <Slider
-              defaultValue={formik.values.slowmode}
-              min={0}
-              max={30}
-              marks={marks}
-              step={null}
-              onChange={(slowmode) =>
-                formik.setFieldValue('slowmode', slowmode)
-              }
+            <Controller
+              render={({ field }) => (
+                <Slider
+                  value={field.value}
+                  min={0}
+                  max={30}
+                  marks={marks}
+                  step={null}
+                  onChange={(slowmode) => {
+                    if (typeof slowmode === 'number') field.onChange(slowmode);
+                  }}
+                />
+              )}
+              name="slowmode"
+              control={control}
+              defaultValue={channel?.slowmode}
             />
           </div>
         </div>
       </div>
 
-      <SaveFormPanel show={formik.dirty} reset={() => formik.resetForm()} />
+      <SaveFormPanel show={isDirty} reset={() => reset(defaultValues)} />
     </form>
   );
 };

@@ -82,7 +82,7 @@ export type CommunitySettings = {
   __typename?: 'CommunitySettings';
   avatar?: Maybe<Scalars['String']>;
   id: Scalars['String'];
-  name?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
   title: Scalars['String'];
 };
 

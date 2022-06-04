@@ -8,16 +8,16 @@ export type CommunitySettingsQueryVariables = Types.Exact<{
 }>;
 
 
-export type CommunitySettingsQuery = { __typename?: 'Query', communitySettings: { __typename?: 'CommunitySettings', id: string, name?: string | null, title: string, avatar?: string | null } };
+export type CommunitySettingsQuery = { __typename?: 'Query', communitySettings: { __typename?: 'CommunitySettings', id: string, name: string, title: string, avatar?: string | null } };
 
 export type UpdateCommunitySettingsMutationVariables = Types.Exact<{
   input: Types.UpdateCommunitySettingsInput;
 }>;
 
 
-export type UpdateCommunitySettingsMutation = { __typename?: 'Mutation', updateCommunitySettings: { __typename?: 'CommunitySettings', id: string, name?: string | null, title: string, avatar?: string | null } };
+export type UpdateCommunitySettingsMutation = { __typename?: 'Mutation', updateCommunitySettings: { __typename?: 'CommunitySettings', id: string, name: string, title: string, avatar?: string | null } };
 
-export type CommunitySettingsFieldsFragment = { __typename?: 'CommunitySettings', id: string, name?: string | null, title: string, avatar?: string | null };
+export type CommunitySettingsFieldsFragment = { __typename?: 'CommunitySettings', id: string, name: string, title: string, avatar?: string | null };
 
 export const CommunitySettingsFieldsFragmentDoc = gql`
     fragment CommunitySettingsFields on CommunitySettings {

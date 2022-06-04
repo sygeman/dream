@@ -299,7 +299,7 @@ type Emoji {
 
 type CommunitySettings {
   id: String!
-  name: String
+  name: String!
   title: String!
   avatar: String
 }

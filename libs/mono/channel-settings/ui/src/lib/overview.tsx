@@ -9,6 +9,7 @@ interface IFormInput {
   name: string;
   title: string;
 }
+
 export const ChannelSettingsOverview: React.FC = () => {
   const origin = typeof window !== 'undefined' ? window?.location?.origin : '';
   const { community, channel, channelId, communityId } = useCommunityChannel();

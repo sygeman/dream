@@ -5,8 +5,8 @@ export class CommunitySettings {
   @Field()
   id: string;
 
-  @Field({ nullable: true })
-  name?: string;
+  @Field()
+  name: string;
 
   @Field()
   title: string;

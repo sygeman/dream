@@ -68,7 +68,6 @@
     "deepmerge": "4.2.2",
     "document-register-element": "1.14.10",
     "express-session": "1.17.3",
-    "formik": "2.2.9",
     "framer-motion": "6.3.10",
     "graphql": "16.5.0",
     "graphql-depth-limit": "1.1.0",
@@ -110,8 +109,7 @@
     "rxjs": "7.5.5",
     "simplebar-react": "2.4.1",
     "tslib": "2.4.0",
-    "use-debounce": "8.0.1",
-    "yup": "0.32.11"
+    "use-debounce": "8.0.1"
   },
   "devDependencies": {
     "@babel/core": "7.18.2",
@@ -152,7 +150,6 @@
     "@types/react-dom": "18.0.5",
     "@types/react-is": "17.0.3",
     "@types/webpack": "5.28.0",
-    "@types/yup": "0.29.14",
     "@typescript-eslint/eslint-plugin": "5.27.0",
     "@typescript-eslint/parser": "5.27.0",
     "autoprefixer": "10.4.7",

@@ -94,6 +94,7 @@
     "react-copy-to-clipboard": "5.1.0",
     "react-dom": "18.1.0",
     "react-dropzone": "14.2.1",
+    "react-hook-form": "7.31.3",
     "react-intl": "6.0.3",
     "react-is": "18.1.0",
     "react-player": "2.10.1",

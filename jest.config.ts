@@ -77,5 +77,6 @@ module.exports = {
     '<rootDir>/libs/utils/use-dark-mode',
     '<rootDir>/libs/rancher-deploy',
     '<rootDir>/apps/rancher-deploy-e2e',
+    '<rootDir>/apps/sudoku',
   ],
 };

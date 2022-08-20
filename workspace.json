@@ -87,6 +87,7 @@
     "rancher-deploy": "libs/rancher-deploy",
     "rancher-deploy-e2e": "apps/rancher-deploy-e2e",
     "spotify-now": "apps/spotify-now",
+    "sudoku": "apps/sudoku",
     "utils-use-dark-mode": "libs/utils/use-dark-mode"
   },
   "$schema": "./node_modules/nx/schemas/workspace-schema.json"

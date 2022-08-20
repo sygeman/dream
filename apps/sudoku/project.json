@@ -26,7 +26,7 @@
       "dependsOn": ["move-vercel"],
       "executor": "nx:run-commands",
       "options": {
-        "command": "cd dist/apps/sudoku && npx vercel --token \"$VERCEL_TOKEN\" --yes --prod"
+        "command": "cd dist/apps/sudoku && yarn vercel --token \"$VERCEL_TOKEN\" --yes --prod"
       }
     },
     "serve": {

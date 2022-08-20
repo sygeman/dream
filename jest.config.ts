@@ -78,5 +78,6 @@ module.exports = {
     '<rootDir>/libs/rancher-deploy',
     '<rootDir>/apps/rancher-deploy-e2e',
     '<rootDir>/apps/sudoku',
+    '<rootDir>/apps/snake',
   ],
 };

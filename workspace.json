@@ -89,7 +89,8 @@
     "snake": "apps/snake",
     "spotify-now": "apps/spotify-now",
     "sudoku": "apps/sudoku",
-    "utils-use-dark-mode": "libs/utils/use-dark-mode"
+    "utils-use-dark-mode": "libs/utils/use-dark-mode",
+    "water-color-sort": "apps/water-color-sort"
   },
   "$schema": "./node_modules/nx/schemas/workspace-schema.json"
 }

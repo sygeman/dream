@@ -79,5 +79,6 @@ module.exports = {
     '<rootDir>/apps/rancher-deploy-e2e',
     '<rootDir>/apps/sudoku',
     '<rootDir>/apps/snake',
+    '<rootDir>/apps/water-color-sort',
   ],
 };

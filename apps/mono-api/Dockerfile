@@ -8,7 +8,6 @@ COPY apps/mono-api/schema.gql ./schema.gql
 
 FROM base as dependencies
 RUN yarn --production
-RUN yarn add apollo-server-express
 
 FROM dependencies as prisma
 RUN yarn add prisma --dev

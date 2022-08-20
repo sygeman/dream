@@ -49,7 +49,7 @@ jobs:
 
       - name: Install dependencies
         if: steps.cache.outputs.cache-hit != 'true'
-        run: yarn --frozen-lockfile
+        run: yarn --immutable
 
       - name: Deploy
         run: yarn nx affected --target=deploy --base=$BEFORE_SHA --parallel=3

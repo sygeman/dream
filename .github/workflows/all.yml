@@ -58,7 +58,7 @@ jobs:
 
       - name: Install dependencies
         if: steps.cache.outputs.cache-hit != 'true'
-        run: yarn --frozen-lockfile
+        run: yarn --immutable
 
       - name: Deploy
         run: yarn nx run-many --target=deploy --parallel=3

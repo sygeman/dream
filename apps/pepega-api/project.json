@@ -82,7 +82,7 @@
       "dependsOn": ["build"]
     },
     "deploy": {
-      "executor": "./tools/executors/rancher:deploy",
+      "executor": "@dream/rancher-deploy:build",
       "options": {
         "project": "pepega",
         "app": "api"

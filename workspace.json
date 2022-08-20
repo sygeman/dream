@@ -84,6 +84,8 @@
     "pepega-user-coin-api": "libs/pepega/user-coin/api",
     "pepega-user-coin-ui": "libs/pepega/user-coin/ui",
     "pepega-utils-count": "libs/pepega/utils/count",
+    "rancher-deploy": "libs/rancher-deploy",
+    "rancher-deploy-e2e": "apps/rancher-deploy-e2e",
     "spotify-now": "apps/spotify-now",
     "utils-use-dark-mode": "libs/utils/use-dark-mode"
   },

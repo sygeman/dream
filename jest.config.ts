@@ -75,5 +75,7 @@ module.exports = {
     '<rootDir>/libs/pepega/follows/ui',
     '<rootDir>/apps/spotify-now',
     '<rootDir>/libs/utils/use-dark-mode',
+    '<rootDir>/libs/rancher-deploy',
+    '<rootDir>/apps/rancher-deploy-e2e',
   ],
 };

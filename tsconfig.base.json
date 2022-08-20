@@ -158,6 +158,7 @@
       "@dream/pepega/user-coin/ui": ["libs/pepega/user-coin/ui/src/index.ts"],
       "@dream/pepega/user/api": ["libs/pepega/user/api/src/index.ts"],
       "@dream/pepega/utils/count": ["libs/pepega/utils/count/src/index.ts"],
+      "@dream/rancher-deploy": ["libs/rancher-deploy/src/index.ts"],
       "@dream/utils/use-dark-mode": ["libs/utils/use-dark-mode/src/index.ts"]
     }
   },

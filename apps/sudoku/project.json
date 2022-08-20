@@ -15,6 +15,20 @@
         "production": {}
       }
     },
+    "move-vercel": {
+      "dependsOn": ["build"],
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "cp apps/sudoku/vercel.json apps/sudoku/.vercel dist/apps/sudoku -a"
+      }
+    },
+    "deploy": {
+      "dependsOn": ["move-vercel"],
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "cd dist/apps/sudoku && npx vercel --token \"$VERCEL_TOKEN\" --yes --prod"
+      }
+    },
     "serve": {
       "executor": "@nxext/vite:dev",
       "options": {

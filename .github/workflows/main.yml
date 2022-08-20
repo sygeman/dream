@@ -60,3 +60,4 @@ jobs:
           RANCHER_TOKEN: ${{ secrets.RANCHER_TOKEN }}
           CLUSTER_ID: ${{ secrets.CLUSTER_ID }}
           IMAGE_TAG: ${{ steps.vars.outputs.sha_short }}
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}

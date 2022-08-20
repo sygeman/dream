@@ -6,7 +6,6 @@ export default async function runExecutor(options: BuildExecutorSchema) {
   const rancherUrl = process.env['RANCHER_URL'];
   const rancherToken = process.env['RANCHER_TOKEN'];
   const clusterId = process.env['CLUSTER_ID'];
-  const projectId = process.env['PROJECT_ID'];
   const namespace = options.project;
   const deployment = options.app;
   const tag = process.env['IMAGE_TAG'];
@@ -31,21 +30,8 @@ export default async function runExecutor(options: BuildExecutorSchema) {
         },
       }
     );
-
-    // console.log(`Redeploy ${options.project}:${options.app}`);
-
-    // await axios.post(
-    //   `${rancherUrl}/v3/projects/${clusterId}:${projectId}/workloads/deployment:${namespace}:${deployment}?action=redeploy`,
-    //   {},
-    //   {
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //       Authorization: 'Bearer ' + rancherToken,
-    //     },
-    //   }
-    // );
   } catch (error) {
-    console.log(error);
+    return { success: false };
   }
 
   return { success: true };

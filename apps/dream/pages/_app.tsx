@@ -12,7 +12,7 @@ function CustomApp({ Component, pageProps }: AppProps) {
   return (
     <IntlProvider locale={locale} messages={lang[locale]}>
       <Head>
-        <title>SGMN.DEV - Test</title>
+        <title>SGMN.DEV - Test 2</title>
       </Head>
       <MainLayout>
         <Component {...pageProps} />

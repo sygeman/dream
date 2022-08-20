@@ -68,5 +68,4 @@ jobs:
           RANCHER_URL: ${{ secrets.RANCHER_URL }}
           RANCHER_TOKEN: ${{ secrets.RANCHER_TOKEN }}
           CLUSTER_ID: ${{ secrets.CLUSTER_ID }}
-          PROJECT_ID: ${{ secrets.PROJECT_ID }}
           IMAGE_TAG: ${{ steps.vars.outputs.sha_short }}

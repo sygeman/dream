@@ -138,7 +138,7 @@
     "@types/lodash.isequal": "4.5.6",
     "@types/minio": "7.0.13",
     "@types/multer": "1.4.7",
-    "@types/node": "18.7.7",
+    "@types/node": "18.7.8",
     "@types/overlayscrollbars": "1.12.1",
     "@types/react": "18.0.17",
     "@types/react-dom": "18.0.6",

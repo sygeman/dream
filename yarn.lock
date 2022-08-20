@@ -7105,10 +7105,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:18.7.7":
-  version: 18.7.7
-  resolution: "@types/node@npm:18.7.7"
-  checksum: 5681ab6ed2a82f4b84d4f92901d5ed270e33234f500fa594153426dd5a2a865775a68875a12d9a5dded9d8619a8c3c876fd9fd16ebc7eb7488f51352164b367a
+"@types/node@npm:18.7.8":
+  version: 18.7.8
+  resolution: "@types/node@npm:18.7.8"
+  checksum: e0125efefa896083c05f549d93166109959ffdd68cb626aad0d660c0ce9de888fe405b4763b4a3c3e0968560409c272413e0ad07204522543c688e162a617ecb
   languageName: node
   linkType: hard
 
@@ -10816,7 +10816,7 @@ __metadata:
     "@types/lodash.isequal": 4.5.6
     "@types/minio": 7.0.13
     "@types/multer": 1.4.7
-    "@types/node": 18.7.7
+    "@types/node": 18.7.8
     "@types/overlayscrollbars": 1.12.1
     "@types/react": 18.0.17
     "@types/react-dom": 18.0.6

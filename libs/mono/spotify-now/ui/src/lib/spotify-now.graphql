@@ -1,0 +1,9 @@
+query spotifyNow($userId: String!) {
+  spotifyNow(userId: $userId) {
+    id
+    imageUrl
+    artist
+    name
+    progress
+  }
+}

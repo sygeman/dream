@@ -1,0 +1,89 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/spotify-now",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/next:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "root": "apps/spotify-now",
+        "outputPath": "dist/apps/spotify-now"
+      },
+      "configurations": {
+        "development": {
+          "outputPath": "apps/spotify-now"
+        },
+        "production": {}
+      },
+      "dependsOn": ["generate"]
+    },
+    "serve": {
+      "executor": "@nrwl/next:server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "spotify-now:build",
+        "dev": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "spotify-now:build:development",
+          "dev": true
+        },
+        "production": {
+          "buildTarget": "spotify-now:build:production",
+          "dev": false
+        }
+      }
+    },
+    "export": {
+      "executor": "@nrwl/next:export",
+      "options": {
+        "buildTarget": "spotify-now:build:production"
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/spotify-now"],
+      "options": {
+        "jestConfig": "apps/spotify-now/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/spotify-now/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "generate": {
+      "executor": "@nrwl/workspace:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "prisma generate --schema ./apps/spotify-now/prisma/schema.prisma"
+      }
+    },
+    "docker": {
+      "executor": "@nx-tools/nx-docker:build",
+      "options": {
+        "push": true,
+        "metadata": {
+          "images": ["ghcr.io/sygeman/dream/spotify-now-client"],
+          "tags": ["latest", "type=sha,prefix="]
+        }
+      },
+      "dependsOn": ["build"]
+    },
+    "deploy": {
+      "executor": "./tools/executors/rancher:deploy",
+      "options": {
+        "project": "spotify-now",
+        "app": "client"
+      },
+      "dependsOn": ["docker"]
+    }
+  },
+  "tags": []
+}

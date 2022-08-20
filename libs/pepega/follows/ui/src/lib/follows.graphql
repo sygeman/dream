@@ -1,0 +1,8 @@
+query follows {
+  follows {
+    id
+    login
+    display_name
+    profile_image_url
+  }
+}

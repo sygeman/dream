@@ -1,0 +1,24 @@
+query me {
+  me {
+    id
+    name
+    avatar
+    locale
+    profiles {
+      id
+      provider
+    }
+  }
+}
+
+mutation logout {
+  logout
+}
+
+mutation updateConnectionStatus($channel: String, $community: String) {
+  updateConnectionStatus(channel: $channel, community: $community)
+}
+
+mutation setUserLocale($locale: Locale!) {
+  setUserLocale(locale: $locale)
+}

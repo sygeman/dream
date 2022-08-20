@@ -1,0 +1,3 @@
+{
+  "presets": ["@nrwl/react/babel"]
+}

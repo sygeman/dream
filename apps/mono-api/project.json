@@ -1,0 +1,93 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/mono-api/src",
+  "projectType": "application",
+  "prefix": "api",
+  "generators": {},
+  "targets": {
+    "build": {
+      "executor": "@nrwl/node:webpack",
+      "options": {
+        "outputPath": "dist/apps/mono-api",
+        "main": "apps/mono-api/src/main.ts",
+        "tsConfig": "apps/mono-api/tsconfig.app.json",
+        "assets": ["apps/mono-api/src/assets"],
+        "generatePackageJson": true
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "apps/mono-api/src/environments/environment.ts",
+              "with": "apps/mono-api/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      },
+      "dependsOn": ["generate"]
+    },
+    "serve": {
+      "executor": "@nrwl/node:node",
+      "options": {
+        "buildTarget": "mono-api:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["apps/mono-api/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "options": {
+        "jestConfig": "apps/mono-api/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "generate": {
+      "executor": "@nrwl/workspace:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "prisma generate --schema ./libs/mono/prisma/schema.prisma"
+      }
+    },
+    "dbpush": {
+      "executor": "@nrwl/workspace:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "prisma db push --schema ./libs/mono/prisma/schema.prisma"
+      }
+    },
+    "studio": {
+      "executor": "@nrwl/workspace:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "prisma studio --schema ./libs/mono/prisma/schema.prisma"
+      }
+    },
+    "docker": {
+      "executor": "@nx-tools/nx-docker:build",
+      "options": {
+        "push": true,
+        "metadata": {
+          "images": ["ghcr.io/sygeman/dream/mono-api"],
+          "tags": ["latest", "type=sha,prefix="]
+        }
+      },
+      "dependsOn": ["build"]
+    },
+    "deploy": {
+      "executor": "./tools/executors/rancher:deploy",
+      "options": {
+        "project": "mono",
+        "app": "api"
+      },
+      "dependsOn": ["docker"]
+    }
+  },
+  "tags": []
+}

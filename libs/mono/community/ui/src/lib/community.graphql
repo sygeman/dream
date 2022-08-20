@@ -1,0 +1,37 @@
+query community($name: String!) {
+  community(name: $name) {
+    ...CommunityFields
+  }
+}
+
+query communities {
+  communities {
+    ...CommunityFields
+  }
+}
+
+mutation createCommunity($input: CreateCommunityInput!) {
+  createCommunity(input: $input) {
+    ...CommunityFields
+  }
+}
+
+mutation updateCommunity($input: UpdateCommunityInput!) {
+  updateCommunity(input: $input) {
+    ...CommunityFields
+  }
+}
+
+mutation deleteCommunity($communityId: ID!) {
+  deleteCommunity(communityId: $communityId) {
+    ...CommunityFields
+  }
+}
+
+fragment CommunityFields on Community {
+  id
+  name
+  title
+  avatar
+  onlineCount
+}

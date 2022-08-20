@@ -1,0 +1,16 @@
+query twitchStream($channelId: String!) {
+  twitchStream(channelId: $channelId) {
+    ...TwitchStreamFields
+  }
+}
+
+mutation updateTwitchStream($input: UpdateTwitchStreamInput!) {
+  updateTwitchStream(input: $input) {
+    ...TwitchStreamFields
+  }
+}
+
+fragment TwitchStreamFields on TwitchStream {
+  id
+  channelKey
+}

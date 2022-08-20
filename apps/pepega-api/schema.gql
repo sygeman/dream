@@ -1,0 +1,121 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Profile {
+  id: String!
+  name: String
+  avatar: String
+  provider: String!
+}
+
+type User {
+  id: String!
+  role: UserRole
+  name: String
+  avatar: String
+  locale: Locale!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  profiles: [Profile!]
+}
+
+enum UserRole {
+  User
+  Admin
+  Mod
+}
+
+enum Locale {
+  en_US
+  ru_RU
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Clip {
+  id: String!
+  sourceUrl: String!
+  title: String!
+  thumbnail_url: String!
+  language: String!
+  broadcaster_id: String!
+  creator_id: String!
+  video_id: String!
+  game_id: String!
+  created_at: String!
+  score: Float!
+  createdAt: String
+  updatedAt: String
+}
+
+type Clips {
+  clips: [Clip!]!
+  cursor: String
+}
+
+type ClipCommentUser {
+  id: String!
+  role: UserRole
+  name: String
+  avatar: String
+}
+
+type ClipComment {
+  id: String!
+  userId: String!
+  user: ClipCommentUser!
+  clipId: String!
+  content: String!
+  createdAt: String!
+  updatedAt: String!
+}
+
+type TwitchChannel {
+  id: String!
+  login: String!
+  display_name: String!
+  profile_image_url: String!
+}
+
+type Query {
+  user(id: ID): User
+  me: User!
+  clip(id: String!): Clip
+  clips(input: ClipsInput!): Clips!
+  clipComments(clipId: ID!): [ClipComment!]!
+  userCoins: Int!
+  clipScore(clipId: String!): Int!
+  follows: [TwitchChannel!]!
+}
+
+input ClipsInput {
+  cursor: ID
+  userId: String
+}
+
+type Mutation {
+  logout: Boolean!
+  updateConnectionStatus: Boolean!
+  setUserLocale(locale: Locale!): Locale!
+  createClipComment(input: ClipCommentCreateInput!): Boolean!
+  removeClipComment(id: ID!): Boolean!
+  setClipHistory(clipId: String!): Boolean!
+  increaseClipScore(clipId: String!): Boolean!
+  decreaseClipScore(clipId: String!): Boolean!
+}
+
+input ClipCommentCreateInput {
+  content: String!
+  clipId: String!
+}
+
+type Subscription {
+  clipCommentCreated(clipId: ID!): ClipComment!
+  clipCommentRemoved(clipId: ID!): ID!
+  userCoinsUpdated: Int!
+  clipScoreUpdated(clipId: String!): Int!
+}

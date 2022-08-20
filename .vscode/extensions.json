@@ -1,0 +1,15 @@
+{
+  "recommendations": [
+    "esbenp.prettier-vscode",
+    "firsttris.vscode-jest-runner",
+    "dbaeumer.vscode-eslint",
+    "mhutchie.git-graph",
+    "eamodio.gitlens",
+    "graphql.vscode-graphql",
+    "kumar-harsh.graphql-for-vscode",
+    "nrwl.angular-console",
+    "prisma.prisma",
+    "spikespaz.vscode-smoothtype",
+    "bradlc.vscode-tailwindcss"
+  ]
+}

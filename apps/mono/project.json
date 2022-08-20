@@ -1,0 +1,88 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/mono",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/next:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "root": "apps/mono",
+        "outputPath": "dist/apps/mono"
+      },
+      "configurations": {
+        "production": {},
+        "development": {
+          "outputPath": "apps/mono"
+        }
+      },
+      "defaultConfiguration": "production",
+      "dependsOn": ["generate"]
+    },
+    "serve": {
+      "executor": "@nrwl/next:server",
+      "options": {
+        "buildTarget": "mono:build",
+        "dev": true
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "mono:build:production",
+          "dev": false
+        },
+        "development": {
+          "buildTarget": "mono:build:development",
+          "dev": true
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "export": {
+      "executor": "@nrwl/next:export",
+      "options": {
+        "buildTarget": "mono:build:production"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["apps/mono/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/mono"],
+      "options": {
+        "jestConfig": "apps/mono/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "generate": {
+      "executor": "@nrwl/workspace:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "graphql-codegen --config ./apps/mono/codegen.yml"
+      }
+    },
+    "docker": {
+      "executor": "@nx-tools/nx-docker:build",
+      "options": {
+        "push": true,
+        "metadata": {
+          "images": ["ghcr.io/sygeman/dream/mono-client"],
+          "tags": ["latest", "type=sha,prefix="]
+        }
+      },
+      "dependsOn": ["build"]
+    },
+    "deploy": {
+      "executor": "./tools/executors/rancher:deploy",
+      "options": {
+        "project": "mono",
+        "app": "client"
+      },
+      "dependsOn": ["docker"]
+    }
+  },
+  "tags": []
+}

@@ -32,18 +32,18 @@ export default async function runExecutor(options: BuildExecutorSchema) {
       }
     );
 
-    console.log(`Redeploy ${options.project}:${options.app}`);
+    // console.log(`Redeploy ${options.project}:${options.app}`);
 
-    await axios.post(
-      `${rancherUrl}/v3/projects/${clusterId}:${projectId}/workloads/deployment:${namespace}:${deployment}?action=redeploy`,
-      {},
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + rancherToken,
-        },
-      }
-    );
+    // await axios.post(
+    //   `${rancherUrl}/v3/projects/${clusterId}:${projectId}/workloads/deployment:${namespace}:${deployment}?action=redeploy`,
+    //   {},
+    //   {
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //       Authorization: 'Bearer ' + rancherToken,
+    //     },
+    //   }
+    // );
   } catch (error) {
     console.log(error);
   }

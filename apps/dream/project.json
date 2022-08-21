@@ -69,12 +69,11 @@
       "dependsOn": ["build"]
     },
     "deploy": {
-      "executor": "@dream/rancher-deploy:build",
+      "dependsOn": ["build"],
+      "executor": "nx:run-commands",
       "options": {
-        "project": "dream",
-        "app": "client"
-      },
-      "dependsOn": ["docker"]
+        "command": "cd dist/apps/dream && yarn vercel --token \"$VERCEL_TOKEN\" --yes --prod"
+      }
     }
   },
   "tags": []

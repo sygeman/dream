@@ -29,10 +29,14 @@ export function Index() {
     return <User />;
   }
   return (
-    <>
-      Not signed in <br />
-      <button onClick={() => signIn()}>Sign in</button>
-    </>
+    <div className="insert-0 flex h-screen w-screen justify-center items-center">
+      <button
+        className="px-2 py-1 rounded bg-slate-700 hover:bg-slate-800"
+        onClick={() => signIn()}
+      >
+        Sign in
+      </button>
+    </div>
   );
 }
 

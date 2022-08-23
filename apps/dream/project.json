@@ -1,45 +1,32 @@
 {
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/dream",
+  "sourceRoot": "apps/dream/src",
   "projectType": "application",
+  "tags": [],
   "targets": {
     "build": {
-      "executor": "@nrwl/next:build",
+      "executor": "@nxext/vite:build",
       "outputs": ["{options.outputPath}"],
-      "defaultConfiguration": "production",
       "options": {
-        "root": "apps/dream",
-        "outputPath": "dist/apps/dream"
+        "outputPath": "dist/apps/dream",
+        "frameworkConfigFile": "@nxext/solid/plugins/vite"
       },
       "configurations": {
-        "production": {},
-        "development": {
-          "outputPath": "apps/dream"
-        }
+        "production": {}
       }
     },
     "serve": {
-      "executor": "@nrwl/next:server",
+      "executor": "@nxext/vite:dev",
       "options": {
-        "buildTarget": "dream:build",
-        "dev": true
-      },
-      "configurations": {
-        "production": {
-          "buildTarget": "dream:build:production",
-          "dev": false
-        },
-        "development": {
-          "buildTarget": "dream:build:development",
-          "dev": true
-        }
-      },
-      "defaultConfiguration": "development"
+        "outputPath": "dist/apps/dream",
+        "frameworkConfigFile": "@nxext/solid/plugins/vite"
+      }
     },
-    "export": {
-      "executor": "@nrwl/next:export",
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
       "options": {
-        "buildTarget": "dream:build:production"
+        "lintFilePatterns": ["apps/dream/**/*.{ts,spec.ts,tsx}"]
       }
     },
     "test": {
@@ -50,32 +37,19 @@
         "passWithNoTests": true
       }
     },
-    "lint": {
-      "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+    "move-vercel": {
+      "dependsOn": ["build"],
+      "executor": "nx:run-commands",
       "options": {
-        "lintFilePatterns": ["apps/dream/**/*.{ts,tsx,js,jsx}"]
+        "command": "cp apps/dream/vercel.json apps/dream/.vercel dist/apps/dream -a"
       }
-    },
-    "docker": {
-      "executor": "@nx-tools/nx-docker:build",
-      "options": {
-        "push": true,
-        "metadata": {
-          "images": ["ghcr.io/sygeman/dream/dream-client"],
-          "tags": ["latest", "type=sha,prefix="]
-        }
-      },
-      "dependsOn": ["build"]
     },
     "deploy": {
-      "dependsOn": ["build"],
-      "executor": "@dream/rancher-deploy:build",
+      "dependsOn": ["move-vercel"],
+      "executor": "nx:run-commands",
       "options": {
-        "project": "dream",
-        "app": "client"
+        "command": "cd dist/apps/dream && yarn vercel --token \"$VERCEL_TOKEN\" --yes --prod"
       }
     }
-  },
-  "tags": []
+  }
 }

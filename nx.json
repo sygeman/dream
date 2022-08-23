@@ -35,7 +35,6 @@
       }
     }
   },
-  "defaultProject": "dream",
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "cli": {
     "defaultCollection": "@nxext/vite"

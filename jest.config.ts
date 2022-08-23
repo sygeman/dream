@@ -33,7 +33,6 @@ module.exports = {
     '<rootDir>/libs/mode/host-spotify/ui',
     '<rootDir>/libs/mono/external/tenor',
     '<rootDir>/libs/mono/components/switch-form-field',
-    '<rootDir>/apps/dream',
     '<rootDir>/libs/mono/channel/ui',
     '<rootDir>/libs/mono/utils/regexp/url-name',
     '<rootDir>/libs/mono/utils/emoji',
@@ -80,5 +79,6 @@ module.exports = {
     '<rootDir>/apps/sudoku',
     '<rootDir>/apps/snake',
     '<rootDir>/apps/water-color-sort',
+    '<rootDir>/apps/dream',
   ],
 };

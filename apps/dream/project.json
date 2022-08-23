@@ -70,9 +70,10 @@
     },
     "deploy": {
       "dependsOn": ["build"],
-      "executor": "nx:run-commands",
+      "executor": "@dream/rancher-deploy:build",
       "options": {
-        "command": "cd dist/apps/dream && yarn vercel --token \"$VERCEL_TOKEN\" --yes --prod"
+        "project": "dream",
+        "app": "client"
       }
     }
   },

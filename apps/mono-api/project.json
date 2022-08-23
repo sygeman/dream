@@ -69,6 +69,13 @@
         "command": "prisma studio --schema ./libs/mono/prisma/schema.prisma"
       }
     },
+    "build-standalone": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "yarn ncc build dist/apps/mono-api/main.js -o dist/apps/mono-api/standalone"
+      },
+      "dependsOn": ["build"]
+    },
     "docker": {
       "executor": "@nx-tools/nx-docker:build",
       "options": {
@@ -78,7 +85,7 @@
           "tags": ["latest", "type=sha,prefix="]
         }
       },
-      "dependsOn": ["build"]
+      "dependsOn": ["build-standalone"]
     },
     "deploy": {
       "executor": "@dream/rancher-deploy:build",

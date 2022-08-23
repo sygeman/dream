@@ -1,20 +1,22 @@
-FROM node:lts-alpine as base
+FROM node:slim as base
 WORKDIR /app
-
-COPY dist/apps/mono-api .
-COPY libs/mono/prisma/migrations ./migrations
-COPY libs/mono/prisma/schema.prisma ./schema.prisma
-COPY apps/mono-api/schema.gql ./schema.gql
-
-FROM base as dependencies
-RUN yarn --production
-
-FROM dependencies as prisma
-RUN yarn add prisma --dev
-RUN yarn prisma generate
-
-FROM prisma as release
 ENV PORT=3333
 EXPOSE ${PORT}
 
-CMD node ./main.js
+COPY dist/apps/mono-api/standalone .
+# COPY libs/mono/prisma/migrations ./migrations
+# COPY libs/mono/prisma/schema.prisma ./schema.prisma
+# COPY apps/mono-api/schema.gql ./schema.gql
+
+# FROM base as dependencies
+# RUN yarn --production
+
+# FROM dependencies as prisma
+# RUN yarn add prisma --dev
+# depended on build platform
+# RUN yarn prisma generate
+
+# FROM prisma as release
+
+
+CMD node ./index.js

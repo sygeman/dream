@@ -1,4 +1,4 @@
-import { createShortcut } from "@solid-primitives/keyboard";
+import { createShortcut } from '@solid-primitives/keyboard';
 import {
   For,
   Show,
@@ -6,24 +6,24 @@ import {
   createSignal,
   onCleanup,
   createMemo,
-} from "solid-js";
-import { End } from "./end";
-import { shuffle } from "../utils/shuffle";
-import { Direction } from "../types/direction";
-import { matrixAsArray } from "../libs/matrix";
-import { moveSnake } from "../libs/move-snake";
-import { isArrayIncludesArray, isArraysEqual } from "../utils/array";
-import { exclude } from "../utils/exclude";
-import { positionIsValid } from "../libs/position-is-valid";
-import { directionIsValid } from "../libs/direction-is-valid";
+} from 'solid-js';
+import { End } from './end';
+import { shuffle } from '../utils/shuffle';
+import { Direction } from '../types/direction';
+import { matrixAsArray } from '../libs/matrix';
+import { moveSnake } from '../libs/move-snake';
+import { isArrayIncludesArray, isArraysEqual } from '../utils/array';
+import { exclude } from '../utils/exclude';
+import { positionIsValid } from '../libs/position-is-valid';
+import { directionIsValid } from '../libs/direction-is-valid';
 
 const Game: Component = () => {
   const [fail, setFail] = createSignal<boolean>(false);
   const [score, setScore] = createSignal<number>(0);
   const [apple, setApple] = createSignal<[number, number] | null>();
   const [snake, setSnake] = createSignal<[number, number][]>([[7, 7]]);
-  const [direction, setDirection] = createSignal<Direction>("none");
-  const [lastDirection, setLastDirection] = createSignal<Direction>("none");
+  const [direction, setDirection] = createSignal<Direction>('none');
+  const [lastDirection, setLastDirection] = createSignal<Direction>('none');
 
   const snakeHead = createMemo(() => snake()[0]);
 
@@ -33,13 +33,13 @@ const Game: Component = () => {
     }
   };
 
-  createShortcut(["ArrowUp"], () => changeDirection("up"));
-  createShortcut(["ArrowDown"], () => changeDirection("down"));
-  createShortcut(["ArrowLeft"], () => changeDirection("left"));
-  createShortcut(["ArrowRight"], () => changeDirection("right"));
+  createShortcut(['ArrowUp'], () => changeDirection('up'));
+  createShortcut(['ArrowDown'], () => changeDirection('down'));
+  createShortcut(['ArrowLeft'], () => changeDirection('left'));
+  createShortcut(['ArrowRight'], () => changeDirection('right'));
 
   const reset = () => {
-    setDirection("none");
+    setDirection('none');
     setApple(null);
     setSnake([[5, 5]]);
     setFail(false);
@@ -51,7 +51,7 @@ const Game: Component = () => {
   };
 
   const move = (direction: Direction) => {
-    if (direction === "none") return;
+    if (direction === 'none') return;
 
     const isEat = isArraysEqual(apple(), snakeHead());
 
@@ -72,11 +72,11 @@ const Game: Component = () => {
 
   const getCellClass = (cell: [number, number]) => {
     if (isArrayIncludesArray(snake(), cell)) {
-      if (isArraysEqual(snakeHead(), cell)) return "bg-lime-500 rounded-sm";
-      return "bg-lime-600 rounded-sm";
+      if (isArraysEqual(snakeHead(), cell)) return 'bg-lime-500 rounded-sm';
+      return 'bg-lime-600 rounded-sm';
     }
-    if (isArraysEqual(apple(), cell)) return "bg-red-500/90 rounded-lg";
-    return "bg-lime-700";
+    if (isArraysEqual(apple(), cell)) return 'bg-red-500/90 rounded-lg';
+    return 'bg-lime-700';
   };
 
   const interval = setInterval(() => {
@@ -91,7 +91,7 @@ const Game: Component = () => {
       <a
         class="absolute right-4 top-2 text-white/50 font-medium"
         target="blank"
-        href="https://github.com/sygeman/snake"
+        href="https://github.com/sygeman/dream/tree/main/apps/snake"
       >
         Github
       </a>

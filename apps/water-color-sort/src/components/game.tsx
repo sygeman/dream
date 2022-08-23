@@ -4,14 +4,14 @@ import {
   createMemo,
   createSignal,
   For,
-} from "solid-js";
-import { liquids } from "../constants";
-import { bottleIsDone } from "../libs/bottle-is-done";
-import { bottleIsEmpty } from "../libs/bottle-is-empty";
-import { bottlesIsDone } from "../libs/bottles-is-done";
-import { generateBottles } from "../libs/generate-bottles";
-import { transfuse } from "../libs/transfuse";
-import { Bottle } from "../types/bottle";
+} from 'solid-js';
+import { liquids } from '../constants';
+import { bottleIsDone } from '../libs/bottle-is-done';
+import { bottleIsEmpty } from '../libs/bottle-is-empty';
+import { bottlesIsDone } from '../libs/bottles-is-done';
+import { generateBottles } from '../libs/generate-bottles';
+import { transfuse } from '../libs/transfuse';
+import { Bottle } from '../types/bottle';
 
 const Game: Component = () => {
   const [bottles, setBottles] = createSignal<Map<string, Bottle>>(
@@ -64,7 +64,7 @@ const Game: Component = () => {
       <a
         class="absolute right-4 top-2 text-white/50 font-medium"
         target="blank"
-        href="https://github.com/sygeman/water-color-sort"
+        href="https://github.com/sygeman/dream/tree/main/apps/water-color-sort"
       >
         Github
       </a>
@@ -78,7 +78,7 @@ const Game: Component = () => {
             {(bottle) => (
               <button
                 class={`flex flex-col-reverse w-6 h-32 bg-white/20 rounded overflow-hidden transition-transform ${
-                  bottle.id === selected() ? "scale-110" : ""
+                  bottle.id === selected() ? 'scale-110' : ''
                 }`}
                 onClick={() => select(bottle.id)}
               >

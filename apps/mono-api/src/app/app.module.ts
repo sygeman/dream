@@ -2,7 +2,6 @@ import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import * as depthLimit from 'graphql-depth-limit';
 import { AuthModule, AuthService } from '@dream/mono-auth-api';
 import { UserModule } from '@dream/mono-user-api';
 import { CommunityModule } from '@dream/mono-community-api';
@@ -10,7 +9,6 @@ import {
   ConnectionModule,
   ConnectionService,
 } from '@dream/mono-connection-api';
-import { SharedModule } from './shared.module';
 import { config } from './config';
 import { nanoid } from 'nanoid';
 import { BullModule } from '@nestjs/bull';
@@ -38,7 +36,7 @@ import { join } from 'path';
       }),
       inject: [ConfigService],
     }),
-    SharedModule,
+    // SharedModule,
     GraphQLModule.forRootAsync<ApolloDriverConfig>({
       driver: ApolloDriver,
       imports: [AuthModule, ConnectionModule],

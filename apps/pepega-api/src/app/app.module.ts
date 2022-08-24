@@ -2,14 +2,12 @@ import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import * as depthLimit from 'graphql-depth-limit';
 import { AuthModule, AuthService } from '@dream/pepega/auth/api';
 import { UserModule } from '@dream/pepega/user/api';
 import {
   ConnectionModule,
   ConnectionService,
 } from '@dream/pepega/connection/api';
-import { SharedModule } from './shared.module';
 import { config } from './config';
 import { nanoid } from 'nanoid';
 import { BullModule } from '@nestjs/bull';
@@ -37,7 +35,6 @@ import { FollowsModule } from '@dream/pepega/follows/api';
       }),
       inject: [ConfigService],
     }),
-    SharedModule,
     GraphQLModule.forRootAsync<ApolloDriverConfig>({
       driver: ApolloDriver,
       imports: [AuthModule, ConnectionModule],
@@ -47,7 +44,6 @@ import { FollowsModule } from '@dream/pepega/follows/api';
         connectionService: ConnectionService
       ) => ({
         installSubscriptionHandlers: true,
-        validationRules: [depthLimit(10)],
         autoSchemaFile: join(process.cwd(), 'apps/pepega-api/schema.gql'),
         context: (ctx) => ctx?.extra?.socket?.ctx,
         subscriptions: {

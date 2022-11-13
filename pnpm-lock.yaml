@@ -39,8 +39,8 @@ specifiers:
   '@nrwl/react': 15.0.13
   '@nrwl/web': 15.0.13
   '@nrwl/workspace': 15.0.13
-  '@nx-tools/docker-metadata': 3.0.1
-  '@nx-tools/nx-docker': 3.0.3
+  '@nx-tools/docker-metadata': 3.0.8
+  '@nx-tools/nx-docker': 3.0.8
   '@nxext/solid': 14.0.2
   '@prisma/client': 4.6.1
   '@solid-primitives/keyboard': 1.0.1
@@ -249,8 +249,8 @@ devDependencies:
   '@nrwl/react': 15.0.13_kyserxv3bozpnk6wpbmqu23juq
   '@nrwl/web': 15.0.13_kyserxv3bozpnk6wpbmqu23juq
   '@nrwl/workspace': 15.0.13_ukufsp35lckjbqfdzwkf3lyrky
-  '@nx-tools/docker-metadata': 3.0.1_wqygtfohcg3d2oiszdha6wc63a
-  '@nx-tools/nx-docker': 3.0.3_np7a3hzdp7skpbxj7au4yeqg2m
+  '@nx-tools/docker-metadata': 3.0.8_wqygtfohcg3d2oiszdha6wc63a
+  '@nx-tools/nx-docker': 3.0.8_np7a3hzdp7skpbxj7au4yeqg2m
   '@nxext/solid': 14.0.2_dupqan5lsam55abfhze2az6yxq
   '@swc-node/register': 1.5.1_ltv66dbcv66h26yz2hfnfy626m
   '@swc/cli': 0.1.57_@swc+core@1.2.244
@@ -5548,7 +5548,7 @@ packages:
       '@actions/github': 5.1.1
       '@nx-tools/core': 3.0.8_@nrwl+devkit@15.0.13
       '@swc/helpers': 0.4.11
-      ci-info: 3.5.0
+      ci-info: 3.6.0
       tslib: 2.4.0
     transitivePeerDependencies:
       - '@nrwl/devkit'
@@ -5567,11 +5567,11 @@ packages:
       colorette: 2.0.19
     dev: true
 
-  /@nx-tools/docker-metadata/3.0.1_wqygtfohcg3d2oiszdha6wc63a:
-    resolution: {integrity: sha512-wzFrLuvfYbpBOz7bIvjQF+vDsFM2CHDMUyp5ueXptRpqq0+69jW3wkohpJsNRO67j1baqM1EhUgl7ETY19fhnQ==}
+  /@nx-tools/docker-metadata/3.0.8_wqygtfohcg3d2oiszdha6wc63a:
+    resolution: {integrity: sha512-gCiEqjnC4cLBSx5hwbDZGiJ9c4i0sKmbUQZPLOcXKFQG/FByWsgbTL8XOsEkSJWD/N94tDQwKUYI0NEe4Y10BQ==}
     engines: {node: '>=14'}
     peerDependencies:
-      '@nrwl/devkit': ^12.0.0 || ^13.0.0 || ^14.0.0
+      '@nrwl/devkit': ^12.0.0 || ^13.0.0 || ^14.0.0 || ^15.0.0
       tslib: ^2.1.0
     dependencies:
       '@nrwl/devkit': 15.0.13_dtuttet22dxzt73ll2oxv2ugvu
@@ -5588,8 +5588,8 @@ packages:
       - encoding
     dev: true
 
-  /@nx-tools/nx-docker/3.0.3_np7a3hzdp7skpbxj7au4yeqg2m:
-    resolution: {integrity: sha512-OoVJgis2216OZ5Co2yeKLD7czlzWTDmZRksaxUS2wjidOx89AOr5EsYRynxAHoELbzNsCW6P+D0bHo+96g+JPQ==}
+  /@nx-tools/nx-docker/3.0.8_np7a3hzdp7skpbxj7au4yeqg2m:
+    resolution: {integrity: sha512-05TDmZ+4fOwIlGPTlyKq7mEu76UTZ2Sq2fSiw1Qyr2+b95ZJcDoelpriRdWzeJUTuvTQjuZ7jva+og2XJzmzlg==}
     engines: {node: '>=14'}
     peerDependencies:
       dotenv: '>=10.0.0'
@@ -5603,7 +5603,7 @@ packages:
       tmp: 0.2.1
       tslib: 2.4.0
     optionalDependencies:
-      '@nx-tools/docker-metadata': 3.0.1_wqygtfohcg3d2oiszdha6wc63a
+      '@nx-tools/docker-metadata': 3.0.8_wqygtfohcg3d2oiszdha6wc63a
     transitivePeerDependencies:
       - '@nrwl/devkit'
       - encoding
@@ -8986,6 +8986,11 @@ packages:
 
   /ci-info/3.5.0:
     resolution: {integrity: sha512-yH4RezKOGlOhxkmhbeNuC4eYZKAUsEaGtBuBzDDP1eFUKiccDWzBABxBfOx31IDwDIXMTxWuwAxUGModvkbuVw==}
+    dev: true
+
+  /ci-info/3.6.0:
+    resolution: {integrity: sha512-RfY02LtqkzB/aiyTrh0TtDS0rQnQY3kyvkVkdBnPTUbkiGbkkCJhS7Oj8b37Qa/5eGiMilF3kH+/Km1EZxpuyQ==}
+    engines: {node: '>=8'}
     dev: true
 
   /cipher-base/1.0.4:
@@ -13311,7 +13316,7 @@ packages:
       '@jest/types': 27.5.1
       '@types/node': 18.7.18
       chalk: 4.1.2
-      ci-info: 3.5.0
+      ci-info: 3.6.0
       graceful-fs: 4.2.10
       picomatch: 2.3.1
     dev: true

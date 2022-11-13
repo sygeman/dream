@@ -55,7 +55,6 @@ specifiers:
   '@tailwindcss/line-clamp': 0.4.2
   '@testing-library/react': 13.4.0
   '@testing-library/react-hooks': 8.0.1
-  '@types/bull': 3.15.9
   '@types/express-session': 1.17.5
   '@types/graphql-depth-limit': 1.1.3
   '@types/jest': 28.1.8
@@ -77,7 +76,7 @@ specifiers:
   axios-hooks: 3.1.4
   babel-jest: 28.1.3
   babel-loader: 8.2.5
-  bull: 4.8.5
+  bull: 4.10.1
   class-transformer: 0.5.1
   class-validator: 0.13.2
   clsx: 1.2.1
@@ -159,7 +158,7 @@ dependencies:
   '@heroicons/react': 1.0.6_react@18.2.0
   '@nestjs/apollo': 10.1.6_h2okxeeujvsa3rhl2cjn7w2bxy
   '@nestjs/axios': 1.0.0_r7xd7cdvm5xivwnox7ludhyaam
-  '@nestjs/bull': 0.6.2_di5si7saursyv3kpe7zmmvfoci
+  '@nestjs/bull': 0.6.2_fgpbvm7fzuehxho7gpa3rkmh7m
   '@nestjs/common': 9.2.0_allg6cauirbqzgqcmexy2wdnoq
   '@nestjs/config': 2.2.0_r7xd7cdvm5xivwnox7ludhyaam
   '@nestjs/core': 9.2.0_pxifa5aedirc4efhrfmmvnqklm
@@ -176,7 +175,7 @@ dependencies:
   apollo-server-express: 3.10.2_graphql@16.6.0
   axios: 0.27.2
   axios-hooks: 3.1.4_axios@0.27.2+react@18.2.0
-  bull: 4.8.5
+  bull: 4.10.1
   class-transformer: 0.5.1
   class-validator: 0.13.2
   clsx: 1.2.1
@@ -262,7 +261,6 @@ devDependencies:
   '@tailwindcss/line-clamp': 0.4.2_tailwindcss@3.2.4
   '@testing-library/react': 13.4.0_biqbaboplfbrettd7655fr4n2y
   '@testing-library/react-hooks': 8.0.1_pimovsjg5ibagkm3zmb5gxxeui
-  '@types/bull': 3.15.9
   '@types/express-session': 1.17.5
   '@types/graphql-depth-limit': 1.1.3
   '@types/jest': 28.1.8
@@ -3847,6 +3845,7 @@ packages:
 
   /@ioredis/commands/1.2.0:
     resolution: {integrity: sha512-Sx1pU8EM64o2BrqNpEO1CNLtKQwyhuXuqyfH7oGKCk+1a33d2r5saW8zNwm3j6BTExtjrv2BxTgzzkMwts6vGg==}
+    dev: false
 
   /@istanbuljs/load-nyc-config/1.1.0:
     resolution: {integrity: sha512-VjeHSlIzpv/NyD3N0YuHfXOPDIixcA1q2ZV98wsMqcYlPmv2n3Yb2lYP9XMElnaFVXg5A7YLTeLu6V84uQDjmQ==}
@@ -4408,7 +4407,7 @@ packages:
       tslib: 2.4.1
     dev: false
 
-  /@nestjs/bull/0.6.2_di5si7saursyv3kpe7zmmvfoci:
+  /@nestjs/bull/0.6.2_fgpbvm7fzuehxho7gpa3rkmh7m:
     resolution: {integrity: sha512-tx5wiIGgfYEj5RAJA1B23pn/63nsmMH0f981V1/v3NKyE07NsvOXCrwKNGQnIZZlXkXh7lgx2I80/tYwPGnVIg==}
     peerDependencies:
       '@nestjs/common': ^6.10.11 || ^7.0.0 || ^8.0.0 || ^9.0.0
@@ -4418,7 +4417,7 @@ packages:
       '@nestjs/bull-shared': 0.1.2_pf2fb646rsvo5szivgkaevcpvi
       '@nestjs/common': 9.2.0_allg6cauirbqzgqcmexy2wdnoq
       '@nestjs/core': 9.2.0_pxifa5aedirc4efhrfmmvnqklm
-      bull: 4.8.5
+      bull: 4.10.1
       tslib: 2.4.1
     dev: false
 
@@ -6630,15 +6629,6 @@ packages:
       '@types/node': 18.7.18
     dev: true
 
-  /@types/bull/3.15.9:
-    resolution: {integrity: sha512-MPUcyPPQauAmynoO3ezHAmCOhbB0pWmYyijr/5ctaCqhbKWsjW0YCod38ZcLzUBprosfZ9dPqfYIcfdKjk7RNQ==}
-    dependencies:
-      '@types/ioredis': 5.0.0
-      '@types/redis': 2.8.32
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
-
   /@types/connect-history-api-fallback/1.3.5:
     resolution: {integrity: sha512-h8QJa8xSb1WD4fpKBDcATDNGXghFj6/3GRWG6dhmRcu0RX1Ubasur2Uvx5aeEwlf0MwblEC2bMzzMQntxnw/Cw==}
     dependencies:
@@ -6759,15 +6749,6 @@ packages:
     resolution: {integrity: sha512-QsbSjA/fSk7xB+UXlCT3wHBy5ai9wOcNDWwZAtud+jXhwOM3l+EYZh8Lng4+/6n8uar0J7xILzqftJdJ/Wdfkw==}
     dependencies:
       '@types/node': 18.7.18
-    dev: true
-
-  /@types/ioredis/5.0.0:
-    resolution: {integrity: sha512-zJbJ3FVE17CNl5KXzdeSPtdltc4tMT3TzC6fxQS0sQngkbFZ6h+0uTafsRqu+eSLIugf6Yb0Ea0SUuRr42Nk9g==}
-    deprecated: This is a stub types definition. ioredis provides its own type definitions, so you do not need this installed.
-    dependencies:
-      ioredis: 5.2.3
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /@types/istanbul-lib-coverage/2.0.4:
@@ -6904,12 +6885,6 @@ packages:
       '@types/prop-types': 15.7.5
       '@types/scheduler': 0.16.2
       csstype: 3.1.1
-
-  /@types/redis/2.8.32:
-    resolution: {integrity: sha512-7jkMKxcGq9p242exlbsVzuJb57KqHRhNl4dHoQu2Y5v9bCAbtIXXH0R3HleSQW4CTOqpHIYUW3t6tpUj4BVQ+w==}
-    dependencies:
-      '@types/node': 18.7.18
-    dev: true
 
   /@types/resolve/1.17.1:
     resolution: {integrity: sha512-yy7HuzQhj0dhGpD8RLXSZWEkLsV9ibvxvi6EiJ3bkqLAO1RGo0WbkWQiwpRlSFymTJRz0d3k5LM3kkx8ArDbLw==}
@@ -8810,8 +8785,8 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /bull/4.8.5:
-    resolution: {integrity: sha512-2Z630e4f6VsLJnWMAtfEHwIqJYmND4W3dcG48RIbXeWpvb4UnYtpe/zxEdslJu0PKrltB4IkFj5YtBsdeQRn8w==}
+  /bull/4.10.1:
+    resolution: {integrity: sha512-Fp21tRPb2EaZPVfmM+ONZKVz2RA+to+zGgaTLyCKt3JMSU8OOBqK8143OQrnGuGpsyE5G+9FevFAGhdZZfQP2g==}
     engines: {node: '>=10.1'}
     dependencies:
       cron-parser: 4.6.0
@@ -9133,6 +9108,7 @@ packages:
   /cluster-key-slot/1.1.2:
     resolution: {integrity: sha512-RMr0FhtfXemyinomL4hrWcYJxmX6deFdCxpJzhDttxgO1+bcCnkk+9drydLVDmAMG7NE6aN/fl4F7ucU/90gAA==}
     engines: {node: '>=0.10.0'}
+    dev: false
 
   /co/4.6.0:
     resolution: {integrity: sha512-QVb0dM5HvG+uaxitm8wONl7jltx8dqhfU33DcqtOZcLSVIKSDDLDi7+0LbAKiyI8hD9u42m2YxXSkMGWThaecQ==}
@@ -9886,6 +9862,7 @@ packages:
   /denque/2.1.0:
     resolution: {integrity: sha512-HVQE3AAb/pxF8fQAoiqpvg9i3evqug3hoiwakOyZAwJm+6vZehbkYXZ0l4JxS+I3QxM97v5aaRNhj8v5oBhekw==}
     engines: {node: '>=0.10'}
+    dev: false
 
   /depd/1.1.2:
     resolution: {integrity: sha512-7emPTl6Dpo6JRXOXjLRxck+FlLRX5847cLKEn00PLAgc3g2hTZZgr+e4c2v6QpSmLeFP3n5yUo7ft6avBK/5jQ==}
@@ -12435,6 +12412,7 @@ packages:
       standard-as-callback: 2.1.0
     transitivePeerDependencies:
       - supports-color
+    dev: false
 
   /ipaddr.js/1.9.1:
     resolution: {integrity: sha512-0KI/607xoxSToH7GjN1FfSbLoU0+btTicjsQSWQlh/hZykN8KpmMf7uYwPW3R+akZ6R/w18ZlXSHBYXiYUPO3g==}
@@ -13782,6 +13760,7 @@ packages:
 
   /lodash.defaults/4.2.0:
     resolution: {integrity: sha512-qjxPLHd3r5DnsdGacqOMU6pb/avJzdh9tFX2ymgoZE27BmjXrNy/y4LoaiTeAb+O3gL8AfpJGtqfX/ae2leYYQ==}
+    dev: false
 
   /lodash.flatten/4.4.0:
     resolution: {integrity: sha512-C5N2Z3DgnnKr0LOpv/hKCgKdb7ZZwafIrsesve6lmzvZIRZRGaZ/l6Q8+2W7NaT+ZwO3fFlSCzCzrDCFdJfZ4g==}
@@ -13792,6 +13771,7 @@ packages:
 
   /lodash.isarguments/3.1.0:
     resolution: {integrity: sha512-chi4NHZlZqZD18a0imDHnZPrDeBbTtVN7GXMwuGdRH9qotxAjYs3aVLKc7zNOG9eddR5Ksd8rvFEBc9SsggPpg==}
+    dev: false
 
   /lodash.isboolean/3.0.3:
     resolution: {integrity: sha512-Bz5mupy2SVbPHURB98VAcw+aHh4vRV5IPNhILUCsOzRmsTmSQ17jIuqopAentWoehktxGd9e/hbIXq980/1QJg==}
@@ -16021,12 +16001,14 @@ packages:
   /redis-errors/1.2.0:
     resolution: {integrity: sha512-1qny3OExCf0UvUV/5wpYKf2YwPcOqXzkwKKSmKHiE6ZMQs5heeE/c8eXK+PNllPvmjgAbfnsbpkGZWy8cBpn9w==}
     engines: {node: '>=4'}
+    dev: false
 
   /redis-parser/3.0.0:
     resolution: {integrity: sha512-DJnGAeenTdpMEH6uAJRK/uiyEIH9WVsUmoLwzudwGJUwZPp80PDBWPHXSAGNPwNvIXAbe7MSUB1zQFugFml66A==}
     engines: {node: '>=4'}
     dependencies:
       redis-errors: 1.2.0
+    dev: false
 
   /reflect-metadata/0.1.13:
     resolution: {integrity: sha512-Ts1Y/anZELhSsjMcU605fU9RE4Oi3p5ORujwbIKXfWa+0Zxs510Qrmrce5/Jowq3cHSZSJqBjypxmHarc+vEWg==}
@@ -16828,6 +16810,7 @@ packages:
 
   /standard-as-callback/2.1.0:
     resolution: {integrity: sha512-qoRRSyROncaz1z0mvYqIE4lCd9p2R90i6GxW3uZv5ucSu8tU7B5HXUP1gG8pVZsYNVaXjk8ClXHPttLyxAL48A==}
+    dev: false
 
   /statuses/1.5.0:
     resolution: {integrity: sha512-OpZ3zP+jT1PI7I8nemJX4AKmAX070ZkYPVWV/AaKTJl+tXCTGyVdC1a4SL8RUQYEwk/f34ZX8UTykN68FwrqAA==}
@@ -17390,7 +17373,7 @@ packages:
       chalk: 4.1.0
       enhanced-resolve: 5.10.0
       micromatch: 4.0.5
-      semver: 7.3.8
+      semver: 7.3.4
       typescript: 4.8.4
       webpack: 5.75.0_@swc+core@1.2.244
     dev: true

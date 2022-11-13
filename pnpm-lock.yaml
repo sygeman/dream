@@ -13,7 +13,7 @@ specifiers:
   '@graphql-codegen/typescript-apollo-client-helpers': 2.2.6
   '@graphql-codegen/typescript-operations': 2.5.6
   '@graphql-codegen/typescript-react-apollo': 3.3.6
-  '@headlessui/react': 1.6.6
+  '@headlessui/react': 1.7.4
   '@heroicons/react': 1.0.6
   '@nestjs/apollo': 10.1.6
   '@nestjs/axios': 1.0.0
@@ -153,7 +153,7 @@ specifiers:
 
 dependencies:
   '@apollo/client': 3.7.1_xe4twbeoqswbn2uas4ov5melbq
-  '@headlessui/react': 1.6.6_biqbaboplfbrettd7655fr4n2y
+  '@headlessui/react': 1.7.4_biqbaboplfbrettd7655fr4n2y
   '@heroicons/react': 1.0.6_react@18.2.0
   '@nestjs/apollo': 10.1.6_se6jieq6qwgaelexcqsrrr6try
   '@nestjs/axios': 1.0.0_r7xd7cdvm5xivwnox7ludhyaam
@@ -3710,13 +3710,14 @@ packages:
     dependencies:
       graphql: 16.6.0
 
-  /@headlessui/react/1.6.6_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-MFJtmj9Xh/hhBMhLccGbBoSk+sk61BlP6sJe4uQcVMtXZhCgGqd2GyIQzzmsdPdTEWGSF434CBi8mnhR6um46Q==}
+  /@headlessui/react/1.7.4_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-D8n5yGCF3WIkPsjEYeM8knn9jQ70bigGGb5aUvN6y4BGxcT3OcOQOKcM3zRGllRCZCFxCZyQvYJF6ZE7bQUOyQ==}
     engines: {node: '>=10'}
     peerDependencies:
       react: ^16 || ^17 || ^18
       react-dom: ^16 || ^17 || ^18
     dependencies:
+      client-only: 0.0.1
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
     dev: false

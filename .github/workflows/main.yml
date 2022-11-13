@@ -45,14 +45,14 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ./node_modules
-          key: modules-${{ hashFiles('yarn.lock') }}-${{ secrets.CACHE_VERSION }}
+          key: modules-${{ hashFiles('pnpm-lock.yaml') }}-${{ secrets.CACHE_VERSION }}
 
       - name: Install dependencies
         if: steps.cache.outputs.cache-hit != 'true'
-        run: yarn --immutable
+        run: pnpm --frozen-lockfile
 
       - name: Deploy
-        run: yarn nx affected --target=deploy --base=$BEFORE_SHA --parallel=3
+        run: pnpm nx affected --target=deploy --base=$BEFORE_SHA --parallel=3
         env:
           INPUT_PUSH: 'true'
           INPUT_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

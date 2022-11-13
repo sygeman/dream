@@ -49,7 +49,7 @@
       "dependsOn": ["move-vercel"],
       "executor": "nx:run-commands",
       "options": {
-        "command": "cd dist/apps/dream && yarn vercel --token \"$VERCEL_TOKEN\" --yes --prod"
+        "command": "cd dist/apps/dream && pnpm vercel --token \"$VERCEL_TOKEN\" --yes --prod"
       }
     }
   }

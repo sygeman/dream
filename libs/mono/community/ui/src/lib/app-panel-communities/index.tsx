@@ -27,13 +27,11 @@ export const AppPanelCommunities = () => {
         <OverlayScrollbarsComponent className="w-full">
           {communities.map((community) => (
             <Link key={community?.id} href={`/${community?.name}`} passHref>
-              <a href="repalce">
-                <AppPanelMenuItem
-                  label={community?.title}
-                  img={community?.avatar}
-                  selected={community?.name === currentCommunity}
-                />
-              </a>
+              <AppPanelMenuItem
+                label={community?.title}
+                img={community?.avatar}
+                selected={community?.name === currentCommunity}
+              />
             </Link>
           ))}
           <Link
@@ -46,9 +44,7 @@ export const AppPanelCommunities = () => {
             }}
             passHref
           >
-            <a href="repalce">
-              <AppPanelNewCommunity />
-            </a>
+            <AppPanelNewCommunity />
           </Link>
         </OverlayScrollbarsComponent>
       </div>

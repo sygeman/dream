@@ -15,47 +15,49 @@ export const ChannelItem: React.FC<{
   const selected = name === channel;
 
   return (
-    <Link href={name ? `/${community}/${name}` : `/${community}`} passHref>
-      <a href="replace" className="group flex mx-2 my-1">
-        <div
-          className={clsx(
-            'flex items-center flex-1 w-full h-10',
-            'px-2 py-1',
-            'cursor-pointer transition-colors',
-            'hover:bg-surface-light',
-            'rounded',
-            selected && 'bg-surface-light'
-          )}
-        >
-          <div className="flex flex-col flex-1">
-            <div className="flex flex-1">
-              <span
-                className={clsx(
-                  'text-white font-medium',
-                  state ? 'text-xs' : 'text-sm'
-                )}
-              >
-                {title}
-              </span>
-            </div>
-            {state && (
-              <div className="flex flex-1" title={state}>
-                <span className="text-accent text-xs line-clamp-1 mr-1">
-                  {state}
-                </span>
-              </div>
-            )}
+    <Link
+      href={name ? `/${community}/${name}` : `/${community}`}
+      passHref
+      className="group flex mx-2 my-1"
+    >
+      <div
+        className={clsx(
+          'flex items-center flex-1 w-full h-10',
+          'px-2 py-1',
+          'cursor-pointer transition-colors',
+          'hover:bg-surface-light',
+          'rounded',
+          selected && 'bg-surface-light'
+        )}
+      >
+        <div className="flex flex-col flex-1">
+          <div className="flex flex-1">
+            <span
+              className={clsx(
+                'text-white font-medium',
+                state ? 'text-xs' : 'text-sm'
+              )}
+            >
+              {title}
+            </span>
           </div>
-
-          {typeof online === 'number' && online > 0 && (
-            <div>
-              <span className="text-accent text-xs rounded bg-background px-2 py-1">
-                {online}
+          {state && (
+            <div className="flex flex-1" title={state}>
+              <span className="text-accent text-xs line-clamp-1 mr-1">
+                {state}
               </span>
             </div>
           )}
         </div>
-      </a>
+
+        {typeof online === 'number' && online > 0 && (
+          <div>
+            <span className="text-accent text-xs rounded bg-background px-2 py-1">
+              {online}
+            </span>
+          </div>
+        )}
+      </div>
     </Link>
   );
 };

@@ -60,11 +60,9 @@ export const MainCommunities = () => {
               }}
               passHref
             >
-              <a href="repalce">
-                <button className="btn btn-primary ml-4 h-8">
-                  Create Community
-                </button>
-              </a>
+              <button className="btn btn-primary ml-4 h-8">
+                Create Community
+              </button>
             </Link>
           </div>
           <div

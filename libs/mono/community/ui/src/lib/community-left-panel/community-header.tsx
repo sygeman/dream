@@ -81,14 +81,12 @@ export const CommunityHeader = () => {
                     }}
                     passHref
                   >
-                    <a href="replace">
-                      <MenuItem
-                        Icon={PlusCircleIcon}
-                        label={intl.formatMessage({
-                          id: 'newChannelCreateButton',
-                        })}
-                      />
-                    </a>
+                    <MenuItem
+                      Icon={PlusCircleIcon}
+                      label={intl.formatMessage({
+                        id: 'newChannelCreateButton',
+                      })}
+                    />
                   </Link>
                 </Menu.Item>
                 <Menu.Item>
@@ -102,14 +100,12 @@ export const CommunityHeader = () => {
                     }}
                     passHref
                   >
-                    <a href="replace">
-                      <MenuItem
-                        Icon={CogIcon}
-                        label={intl.formatMessage({
-                          id: 'communitySettingsButton',
-                        })}
-                      />
-                    </a>
+                    <MenuItem
+                      Icon={CogIcon}
+                      label={intl.formatMessage({
+                        id: 'communitySettingsButton',
+                      })}
+                    />
                   </Link>
                 </Menu.Item>
               </div>

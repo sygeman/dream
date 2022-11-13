@@ -13,16 +13,15 @@ const ItemLink: React.FC<{
 
   return (
     <div>
-      <Link href={{ pathname: router.pathname, query: query(router) }} passHref>
-        <a
-          href="replace"
-          className={clsx(
-            'btn w-full justify-start my-0.5',
-            selected ? 'bg-surface text-white' : 'text-accent'
-          )}
-        >
-          {title}
-        </a>
+      <Link
+        href={{ pathname: router.pathname, query: query(router) }}
+        passHref
+        className={clsx(
+          'btn w-full justify-start my-0.5',
+          selected ? 'bg-surface text-white' : 'text-accent'
+        )}
+      >
+        {title}
       </Link>
     </div>
   );

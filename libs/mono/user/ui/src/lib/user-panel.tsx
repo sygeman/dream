@@ -67,17 +67,11 @@ export const UserPanel = () => {
       }}
       passHref
     >
-      <a href="replace">
-        <div className="flex items-center justify-center w-12 h-12 cursor-pointer">
-          <div className="rounded-full h-8 w-8 flex items-center justify-center">
-            <img
-              src={avatar}
-              alt={name}
-              className="h-full w-full rounded-full"
-            />
-          </div>
+      <div className="flex items-center justify-center w-12 h-12 cursor-pointer">
+        <div className="rounded-full h-8 w-8 flex items-center justify-center">
+          <img src={avatar} alt={name} className="h-full w-full rounded-full" />
         </div>
-      </a>
+      </div>
     </Link>
   );
 };

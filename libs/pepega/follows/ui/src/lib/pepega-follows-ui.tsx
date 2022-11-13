@@ -10,19 +10,19 @@ export function Follows() {
     <div className="flex flex-1 w-full">
       <OverlayScrollbarsComponent className="w-full text-sm font-medium">
         {channels.map((channel) => (
-          <Link key={channel.id} href={`/${channel.id}`} passHref>
-            <a
-              href="replace"
-              className="flex w-full h-10 items-center hover:bg-background"
-            >
-              <img
-                className="h-6 w-6 mx-4 rounded-full"
-                src={channel.profile_image_url}
-                alt=""
-              />
+          <Link
+            key={channel.id}
+            href={`/${channel.id}`}
+            passHref
+            className="flex w-full h-10 items-center hover:bg-background"
+          >
+            <img
+              className="h-6 w-6 mx-4 rounded-full"
+              src={channel.profile_image_url}
+              alt=""
+            />
 
-              <div>{channel.display_name}</div>
-            </a>
+            <div>{channel.display_name}</div>
           </Link>
         ))}
       </OverlayScrollbarsComponent>

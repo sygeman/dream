@@ -19,6 +19,7 @@ export const ChannelHeader = () => {
       {isUser && (
         <div className="h-full flex items-center ml-4">
           <Link
+            className="h-8 w-8 rounded hover:bg-surface-light flex items-center justify-center"
             href={{
               pathname: router.route,
               query: {
@@ -28,12 +29,7 @@ export const ChannelHeader = () => {
             }}
             passHref
           >
-            <a
-              href="replace"
-              className="h-8 w-8 rounded hover:bg-surface-light flex items-center justify-center"
-            >
-              <CogIcon className="w-4 h-4 text-accent" aria-hidden="true" />
-            </a>
+            <CogIcon className="w-4 h-4 text-accent" aria-hidden="true" />
           </Link>
         </div>
       )}

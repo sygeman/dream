@@ -23,8 +23,7 @@
     "update": "nx migrate latest",
     "workspace-schematic": "nx workspace-schematic",
     "dep-graph": "nx dep-graph",
-    "help": "nx help",
-    "u": "yarn upgrade-interactive"
+    "help": "nx help"
   },
   "private": true,
   "dependencies": {
@@ -181,5 +180,5 @@
     "vite": "3.0.9",
     "vite-plugin-solid": "2.3.0"
   },
-  "packageManager": "yarn@3.2.1"
+  "packageManager": "pnpm@7.15.0"
 }

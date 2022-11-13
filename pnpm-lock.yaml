@@ -50,9 +50,9 @@ specifiers:
   '@swc/core': 1.2.244
   '@swc/helpers': 0.4.11
   '@swc/jest': 0.2.22
-  '@tailwindcss/aspect-ratio': 0.4.0
-  '@tailwindcss/forms': 0.5.2
-  '@tailwindcss/line-clamp': 0.4.0
+  '@tailwindcss/aspect-ratio': 0.4.2
+  '@tailwindcss/forms': 0.5.3
+  '@tailwindcss/line-clamp': 0.4.2
   '@testing-library/react': 13.4.0
   '@testing-library/react-hooks': 8.0.1
   '@types/bull': 3.15.9
@@ -142,7 +142,7 @@ specifiers:
   solid-js: 1.5.1
   solid-testing-library: 0.3.0
   swr: 1.3.0
-  tailwindcss: 3.1.8
+  tailwindcss: 3.2.4
   ts-jest: 28.0.8
   ts-node: 10.9.1
   tslib: 2.4.0
@@ -257,9 +257,9 @@ devDependencies:
   '@swc/cli': 0.1.57_@swc+core@1.2.244
   '@swc/core': 1.2.244
   '@swc/jest': 0.2.22_@swc+core@1.2.244
-  '@tailwindcss/aspect-ratio': 0.4.0_tailwindcss@3.1.8
-  '@tailwindcss/forms': 0.5.2_tailwindcss@3.1.8
-  '@tailwindcss/line-clamp': 0.4.0_tailwindcss@3.1.8
+  '@tailwindcss/aspect-ratio': 0.4.2_tailwindcss@3.2.4
+  '@tailwindcss/forms': 0.5.3_tailwindcss@3.2.4
+  '@tailwindcss/line-clamp': 0.4.2_tailwindcss@3.2.4
   '@testing-library/react': 13.4.0_biqbaboplfbrettd7655fr4n2y
   '@testing-library/react-hooks': 8.0.1_pimovsjg5ibagkm3zmb5gxxeui
   '@types/bull': 3.15.9
@@ -299,7 +299,7 @@ devDependencies:
   solid-jest: 0.2.0
   solid-js: 1.5.1
   solid-testing-library: 0.3.0_solid-js@1.5.1
-  tailwindcss: 3.1.8_57znarxsqwmnneadci5z5fd5gu
+  tailwindcss: 3.2.4_57znarxsqwmnneadci5z5fd5gu
   ts-jest: 28.0.8_kie3p6zmxebniyhvzlppsoibwq
   ts-node: 10.9.1_sqj5ugco2mcnpwjo4nquxcciha
   typescript: 4.8.4
@@ -6453,29 +6453,29 @@ packages:
       defer-to-connect: 1.1.3
     dev: true
 
-  /@tailwindcss/aspect-ratio/0.4.0_tailwindcss@3.1.8:
-    resolution: {integrity: sha512-WJu0I4PpqNPuutpaA9zDUq2JXR+lorZ7PbLcKNLmb6GL9/HLfC7w3CRsMhJF4BbYd/lkY6CfXOvkYpuGnZfkpQ==}
+  /@tailwindcss/aspect-ratio/0.4.2_tailwindcss@3.2.4:
+    resolution: {integrity: sha512-8QPrypskfBa7QIMuKHg2TA7BqES6vhBrDLOv8Unb6FcFyd3TjKbc6lcmb9UPQHxfl24sXoJ41ux/H7qQQvfaSQ==}
     peerDependencies:
       tailwindcss: '>=2.0.0 || >=3.0.0 || >=3.0.0-alpha.1'
     dependencies:
-      tailwindcss: 3.1.8_57znarxsqwmnneadci5z5fd5gu
+      tailwindcss: 3.2.4_57znarxsqwmnneadci5z5fd5gu
     dev: true
 
-  /@tailwindcss/forms/0.5.2_tailwindcss@3.1.8:
-    resolution: {integrity: sha512-pSrFeJB6Bg1Mrg9CdQW3+hqZXAKsBrSG9MAfFLKy1pVA4Mb4W7C0k7mEhlmS2Dfo/otxrQOET7NJiJ9RrS563w==}
+  /@tailwindcss/forms/0.5.3_tailwindcss@3.2.4:
+    resolution: {integrity: sha512-y5mb86JUoiUgBjY/o6FJSFZSEttfb3Q5gllE4xoKjAAD+vBrnIhE4dViwUuow3va8mpH4s9jyUbUbrRGoRdc2Q==}
     peerDependencies:
       tailwindcss: '>=3.0.0 || >= 3.0.0-alpha.1'
     dependencies:
       mini-svg-data-uri: 1.4.4
-      tailwindcss: 3.1.8_57znarxsqwmnneadci5z5fd5gu
+      tailwindcss: 3.2.4_57znarxsqwmnneadci5z5fd5gu
     dev: true
 
-  /@tailwindcss/line-clamp/0.4.0_tailwindcss@3.1.8:
-    resolution: {integrity: sha512-HQZo6gfx1D0+DU3nWlNLD5iA6Ef4JAXh0LeD8lOGrJwEDBwwJNKQza6WoXhhY1uQrxOuU8ROxV7CqiQV4CoiLw==}
+  /@tailwindcss/line-clamp/0.4.2_tailwindcss@3.2.4:
+    resolution: {integrity: sha512-HFzAQuqYCjyy/SX9sLGB1lroPzmcnWv1FHkIpmypte10hptf4oPUfucryMKovZh2u0uiS9U5Ty3GghWfEJGwVw==}
     peerDependencies:
       tailwindcss: '>=2.0.0 || >=3.0.0 || >=3.0.0-alpha.1'
     dependencies:
-      tailwindcss: 3.1.8_57znarxsqwmnneadci5z5fd5gu
+      tailwindcss: 3.2.4_57znarxsqwmnneadci5z5fd5gu
     dev: true
 
   /@testing-library/dom/7.31.2:
@@ -15357,8 +15357,8 @@ packages:
       string-hash: 1.1.3
     dev: true
 
-  /postcss-nested/5.0.6_postcss@8.4.16:
-    resolution: {integrity: sha512-rKqm2Fk0KbA8Vt3AdGN0FB9OBOMDVajMG6ZCf/GoHgdxUJ4sBFp0A/uMIRm+MJUdo33YXEtjqIz8u7DAp8B7DA==}
+  /postcss-nested/6.0.0_postcss@8.4.16:
+    resolution: {integrity: sha512-0DkamqrPcmkBDsLn+vQDIrtkSbNkv5AD/M322ySo9kqFkCIYklym2xEmWkwo+Y3/qZo34tzEPNUw4y7yMCdv5w==}
     engines: {node: '>=12.0'}
     peerDependencies:
       postcss: ^8.2.14
@@ -17132,8 +17132,8 @@ packages:
     engines: {node: '>=0.10'}
     dev: false
 
-  /tailwindcss/3.1.8_57znarxsqwmnneadci5z5fd5gu:
-    resolution: {integrity: sha512-YSneUCZSFDYMwk+TGq8qYFdCA3yfBRdBlS7txSq0LUmzyeqRe3a8fBQzbz9M3WS/iFT4BNf/nmw9mEzrnSaC0g==}
+  /tailwindcss/3.2.4_57znarxsqwmnneadci5z5fd5gu:
+    resolution: {integrity: sha512-AhwtHCKMtR71JgeYDaswmZXhPcW9iuI9Sp2LvZPo9upDZ7231ZJ7eA9RaURbhpXGVlrjX4cFNlB4ieTetEb7hQ==}
     engines: {node: '>=12.13.0'}
     hasBin: true
     peerDependencies:
@@ -17149,6 +17149,7 @@ packages:
       glob-parent: 6.0.2
       is-glob: 4.0.3
       lilconfig: 2.0.6
+      micromatch: 4.0.5
       normalize-path: 3.0.0
       object-hash: 3.0.0
       picocolors: 1.0.0
@@ -17156,7 +17157,7 @@ packages:
       postcss-import: 14.1.0_postcss@8.4.16
       postcss-js: 4.0.0_postcss@8.4.16
       postcss-load-config: 3.1.4_57znarxsqwmnneadci5z5fd5gu
-      postcss-nested: 5.0.6_postcss@8.4.16
+      postcss-nested: 6.0.0_postcss@8.4.16
       postcss-selector-parser: 6.0.10
       postcss-value-parser: 4.2.0
       quick-lru: 5.1.1

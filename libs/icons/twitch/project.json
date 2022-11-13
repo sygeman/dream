@@ -1,4 +1,5 @@
 {
+  "name": "icons-twitch",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/icons/twitch/src",
   "projectType": "library",

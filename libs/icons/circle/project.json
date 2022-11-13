@@ -1,4 +1,5 @@
 {
+  "name": "icons-circle",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/icons/circle/src",
   "projectType": "library",

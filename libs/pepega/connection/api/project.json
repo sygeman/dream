@@ -1,4 +1,5 @@
 {
+  "name": "pepega-connection-api",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/pepega/connection/api/src",
   "projectType": "library",
@@ -12,7 +13,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/pepega/connection/api"],
+      "outputs": ["{workspaceRoot}/coverage/libs/pepega/connection/api"],
       "options": {
         "jestConfig": "libs/pepega/connection/api/jest.config.ts",
         "passWithNoTests": true

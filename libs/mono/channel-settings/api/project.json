@@ -1,24 +1,19 @@
 {
+  "name": "mono-channel-settings-api",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/mono/channel-settings/api/src",
   "projectType": "library",
   "targets": {
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
+      "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "libs/mono/channel-settings/api/**/*.ts"
-        ]
+        "lintFilePatterns": ["libs/mono/channel-settings/api/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "coverage/libs/mono/channel-settings/api"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/libs/mono/channel-settings/api"],
       "options": {
         "jestConfig": "libs/mono/channel-settings/api/jest.config.ts",
         "passWithNoTests": true

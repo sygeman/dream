@@ -1,4 +1,5 @@
 {
+  "name": "sudoku",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/sudoku/src",
   "projectType": "application",
@@ -45,7 +46,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/sudoku"],
+      "outputs": ["{workspaceRoot}/coverage/apps/sudoku"],
       "options": {
         "jestConfig": "apps/sudoku/jest.config.ts",
         "passWithNoTests": true

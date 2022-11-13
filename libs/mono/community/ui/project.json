@@ -1,4 +1,5 @@
 {
+  "name": "mono-community-ui",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/mono/community/ui/src",
   "projectType": "library",
@@ -6,16 +7,12 @@
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "options": {
-        "lintFilePatterns": [
-          "libs/mono/community/ui/**/*.{ts,tsx,js,jsx}"
-        ]
+        "lintFilePatterns": ["libs/mono/community/ui/**/*.{ts,tsx,js,jsx}"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "coverage/libs/mono/community/ui"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/libs/mono/community/ui"],
       "options": {
         "jestConfig": "libs/mono/community/ui/jest.config.ts",
         "passWithNoTests": true

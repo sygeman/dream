@@ -1,4 +1,5 @@
 {
+  "name": "pepega",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/pepega",
   "projectType": "application",
@@ -45,7 +46,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/pepega"],
+      "outputs": ["{workspaceRoot}/coverage/apps/pepega"],
       "options": {
         "jestConfig": "apps/pepega/jest.config.ts",
         "passWithNoTests": true
@@ -59,7 +60,7 @@
       }
     },
     "generate": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "outputs": [],
       "options": {
         "command": "graphql-codegen --config ./apps/pepega/codegen.yml"

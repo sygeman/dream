@@ -1,24 +1,19 @@
 {
+  "name": "mono-utils-regexp-url-name",
   "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/mono/utils/regexp/url-name/src",
   "projectType": "library",
   "targets": {
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
+      "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "libs/mono/utils/regexp/url-name/**/*.ts"
-        ]
+        "lintFilePatterns": ["libs/mono/utils/regexp/url-name/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "coverage/libs/mono/utils/regexp/url-name"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/libs/mono/utils/regexp/url-name"],
       "options": {
         "jestConfig": "libs/mono/utils/regexp/url-name/jest.config.ts",
         "passWithNoTests": true

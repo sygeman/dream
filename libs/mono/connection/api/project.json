@@ -1,4 +1,5 @@
 {
+  "name": "mono-connection-api",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/mono/connection/api/src",
   "projectType": "library",
@@ -6,16 +7,12 @@
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "options": {
-        "lintFilePatterns": [
-          "libs/mono/connection/api/**/*.ts"
-        ]
+        "lintFilePatterns": ["libs/mono/connection/api/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "coverage/libs/mono/connection/api"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/libs/mono/connection/api"],
       "options": {
         "jestConfig": "libs/mono/connection/api/jest.config.ts",
         "passWithNoTests": true

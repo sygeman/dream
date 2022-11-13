@@ -1,4 +1,5 @@
 {
+  "name": "pepega-clip-api",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/pepega/clip/api/src",
   "projectType": "library",
@@ -12,7 +13,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/pepega/clip/api"],
+      "outputs": ["{workspaceRoot}/coverage/libs/pepega/clip/api"],
       "options": {
         "jestConfig": "libs/pepega/clip/api/jest.config.ts",
         "passWithNoTests": true

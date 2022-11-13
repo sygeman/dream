@@ -1,4 +1,5 @@
 {
+  "name": "pepega-auth-api",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/pepega/auth/api/src",
   "projectType": "library",
@@ -12,7 +13,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/pepega/auth/api"],
+      "outputs": ["{workspaceRoot}/coverage/libs/pepega/auth/api"],
       "options": {
         "jestConfig": "libs/pepega/auth/api/jest.config.ts",
         "passWithNoTests": true

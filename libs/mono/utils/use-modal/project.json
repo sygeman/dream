@@ -1,4 +1,5 @@
 {
+  "name": "mono-utils-use-modal",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/mono/utils/use-modal/src",
   "projectType": "library",
@@ -6,13 +7,9 @@
   "targets": {
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
+      "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "libs/mono/utils/use-modal/**/*.{ts,tsx,js,jsx}"
-        ]
+        "lintFilePatterns": ["libs/mono/utils/use-modal/**/*.{ts,tsx,js,jsx}"]
       }
     }
   }

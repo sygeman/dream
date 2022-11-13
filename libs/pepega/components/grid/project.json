@@ -1,4 +1,5 @@
 {
+  "name": "pepega-components-grid",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/pepega/components/grid/src",
   "projectType": "library",
@@ -6,20 +7,14 @@
   "targets": {
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
+      "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "libs/pepega/components/grid/**/*.{ts,tsx,js,jsx}"
-        ]
+        "lintFilePatterns": ["libs/pepega/components/grid/**/*.{ts,tsx,js,jsx}"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "coverage/libs/pepega/components/grid"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/libs/pepega/components/grid"],
       "options": {
         "jestConfig": "libs/pepega/components/grid/jest.config.ts",
         "passWithNoTests": true

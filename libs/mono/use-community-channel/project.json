@@ -1,4 +1,5 @@
 {
+  "name": "mono-use-community-channel",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/mono/use-community-channel/src",
   "projectType": "library",
@@ -6,9 +7,7 @@
   "targets": {
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
+      "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": [
           "libs/mono/use-community-channel/**/*.{ts,tsx,js,jsx}"
@@ -17,9 +16,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "coverage/libs/mono/use-community-channel"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/libs/mono/use-community-channel"],
       "options": {
         "jestConfig": "libs/mono/use-community-channel/jest.config.ts",
         "passWithNoTests": true

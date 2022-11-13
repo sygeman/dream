@@ -1,4 +1,5 @@
 {
+  "name": "icons-github",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/icons/github/src",
   "projectType": "library",

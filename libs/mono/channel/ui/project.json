@@ -1,4 +1,5 @@
 {
+  "name": "mono-channel-ui",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/mono/channel/ui/src",
   "projectType": "library",
@@ -6,20 +7,14 @@
   "targets": {
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
+      "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "libs/mono/channel/ui/**/*.{ts,tsx,js,jsx}"
-        ]
+        "lintFilePatterns": ["libs/mono/channel/ui/**/*.{ts,tsx,js,jsx}"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "coverage/libs/mono/channel/ui"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/libs/mono/channel/ui"],
       "options": {
         "jestConfig": "libs/mono/channel/ui/jest.config.ts",
         "passWithNoTests": true

@@ -1,4 +1,5 @@
 {
+  "name": "mono-utils-channel-mods",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/mono/utils/channel-mods/src",
   "projectType": "library",

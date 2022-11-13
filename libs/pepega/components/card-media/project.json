@@ -1,4 +1,5 @@
 {
+  "name": "pepega-components-card-media",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/pepega/components/card-media/src",
   "projectType": "library",
@@ -6,9 +7,7 @@
   "targets": {
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
+      "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": [
           "libs/pepega/components/card-media/**/*.{ts,tsx,js,jsx}"
@@ -17,9 +16,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "coverage/libs/pepega/components/card-media"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/libs/pepega/components/card-media"],
       "options": {
         "jestConfig": "libs/pepega/components/card-media/jest.config.ts",
         "passWithNoTests": true

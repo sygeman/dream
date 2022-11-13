@@ -1,4 +1,5 @@
 {
+  "name": "snake",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/snake/src",
   "projectType": "application",
@@ -45,7 +46,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/snake"],
+      "outputs": ["{workspaceRoot}/coverage/apps/snake"],
       "options": {
         "jestConfig": "apps/snake/jest.config.ts",
         "passWithNoTests": true

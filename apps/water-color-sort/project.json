@@ -1,4 +1,5 @@
 {
+  "name": "water-color-sort",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/water-color-sort/src",
   "projectType": "application",
@@ -45,7 +46,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/water-color-sort"],
+      "outputs": ["{workspaceRoot}/coverage/apps/water-color-sort"],
       "options": {
         "jestConfig": "apps/water-color-sort/jest.config.ts",
         "passWithNoTests": true

@@ -1,4 +1,5 @@
 {
+  "name": "pepega-clip-comment-api",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/pepega/clip-comment/api/src",
   "projectType": "library",
@@ -12,7 +13,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/pepega/clip-comment/api"],
+      "outputs": ["{workspaceRoot}/coverage/libs/pepega/clip-comment/api"],
       "options": {
         "jestConfig": "libs/pepega/clip-comment/api/jest.config.ts",
         "passWithNoTests": true

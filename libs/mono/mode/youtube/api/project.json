@@ -1,4 +1,5 @@
 {
+  "name": "mono-mode-youtube-api",
   "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/mono/mode/youtube/api/src",
   "projectType": "library",
@@ -6,16 +7,12 @@
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "options": {
-        "lintFilePatterns": [
-          "libs/mono/mode/youtube/api/**/*.ts"
-        ]
+        "lintFilePatterns": ["libs/mono/mode/youtube/api/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "coverage/libs/mono/mode/youtube/api"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/libs/mono/mode/youtube/api"],
       "options": {
         "jestConfig": "libs/mono/mode/youtube/api/jest.config.ts",
         "passWithNoTests": true

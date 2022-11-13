@@ -1,4 +1,5 @@
 {
+  "name": "mono-auth-api",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/mono/auth/api/src",
   "projectType": "library",
@@ -6,16 +7,12 @@
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "options": {
-        "lintFilePatterns": [
-          "libs/mono/auth/api/**/*.ts"
-        ]
+        "lintFilePatterns": ["libs/mono/auth/api/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "coverage/libs/mono/auth/api"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/libs/mono/auth/api"],
       "options": {
         "jestConfig": "libs/mono/auth/api/jest.config.ts",
         "passWithNoTests": true

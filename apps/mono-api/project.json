@@ -1,4 +1,5 @@
 {
+  "name": "mono-api",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/mono-api/src",
   "projectType": "application",
@@ -6,13 +7,15 @@
   "generators": {},
   "targets": {
     "build": {
-      "executor": "@nrwl/node:webpack",
+      "executor": "@nrwl/webpack:webpack",
       "options": {
         "outputPath": "dist/apps/mono-api",
         "main": "apps/mono-api/src/main.ts",
         "tsConfig": "apps/mono-api/tsconfig.app.json",
         "assets": ["apps/mono-api/src/assets"],
-        "generatePackageJson": true
+        "generatePackageJson": true,
+        "target": "node",
+        "compiler": "tsc"
       },
       "configurations": {
         "production": {
@@ -49,21 +52,21 @@
       }
     },
     "generate": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "outputs": [],
       "options": {
         "command": "prisma generate --schema ./libs/mono/prisma/schema.prisma"
       }
     },
     "dbpush": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "outputs": [],
       "options": {
         "command": "prisma db push --schema ./libs/mono/prisma/schema.prisma"
       }
     },
     "studio": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "outputs": [],
       "options": {
         "command": "prisma studio --schema ./libs/mono/prisma/schema.prisma"

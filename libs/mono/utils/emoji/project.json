@@ -1,24 +1,19 @@
 {
+  "name": "mono-utils-emoji",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/mono/utils/emoji/src",
   "projectType": "library",
   "targets": {
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
+      "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "libs/mono/utils/emoji/**/*.ts"
-        ]
+        "lintFilePatterns": ["libs/mono/utils/emoji/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "coverage/libs/mono/utils/emoji"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/libs/mono/utils/emoji"],
       "options": {
         "jestConfig": "libs/mono/utils/emoji/jest.config.ts",
         "passWithNoTests": true

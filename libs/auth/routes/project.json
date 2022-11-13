@@ -1,4 +1,5 @@
 {
+  "name": "auth-routes",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/auth/routes/src",
   "projectType": "library",

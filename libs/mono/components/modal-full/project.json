@@ -1,4 +1,5 @@
 {
+  "name": "mono-components-modal-full",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/mono/components/modal-full/src",
   "projectType": "library",
@@ -13,9 +14,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "coverage/libs/mono/components/modal-full"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/libs/mono/components/modal-full"],
       "options": {
         "jestConfig": "libs/mono/components/modal-full/jest.config.ts",
         "passWithNoTests": true

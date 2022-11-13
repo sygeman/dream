@@ -1,4 +1,5 @@
 {
+  "name": "pepega-user-coin-ui",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/pepega/user-coin/ui/src",
   "projectType": "library",
@@ -6,13 +7,9 @@
   "targets": {
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
+      "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "libs/pepega/user-coin/ui/**/*.{ts,tsx,js,jsx}"
-        ]
+        "lintFilePatterns": ["libs/pepega/user-coin/ui/**/*.{ts,tsx,js,jsx}"]
       }
     }
   }

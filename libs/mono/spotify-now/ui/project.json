@@ -1,4 +1,5 @@
 {
+  "name": "mono-spotify-now-ui",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/mono/spotify-now/ui/src",
   "projectType": "library",
@@ -6,16 +7,12 @@
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "options": {
-        "lintFilePatterns": [
-          "libs/mono/spotify-now/ui/**/*.{ts,tsx,js,jsx}"
-        ]
+        "lintFilePatterns": ["libs/mono/spotify-now/ui/**/*.{ts,tsx,js,jsx}"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "coverage/libs/mono/spotify-now/ui"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/libs/mono/spotify-now/ui"],
       "options": {
         "jestConfig": "libs/mono/spotify-now/ui/jest.config.ts",
         "passWithNoTests": true

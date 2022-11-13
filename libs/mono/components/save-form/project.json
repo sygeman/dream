@@ -1,4 +1,5 @@
 {
+  "name": "mono-components-save-form",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/mono/components/save-form/src",
   "projectType": "library",
@@ -13,9 +14,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "coverage/libs/mono/components/save-form"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/libs/mono/components/save-form"],
       "options": {
         "jestConfig": "libs/mono/components/save-form/jest.config.ts",
         "passWithNoTests": true

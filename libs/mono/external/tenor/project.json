@@ -1,4 +1,5 @@
 {
+  "name": "mono-external-tenor",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/mono/external/tenor/src",
   "projectType": "library",
@@ -6,16 +7,12 @@
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "options": {
-        "lintFilePatterns": [
-          "libs/mono/external/tenor/**/*.ts"
-        ]
+        "lintFilePatterns": ["libs/mono/external/tenor/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "coverage/libs/mono/external/tenor"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/libs/mono/external/tenor"],
       "options": {
         "jestConfig": "libs/mono/external/tenor/jest.config.ts",
         "passWithNoTests": true

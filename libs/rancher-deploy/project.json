@@ -1,4 +1,5 @@
 {
+  "name": "rancher-deploy",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/rancher-deploy/src",
   "projectType": "library",
@@ -49,7 +50,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/rancher-deploy"],
+      "outputs": ["{workspaceRoot}/coverage/libs/rancher-deploy"],
       "options": {
         "jestConfig": "libs/rancher-deploy/jest.config.ts",
         "passWithNoTests": true

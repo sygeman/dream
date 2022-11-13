@@ -112,8 +112,8 @@ specifiers:
   nanoid: 3.3.4
   next: 13.0.3
   nx: 15.0.13
-  overlayscrollbars: 1.13.3
-  overlayscrollbars-react: 0.3.0
+  overlayscrollbars: 2.0.0
+  overlayscrollbars-react: 0.4.0
   passport: 0.6.0
   passport-spotify: 2.0.0
   passport-twitch-new: 0.0.2
@@ -197,8 +197,8 @@ dependencies:
   ms: 2.1.3
   nanoid: 3.3.4
   next: 13.0.3_biqbaboplfbrettd7655fr4n2y
-  overlayscrollbars: 1.13.3
-  overlayscrollbars-react: 0.3.0_xe725h2d5kcgarcqbsx2itrmxy
+  overlayscrollbars: 2.0.0
+  overlayscrollbars-react: 0.4.0_d5vnbvocpscn23gs37astk3fvy
   passport: 0.6.0
   passport-spotify: 2.0.0
   passport-twitch-new: 0.0.2
@@ -14991,18 +14991,18 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /overlayscrollbars-react/0.3.0_xe725h2d5kcgarcqbsx2itrmxy:
-    resolution: {integrity: sha512-dV74p9VL/aImqJpeYz0vmpScZYu6UiNTmRKfyI4CS0OYUpYCUiTd723adY38Grz2W57hoNCECWDzkOJRFDQeZg==}
+  /overlayscrollbars-react/0.4.0_d5vnbvocpscn23gs37astk3fvy:
+    resolution: {integrity: sha512-8NHROGn8RrLYaOHJQWMBC1W/jVIlZzxhDbuNK16CExbut0n+qy30MAMqfNu6+SDLeCX7AFEiOapqj/2tHHYxmQ==}
     peerDependencies:
-      overlayscrollbars: ^1.10.0
-      react: ^16.4.0 || ^17.0.0 || ^18.0.0
+      overlayscrollbars: ^2.0.0
+      react: '>=16.8.0'
     dependencies:
-      overlayscrollbars: 1.13.3
+      overlayscrollbars: 2.0.0
       react: 18.2.0
     dev: false
 
-  /overlayscrollbars/1.13.3:
-    resolution: {integrity: sha512-1nB/B5kaakJuHXaLXLRK0bUIilWhUGT6q5g+l2s5vqYdLle/sd0kscBHkQC1kuuDg9p9WR4MTdySDOPbeL/86g==}
+  /overlayscrollbars/2.0.0:
+    resolution: {integrity: sha512-yx8IJ1fX73iIz2g3lPCQW3x/X/vGtDxSInaz0CzG2r/K6e07NEFQ6LD1XhJ1Cbl7uTXzCaNj/ojMvhRlf05ktg==}
     dev: false
 
   /p-cancelable/1.1.0:

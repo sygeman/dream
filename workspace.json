@@ -87,7 +87,6 @@
     "rancher-deploy": "libs/rancher-deploy",
     "rancher-deploy-e2e": "apps/rancher-deploy-e2e",
     "snake": "apps/snake",
-    "spotify-now": "apps/spotify-now",
     "sudoku": "apps/sudoku",
     "utils-use-dark-mode": "libs/utils/use-dark-mode",
     "water-color-sort": "apps/water-color-sort"

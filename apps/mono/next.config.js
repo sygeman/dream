@@ -3,8 +3,8 @@ const withNx = require('@nrwl/next/plugins/with-nx');
 const path = require('path');
 
 module.exports = withNx({
+  output: 'standalone',
   experimental: {
-    outputStandalone: true,
     outputFileTracingRoot: path.join(__dirname, '../../'),
   },
 });

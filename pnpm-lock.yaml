@@ -70,7 +70,7 @@ specifiers:
   '@types/react-is': 17.0.3
   '@typescript-eslint/eslint-plugin': 5.42.1
   '@typescript-eslint/parser': 5.42.1
-  '@unocss/reset': ^0.46.5
+  '@unocss/reset': 0.46.5
   apollo-server: 3.10.2
   apollo-server-express: 3.10.2
   autoprefixer: 10.4.12
@@ -102,6 +102,8 @@ specifiers:
   graphql: 16.6.0
   graphql-depth-limit: 1.1.0
   graphql-redis-subscriptions: 2.5.0
+  graphql-tag: 2.12.6
+  graphql-ws: 5.11.2
   ioredis: 5.2.3
   iron-session: 6.2.0
   jest: 28.1.3
@@ -153,7 +155,7 @@ specifiers:
   vite-plugin-solid: 2.3.0
 
 dependencies:
-  '@apollo/client': 3.6.9_onqnqwb3ubg5opvemcqf7c2qhy
+  '@apollo/client': 3.6.9_o7paodxqbevdia6ixjcodtofcm
   '@headlessui/react': 1.6.6_biqbaboplfbrettd7655fr4n2y
   '@heroicons/react': 1.0.6_react@18.2.0
   '@nestjs/apollo': 10.0.22_5wzfts5l2vhnmclhwyp4glh5xu
@@ -191,6 +193,8 @@ dependencies:
   graphql: 16.6.0
   graphql-depth-limit: 1.1.0_graphql@16.6.0
   graphql-redis-subscriptions: 2.5.0
+  graphql-tag: 2.12.6_graphql@16.6.0
+  graphql-ws: 5.11.2_graphql@16.6.0
   ioredis: 5.2.3
   iron-session: 6.2.0_next@13.0.0
   lodash.isequal: 4.5.0
@@ -234,7 +238,7 @@ devDependencies:
   '@graphql-codegen/typescript': 2.7.3_graphql@16.6.0
   '@graphql-codegen/typescript-apollo-client-helpers': 2.2.3_graphql@16.6.0
   '@graphql-codegen/typescript-operations': 2.5.3_graphql@16.6.0
-  '@graphql-codegen/typescript-react-apollo': 3.3.3_graphql@16.6.0
+  '@graphql-codegen/typescript-react-apollo': 3.3.3_sy4knu3obj4ys7pjcqbyfxmqle
   '@nestjs/schematics': 9.0.1_typescript@4.8.4
   '@nestjs/testing': 9.0.11_z6gh3n3qpn6ig2eqi2q57zofvq
   '@nrwl/devkit': 15.0.13_dtuttet22dxzt73ll2oxv2ugvu
@@ -382,7 +386,7 @@ packages:
     resolution: {integrity: sha512-CQkeV+oJxUazwjlHD0/3ZD08QWKuGQkhnrKo3e6ly5pd48VUpXbb77q0xMU4+vc2CkJnDS02Eq/M9ugyX20XZA==}
     dev: true
 
-  /@apollo/client/3.6.9_onqnqwb3ubg5opvemcqf7c2qhy:
+  /@apollo/client/3.6.9_o7paodxqbevdia6ixjcodtofcm:
     resolution: {integrity: sha512-Y1yu8qa2YeaCUBVuw08x8NHenFi0sw2I3KCu7Kw9mDSu86HmmtHJkCAifKVrN2iPgDTW/BbP3EpSV8/EQCcxZA==}
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0
@@ -403,6 +407,7 @@ packages:
       '@wry/trie': 0.3.2
       graphql: 16.6.0
       graphql-tag: 2.12.6_graphql@16.6.0
+      graphql-ws: 5.11.2_graphql@16.6.0
       hoist-non-react-statics: 3.3.2
       optimism: 0.16.2
       prop-types: 15.8.1
@@ -3074,7 +3079,7 @@ packages:
       - supports-color
     dev: true
 
-  /@graphql-codegen/typescript-react-apollo/3.3.3_graphql@16.6.0:
+  /@graphql-codegen/typescript-react-apollo/3.3.3_sy4knu3obj4ys7pjcqbyfxmqle:
     resolution: {integrity: sha512-FixkcfEfChA1+VPkvdcK+JYnBfqhT+Nz7WJFJ3ZKVsHjwJbTWKu19cKn2nkd3EVgdhJXlNsE8DgenVMqi5X5Ug==}
     peerDependencies:
       graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
@@ -3085,6 +3090,7 @@ packages:
       auto-bind: 4.0.0
       change-case-all: 1.0.14
       graphql: 16.6.0
+      graphql-tag: 2.12.6_graphql@16.6.0
       tslib: 2.4.0
     transitivePeerDependencies:
       - encoding
@@ -12243,7 +12249,6 @@ packages:
       graphql: '>=0.11 <=16'
     dependencies:
       graphql: 16.6.0
-    dev: true
 
   /graphql-ws/5.5.5_graphql@16.6.0:
     resolution: {integrity: sha512-hvyIS71vs4Tu/yUYHPvGXsTgo0t3arU820+lT5VjZS2go0ewp2LqyCgxEN56CzOG7Iys52eRhHBiD1gGRdiQtw==}

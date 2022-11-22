@@ -7,13 +7,10 @@ import { ConfigService } from '@nestjs/config';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
-    cors: {
-      origin: '*',
-    },
+    cors: { origin: '*' },
   });
 
   const config = app.get(ConfigService);
-
   const RedisStore = connectRedis(session);
 
   app.use(

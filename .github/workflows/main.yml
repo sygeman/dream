@@ -40,16 +40,27 @@ jobs:
         id: vars
         run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
 
-      - name: Cache dependencies
-        id: cache
-        uses: actions/cache@v2
+      - uses: pnpm/action-setup@v2
         with:
-          path: ./node_modules
-          key: modules-${{ hashFiles('pnpm-lock.yaml') }}-${{ secrets.CACHE_VERSION }}
+          version: 7
+          run_install: false
+
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - uses: actions/cache@v3
+        name: Setup pnpm cache
+        with:
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
 
       - name: Install dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: pnpm --frozen-lockfile
+        run: pnpm install
 
       - name: Deploy
         run: pnpm nx affected --target=deploy --base=$BEFORE_SHA --parallel=3

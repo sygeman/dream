@@ -10,7 +10,7 @@ FROM base as dependencies
 RUN yarn --production
 
 FROM dependencies as prisma
-RUN yarn dlx prisma generate
+RUN npx prisma generate
 
 FROM prisma as release
 ENV PORT=3333

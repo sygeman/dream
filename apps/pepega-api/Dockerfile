@@ -7,7 +7,9 @@ COPY libs/pepega/prisma/schema.prisma ./schema.prisma
 COPY apps/pepega-api/schema.gql ./schema.gql
 
 FROM base as dependencies
-RUN yarn --production
+RUN npm --global install pnpm
+RUN pnpm i
+ENV PRISMA_PEPEGA_OUTPUT="./node_modules/@prisma/pepega"
 RUN npx prisma generate
 RUN cp -R node_modules prod_node_modules
 

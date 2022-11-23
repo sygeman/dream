@@ -40,7 +40,6 @@ testem.log
 .DS_Store
 Thumbs.db
 
-.env
 core
 prisma/client
 

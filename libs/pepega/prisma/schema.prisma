@@ -1,6 +1,6 @@
 generator client {
   provider      = "prisma-client-js"
-  output        = "../../../node_modules/@prisma/pepega"
+  output        = env("PRISMA_PEPEGA_OUTPUT")
   binaryTargets = ["native", "rhel-openssl-1.0.x"]
 }
 

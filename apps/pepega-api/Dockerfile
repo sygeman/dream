@@ -9,10 +9,10 @@ COPY apps/pepega-api/schema.gql ./schema.gql
 FROM base as dependencies
 RUN yarn --production
 
-FROM dependencies as prisma
-RUN npx prisma generate
+# FROM dependencies as prisma
+# RUN npx prisma generate
 
-FROM prisma as release
+FROM base as release
 ENV PORT=3333
 EXPOSE ${PORT}
 

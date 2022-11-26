@@ -184,5 +184,5 @@
     "vite": "3.2.4",
     "vite-plugin-solid": "2.4.0"
   },
-  "packageManager": "pnpm@7.15.0"
+  "packageManager": "pnpm@7.17.0"
 }

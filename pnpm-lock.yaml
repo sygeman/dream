@@ -41,7 +41,9 @@ specifiers:
   '@nrwl/react': 15.2.1
   '@nrwl/web': 15.2.1
   '@nrwl/workspace': 15.2.1
+  '@nx-tools/container-metadata': 4.0.0
   '@nx-tools/docker-metadata': 3.0.8
+  '@nx-tools/nx-container': 4.0.0
   '@nx-tools/nx-docker': 3.0.8
   '@nxext/solid': 14.0.2
   '@prisma/client': 4.6.1
@@ -254,7 +256,9 @@ devDependencies:
   '@nrwl/react': 15.2.1_u55idcts3hipciqxjkd4jli3ue
   '@nrwl/web': 15.2.1_u55idcts3hipciqxjkd4jli3ue
   '@nrwl/workspace': 15.2.1_l2ii4lquvy3r2gpzzsrst76beq
+  '@nx-tools/container-metadata': 4.0.0_v2bbu4bxexsan3ngwqmfllnfsq
   '@nx-tools/docker-metadata': 3.0.8_vyph3cyiol2islrdc3go7khuwm
+  '@nx-tools/nx-container': 4.0.0_@nrwl+devkit@15.2.1
   '@nx-tools/nx-docker': 3.0.8_uovfqaexd6yuikkirs24pdoa54
   '@nxext/solid': 14.0.2_msmlqsvvqra4k466dnfewopvxa
   '@swc-node/register': 1.5.4_utjah2wdhmg5maqoqvrhjvwbhq
@@ -4627,6 +4631,35 @@ packages:
       - encoding
     dev: true
 
+  /@nx-tools/ci-context/4.0.0_@nrwl+devkit@15.2.1:
+    resolution: {integrity: sha512-spaefSQZEc5m8ju44nZYKqYYzfxglcohcmcnd6xAJ6OhNl8LrALekqqTgE5oDxfHtmPhDZTtGc0icb18opcYsg==}
+    dependencies:
+      '@actions/github': 5.1.1
+      '@nx-tools/core': 4.0.0_@nrwl+devkit@15.2.1
+      ci-info: 3.6.0
+    transitivePeerDependencies:
+      - '@nrwl/devkit'
+      - encoding
+    dev: true
+
+  /@nx-tools/container-metadata/4.0.0_v2bbu4bxexsan3ngwqmfllnfsq:
+    resolution: {integrity: sha512-TcF4HMbyFcXKwwvRH1gOtCr7Ggbwm2sks/Odse9nQW+1RTsqvQf4WtGAdt3GcfZTS35mIRlI114J8OB4dgY8lw==}
+    peerDependencies:
+      '@nrwl/devkit': ^12.0.0 || ^13.0.0 || ^14.0.0 || ^15.0.0
+      dotenv: '>=10.0.0'
+    dependencies:
+      '@nrwl/devkit': 15.2.1_nx@15.2.1+typescript@4.9.3
+      '@nx-tools/ci-context': 4.0.0_@nrwl+devkit@15.2.1
+      '@nx-tools/core': 4.0.0_@nrwl+devkit@15.2.1
+      '@renovate/pep440': 1.0.0
+      csv-parse: 4.16.3
+      dotenv: 16.0.3
+      handlebars: 4.7.7
+      moment: 2.29.4
+    transitivePeerDependencies:
+      - encoding
+    dev: true
+
   /@nx-tools/core/3.0.8_@nrwl+devkit@15.2.1:
     resolution: {integrity: sha512-P4pgPx1sF4CYJJICGf/dSBJ5VnDvfrH1kPAZs4wvPbECFdHj0EVsVN3fdibh3kmXJz4ZAsyJqPUc4ZmsjVbLZw==}
     engines: {node: '>=14'}
@@ -4636,6 +4669,16 @@ packages:
       '@actions/exec': 1.1.1
       '@nrwl/devkit': 15.2.1_nx@15.2.1+typescript@4.9.3
       '@swc/helpers': 0.4.14
+      colorette: 2.0.19
+    dev: true
+
+  /@nx-tools/core/4.0.0_@nrwl+devkit@15.2.1:
+    resolution: {integrity: sha512-Vd6ahI1TW5b0NRMJP5eHLfZg5ssnb6aZtvPWBmjFYrhrt6jlat2G11xzp1hdx2ETdipvDGBlJVMWJU0KxgqBVg==}
+    peerDependencies:
+      '@nrwl/devkit': ^12.0.0 || ^13.0.0 || ^14.0.0 || ^15.0.0
+    dependencies:
+      '@actions/exec': 1.1.1
+      '@nrwl/devkit': 15.2.1_nx@15.2.1+typescript@4.9.3
       colorette: 2.0.19
     dev: true
 
@@ -4658,6 +4701,20 @@ packages:
       tslib: 2.4.1
     transitivePeerDependencies:
       - encoding
+    dev: true
+
+  /@nx-tools/nx-container/4.0.0_@nrwl+devkit@15.2.1:
+    resolution: {integrity: sha512-6PsPe102ZRdn2UkAEHPla2U0TkkKi4Zi9iOmUQSY092oDp2/Slpmgm8S9xJWAwniWrqAYBDx20a/M9MGS9DXdQ==}
+    peerDependencies:
+      '@nrwl/devkit': ^12.0.0 || ^13.0.0 || ^14.0.0 || ^15.0.0
+    dependencies:
+      '@nrwl/devkit': 15.2.1_nx@15.2.1+typescript@4.9.3
+      '@nx-tools/core': 4.0.0_@nrwl+devkit@15.2.1
+      '@swc/helpers': 0.4.14
+      csv-parse: 4.16.3
+      handlebars: 4.7.7
+      semver: 7.3.8
+      tmp: 0.2.1
     dev: true
 
   /@nx-tools/nx-docker/3.0.8_uovfqaexd6yuikkirs24pdoa54:

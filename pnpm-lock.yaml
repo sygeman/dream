@@ -97,7 +97,7 @@ specifiers:
   eslint-plugin-jsx-a11y: 6.6.1
   eslint-plugin-react: 7.31.11
   eslint-plugin-react-hooks: 4.6.0
-  eslint-plugin-solid: 0.8.0
+  eslint-plugin-solid: 0.9.0
   express: 4.18.2
   express-session: 1.17.3
   framer-motion: 7.6.12
@@ -129,7 +129,7 @@ specifiers:
   react-copy-to-clipboard: 5.1.0
   react-dom: 18.2.0
   react-dropzone: 14.2.3
-  react-hook-form: 7.39.5
+  react-hook-form: 7.39.6
   react-intl: 6.2.1
   react-is: 18.2.0
   react-player: 2.11.0
@@ -212,7 +212,7 @@ dependencies:
   react-copy-to-clipboard: 5.1.0_react@18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-dropzone: 14.2.3_react@18.2.0
-  react-hook-form: 7.39.5_react@18.2.0
+  react-hook-form: 7.39.6_react@18.2.0
   react-intl: 6.2.1_eetduzquwu67aqoq5644t6dxzu
   react-is: 18.2.0
   react-player: 2.11.0_react@18.2.0
@@ -292,7 +292,7 @@ devDependencies:
   eslint-plugin-jsx-a11y: 6.6.1_eslint@8.28.0
   eslint-plugin-react: 7.31.11_eslint@8.28.0
   eslint-plugin-react-hooks: 4.6.0_eslint@8.28.0
-  eslint-plugin-solid: 0.8.0_hsf322ms6xhhd4b5ne6lb74y4a
+  eslint-plugin-solid: 0.9.0_hsf322ms6xhhd4b5ne6lb74y4a
   express: 4.18.2
   jest: 29.3.1_odkjkoia5xunhxkdrka32ib6vi
   jsonc-eslint-parser: 2.1.0
@@ -9966,13 +9966,13 @@ packages:
       string.prototype.matchall: 4.0.8
     dev: true
 
-  /eslint-plugin-solid/0.8.0_hsf322ms6xhhd4b5ne6lb74y4a:
-    resolution: {integrity: sha512-yzTpqZ4+qGO14aM2rii9waonMNqSlpXHID2GMREYCOWpbIrkC5gILXpLl/+ZWFHSJDvsQN+/COobBkqizn7pkw==}
+  /eslint-plugin-solid/0.9.0_hsf322ms6xhhd4b5ne6lb74y4a:
+    resolution: {integrity: sha512-hvl2aRrh6HTGOqKBFgMhDZZpW+ngFRZiaKuNCuzCEal+opc3zHmE6Cg+NpSPVS7VfTlrOz4VAtwWOcWm2VPDow==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
       eslint: ^6.0.0 || ^7.0.0 || ^8.0.0
     dependencies:
-      '@typescript-eslint/utils': 5.42.1_hsf322ms6xhhd4b5ne6lb74y4a
+      '@typescript-eslint/utils': 5.44.0_hsf322ms6xhhd4b5ne6lb74y4a
       eslint: 8.28.0
       is-html: 2.0.0
       jsx-ast-utils: 3.3.3
@@ -15091,8 +15091,8 @@ packages:
     resolution: {integrity: sha512-rtGImPZ0YyLrscKI9xTpV8psd6I8VAtjKCzQDlzyDvqJA8XOW78TXYQwNRNd8g8JZnDu8q9Fu/1v4HPAVwVdHA==}
     dev: false
 
-  /react-hook-form/7.39.5_react@18.2.0:
-    resolution: {integrity: sha512-OE0HKyz5IPc6svN2wd+e+evidZrw4O4WZWAWYzQVZuHi+hYnHFSLnxOq0ddjbdmaLIsLHut/ab7j72y2QT3+KA==}
+  /react-hook-form/7.39.6_react@18.2.0:
+    resolution: {integrity: sha512-f6bghLpUm1nfUtuJ09Zsaz2AkuHAGghngYAsKFGarFpi/NQl6JcGQ/ETc34tvLtjVo6hSLYw+/4dgBt0X54Jvw==}
     engines: {node: '>=12.22.0'}
     peerDependencies:
       react: ^16.8.0 || ^17 || ^18

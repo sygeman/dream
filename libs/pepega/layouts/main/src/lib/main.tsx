@@ -5,7 +5,7 @@ import { ClipModal } from '@dream/pepega/clip/ui';
 import { UserBox } from './user';
 import { LeftMenuItem } from './left-menu-item';
 import { Logo } from './logo';
-import { HomeIcon } from '@heroicons/react/solid';
+import { HomeIcon } from '@heroicons/react/20/solid';
 import { AuthModal } from '@dream/pepega/auth/ui';
 import { Follows } from '@dream/pepega/follows/ui';
 

@@ -3,7 +3,7 @@ import gql from 'graphql-tag';
 import { Avatar } from '@dream/pepega/components/avatar';
 import { useLogoutMutation } from '@dream/pepega/auth/ui';
 import { useRouter } from 'next/router';
-import { LogoutIcon } from '@heroicons/react/solid';
+import { ArrowRightOnRectangleIcon } from '@heroicons/react/20/solid';
 
 const GET_USER = gql`
   query getUser($id: ID) {
@@ -40,7 +40,7 @@ export const User = () => {
         className="hover:bg-background/50 p-2 mx-2 rounded-lg"
         onClick={() => logout()}
       >
-        <LogoutIcon className="h-4" />
+        <ArrowRightOnRectangleIcon className="h-4" />
       </button>
     </div>
   );

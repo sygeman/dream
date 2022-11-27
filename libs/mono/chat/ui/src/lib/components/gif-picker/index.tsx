@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import useAxios from 'axios-hooks';
 import { useDebounce } from 'use-debounce';
-import { SearchIcon } from '@heroicons/react/solid';
+import { SearchIcon } from '@heroicons/react/20/solid';
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
 
 export interface GifPickerProps {

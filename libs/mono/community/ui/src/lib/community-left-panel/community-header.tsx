@@ -7,7 +7,7 @@ import { Menu, Transition } from '@headlessui/react';
 import {
   ChevronDownIcon,
   PlusCircleIcon,
-  XIcon,
+  XMarkIcon,
   CogIcon,
 } from '@heroicons/react/solid';
 import { useCommunityChannel } from '@dream/mono-use-community-channel';
@@ -49,7 +49,7 @@ export const CommunityHeader = () => {
             {community?.title}
             <span className="w-4 h-4 flex items-center justify-center text-accent">
               {open ? (
-                <XIcon aria-hidden="true" />
+                <XMarkIcon aria-hidden="true" />
               ) : (
                 <ChevronDownIcon aria-hidden="true" />
               )}

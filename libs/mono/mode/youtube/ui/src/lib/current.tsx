@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useRef, useState } from 'react';
 import ReactPlayer from 'react-player';
-import { DotsVerticalIcon, FastForwardIcon } from '@heroicons/react/solid';
+import { DotsVerticalIcon, FastForwardIcon } from '@heroicons/react/20/solid';
 import { ChannelModeWaitlistProgress } from './components/progress';
 import { Menu, Transition } from '@headlessui/react';
 import clsx from 'clsx';

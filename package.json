@@ -29,7 +29,7 @@
   "dependencies": {
     "@apollo/client": "3.7.1",
     "@headlessui/react": "1.7.4",
-    "@heroicons/react": "1.0.6",
+    "@heroicons/react": "2.0.13",
     "@nestjs/apollo": "10.1.6",
     "@nestjs/axios": "1.0.0",
     "@nestjs/bull": "0.6.2",

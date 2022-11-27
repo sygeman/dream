@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useDropzone } from 'react-dropzone';
-import { TrashIcon } from '@heroicons/react/solid';
+import { TrashIcon } from '@heroicons/react/20/solid';
 import {
   useEmojisQuery,
   useDeleteEmojiMutation,

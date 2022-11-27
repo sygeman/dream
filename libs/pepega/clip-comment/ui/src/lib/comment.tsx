@@ -1,5 +1,5 @@
 import { useAccess } from '@dream/pepega/auth/ui';
-import { XIcon } from '@heroicons/react/solid';
+import { XMarkIcon } from '@heroicons/react/solid';
 import { Avatar } from '@dream/pepega/components/avatar';
 import { ClipCommentUser } from '@dream/pepega/types';
 import { useRemoveClipCommentMutation } from './clip-comment.api';
@@ -42,7 +42,7 @@ export const ClipComment = ({
               className="p-1 bg-background rounded"
               onClick={removeClipComment}
             >
-              <XIcon className="h-3 text-white/50" />
+              <XMarkIcon className="h-3 text-white/50" />
             </button>
           )}
         </div>

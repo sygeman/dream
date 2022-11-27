@@ -1,5 +1,5 @@
 import React from 'react';
-import { DotsVerticalIcon } from '@heroicons/react/solid';
+import { DotsVerticalIcon } from '@heroicons/react/20/solid';
 
 export const TrackFromList = ({
   cover,

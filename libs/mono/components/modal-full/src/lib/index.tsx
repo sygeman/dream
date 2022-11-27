@@ -1,7 +1,7 @@
 import React, { Fragment, useRef } from 'react';
 import clsx from 'clsx';
 import { Dialog, Transition } from '@headlessui/react';
-import { XIcon } from '@heroicons/react/solid';
+import { XMarkIcon } from '@heroicons/react/solid';
 
 export type ModalProps = {
   id: string;
@@ -17,7 +17,7 @@ export const ModalFull: React.FC<ModalProps> = ({
   menu,
   children,
 }) => {
-  let completeButtonRef = useRef(null);
+  const completeButtonRef = useRef(null);
   const open = isOpen(id);
   const close = () => onClose(id);
 
@@ -58,7 +58,7 @@ export const ModalFull: React.FC<ModalProps> = ({
                     )}
                     onClick={close}
                   >
-                    <XIcon className="p-1.5" />
+                    <XMarkIcon className="p-1.5" />
                   </button>
                 </div>
               </div>

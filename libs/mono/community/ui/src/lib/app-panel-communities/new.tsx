@@ -1,6 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
-import { PlusCircleIcon } from '@heroicons/react/solid';
+import { PlusCircleIcon } from '@heroicons/react/20/solid';
 
 export const AppPanelNewCommunity: React.FC = () => {
   return (

@@ -1,4 +1,4 @@
-import { ClockIcon } from '@heroicons/react/solid';
+import { ClockIcon } from '@heroicons/react/20/solid';
 
 export const HistoryTitle = () => {
   return (

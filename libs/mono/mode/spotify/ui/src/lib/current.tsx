@@ -4,7 +4,7 @@ import {
   FastForwardIcon,
   PlayIcon,
   StopIcon,
-} from '@heroicons/react/solid';
+} from '@heroicons/react/20/solid';
 import { ChannelModeWaitlistProgress } from './components/progress';
 import { Menu, Transition } from '@headlessui/react';
 import clsx from 'clsx';

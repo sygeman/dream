@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { UserCircleIcon } from '@heroicons/react/solid';
+import { UserCircleIcon } from '@heroicons/react/20/solid';
 import { useMeQuery, useUpdateConnectionStatusMutation } from './user.api';
 
 const UserPanelForGuest = () => {

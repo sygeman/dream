@@ -4,7 +4,7 @@ import {
   useDecreaseClipScoreMutation,
   useClipScoreUpdatedSubscription,
 } from './clip-score.api';
-import { PlusSmIcon, MinusSmIcon } from '@heroicons/react/solid';
+import { PlusSmallIcon, MinusSmallIcon } from '@heroicons/react/20/solid';
 import React from 'react';
 import { useRouter } from 'next/router';
 import { useAccess } from '@dream/pepega/auth/ui';
@@ -71,7 +71,7 @@ export function ClipScore({ clipId }: ClipScoreProps) {
   return (
     <div className="flex bg-background mx-2 rounded-lg overflow-hidden">
       <ScoreButton action={increaseClipScore}>
-        {loading ? <div className="w-4 h-4" /> : <PlusSmIcon className="h-4" />}
+        {loading ? <div className="w-4 h-4" /> : <PlusSmallIcon className="h-4" />}
       </ScoreButton>
       <div className="flex px-4 -mx-2 z-10 items-center bg-twitch transition rounded-lg text-sm font-medium">
         {loading ? <div className="w-4 h-4" /> : clipScore}
@@ -80,7 +80,7 @@ export function ClipScore({ clipId }: ClipScoreProps) {
         {loading ? (
           <div className="w-4 h-4" />
         ) : (
-          <MinusSmIcon className="h-4" />
+          <MinusSmallIcon className="h-4" />
         )}
       </ScoreButton>
     </div>

@@ -1,6 +1,6 @@
 import React, { Fragment, useRef } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
-import { XIcon } from '@heroicons/react/solid';
+import { XMarkIcon } from '@heroicons/react/solid';
 
 export type ModalProps = {
   id: string;
@@ -63,7 +63,7 @@ export const Modal: React.FC<ModalProps> = ({
                       className="btn h-6 w-6 p-1 hover:bg-surface focus:outline-none text-accent"
                       onClick={close}
                     >
-                      <XIcon />
+                      <XMarkIcon />
                     </button>
                   </div>
                 )}

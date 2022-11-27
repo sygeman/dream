@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { CogIcon } from '@heroicons/react/solid';
+import { CogIcon } from '@heroicons/react/20/solid';
 import { useCommunityChannel } from '@dream/mono-use-community-channel';
 
 export const ChannelHeader = () => {

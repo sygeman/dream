@@ -2,7 +2,7 @@ import React from 'react';
 import clsx from 'clsx';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { ViewListIcon } from '@heroicons/react/solid';
+import { ViewListIcon } from '@heroicons/react/20/solid';
 
 export const Queue: React.FC<{
   hidden?: boolean;

@@ -4,7 +4,7 @@ import { ChannelMode } from '@dream/mono-types';
 import { ChannelTwitchModeSettings } from '@dream/mono-mode-twitch-ui';
 import { ChannelSpotifyModeSettings } from '@dream/mono-mode-spotify-ui';
 import { channelMods } from '@dream/mono/utils/channel-mods';
-import { ArrowLeftIcon } from '@heroicons/react/outline';
+import { ArrowLeftIcon } from '@heroicons/react/24/outline';
 
 export const ModeSettings: React.FC<{
   active: any;

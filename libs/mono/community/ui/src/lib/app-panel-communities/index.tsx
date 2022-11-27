@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
-import { HeartIcon } from '@heroicons/react/solid';
+import { HeartIcon } from '@heroicons/react/20/solid';
 import { useCommunitiesQuery } from '../community.api';
 import { useMeQuery } from '@dream/mono-user-ui';
 import { AppPanelMenuItem } from './menu-item';

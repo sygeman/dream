@@ -42,9 +42,7 @@ specifiers:
   '@nrwl/web': 15.2.1
   '@nrwl/workspace': 15.2.1
   '@nx-tools/container-metadata': 4.0.0
-  '@nx-tools/docker-metadata': 3.0.8
   '@nx-tools/nx-container': 4.0.0
-  '@nx-tools/nx-docker': 3.0.8
   '@nxext/solid': 14.0.2
   '@prisma/client': 4.6.1
   '@solid-primitives/keyboard': 1.0.5
@@ -257,9 +255,7 @@ devDependencies:
   '@nrwl/web': 15.2.1_u55idcts3hipciqxjkd4jli3ue
   '@nrwl/workspace': 15.2.1_l2ii4lquvy3r2gpzzsrst76beq
   '@nx-tools/container-metadata': 4.0.0_v2bbu4bxexsan3ngwqmfllnfsq
-  '@nx-tools/docker-metadata': 3.0.8_vyph3cyiol2islrdc3go7khuwm
   '@nx-tools/nx-container': 4.0.0_@nrwl+devkit@15.2.1
-  '@nx-tools/nx-docker': 3.0.8_uovfqaexd6yuikkirs24pdoa54
   '@nxext/solid': 14.0.2_msmlqsvvqra4k466dnfewopvxa
   '@swc-node/register': 1.5.4_utjah2wdhmg5maqoqvrhjvwbhq
   '@swc/cli': 0.1.57_@swc+core@1.3.20
@@ -4615,22 +4611,6 @@ packages:
     transitivePeerDependencies:
       - encoding
 
-  /@nx-tools/ci-context/3.0.8_vyph3cyiol2islrdc3go7khuwm:
-    resolution: {integrity: sha512-np5fUUxdc8qBCDDZqOciO5Ey3dm58OyLfIeQ46+uUBqNYb4p52rVcwVnYtjH4yloV8Ki8rvfuRL7P6KMdh10Ig==}
-    engines: {node: '>=14'}
-    peerDependencies:
-      tslib: ^2.1.0
-    dependencies:
-      '@actions/github': 5.1.1
-      '@nx-tools/core': 3.0.8_@nrwl+devkit@15.2.1
-      '@swc/helpers': 0.4.14
-      ci-info: 3.6.0
-      tslib: 2.4.1
-    transitivePeerDependencies:
-      - '@nrwl/devkit'
-      - encoding
-    dev: true
-
   /@nx-tools/ci-context/4.0.0_@nrwl+devkit@15.2.1:
     resolution: {integrity: sha512-spaefSQZEc5m8ju44nZYKqYYzfxglcohcmcnd6xAJ6OhNl8LrALekqqTgE5oDxfHtmPhDZTtGc0icb18opcYsg==}
     dependencies:
@@ -4660,18 +4640,6 @@ packages:
       - encoding
     dev: true
 
-  /@nx-tools/core/3.0.8_@nrwl+devkit@15.2.1:
-    resolution: {integrity: sha512-P4pgPx1sF4CYJJICGf/dSBJ5VnDvfrH1kPAZs4wvPbECFdHj0EVsVN3fdibh3kmXJz4ZAsyJqPUc4ZmsjVbLZw==}
-    engines: {node: '>=14'}
-    peerDependencies:
-      '@nrwl/devkit': ^12.0.0 || ^13.0.0 || ^14.0.0 || ^15.0.0
-    dependencies:
-      '@actions/exec': 1.1.1
-      '@nrwl/devkit': 15.2.1_nx@15.2.1+typescript@4.9.3
-      '@swc/helpers': 0.4.14
-      colorette: 2.0.19
-    dev: true
-
   /@nx-tools/core/4.0.0_@nrwl+devkit@15.2.1:
     resolution: {integrity: sha512-Vd6ahI1TW5b0NRMJP5eHLfZg5ssnb6aZtvPWBmjFYrhrt6jlat2G11xzp1hdx2ETdipvDGBlJVMWJU0KxgqBVg==}
     peerDependencies:
@@ -4680,27 +4648,6 @@ packages:
       '@actions/exec': 1.1.1
       '@nrwl/devkit': 15.2.1_nx@15.2.1+typescript@4.9.3
       colorette: 2.0.19
-    dev: true
-
-  /@nx-tools/docker-metadata/3.0.8_vyph3cyiol2islrdc3go7khuwm:
-    resolution: {integrity: sha512-gCiEqjnC4cLBSx5hwbDZGiJ9c4i0sKmbUQZPLOcXKFQG/FByWsgbTL8XOsEkSJWD/N94tDQwKUYI0NEe4Y10BQ==}
-    engines: {node: '>=14'}
-    peerDependencies:
-      '@nrwl/devkit': ^12.0.0 || ^13.0.0 || ^14.0.0 || ^15.0.0
-      tslib: ^2.1.0
-    dependencies:
-      '@nrwl/devkit': 15.2.1_nx@15.2.1+typescript@4.9.3
-      '@nx-tools/ci-context': 3.0.8_vyph3cyiol2islrdc3go7khuwm
-      '@nx-tools/core': 3.0.8_@nrwl+devkit@15.2.1
-      '@renovate/pep440': 1.0.0
-      '@swc/helpers': 0.4.14
-      csv-parse: 4.16.3
-      handlebars: 4.7.7
-      moment: 2.29.4
-      semver: 7.3.8
-      tslib: 2.4.1
-    transitivePeerDependencies:
-      - encoding
     dev: true
 
   /@nx-tools/nx-container/4.0.0_@nrwl+devkit@15.2.1:
@@ -4715,27 +4662,6 @@ packages:
       handlebars: 4.7.7
       semver: 7.3.8
       tmp: 0.2.1
-    dev: true
-
-  /@nx-tools/nx-docker/3.0.8_uovfqaexd6yuikkirs24pdoa54:
-    resolution: {integrity: sha512-05TDmZ+4fOwIlGPTlyKq7mEu76UTZ2Sq2fSiw1Qyr2+b95ZJcDoelpriRdWzeJUTuvTQjuZ7jva+og2XJzmzlg==}
-    engines: {node: '>=14'}
-    peerDependencies:
-      dotenv: '>=10.0.0'
-      tslib: ^2.1.0
-    dependencies:
-      '@nx-tools/core': 3.0.8_@nrwl+devkit@15.2.1
-      '@swc/helpers': 0.4.14
-      csv-parse: 4.16.3
-      dotenv: 16.0.3
-      semver: 7.3.8
-      tmp: 0.2.1
-      tslib: 2.4.1
-    optionalDependencies:
-      '@nx-tools/docker-metadata': 3.0.8_vyph3cyiol2islrdc3go7khuwm
-    transitivePeerDependencies:
-      - '@nrwl/devkit'
-      - encoding
     dev: true
 
   /@nxext/solid/14.0.2_msmlqsvvqra4k466dnfewopvxa:

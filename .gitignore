@@ -45,3 +45,4 @@ prisma/client
 
 # Next.js
 .next
+.env.local

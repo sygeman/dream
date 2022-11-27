@@ -16,7 +16,9 @@ export const config = [
     apiURL: process.env.API_URL,
   })),
   registerAs('db', () => ({
-    redisUrl: process.env.REDIS_URL,
+    redisPort: process.env.REDIS_PORT,
+    redisHost: process.env.REDIS_HOST,
+    redisUrl: `redis://${process.env.REDIS_HOST}:${process.env.REDIS_PORT}`,
     minioAccessKey: process.env.MINIO_ACCESS_KEY,
     minioSecretKey: process.env.MINIO_SECRET_KEY,
   })),

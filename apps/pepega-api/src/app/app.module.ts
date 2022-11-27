@@ -18,6 +18,7 @@ import { ClipHistoryModule } from '@dream/pepega/clip-history/api';
 import { ClipScoreModule } from '@dream/pepega/clip-score/api';
 import { UserCoinModule } from '@dream/pepega/user-coin/api';
 import { FollowsModule } from '@dream/pepega/follows/api';
+import { SharedModule } from './shared.module';
 
 @Module({
   imports: [
@@ -83,6 +84,7 @@ import { FollowsModule } from '@dream/pepega/follows/api';
         },
       }),
     }),
+    SharedModule,
     AuthModule,
     UserModule,
     ConnectionModule,

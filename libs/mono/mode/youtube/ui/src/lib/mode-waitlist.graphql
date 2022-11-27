@@ -72,10 +72,6 @@ subscription waitlistYoutubeQueueUpdated($channelId: String!) {
   waitlistYoutubeQueueUpdated(channelId: $channelId)
 }
 
-subscription waitlistYoutubeQueueUpdated($channelId: String!) {
-  waitlistYoutubeQueueUpdated(channelId: $channelId)
-}
-
 subscription waitlistYoutubeHistoryUpdated($channelId: String!) {
   waitlistYoutubeHistoryUpdated(channelId: $channelId)
 }

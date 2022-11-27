@@ -1,7 +1,7 @@
 import React, { Fragment, useRef } from 'react';
 import clsx from 'clsx';
 import { Dialog, Transition } from '@headlessui/react';
-import { XMarkIcon } from '@heroicons/react/solid';
+import { XMarkIcon } from '@heroicons/react/20/solid';
 
 export type ModalProps = {
   id: string;

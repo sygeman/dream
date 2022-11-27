@@ -1,5 +1,5 @@
 import React from 'react';
-import { DotsVerticalIcon } from '@heroicons/react/20/solid';
+import { EllipsisVerticalIcon } from '@heroicons/react/20/solid';
 
 export const TrackFromList = ({
   cover,
@@ -27,7 +27,7 @@ export const TrackFromList = ({
       </div>
       <div className="ml-2">
         <button className="h-6 w-6 flex btn p-0 items-center justify-center opacity-0 group-hover:opacity-100">
-          <DotsVerticalIcon className="h-4 text-accent" />
+          <EllipsisVerticalIcon className="h-4 text-accent" />
         </button>
       </div>
     </div>

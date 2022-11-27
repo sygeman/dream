@@ -4,7 +4,7 @@ import { useCreateChannelMessageMutation } from './chat.api';
 import { useEmojisQuery } from '@dream/mono-emoji-ui';
 import { convertTextToEmojiCode } from '@dream/mono-utils-emoji';
 import { Menu, Tab, Transition } from '@headlessui/react';
-import { EmojiHappyIcon } from '@heroicons/react/20/solid';
+import { FaceSmileIcon } from '@heroicons/react/20/solid';
 import clsx from 'clsx';
 import { EmojiPicker } from '@dream/mono-emoji-ui';
 import { useCommunityChannel } from '@dream/mono-use-community-channel';
@@ -105,7 +105,7 @@ export const ChatBottom: React.FC<ChatBottomProps> = ({ channelId }) => {
             </Menu.Button> */}
             <Menu.Button className="absolute right-2 bottom-2">
               {({ open }) => (
-                <EmojiHappyIcon
+                <FaceSmileIcon
                   onClick={() => setPickerType(PickerType.EMOJI)}
                   className={clsx(
                     'h-4',

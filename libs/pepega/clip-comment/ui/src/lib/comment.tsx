@@ -1,5 +1,5 @@
 import { useAccess } from '@dream/pepega/auth/ui';
-import { XMarkIcon } from '@heroicons/react/solid';
+import { XMarkIcon } from '@heroicons/react/20/solid';
 import { Avatar } from '@dream/pepega/components/avatar';
 import { ClipCommentUser } from '@dream/pepega/types';
 import { useRemoveClipCommentMutation } from './clip-comment.api';

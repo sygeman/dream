@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Chat } from '@dream/mono-chat-ui';
-import { XMarkIcon, UsersIcon, AnnotationIcon } from '@heroicons/react/solid';
+import { XMarkIcon, UsersIcon, ChatBubbleBottomCenterTextIcon } from '@heroicons/react/20/solid';
 import { Transition } from '@headlessui/react';
 import { useCommunityChannel } from '@dream/mono-use-community-channel';
 import { useChannelUsersOnlineQuery } from '@dream/mono-channel-ui';
@@ -70,7 +70,7 @@ export const CommunityRightPanel = () => {
       <div className="flex items-center h-10">
         <div className="flex flex-1 justify-center items-center bg-surface h-full">
           <span className="text-white text-sm">
-            <AnnotationIcon className="text-white h-3.5" />
+            <ChatBubbleBottomCenterTextIcon className="text-white h-3.5" />
           </span>
         </div>
         <div

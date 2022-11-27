@@ -2,7 +2,7 @@ import React from 'react';
 import clsx from 'clsx';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { ViewListIcon } from '@heroicons/react/20/solid';
+import { Bars4Icon } from '@heroicons/react/20/solid';
 
 export const Queue: React.FC<{
   hidden?: boolean;
@@ -28,7 +28,7 @@ export const Queue: React.FC<{
       )}
     >
       <div className="flex text-xs text-accent font-medium px-4 py-2 items-center">
-        <ViewListIcon className="h-4 text-accent mr-2 opacity-50" />
+        <Bars4Icon className="h-4 text-accent mr-2 opacity-50" />
         <span onClick={onSelect}>Queue</span>
         <Link
           href={{

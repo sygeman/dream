@@ -9,7 +9,7 @@ import {
   PlusCircleIcon,
   XMarkIcon,
   CogIcon,
-} from '@heroicons/react/solid';
+} from '@heroicons/react/20/solid';
 import { useCommunityChannel } from '@dream/mono-use-community-channel';
 
 const MenuItem = ({ Icon, label }) => {

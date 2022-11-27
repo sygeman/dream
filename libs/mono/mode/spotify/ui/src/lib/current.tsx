@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import {
-  DotsVerticalIcon,
-  FastForwardIcon,
+  EllipsisVerticalIcon,
+  ForwardIcon,
   PlayIcon,
   StopIcon,
 } from '@heroicons/react/20/solid';
@@ -38,7 +38,7 @@ const MenuItemSkip = () => {
     <MenuItem
       action={skipTrack}
       label="Skip"
-      icon={<FastForwardIcon className="h-4 text-accent" />}
+      icon={<ForwardIcon className="h-4 text-accent" />}
     />
   );
 };
@@ -65,7 +65,7 @@ const CurrentMenu: React.FC<{ actions: SpotifyModeCurrentAction[] }> = ({
               open && 'bg-surface'
             )}
           >
-            <DotsVerticalIcon className="h-4 text-accent" />
+            <EllipsisVerticalIcon className="h-4 text-accent" />
           </Menu.Button>
           <Transition
             as={Fragment}

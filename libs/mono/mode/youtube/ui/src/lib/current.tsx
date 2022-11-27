@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useRef, useState } from 'react';
 import ReactPlayer from 'react-player';
-import { DotsVerticalIcon, FastForwardIcon } from '@heroicons/react/20/solid';
+import { EllipsisVerticalIcon, ForwardIcon } from '@heroicons/react/20/solid';
 import { ChannelModeWaitlistProgress } from './components/progress';
 import { Menu, Transition } from '@headlessui/react';
 import clsx from 'clsx';
@@ -22,7 +22,7 @@ const CurrentMenu = () => {
               open && 'bg-surface'
             )}
           >
-            <DotsVerticalIcon className="h-4 text-accent" />
+            <EllipsisVerticalIcon className="h-4 text-accent" />
           </Menu.Button>
           <Transition
             as={Fragment}
@@ -49,7 +49,7 @@ const CurrentMenu = () => {
                 )}
               >
                 <span className="text-sm">Skip</span>
-                <FastForwardIcon className="h-4 text-accent" />
+                <ForwardIcon className="h-4 text-accent" />
               </Menu.Item>
             </Menu.Items>
           </Transition>

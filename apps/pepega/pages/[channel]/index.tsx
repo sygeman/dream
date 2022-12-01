@@ -1,6 +1,6 @@
-import { Clips } from '@dream/pepega/clip/ui';
-import { MainLayout } from '@dream/pepega/layouts/main';
 import { useRouter } from 'next/router';
+import { Clips } from '../../components/clips';
+import { MainLayout } from '../../layouts/main';
 
 const ChannelPage = () => {
   const router = useRouter();

@@ -7,7 +7,7 @@ import {
   useDecreaseClipScoreMutation,
   useClipScoreUpdatedSubscription,
 } from './clip-score.api';
-import { useAccess } from '@dream/pepega/auth/ui';
+import { useAccess } from '../../utils/use-access';
 
 const ScoreButton = ({
   action,

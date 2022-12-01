@@ -1,10 +1,10 @@
-import { dateDistanceInWordsToNow } from '@dream/mono-utils-date';
-import { CardMedia } from '@dream/pepega/components/card-media';
-import { VideoPreview } from '@dream/pepega/components/video-preview';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { useResizeDetector } from 'react-resize-detector';
 import { VirtuosoGrid } from 'react-virtuoso';
+import { CardMedia } from '../card-media';
+import { VideoPreview } from '../video-preview';
+import { dateDistanceInWordsToNow } from '../../utils/date';
 import { trpc } from '../../utils/trpc';
 import { Scroller } from './scrollbar';
 

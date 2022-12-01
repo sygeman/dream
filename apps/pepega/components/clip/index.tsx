@@ -3,7 +3,6 @@ import dynamic from 'next/dynamic';
 import { useAccess } from '../../utils/use-access';
 import { ClipScore } from '../clip-score';
 import { ClipComments } from '../clip-comment';
-import { useSetClipHistoryMutation } from '@dream/pepega/clip-history/ui';
 
 const TwitchClipPlayer = dynamic(
   () => import('../clip-player').then((m) => m.TwitchClipPlayer),
@@ -16,12 +15,11 @@ export interface ClipProps {
 }
 
 export const Clip: FC<ClipProps> = ({ clipId = '', autoPlay }) => {
-  const [setClipHistory] = useSetClipHistoryMutation();
   const [{ allow: isUser }] = useAccess();
 
   useEffect(() => {
     if (isUser) {
-      setClipHistory({ variables: { clipId } });
+      // setClipHistory({ variables: { clipId } });
     }
   }, [isUser]);
 

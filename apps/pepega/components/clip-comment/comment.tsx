@@ -1,8 +1,6 @@
 import { XMarkIcon } from '@heroicons/react/20/solid';
 import { useAccess } from '../../utils/use-access';
 import { Avatar } from '../avatar';
-import { ClipCommentUser } from '@dream/pepega/types';
-import { useRemoveClipCommentMutation } from './clip-comment.api';
 
 export const ClipComment = ({
   id,
@@ -11,14 +9,14 @@ export const ClipComment = ({
 }: {
   id: string;
   content: string;
-  user: ClipCommentUser;
+  user: any;
   userId: string;
 }) => {
-  const [removeClipCommentMutation] = useRemoveClipCommentMutation();
-  const removeClipComment = () =>
-    removeClipCommentMutation({
-      variables: { id },
-    });
+  const removeClipComment = () => {
+    // removeClipCommentMutation({
+    //   variables: { id },
+    // });
+  };
 
   const [{ allow: isAllowRemoveClipComment }] = useAccess((currentUser) => {
     return currentUser.role === 'Mod' || currentUser.role === 'Admin';

@@ -1,20 +1,19 @@
 import { useRef } from 'react';
 import { useAccess } from '../../utils/use-access';
-import { useCreateClipCommentMutation } from './clip-comment.api';
 
 export const ClipCommentBottom = ({ clipId }: { clipId: string }) => {
   const textInput = useRef<HTMLInputElement>(null);
   const [{ allow: isAllow }] = useAccess();
   let lock = false;
 
-  const [createClipComment] = useCreateClipCommentMutation({
-    onCompleted: (data) => {
-      if (data.createClipComment && textInput.current) {
-        textInput.current.value = '';
-        lock = false;
-      }
-    },
-  });
+  // const [createClipComment] = useCreateClipCommentMutation({
+  //   onCompleted: (data) => {
+  //     if (data.createClipComment && textInput.current) {
+  //       textInput.current.value = '';
+  //       lock = false;
+  //     }
+  //   },
+  // });
 
   return (
     <div className="h-16 flex relative">
@@ -36,9 +35,9 @@ export const ClipCommentBottom = ({ clipId }: { clipId: string }) => {
 
           if (e.key === 'Enter' && !lock && content.length > 0) {
             lock = true;
-            createClipComment({
-              variables: { input: { clipId, content } },
-            });
+            // createClipComment({
+            //   variables: { input: { clipId, content } },
+            // });
           }
         }}
       />

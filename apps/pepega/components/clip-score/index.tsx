@@ -1,12 +1,12 @@
 import { PlusSmallIcon, MinusSmallIcon } from '@heroicons/react/20/solid';
 import React from 'react';
 import { useRouter } from 'next/router';
-import {
-  useClipScoreQuery,
-  useIncreaseClipScoreMutation,
-  useDecreaseClipScoreMutation,
-  useClipScoreUpdatedSubscription,
-} from './clip-score.api';
+// import {
+//   useClipScoreQuery,
+//   useIncreaseClipScoreMutation,
+//   useDecreaseClipScoreMutation,
+//   useClipScoreUpdatedSubscription,
+// } from './clip-score.api';
 import { useAccess } from '../../utils/use-access';
 
 const ScoreButton = ({
@@ -43,30 +43,32 @@ export interface ClipScoreProps {
 }
 
 export function ClipScore({ clipId }: ClipScoreProps) {
-  const clipScoreQuery = useClipScoreQuery({ variables: { clipId } });
-  const clipScore = clipScoreQuery?.data?.clipScore || 0;
+  // const clipScoreQuery = useClipScoreQuery({ variables: { clipId } });
+  const clipScore = 0; //clipScoreQuery?.data?.clipScore || 0;
 
-  const [increaseClipScoreMutation] = useIncreaseClipScoreMutation();
-  const increaseClipScore = () =>
-    increaseClipScoreMutation({ variables: { clipId } });
+  // const [increaseClipScoreMutation] = useIncreaseClipScoreMutation();
+  const increaseClipScore = () => {
+    // increaseClipScoreMutation({ variables: { clipId } });
+  };
 
-  const [decreaseClipScoreMutation] = useDecreaseClipScoreMutation();
-  const decreaseClipScore = () =>
-    decreaseClipScoreMutation({ variables: { clipId } });
+  // const [decreaseClipScoreMutation] = useDecreaseClipScoreMutation();
+  const decreaseClipScore = () => {
+    // decreaseClipScoreMutation({ variables: { clipId } });
+  };
 
-  useClipScoreUpdatedSubscription({
-    variables: { clipId },
-    onSubscriptionData: ({ subscriptionData }) => {
-      if (!subscriptionData.data) return;
+  // useClipScoreUpdatedSubscription({
+  //   variables: { clipId },
+  //   onSubscriptionData: ({ subscriptionData }) => {
+  //     if (!subscriptionData.data) return;
 
-      clipScoreQuery.updateQuery((prev) => ({
-        ...prev,
-        clipScore: subscriptionData?.data?.clipScoreUpdated || 0,
-      }));
-    },
-  });
+  //     clipScoreQuery.updateQuery((prev) => ({
+  //       ...prev,
+  //       clipScore: subscriptionData?.data?.clipScoreUpdated || 0,
+  //     }));
+  //   },
+  // });
 
-  const loading = clipScoreQuery.loading;
+  const loading = false; //clipScoreQuery.loading;
 
   return (
     <div className="flex bg-background mx-2 rounded-lg overflow-hidden">

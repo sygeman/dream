@@ -3,7 +3,6 @@ import { useRouter } from 'next/router';
 import { Input } from '../input';
 import { CoinIconGold } from '../coin-icon';
 import { TwitchClipPlayer } from '../clip-player';
-import { useIncreaseClipScoreMutation } from '@dream/pepega/clip-score/ui';
 import { useModal } from '../../utils/use-modal';
 import { Modal } from '../modal';
 import { parseSource } from './parse-source';
@@ -14,14 +13,15 @@ export const CreateClipModal = () => {
   const costCreateClip = 10;
   const [clipId, setClipId] = useState('');
 
-  const [increaseClipScoreMutation] = useIncreaseClipScoreMutation();
-  const increaseClipScore = (clipId: string) =>
-    increaseClipScoreMutation({
-      variables: { clipId },
-      onCompleted: () => {
-        router.push(`/clip/${clipId}`);
-      },
-    });
+  // const [increaseClipScoreMutation] = useIncreaseClipScoreMutation();
+  const increaseClipScore = (clipId: string) => {
+    // increaseClipScoreMutation({
+    //   variables: { clipId },
+    //   onCompleted: () => {
+    //     router.push(`/clip/${clipId}`);
+    //   },
+    // });
+  };
 
   return (
     <Modal id="newClip" title="Предложить клип" {...modalProps}>

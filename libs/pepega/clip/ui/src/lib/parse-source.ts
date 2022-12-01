@@ -38,7 +38,7 @@ const isTwitchClip = (sourceUrl: string) => {
   return result;
 };
 
-const allMethods = {
+const allMethods: any = {
   isTwitchClip,
 };
 

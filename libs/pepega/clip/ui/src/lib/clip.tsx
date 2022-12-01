@@ -1,9 +1,17 @@
 import { FC, useEffect } from 'react';
+import dynamic from 'next/dynamic';
 import { useAccess } from '@dream/pepega/auth/ui';
-import { TwitchClipPlayer } from '@dream/pepega/components/clip-player';
 import { ClipScore } from '@dream/pepega/clip-score/ui';
 import { ClipComments } from '@dream/pepega/clip-comment/ui';
 import { useSetClipHistoryMutation } from '@dream/pepega/clip-history/ui';
+
+const TwitchClipPlayer = dynamic(
+  () =>
+    import('@dream/pepega/components/clip-player').then(
+      (m) => m.TwitchClipPlayer
+    ),
+  { ssr: false }
+);
 
 export interface ClipProps {
   clipId?: string;

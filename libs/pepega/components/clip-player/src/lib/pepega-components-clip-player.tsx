@@ -12,7 +12,7 @@ export const TwitchClipPlayer = ({
         className="w-full h-full relative"
         src={`https://clips.twitch.tv/embed?clip=${sourceId}&muted=false&autoplay=${
           autoPlay ? 'true' : 'false'
-        }&parent=${window?.location?.host}`}
+        }&parent=${window?.location?.hostname}`}
         frameBorder="0"
         allowFullScreen
       />

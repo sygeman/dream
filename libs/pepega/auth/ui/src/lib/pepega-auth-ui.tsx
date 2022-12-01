@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import Link from 'next/link';
+import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { TwitchIcon } from '@dream/icons/twitch';
 import { useModal } from '@dream/mono-utils-use-modal';
@@ -9,16 +10,15 @@ export const AuthButtonTwitch = () => {
   const { asPath } = useRouter();
 
   return (
-    <Link
-      href={`/api/auth/twitch?continue=${asPath.replace('authModal=1', '')}`}
+    <button
+      className="btn-social btn-social-twitch"
+      onClick={() => signIn('twitch')}
     >
-      <button className="btn-social btn-social-twitch">
-        <TwitchIcon className="text-white mr-2 h-6 opacity-90" />
-        <span className="text-white opacity-80 text-xs uppercase tracking-widest mx-5 text-center w-full">
-          Login with Twitch
-        </span>
-      </button>
-    </Link>
+      <TwitchIcon className="text-white mr-2 h-6 opacity-90" />
+      <span className="text-white opacity-80 text-xs uppercase tracking-widest mx-5 text-center w-full">
+        Login with Twitch
+      </span>
+    </button>
   );
 };
 

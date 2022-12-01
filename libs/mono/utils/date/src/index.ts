@@ -1,7 +1,7 @@
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import locale from 'date-fns/locale/en-US';
 
-export const dateDistanceInWordsToNow = (date) => {
+export const dateDistanceInWordsToNow = (date: any) => {
   let numDate;
 
   if (Number.isInteger(date)) {

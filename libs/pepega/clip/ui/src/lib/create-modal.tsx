@@ -23,21 +23,23 @@ export const CreateClipModal = () => {
       },
     });
 
-  const setSourceData = (e) => {
-    const soruceData = parseSource(e.target.value);
-
-    if (soruceData && soruceData.payload && soruceData.payload.sourceId) {
-      setClipId(soruceData.payload.sourceId);
-    }
-  };
-
   return (
     <Modal id="newClip" title="Предложить клип" {...modalProps}>
       <div className="w-[600px] bg-surface p-4 rounded overflow-hidden">
         <Input
           autoFocus
           placeholder="Ссылка на Twitch клип"
-          onChange={setSourceData}
+          onChange={(e) => {
+            const soruceData = parseSource(e.target.value);
+
+            if (
+              soruceData &&
+              soruceData.payload &&
+              soruceData.payload.sourceId
+            ) {
+              setClipId(soruceData.payload.sourceId);
+            }
+          }}
         />
         {clipId && <TwitchClipPlayer sourceId={clipId} />}
         <div className="mt-5 flex justify-end">

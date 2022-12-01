@@ -63,7 +63,28 @@
       "executor": "nx:run-commands",
       "outputs": [],
       "options": {
-        "command": "graphql-codegen --config ./apps/pepega/codegen.yml"
+        "command": "prisma generate --schema ./apps/pepega/prisma/schema.prisma"
+      }
+    },
+    "dbpush": {
+      "executor": "nx:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "prisma db push --schema ./apps/pepega/prisma/schema.prisma"
+      }
+    },
+    "migrate": {
+      "executor": "nx:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "prisma migrate dev --schema ./apps/pepega/prisma/schema.prisma"
+      }
+    },
+    "studio": {
+      "executor": "nx:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "prisma studio --schema ./apps/pepega/prisma/schema.prisma"
       }
     },
     "docker": {

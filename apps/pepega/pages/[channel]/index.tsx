@@ -3,11 +3,9 @@ import { Clips } from '../../components/clips';
 import { MainLayout } from '../../layouts/main';
 
 const ChannelPage = () => {
-  const router = useRouter();
+  const { query } = useRouter();
   const userId =
-    typeof router?.query?.channel === 'string'
-      ? router?.query?.channel
-      : undefined;
+    typeof query?.channel === 'string' ? query?.channel : undefined;
 
   return (
     <MainLayout>

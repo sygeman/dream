@@ -1,3 +1,5 @@
+import { useSession } from 'next-auth/react';
+
 interface IProfile {
   id: string;
   name: string;
@@ -9,25 +11,24 @@ interface IProfile {
 
 interface IUser {
   id: string;
-  role: string;
-  profiles: IProfile[];
+  role?: string;
 }
 
 export function useAccess(allow?: (currentUser: IUser) => boolean) {
-  const loading = false;
-  // const { loading, error, data } = useQuery(GET_USER, { ssr: false });
+  const { data: session, status } = useSession();
+  const loading = status === 'loading';
 
-  // if (loading || error || !data.user) {
-  //   return [{ loading, allow: false }];
-  // }
+  if (status !== 'authenticated') {
+    return [{ loading, allow: false }];
+  }
 
-  // if (typeof allow === 'function' && allow(data.user)) {
-  //   return [{ loading, allow: true }];
-  // }
+  if (typeof allow === 'function' && allow(session.user)) {
+    return [{ loading, allow: true }];
+  }
 
-  // if (typeof allow !== 'function' && !!data.user) {
-  //   return [{ loading, allow: true }];
-  // }
+  if (typeof allow !== 'function' && !!session.user) {
+    return [{ loading, allow: true }];
+  }
 
-  return [{ loading, allow: false }];
+  return [{ loading, allow: true }];
 }

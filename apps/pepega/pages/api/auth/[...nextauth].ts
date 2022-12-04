@@ -5,7 +5,6 @@ import { prisma } from '../../../server/prisma';
 
 export default NextAuth({
   adapter: PrismaAdapter(prisma),
-  // Configure one or more authentication providers
   providers: [
     TwitchProvider({
       clientId: process.env.TWITCH_ID || '',
@@ -19,7 +18,12 @@ export default NextAuth({
   ],
   callbacks: {
     async session({ session, user }) {
+      const u = await prisma.user.findUnique({
+        where: { id: user.id },
+        select: { role: true },
+      });
       session.user.id = user.id;
+      session.user.role = u?.role as string;
       return session;
     },
   },

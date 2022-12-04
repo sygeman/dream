@@ -19,6 +19,7 @@ export const AddClip = () => {
           },
         }}
         passHref
+        className="w-full"
       >
         <button className="btn btn-primary w-full font-medium">
           Предложить клип

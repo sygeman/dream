@@ -3,12 +3,11 @@ import { Clip } from '../../components/clip';
 import { MainLayout } from '../../layouts/main';
 
 const ClipPage = () => {
-  const router = useRouter();
-  const clipId = router.query.id;
+  const {
+    query: { id: clipId },
+  } = useRouter();
 
-  if (typeof clipId !== 'string') {
-    return null;
-  }
+  if (typeof clipId !== 'string') return null;
 
   return (
     <MainLayout>

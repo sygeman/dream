@@ -1,5 +1,5 @@
+import Image from 'next/image';
 import { signIn } from 'next-auth/react';
-import { TwitchIcon } from './twitch-icon';
 import { useModal } from '../../utils/use-modal';
 import { Modal } from '../modal';
 
@@ -14,7 +14,13 @@ export const AuthModal = () => {
             className="btn-social btn-social-twitch"
             onClick={() => signIn('twitch')}
           >
-            <TwitchIcon className="text-white mr-2 h-6 opacity-90" />
+            <Image
+              alt=""
+              src="/twitch.svg"
+              width={24}
+              height={24}
+              className="mr-2 h-6 opacity-90"
+            />
             <span className="text-white opacity-80 text-xs uppercase tracking-widest mx-5 text-center w-full">
               Login with Twitch
             </span>

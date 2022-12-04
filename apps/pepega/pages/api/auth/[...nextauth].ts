@@ -20,10 +20,11 @@ export default NextAuth({
     async session({ session, user }) {
       const u = await prisma.user.findUnique({
         where: { id: user.id },
-        select: { role: true },
+        select: { role: true, image: true },
       });
       session.user.id = user.id;
       session.user.role = u?.role as string;
+      session.user.image = u?.image as string;
       return session;
     },
   },

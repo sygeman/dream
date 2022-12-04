@@ -36,9 +36,9 @@ export const Clip: FC<ClipProps> = ({ clipId = '', autoPlay }) => {
         <ClipScore clipId={clipId} />
         {/* <ClipShare clipId={clipId} /> */}
       </div>
-      <div className="flex flex-1 relative bg-surface overflow-hidden">
+      {/* <div className="flex flex-1 relative bg-surface overflow-hidden">
         <ClipComments clipId={clipId} />
-      </div>
+      </div> */}
     </div>
   );
 };

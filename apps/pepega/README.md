@@ -11,7 +11,13 @@ Mutation
 
 Subscription
 
-- clipCommentCreated(clipId: ID!): ClipComment!
-- clipCommentRemoved(clipId: ID!): ID!
 - userCoinsUpdated: Int!
 - clipScoreUpdated(clipId: String!): Int!
+- clipCommentCreated(clipId: ID!): ClipComment!
+- clipCommentRemoved(clipId: ID!): ID!
+
+Events Service
+
+- subscribe
+- unsubscribe
+- publish

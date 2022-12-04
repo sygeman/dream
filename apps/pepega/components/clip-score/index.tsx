@@ -38,30 +38,35 @@ export interface ClipScoreProps {
 }
 
 export function ClipScore({ clipId }: ClipScoreProps) {
-  const clipScoreQuery = trpc.clipScore.byId.useQuery({ id: clipId });
+  const clipScoreQuery = trpc.clipScore.byId.useQuery(
+    { id: clipId },
+    { refetchInterval: 5000 }
+  );
   const clipScore = clipScoreQuery?.data || 0;
 
   const increaseClipScoreMutation = trpc.clipScore.increase.useMutation();
   const increaseClipScore = () =>
-    increaseClipScoreMutation.mutate({ id: clipId });
+    increaseClipScoreMutation.mutate(
+      { id: clipId },
+      {
+        onSuccess: () => {
+          clipScoreQuery.refetch();
+        },
+      }
+    );
 
   const decreaseClipScoreMutation = trpc.clipScore.decrease.useMutation();
   const decreaseClipScore = () =>
-    decreaseClipScoreMutation.mutate({ id: clipId });
+    decreaseClipScoreMutation.mutate(
+      { id: clipId },
+      {
+        onSuccess: () => {
+          clipScoreQuery.refetch();
+        },
+      }
+    );
 
-  // useClipScoreUpdatedSubscription({
-  //   variables: { clipId },
-  //   onSubscriptionData: ({ subscriptionData }) => {
-  //     if (!subscriptionData.data) return;
-
-  //     clipScoreQuery.updateQuery((prev) => ({
-  //       ...prev,
-  //       clipScore: subscriptionData?.data?.clipScoreUpdated || 0,
-  //     }));
-  //   },
-  // });
-
-  const loading = false; //clipScoreQuery.loading;
+  const loading = clipScoreQuery.isLoading;
 
   return (
     <div className="flex bg-background mx-2 rounded-lg overflow-hidden">

@@ -11,8 +11,6 @@ Mutation
 
 Subscription
 
-- userCoinsUpdated: Int!
-- clipScoreUpdated(clipId: String!): Int!
 - clipCommentCreated(clipId: ID!): ClipComment!
 - clipCommentRemoved(clipId: ID!): ID!
 

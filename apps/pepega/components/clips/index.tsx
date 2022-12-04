@@ -4,7 +4,7 @@ import { useResizeDetector } from 'react-resize-detector';
 import { VirtuosoGrid } from 'react-virtuoso';
 import { CardMedia } from '../card-media';
 import { VideoPreview } from '../video-preview';
-import { dateDistanceInWordsToNow } from '../../utils/date';
+import { dateDistanceInWordsToNow } from './date';
 import { trpc } from '../../utils/trpc';
 import { Scroller } from './scrollbar';
 

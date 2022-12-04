@@ -33,9 +33,7 @@ export const clipRouter = router({
         id: z.string(),
       })
     )
-    .query(async ({ input, ctx }) => {
-      // console.log(ctx.session?.user?.id);
-
+    .query(async ({ input }) => {
       const clipFromDB = await prisma.clip.findUnique({
         where: { id: input.id },
       });

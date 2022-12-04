@@ -1,12 +1,7 @@
 import { PlusSmallIcon, MinusSmallIcon } from '@heroicons/react/20/solid';
 import React from 'react';
+import { trpc } from '../../utils/trpc';
 import { useRouter } from 'next/router';
-// import {
-//   useClipScoreQuery,
-//   useIncreaseClipScoreMutation,
-//   useDecreaseClipScoreMutation,
-//   useClipScoreUpdatedSubscription,
-// } from './clip-score.api';
 import { useAccess } from '../../utils/use-access';
 
 const ScoreButton = ({
@@ -43,18 +38,16 @@ export interface ClipScoreProps {
 }
 
 export function ClipScore({ clipId }: ClipScoreProps) {
-  // const clipScoreQuery = useClipScoreQuery({ variables: { clipId } });
-  const clipScore = 0; //clipScoreQuery?.data?.clipScore || 0;
+  const clipScoreQuery = trpc.clipScore.byId.useQuery({ id: clipId });
+  const clipScore = clipScoreQuery?.data || 0;
 
-  // const [increaseClipScoreMutation] = useIncreaseClipScoreMutation();
-  const increaseClipScore = () => {
-    // increaseClipScoreMutation({ variables: { clipId } });
-  };
+  const increaseClipScoreMutation = trpc.clipScore.increase.useMutation();
+  const increaseClipScore = () =>
+    increaseClipScoreMutation.mutate({ id: clipId });
 
-  // const [decreaseClipScoreMutation] = useDecreaseClipScoreMutation();
-  const decreaseClipScore = () => {
-    // decreaseClipScoreMutation({ variables: { clipId } });
-  };
+  const decreaseClipScoreMutation = trpc.clipScore.decrease.useMutation();
+  const decreaseClipScore = () =>
+    decreaseClipScoreMutation.mutate({ id: clipId });
 
   // useClipScoreUpdatedSubscription({
   //   variables: { clipId },

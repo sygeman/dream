@@ -1,8 +1,10 @@
 import { CoinIconGold } from '../../components/coin-icon';
 import { shortNumbers, humanNumbers } from '../../utils/count';
+import { trpc } from '../../utils/trpc';
 
 export const Coins = () => {
-  const userCoins = 0; //userCoinsQuery?.data?.userCoins || 0;
+  const userCoinsQuery = trpc.userCoins.getCurrent.useQuery();
+  const userCoins = userCoinsQuery?.data || 0;
 
   // useUserCoinsUpdatedSubscription({
   //   onSubscriptionData: ({ subscriptionData }) => {

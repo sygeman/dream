@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { Input } from '../input';
+import { trpc } from '../../utils/trpc';
 import { CoinIconGold } from '../coin-icon';
 import { TwitchClipPlayer } from '../clip-player';
 import { useModal } from '../../utils/use-modal';
@@ -13,15 +14,16 @@ export const CreateClipModal = () => {
   const costCreateClip = 10;
   const [clipId, setClipId] = useState('');
 
-  // const [increaseClipScoreMutation] = useIncreaseClipScoreMutation();
-  const increaseClipScore = (clipId: string) => {
-    // increaseClipScoreMutation({
-    //   variables: { clipId },
-    //   onCompleted: () => {
-    //     router.push(`/clip/${clipId}`);
-    //   },
-    // });
-  };
+  const increaseClipScoreMutation = trpc.clipScore.increase.useMutation();
+  const increaseClipScore = (clipId: string) =>
+    increaseClipScoreMutation.mutate(
+      { id: clipId },
+      {
+        onSuccess: () => {
+          router.push(`/clip/${clipId}`);
+        },
+      }
+    );
 
   return (
     <Modal id="newClip" title="Предложить клип" {...modalProps}>

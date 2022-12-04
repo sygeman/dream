@@ -1,5 +1,4 @@
 import { FC, ReactNode } from 'react';
-import clsx from 'clsx';
 import { shortNumbers } from '../../utils/count';
 
 interface IProps {
@@ -24,10 +23,10 @@ export const CardMedia: FC<IProps> = ({ media, title, overlay, count = 0 }) => (
       </div>
       <div className="flex justify-center items-center h-full px-2">
         <span
-          className={clsx(
-            'text-white/75 px-2 py-1 rounded font-medium',
-            count > 0 ? 'bg-twitch' : 'bg-background'
-          )}
+          className={
+            'text-white/75 px-2 py-1 rounded font-medium ' +
+            `${count > 0 ? 'bg-twitch' : 'bg-background'}`
+          }
         >
           {shortNumbers(count)}
         </span>

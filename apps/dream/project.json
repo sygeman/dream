@@ -36,18 +36,18 @@
         "passWithNoTests": true
       }
     },
-    "move-vercel": {
+    "prepare-vercel": {
       "dependsOn": ["build"],
       "executor": "nx:run-commands",
       "options": {
-        "command": "cp apps/dream/vercel.json apps/dream/.vercel dist/apps/dream -a"
+        "command": "cp apps/dream/vercel.json apps/dream/.vercel dist/apps/dream -a && cd dist/apps/dream && pnpm vercel build --token \"$VERCEL_TOKEN\""
       }
     },
     "deploy": {
-      "dependsOn": ["move-vercel"],
+      "dependsOn": ["prepare-vercel"],
       "executor": "nx:run-commands",
       "options": {
-        "command": "cd dist/apps/dream && pnpm vercel build --token \"$VERCEL_TOKEN\" && pnpm vercel deploy --prebuilt --token \"$VERCEL_TOKEN\" --yes"
+        "command": "pnpm vercel deploy --prebuilt --yes --token \"$VERCEL_TOKEN\""
       }
     }
   }

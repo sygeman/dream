@@ -40,14 +40,14 @@
       "dependsOn": ["build"],
       "executor": "nx:run-commands",
       "options": {
-        "command": "cp apps/dream/vercel.json apps/dream/.vercel dist/apps/dream -a && cd dist/apps/dream && pnpm vercel build --token \"$VERCEL_TOKEN\""
+        "command": "cp apps/dream/vercel.json apps/dream/.vercel dist/apps/dream -a"
       }
     },
     "deploy": {
       "dependsOn": ["prepare-vercel"],
       "executor": "nx:run-commands",
       "options": {
-        "command": "pnpm vercel deploy --prebuilt --yes --token \"$VERCEL_TOKEN\""
+        "command": "cd dist/apps/dream && pnpm vercel build --token \"$VERCEL_TOKEN\" && pnpm vercel deploy --prebuilt --token \"$VERCEL_TOKEN\" --yes"
       }
     }
   }

@@ -6,21 +6,19 @@
   "tags": [],
   "targets": {
     "build": {
-      "executor": "@nxext/vite:build",
+      "executor": "@nrwl/vite:build",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/apps/dream",
-        "frameworkConfigFile": "@nxext/solid/plugins/vite"
+        "outputPath": "dist/apps/dream"
       },
       "configurations": {
         "production": {}
       }
     },
     "serve": {
-      "executor": "@nxext/vite:dev",
+      "executor": "@nrwl/vite:dev-server",
       "options": {
-        "outputPath": "dist/apps/dream",
-        "frameworkConfigFile": "@nxext/solid/plugins/vite"
+        "buildTarget": "dream:build"
       }
     },
     "lint": {

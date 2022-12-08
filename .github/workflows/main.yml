@@ -63,7 +63,7 @@ jobs:
         run: pnpm install
 
       - name: Deploy
-        run: pnpm nx affected --target=build --base=$BEFORE_SHA --parallel=3
+        run: pnpm nx affected --target=deploy --base=$BEFORE_SHA --parallel=3
         env:
           INPUT_PUSH: 'true'
           INPUT_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

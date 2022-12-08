@@ -82,14 +82,6 @@
         }
       },
       "dependsOn": ["build"]
-    },
-    "deploy": {
-      "executor": "@dream/rancher-deploy:build",
-      "options": {
-        "project": "mono",
-        "app": "api"
-      },
-      "dependsOn": ["docker"]
     }
   },
   "tags": []

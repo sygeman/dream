@@ -97,14 +97,6 @@
         }
       },
       "dependsOn": ["build"]
-    },
-    "deploy": {
-      "executor": "@dream/rancher-deploy:build",
-      "options": {
-        "project": "pepega",
-        "app": "client"
-      },
-      "dependsOn": ["docker"]
     }
   },
   "tags": []

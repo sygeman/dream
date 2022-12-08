@@ -4,7 +4,7 @@
   "settings": {
     "createdAt": 1661078384246,
     "framework": null,
-    "devCommand": null,
+    "devCommand": "",
     "installCommand": "",
     "buildCommand": "",
     "outputDirectory": null,

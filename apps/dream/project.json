@@ -47,7 +47,7 @@
       "dependsOn": ["move-vercel"],
       "executor": "nx:run-commands",
       "options": {
-        "command": "cd dist/apps/dream && pnpm vercel build --token \"$VERCEL_TOKEN\" && pnpm vercel deploy --prebuilt --token \"$VERCEL_TOKEN\" --yes && vercel --token \"$VERCEL_TOKEN\" --prod"
+        "command": "cd dist/apps/dream && pnpm vercel build --token \"$VERCEL_TOKEN\" && pnpm vercel deploy --prebuilt --token \"$VERCEL_TOKEN\" --yes"
       }
     }
   }

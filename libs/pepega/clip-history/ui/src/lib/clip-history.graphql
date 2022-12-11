@@ -1,3 +1,0 @@
-mutation setClipHistory($clipId: String!) {
-  setClipHistory(clipId: $clipId)
-}

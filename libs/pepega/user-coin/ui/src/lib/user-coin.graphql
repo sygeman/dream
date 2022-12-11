@@ -1,7 +1,0 @@
-query userCoins {
-  userCoins
-}
-
-subscription userCoinsUpdated {
-  userCoinsUpdated
-}

@@ -101,63 +101,6 @@
       "@dream/mono/utils/channel-mods": [
         "libs/mono/utils/channel-mods/src/index.ts"
       ],
-      "@dream/pepega-prisma": ["libs/pepega/prisma/src/index.ts"],
-      "@dream/pepega/auth/api": ["libs/pepega/auth/api/src/index.ts"],
-      "@dream/pepega/auth/ui": ["libs/pepega/auth/ui/src/index.ts"],
-      "@dream/pepega/clip-comment/api": [
-        "libs/pepega/clip-comment/api/src/index.ts"
-      ],
-      "@dream/pepega/clip-comment/ui": [
-        "libs/pepega/clip-comment/ui/src/index.ts"
-      ],
-      "@dream/pepega/clip-history/api": [
-        "libs/pepega/clip-history/api/src/index.ts"
-      ],
-      "@dream/pepega/clip-history/ui": [
-        "libs/pepega/clip-history/ui/src/index.ts"
-      ],
-      "@dream/pepega/clip-score/api": [
-        "libs/pepega/clip-score/api/src/index.ts"
-      ],
-      "@dream/pepega/clip-score/ui": ["libs/pepega/clip-score/ui/src/index.ts"],
-      "@dream/pepega/clip/api": ["libs/pepega/clip/api/src/index.ts"],
-      "@dream/pepega/clip/ui": ["libs/pepega/clip/ui/src/index.ts"],
-      "@dream/pepega/components/avatar": [
-        "libs/pepega/components/avatar/src/index.ts"
-      ],
-      "@dream/pepega/components/card-media": [
-        "libs/pepega/components/card-media/src/index.ts"
-      ],
-      "@dream/pepega/components/clip-player": [
-        "libs/pepega/components/clip-player/src/index.ts"
-      ],
-      "@dream/pepega/components/coin-icon": [
-        "libs/pepega/components/coin-icon/src/index.ts"
-      ],
-      "@dream/pepega/components/grid": [
-        "libs/pepega/components/grid/src/index.ts"
-      ],
-      "@dream/pepega/components/input": [
-        "libs/pepega/components/input/src/index.ts"
-      ],
-      "@dream/pepega/components/modal": [
-        "libs/pepega/components/modal/src/index.ts"
-      ],
-      "@dream/pepega/components/video-preview": [
-        "libs/pepega/components/video-preview/src/index.ts"
-      ],
-      "@dream/pepega/connection/api": [
-        "libs/pepega/connection/api/src/index.ts"
-      ],
-      "@dream/pepega/follows/api": ["libs/pepega/follows/api/src/index.ts"],
-      "@dream/pepega/follows/ui": ["libs/pepega/follows/ui/src/index.ts"],
-      "@dream/pepega/layouts/main": ["libs/pepega/layouts/main/src/index.ts"],
-      "@dream/pepega/twitch/api": ["libs/pepega/twitch/api/src/index.ts"],
-      "@dream/pepega/types": ["libs/pepega/types/src/index.tsx"],
-      "@dream/pepega/user-coin/api": ["libs/pepega/user-coin/api/src/index.ts"],
-      "@dream/pepega/user-coin/ui": ["libs/pepega/user-coin/ui/src/index.ts"],
-      "@dream/pepega/user/api": ["libs/pepega/user/api/src/index.ts"],
-      "@dream/pepega/utils/count": ["libs/pepega/utils/count/src/index.ts"],
       "@dream/rancher-deploy": ["libs/rancher-deploy/src/index.ts"],
       "@dream/utils/use-dark-mode": ["libs/utils/use-dark-mode/src/index.ts"]
     }

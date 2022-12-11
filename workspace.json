@@ -54,7 +54,6 @@
     "mono-utils-regexp-url-name": "libs/mono/utils/regexp/url-name",
     "mono-utils-use-modal": "libs/mono/utils/use-modal",
     "pepega": "apps/pepega",
-    "pepega-api": "apps/pepega-api",
     "pepega-auth-api": "libs/pepega/auth/api",
     "pepega-auth-ui": "libs/pepega/auth/ui",
     "pepega-clip-api": "libs/pepega/clip/api",

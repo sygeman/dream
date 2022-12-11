@@ -44,7 +44,6 @@ module.exports = {
     '<rootDir>/libs/mono/channel-settings/api',
     '<rootDir>/libs/mono/layouts/settings',
     '<rootDir>/libs/mono/layouts/play-queue',
-    '<rootDir>/apps/pepega-api',
     '<rootDir>/libs/mono/prisma',
     '<rootDir>/libs/pepega/prisma',
     '<rootDir>/libs/mono/use-community-channel',

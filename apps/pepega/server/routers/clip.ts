@@ -31,7 +31,7 @@ export const clipRouter = router({
     .input(
       z.object({
         cursor: z.string().nullish(),
-        userId: z.string().optional(),
+        userId: z.string().nullish(),
       })
     )
     .query(async ({ input }) => {
@@ -45,7 +45,7 @@ export const clipRouter = router({
         });
 
         const clipsCount = clips.length;
-        const cursor = clipsCount > 0 ? clips[clipsCount - 1]?.id : null;
+        const cursor = clipsCount > 0 ? clips[clipsCount - 1]?.id : undefined;
 
         return { clips, cursor };
       }

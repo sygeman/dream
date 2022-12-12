@@ -8,6 +8,7 @@ import { ClipModal } from '../components/clip/modal';
 import { LeftMenuItem } from './left-menu-item';
 import { UserBox } from './user';
 import { Logo } from './logo';
+import { useAccess } from '../utils/use-access';
 
 interface MainLayoutProps {
   children?: React.ReactNode;
@@ -15,6 +16,7 @@ interface MainLayoutProps {
 
 export const MainLayout = ({ children }: MainLayoutProps) => {
   const [leftMenuIsOpen, setLeftMenuIsOpen] = useState(false);
+  const [{ allow: isUser }] = useAccess();
 
   return (
     <div className="flex flex-col h-full overflow-hidden relative">
@@ -40,7 +42,7 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
                     icon={<HomeIcon className="h-4" />}
                     title="Главная"
                   />
-                  <Follows />
+                  {isUser && <Follows />}
                 </div>
 
                 <UserBox />

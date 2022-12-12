@@ -1,21 +1,17 @@
-Query
+# Rewrite from apollo gql to trpc
 
-- follows: [TwitchChannel!]!
+## Comments
+
+### query
+
 - clipComments(clipId: ID!): [ClipComment!]!
 
-Mutation
+### mutation
 
-- setClipHistory(clipId: String!): Boolean!
 - createClipComment(input: ClipCommentCreateInput!): Boolean!
 - removeClipComment(id: ID!): Boolean!
 
-Subscription
+### subscription
 
 - clipCommentCreated(clipId: ID!): ClipComment!
 - clipCommentRemoved(clipId: ID!): ID!
-
-Events Service
-
-- subscribe
-- unsubscribe
-- publish

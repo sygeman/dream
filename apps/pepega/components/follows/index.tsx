@@ -1,10 +1,14 @@
+import { trpc } from '../../utils/trpc';
 import Link from 'next/link';
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
 
 export function Follows() {
-  //   const followsQuery = useFollowsQuery();
-  //   const channels = followsQuery?.data?.follows || [];
-  const channels: any[] = [];
+  const { data } = trpc.follow.list.useQuery(undefined, {
+    refetchOnWindowFocus: false,
+    staleTime: Infinity,
+  });
+
+  const channels: any[] = data || [];
 
   return (
     <div className="flex flex-1 w-full">

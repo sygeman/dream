@@ -5,7 +5,6 @@
     "auth-api": "libs/auth/api",
     "auth-routes": "libs/auth/routes",
     "auth-ui": "libs/auth/ui",
-    "dream": "apps/dream",
     "icons-circle": "libs/icons/circle",
     "icons-dot-circle": "libs/icons/dot-circle",
     "icons-github": "libs/icons/github",

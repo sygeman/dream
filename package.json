@@ -47,7 +47,6 @@
     "@trpc/next": "10.6.0",
     "@trpc/react-query": "10.6.0",
     "@trpc/server": "10.6.0",
-    "@unocss/reset": "0.47.6",
     "apollo-server": "3.11.1",
     "apollo-server-express": "3.11.1",
     "axios": "1.2.1",
@@ -62,7 +61,7 @@
     "date-fns": "2.29.3",
     "deepmerge": "4.2.2",
     "express-session": "1.17.3",
-    "framer-motion": "7.10.3",
+    "framer-motion": "8.0.1",
     "graphql": "16.6.0",
     "graphql-redis-subscriptions": "2.6.0",
     "graphql-subscriptions": "2.0.0",
@@ -74,7 +73,7 @@
     "ms": "2.1.3",
     "nanoid": "3.3.4",
     "next": "13.0.7",
-    "next-auth": "4.18.6",
+    "next-auth": "4.18.7",
     "overlayscrollbars": "1.13.3",
     "overlayscrollbars-react": "0.3.0",
     "passport": "0.6.0",
@@ -129,7 +128,7 @@
     "@nx-tools/nx-container": "4.0.2",
     "@swc-node/register": "1.5.4",
     "@swc/cli": "0.1.57",
-    "@swc/core": "1.3.23",
+    "@swc/core": "1.3.24",
     "@swc/jest": "0.2.24",
     "@tailwindcss/aspect-ratio": "0.4.2",
     "@tailwindcss/forms": "0.5.3",
@@ -174,5 +173,5 @@
     "typescript": "4.9.4",
     "webpack": "5.75.0"
   },
-  "packageManager": "pnpm@7.18.2"
+  "packageManager": "pnpm@7.19.0"
 }

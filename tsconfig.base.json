@@ -102,7 +102,8 @@
         "libs/mono/utils/channel-mods/src/index.ts"
       ],
       "@dream/rancher-deploy": ["libs/rancher-deploy/src/index.ts"],
-      "@dream/utils/use-dark-mode": ["libs/utils/use-dark-mode/src/index.ts"]
+      "@dream/utils/use-dark-mode": ["libs/utils/use-dark-mode/src/index.ts"],
+      "@dream/yamap": ["libs/yamap/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

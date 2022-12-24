@@ -149,7 +149,6 @@
     "@types/react-is": "17.0.3",
     "@typescript-eslint/eslint-plugin": "5.47.0",
     "@typescript-eslint/parser": "5.47.0",
-    "@yandex/ymaps3-types": "0.0.5",
     "autoprefixer": "10.4.13",
     "babel-jest": "28.1.1",
     "babel-loader": "9.1.0",

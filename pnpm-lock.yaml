@@ -72,7 +72,6 @@ specifiers:
   '@types/yandex-maps': 2.1.28
   '@typescript-eslint/eslint-plugin': 5.47.0
   '@typescript-eslint/parser': 5.47.0
-  '@yandex/ymaps3-types': 0.0.5
   apollo-server: 3.11.1
   apollo-server-express: 3.11.1
   autoprefixer: 10.4.13
@@ -275,7 +274,6 @@ devDependencies:
   '@types/react-is': 17.0.3
   '@typescript-eslint/eslint-plugin': 5.47.0_ncmi6noazr3nzas7jxykisekym
   '@typescript-eslint/parser': 5.47.0_lzzuuodtsqwxnvqeq4g4likcqa
-  '@yandex/ymaps3-types': 0.0.5
   autoprefixer: 10.4.13_postcss@8.4.20
   babel-jest: 28.1.1_@babel+core@7.20.7
   babel-loader: 9.1.0_lkd654lvpl423ugsqn5olungie
@@ -6030,10 +6028,6 @@ packages:
 
   /@xtuc/long/4.2.2:
     resolution: {integrity: sha512-NuHqBY1PB/D8xU6s/thBgOAiAP7HOYDQ32+BFZILJ8ivkUkAHQnWfn6WhL79Owj1qmUnoN/YPhktdIoucipkAQ==}
-    dev: true
-
-  /@yandex/ymaps3-types/0.0.5:
-    resolution: {integrity: sha512-M7DmUjIop5Kfk4xr2dxmnRFu/FYz/sfNAe+PXdgjV1U58I7Eh6NAC0sbFhsRmnfNs9aQX/cQgF1J7pHeHmOTVA==}
     dev: true
 
   /@yarn-tool/resolve-package/1.0.47:

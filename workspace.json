@@ -54,7 +54,6 @@
     "mono-utils-emoji": "libs/mono/utils/emoji",
     "mono-utils-regexp-url-name": "libs/mono/utils/regexp/url-name",
     "mono-utils-use-modal": "libs/mono/utils/use-modal",
-    "pepega": "apps/pepega",
     "rancher-deploy": "libs/rancher-deploy",
     "rancher-deploy-e2e": "apps/rancher-deploy-e2e",
     "utils-use-dark-mode": "libs/utils/use-dark-mode",

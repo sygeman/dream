@@ -23,8 +23,8 @@ import { AuthGuard } from './guards/auth.guard';
 })
 export class AuthModule {}
 
-// auth.pepega.com/login/[provider]
-// auth.pepega.com/connect/[provider]
+// auth.site.com/login/[provider]
+// auth.site.com/connect/[provider]
 
 // client -> /auth/twitch -> passport (twitch) -> /authend/twitch
 // -> client/callback ?authcode=randomkey&backUrl=/somepath

@@ -17,7 +17,7 @@ function CustomApp({ Component, pageProps }: AppProps) {
   return (
     <ApolloProvider client={apolloClient}>
       <Head>
-        <title>PepegaCom</title>
+        <title>Mono</title>
         <link
           rel="icon"
           type="image/png"

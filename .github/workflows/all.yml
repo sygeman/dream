@@ -15,7 +15,6 @@ on:
 
 env:
   BEFORE_SHA: ${{ github.event.before }}
-  NEXT_PUBLIC_PEPEGA_API: api.pepega.com
   NEXT_PUBLIC_MONO_API: mono-api.sgmn.dev
 
 jobs:

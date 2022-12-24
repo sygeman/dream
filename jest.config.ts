@@ -10,7 +10,6 @@ module.exports = {
     '<rootDir>/libs/mono/user/api',
     '<rootDir>/libs/mono/connection/api',
     '<rootDir>/apps/mono',
-    '<rootDir>/apps/pepega',
     '<rootDir>/libs/mono/auth/ui',
     '<rootDir>/libs/mono/spotify-now/ui',
     '<rootDir>/libs/mono/user/ui',

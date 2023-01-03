@@ -9,8 +9,6 @@
     "icons-dot-circle": "libs/icons/dot-circle",
     "icons-github": "libs/icons/github",
     "icons-twitch": "libs/icons/twitch",
-    "maps": "apps/maps",
-    "maps-e2e": "apps/maps-e2e",
     "mono": "apps/mono",
     "mono-api": "apps/mono-api",
     "mono-app-panel": "libs/mono/app-panel",
@@ -55,8 +53,7 @@
     "mono-utils-regexp-url-name": "libs/mono/utils/regexp/url-name",
     "mono-utils-use-modal": "libs/mono/utils/use-modal",
     "rancher-deploy": "libs/rancher-deploy",
-    "utils-use-dark-mode": "libs/utils/use-dark-mode",
-    "yamap": "libs/yamap"
+    "utils-use-dark-mode": "libs/utils/use-dark-mode"
   },
   "$schema": "./node_modules/nx/schemas/workspace-schema.json"
 }

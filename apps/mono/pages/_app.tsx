@@ -5,7 +5,7 @@ import { IntlProvider } from 'react-intl';
 import { ApolloProvider } from '@apollo/client';
 import { useApollo } from '@dream/apollo';
 import { lang } from '../lang';
-import 'overlayscrollbars/css/OverlayScrollbars.css';
+import 'overlayscrollbars/overlayscrollbars.css';
 import 'rc-slider/assets/index.css';
 import '../styles.css';
 

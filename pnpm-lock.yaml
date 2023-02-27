@@ -123,7 +123,7 @@ specifiers:
   react-player: 2.11.2
   react-test-renderer: 18.2.0
   react-textarea-autosize: 8.4.0
-  react-virtuoso: 4.0.3
+  react-virtuoso: 4.1.0
   reflect-metadata: 0.1.13
   regenerator-runtime: 0.13.11
   rxjs: 7.8.0
@@ -192,7 +192,7 @@ dependencies:
   react-is: 18.2.0
   react-player: 2.11.2_react@18.2.0
   react-textarea-autosize: 8.4.0_pmekkgnqduwlme35zpnqhenc34
-  react-virtuoso: 4.0.3_biqbaboplfbrettd7655fr4n2y
+  react-virtuoso: 4.1.0_biqbaboplfbrettd7655fr4n2y
   reflect-metadata: 0.1.13
   regenerator-runtime: 0.13.11
   rxjs: 7.8.0
@@ -13192,8 +13192,8 @@ packages:
       - '@types/react'
     dev: false
 
-  /react-virtuoso/4.0.3_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-tyqt8FBWxO+smve/kUgJbhCI2MEOvH2hHgFYPKWBMA2cJmV+cHIDDh1BL/6w4pg/dcCdlHCNVwi6aiztPxWttw==}
+  /react-virtuoso/4.1.0_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-Vcq5WXn18PvPT55kdeGQ8BN3K95XyPe7hum8zG6Tx7g1CtUYVsQKN7fouMxBSy+XymEDB5ynGy8JWhuqyLLtPw==}
     engines: {node: '>=10'}
     peerDependencies:
       react: '>=16 || >=17 || >= 18'

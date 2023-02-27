@@ -11,7 +11,7 @@ export const config = [
   registerAs('authSpotify', () => ({
     clientID: process.env.SPOTIFY_ID,
     clientSecret: process.env.SPOTIFY_SECRET,
-    callbackURL: `${process.env.API_URL}authend/spotify`,
+    callbackURL: `${process.env.NEXT_PUBLIC_MONO_API}authend/spotify`,
     scope: [
       'user-read-email',
       'user-read-playback-state',
@@ -21,13 +21,12 @@ export const config = [
   registerAs('authTwitch', () => ({
     clientID: process.env.TWITCH_ID,
     clientSecret: process.env.TWITCH_SECRET,
-    callbackURL: `${process.env.API_URL}authend/twitch`,
+    callbackURL: `${process.env.NEXT_PUBLIC_MONO_API}authend/twitch`,
     scope: 'user:read:email',
   })),
   registerAs('base', () => ({
     instanceId: nanoid(10),
-    apiURL: process.env.API_URL,
-    baseURL: process.env.BASE_URL,
+    apiURL: process.env.NEXT_PUBLIC_MONO_API,
   })),
   registerAs('db', () => ({
     redisUrl: process.env.REDIS_URL,

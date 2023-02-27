@@ -13,7 +13,7 @@ async function provider(req, res) {
   params.set('code_handler', `http://${host}/api/auth/callback?`);
   params.set('redirect_uri', `http://${host}${req.query?.continue}`);
   const authUrl = `http://${
-    process.env['NEXT_PUBLIC_API']
+    process.env['NEXT_PUBLIC_MONO_API']
   }/auth/${provider}?${params.toString()}`;
 
   return res.redirect(authUrl);

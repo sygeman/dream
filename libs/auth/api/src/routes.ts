@@ -10,10 +10,10 @@ async function provider(req, res) {
   const provider = req?.query?.route;
 
   const params = new URLSearchParams();
-  params.set('code_handler', `https://${host}/api/auth/callback?`);
-  params.set('redirect_uri', `https://${host}${req.query?.continue}`);
-  const authUrl = `https://${
-    process.env['NEXT_PUBLIC_API']
+  params.set('code_handler', `http://${host}/api/auth/callback?`);
+  params.set('redirect_uri', `http://${host}${req.query?.continue}`);
+  const authUrl = `${
+    process.env['NEXT_PUBLIC_MONO_API']
   }/auth/${provider}?${params.toString()}`;
 
   return res.redirect(authUrl);

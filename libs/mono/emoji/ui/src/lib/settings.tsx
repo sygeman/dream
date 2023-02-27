@@ -55,7 +55,7 @@ export const CommunitySettingsEmoji = () => {
       formData.append('communityId', communityId);
 
       await axios.post(
-        `https://${process.env.NEXT_PUBLIC_API}/emoji/upload`,
+        `${process.env['NEXT_PUBLIC_MONO_API']}/emoji/upload`,
         formData,
         {
           headers: {

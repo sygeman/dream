@@ -9,6 +9,7 @@ import {
   ConnectionModule,
   ConnectionService,
 } from '@dream/mono-connection-api';
+import { SharedModule } from './shared.module';
 import { config } from './config';
 import { nanoid } from 'nanoid';
 import { BullModule } from '@nestjs/bull';
@@ -36,7 +37,7 @@ import { join } from 'path';
       }),
       inject: [ConfigService],
     }),
-    // SharedModule,
+    SharedModule,
     GraphQLModule.forRootAsync<ApolloDriverConfig>({
       driver: ApolloDriver,
       imports: [AuthModule, ConnectionModule],
@@ -46,7 +47,6 @@ import { join } from 'path';
         connectionService: ConnectionService
       ) => ({
         installSubscriptionHandlers: true,
-        // validationRules: [depthLimit(10)],
         autoSchemaFile: join(process.cwd(), 'apps/mono-api/schema.gql'),
         context: (ctx) => ctx?.extra?.socket?.ctx,
         subscriptions: {

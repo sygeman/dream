@@ -4,7 +4,7 @@ import { PassportModule } from '@nestjs/passport';
 import { AuthController } from './auth.controller';
 import { AuthResolver } from './auth.resolver';
 import { AuthService } from './auth.service';
-import { SpotifyStrategy } from './strategies/spotify.strategy';
+// import { SpotifyStrategy } from './strategies/spotify.strategy';
 import { TwitchStrategy } from './strategies/twitch.strategy';
 import { AuthGuard } from './guards/auth.guard';
 
@@ -15,7 +15,7 @@ import { AuthGuard } from './guards/auth.guard';
   providers: [
     AuthResolver,
     AuthService,
-    SpotifyStrategy,
+    // SpotifyStrategy,
     TwitchStrategy,
     AuthGuard,
   ],

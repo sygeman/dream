@@ -94,13 +94,13 @@
     "@babel/preset-env": "7.20.2",
     "@babel/preset-react": "7.18.6",
     "@babel/preset-typescript": "7.18.6",
-    "@graphql-codegen/cli": "2.16.3",
-    "@graphql-codegen/fragment-matcher": "3.3.3",
-    "@graphql-codegen/introspection": "2.2.3",
-    "@graphql-codegen/near-operation-file-preset": "2.4.4",
-    "@graphql-codegen/typescript": "2.8.7",
+    "@graphql-codegen/cli": "3.2.1",
+    "@graphql-codegen/fragment-matcher": "4.0.1",
+    "@graphql-codegen/introspection": "3.0.1",
+    "@graphql-codegen/near-operation-file-preset": "2.5.0",
+    "@graphql-codegen/typescript": "3.0.1",
     "@graphql-codegen/typescript-apollo-client-helpers": "2.2.6",
-    "@graphql-codegen/typescript-operations": "2.5.12",
+    "@graphql-codegen/typescript-operations": "3.0.1",
     "@graphql-codegen/typescript-react-apollo": "3.3.7",
     "@nestjs/schematics": "9.0.4",
     "@nestjs/testing": "9.2.1",
@@ -166,4 +166,3 @@
   },
   "packageManager": "pnpm@7.22.0"
 }
-

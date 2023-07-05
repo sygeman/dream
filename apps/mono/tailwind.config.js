@@ -65,7 +65,6 @@ module.exports = {
   },
   plugins: [
     require('@tailwindcss/aspect-ratio'),
-    require('@tailwindcss/line-clamp'),
     plugin(function ({ addBase, addComponents, theme }) {
       addBase({
         body: {
@@ -92,7 +91,7 @@ module.exports = {
           fontSize: theme('fontSize.sm'),
           color: theme('colors.white'),
           padding: `${theme('spacing.1')} ${theme('spacing.10')} ${theme(
-            'spacing.1'
+            'spacing.1',
           )} ${theme('spacing.3')}`,
           backgroundColor: theme('colors.background.DEFAULT'),
           border: 'none',

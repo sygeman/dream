@@ -1,17 +1,11 @@
 /* eslint-disable */
-module.exports = {
-  displayName: 'mono-api',
-
-  globals: {},
+export default {
+  displayName: 'api',
+  preset: '../../jest.preset.js',
+  testEnvironment: 'node',
   transform: {
-    '^.+\\.[tj]s$': [
-      'ts-jest',
-      {
-        tsConfig: '<rootDir>/tsconfig.spec.json',
-      },
-    ],
+    '^.+\\.[tj]s$': ['ts-jest', { tsconfig: '<rootDir>/tsconfig.spec.json' }]
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
-  coverageDirectory: '../../coverage/apps/mono-api',
-  preset: '../../jest.preset.ts',
+  coverageDirectory: '../../coverage/apps/api'
 };

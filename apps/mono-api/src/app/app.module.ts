@@ -44,10 +44,10 @@ import { join } from 'path';
       inject: [AuthService, ConnectionService],
       useFactory: async (
         authService: AuthService,
-        connectionService: ConnectionService
+        connectionService: ConnectionService,
       ) => ({
         installSubscriptionHandlers: true,
-        autoSchemaFile: join(process.cwd(), 'apps/mono-api/schema.gql'),
+        autoSchemaFile: join(process.cwd(), 'schema.gql'),
         context: (ctx) => ctx?.extra?.socket?.ctx,
         subscriptions: {
           'graphql-ws': {

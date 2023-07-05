@@ -16,11 +16,12 @@ export class AuthController {
   constructor(
     private prisma: PrismaService,
     private authService: AuthService,
-    private readonly config: ConfigService
+    private readonly config: ConfigService,
   ) {}
 
   async authend(req, res) {
     const { redirectUri, codeHandler } = req.session;
+    console.log(req.session);
     const profile = req?.user;
 
     // Update or create profile and user
@@ -88,7 +89,7 @@ export class AuthController {
     @Request() req,
     @Response() res,
     @Query('code_handler') codeHandler,
-    @Query('redirect_uri') redirectUri
+    @Query('redirect_uri') redirectUri,
   ) {
     req.session.codeHandler = codeHandler;
     req.session.redirectUri = redirectUri;
@@ -112,7 +113,7 @@ export class AuthController {
     @Request() req,
     @Response() res,
     @Query('code_handler') codeHandler,
-    @Query('redirect_uri') redirectUri
+    @Query('redirect_uri') redirectUri,
   ) {
     req.session.codeHandler = codeHandler;
     req.session.redirectUri = redirectUri;

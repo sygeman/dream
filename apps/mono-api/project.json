@@ -3,52 +3,60 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/mono-api/src",
   "projectType": "application",
-  "prefix": "api",
-  "generators": {},
   "targets": {
     "build": {
-      "executor": "@nrwl/webpack:webpack",
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
       "options": {
+        "target": "node",
+        "compiler": "tsc",
         "outputPath": "dist/apps/mono-api",
         "main": "apps/mono-api/src/main.ts",
         "tsConfig": "apps/mono-api/tsconfig.app.json",
         "assets": ["apps/mono-api/src/assets"],
-        "generatePackageJson": true,
-        "target": "node",
-        "compiler": "tsc"
+        "isolatedConfig": true,
+        "webpackConfig": "apps/mono-api/webpack.config.js"
       },
       "configurations": {
-        "production": {
-          "optimization": true,
-          "extractLicenses": true,
-          "inspect": false,
-          "fileReplacements": [
-            {
-              "replace": "apps/mono-api/src/environments/environment.ts",
-              "with": "apps/mono-api/src/environments/environment.prod.ts"
-            }
-          ]
-        }
-      },
-      "dependsOn": ["generate"]
+        "development": {},
+        "production": {}
+      }
     },
     "serve": {
       "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
       "options": {
         "buildTarget": "mono-api:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "mono-api:build:development"
+        },
+        "production": {
+          "buildTarget": "mono-api:build:production"
+        }
       }
     },
     "lint": {
       "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": ["apps/mono-api/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
         "jestConfig": "apps/mono-api/jest.config.ts",
         "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
       }
     },
     "generate": {

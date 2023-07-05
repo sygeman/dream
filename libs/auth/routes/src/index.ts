@@ -12,9 +12,9 @@ async function provider(req, res) {
   const params = new URLSearchParams();
   params.set('code_handler', `http://${host}/api/auth/callback?`);
   params.set('redirect_uri', `http://${host}${req.query?.continue}`);
-  const authUrl = `http://${
+  const authUrl = `${
     process.env['NEXT_PUBLIC_MONO_API']
-  }/auth/${provider}?${params.toString()}`;
+  }auth/${provider}?${params.toString()}`;
 
   return res.redirect(authUrl);
 }
@@ -45,5 +45,5 @@ async function mainHandler(req, res) {
 
 export const authApiRoutes = withIronSessionApiRoute(
   mainHandler,
-  sessionOptions
+  sessionOptions,
 );

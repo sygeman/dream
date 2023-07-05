@@ -7,7 +7,7 @@ import * as ms from 'ms';
 export class ConnectionService {
   constructor(
     private readonly config: ConfigService,
-    private prisma: PrismaService
+    private prisma: PrismaService,
   ) {}
 
   async cleanup() {

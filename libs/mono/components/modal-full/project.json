@@ -5,7 +5,7 @@
   "projectType": "library",
   "targets": {
     "lint": {
-      "executor": "@nrwl/linter:eslint",
+      "executor": "@nx/linter:eslint",
       "options": {
         "lintFilePatterns": [
           "libs/mono/components/modal-full/**/*.{ts,tsx,js,jsx}"
@@ -13,7 +13,7 @@
       }
     },
     "test": {
-      "executor": "@nrwl/jest:jest",
+      "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/libs/mono/components/modal-full"],
       "options": {
         "jestConfig": "libs/mono/components/modal-full/jest.config.ts",

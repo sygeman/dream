@@ -21,7 +21,6 @@ export class AuthController {
 
   async authend(req, res) {
     const { redirectUri, codeHandler } = req.session;
-    console.log(req.session);
     const profile = req?.user;
 
     // Update or create profile and user

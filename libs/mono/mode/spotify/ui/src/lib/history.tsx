@@ -18,7 +18,7 @@ export const ChannelSpotifyModeHistory = () => {
   useSpotifyModeHistoryUpdatedSubscription({
     variables: { channelId },
     skip: !channelId,
-    onSubscriptionData: () => {
+    onData: () => {
       historyQuery.refetch();
     },
   });

@@ -18,7 +18,7 @@ export const ChannelSpotifyModeQueue = () => {
   useSpotifyModeQueueUpdatedSubscription({
     variables: { channelId },
     skip: !channelId,
-    onSubscriptionData: () => {
+    onData: () => {
       queueQuery.refetch();
     },
   });

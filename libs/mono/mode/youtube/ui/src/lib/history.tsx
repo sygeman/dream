@@ -18,7 +18,7 @@ export const ChannelYoutubeModeHistory = () => {
     variables: { channelId },
     skip: !channelId,
     fetchPolicy: 'network-only',
-    onSubscriptionData: () => {
+    onData: () => {
       historyQuery.refetch();
     },
   });

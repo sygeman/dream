@@ -23,7 +23,7 @@ export const ChannelYoutubeMode = () => {
   useWaitlistYoutubeCurrentUpdatedSubscription({
     variables: { channelId },
     skip: !channelId,
-    onSubscriptionData: () => {
+    onData: () => {
       currentQuery.refetch();
     },
   });

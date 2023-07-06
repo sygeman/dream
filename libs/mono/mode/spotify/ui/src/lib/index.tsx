@@ -59,7 +59,7 @@ export const ChannelSpotifyMode = () => {
   useSpotifyModeCurrentUpdatedSubscription({
     variables: { channelId },
     skip: !channelId,
-    onSubscriptionData: () => {
+    onData: () => {
       if (isConnected) {
         syncUserSpotify();
       }

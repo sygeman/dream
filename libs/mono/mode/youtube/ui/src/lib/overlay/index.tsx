@@ -18,7 +18,7 @@ export const ChannelYoutubeModeOverlay = () => {
   useWaitlistYoutubeCurrentUpdatedSubscription({
     variables: { channelId },
     skip: !channelId,
-    onSubscriptionData: () => {
+    onData: () => {
       currentQuery.refetch();
     },
   });

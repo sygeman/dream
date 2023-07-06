@@ -19,7 +19,7 @@ export const ChannelSpotifyModeOverlay = () => {
   useSpotifyModeCurrentUpdatedSubscription({
     variables: { channelId },
     skip: !channelId,
-    onSubscriptionData: () => {
+    onData: () => {
       currentQuery.refetch();
     },
   });

@@ -43,10 +43,10 @@ export const Chat: React.FC<{ channelId: string }> = ({ channelId }) => {
   useChannelMessageCreatedSubscription({
     variables: { channelId },
     skip: !channelId,
-    onSubscriptionData: ({ subscriptionData }) => {
-      if (!subscriptionData.data) return;
+    onData: ({ data }) => {
+      if (!data.data) return;
 
-      const chatMessage = subscriptionData.data.channelMessageCreated;
+      const chatMessage = data.data.channelMessageCreated;
 
       messagesQuery.updateQuery((prev) => {
         if (

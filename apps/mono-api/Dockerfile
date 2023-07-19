@@ -6,7 +6,7 @@ COPY prisma .
 COPY schema.gql .
 
 FROM base as dependencies
-RUN npm ci
+RUN yarn --production
 RUN npx prisma generate
 RUN cp -R node_modules prod_node_modules
 

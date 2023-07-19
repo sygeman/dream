@@ -89,8 +89,7 @@
           "images": ["ghcr.io/sygeman/dream/mono-api"],
           "tags": ["latest", "type=sha,prefix="]
         }
-      },
-      "dependsOn": ["build"]
+      }
     }
   },
   "tags": []

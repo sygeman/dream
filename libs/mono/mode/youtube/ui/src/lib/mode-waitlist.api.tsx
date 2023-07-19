@@ -4,57 +4,57 @@ import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
 export type WaitlistYoutubeHistoryQueryVariables = Types.Exact<{
-  channelId: Types.Scalars['String'];
+  channelId: Types.Scalars['String']['input'];
 }>;
 
 
 export type WaitlistYoutubeHistoryQuery = { __typename?: 'Query', waitlistYoutubeHistory: { __typename?: 'YoutubeModeHistory', items: Array<{ __typename?: 'YoutubeModeHistoryItem', actions: Array<Types.YoutubeModeHistoryItemAction>, data: { __typename?: 'YoutubeModeHistoryItemData', id: string, videoId: string, duration: number, cover: string, title: string, startedAt?: string | null, endedAt?: string | null, author: { __typename?: 'YoutubeModeHistoryItemDataAuthor', id: string, name: string, avatar?: string | null } } }> } };
 
 export type WaitlistYoutubeCurrentQueryVariables = Types.Exact<{
-  channelId: Types.Scalars['String'];
+  channelId: Types.Scalars['String']['input'];
 }>;
 
 
 export type WaitlistYoutubeCurrentQuery = { __typename?: 'Query', waitlistYoutubeCurrent?: { __typename?: 'YoutubeModeCurrent', actions: Array<Types.YoutubeModeCurrentAction>, item?: { __typename?: 'YoutubeModeCurrentItem', id: string, videoId: string, duration: number, cover: string, title: string, startedAt?: string | null, author: { __typename?: 'YoutubeModeCurrentItemAuthor', id: string, name: string, avatar?: string | null } } | null } | null };
 
 export type WaitlistYoutubeQueueQueryVariables = Types.Exact<{
-  channelId: Types.Scalars['String'];
+  channelId: Types.Scalars['String']['input'];
 }>;
 
 
 export type WaitlistYoutubeQueueQuery = { __typename?: 'Query', waitlistYoutubeQueue: { __typename?: 'YoutubeModeQueue', actions: Array<Types.YoutubeModeQueueAction>, items: Array<{ __typename?: 'YoutubeModeQueueItem', actions: Array<Types.YoutubeModeQueueItemAction>, data: { __typename?: 'YoutubeModeQueueItemData', id: string, videoId: string, duration: number, cover: string, title: string, author: { __typename?: 'YoutubeModeQueueItemDataAuthor', id: string, name: string, avatar?: string | null } } }> } };
 
 export type WaitlistYoutubeQueueAddVideoMutationVariables = Types.Exact<{
-  channelId: Types.Scalars['String'];
-  videoId: Types.Scalars['String'];
+  channelId: Types.Scalars['String']['input'];
+  videoId: Types.Scalars['String']['input'];
 }>;
 
 
 export type WaitlistYoutubeQueueAddVideoMutation = { __typename?: 'Mutation', waitlistYoutubeQueueAddVideo: boolean };
 
 export type WaitlistYoutubeQueueSkipVideoMutationVariables = Types.Exact<{
-  channelId: Types.Scalars['String'];
+  channelId: Types.Scalars['String']['input'];
 }>;
 
 
 export type WaitlistYoutubeQueueSkipVideoMutation = { __typename?: 'Mutation', waitlistYoutubeQueueSkipVideo: boolean };
 
 export type WaitlistYoutubeQueueUpdatedSubscriptionVariables = Types.Exact<{
-  channelId: Types.Scalars['String'];
+  channelId: Types.Scalars['String']['input'];
 }>;
 
 
 export type WaitlistYoutubeQueueUpdatedSubscription = { __typename?: 'Subscription', waitlistYoutubeQueueUpdated: boolean };
 
 export type WaitlistYoutubeHistoryUpdatedSubscriptionVariables = Types.Exact<{
-  channelId: Types.Scalars['String'];
+  channelId: Types.Scalars['String']['input'];
 }>;
 
 
 export type WaitlistYoutubeHistoryUpdatedSubscription = { __typename?: 'Subscription', waitlistYoutubeHistoryUpdated: boolean };
 
 export type WaitlistYoutubeCurrentUpdatedSubscriptionVariables = Types.Exact<{
-  channelId: Types.Scalars['String'];
+  channelId: Types.Scalars['String']['input'];
 }>;
 
 

@@ -4,7 +4,7 @@ import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
 export type CommunityQueryVariables = Types.Exact<{
-  name: Types.Scalars['String'];
+  name: Types.Scalars['String']['input'];
 }>;
 
 
@@ -30,7 +30,7 @@ export type UpdateCommunityMutationVariables = Types.Exact<{
 export type UpdateCommunityMutation = { __typename?: 'Mutation', updateCommunity: { __typename?: 'Community', id: string, name?: string | null, title: string, avatar?: string | null, onlineCount: number } };
 
 export type DeleteCommunityMutationVariables = Types.Exact<{
-  communityId: Types.Scalars['ID'];
+  communityId: Types.Scalars['ID']['input'];
 }>;
 
 

@@ -4,28 +4,28 @@ import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
 export type SpotifyModeQueryVariables = Types.Exact<{
-  channelId: Types.Scalars['String'];
+  channelId: Types.Scalars['String']['input'];
 }>;
 
 
 export type SpotifyModeQuery = { __typename?: 'Query', spotifyMode: { __typename?: 'SpotifyMode', id: string, hostId?: string | null, strategy: Types.SpotifyModeStrategy } };
 
 export type SpotifyModeHistoryQueryVariables = Types.Exact<{
-  channelId: Types.Scalars['String'];
+  channelId: Types.Scalars['String']['input'];
 }>;
 
 
 export type SpotifyModeHistoryQuery = { __typename?: 'Query', spotifyModeHistory: { __typename?: 'SpotifyModeHistory', items: Array<{ __typename?: 'SpotifyModeHistoryItem', actions: Array<Types.SpotifyModeHistoryItemAction>, data: { __typename?: 'SpotifyModeHistoryItemData', id: string, trackId: string, duration: number, cover: string, artists: string, title: string, startedAt?: string | null, endedAt?: string | null, author: { __typename?: 'SpotifyModeHistoryItemDataAuthor', id: string, name: string, avatar?: string | null } } }> } };
 
 export type SpotifyModeCurrentQueryVariables = Types.Exact<{
-  channelId: Types.Scalars['String'];
+  channelId: Types.Scalars['String']['input'];
 }>;
 
 
 export type SpotifyModeCurrentQuery = { __typename?: 'Query', spotifyModeCurrent?: { __typename?: 'SpotifyModeCurrent', actions: Array<Types.SpotifyModeCurrentAction>, item?: { __typename?: 'SpotifyModeCurrentItem', id: string, trackId: string, duration: number, cover: string, artists: string, title: string, start: number, end: number, startedAt?: string | null, author: { __typename?: 'SpotifyModeCurrentItemAuthor', id: string, name: string, avatar?: string | null } } | null } | null };
 
 export type SpotifyModeQueueQueryVariables = Types.Exact<{
-  channelId: Types.Scalars['String'];
+  channelId: Types.Scalars['String']['input'];
 }>;
 
 
@@ -39,43 +39,43 @@ export type UpdateSpotifyModeMutationVariables = Types.Exact<{
 export type UpdateSpotifyModeMutation = { __typename?: 'Mutation', updateSpotifyMode: { __typename?: 'SpotifyMode', id: string, hostId?: string | null, strategy: Types.SpotifyModeStrategy } };
 
 export type SpotifyModeQueueAddTrackMutationVariables = Types.Exact<{
-  channelId: Types.Scalars['String'];
-  trackId: Types.Scalars['String'];
+  channelId: Types.Scalars['String']['input'];
+  trackId: Types.Scalars['String']['input'];
 }>;
 
 
 export type SpotifyModeQueueAddTrackMutation = { __typename?: 'Mutation', spotifyModeQueueAddTrack: boolean };
 
 export type SpotifyModeQueueSkipTrackMutationVariables = Types.Exact<{
-  channelId: Types.Scalars['String'];
+  channelId: Types.Scalars['String']['input'];
 }>;
 
 
 export type SpotifyModeQueueSkipTrackMutation = { __typename?: 'Mutation', spotifyModeQueueSkipTrack: boolean };
 
 export type SpotifyModeUserSyncMutationVariables = Types.Exact<{
-  channelId: Types.Scalars['String'];
+  channelId: Types.Scalars['String']['input'];
 }>;
 
 
 export type SpotifyModeUserSyncMutation = { __typename?: 'Mutation', spotifyModeUserSync: boolean };
 
 export type SpotifyModeCurrentUpdatedSubscriptionVariables = Types.Exact<{
-  channelId: Types.Scalars['String'];
+  channelId: Types.Scalars['String']['input'];
 }>;
 
 
 export type SpotifyModeCurrentUpdatedSubscription = { __typename?: 'Subscription', spotifyModeCurrentUpdated: boolean };
 
 export type SpotifyModeQueueUpdatedSubscriptionVariables = Types.Exact<{
-  channelId: Types.Scalars['String'];
+  channelId: Types.Scalars['String']['input'];
 }>;
 
 
 export type SpotifyModeQueueUpdatedSubscription = { __typename?: 'Subscription', spotifyModeQueueUpdated: boolean };
 
 export type SpotifyModeHistoryUpdatedSubscriptionVariables = Types.Exact<{
-  channelId: Types.Scalars['String'];
+  channelId: Types.Scalars['String']['input'];
 }>;
 
 

@@ -14,8 +14,8 @@ export type LogoutMutationVariables = Types.Exact<{ [key: string]: never; }>;
 export type LogoutMutation = { __typename?: 'Mutation', logout: boolean };
 
 export type UpdateConnectionStatusMutationVariables = Types.Exact<{
-  channel?: Types.InputMaybe<Types.Scalars['String']>;
-  community?: Types.InputMaybe<Types.Scalars['String']>;
+  channel?: Types.InputMaybe<Types.Scalars['String']['input']>;
+  community?: Types.InputMaybe<Types.Scalars['String']['input']>;
 }>;
 
 

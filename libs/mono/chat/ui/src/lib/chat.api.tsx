@@ -4,7 +4,7 @@ import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
 export type ChannelMessagesQueryVariables = Types.Exact<{
-  channelId: Types.Scalars['ID'];
+  channelId: Types.Scalars['ID']['input'];
 }>;
 
 
@@ -18,14 +18,14 @@ export type CreateChannelMessageMutationVariables = Types.Exact<{
 export type CreateChannelMessageMutation = { __typename?: 'Mutation', createChannelMessage: boolean };
 
 export type ChannelMessageCreatedSubscriptionVariables = Types.Exact<{
-  channelId: Types.Scalars['ID'];
+  channelId: Types.Scalars['ID']['input'];
 }>;
 
 
 export type ChannelMessageCreatedSubscription = { __typename?: 'Subscription', channelMessageCreated: { __typename?: 'ChannelMessage', id: string, content: string, createdAt: string, tenorGif?: { __typename?: 'TenorGif', id: string, height: number, width: number, preview: string, video: string } | null, user: { __typename?: 'User', id: string, name?: string | null, avatar?: string | null } } };
 
 export type ChannelMessageDeletedSubscriptionVariables = Types.Exact<{
-  channelId: Types.Scalars['ID'];
+  channelId: Types.Scalars['ID']['input'];
 }>;
 
 

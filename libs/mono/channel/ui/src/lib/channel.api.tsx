@@ -4,22 +4,22 @@ import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
 export type ChannelQueryVariables = Types.Exact<{
-  name: Types.Scalars['String'];
-  communityId: Types.Scalars['String'];
+  name: Types.Scalars['String']['input'];
+  communityId: Types.Scalars['String']['input'];
 }>;
 
 
 export type ChannelQuery = { __typename?: 'Query', channel: { __typename?: 'Channel', id: string, name: string, title: string, mode: Types.ChannelMode, gifAllowed: boolean, nsfw: boolean, slowmode: number, state?: string | null, avatar?: string | null, onlineCount: number } };
 
 export type CommunityChannelsQueryVariables = Types.Exact<{
-  name: Types.Scalars['String'];
+  name: Types.Scalars['String']['input'];
 }>;
 
 
 export type CommunityChannelsQuery = { __typename?: 'Query', channels: Array<{ __typename?: 'Channel', id: string, name: string, title: string, mode: Types.ChannelMode, gifAllowed: boolean, nsfw: boolean, slowmode: number, state?: string | null, avatar?: string | null, onlineCount: number }> };
 
 export type ChannelUsersOnlineQueryVariables = Types.Exact<{
-  channelId: Types.Scalars['String'];
+  channelId: Types.Scalars['String']['input'];
 }>;
 
 
@@ -33,7 +33,7 @@ export type CreateChannelMutationVariables = Types.Exact<{
 export type CreateChannelMutation = { __typename?: 'Mutation', createChannel: { __typename?: 'Channel', id: string, name: string, title: string, mode: Types.ChannelMode, gifAllowed: boolean, nsfw: boolean, slowmode: number, state?: string | null, avatar?: string | null, onlineCount: number } };
 
 export type DeleteChannelMutationVariables = Types.Exact<{
-  channelId: Types.Scalars['ID'];
+  channelId: Types.Scalars['ID']['input'];
 }>;
 
 

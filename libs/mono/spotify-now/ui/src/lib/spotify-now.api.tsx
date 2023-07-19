@@ -4,7 +4,7 @@ import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
 export type SpotifyNowQueryVariables = Types.Exact<{
-  userId: Types.Scalars['String'];
+  userId: Types.Scalars['String']['input'];
 }>;
 
 

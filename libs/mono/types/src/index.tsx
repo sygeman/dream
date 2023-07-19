@@ -3,47 +3,49 @@ export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
+export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: string;
-  String: string;
-  Boolean: boolean;
-  Int: number;
-  Float: number;
+  ID: { input: string; output: string; }
+  String: { input: string; output: string; }
+  Boolean: { input: boolean; output: boolean; }
+  Int: { input: number; output: number; }
+  Float: { input: number; output: number; }
   /** A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format. */
-  DateTime: any;
+  DateTime: { input: any; output: any; }
 };
 
 export type Channel = {
   __typename?: 'Channel';
-  avatar?: Maybe<Scalars['String']>;
-  createdAt: Scalars['DateTime'];
-  gifAllowed: Scalars['Boolean'];
-  id: Scalars['String'];
+  avatar?: Maybe<Scalars['String']['output']>;
+  createdAt: Scalars['DateTime']['output'];
+  gifAllowed: Scalars['Boolean']['output'];
+  id: Scalars['String']['output'];
   mode: ChannelMode;
-  name: Scalars['String'];
-  nsfw: Scalars['Boolean'];
-  onlineCount: Scalars['Float'];
-  slowmode: Scalars['Int'];
-  state?: Maybe<Scalars['String']>;
-  title: Scalars['String'];
-  updatedAt: Scalars['DateTime'];
+  name: Scalars['String']['output'];
+  nsfw: Scalars['Boolean']['output'];
+  onlineCount: Scalars['Float']['output'];
+  slowmode: Scalars['Int']['output'];
+  state?: Maybe<Scalars['String']['output']>;
+  title: Scalars['String']['output'];
+  updatedAt: Scalars['DateTime']['output'];
 };
 
 export type ChannelMessage = {
   __typename?: 'ChannelMessage';
-  channelId: Scalars['String'];
-  content: Scalars['String'];
-  createdAt: Scalars['String'];
-  id: Scalars['String'];
+  channelId: Scalars['String']['output'];
+  content: Scalars['String']['output'];
+  createdAt: Scalars['String']['output'];
+  id: Scalars['String']['output'];
   tenorGif?: Maybe<TenorGif>;
   user: User;
-  userId: Scalars['String'];
+  userId: Scalars['String']['output'];
 };
 
 export type ChannelMessageCreateInput = {
-  channelId: Scalars['String'];
-  content: Scalars['String'];
+  channelId: Scalars['String']['input'];
+  content: Scalars['String']['input'];
 };
 
 export enum ChannelMode {
@@ -55,57 +57,57 @@ export enum ChannelMode {
 
 export type ChannelSettings = {
   __typename?: 'ChannelSettings';
-  avatar?: Maybe<Scalars['String']>;
-  createdAt: Scalars['DateTime'];
-  gifAllowed: Scalars['Boolean'];
-  id: Scalars['String'];
+  avatar?: Maybe<Scalars['String']['output']>;
+  createdAt: Scalars['DateTime']['output'];
+  gifAllowed: Scalars['Boolean']['output'];
+  id: Scalars['String']['output'];
   mode: ChannelMode;
-  name: Scalars['String'];
-  nsfw: Scalars['Boolean'];
-  slowmode: Scalars['Int'];
-  title: Scalars['String'];
-  updatedAt: Scalars['DateTime'];
+  name: Scalars['String']['output'];
+  nsfw: Scalars['Boolean']['output'];
+  slowmode: Scalars['Int']['output'];
+  title: Scalars['String']['output'];
+  updatedAt: Scalars['DateTime']['output'];
 };
 
 export type Community = {
   __typename?: 'Community';
-  avatar?: Maybe<Scalars['String']>;
-  createdAt: Scalars['DateTime'];
-  id: Scalars['String'];
-  name?: Maybe<Scalars['String']>;
-  onlineCount: Scalars['Float'];
-  title: Scalars['String'];
-  updatedAt: Scalars['DateTime'];
+  avatar?: Maybe<Scalars['String']['output']>;
+  createdAt: Scalars['DateTime']['output'];
+  id: Scalars['String']['output'];
+  name?: Maybe<Scalars['String']['output']>;
+  onlineCount: Scalars['Float']['output'];
+  title: Scalars['String']['output'];
+  updatedAt: Scalars['DateTime']['output'];
 };
 
 export type CommunitySettings = {
   __typename?: 'CommunitySettings';
-  avatar?: Maybe<Scalars['String']>;
-  id: Scalars['String'];
-  name: Scalars['String'];
-  title: Scalars['String'];
+  avatar?: Maybe<Scalars['String']['output']>;
+  id: Scalars['String']['output'];
+  name: Scalars['String']['output'];
+  title: Scalars['String']['output'];
 };
 
 export type CreateChannelInput = {
-  communityId: Scalars['ID'];
-  name: Scalars['String'];
-  title: Scalars['String'];
+  communityId: Scalars['ID']['input'];
+  name: Scalars['String']['input'];
+  title: Scalars['String']['input'];
 };
 
 export type CreateCommunityInput = {
-  name: Scalars['String'];
-  title: Scalars['String'];
+  name: Scalars['String']['input'];
+  title: Scalars['String']['input'];
 };
 
 export type Emoji = {
   __typename?: 'Emoji';
-  alias: Scalars['String'];
+  alias: Scalars['String']['output'];
   author: User;
-  authorId: Scalars['String'];
-  communityId: Scalars['String'];
-  createdAt: Scalars['String'];
-  id: Scalars['String'];
-  type: Scalars['String'];
+  authorId: Scalars['String']['output'];
+  communityId: Scalars['String']['output'];
+  createdAt: Scalars['String']['output'];
+  id: Scalars['String']['output'];
+  type: Scalars['String']['output'];
 };
 
 export enum Locale {
@@ -116,30 +118,30 @@ export enum Locale {
 export type Mutation = {
   __typename?: 'Mutation';
   createChannel: Channel;
-  createChannelMessage: Scalars['Boolean'];
+  createChannelMessage: Scalars['Boolean']['output'];
   createCommunity: Community;
   deleteChannel: Channel;
   deleteCommunity: Community;
-  deleteEmoji: Scalars['Boolean'];
-  logout: Scalars['Boolean'];
-  makeSpotifyModeCurrent: Scalars['Boolean'];
-  makeTwitchStreamModeCurrent: Scalars['Boolean'];
-  makeWaitlistYoutubeModeCurrent: Scalars['Boolean'];
-  refreshSpotifyToken: Scalars['String'];
+  deleteEmoji: Scalars['Boolean']['output'];
+  logout: Scalars['Boolean']['output'];
+  makeSpotifyModeCurrent: Scalars['Boolean']['output'];
+  makeTwitchStreamModeCurrent: Scalars['Boolean']['output'];
+  makeWaitlistYoutubeModeCurrent: Scalars['Boolean']['output'];
+  refreshSpotifyToken: Scalars['String']['output'];
   setUserLocale: Locale;
-  spotifyModeQueueAddTrack: Scalars['Boolean'];
-  spotifyModeQueueSkipTrack: Scalars['Boolean'];
-  spotifyModeUserSync: Scalars['Boolean'];
+  spotifyModeQueueAddTrack: Scalars['Boolean']['output'];
+  spotifyModeQueueSkipTrack: Scalars['Boolean']['output'];
+  spotifyModeUserSync: Scalars['Boolean']['output'];
   updateChannel: Channel;
   updateChannelSettings: ChannelSettings;
   updateCommunity: Community;
   updateCommunitySettings: CommunitySettings;
-  updateConnectionStatus: Scalars['Boolean'];
+  updateConnectionStatus: Scalars['Boolean']['output'];
   updateEmojiAlias: Emoji;
   updateSpotifyMode: SpotifyMode;
   updateTwitchStream: TwitchStream;
-  waitlistYoutubeQueueAddVideo: Scalars['Boolean'];
-  waitlistYoutubeQueueSkipVideo: Scalars['Boolean'];
+  waitlistYoutubeQueueAddVideo: Scalars['Boolean']['output'];
+  waitlistYoutubeQueueSkipVideo: Scalars['Boolean']['output'];
 };
 
 
@@ -159,32 +161,32 @@ export type MutationCreateCommunityArgs = {
 
 
 export type MutationDeleteChannelArgs = {
-  channelId: Scalars['ID'];
+  channelId: Scalars['ID']['input'];
 };
 
 
 export type MutationDeleteCommunityArgs = {
-  communityId: Scalars['ID'];
+  communityId: Scalars['ID']['input'];
 };
 
 
 export type MutationDeleteEmojiArgs = {
-  emojiId: Scalars['String'];
+  emojiId: Scalars['String']['input'];
 };
 
 
 export type MutationMakeSpotifyModeCurrentArgs = {
-  channelId: Scalars['String'];
+  channelId: Scalars['String']['input'];
 };
 
 
 export type MutationMakeTwitchStreamModeCurrentArgs = {
-  channelId: Scalars['String'];
+  channelId: Scalars['String']['input'];
 };
 
 
 export type MutationMakeWaitlistYoutubeModeCurrentArgs = {
-  channelId: Scalars['String'];
+  channelId: Scalars['String']['input'];
 };
 
 
@@ -194,18 +196,18 @@ export type MutationSetUserLocaleArgs = {
 
 
 export type MutationSpotifyModeQueueAddTrackArgs = {
-  channelId: Scalars['String'];
-  trackId: Scalars['String'];
+  channelId: Scalars['String']['input'];
+  trackId: Scalars['String']['input'];
 };
 
 
 export type MutationSpotifyModeQueueSkipTrackArgs = {
-  channelId: Scalars['String'];
+  channelId: Scalars['String']['input'];
 };
 
 
 export type MutationSpotifyModeUserSyncArgs = {
-  channelId: Scalars['String'];
+  channelId: Scalars['String']['input'];
 };
 
 
@@ -230,14 +232,14 @@ export type MutationUpdateCommunitySettingsArgs = {
 
 
 export type MutationUpdateConnectionStatusArgs = {
-  channel?: InputMaybe<Scalars['String']>;
-  community?: InputMaybe<Scalars['String']>;
+  channel?: InputMaybe<Scalars['String']['input']>;
+  community?: InputMaybe<Scalars['String']['input']>;
 };
 
 
 export type MutationUpdateEmojiAliasArgs = {
-  alias: Scalars['String'];
-  emojiId: Scalars['String'];
+  alias: Scalars['String']['input'];
+  emojiId: Scalars['String']['input'];
 };
 
 
@@ -252,21 +254,21 @@ export type MutationUpdateTwitchStreamArgs = {
 
 
 export type MutationWaitlistYoutubeQueueAddVideoArgs = {
-  channelId: Scalars['String'];
-  videoId: Scalars['String'];
+  channelId: Scalars['String']['input'];
+  videoId: Scalars['String']['input'];
 };
 
 
 export type MutationWaitlistYoutubeQueueSkipVideoArgs = {
-  channelId: Scalars['String'];
+  channelId: Scalars['String']['input'];
 };
 
 export type Profile = {
   __typename?: 'Profile';
-  avatar?: Maybe<Scalars['String']>;
-  id: Scalars['String'];
-  name?: Maybe<Scalars['String']>;
-  provider: Scalars['String'];
+  avatar?: Maybe<Scalars['String']['output']>;
+  id: Scalars['String']['output'];
+  name?: Maybe<Scalars['String']['output']>;
+  provider: Scalars['String']['output'];
 };
 
 export type Query = {
@@ -286,7 +288,7 @@ export type Query = {
   spotifyModeHistory: SpotifyModeHistory;
   spotifyModeQueue: SpotifyModeQueue;
   spotifyNow?: Maybe<SpotifyNow>;
-  spotifyToken: Scalars['String'];
+  spotifyToken: Scalars['String']['output'];
   twitchStream: TwitchStream;
   user?: Maybe<User>;
   waitlistYoutubeCurrent?: Maybe<YoutubeModeCurrent>;
@@ -296,99 +298,99 @@ export type Query = {
 
 
 export type QueryChannelArgs = {
-  communityId: Scalars['String'];
-  name: Scalars['String'];
+  communityId: Scalars['String']['input'];
+  name: Scalars['String']['input'];
 };
 
 
 export type QueryChannelMessagesArgs = {
-  channelId: Scalars['ID'];
+  channelId: Scalars['ID']['input'];
 };
 
 
 export type QueryChannelUsersOnlineArgs = {
-  channelId: Scalars['String'];
+  channelId: Scalars['String']['input'];
 };
 
 
 export type QueryChannelsArgs = {
-  name: Scalars['String'];
+  name: Scalars['String']['input'];
 };
 
 
 export type QueryCommunityArgs = {
-  name: Scalars['String'];
+  name: Scalars['String']['input'];
 };
 
 
 export type QueryCommunitySettingsArgs = {
-  name: Scalars['String'];
+  name: Scalars['String']['input'];
 };
 
 
 export type QueryEmojiArgs = {
-  emojiId: Scalars['String'];
+  emojiId: Scalars['String']['input'];
 };
 
 
 export type QueryEmojisArgs = {
-  communityId: Scalars['String'];
+  communityId: Scalars['String']['input'];
 };
 
 
 export type QuerySpotifyModeArgs = {
-  channelId: Scalars['String'];
+  channelId: Scalars['String']['input'];
 };
 
 
 export type QuerySpotifyModeCurrentArgs = {
-  channelId: Scalars['String'];
+  channelId: Scalars['String']['input'];
 };
 
 
 export type QuerySpotifyModeHistoryArgs = {
-  channelId: Scalars['String'];
+  channelId: Scalars['String']['input'];
 };
 
 
 export type QuerySpotifyModeQueueArgs = {
-  channelId: Scalars['String'];
+  channelId: Scalars['String']['input'];
 };
 
 
 export type QuerySpotifyNowArgs = {
-  userId: Scalars['String'];
+  userId: Scalars['String']['input'];
 };
 
 
 export type QueryTwitchStreamArgs = {
-  channelId: Scalars['String'];
+  channelId: Scalars['String']['input'];
 };
 
 
 export type QueryUserArgs = {
-  id?: InputMaybe<Scalars['ID']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
 };
 
 
 export type QueryWaitlistYoutubeCurrentArgs = {
-  channelId: Scalars['String'];
+  channelId: Scalars['String']['input'];
 };
 
 
 export type QueryWaitlistYoutubeHistoryArgs = {
-  channelId: Scalars['String'];
+  channelId: Scalars['String']['input'];
 };
 
 
 export type QueryWaitlistYoutubeQueueArgs = {
-  channelId: Scalars['String'];
+  channelId: Scalars['String']['input'];
 };
 
 export type SpotifyMode = {
   __typename?: 'SpotifyMode';
-  hostId?: Maybe<Scalars['String']>;
-  id: Scalars['String'];
+  hostId?: Maybe<Scalars['String']['output']>;
+  id: Scalars['String']['output'];
   strategy: SpotifyModeStrategy;
 };
 
@@ -404,23 +406,23 @@ export enum SpotifyModeCurrentAction {
 
 export type SpotifyModeCurrentItem = {
   __typename?: 'SpotifyModeCurrentItem';
-  artists: Scalars['String'];
+  artists: Scalars['String']['output'];
   author: SpotifyModeCurrentItemAuthor;
-  cover: Scalars['String'];
-  duration: Scalars['Int'];
-  end: Scalars['Int'];
-  id: Scalars['String'];
-  start: Scalars['Int'];
-  startedAt?: Maybe<Scalars['String']>;
-  title: Scalars['String'];
-  trackId: Scalars['String'];
+  cover: Scalars['String']['output'];
+  duration: Scalars['Int']['output'];
+  end: Scalars['Int']['output'];
+  id: Scalars['String']['output'];
+  start: Scalars['Int']['output'];
+  startedAt?: Maybe<Scalars['String']['output']>;
+  title: Scalars['String']['output'];
+  trackId: Scalars['String']['output'];
 };
 
 export type SpotifyModeCurrentItemAuthor = {
   __typename?: 'SpotifyModeCurrentItemAuthor';
-  avatar?: Maybe<Scalars['String']>;
-  id: Scalars['String'];
-  name: Scalars['String'];
+  avatar?: Maybe<Scalars['String']['output']>;
+  id: Scalars['String']['output'];
+  name: Scalars['String']['output'];
 };
 
 export type SpotifyModeHistory = {
@@ -440,22 +442,22 @@ export enum SpotifyModeHistoryItemAction {
 
 export type SpotifyModeHistoryItemData = {
   __typename?: 'SpotifyModeHistoryItemData';
-  artists: Scalars['String'];
+  artists: Scalars['String']['output'];
   author: SpotifyModeHistoryItemDataAuthor;
-  cover: Scalars['String'];
-  duration: Scalars['Int'];
-  endedAt?: Maybe<Scalars['String']>;
-  id: Scalars['String'];
-  startedAt?: Maybe<Scalars['String']>;
-  title: Scalars['String'];
-  trackId: Scalars['String'];
+  cover: Scalars['String']['output'];
+  duration: Scalars['Int']['output'];
+  endedAt?: Maybe<Scalars['String']['output']>;
+  id: Scalars['String']['output'];
+  startedAt?: Maybe<Scalars['String']['output']>;
+  title: Scalars['String']['output'];
+  trackId: Scalars['String']['output'];
 };
 
 export type SpotifyModeHistoryItemDataAuthor = {
   __typename?: 'SpotifyModeHistoryItemDataAuthor';
-  avatar?: Maybe<Scalars['String']>;
-  id: Scalars['String'];
-  name: Scalars['String'];
+  avatar?: Maybe<Scalars['String']['output']>;
+  id: Scalars['String']['output'];
+  name: Scalars['String']['output'];
 };
 
 export type SpotifyModeQueue = {
@@ -480,20 +482,20 @@ export enum SpotifyModeQueueItemAction {
 
 export type SpotifyModeQueueItemData = {
   __typename?: 'SpotifyModeQueueItemData';
-  artists: Scalars['String'];
+  artists: Scalars['String']['output'];
   author: SpotifyModeQueueItemDataAuthor;
-  cover: Scalars['String'];
-  duration: Scalars['Int'];
-  id: Scalars['String'];
-  title: Scalars['String'];
-  trackId: Scalars['String'];
+  cover: Scalars['String']['output'];
+  duration: Scalars['Int']['output'];
+  id: Scalars['String']['output'];
+  title: Scalars['String']['output'];
+  trackId: Scalars['String']['output'];
 };
 
 export type SpotifyModeQueueItemDataAuthor = {
   __typename?: 'SpotifyModeQueueItemDataAuthor';
-  avatar?: Maybe<Scalars['String']>;
-  id: Scalars['String'];
-  name: Scalars['String'];
+  avatar?: Maybe<Scalars['String']['output']>;
+  id: Scalars['String']['output'];
+  name: Scalars['String']['output'];
 };
 
 export enum SpotifyModeStrategy {
@@ -503,131 +505,131 @@ export enum SpotifyModeStrategy {
 
 export type SpotifyNow = {
   __typename?: 'SpotifyNow';
-  artist: Scalars['String'];
-  id: Scalars['String'];
-  imageUrl: Scalars['String'];
-  name: Scalars['String'];
-  progress: Scalars['Float'];
+  artist: Scalars['String']['output'];
+  id: Scalars['String']['output'];
+  imageUrl: Scalars['String']['output'];
+  name: Scalars['String']['output'];
+  progress: Scalars['Float']['output'];
 };
 
 export type Subscription = {
   __typename?: 'Subscription';
   channelMessageCreated: ChannelMessage;
   channelMessageDeleted: ChannelMessage;
-  spotifyModeCurrentUpdated: Scalars['Boolean'];
-  spotifyModeHistoryUpdated: Scalars['Boolean'];
-  spotifyModeQueueUpdated: Scalars['Boolean'];
-  waitlistYoutubeCurrentUpdated: Scalars['Boolean'];
-  waitlistYoutubeHistoryUpdated: Scalars['Boolean'];
-  waitlistYoutubeQueueUpdated: Scalars['Boolean'];
+  spotifyModeCurrentUpdated: Scalars['Boolean']['output'];
+  spotifyModeHistoryUpdated: Scalars['Boolean']['output'];
+  spotifyModeQueueUpdated: Scalars['Boolean']['output'];
+  waitlistYoutubeCurrentUpdated: Scalars['Boolean']['output'];
+  waitlistYoutubeHistoryUpdated: Scalars['Boolean']['output'];
+  waitlistYoutubeQueueUpdated: Scalars['Boolean']['output'];
 };
 
 
 export type SubscriptionChannelMessageCreatedArgs = {
-  channelId: Scalars['ID'];
+  channelId: Scalars['ID']['input'];
 };
 
 
 export type SubscriptionChannelMessageDeletedArgs = {
-  channelId: Scalars['ID'];
+  channelId: Scalars['ID']['input'];
 };
 
 
 export type SubscriptionSpotifyModeCurrentUpdatedArgs = {
-  channelId: Scalars['String'];
+  channelId: Scalars['String']['input'];
 };
 
 
 export type SubscriptionSpotifyModeHistoryUpdatedArgs = {
-  channelId: Scalars['String'];
+  channelId: Scalars['String']['input'];
 };
 
 
 export type SubscriptionSpotifyModeQueueUpdatedArgs = {
-  channelId: Scalars['String'];
+  channelId: Scalars['String']['input'];
 };
 
 
 export type SubscriptionWaitlistYoutubeCurrentUpdatedArgs = {
-  channelId: Scalars['String'];
+  channelId: Scalars['String']['input'];
 };
 
 
 export type SubscriptionWaitlistYoutubeHistoryUpdatedArgs = {
-  channelId: Scalars['String'];
+  channelId: Scalars['String']['input'];
 };
 
 
 export type SubscriptionWaitlistYoutubeQueueUpdatedArgs = {
-  channelId: Scalars['String'];
+  channelId: Scalars['String']['input'];
 };
 
 export type TenorGif = {
   __typename?: 'TenorGif';
-  height: Scalars['Float'];
-  id: Scalars['String'];
-  preview: Scalars['String'];
-  video: Scalars['String'];
-  width: Scalars['Float'];
+  height: Scalars['Float']['output'];
+  id: Scalars['String']['output'];
+  preview: Scalars['String']['output'];
+  video: Scalars['String']['output'];
+  width: Scalars['Float']['output'];
 };
 
 export type TwitchStream = {
   __typename?: 'TwitchStream';
-  channelKey?: Maybe<Scalars['String']>;
-  id: Scalars['String'];
+  channelKey?: Maybe<Scalars['String']['output']>;
+  id: Scalars['String']['output'];
 };
 
 export type UpdateChannelInput = {
-  channelId: Scalars['ID'];
-  communityId: Scalars['ID'];
-  gifAllowed?: InputMaybe<Scalars['Boolean']>;
-  name?: InputMaybe<Scalars['String']>;
-  nsfw?: InputMaybe<Scalars['Boolean']>;
-  slowmode?: InputMaybe<Scalars['Int']>;
-  title?: InputMaybe<Scalars['String']>;
+  channelId: Scalars['ID']['input'];
+  communityId: Scalars['ID']['input'];
+  gifAllowed?: InputMaybe<Scalars['Boolean']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  nsfw?: InputMaybe<Scalars['Boolean']['input']>;
+  slowmode?: InputMaybe<Scalars['Int']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type UpdateChannelSettingsInput = {
-  channelId: Scalars['ID'];
-  communityId: Scalars['ID'];
-  gifAllowed?: InputMaybe<Scalars['Boolean']>;
-  name?: InputMaybe<Scalars['String']>;
-  nsfw?: InputMaybe<Scalars['Boolean']>;
-  slowmode?: InputMaybe<Scalars['Int']>;
-  title?: InputMaybe<Scalars['String']>;
+  channelId: Scalars['ID']['input'];
+  communityId: Scalars['ID']['input'];
+  gifAllowed?: InputMaybe<Scalars['Boolean']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  nsfw?: InputMaybe<Scalars['Boolean']['input']>;
+  slowmode?: InputMaybe<Scalars['Int']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type UpdateCommunityInput = {
-  communityId: Scalars['ID'];
-  name: Scalars['String'];
-  title: Scalars['String'];
+  communityId: Scalars['ID']['input'];
+  name: Scalars['String']['input'];
+  title: Scalars['String']['input'];
 };
 
 export type UpdateCommunitySettingsInput = {
-  communityId: Scalars['ID'];
-  name: Scalars['String'];
-  title: Scalars['String'];
+  communityId: Scalars['ID']['input'];
+  name: Scalars['String']['input'];
+  title: Scalars['String']['input'];
 };
 
 export type UpdateSpotifyModeInput = {
-  channelId: Scalars['ID'];
+  channelId: Scalars['ID']['input'];
   strategy: SpotifyModeStrategy;
 };
 
 export type UpdateTwitchStreamInput = {
-  channelId: Scalars['ID'];
-  channelKey: Scalars['String'];
+  channelId: Scalars['ID']['input'];
+  channelKey: Scalars['String']['input'];
 };
 
 export type User = {
   __typename?: 'User';
-  avatar?: Maybe<Scalars['String']>;
-  createdAt: Scalars['DateTime'];
-  id: Scalars['String'];
+  avatar?: Maybe<Scalars['String']['output']>;
+  createdAt: Scalars['DateTime']['output'];
+  id: Scalars['String']['output'];
   locale: Locale;
-  name?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']['output']>;
   profiles?: Maybe<Array<Profile>>;
-  updatedAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime']['output'];
 };
 
 export type YoutubeModeCurrent = {
@@ -642,21 +644,21 @@ export enum YoutubeModeCurrentAction {
 
 export type YoutubeModeCurrentItem = {
   __typename?: 'YoutubeModeCurrentItem';
-  artists: Scalars['String'];
+  artists: Scalars['String']['output'];
   author: YoutubeModeCurrentItemAuthor;
-  cover: Scalars['String'];
-  duration: Scalars['Int'];
-  id: Scalars['String'];
-  startedAt?: Maybe<Scalars['String']>;
-  title: Scalars['String'];
-  videoId: Scalars['String'];
+  cover: Scalars['String']['output'];
+  duration: Scalars['Int']['output'];
+  id: Scalars['String']['output'];
+  startedAt?: Maybe<Scalars['String']['output']>;
+  title: Scalars['String']['output'];
+  videoId: Scalars['String']['output'];
 };
 
 export type YoutubeModeCurrentItemAuthor = {
   __typename?: 'YoutubeModeCurrentItemAuthor';
-  avatar?: Maybe<Scalars['String']>;
-  id: Scalars['String'];
-  name: Scalars['String'];
+  avatar?: Maybe<Scalars['String']['output']>;
+  id: Scalars['String']['output'];
+  name: Scalars['String']['output'];
 };
 
 export type YoutubeModeHistory = {
@@ -676,22 +678,22 @@ export enum YoutubeModeHistoryItemAction {
 
 export type YoutubeModeHistoryItemData = {
   __typename?: 'YoutubeModeHistoryItemData';
-  artists: Scalars['String'];
+  artists: Scalars['String']['output'];
   author: YoutubeModeHistoryItemDataAuthor;
-  cover: Scalars['String'];
-  duration: Scalars['Int'];
-  endedAt?: Maybe<Scalars['String']>;
-  id: Scalars['String'];
-  startedAt?: Maybe<Scalars['String']>;
-  title: Scalars['String'];
-  videoId: Scalars['String'];
+  cover: Scalars['String']['output'];
+  duration: Scalars['Int']['output'];
+  endedAt?: Maybe<Scalars['String']['output']>;
+  id: Scalars['String']['output'];
+  startedAt?: Maybe<Scalars['String']['output']>;
+  title: Scalars['String']['output'];
+  videoId: Scalars['String']['output'];
 };
 
 export type YoutubeModeHistoryItemDataAuthor = {
   __typename?: 'YoutubeModeHistoryItemDataAuthor';
-  avatar?: Maybe<Scalars['String']>;
-  id: Scalars['String'];
-  name: Scalars['String'];
+  avatar?: Maybe<Scalars['String']['output']>;
+  id: Scalars['String']['output'];
+  name: Scalars['String']['output'];
 };
 
 export type YoutubeModeQueue = {
@@ -716,18 +718,18 @@ export enum YoutubeModeQueueItemAction {
 
 export type YoutubeModeQueueItemData = {
   __typename?: 'YoutubeModeQueueItemData';
-  artists: Scalars['String'];
+  artists: Scalars['String']['output'];
   author: YoutubeModeQueueItemDataAuthor;
-  cover: Scalars['String'];
-  duration: Scalars['Int'];
-  id: Scalars['String'];
-  title: Scalars['String'];
-  videoId: Scalars['String'];
+  cover: Scalars['String']['output'];
+  duration: Scalars['Int']['output'];
+  id: Scalars['String']['output'];
+  title: Scalars['String']['output'];
+  videoId: Scalars['String']['output'];
 };
 
 export type YoutubeModeQueueItemDataAuthor = {
   __typename?: 'YoutubeModeQueueItemDataAuthor';
-  avatar?: Maybe<Scalars['String']>;
-  id: Scalars['String'];
-  name: Scalars['String'];
+  avatar?: Maybe<Scalars['String']['output']>;
+  id: Scalars['String']['output'];
+  name: Scalars['String']['output'];
 };

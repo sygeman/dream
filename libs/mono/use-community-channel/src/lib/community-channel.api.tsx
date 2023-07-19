@@ -4,15 +4,15 @@ import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
 export type ChannelForCcQueryVariables = Types.Exact<{
-  name: Types.Scalars['String'];
-  communityId: Types.Scalars['String'];
+  name: Types.Scalars['String']['input'];
+  communityId: Types.Scalars['String']['input'];
 }>;
 
 
 export type ChannelForCcQuery = { __typename?: 'Query', channel: { __typename?: 'Channel', id: string, name: string, title: string, mode: Types.ChannelMode, gifAllowed: boolean, nsfw: boolean, slowmode: number, state?: string | null, avatar?: string | null, onlineCount: number } };
 
 export type CommunityForCcQueryVariables = Types.Exact<{
-  name: Types.Scalars['String'];
+  name: Types.Scalars['String']['input'];
 }>;
 
 

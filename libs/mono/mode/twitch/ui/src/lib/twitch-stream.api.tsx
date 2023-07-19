@@ -4,7 +4,7 @@ import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
 export type TwitchStreamQueryVariables = Types.Exact<{
-  channelId: Types.Scalars['String'];
+  channelId: Types.Scalars['String']['input'];
 }>;
 
 

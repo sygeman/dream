@@ -63,21 +63,21 @@
       "executor": "nx:run-commands",
       "outputs": [],
       "options": {
-        "command": "prisma generate --schema ./libs/mono/prisma/schema.prisma"
+        "command": "prisma generate"
       }
     },
     "dbpush": {
       "executor": "nx:run-commands",
       "outputs": [],
       "options": {
-        "command": "prisma db push --schema ./libs/mono/prisma/schema.prisma"
+        "command": "prisma db push"
       }
     },
     "studio": {
       "executor": "nx:run-commands",
       "outputs": [],
       "options": {
-        "command": "prisma studio --schema ./libs/mono/prisma/schema.prisma"
+        "command": "prisma studio"
       }
     },
     "docker": {

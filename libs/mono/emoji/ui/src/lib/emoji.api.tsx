@@ -4,29 +4,29 @@ import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
 export type EmojiQueryVariables = Types.Exact<{
-  emojiId: Types.Scalars['String'];
+  emojiId: Types.Scalars['String']['input'];
 }>;
 
 
 export type EmojiQuery = { __typename?: 'Query', emoji: { __typename?: 'Emoji', id: string, type: string, alias: string, authorId: string, createdAt: string, author: { __typename?: 'User', id: string, name?: string | null, avatar?: string | null } } };
 
 export type EmojisQueryVariables = Types.Exact<{
-  communityId: Types.Scalars['String'];
+  communityId: Types.Scalars['String']['input'];
 }>;
 
 
 export type EmojisQuery = { __typename?: 'Query', emojis: Array<{ __typename?: 'Emoji', id: string, type: string, alias: string, authorId: string, createdAt: string, author: { __typename?: 'User', id: string, name?: string | null, avatar?: string | null } }> };
 
 export type UpdateEmojiAliasMutationVariables = Types.Exact<{
-  emojiId: Types.Scalars['String'];
-  alias: Types.Scalars['String'];
+  emojiId: Types.Scalars['String']['input'];
+  alias: Types.Scalars['String']['input'];
 }>;
 
 
 export type UpdateEmojiAliasMutation = { __typename?: 'Mutation', updateEmojiAlias: { __typename?: 'Emoji', id: string, type: string, alias: string, authorId: string, createdAt: string, author: { __typename?: 'User', id: string, name?: string | null, avatar?: string | null } } };
 
 export type DeleteEmojiMutationVariables = Types.Exact<{
-  emojiId: Types.Scalars['String'];
+  emojiId: Types.Scalars['String']['input'];
 }>;
 
 

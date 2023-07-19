@@ -4,21 +4,21 @@ import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
 export type MakeTwitchStreamModeCurrentMutationVariables = Types.Exact<{
-  channelId: Types.Scalars['String'];
+  channelId: Types.Scalars['String']['input'];
 }>;
 
 
 export type MakeTwitchStreamModeCurrentMutation = { __typename?: 'Mutation', makeTwitchStreamModeCurrent: boolean };
 
 export type MakeSpotifyModeCurrentMutationVariables = Types.Exact<{
-  channelId: Types.Scalars['String'];
+  channelId: Types.Scalars['String']['input'];
 }>;
 
 
 export type MakeSpotifyModeCurrentMutation = { __typename?: 'Mutation', makeSpotifyModeCurrent: boolean };
 
 export type MakeWaitlistYoutubeModeCurrentMutationVariables = Types.Exact<{
-  channelId: Types.Scalars['String'];
+  channelId: Types.Scalars['String']['input'];
 }>;
 
 

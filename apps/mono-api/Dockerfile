@@ -1,8 +1,8 @@
 FROM node:lts-alpine as base
 WORKDIR /app
 
-COPY dist/apps/mono-api .
-COPY prisma .
+COPY prisma/migrations ./migrations
+COPY prisma/schema.prisma ./schema.prisma
 COPY schema.gql .
 
 FROM base as dependencies

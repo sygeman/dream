@@ -22,7 +22,8 @@
       "configurations": {
         "development": {},
         "production": {}
-      }
+      },
+      "dependsOn": ["generate"]
     },
     "serve": {
       "executor": "@nx/js:node",
@@ -89,7 +90,8 @@
           "images": ["ghcr.io/sygeman/dream/mono-api"],
           "tags": ["latest", "type=sha,prefix="]
         }
-      }
+      },
+      "dependsOn": ["build"]
     }
   },
   "tags": []

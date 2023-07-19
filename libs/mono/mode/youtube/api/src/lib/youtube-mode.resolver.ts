@@ -18,14 +18,14 @@ import { YoutubeModeCurrentAction } from './models/current/action';
 import { YoutubeModeHistory } from './models/history/model';
 import { YoutubeModeCurrent } from './models/current/model';
 import { YoutubeModeQueue } from './models/queue/model';
-import { ChannelMode } from '@prisma/mono';
+import { ChannelMode } from '@prisma/client';
 
 @Resolver()
 export class WaitlistYoutubeResolver {
   constructor(
     private prisma: PrismaService,
     private waitlistYoutubeService: WaitlistYoutubeService,
-    @Inject('PUB_SUB') private readonly pubsub: RedisPubSub
+    @Inject('PUB_SUB') private readonly pubsub: RedisPubSub,
   ) {}
 
   @Query(() => YoutubeModeHistory)
@@ -108,7 +108,7 @@ export class WaitlistYoutubeResolver {
   @Mutation(() => Boolean)
   @UseGuards(AuthGuard)
   async makeWaitlistYoutubeModeCurrent(
-    @Args({ name: 'channelId' }) channelId: string
+    @Args({ name: 'channelId' }) channelId: string,
   ) {
     await this.waitlistYoutubeService.init(channelId);
 
@@ -126,7 +126,7 @@ export class WaitlistYoutubeResolver {
   async waitlistYoutubeQueueAddVideo(
     @Args({ name: 'channelId' }) channelId: string,
     @Args({ name: 'videoId' }) videoId: string,
-    @Context('userId') userId: string
+    @Context('userId') userId: string,
   ) {
     await this.waitlistYoutubeService.addVideo({ channelId, userId, videoId });
     return true;
@@ -136,7 +136,7 @@ export class WaitlistYoutubeResolver {
   @UseGuards(AuthGuard)
   async waitlistYoutubeQueueSkipVideo(
     @Args({ name: 'channelId' }) channelId: string,
-    @Context('userId') userId: string
+    @Context('userId') userId: string,
   ) {
     await this.waitlistYoutubeService.skipVideo({ channelId });
 
@@ -147,7 +147,7 @@ export class WaitlistYoutubeResolver {
     filter: ({ channelId }, args) => channelId === args.channelId,
   })
   waitlistYoutubeCurrentUpdated(
-    @Args({ name: 'channelId', type: () => String }) channelId: string
+    @Args({ name: 'channelId', type: () => String }) channelId: string,
   ) {
     return this.pubsub.asyncIterator('waitlistYoutubeCurrentUpdated');
   }
@@ -156,7 +156,7 @@ export class WaitlistYoutubeResolver {
     filter: ({ channelId }, args) => channelId === args.channelId,
   })
   waitlistYoutubeQueueUpdated(
-    @Args({ name: 'channelId', type: () => String }) channelId: string
+    @Args({ name: 'channelId', type: () => String }) channelId: string,
   ) {
     return this.pubsub.asyncIterator('waitlistYoutubeQueueUpdated');
   }
@@ -165,7 +165,7 @@ export class WaitlistYoutubeResolver {
     filter: ({ channelId }, args) => channelId === args.channelId,
   })
   waitlistYoutubeHistoryUpdated(
-    @Args({ name: 'channelId', type: () => String }) channelId: string
+    @Args({ name: 'channelId', type: () => String }) channelId: string,
   ) {
     return this.pubsub.asyncIterator('waitlistYoutubeHistoryUpdated');
   }

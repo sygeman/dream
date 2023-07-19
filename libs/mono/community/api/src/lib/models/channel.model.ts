@@ -1,5 +1,5 @@
 import { Field, Int, ObjectType, registerEnumType } from '@nestjs/graphql';
-import { ChannelMode } from '@prisma/mono';
+import { ChannelMode } from '@prisma/client';
 
 registerEnumType(ChannelMode, {
   name: 'ChannelMode',

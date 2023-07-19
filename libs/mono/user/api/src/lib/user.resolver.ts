@@ -3,7 +3,7 @@ import { PrismaService } from '@dream/mono-prisma';
 import { User } from './models/user.model';
 import { UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@dream/mono-auth-api';
-import { Locale } from '@prisma/mono';
+import { Locale } from '@prisma/client';
 
 @Resolver(() => User)
 export class UserResolver {
@@ -13,7 +13,7 @@ export class UserResolver {
   async user(
     @Args({ name: 'id', type: () => ID, nullable: true })
     id: string,
-    @Context('userId') userId
+    @Context('userId') userId,
   ) {
     if (!id) {
       if (!userId) return null;
@@ -40,7 +40,7 @@ export class UserResolver {
   async setUserLocale(
     @Args({ name: 'locale', type: () => Locale })
     locale: Locale,
-    @Context('userId') userId
+    @Context('userId') userId,
   ): Promise<Locale> {
     await this.prisma.user.update({
       where: { id: userId },

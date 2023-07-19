@@ -1,4 +1,4 @@
-import { Locale } from '@prisma/mono';
+import { Locale } from '@prisma/client';
 import { Field, ObjectType, registerEnumType } from '@nestjs/graphql';
 
 registerEnumType(Locale, {

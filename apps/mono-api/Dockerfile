@@ -8,7 +8,6 @@ COPY apps/mono-api/schema.gql ./schema.gql
 
 FROM base as dependencies
 RUN yarn --production
-ENV PRISMA_MONO_OUTPUT="./node_modules/@prisma/mono"
 RUN npx prisma generate
 RUN cp -R node_modules prod_node_modules
 

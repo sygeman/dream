@@ -6,7 +6,7 @@ import { InjectQueue } from '@nestjs/bull';
 import { Injectable, Logger, OnApplicationBootstrap } from '@nestjs/common';
 import { Queue } from 'bull';
 import { SpotifyModeCurrentService } from './current.service';
-import { SpotifyMode } from '@prisma/mono';
+import { SpotifyMode } from '@prisma/client';
 
 @Injectable()
 export class SpotifyModeHostService implements OnApplicationBootstrap {
@@ -17,7 +17,7 @@ export class SpotifyModeHostService implements OnApplicationBootstrap {
     private spotify: SpotifyService,
     private currentService: SpotifyModeCurrentService,
     @InjectQueue('spotifyMode')
-    private readonly spotifyModeQueue: Queue
+    private readonly spotifyModeQueue: Queue,
   ) {}
 
   onApplicationBootstrap() {

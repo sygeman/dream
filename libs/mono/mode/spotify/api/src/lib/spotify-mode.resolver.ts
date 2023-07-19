@@ -18,7 +18,7 @@ import { SpotifyModeCurrentAction } from './models/current/action';
 import { SpotifyModeHistory } from './models/history/model';
 import { SpotifyModeCurrent } from './models/current/model';
 import { SpotifyModeQueue } from './models/queue/model';
-import { ChannelMode } from '@prisma/mono';
+import { ChannelMode } from '@prisma/client';
 import { SpotifyMode } from './models/spotify-mode.model';
 import { UpdateSpotifyModeInput } from './dto/update-spotify-mode.input';
 import { SpotifyModeCurrentService } from './services/current.service';
@@ -29,7 +29,7 @@ export class SpotifyModeResolver {
     private prisma: PrismaService,
     private spotifyModeService: SpotifyModeService,
     private currentService: SpotifyModeCurrentService,
-    @Inject('PUB_SUB') private readonly pubsub: RedisPubSub
+    @Inject('PUB_SUB') private readonly pubsub: RedisPubSub,
   ) {}
 
   @Query(() => SpotifyMode)
@@ -68,7 +68,7 @@ export class SpotifyModeResolver {
   @Query(() => SpotifyModeCurrent, { nullable: true })
   async spotifyModeCurrent(
     @Args({ name: 'channelId' }) channelId: string,
-    @Context('userId') userId: string
+    @Context('userId') userId: string,
   ) {
     const modeData = await this.prisma.spotifyMode.findFirst({
       where: { channel: { id: channelId } },
@@ -133,7 +133,7 @@ export class SpotifyModeResolver {
   async updateSpotifyMode(
     @Args({ name: 'input', type: () => UpdateSpotifyModeInput })
     input: UpdateSpotifyModeInput,
-    @Context('userId') userId: string
+    @Context('userId') userId: string,
   ) {
     const channelIsExist = await this.prisma.channel.findFirst({
       where: {
@@ -173,7 +173,7 @@ export class SpotifyModeResolver {
   async spotifyModeQueueAddTrack(
     @Args({ name: 'channelId' }) channelId: string,
     @Args({ name: 'trackId' }) trackId: string,
-    @Context('userId') userId: string
+    @Context('userId') userId: string,
   ) {
     await this.currentService.add({ channelId, userId, trackId });
     return true;
@@ -183,7 +183,7 @@ export class SpotifyModeResolver {
   @UseGuards(AuthGuard)
   async spotifyModeQueueSkipTrack(
     @Args({ name: 'channelId' }) channelId: string,
-    @Context('userId') userId: string
+    @Context('userId') userId: string,
   ) {
     const modeData = await this.prisma.spotifyMode.findFirst({
       where: { channel: { id: channelId } },
@@ -205,7 +205,7 @@ export class SpotifyModeResolver {
   @UseGuards(AuthGuard)
   async spotifyModeUserSync(
     @Args({ name: 'channelId' }) channelId: string,
-    @Context('userId') userId: string
+    @Context('userId') userId: string,
   ) {
     await this.spotifyModeService.syncUserSpotify({ channelId, userId });
     return true;
@@ -215,7 +215,7 @@ export class SpotifyModeResolver {
     filter: ({ channelId }, args) => channelId === args.channelId,
   })
   spotifyModeCurrentUpdated(
-    @Args({ name: 'channelId', type: () => String }) channelId: string
+    @Args({ name: 'channelId', type: () => String }) channelId: string,
   ) {
     return this.pubsub.asyncIterator('spotifyModeCurrentUpdated');
   }
@@ -224,7 +224,7 @@ export class SpotifyModeResolver {
     filter: ({ channelId }, args) => channelId === args.channelId,
   })
   spotifyModeQueueUpdated(
-    @Args({ name: 'channelId', type: () => String }) channelId: string
+    @Args({ name: 'channelId', type: () => String }) channelId: string,
   ) {
     return this.pubsub.asyncIterator('spotifyModeQueueUpdated');
   }
@@ -233,7 +233,7 @@ export class SpotifyModeResolver {
     filter: ({ channelId }, args) => channelId === args.channelId,
   })
   spotifyModeHistoryUpdated(
-    @Args({ name: 'channelId', type: () => String }) channelId: string
+    @Args({ name: 'channelId', type: () => String }) channelId: string,
   ) {
     return this.pubsub.asyncIterator('spotifyModeHistoryUpdated');
   }

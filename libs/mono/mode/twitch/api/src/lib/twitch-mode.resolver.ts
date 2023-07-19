@@ -5,13 +5,13 @@ import { UseGuards } from '@nestjs/common';
 import { UpdateTwitchStreamInput } from './dto/update-twitch-stream.input';
 import { AuthGuard } from '@dream/mono-auth-api';
 import { TwitchModeService } from './twitch-mode.service';
-import { ChannelMode } from '@prisma/mono';
+import { ChannelMode } from '@prisma/client';
 
 @Resolver()
 export class TwitchModeResolver {
   constructor(
     private prisma: PrismaService,
-    private twitchModeService: TwitchModeService
+    private twitchModeService: TwitchModeService,
   ) {}
 
   @Query(() => TwitchStream)
@@ -24,7 +24,7 @@ export class TwitchModeResolver {
   @Mutation(() => Boolean)
   @UseGuards(AuthGuard)
   async makeTwitchStreamModeCurrent(
-    @Args({ name: 'channelId' }) channelId: string
+    @Args({ name: 'channelId' }) channelId: string,
   ) {
     await this.twitchModeService.init(channelId);
 
@@ -42,7 +42,7 @@ export class TwitchModeResolver {
   async updateTwitchStream(
     @Args({ name: 'input', type: () => UpdateTwitchStreamInput })
     input: UpdateTwitchStreamInput,
-    @Context('userId') userId: string
+    @Context('userId') userId: string,
   ) {
     const channelIsExist = await this.prisma.channel.findFirst({
       where: {

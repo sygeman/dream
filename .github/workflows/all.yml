@@ -71,7 +71,7 @@ jobs:
         run: pnpm install
 
       - name: Deploy
-        run: pnpm nx run-many --target=build --parallel=3
+        run: pnpm nx run-many --target=docker --parallel=3
         env:
           INPUT_PUSH: 'true'
           INPUT_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

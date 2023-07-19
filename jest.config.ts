@@ -47,6 +47,5 @@ module.exports = {
     '<rootDir>/libs/mono/emoji/ui',
     '<rootDir>/libs/auth/api',
     '<rootDir>/libs/utils/use-dark-mode',
-    '<rootDir>/libs/rancher-deploy',
   ],
 };

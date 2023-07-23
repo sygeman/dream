@@ -3,7 +3,7 @@ import Head from 'next/head';
 import type { AppProps } from 'next/app';
 import { IntlProvider } from 'react-intl';
 import { ApolloProvider } from '@apollo/client';
-import { useApollo } from '@dream/apollo';
+import { useApollo } from '../libs/apollo';
 import { lang } from '../lang';
 import 'overlayscrollbars/overlayscrollbars.css';
 import 'rc-slider/assets/index.css';

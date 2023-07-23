@@ -21,9 +21,6 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@dream/apollo": [
-        "libs/apollo/src/index.ts"
-      ],
       "@dream/auth/api": [
         "libs/auth/api/src/index.ts"
       ],

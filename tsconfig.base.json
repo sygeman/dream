@@ -27,12 +27,6 @@
       "@dream/icons/dot-circle": [
         "libs/icons/dot-circle/src/index.ts"
       ],
-      "@dream/icons/github": [
-        "libs/icons/github/src/index.ts"
-      ],
-      "@dream/icons/twitch": [
-        "libs/icons/twitch/src/index.ts"
-      ],
       "@dream/mono-app-panel": [
         "libs/mono/app-panel/src/index.ts"
       ],

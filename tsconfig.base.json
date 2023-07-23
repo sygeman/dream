@@ -66,9 +66,6 @@
       "@dream/mono-connection-api": [
         "libs/mono/connection/api/src/index.ts"
       ],
-      "@dream/mono-connection-status-ui": [
-        "libs/mono/connection-status/ui/src/index.ts"
-      ],
       "@dream/mono-emoji-api": [
         "libs/mono/emoji/api/src/index.ts"
       ],

@@ -34,7 +34,6 @@ module.exports = {
     '<rootDir>/libs/mono/utils/regexp/url-name',
     '<rootDir>/libs/mono/utils/emoji',
     '<rootDir>/libs/mono/emoji/api',
-    '<rootDir>/libs/mono/connection-status/ui',
     '<rootDir>/libs/mono/community-settings/ui',
     '<rootDir>/libs/mono/community-settings/api',
     '<rootDir>/libs/mono/channel-settings/ui',

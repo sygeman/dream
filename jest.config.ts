@@ -46,6 +46,5 @@ module.exports = {
     '<rootDir>/libs/mono/use-community-channel',
     '<rootDir>/libs/mono/emoji/ui',
     '<rootDir>/libs/auth/api',
-    '<rootDir>/libs/utils/use-dark-mode',
   ],
 };

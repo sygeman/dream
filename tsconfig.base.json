@@ -164,9 +164,6 @@
       ],
       "@dream/mono/utils/channel-mods": [
         "libs/mono/utils/channel-mods/src/index.ts"
-      ],
-      "@dream/utils/use-dark-mode": [
-        "libs/utils/use-dark-mode/src/index.ts"
       ]
     }
   },

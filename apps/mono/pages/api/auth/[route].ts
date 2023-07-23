@@ -1,2 +1,2 @@
-import { authApiRoutes } from '@dream/auth/routes';
+import { authApiRoutes } from '@dream/mono/auth/routes';
 export default authApiRoutes;

@@ -21,15 +21,6 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@dream/auth/api": [
-        "libs/auth/api/src/index.ts"
-      ],
-      "@dream/auth/routes": [
-        "libs/auth/routes/src/index.ts"
-      ],
-      "@dream/auth/ui": [
-        "libs/auth/ui/src/index.ts"
-      ],
       "@dream/icons/circle": [
         "libs/icons/circle/src/index.ts"
       ],
@@ -161,6 +152,9 @@
       ],
       "@dream/mono-utils-use-modal": [
         "libs/mono/utils/use-modal/src/index.ts"
+      ],
+      "@dream/mono/auth/routes": [
+        "libs/mono/auth/routes/src/index.ts"
       ],
       "@dream/mono/utils/channel-mods": [
         "libs/mono/utils/channel-mods/src/index.ts"

@@ -45,6 +45,5 @@ module.exports = {
     '<rootDir>/libs/mono/prisma',
     '<rootDir>/libs/mono/use-community-channel',
     '<rootDir>/libs/mono/emoji/ui',
-    '<rootDir>/libs/auth/api',
   ],
 };

@@ -1,0 +1,20 @@
+{
+  "name": "mono-auth-routes",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/mono/auth/routes/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "libs/mono/auth/routes/**/*.ts"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

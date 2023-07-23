@@ -20,7 +20,6 @@ module.exports = {
     '<rootDir>/libs/mono/mode/spotify/ui',
     '<rootDir>/libs/mono/mode/twitch/api',
     '<rootDir>/libs/mono/mode/twitch/ui',
-    '<rootDir>/libs/mono/app-panel',
     '<rootDir>/libs/mono/components/modal',
     '<rootDir>/libs/mono/components/modal-full',
     '<rootDir>/libs/mono/components/save-form',

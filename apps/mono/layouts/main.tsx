@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppPanel } from '@dream/mono-app-panel';
+import { AppPanel } from '../components/app-panel';
 import { UserSettingsModal } from '@dream/mono-user-ui';
 import { LoginModal, LogoutModal } from '@dream/mono-auth-ui';
 import {

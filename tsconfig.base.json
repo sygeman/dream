@@ -21,9 +21,6 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@dream/mono-app-panel": [
-        "libs/mono/app-panel/src/index.ts"
-      ],
       "@dream/mono-auth-api": [
         "libs/mono/auth/api/src/index.ts"
       ],

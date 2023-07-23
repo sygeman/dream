@@ -68,7 +68,6 @@ module.exports = {
     plugin(function ({ addBase, addComponents, theme }) {
       addBase({
         body: {
-          fontFamily: 'Roboto',
           overflow: 'hidden',
           color: theme('colors.white'),
           backgroundColor: theme('colors.surface.DEFAULT'),

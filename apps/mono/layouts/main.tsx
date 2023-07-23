@@ -10,11 +10,13 @@ import { CommunitySettingsModal } from '@dream/mono-community-settings-ui';
 import { ChannelSettingsModal } from '@dream/mono-channel-settings-ui';
 import { NewChannelModal, DeleteChannelModal } from '@dream/mono-channel-ui';
 import { ConnectionStatus } from '@dream/mono-connection-status-ui';
+import { roboto } from '../fonts';
+import clsx from 'clsx';
 
 export const MainLayout: React.FC<{ children?: React.ReactNode }> = ({
   children,
 }) => (
-  <div className="h-screen bg-background flex">
+  <div className={clsx('h-screen bg-background flex', roboto.className)}>
     <AppPanel />
     <div className="flex flex-1 h-full overflow-hidden rounded-l-xl">
       {children}

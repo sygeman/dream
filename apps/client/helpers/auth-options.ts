@@ -27,5 +27,8 @@ export const authOptions: NextAuthOptions = {
       session.user.image = u?.image as string;
       return session;
     },
+    async redirect({ url }) {
+      return url.replace('authModal=1', '').replace('logout=1', '');
+    },
   },
 };

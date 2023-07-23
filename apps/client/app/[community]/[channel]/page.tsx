@@ -1,11 +1,30 @@
-// import { CommunityRightPanel } from '@dream/mono-community-ui';
-// import { ChannelContent } from '@dream/mono-channel-ui';
+import { prisma } from '../../../libs/prisma';
+import { CommunityRightPanel } from './community-right-panel';
+import { ChannelContent } from './content';
+import { ChannelHeader } from './header';
 
-export function CommunityChannelPage() {
+type Props = {
+  params: { community: string; channel: string };
+};
+
+export async function CommunityChannelPage({ params }: Props) {
+  const channel = await prisma.channel.findFirst({
+    where: {
+      name: params.channel,
+      community: {
+        name: params.community,
+      },
+    },
+  });
+
   return (
-    <>CommunityChannelPage</>
-    //   <ChannelContent />
-    //   <CommunityRightPanel />
+    <>
+      <div className="h-screen w-full flex flex-1 flex-col">
+        <ChannelHeader title={channel?.title} />
+        <ChannelContent mode={channel?.mode} />
+      </div>
+      {channel && <CommunityRightPanel channelId={channel.id} />}
+    </>
   );
 }
 

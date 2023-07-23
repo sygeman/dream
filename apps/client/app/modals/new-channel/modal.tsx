@@ -1,6 +1,7 @@
-import { useModal } from '@dream/mono-utils-use-modal';
-import { Modal } from '@dream/mono-components-modal';
-import { NewChannel } from '../new';
+'use client';
+import { Modal } from '../../../components/modal';
+import { useModal } from '../../../helpers/use-modal';
+import { NewChannel } from './new-channel';
 
 export const NewChannelModal = () => {
   const modalProps = useModal();

@@ -8,12 +8,14 @@ import clsx from 'clsx';
 import { GifPicker } from './components/gif-picker';
 import { PickerTab } from './components/picker-tab';
 import { EmojiPicker } from './components/emoji-picker';
+import { usePathname } from 'next/navigation';
 
 interface ChatBottomProps {
   channelId: string;
 }
 
 export const ChatBottom: React.FC<ChatBottomProps> = ({ channelId }) => {
+  const pathname = usePathname();
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   let lock = false;
 
@@ -27,16 +29,7 @@ export const ChatBottom: React.FC<ChatBottomProps> = ({ channelId }) => {
   // const emojis = emojisQuery?.data?.emojis || [];
   const emojis: any[] = [];
 
-  // const [createMessage] = useCreateChannelMessageMutation({
-  //   onCompleted: (data) => {
-  //     if (data.createChannelMessage && textareaRef.current) {
-  //       textareaRef.current.value = '';
-  //       lock = false;
-  //     }
-  //   },
-  // });
-
-  const sendMessage = () => {
+  const sendMessage = async () => {
     const content = convertTextToEmojiCode(
       textareaRef.current.value.trim(),
       emojis,
@@ -44,10 +37,19 @@ export const ChatBottom: React.FC<ChatBottomProps> = ({ channelId }) => {
 
     if (!lock && content.length > 0) {
       lock = true;
-      console.log('createMessage', content);
-      // createMessage({
-      //   variables: { input: { channelId, content } },
-      // });
+
+      const formData = new FormData();
+      formData.set('content', content);
+
+      await fetch(`${pathname}/chat/$create-message`, {
+        body: formData,
+        method: 'POST',
+      });
+
+      if (textareaRef.current) {
+        textareaRef.current.value = '';
+        lock = false;
+      }
     }
   };
 

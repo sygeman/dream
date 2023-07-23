@@ -4,12 +4,18 @@ import { ChatMessages } from './components/chat-messages';
 import { ChatBottom } from './bottom';
 import { compactMessages } from './compact-messages';
 import { formatedTenorGif } from './formated-tenor-gif';
+import { use } from 'react';
+import { usePathname } from 'next/navigation';
+import { ChannelMessage } from '@prisma/client';
 
 type Props = {
   channelId: string;
+  messages: ChannelMessage[];
 };
 
-export const Chat = ({ channelId }: Props) => {
+export const Chat = ({ channelId, messages }: Props) => {
+  // const pathname = usePathname();
+
   // const messagesQuery = useChannelMessagesQuery({
   //   variables: { channelId },
   //   skip: !channelId,
@@ -37,7 +43,6 @@ export const Chat = ({ channelId }: Props) => {
   // });
 
   // const messages = messagesQuery.data?.channelMessages || [];
-  const messages: any[] = [];
 
   return (
     <>

@@ -1,19 +1,21 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Chat } from './chat/chat';
+import { Chat } from '../chat/chat';
 import {
   UsersIcon,
   ChatBubbleBottomCenterTextIcon,
 } from '@heroicons/react/20/solid';
 import { Transition } from '@headlessui/react';
 import { Users } from './users';
+import { ChannelMessage } from '@prisma/client';
 
 type Props = {
   channelId: string;
+  messages: ChannelMessage[];
 };
 
-export const CommunityRightPanel = ({ channelId }: Props) => {
+export const CommunityRightPanel = ({ channelId, messages }: Props) => {
   const [usersIsOpen, setUsersIsOpen] = useState(false);
 
   return (
@@ -31,7 +33,7 @@ export const CommunityRightPanel = ({ channelId }: Props) => {
           <UsersIcon className="text-accent h-3.5" />
         </div>
       </div>
-      <Chat channelId={channelId} />
+      <Chat channelId={channelId} messages={messages} />
       <Transition
         as="div"
         className="absolute h-full w-full bg-surface"

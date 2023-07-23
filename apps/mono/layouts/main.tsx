@@ -9,7 +9,7 @@ import {
 import { CommunitySettingsModal } from '@dream/mono-community-settings-ui';
 import { ChannelSettingsModal } from '@dream/mono-channel-settings-ui';
 import { NewChannelModal, DeleteChannelModal } from '@dream/mono-channel-ui';
-import { ConnectionStatus } from '@dream/mono-connection-status-ui';
+import { ConnectionStatus } from '../components/connection-status';
 import { roboto } from '../fonts';
 import clsx from 'clsx';
 

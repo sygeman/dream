@@ -8,7 +8,7 @@ import merge from 'deepmerge';
 import isEqual from 'lodash.isequal';
 import { GraphQLWsLink } from '@apollo/client/link/subscriptions';
 import { createClient } from 'graphql-ws';
-import { disconnectedVar } from '@dream/mono-connection-status-ui';
+import { disconnectedVar } from '../components/connection-status';
 
 type ApolloInitConfig = {
   apiUrl: string;
@@ -46,7 +46,7 @@ function createApolloClient({ apiUrl, inMemoryCacheConfig }: ApolloInitConfig) {
             }
           },
         },
-      })
+      }),
     );
   }
 
@@ -59,7 +59,7 @@ function createApolloClient({ apiUrl, inMemoryCacheConfig }: ApolloInitConfig) {
 
 export function initializeApollo(
   initialState = null,
-  apolloInitConfig: ApolloInitConfig
+  apolloInitConfig: ApolloInitConfig,
 ) {
   const _apolloClient = apolloClient ?? createApolloClient(apolloInitConfig);
 
@@ -75,7 +75,7 @@ export function initializeApollo(
       arrayMerge: (destinationArray, sourceArray) => [
         ...sourceArray,
         ...destinationArray.filter((d) =>
-          sourceArray.every((s) => !isEqual(d, s))
+          sourceArray.every((s) => !isEqual(d, s)),
         ),
       ],
     });
@@ -95,7 +95,7 @@ export function useApollo(pageProps: any, apolloInitConfig: ApolloInitConfig) {
   const state = pageProps[APOLLO_STATE_PROP_NAME];
   const store = useMemo(
     () => initializeApollo(state, apolloInitConfig),
-    [state]
+    [state],
   );
   return store;
 }

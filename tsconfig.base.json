@@ -21,12 +21,6 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@dream/icons/circle": [
-        "libs/icons/circle/src/index.ts"
-      ],
-      "@dream/icons/dot-circle": [
-        "libs/icons/dot-circle/src/index.ts"
-      ],
       "@dream/mono-app-panel": [
         "libs/mono/app-panel/src/index.ts"
       ],
@@ -149,6 +143,9 @@
       ],
       "@dream/mono/auth/routes": [
         "libs/mono/auth/routes/src/index.ts"
+      ],
+      "@dream/mono/components/radio": [
+        "libs/mono/components/radio/src/index.tsx"
       ],
       "@dream/mono/utils/channel-mods": [
         "libs/mono/utils/channel-mods/src/index.ts"

@@ -3,8 +3,7 @@ import { Locale } from '@dream/mono-types';
 import { useMeQuery, useSetUserLocaleMutation } from '../user.api';
 import { RadioGroup } from '@headlessui/react';
 import { useIntl } from 'react-intl';
-import { DotCircleIcon } from '@dream/icons/dot-circle';
-import { CircleIcon } from '@dream/icons/circle';
+import { RadioButton } from '@dream/mono/components/radio';
 
 const languages = [
   {
@@ -51,11 +50,7 @@ export const UserSettingsLanguage = () => {
                 {({ checked }) => (
                   <div className="flex w-full rounded my-1 bg-background hover:bg-background-light cursor-pointer">
                     <div className="px-4 flex items-center">
-                      {checked ? (
-                        <DotCircleIcon className="h-5 w-5 text-white" />
-                      ) : (
-                        <CircleIcon className="h-5 w-5 text-accent opacity-80" />
-                      )}
+                      <RadioButton checked={checked} />
                     </div>
                     <div className="flex w-full py-2">
                       <RadioGroup.Label as="div" className="text-sm">

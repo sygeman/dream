@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
 import { RadioGroup } from '@headlessui/react';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
-import { DotCircleIcon } from '@dream/icons/dot-circle';
-import { CircleIcon } from '@dream/icons/circle';
 import {
   useSpotifyModeQuery,
   useUpdateSpotifyModeMutation,
@@ -11,6 +9,7 @@ import { SaveFormPanel } from '@dream/mono-components-save-form';
 import { strategies } from './strategies';
 import { useCommunityChannel } from '@dream/mono-use-community-channel';
 import { SpotifyModeStrategy } from '@dream/mono-types';
+import { RadioButton } from '../../../../../components/radio';
 
 interface IFormInput {
   strategy: SpotifyModeStrategy;
@@ -73,11 +72,7 @@ export const ChannelSpotifyModeSettings = () => {
                     {({ checked }) => (
                       <div className="flex w-full rounded my-1 bg-background hover:bg-background-light cursor-pointer">
                         <div className="px-4 flex items-center">
-                          {checked ? (
-                            <DotCircleIcon className="h-5 w-5 text-white" />
-                          ) : (
-                            <CircleIcon className="h-5 w-5 text-accent opacity-80" />
-                          )}
+                          <RadioButton checked={checked} />
                         </div>
                         <div className="py-2">
                           <RadioGroup.Label as="div" className="text-sm">

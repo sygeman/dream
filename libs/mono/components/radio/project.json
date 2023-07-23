@@ -1,0 +1,20 @@
+{
+  "name": "mono-components-radio",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/mono/components/radio/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "libs/mono/components/radio/**/*.{ts,tsx,js,jsx}"
+        ]
+      }
+    }
+  }
+}

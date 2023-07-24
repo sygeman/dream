@@ -4,7 +4,7 @@ import React, { useMemo } from 'react';
 import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { UserCircleIcon } from '@heroicons/react/20/solid';
-import { SessionUser } from 'apps/client/types/session-user';
+import { SessionUser } from '../../../types/session-user';
 
 type Props = { user?: SessionUser };
 

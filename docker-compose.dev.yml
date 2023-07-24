@@ -17,5 +17,11 @@ services:
     volumes:
       - db-data:/var/lib/postgresql/data
 
+  soketi:
+    image: quay.io/soketi/soketi:latest-16-alpine
+    ports:
+      - '6001:6001'
+      - '9601:9601'
+
 volumes:
   db-data:

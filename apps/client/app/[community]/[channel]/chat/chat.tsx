@@ -4,45 +4,16 @@ import { ChatMessages } from './components/chat-messages';
 import { ChatBottom } from './bottom';
 import { compactMessages } from './compact-messages';
 import { formatedTenorGif } from './formated-tenor-gif';
-import { use } from 'react';
-import { usePathname } from 'next/navigation';
-import { ChannelMessage } from '@prisma/client';
+import { type ChannelMessage } from '@prisma/client';
+import { useChat } from './use-chat';
 
 type Props = {
   channelId: string;
   messages: ChannelMessage[];
 };
 
-export const Chat = ({ channelId, messages }: Props) => {
-  // const pathname = usePathname();
-
-  // const messagesQuery = useChannelMessagesQuery({
-  //   variables: { channelId },
-  //   skip: !channelId,
-  // });
-
-  // useChannelMessageCreatedSubscription({
-  //   variables: { channelId },
-  //   skip: !channelId,
-  //   onData: ({ data }) => {
-  //     if (!data.data) return;
-
-  //     const chatMessage = data.data.channelMessageCreated;
-
-  //     messagesQuery.updateQuery((prev) => {
-  //       if (
-  //         prev.channelMessages.findIndex((c) => c.id === chatMessage.id) < 0
-  //       ) {
-  //         return {
-  //           ...prev,
-  //           channelMessages: [...prev.channelMessages.slice(-50), chatMessage],
-  //         };
-  //       }
-  //     });
-  //   },
-  // });
-
-  // const messages = messagesQuery.data?.channelMessages || [];
+export const Chat = ({ channelId, messages: messagesInit }: Props) => {
+  const messages = useChat(messagesInit, channelId);
 
   return (
     <>

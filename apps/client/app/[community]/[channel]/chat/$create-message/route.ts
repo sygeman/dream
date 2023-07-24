@@ -2,6 +2,8 @@ import { authOptions } from 'apps/client/helpers/auth-options';
 import { prisma } from 'apps/client/libs/prisma';
 import { getServerSession } from 'next-auth';
 import { NextResponse } from 'next/server';
+import { CHANNEL_MESSAGE_CREATED } from '../constants';
+import { pusher } from 'apps/client/libs/pusher';
 
 export async function POST(
   request: Request,
@@ -29,12 +31,16 @@ export async function POST(
     },
   });
 
+  if (!channel) {
+    throw 'Channel not found';
+  }
+
   const message = await prisma.channelMessage.create({
     data: {
       content: formData.get('content') as string,
       channel: {
         connect: {
-          id: channel?.id,
+          id: channel.id,
         },
       },
       user: {
@@ -57,6 +63,8 @@ export async function POST(
   // this.pubsub.publish('channelMessageCreated', {
   //   channelMessageCreated: message,
   // });
+
+  pusher.trigger(channel.id, CHANNEL_MESSAGE_CREATED, message);
 
   return NextResponse.json({ message });
 }

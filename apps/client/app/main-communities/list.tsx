@@ -7,6 +7,7 @@ import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { Community } from '@prisma/client';
 import { CommunityCard } from './card';
+import { useIntl } from '../intl-provider';
 
 type Props = {
   communities: Community[];
@@ -16,6 +17,7 @@ type Props = {
 export const MainCommunitiesList = ({ communities, isUser }: Props) => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
+  const { formatMessage } = useIntl();
 
   const newCommunityLink = useMemo(() => {
     const newParams = new URLSearchParams(Array.from(searchParams.entries()));
@@ -35,15 +37,17 @@ export const MainCommunitiesList = ({ communities, isUser }: Props) => {
         <OverlayScrollbarsComponent className="h-full w-full">
           <div className="flex items-center mt-6 px-6">
             <div className="flex flex-col">
-              <span className="text-lg">Communities</span>
+              <span className="text-lg">
+                {formatMessage({ id: 'mainTitle' })}
+              </span>
               <span className="text-sm text-accent">
-                List of all communities
+                {formatMessage({ id: 'mainDescription' })}
               </span>
             </div>
 
             <Link href={newCommunityLink} passHref>
               <button className="btn btn-primary ml-4 h-8">
-                Create Community
+                {formatMessage({ id: 'mainCreateCommunityButton' })}
               </button>
             </Link>
           </div>

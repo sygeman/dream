@@ -8,8 +8,9 @@ export const langs = {
 export const messages = {
   ...langs,
 
-  createCommunityButton: 'Создать сообщество',
-
+  mainTitle: 'Сообщества',
+  mainDescription: 'Список всех сообществ',
+  mainCreateCommunityButton: 'Создать сообщество',
   mainOnlineLabel: 'Онлайн',
 
   newCommunityModalTitle: 'Новое сообщество',

@@ -3,10 +3,12 @@ import { usePathname, useSearchParams } from 'next/navigation';
 import { SettingsLayout } from '../../components/settings/layouts-settings';
 import { UserSettingsLanguage } from './language';
 import { useMemo } from 'react';
+import { useIntl } from '../intl-provider';
 
 export const UserSettingsModal = () => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
+  const { formatMessage } = useIntl();
 
   const logoutLink = useMemo(() => {
     const newParams = new URLSearchParams(Array.from(searchParams.entries()));
@@ -20,11 +22,11 @@ export const UserSettingsModal = () => {
       id="userSettings"
       menu={[
         {
-          label: 'User Settings',
+          label: formatMessage({ id: 'userSettingsMenuLabel' }),
           items: [
             {
               key: 'language',
-              label: 'Language',
+              label: formatMessage({ id: 'userSettingsLanguageMenuItemLabel' }),
               content: <UserSettingsLanguage />,
             },
           ],
@@ -33,7 +35,7 @@ export const UserSettingsModal = () => {
           items: [
             {
               key: 'logout',
-              label: 'Logout',
+              label: formatMessage({ id: 'userSettingsLogoutMenuItemLabel' }),
               link: logoutLink,
             },
           ],

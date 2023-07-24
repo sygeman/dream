@@ -8,8 +8,9 @@ export const langs = {
 export const messages = {
   ...langs,
 
-  createCommunityButton: 'Create community',
-
+  mainTitle: 'Communities',
+  mainDescription: 'List of all communities',
+  mainCreateCommunityButton: 'Create community',
   mainOnlineLabel: 'Online',
 
   newCommunityModalTitle: 'New community',

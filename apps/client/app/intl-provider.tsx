@@ -3,6 +3,7 @@
 import { PropsWithChildren, createContext, useContext, useMemo } from 'react';
 import { lang } from '../lang';
 import { Locale } from '@prisma/client';
+import { LanguageMessageId } from '../lang/types';
 
 type IntlContextValue = {
   locale: Locale;
@@ -23,7 +24,8 @@ export const IntlProvider = ({
 export const useIntl = () => {
   const { locale } = useContext(IntlContext);
 
-  const formatMessage = ({ id }: { id: string }) => lang[locale][id];
+  const formatMessage = ({ id }: { id: LanguageMessageId }) =>
+    lang[locale]?.messages[id];
 
   return { locale, formatMessage };
 };

@@ -1,36 +1,13 @@
-import { Locale } from '@prisma/client';
+import * as en_US from './en_US';
+import * as ru_RU from './ru_RU';
 
-export const lang: { [locale: string]: { [id: string]: string } } = {
-  [Locale.en_US]: {
-    createCommunityButton: 'Create community',
-    mainOnlineLabel: 'Online',
-    newCommunityModalTitle: 'New community',
-    newCommunityTitleLabel: 'Title',
-    newCommunityTitlePlaceholder: 'Awesome community',
-    newCommunityCreateButton: 'Create',
-    newChannelCreateButton: 'Create channel',
-    communitySettingsButton: 'Community settings',
-    userSettingsMenuLabel: 'User Settings',
-    userSettingsOverviewMenuItemLabel: 'Overview',
-    userSettingsLanguageMenuItemLabel: 'Language',
-    userSettingsLanguageEnglishUS: 'English, US',
-    userSettingsLanguageRussian: 'Russian',
-    userSettingsLogoutMenuItemLabel: 'Logout',
+export const lang = {
+  [en_US.metadata.value]: {
+    ...en_US.metadata,
+    messages: en_US.messages,
   },
-  [Locale.ru_RU]: {
-    createCommunityButton: 'Создать сообщество',
-    mainOnlineLabel: 'Онлайн',
-    newCommunityModalTitle: 'Новое сообщество',
-    newCommunityTitleLabel: 'Название',
-    newCommunityTitlePlaceholder: 'Потрясающее сообщество',
-    newCommunityCreateButton: 'Создать',
-    newChannelCreateButton: 'Создать канал',
-    communitySettingsButton: 'Настройки сообщества',
-    userSettingsMenuLabel: 'Настройки пользователя',
-    userSettingsOverviewMenuItemLabel: 'Обзор',
-    userSettingsLanguageMenuItemLabel: 'Язык',
-    userSettingsLanguageEnglishUS: 'Анлийский, США',
-    userSettingsLanguageRussian: 'Русский',
-    userSettingsLogoutMenuItemLabel: 'Выход',
+  [ru_RU.metadata.value]: {
+    ...ru_RU.metadata,
+    messages: ru_RU.messages,
   },
 };

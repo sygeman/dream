@@ -1,40 +1,26 @@
-// import { useMeQuery, useSetUserLocaleMutation } from '../user.api';
 import { RadioGroup } from '@headlessui/react';
 import { RadioButton } from '../../components/radio';
-
 import { Locale } from '@prisma/client';
 import { useIntl } from '../intl-provider';
+import { useRouter } from 'next/navigation';
+import { lang } from '../../lang';
 
-const languages = [
-  {
-    id: 'en',
-    flag: 'usa',
-    name: 'English, US',
-    value: Locale.en_US,
-    langId: 'userSettingsLanguageEnglishUS',
-  },
-  {
-    id: 'ru',
-    flag: 'russia',
-    name: 'Русский',
-    value: Locale.ru_RU,
-    langId: 'userSettingsLanguageRussian',
-  },
-];
+const languages = Object.values(lang);
 
 export const UserSettingsLanguage = () => {
   const { locale, formatMessage } = useIntl();
+  const router = useRouter();
 
   const setUserLocale = async (newLocale: Locale) => {
     const formData = new FormData();
     formData.set('locale', newLocale);
 
-    await fetch(`user-settings/$set-locale`, {
+    await fetch('user-settings/$set-locale', {
       body: formData,
       method: 'POST',
     });
 
-    window?.location.reload();
+    router.refresh();
   };
 
   return (
@@ -46,7 +32,7 @@ export const UserSettingsLanguage = () => {
           onChange={(newLocale: Locale) => setUserLocale(newLocale)}
         >
           <RadioGroup.Label className="text-accent text-xs">
-            Select a language
+            {formatMessage({ id: 'userSettingsLanguageSelectLabel' })}
           </RadioGroup.Label>
           <div className="flex flex-col w-full">
             {languages.map((language) => (
@@ -65,12 +51,11 @@ export const UserSettingsLanguage = () => {
                         className="ml-auto px-2 flex"
                       >
                         <div className="text-xs text-accent px-2">
-                          {formatMessage({ id: language.langId })}
+                          {formatMessage({ id: language.value })}
                         </div>
                         <img
                           className="h-5 w-5"
                           src={`/flags/${language.flag}.svg`}
-                          alt={language.name}
                         />
                       </RadioGroup.Description>
                     </div>

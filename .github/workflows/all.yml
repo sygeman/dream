@@ -1,17 +1,8 @@
 name: All build
 
 on:
-  workflow_dispatch:
-    inputs:
-      logLevel:
-        description: 'Log level'
-        required: true
-        default: 'warning'
-        type: choice
-        options:
-          - info
-          - warning
-          - debug
+  push:
+    branches: [main]
 
 env:
   BEFORE_SHA: ${{ github.event.before }}

@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { urlNameRegExp } from '../../../helpers/regexp-url-name';
+import { urlNameRegExp } from '../../helpers/regexp-url-name';
 // import { useCreateCommunityMutation } from '../community.api';
 
 interface IFormInput {

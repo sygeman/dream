@@ -1,6 +1,6 @@
 'use client';
 import { usePathname, useSearchParams } from 'next/navigation';
-import { SettingsLayout } from '../../../components/settings/layouts-settings';
+import { SettingsLayout } from '../../components/settings/layouts-settings';
 import { UserSettingsLanguage } from './language';
 import { useMemo } from 'react';
 

@@ -1,5 +1,7 @@
-export const lang = {
-  'en-US': {
+import { Locale } from '@prisma/client';
+
+export const lang: { [locale: string]: { [id: string]: string } } = {
+  [Locale.en_US]: {
     createCommunityButton: 'Create community',
     mainOnlineLabel: 'Online',
     newCommunityModalTitle: 'New community',
@@ -15,7 +17,7 @@ export const lang = {
     userSettingsLanguageRussian: 'Russian',
     userSettingsLogoutMenuItemLabel: 'Logout',
   },
-  'ru-RU': {
+  [Locale.ru_RU]: {
     createCommunityButton: 'Создать сообщество',
     mainOnlineLabel: 'Онлайн',
     newCommunityModalTitle: 'Новое сообщество',

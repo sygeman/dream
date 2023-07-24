@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useUpdateCommunitySettingsMutation } from './community-settings.api';
 import { useCommunity } from './use-community';
-import { urlNameRegExp } from '../../../helpers/regexp-url-name';
-import { SaveFormPanel } from '../../../components/save-form-panel';
+import { urlNameRegExp } from '../../helpers/regexp-url-name';
+import { SaveFormPanel } from '../../components/save-form-panel';
 
 interface IFormInput {
   name: string;

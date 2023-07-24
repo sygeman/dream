@@ -1,8 +1,8 @@
 'use client';
 import clsx from 'clsx';
 import { signIn } from 'next-auth/react';
-import { Modal } from '../../components/modal';
-import { useModal } from '../../helpers/use-modal';
+import { Modal } from '../components/modal';
+import { useModal } from '../helpers/use-modal';
 
 type Props = {
   provider: string;

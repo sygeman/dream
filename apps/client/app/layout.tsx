@@ -4,56 +4,70 @@ import './global.css';
 // import 'overlayscrollbars/overlayscrollbars.css';
 // import 'rc-slider/assets/index.css';
 import { roboto } from './fonts';
-import { LoginModal } from './modals/login';
-import { LogoutModal } from './modals/logout';
-import { UserSettingsModal } from './modals/user-settings/modal';
-import { NewCommunityModal } from './modals/new-community/modal';
-import { DeleteCommunityModal } from './modals/delete-community/modal';
-import { CommunitySettingsModal } from './modals/community-settings/modal';
-import { NewChannelModal } from './modals/new-channel/modal';
-import { DeleteChannelModal } from './modals/delete-channel/modal';
-import { ChannelSettingsModal } from './modals/channel-settings/modal';
+import { LoginModal } from './login';
+import { LogoutModal } from './logout';
+import { UserSettingsModal } from './user-settings/modal';
+import { NewCommunityModal } from './new-community/modal';
+import { DeleteCommunityModal } from './delete-community/modal';
+import { CommunitySettingsModal } from './community-settings/modal';
+import { NewChannelModal } from './new-channel/modal';
+import { DeleteChannelModal } from './delete-channel/modal';
+import { ChannelSettingsModal } from './channel-settings/modal';
+import { Locale } from '@prisma/client';
+import { prisma } from '../libs/prisma';
+import { IntlProvider } from './intl-provider';
+import { authOptions } from '../helpers/auth-options';
+import { getServerSession } from 'next-auth';
 
 type Props = PropsWithChildren;
 
-const MainLayout = ({ children }: Props) => (
-  <html className={roboto.className}>
-    <head>
-      <title>Mono</title>
-      <link
-        rel="icon"
-        type="image/png"
-        href="/favicon-32x32.png"
-        sizes="32x32"
-      />
-      <link
-        rel="icon"
-        type="image/png"
-        href="/favicon-16x16.png"
-        sizes="16x16"
-      />
-    </head>
-    <body>
-      <div className="h-screen bg-background flex">
-        <AppPanel />
-        <div className="flex flex-1 h-full overflow-hidden rounded-l-xl">
-          {children}
-        </div>
+const MainLayout = async ({ children }: Props) => {
+  const session = await getServerSession(authOptions);
+  const locale =
+    (await prisma.user.findUnique({ where: { id: session?.user.id } }))
+      ?.locale || Locale.en_US;
 
-        <LoginModal />
-        <LogoutModal />
-        <UserSettingsModal />
+  return (
+    <html className={roboto.className}>
+      <head>
+        <title>Mono</title>
+        <link
+          rel="icon"
+          type="image/png"
+          href="/favicon-32x32.png"
+          sizes="32x32"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          href="/favicon-16x16.png"
+          sizes="16x16"
+        />
+      </head>
+      <body>
+        <IntlProvider locale={locale}>
+          <div className="h-screen bg-background flex">
+            <AppPanel />
+            <div className="flex flex-1 h-full overflow-hidden rounded-l-xl">
+              {children}
+            </div>
 
-        <NewCommunityModal />
-        <DeleteCommunityModal />
-        <CommunitySettingsModal />
+            <LoginModal />
+            <LogoutModal />
+            <UserSettingsModal />
 
-        <NewChannelModal />
-        <DeleteChannelModal />
-        <ChannelSettingsModal />
-      </div>
-    </body>
-  </html>
-);
+            <NewCommunityModal />
+            <DeleteCommunityModal />
+            <CommunitySettingsModal />
+
+            <NewChannelModal />
+            <DeleteChannelModal />
+            <ChannelSettingsModal />
+          </div>
+        </IntlProvider>
+      </body>
+    </html>
+  );
+};
 
 export default MainLayout;

@@ -1,43 +1,49 @@
 // import { useMeQuery, useSetUserLocaleMutation } from '../user.api';
-// import { RadioGroup } from '@headlessui/react';
-// import { useIntl } from 'react-intl';
-// import { RadioButton } from '../../../components/radio';
+import { RadioGroup } from '@headlessui/react';
+import { RadioButton } from '../../components/radio';
 
-// const languages = [
-//   {
-//     id: 'en',
-//     flag: 'usa',
-//     name: 'English, US',
-//     value: Locale.EnUs,
-//     langId: 'userSettingsLanguageEnglishUS',
-//   },
-//   {
-//     id: 'ru',
-//     flag: 'russia',
-//     name: 'Русский',
-//     value: Locale.RuRu,
-//     langId: 'userSettingsLanguageRussian',
-//   },
-// ];
+import { Locale } from '@prisma/client';
+import { useIntl } from '../intl-provider';
+
+const languages = [
+  {
+    id: 'en',
+    flag: 'usa',
+    name: 'English, US',
+    value: Locale.en_US,
+    langId: 'userSettingsLanguageEnglishUS',
+  },
+  {
+    id: 'ru',
+    flag: 'russia',
+    name: 'Русский',
+    value: Locale.ru_RU,
+    langId: 'userSettingsLanguageRussian',
+  },
+];
 
 export const UserSettingsLanguage = () => {
-  // const { formatMessage } = useIntl();
-  // const meQuery = useMeQuery();
-  // const user = meQuery?.data?.me;
+  const { locale, formatMessage } = useIntl();
 
-  // const [setUserLocale] = useSetUserLocaleMutation({
-  //   onCompleted: (data) => {
-  //     meQuery.refetch();
-  //   },
-  // });
+  const setUserLocale = async (newLocale: Locale) => {
+    const formData = new FormData();
+    formData.set('locale', newLocale);
+
+    await fetch(`user-settings/$set-locale`, {
+      body: formData,
+      method: 'POST',
+    });
+
+    window?.location.reload();
+  };
 
   return (
     <div>
       <div className="flex w-full mb-2">
-        {/* <RadioGroup
+        <RadioGroup
           className="w-full"
-          value={user?.locale}
-          onChange={(v) => setUserLocale({ variables: { locale: v } })}
+          value={locale}
+          onChange={(newLocale: Locale) => setUserLocale(newLocale)}
         >
           <RadioGroup.Label className="text-accent text-xs">
             Select a language
@@ -73,7 +79,7 @@ export const UserSettingsLanguage = () => {
               </RadioGroup.Option>
             ))}
           </div>
-        </RadioGroup> */}
+        </RadioGroup>
       </div>
     </div>
   );

@@ -23,11 +23,11 @@ export const CommunitySettingsModal = () => {
         {
           label: 'Community Settings',
           items: [
-            // {
-            //   key: 'overview',
-            //   label: 'Overview',
-            //   content: <CommunitySettingsOverview />,
-            // },
+            {
+              key: 'overview',
+              label: 'Overview',
+              content: <CommunitySettingsOverview />,
+            },
             // {
             //   key: 'emoji',
             //   label: 'Emoji',

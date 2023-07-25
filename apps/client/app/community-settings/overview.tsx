@@ -1,49 +1,75 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { useUpdateCommunitySettingsMutation } from './community-settings.api';
-import { useCommunity } from './use-community';
 import { urlNameRegExp } from '../../helpers/regexp-url-name';
 import { SaveFormPanel } from '../../components/save-form-panel';
+import { useParams } from 'next/navigation';
 
 interface IFormInput {
   name: string;
   title: string;
 }
 
+const getCommunitySettings = async (community: string) => {
+  const formData = new FormData();
+  formData.set('community', community as string);
+
+  const { communitySettings } = await fetch(
+    '/community-settings/$get-community-settings',
+    {
+      method: 'POST',
+      body: formData,
+    },
+  ).then((res) => res.json());
+
+  return {
+    title: communitySettings.title,
+    name: communitySettings.name,
+  };
+};
+
+const updateCommunitySettings = async (
+  community: string,
+  { title, name }: { title: string; name: string },
+) => {
+  const formData = new FormData();
+  formData.set('community', community as string);
+  formData.set('title', title as string);
+  formData.set('name', name as string);
+
+  const { communitySettings } = await fetch(
+    '/community-settings/$update-community-settings',
+    {
+      method: 'POST',
+      body: formData,
+    },
+  ).then((res) => res.json());
+
+  return communitySettings;
+};
+
 export const CommunitySettingsOverview: React.FC = () => {
   const origin = typeof window !== 'undefined' ? window?.location?.origin : '';
-  const { communitySettings, communityId } = useCommunity();
-
-  const defaultValues = {
-    name: communitySettings?.name,
-    title: communitySettings?.title,
-  };
+  const params = useParams();
 
   const {
     register,
     reset,
     handleSubmit,
     formState: { isDirty },
-  } = useForm<IFormInput>();
-
-  const [updateCommunitySettings] = useUpdateCommunitySettingsMutation({
-    onCompleted: (data) => {
-      reset({
-        name: data?.updateCommunitySettings?.name,
-        title: data?.updateCommunitySettings?.title,
-      });
-    },
+  } = useForm<IFormInput>({
+    defaultValues: async () => getCommunitySettings(params.community as string),
   });
 
-  const onSubmit: SubmitHandler<IFormInput> = (data) => {
-    updateCommunitySettings({
-      variables: { input: { ...data, communityId } },
+  const onSubmit: SubmitHandler<IFormInput> = async (data) => {
+    const communitySettings = await updateCommunitySettings(
+      params.community as string,
+      data,
+    );
+    reset({
+      name: communitySettings?.name,
+      title: communitySettings?.title,
     });
   };
-
-  useEffect(() => {
-    reset(defaultValues);
-  }, [communitySettings]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -71,7 +97,7 @@ export const CommunitySettingsOverview: React.FC = () => {
         />
       </div>
 
-      <SaveFormPanel show={isDirty} reset={() => reset(defaultValues)} />
+      <SaveFormPanel show={isDirty} reset={() => reset()} />
     </form>
   );
 };

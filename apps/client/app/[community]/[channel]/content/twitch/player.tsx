@@ -1,8 +1,6 @@
 'use client';
 import React from 'react';
 import ReactPlayer from 'react-player';
-// import { useTwitchStreamQuery } from './twitch-stream.api';
-// import { useCommunityChannel } from '@dream/mono-use-community-channel';
 
 const Player = ({ channelKey }) => {
   return (

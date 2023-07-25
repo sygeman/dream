@@ -1,9 +1,9 @@
 import { RadioGroup } from '@headlessui/react';
-import { RadioButton } from '../../components/radio';
+import { RadioButton } from 'apps/client/components/radio';
 import { Locale } from '@prisma/client';
 import { useIntl } from '../intl-provider';
 import { useRouter } from 'next/navigation';
-import { lang } from '../../lang';
+import { lang } from 'apps/client/lang';
 
 const languages = Object.values(lang);
 

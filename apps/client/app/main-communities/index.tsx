@@ -1,6 +1,6 @@
 import React from 'react';
-import { prisma } from '../../libs/prisma';
-import { authOptions } from '../../helpers/auth-options';
+import { prisma } from 'apps/client/libs/prisma';
+import { authOptions } from 'apps/client/helpers/auth-options';
 import { getServerSession } from 'next-auth';
 import { MainCommunitiesList } from './list';
 

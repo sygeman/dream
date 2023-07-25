@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { dateDistanceInWordsToNow } from './date-distance-in-words-to-now';
+import { dateDistanceInWordsToNow } from 'apps/client/helpers/date-distance-in-words-to-now';
 import { GifContainer } from './gif';
 import { renderMessageText } from './render-message-text';
 

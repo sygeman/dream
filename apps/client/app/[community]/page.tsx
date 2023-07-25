@@ -1,4 +1,4 @@
-import { prisma } from '../../libs/prisma';
+import { prisma } from 'apps/client/libs/prisma';
 
 type Props = {
   params: { community: string };

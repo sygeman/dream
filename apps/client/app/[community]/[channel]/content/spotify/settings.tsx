@@ -5,11 +5,11 @@ import {
   useSpotifyModeQuery,
   useUpdateSpotifyModeMutation,
 } from './mode-waitlist.api';
-import { SaveFormPanel } from '@dream/mono-components-save-form';
+import { SaveFormPanel } from 'apps/client/components/save-form-panel';
 import { strategies } from './strategies';
 import { useCommunityChannel } from '@dream/mono-use-community-channel';
 import { SpotifyModeStrategy } from '@dream/mono-types';
-import { RadioButton } from '../../../../../components/radio';
+import { RadioButton } from 'apps/client/components/radio';
 
 interface IFormInput {
   strategy: SpotifyModeStrategy;

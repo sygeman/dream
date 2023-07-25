@@ -1,7 +1,6 @@
 import clsx from 'clsx';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { urlNameRegExp } from '../../helpers/regexp-url-name';
-import { Community } from '@prisma/client';
+import { urlNameRegExp } from 'apps/client/helpers/regexp-url-name';
 import { useRouter } from 'next/navigation';
 
 interface IFormInput {

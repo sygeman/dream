@@ -1,6 +1,6 @@
 'use client';
-import { Modal } from '../../components/modal';
-import { useModal } from '../../helpers/use-modal';
+import { Modal } from 'apps/client/components/modal';
+import { useModal } from 'apps/client/helpers/use-modal';
 import { NewCommunity } from './new-community';
 
 export const NewCommunityModal = () => {

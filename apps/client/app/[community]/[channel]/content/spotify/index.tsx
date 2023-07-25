@@ -11,7 +11,7 @@ import { ChannelSpotifyModeQueue } from './queue';
 import { ChannelSpotifyModeCurrent } from './current';
 import { useCommunityChannel } from '@dream/mono-use-community-channel';
 import { SpotifyModeAddTrackModal } from '..';
-import { PlayQueueLayout } from '@dream/mono-layouts-play-queue';
+import { PlayQueueLayout } from 'apps/client/components/play-queue';
 
 const ChannelSpotifyModeAuth = () => (
   <div className="absolute left-0 top-0 w-full h-full flex items-center justify-center">

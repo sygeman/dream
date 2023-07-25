@@ -1,8 +1,8 @@
 import React from 'react';
 import { HeartIcon } from '@heroicons/react/20/solid';
-import { prisma } from '../../../libs/prisma';
+import { prisma } from 'apps/client/libs/prisma';
 import { AppPanelCommunitiesList } from './list';
-import { authOptions } from '../../../helpers/auth-options';
+import { authOptions } from 'apps/client/helpers/auth-options';
 import { getServerSession } from 'next-auth';
 
 export const AppPanelCommunities = async () => {

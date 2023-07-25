@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useUpdateChannelSettingsMutation } from './channel-settings.api';
 import { useCommunityChannel } from '@dream/mono-use-community-channel';
-import { urlNameRegExp } from '@dream/mono-utils-regexp-url-name';
-import { SaveFormPanel } from '@dream/mono-components-save-form';
+import { urlNameRegExp } from 'apps/client/helpers/regexp-url-name';
+import { SaveFormPanel } from 'apps/client/components/save-form-panel';
 
 interface IFormInput {
   name: string;

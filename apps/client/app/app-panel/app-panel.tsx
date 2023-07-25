@@ -1,6 +1,6 @@
 import React from 'react';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '../../helpers/auth-options';
+import { authOptions } from 'apps/client/helpers/auth-options';
 import { UserPanel } from './user-panel/user-panel';
 import { AppPanelCommunities } from './app-panel-communities';
 import { Logo } from './logo';

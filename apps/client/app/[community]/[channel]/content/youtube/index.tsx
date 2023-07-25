@@ -7,7 +7,7 @@ import { ChannelYoutubeModeQueue } from './queue';
 import { ChannelYoutubeModeCurrent } from './current';
 import { useCommunityChannel } from '@dream/mono-use-community-channel';
 import { YoutubeModeAddVideoModal } from './modals/add-video';
-import { PlayQueueLayout } from '../../../../../components/play-queue';
+import { PlayQueueLayout } from 'apps/client/components/play-queue';
 import { useState } from 'react';
 
 export const ChannelYoutubeMode = () => {

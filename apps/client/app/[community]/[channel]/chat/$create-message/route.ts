@@ -1,9 +1,9 @@
-import { authOptions } from '../../../../../helpers/auth-options';
-import { prisma } from '../../../../../libs/prisma';
+import { authOptions } from 'apps/client/helpers/auth-options';
+import { prisma } from 'apps/client/libs/prisma';
 import { getServerSession } from 'next-auth';
 import { NextResponse } from 'next/server';
 import { CHANNEL_MESSAGE_CREATED } from '../constants';
-import { pusher } from '../../../../../libs/pusher';
+import { pusher } from 'apps/client/libs/pusher';
 
 export async function POST(
   request: Request,

@@ -1,4 +1,4 @@
-import { prisma } from '../../libs/prisma';
+import { prisma } from 'apps/client/libs/prisma';
 import { CommunityChannels } from './channels/channels';
 import { CommunityHeader } from './menu/menu';
 import { PropsWithChildren } from 'react';

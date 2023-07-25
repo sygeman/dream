@@ -1,7 +1,7 @@
 import React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { urlNameRegExp } from '../../helpers/regexp-url-name';
-import { SaveFormPanel } from '../../components/save-form-panel';
+import { urlNameRegExp } from 'apps/client/helpers/regexp-url-name';
+import { SaveFormPanel } from 'apps/client/components/save-form-panel';
 import { useParams } from 'next/navigation';
 
 interface IFormInput {

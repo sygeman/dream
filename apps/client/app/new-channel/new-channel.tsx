@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { urlNameRegExp } from '@dream/mono-utils-regexp-url-name';
+import { urlNameRegExp } from 'apps/client/helpers/regexp-url-name';
 import { useParams } from 'next/navigation';
 import { useRouter } from 'next/navigation';
 

@@ -3,8 +3,8 @@ import Slider from 'rc-slider';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import { useUpdateChannelSettingsMutation } from './channel-settings.api';
 import { useCommunityChannel } from '@dream/mono-use-community-channel';
-import { SaveFormPanel } from '../../components/save-form-panel';
-import { SwitchFormField } from '../../components/switch-form-field';
+import { SaveFormPanel } from 'apps/client/components/save-form-panel';
+import { SwitchFormField } from 'apps/client/components/switch-form-field';
 
 interface IFormInput {
   gifAllowed: boolean;

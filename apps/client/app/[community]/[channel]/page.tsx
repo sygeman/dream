@@ -1,4 +1,4 @@
-import { prisma } from '../../../libs/prisma';
+import { prisma } from 'apps/client/libs/prisma';
 import { CommunityRightPanel } from './community-right-panel';
 import { ChannelContent } from './content';
 import { ChannelHeader } from './header';

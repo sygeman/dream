@@ -1,5 +1,5 @@
 'use client';
-import { SettingsLayout } from '../../components/settings/layouts-settings';
+import { SettingsLayout } from 'apps/client/components/settings/layouts-settings';
 import { ChannelSettingsOverview } from './overview';
 import { ChannelSettingsMode } from './mode';
 import { ChannelSettingsChat } from './chat';

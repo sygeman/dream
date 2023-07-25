@@ -4,7 +4,7 @@ import {
   useSpotifyModeHistoryUpdatedSubscription,
 } from './mode-waitlist.api';
 import { TrackFromList } from './components/track-from-list';
-import { dateDistanceInWordsToNow } from '@dream/mono-utils-date';
+import { dateDistanceInWordsToNow } from 'apps/client/helpers/date-distance-in-words-to-now';
 import { useCommunityChannel } from '@dream/mono-use-community-channel';
 
 export const ChannelSpotifyModeHistory = () => {

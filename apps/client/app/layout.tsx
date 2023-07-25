@@ -30,7 +30,7 @@ const MainLayout = async ({ children }: Props) => {
   return (
     <html className={roboto.className}>
       <head>
-        <title>Mono</title>
+        <title>Dream</title>
         <link
           rel="icon"
           type="image/png"

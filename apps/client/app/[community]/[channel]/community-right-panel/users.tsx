@@ -5,7 +5,7 @@ type Props = {
   onClose: () => void;
 };
 
-export const Users = async ({ onClose }: Props) => {
+export const Users = ({ onClose }: Props) => {
   const [usersFilter, setUsersFilter] = useState('');
 
   // const { channelId } = useCommunityChannel();

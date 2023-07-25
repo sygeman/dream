@@ -1,18 +1,23 @@
 import React from 'react';
 import clsx from 'clsx';
-import { useRouter } from 'next/navigation';
-// import { useDeleteChannelMutation } from '../channel.api';
-// import { useCommunityChannel } from '@dream/mono-use-community-channel';
+import { useParams, useRouter } from 'next/navigation';
 
 export const DeleteChannel = () => {
   const router = useRouter();
-  // const { community, channel, channelId } = useCommunityChannel();
+  const params = useParams();
 
-  // const [deleteChannel] = useDeleteChannelMutation({
-  //   onCompleted: () => {
-  //     router.push(`/${community?.name}`);
-  //   },
-  // });
+  const deleteChannel = async () => {
+    const formData = new FormData();
+    formData.set('channel', params.channel as string);
+    formData.set('community', params.community as string);
+
+    await fetch('/delete-channel/$delete-channel', {
+      body: formData,
+      method: 'POST',
+    }).then((res) => res.json());
+
+    router.push(`/${params.community}`);
+  };
 
   return (
     <div className="p-4">
@@ -26,18 +31,14 @@ export const DeleteChannel = () => {
         <button
           type="button"
           className={clsx('btn mr-2')}
-          onClick={() => {
-            router.back();
-          }}
+          onClick={() => router.back()}
         >
           Cancel
         </button>
         <button
           type="button"
           className={clsx('btn btn-primary')}
-          onClick={() => {
-            // deleteChannel({ variables: { channelId } });
-          }}
+          onClick={deleteChannel}
         >
           Delete Channel
         </button>

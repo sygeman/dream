@@ -26,7 +26,7 @@ export const NewChannel = () => {
     formData.set('title', data.title);
     formData.set('name', data.name);
 
-    const { channel } = await fetch('new-channel/$create-channel', {
+    const { channel } = await fetch('/new-channel/$create-channel', {
       body: formData,
       method: 'POST',
     }).then((res) => res.json());

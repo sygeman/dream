@@ -24,7 +24,7 @@ export const NewCommunity = () => {
     formData.set('title', data.title);
     formData.set('name', data.name);
 
-    const { community } = await fetch('new-community/$create-community', {
+    const { community } = await fetch('/new-community/$create-community', {
       body: formData,
       method: 'POST',
     }).then((res) => res.json());

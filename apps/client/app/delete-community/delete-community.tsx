@@ -1,15 +1,22 @@
 'use client';
 import clsx from 'clsx';
-import { useRouter } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 
 export const DeleteCommunity = () => {
+  const params = useParams();
   const router = useRouter();
 
-  // const [deleteCommunity] = useDeleteCommunityMutation({
-  //   onCompleted: () => {
-  //     router.push('/');
-  //   },
-  // });
+  const deleteCommunity = async () => {
+    const formData = new FormData();
+    formData.set('community', params.community as string);
+
+    await fetch('/delete-community/$delete-community', {
+      body: formData,
+      method: 'POST',
+    }).then((res) => res.json());
+
+    router.push(`/`);
+  };
 
   return (
     <div className="p-4">
@@ -32,9 +39,7 @@ export const DeleteCommunity = () => {
         <button
           type="button"
           className={clsx('btn btn-primary')}
-          onClick={() => {
-            // deleteCommunity({ variables: { communityId } });
-          }}
+          onClick={deleteCommunity}
         >
           Delete Community
         </button>

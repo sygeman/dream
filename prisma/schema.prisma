@@ -22,7 +22,7 @@ model Connection {
   createdAt  DateTime @default(now())
   updatedAt  DateTime @default(now()) @updatedAt
   user       User?    @relation(fields: [userId], references: [id])
-  channel    Channel? @relation(fields: [channelId], references: [id])
+  channel    Channel? @relation(fields: [channelId], references: [id], onDelete: Cascade)
   userId     String?
   channelId  String?
 }
@@ -108,7 +108,7 @@ model Channel {
   slowmode        Int               @default(0)
   createdAt       DateTime          @default(now())
   updatedAt       DateTime          @default(now()) @updatedAt
-  community       Community         @relation(fields: [communityId], references: [id])
+  community       Community         @relation(fields: [communityId], references: [id], onDelete: Cascade)
   deleted         Boolean           @default(false)
   messages        ChannelMessage[]
   connections     Connection[]
@@ -135,7 +135,7 @@ model Emoji {
   type        String     @default("image/png")
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @default(now()) @updatedAt
-  community   Community? @relation(fields: [communityId], references: [id])
+  community   Community? @relation(fields: [communityId], references: [id], onDelete: Cascade)
   communityId String
   author      User       @relation(fields: [authorId], references: [id])
   authorId    String
@@ -147,7 +147,7 @@ model ChannelMessage {
   deleted    Boolean   @default(false)
   createdAt  DateTime  @default(now())
   updatedAt  DateTime  @default(now()) @updatedAt
-  channel    Channel?  @relation(fields: [channelId], references: [id])
+  channel    Channel?  @relation(fields: [channelId], references: [id], onDelete: Cascade)
   user       User      @relation(fields: [userId], references: [id])
   tenorGif   TenorGif? @relation(fields: [tenorGifId], references: [id])
   tenorGifId String?
@@ -186,7 +186,7 @@ model SpotifyModeItem {
   canceled    Boolean?      @default(false) // (Manual remove from Queue (=false))
   track       SpotifyTrack? @relation(fields: [trackId], references: [id])
   trackId     String?
-  channel     Channel?      @relation(fields: [channelId], references: [id])
+  channel     Channel?      @relation(fields: [channelId], references: [id], onDelete: Cascade)
   channelId   String?
   author      User?         @relation(fields: [authorId], references: [id])
   authorId    String?
@@ -210,7 +210,7 @@ model SpotifyMode {
   host                 User?                @relation(fields: [hostId], references: [id])
   hostCurrentId        String?
   collectionPlaylistId String?
-  channel              Channel?             @relation(fields: [channelId], references: [id])
+  channel              Channel?             @relation(fields: [channelId], references: [id], onDelete: Cascade)
   channelId            String?
   strategy             SpotifyModeStrategy? @default(QUEUE)
   createdAt            DateTime             @default(now())
@@ -220,7 +220,7 @@ model SpotifyMode {
 model TwitchMode {
   id         String   @id @default(cuid())
   channelKey String?
-  channel    Channel? @relation(fields: [channelId], references: [id])
+  channel    Channel? @relation(fields: [channelId], references: [id], onDelete: Cascade)
   channelId  String?
   createdAt  DateTime @default(now())
   updatedAt  DateTime @default(now()) @updatedAt
@@ -235,7 +235,7 @@ model YoutubeModeItem {
   canceled    Boolean?      @default(false) // (Manual remove from Queue (=false))
   video       YoutubeVideo? @relation(fields: [videoId], references: [id])
   videoId     String?
-  channel     Channel?      @relation(fields: [channelId], references: [id])
+  channel     Channel?      @relation(fields: [channelId], references: [id], onDelete: Cascade)
   channelId   String?
   author      User?         @relation(fields: [authorId], references: [id])
   authorId    String?
@@ -250,7 +250,7 @@ model YoutubeMode {
   id        String           @id @default(cuid())
   item      YoutubeModeItem? @relation(fields: [itemId], references: [id])
   itemId    String?
-  channel   Channel?         @relation(fields: [channelId], references: [id])
+  channel   Channel?         @relation(fields: [channelId], references: [id], onDelete: Cascade)
   channelId String?
   createdAt DateTime         @default(now())
   updatedAt DateTime         @default(now()) @updatedAt

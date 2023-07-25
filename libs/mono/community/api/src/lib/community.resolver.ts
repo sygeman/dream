@@ -52,7 +52,7 @@ export class CommunityResolver {
   async createCommunity(
     @Args({ name: 'input', type: () => CreateCommunityInput })
     input: CreateCommunityInput,
-    @Context('userId') userId: string
+    @Context('userId') userId: string,
   ) {
     const count = await this.prisma.community.count({
       where: { ownerId: userId },
@@ -75,7 +75,7 @@ export class CommunityResolver {
   async updateCommunity(
     @Args({ name: 'input', type: () => UpdateCommunityInput })
     input: UpdateCommunityInput,
-    @Context('userId') userId: string
+    @Context('userId') userId: string,
   ) {
     const { communityId, ...data } = input;
 
@@ -109,7 +109,7 @@ export class CommunityResolver {
   async deleteCommunity(
     @Args({ name: 'communityId', type: () => ID })
     communityId: string,
-    @Context('userId') userId: string
+    @Context('userId') userId: string,
   ) {
     const communityIsExist = await this.prisma.community.findFirst({
       where: {

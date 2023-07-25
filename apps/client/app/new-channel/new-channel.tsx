@@ -1,9 +1,8 @@
 import clsx from 'clsx';
 import { useForm, SubmitHandler } from 'react-hook-form';
-// import { useCreateChannelMutation } from '../channel.api';
 import { urlNameRegExp } from '@dream/mono-utils-regexp-url-name';
 import { useParams } from 'next/navigation';
-// import { useCommunityChannel } from '@dream/mono-use-community-channel';
+import { useRouter } from 'next/navigation';
 
 interface IFormInput {
   name: string;
@@ -13,26 +12,26 @@ interface IFormInput {
 export const NewChannel = () => {
   const origin = typeof window !== 'undefined' ? window?.location?.origin : '';
   const params = useParams();
-
-  // const { community, communityId } = useCommunityChannel();
-
-  // const [createChannel] = useCreateChannelMutation({
-  //   onCompleted: (data) => {
-  //     router.push(
-  //       `/${community?.name}/${data.createChannel.name}?channelSettings=mode`,
-  //     );
-  //   },
-  // });
+  const router = useRouter();
 
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<IFormInput>();
-  const onSubmit: SubmitHandler<IFormInput> = (data) => {
-    // createChannel({
-    //   variables: { input: { ...data, communityId } },
-    // });
+
+  const onSubmit: SubmitHandler<IFormInput> = async (data) => {
+    const formData = new FormData();
+    formData.set('community', params.community as string);
+    formData.set('title', data.title);
+    formData.set('name', data.name);
+
+    const { channel } = await fetch('new-channel/$create-channel', {
+      body: formData,
+      method: 'POST',
+    }).then((res) => res.json());
+
+    router.push(`/${params.community}/${channel.name}`);
   };
 
   const isError = Object.keys(errors).length > 0;

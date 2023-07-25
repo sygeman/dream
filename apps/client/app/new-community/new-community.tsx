@@ -1,7 +1,8 @@
 import clsx from 'clsx';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { urlNameRegExp } from '../../helpers/regexp-url-name';
-// import { useCreateCommunityMutation } from '../community.api';
+import { Community } from '@prisma/client';
+import { useRouter } from 'next/navigation';
 
 interface IFormInput {
   name: string;
@@ -10,12 +11,7 @@ interface IFormInput {
 
 export const NewCommunity = () => {
   const host = typeof window !== 'undefined' ? window?.location?.host : '';
-
-  // const [createCommunity] = useCreateCommunityMutation({
-  //   onCompleted: (data) => {
-  //     router.push(`/${data.createCommunity.name}`);
-  //   },
-  // });
+  const router = useRouter();
 
   const {
     register,
@@ -23,10 +19,17 @@ export const NewCommunity = () => {
     watch,
     formState: { errors },
   } = useForm<IFormInput>();
-  const onSubmit: SubmitHandler<IFormInput> = (data) => {
-    // createCommunity({
-    //   variables: { input: { ...data } },
-    // });
+  const onSubmit: SubmitHandler<IFormInput> = async (data) => {
+    const formData = new FormData();
+    formData.set('title', data.title);
+    formData.set('name', data.name);
+
+    const { community } = await fetch('new-community/$create-community', {
+      body: formData,
+      method: 'POST',
+    }).then((res) => res.json());
+
+    router.push(`/${community.name}`);
   };
 
   const name = watch('name');

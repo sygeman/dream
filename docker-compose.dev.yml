@@ -23,5 +23,19 @@ services:
       - '6001:6001'
       - '9601:9601'
 
+  minio:
+    command: server --console-address ":9001" /data/
+    restart: always
+    image: quay.io/minio/minio
+    ports:
+      - '9000:9000'
+      - '9001:9001'
+    environment:
+      MINIO_ROOT_USER: '${MINIO_ROOT_USER}'
+      MINIO_ROOT_PASSWORD: '${MINIO_ROOT_PASSWORD}'
+    volumes:
+      - /home/sygeman/minio/data:/data
+      - /data
+
 volumes:
   db-data:

@@ -1,20 +1,17 @@
 import React from 'react';
 import clsx from 'clsx';
 import { useParams, useRouter } from 'next/navigation';
+import { deleteChannelAction } from './actions';
 
 export const DeleteChannel = () => {
   const router = useRouter();
   const params = useParams();
 
   const deleteChannel = async () => {
-    const formData = new FormData();
-    formData.set('channel', params.channel as string);
-    formData.set('community', params.community as string);
-
-    await fetch('/delete-channel/$delete-channel', {
-      body: formData,
-      method: 'POST',
-    }).then((res) => res.json());
+    await deleteChannelAction({
+      channel: params.channel as string,
+      community: params.community as string,
+    });
 
     router.push(`/${params.community}`);
   };

@@ -3,6 +3,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { urlNameRegExp } from 'apps/client/helpers/regexp-url-name';
 import { useParams } from 'next/navigation';
 import { useRouter } from 'next/navigation';
+import { createChannelAction } from './actions';
 
 interface IFormInput {
   name: string;
@@ -21,15 +22,10 @@ export const NewChannel = () => {
   } = useForm<IFormInput>();
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
-    const formData = new FormData();
-    formData.set('community', params.community as string);
-    formData.set('title', data.title);
-    formData.set('name', data.name);
-
-    const { channel } = await fetch('/new-channel/$create-channel', {
-      body: formData,
-      method: 'POST',
-    }).then((res) => res.json());
+    const { channel } = await createChannelAction({
+      community: params.community as string,
+      ...data,
+    });
 
     router.push(`/${params.community}/${channel.name}`);
   };

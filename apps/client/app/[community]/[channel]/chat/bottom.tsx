@@ -8,14 +8,15 @@ import clsx from 'clsx';
 import { GifPicker } from './components/gif-picker';
 import { PickerTab } from './components/picker-tab';
 import { EmojiPicker } from './components/emoji-picker';
-import { usePathname } from 'next/navigation';
+import { useParams, usePathname } from 'next/navigation';
+import { createMessageAction } from './actions';
 
 interface ChatBottomProps {
   channelId: string;
 }
 
 export const ChatBottom: React.FC<ChatBottomProps> = ({ channelId }) => {
-  const pathname = usePathname();
+  const params = useParams();
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   let lock = false;
 
@@ -41,9 +42,10 @@ export const ChatBottom: React.FC<ChatBottomProps> = ({ channelId }) => {
       const formData = new FormData();
       formData.set('content', content);
 
-      await fetch(`${pathname}/chat/$create-message`, {
-        body: formData,
-        method: 'POST',
+      await createMessageAction({
+        content,
+        community: params.community as string,
+        channel: params.channel as string,
       });
 
       if (textareaRef.current) {

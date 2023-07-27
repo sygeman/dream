@@ -3,49 +3,15 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { urlNameRegExp } from 'apps/client/helpers/regexp-url-name';
 import { SaveFormPanel } from 'apps/client/components/save-form-panel';
 import { useParams } from 'next/navigation';
+import {
+  getCommunitySettingsAction,
+  updateCommunitySettingsAction,
+} from './actions';
 
 interface IFormInput {
   name: string;
   title: string;
 }
-
-const getCommunitySettings = async (community: string) => {
-  const formData = new FormData();
-  formData.set('community', community as string);
-
-  const { communitySettings } = await fetch(
-    '/community-settings/$get-community-settings',
-    {
-      method: 'POST',
-      body: formData,
-    },
-  ).then((res) => res.json());
-
-  return {
-    title: communitySettings.title,
-    name: communitySettings.name,
-  };
-};
-
-const updateCommunitySettings = async (
-  community: string,
-  { title, name }: { title: string; name: string },
-) => {
-  const formData = new FormData();
-  formData.set('community', community as string);
-  formData.set('title', title as string);
-  formData.set('name', name as string);
-
-  const { communitySettings } = await fetch(
-    '/community-settings/$update-community-settings',
-    {
-      method: 'POST',
-      body: formData,
-    },
-  ).then((res) => res.json());
-
-  return communitySettings;
-};
 
 export const CommunitySettingsOverview: React.FC = () => {
   const origin = typeof window !== 'undefined' ? window?.location?.origin : '';
@@ -57,14 +23,15 @@ export const CommunitySettingsOverview: React.FC = () => {
     handleSubmit,
     formState: { isDirty },
   } = useForm<IFormInput>({
-    defaultValues: async () => getCommunitySettings(params.community as string),
+    defaultValues: async () =>
+      getCommunitySettingsAction(params.community as string),
   });
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
-    const communitySettings = await updateCommunitySettings(
-      params.community as string,
-      data,
-    );
+    const { communitySettings } = await updateCommunitySettingsAction({
+      community: params.community as string,
+      ...data,
+    });
     reset({
       name: communitySettings?.name,
       title: communitySettings?.title,

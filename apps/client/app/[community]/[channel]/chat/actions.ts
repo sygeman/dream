@@ -1,15 +1,16 @@
-import { authOptions } from 'apps/client/helpers/auth-options';
-import { prisma } from 'apps/client/libs/prisma';
-import { getServerSession } from 'next-auth';
-import { NextResponse } from 'next/server';
-import { CHANNEL_MESSAGE_CREATED } from '../constants';
-import { pusher } from 'apps/client/libs/pusher';
+'use server';
 
-export async function POST(
-  request: Request,
-  { params }: { params: { community: string; channel: string } },
-) {
-  const formData = await request.formData();
+import { prisma } from 'apps/client/libs/prisma';
+import { pusher } from 'apps/client/libs/pusher';
+import { CHANNEL_MESSAGE_CREATED } from './constants';
+import { getServerSession } from 'next-auth';
+import { authOptions } from 'apps/client/helpers/auth-options';
+
+export const createMessageAction = async (data: {
+  channel: string;
+  community: string;
+  content: string;
+}) => {
   const session = await getServerSession(authOptions);
 
   // const tenorGifMatch = content.match(
@@ -24,9 +25,9 @@ export async function POST(
 
   const channel = await prisma.channel.findFirst({
     where: {
-      name: params.channel,
+      name: data.channel,
       community: {
-        name: params.community,
+        name: data.community,
       },
     },
   });
@@ -37,7 +38,7 @@ export async function POST(
 
   const message = await prisma.channelMessage.create({
     data: {
-      content: formData.get('content') as string,
+      content: data.content,
       channel: {
         connect: {
           id: channel.id,
@@ -60,11 +61,7 @@ export async function POST(
     },
   });
 
-  // this.pubsub.publish('channelMessageCreated', {
-  //   channelMessageCreated: message,
-  // });
-
   pusher.trigger(channel.id, CHANNEL_MESSAGE_CREATED, message);
 
-  return NextResponse.json({ message });
-}
+  return { message };
+};

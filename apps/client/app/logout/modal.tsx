@@ -5,7 +5,7 @@ import { useModal } from 'apps/client/helpers/use-modal';
 import { Modal } from 'apps/client/components/modal';
 import { signOut } from 'next-auth/react';
 
-const LogoutModal = () => {
+export const LogoutModal = () => {
   const modalProps = useModal();
   const router = useRouter();
 
@@ -38,5 +38,3 @@ const LogoutModal = () => {
     </Modal>
   );
 };
-
-export default LogoutModal;

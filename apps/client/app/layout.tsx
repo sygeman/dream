@@ -1,10 +1,12 @@
-import { ReactNode, type PropsWithChildren } from 'react';
+import { type PropsWithChildren } from 'react';
 import { AppPanel } from './app-panel/app-panel';
 import './global.css';
 // import 'overlayscrollbars/overlayscrollbars.css';
 // import 'rc-slider/assets/index.css';
 import { roboto } from './fonts';
-// import { UserSettingsModal } from './user-settings/modal';
+import { LoginModal } from './login/modal';
+import { LogoutModal } from './logout/modal';
+import { UserSettingsModal } from './user-settings/modal';
 import { NewCommunityModal } from './new-community/modal';
 import { DeleteCommunityModal } from './delete-community/modal';
 import { CommunitySettingsModal } from './community-settings/modal';
@@ -17,19 +19,12 @@ import { IntlProvider } from 'apps/client/libs/intl';
 import { authOptions } from '../helpers/auth-options';
 import { getServerSession } from 'next-auth';
 
-type Props = PropsWithChildren & {
-  login: ReactNode;
-  logout: ReactNode;
-  userSettings: ReactNode;
-};
+type Props = PropsWithChildren;
 
-const MainLayout = async (props: Props) => {
-  const { children, login, logout, userSettings } = props;
-  console.log(Object.keys(props));
+const MainLayout = async ({ children }: Props) => {
   const session = await getServerSession(authOptions);
-  const locale =
-    (await prisma.user.findFirst({ where: { id: session?.user.id } }))
-      ?.locale || Locale.en_US;
+  const user = await prisma.user.findFirst({ where: { id: session?.user.id } });
+  const locale = user?.locale || Locale.en_US;
 
   return (
     <html className={roboto.className}>
@@ -56,10 +51,9 @@ const MainLayout = async (props: Props) => {
               {children}
             </div>
 
-            {login}
-            {logout}
-            {userSettings}
-            {/* <UserSettingsModal /> */}
+            <LoginModal />
+            <LogoutModal />
+            <UserSettingsModal />
 
             <NewCommunityModal />
             <DeleteCommunityModal />

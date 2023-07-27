@@ -5,7 +5,7 @@ import { UserSettingsLanguage } from './language';
 import { useMemo } from 'react';
 import { useIntl } from 'apps/client/libs/intl';
 
-const UserSettingsModal = () => {
+export const UserSettingsModal = () => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { formatMessage } = useIntl();
@@ -44,5 +44,3 @@ const UserSettingsModal = () => {
     />
   );
 };
-
-export default UserSettingsModal;

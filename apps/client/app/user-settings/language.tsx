@@ -1,4 +1,3 @@
-'use client';
 import { RadioGroup } from '@headlessui/react';
 import { RadioButton } from 'apps/client/components/radio';
 import { Locale } from '@prisma/client';
@@ -13,16 +12,18 @@ export const UserSettingsLanguage = () => {
   const { locale, formatMessage } = useIntl();
   const router = useRouter();
 
+  const setLocale = async (newLocale: Locale) => {
+    await setLocaleAction(newLocale);
+    router.refresh();
+  };
+
   return (
     <div>
       <div className="flex w-full mb-2">
         <RadioGroup
           className="w-full"
           value={locale}
-          onChange={async (newLocale: Locale) => {
-            await setLocaleAction(newLocale);
-            router.refresh();
-          }}
+          onChange={(newLocale: Locale) => setLocale(newLocale)}
         >
           <RadioGroup.Label className="text-accent text-xs">
             {formatMessage({ id: 'userSettingsLanguageSelectLabel' })}

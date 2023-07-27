@@ -9,10 +9,10 @@ export async function setLocaleAction(locale: Locale) {
   const session = await getServerSession(authOptions);
   const userId = session?.user.id;
 
-  await prisma.user.update({
+  const user = await prisma.user.update({
     where: { id: userId },
     data: { locale },
   });
 
-  return { locale };
+  return { locale: user?.locale };
 }

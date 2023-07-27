@@ -3,7 +3,7 @@ import { Modal } from 'apps/client/components/modal';
 import { useModal } from 'apps/client/helpers/use-modal';
 import { SocialButton } from './social-button';
 
-const LoginModal = () => {
+export const LoginModal = () => {
   const modalProps = useModal();
 
   return (
@@ -15,5 +15,3 @@ const LoginModal = () => {
     </Modal>
   );
 };
-
-export default LoginModal;

@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { urlNameRegExp } from 'apps/client/helpers/regexp-url-name';
 import { useRouter } from 'next/navigation';
+import { createCommunityAction } from './actions';
 
 interface IFormInput {
   name: string;
@@ -19,15 +20,7 @@ export const NewCommunity = () => {
     formState: { errors },
   } = useForm<IFormInput>();
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
-    const formData = new FormData();
-    formData.set('title', data.title);
-    formData.set('name', data.name);
-
-    const { community } = await fetch('/new-community/$create-community', {
-      body: formData,
-      method: 'POST',
-    }).then((res) => res.json());
-
+    const { community } = await createCommunityAction(data);
     router.push(`/${community.name}`);
   };
 

@@ -2,7 +2,7 @@
 import { RadioGroup } from '@headlessui/react';
 import { RadioButton } from 'apps/client/components/radio';
 import { Locale } from '@prisma/client';
-import { useIntl } from 'apps/client/app/intl-provider';
+import { useIntl } from 'apps/client/libs/intl';
 import { useRouter } from 'next/navigation';
 import { lang } from 'apps/client/lang';
 import { setLocaleAction } from './actions';

@@ -7,7 +7,7 @@ import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { Community } from '@prisma/client';
 import { CommunityCard } from './card';
-import { useIntl } from '../intl-provider';
+import { useIntl } from 'apps/client/libs/intl';
 
 type Props = {
   communities: Community[];

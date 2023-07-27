@@ -13,7 +13,7 @@ import { DeleteChannelModal } from './delete-channel/modal';
 import { ChannelSettingsModal } from './channel-settings/modal';
 import { Locale } from '@prisma/client';
 import { prisma } from '../libs/prisma';
-import { IntlProvider } from './intl-provider';
+import { IntlProvider } from 'apps/client/libs/intl';
 import { authOptions } from '../helpers/auth-options';
 import { getServerSession } from 'next-auth';
 

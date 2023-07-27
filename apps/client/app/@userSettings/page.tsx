@@ -3,7 +3,7 @@ import { usePathname, useSearchParams } from 'next/navigation';
 import { SettingsLayout } from 'apps/client/components/settings/layouts-settings';
 import { UserSettingsLanguage } from './language';
 import { useMemo } from 'react';
-import { useIntl } from 'apps/client/app/intl-provider';
+import { useIntl } from 'apps/client/libs/intl';
 
 const UserSettingsModal = () => {
   const searchParams = useSearchParams();

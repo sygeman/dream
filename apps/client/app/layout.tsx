@@ -1,10 +1,9 @@
-import { type PropsWithChildren } from 'react';
+import { ReactNode, type PropsWithChildren } from 'react';
 import { AppPanel } from './app-panel/app-panel';
 import './global.css';
 // import 'overlayscrollbars/overlayscrollbars.css';
 // import 'rc-slider/assets/index.css';
 import { roboto } from './fonts';
-import { LoginModal } from './login';
 import { LogoutModal } from './logout';
 import { UserSettingsModal } from './user-settings/modal';
 import { NewCommunityModal } from './new-community/modal';
@@ -19,9 +18,9 @@ import { IntlProvider } from './intl-provider';
 import { authOptions } from '../helpers/auth-options';
 import { getServerSession } from 'next-auth';
 
-type Props = PropsWithChildren;
+type Props = PropsWithChildren & { login: ReactNode };
 
-const MainLayout = async ({ children }: Props) => {
+const MainLayout = async ({ children, login }: Props) => {
   const session = await getServerSession(authOptions);
   const locale =
     (await prisma.user.findFirst({ where: { id: session?.user.id } }))
@@ -52,7 +51,7 @@ const MainLayout = async ({ children }: Props) => {
               {children}
             </div>
 
-            <LoginModal />
+            {login}
             <LogoutModal />
             <UserSettingsModal />
 

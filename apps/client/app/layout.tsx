@@ -24,7 +24,7 @@ type Props = PropsWithChildren;
 const MainLayout = async ({ children }: Props) => {
   const session = await getServerSession(authOptions);
   const locale =
-    (await prisma.user.findUnique({ where: { id: session?.user.id } }))
+    (await prisma.user.findFirst({ where: { id: session?.user.id } }))
       ?.locale || Locale.en_US;
 
   return (

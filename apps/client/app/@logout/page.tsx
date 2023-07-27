@@ -1,11 +1,11 @@
 'use client';
 import clsx from 'clsx';
 import { useRouter } from 'next/navigation';
-import { useModal } from '../helpers/use-modal';
-import { Modal } from '../components/modal';
+import { useModal } from 'apps/client/helpers/use-modal';
+import { Modal } from 'apps/client/components/modal';
 import { signOut } from 'next-auth/react';
 
-export const LogoutModal = () => {
+const LogoutModal = () => {
   const modalProps = useModal();
   const router = useRouter();
 
@@ -38,3 +38,5 @@ export const LogoutModal = () => {
     </Modal>
   );
 };
+
+export default LogoutModal;

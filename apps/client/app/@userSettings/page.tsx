@@ -3,9 +3,9 @@ import { usePathname, useSearchParams } from 'next/navigation';
 import { SettingsLayout } from 'apps/client/components/settings/layouts-settings';
 import { UserSettingsLanguage } from './language';
 import { useMemo } from 'react';
-import { useIntl } from '../intl-provider';
+import { useIntl } from 'apps/client/app/intl-provider';
 
-export const UserSettingsModal = () => {
+const UserSettingsModal = () => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { formatMessage } = useIntl();
@@ -44,3 +44,5 @@ export const UserSettingsModal = () => {
     />
   );
 };
+
+export default UserSettingsModal;

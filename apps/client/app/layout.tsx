@@ -4,7 +4,7 @@ import './global.css';
 // import 'overlayscrollbars/overlayscrollbars.css';
 // import 'rc-slider/assets/index.css';
 import { roboto } from './fonts';
-import { UserSettingsModal } from './user-settings/modal';
+// import { UserSettingsModal } from './user-settings/modal';
 import { NewCommunityModal } from './new-community/modal';
 import { DeleteCommunityModal } from './delete-community/modal';
 import { CommunitySettingsModal } from './community-settings/modal';
@@ -17,9 +17,15 @@ import { IntlProvider } from './intl-provider';
 import { authOptions } from '../helpers/auth-options';
 import { getServerSession } from 'next-auth';
 
-type Props = PropsWithChildren & { login: ReactNode; logout: ReactNode };
+type Props = PropsWithChildren & {
+  login: ReactNode;
+  logout: ReactNode;
+  userSettings: ReactNode;
+};
 
-const MainLayout = async ({ children, login, logout }: Props) => {
+const MainLayout = async (props: Props) => {
+  const { children, login, logout, userSettings } = props;
+  console.log(Object.keys(props));
   const session = await getServerSession(authOptions);
   const locale =
     (await prisma.user.findFirst({ where: { id: session?.user.id } }))
@@ -52,7 +58,8 @@ const MainLayout = async ({ children, login, logout }: Props) => {
 
             {login}
             {logout}
-            <UserSettingsModal />
+            {userSettings}
+            {/* <UserSettingsModal /> */}
 
             <NewCommunityModal />
             <DeleteCommunityModal />

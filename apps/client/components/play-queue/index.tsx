@@ -11,7 +11,7 @@ type PlayQueueLayoutProps = PropsWithChildren & {
   queue?: ReactNode;
   addActionAccent?: boolean;
   addActionLabel: string;
-  addActionModalKey: string;
+  addActionModalLink: string;
   onMinimalContentChanged?: (minimal: boolean) => void;
 };
 
@@ -28,7 +28,7 @@ export const PlayQueueLayout = ({
   history,
   current,
   queue,
-  addActionModalKey,
+  addActionModalLink,
   addActionAccent,
   addActionLabel,
   onMinimalContentChanged = () => null,
@@ -62,7 +62,7 @@ export const PlayQueueLayout = ({
         </History>
         {current}
         <Queue
-          addActionModalKey={addActionModalKey}
+          addActionModalLink={addActionModalLink}
           addActionAccent={addActionAccent}
           addActionLabel={addActionLabel}
           hidden={viewType === PlayQueueViewType.HISTORY}

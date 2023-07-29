@@ -1,8 +1,7 @@
 'use server';
 
-import { authOptions } from 'apps/client/helpers/auth-options';
+import { getCurretUserId } from 'apps/client/helpers/get-current-user';
 import { prisma } from 'apps/client/libs/prisma';
-import { getServerSession } from 'next-auth';
 
 export const getChannelChatSettingsAction = async (
   community: string,
@@ -29,8 +28,7 @@ export async function updateChannelChatSettingsAction(
     slowmode: number;
   },
 ) {
-  const session = await getServerSession(authOptions);
-  const userId = session?.user.id;
+  const userId = await getCurretUserId();
 
   const channel = await prisma.channel.findFirst({
     where: { name: where.channel, community: { name: where.community } },

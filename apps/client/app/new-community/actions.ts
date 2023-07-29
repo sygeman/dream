@@ -1,15 +1,13 @@
 'use server';
 
-import { authOptions } from 'apps/client/helpers/auth-options';
+import { getCurretUserId } from 'apps/client/helpers/get-current-user';
 import { prisma } from 'apps/client/libs/prisma';
-import { getServerSession } from 'next-auth';
 
 export async function createCommunityAction(data: {
   title: string;
   name: string;
 }) {
-  const session = await getServerSession(authOptions);
-  const userId = session?.user.id;
+  const userId = await getCurretUserId();
 
   if (!userId) throw 'Unauthorized';
 

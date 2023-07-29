@@ -1,13 +1,11 @@
 'use server';
 
 import { Locale } from '@prisma/client';
-import { authOptions } from 'apps/client/helpers/auth-options';
+import { getCurretUserId } from 'apps/client/helpers/get-current-user';
 import { prisma } from 'apps/client/libs/prisma';
-import { getServerSession } from 'next-auth';
 
 export async function setLocaleAction(locale: Locale) {
-  const session = await getServerSession(authOptions);
-  const userId = session?.user.id;
+  const userId = await getCurretUserId();
 
   const user = await prisma.user.update({
     where: { id: userId },

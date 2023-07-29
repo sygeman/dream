@@ -1,20 +1,25 @@
 'use client';
 import dynamic from 'next/dynamic';
+import { useEffect, useState } from 'react';
+import { getTwitchModeAction } from './actions';
+import { useParams } from 'next/navigation';
 
 const Player = dynamic(() => import('./player'), { ssr: false });
 
-// import { useTwitchStreamQuery } from './twitch-stream.api';
-// import { useCommunityChannel } from '@dream/mono-use-community-channel';
-
 export const ChannelTwitchMode = () => {
-  //   const { channelId } = useCommunityChannel();
+  const params = useParams();
+  const [twitchStream, setTwitchStream] = useState<any>(null);
 
-  //   const twitchStreamQuery = useTwitchStreamQuery({
-  //     variables: { channelId },
-  //     skip: !channelId,
-  //   });
+  useEffect(() => {
+    getTwitchModeAction(
+      params.community as string,
+      params.channel as string,
+    ).then((data) => {
+      setTwitchStream(data);
+    });
+  }, []);
 
-  const channelKey = 'sygeman'; //twitchStreamQuery?.data?.twitchStream?.channelKey;
+  const channelKey = twitchStream?.channelKey;
 
   return (
     <div className="h-full w-full bg-background-light">

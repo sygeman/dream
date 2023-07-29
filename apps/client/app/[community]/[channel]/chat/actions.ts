@@ -3,15 +3,14 @@
 import { prisma } from 'apps/client/libs/prisma';
 import { pusher } from 'apps/client/libs/pusher';
 import { CHANNEL_MESSAGE_CREATED } from './constants';
-import { getServerSession } from 'next-auth';
-import { authOptions } from 'apps/client/helpers/auth-options';
+import { getCurretUserId } from 'apps/client/helpers/get-current-user';
 
 export const createMessageAction = async (data: {
   channel: string;
   community: string;
   content: string;
 }) => {
-  const session = await getServerSession(authOptions);
+  const userId = await getCurretUserId();
 
   // const tenorGifMatch = content.match(
   //   /https\:\/\/tenor\.com\/view(.+)gif-([0-9]+)/
@@ -46,7 +45,7 @@ export const createMessageAction = async (data: {
       },
       user: {
         connect: {
-          id: session?.user.id,
+          id: userId,
         },
       },
       // tenorGif: tenorGifId && {

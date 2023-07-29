@@ -1,16 +1,14 @@
 'use server';
 
-import { authOptions } from 'apps/client/helpers/auth-options';
+import { getCurretUserId } from 'apps/client/helpers/get-current-user';
 import { prisma } from 'apps/client/libs/prisma';
-import { getServerSession } from 'next-auth';
 
 export async function createChannelAction(data: {
   title: string;
   name: string;
   community: string;
 }) {
-  const session = await getServerSession(authOptions);
-  const userId = session?.user.id;
+  const userId = await getCurretUserId();
 
   const community = await prisma.community.findUnique({
     where: { name: data.community },

@@ -2,15 +2,14 @@ import React from 'react';
 import { HeartIcon } from '@heroicons/react/20/solid';
 import { prisma } from 'apps/client/libs/prisma';
 import { AppPanelCommunitiesList } from './list';
-import { authOptions } from 'apps/client/helpers/auth-options';
-import { getServerSession } from 'next-auth';
+import { checkIsUser } from 'apps/client/helpers/get-current-user';
 
 export const AppPanelCommunities = async () => {
-  const session = await getServerSession(authOptions);
+  const isUser = await checkIsUser();
+
   const communities = await prisma.community.findMany({
     where: { deleted: false },
   });
-  const isUser = !!session?.user;
 
   return (
     <>

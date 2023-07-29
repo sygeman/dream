@@ -15,6 +15,14 @@ export const authOptions: NextAuthOptions = {
         },
       },
     }),
+    // clientID: process.env.SPOTIFY_ID,
+    // clientSecret: process.env.SPOTIFY_SECRET,
+    // callbackURL: `${process.env.NEXT_PUBLIC_MONO_API}authend/spotify`,
+    // scope: [
+    //   'user-read-email',
+    //   'user-read-playback-state',
+    //   'user-modify-playback-state',
+    // ],
   ],
   callbacks: {
     async session({ session, user }) {

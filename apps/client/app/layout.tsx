@@ -16,14 +16,13 @@ import { ChannelSettingsModal } from './channel-settings/modal';
 import { Locale } from '@prisma/client';
 import { prisma } from '../libs/prisma';
 import { IntlProvider } from 'apps/client/libs/intl';
-import { authOptions } from '../helpers/auth-options';
-import { getServerSession } from 'next-auth';
+import { getCurretUserId } from '../helpers/get-current-user';
 
 type Props = PropsWithChildren;
 
 const MainLayout = async ({ children }: Props) => {
-  const session = await getServerSession(authOptions);
-  const user = await prisma.user.findFirst({ where: { id: session?.user.id } });
+  const userId = await getCurretUserId();
+  const user = await prisma.user.findFirst({ where: { id: userId } });
   const locale = user?.locale || Locale.en_US;
 
   return (

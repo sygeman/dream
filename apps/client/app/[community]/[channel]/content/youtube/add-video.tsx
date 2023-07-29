@@ -1,18 +1,28 @@
 import { useState } from 'react';
 import clsx from 'clsx';
-import { useRouter } from 'next/router';
-import { useWaitlistYoutubeQueueAddVideoMutation } from './mode-waitlist.api';
+import { useParams, useRouter } from 'next/navigation';
+// import { useWaitlistYoutubeQueueAddVideoMutation } from './mode-waitlist.api';
 import ReactPlayer from 'react-player';
-import { useCommunityChannel } from '@dream/mono-use-community-channel';
+import { addVideoAction } from './actions';
+// import { useCommunityChannel } from '@dream/mono-use-community-channel';
 
 export const ChannelYoutubeModeAddVideo = () => {
   const [videoId, setVideoId] = useState('');
   const router = useRouter();
-  const { channelId } = useCommunityChannel();
+  const params = useParams();
+  // const { channelId } = useCommunityChannel();
 
-  const [addVideoMutation] = useWaitlistYoutubeQueueAddVideoMutation({
-    onCompleted: () => router.back(),
-  });
+  // const [addVideoMutation] = useWaitlistYoutubeQueueAddVideoMutation({
+  //   onCompleted: () => router.back(),
+  // });
+
+  const addVideo = async () => {
+    addVideoAction({
+      communityName: params.community as string,
+      channelName: params.channel as string,
+      videoId,
+    });
+  };
 
   return (
     <div className="p-4">
@@ -26,7 +36,7 @@ export const ChannelYoutubeModeAddVideo = () => {
           placeholder="Paste youtube video link here..."
           onChange={(e) => {
             const videoId = e.target.value.match(
-              /(.*?)(^|\/|v=)([a-z0-9_-]{11})(.*)?/i
+              /(.*?)(^|\/|v=)([a-z0-9_-]{11})(.*)?/i,
             )?.[3];
             setVideoId(videoId || '');
           }}
@@ -53,9 +63,7 @@ export const ChannelYoutubeModeAddVideo = () => {
           <button
             type="button"
             className={clsx('btn btn-primary')}
-            onClick={() => {
-              addVideoMutation({ variables: { channelId, videoId } });
-            }}
+            onClick={addVideo}
           >
             Add Video
           </button>

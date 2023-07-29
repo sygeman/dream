@@ -1,28 +1,29 @@
-import {
-  useWaitlistYoutubeQueueQuery,
-  useWaitlistYoutubeQueueUpdatedSubscription,
-} from './mode-waitlist.api';
+// import {
+//   useWaitlistYoutubeQueueQuery,
+//   useWaitlistYoutubeQueueUpdatedSubscription,
+// } from './mode-waitlist.api';
 import { TrackFromList } from './components/track-from-list';
-import { useCommunityChannel } from '@dream/mono-use-community-channel';
+// import { useCommunityChannel } from '@dream/mono-use-community-channel';
 
 export const ChannelYoutubeModeQueue = () => {
-  const { channelId } = useCommunityChannel();
+  // const { channelId } = useCommunityChannel();
 
-  const queueQuery = useWaitlistYoutubeQueueQuery({
-    variables: { channelId },
-    skip: !channelId,
-    fetchPolicy: 'network-only',
-  });
+  // const queueQuery = useWaitlistYoutubeQueueQuery({
+  //   variables: { channelId },
+  //   skip: !channelId,
+  //   fetchPolicy: 'network-only',
+  // });
 
-  useWaitlistYoutubeQueueUpdatedSubscription({
-    variables: { channelId },
-    skip: !channelId,
-    onData: () => {
-      queueQuery.refetch();
-    },
-  });
+  // useWaitlistYoutubeQueueUpdatedSubscription({
+  //   variables: { channelId },
+  //   skip: !channelId,
+  //   onData: () => {
+  //     queueQuery.refetch();
+  //   },
+  // });
 
-  const queueItems = queueQuery?.data?.waitlistYoutubeQueue?.items || [];
+  // const queueItems = queueQuery?.data?.waitlistYoutubeQueue?.items || [];
+  const queueItems: any[] = [];
 
   return (
     <>

@@ -1,34 +1,46 @@
-import {
-  useWaitlistYoutubeCurrentQuery,
-  useWaitlistYoutubeCurrentUpdatedSubscription,
-} from './mode-waitlist.api';
+'use client';
+// import {
+//   useWaitlistYoutubeCurrentQuery,
+//   useWaitlistYoutubeCurrentUpdatedSubscription,
+// } from './mode-waitlist.api';
 import { ChannelYoutubeModeHistory } from './history';
 import { ChannelYoutubeModeQueue } from './queue';
 import { ChannelYoutubeModeCurrent } from './current';
-import { useCommunityChannel } from '@dream/mono-use-community-channel';
+// import { useCommunityChannel } from '@dream/mono-use-community-channel';
 import { YoutubeModeAddVideoModal } from './modals/add-video';
 import { PlayQueueLayout } from 'apps/client/components/play-queue';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
+import { usePathname, useSearchParams } from 'next/navigation';
 
 export const ChannelYoutubeMode = () => {
   const [minimal, setMinimal] = useState(false);
-  const { channelId } = useCommunityChannel();
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
 
-  const currentQuery = useWaitlistYoutubeCurrentQuery({
-    variables: { channelId },
-    skip: !channelId,
-    fetchPolicy: 'network-only',
-  });
+  const waitlistYoutubeAddVideoLink = useMemo(() => {
+    const newParams = new URLSearchParams(Array.from(searchParams.entries()));
+    newParams.set('waitlistYoutubeAddVideo', '1');
+    return `${pathname}?${newParams?.toString()}`;
+  }, [searchParams]);
 
-  useWaitlistYoutubeCurrentUpdatedSubscription({
-    variables: { channelId },
-    skip: !channelId,
-    onData: () => {
-      currentQuery.refetch();
-    },
-  });
+  // const { channelId } = useCommunityChannel();
 
-  const current = currentQuery?.data?.waitlistYoutubeCurrent?.item;
+  // const currentQuery = useWaitlistYoutubeCurrentQuery({
+  //   variables: { channelId },
+  //   skip: !channelId,
+  //   fetchPolicy: 'network-only',
+  // });
+
+  // useWaitlistYoutubeCurrentUpdatedSubscription({
+  //   variables: { channelId },
+  //   skip: !channelId,
+  //   onData: () => {
+  //     currentQuery.refetch();
+  //   },
+  // });
+
+  // const current = currentQuery?.data?.waitlistYoutubeCurrent?.item;
+  const current: any = null;
 
   console.log(current);
 
@@ -41,7 +53,7 @@ export const ChannelYoutubeMode = () => {
       }
       queue={<ChannelYoutubeModeQueue />}
       addActionLabel="Add Video"
-      addActionModalKey="waitlistYoutubeAddVideo"
+      addActionModalLink={waitlistYoutubeAddVideoLink}
       onMinimalContentChanged={setMinimal}
     >
       <YoutubeModeAddVideoModal />

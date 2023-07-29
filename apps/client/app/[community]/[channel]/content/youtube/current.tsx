@@ -8,9 +8,11 @@ import { useWaitlistYoutubeQueueSkipVideoMutation } from './mode-waitlist.api';
 import { useCommunityChannel } from '@dream/mono-use-community-channel';
 
 const CurrentMenu = () => {
-  const { channelId } = useCommunityChannel();
-  const [skipMutation] = useWaitlistYoutubeQueueSkipVideoMutation();
-  const skipTrack = () => skipMutation({ variables: { channelId } });
+  // const { channelId } = useCommunityChannel();
+  // const [skipMutation] = useWaitlistYoutubeQueueSkipVideoMutation();
+  const skipTrack = () => {
+    // skipMutation({ variables: { channelId } });
+  };
 
   return (
     <Menu as="div" className="relative inline-block text-left">
@@ -19,7 +21,7 @@ const CurrentMenu = () => {
           <Menu.Button
             className={clsx(
               'h-6 w-6 flex btn btn-secondary p-0 items-center justify-center',
-              open && 'bg-surface'
+              open && 'bg-surface',
             )}
           >
             <EllipsisVerticalIcon className="h-4 text-accent" />
@@ -36,7 +38,7 @@ const CurrentMenu = () => {
             <Menu.Items
               className={clsx(
                 'absolute right-0 w-48 mt-2 origin-top-right bg-background p-2',
-                'divide-y divide-gray-100 rounded shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none'
+                'divide-y divide-gray-100 rounded shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none',
               )}
             >
               <Menu.Item
@@ -45,7 +47,7 @@ const CurrentMenu = () => {
                 className={clsx(
                   'flex justify-between items-center w-full h-8 px-2',
                   'rounded overflow-hidden text-accent font-medium',
-                  'hover:bg-surface hover:text-white'
+                  'hover:bg-surface hover:text-white',
                 )}
               >
                 <span className="text-sm">Skip</span>
@@ -86,7 +88,7 @@ export const ChannelYoutubeModeCurrent = ({
           <div
             className={clsx(
               'aspect-w-16 aspect-h-9 z-10',
-              minimal && 'absolute'
+              minimal && 'absolute',
             )}
           >
             <ReactPlayer

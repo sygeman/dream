@@ -8,7 +8,7 @@ import {
   updateCommunitySettingsAction,
 } from './actions';
 
-interface IFormInput {
+interface FormInput {
   name: string;
   title: string;
 }
@@ -22,12 +22,12 @@ export const CommunitySettingsOverview: React.FC = () => {
     reset,
     handleSubmit,
     formState: { isDirty },
-  } = useForm<IFormInput>({
+  } = useForm<FormInput>({
     defaultValues: async () =>
       getCommunitySettingsAction(params.community as string),
   });
 
-  const onSubmit: SubmitHandler<IFormInput> = async (data) => {
+  const onSubmit: SubmitHandler<FormInput> = async (data) => {
     const { communitySettings } = await updateCommunitySettingsAction({
       community: params.community as string,
       ...data,

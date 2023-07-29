@@ -1,51 +1,51 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Slider from 'rc-slider';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
-import { useUpdateChannelSettingsMutation } from './channel-settings.api';
-import { useCommunityChannel } from '@dream/mono-use-community-channel';
 import { SaveFormPanel } from 'apps/client/components/save-form-panel';
 import { SwitchFormField } from 'apps/client/components/switch-form-field';
+import { useParams } from 'next/navigation';
+import {
+  getChannelChatSettingsAction,
+  updateChannelChatSettingsAction,
+} from './actions';
 
-interface IFormInput {
+interface FormInput {
   gifAllowed: boolean;
   nsfw: boolean;
   slowmode: number;
 }
 
-export const ChannelSettingsChat: React.FC = () => {
-  const { channel, channelId, communityId } = useCommunityChannel();
-  const defaultValues = {
-    gifAllowed: channel?.gifAllowed,
-    nsfw: channel?.nsfw,
-    slowmode: channel?.slowmode,
-  };
+export const ChannelSettingsChat = () => {
+  const params = useParams();
 
   const {
     control,
     handleSubmit,
     reset,
     formState: { isDirty },
-  } = useForm<IFormInput>();
-
-  const [updateChannelSettings] = useUpdateChannelSettingsMutation({
-    onCompleted: (data) => {
-      reset({
-        gifAllowed: data?.updateChannelSettings?.gifAllowed,
-        nsfw: data?.updateChannelSettings?.nsfw,
-        slowmode: data?.updateChannelSettings?.slowmode,
-      });
-    },
+  } = useForm<FormInput>({
+    defaultValues: async () =>
+      getChannelChatSettingsAction(
+        params.community as string,
+        params.channel as string,
+      ),
   });
 
-  const onSubmit: SubmitHandler<IFormInput> = (data) => {
-    updateChannelSettings({
-      variables: { input: { ...data, communityId, channelId } },
+  const onSubmit: SubmitHandler<FormInput> = async (data) => {
+    const { channelSettings } = await updateChannelChatSettingsAction(
+      {
+        community: params.community as string,
+        channel: params.channel as string,
+      },
+      data,
+    );
+
+    reset({
+      gifAllowed: channelSettings.gifAllowed,
+      nsfw: channelSettings.nsfw,
+      slowmode: channelSettings.slowmode,
     });
   };
-
-  useEffect(() => {
-    reset(defaultValues);
-  }, [channel]);
 
   const marks = {
     0: 'Off',
@@ -69,7 +69,6 @@ export const ChannelSettingsChat: React.FC = () => {
           )}
           name="gifAllowed"
           control={control}
-          defaultValue={channel?.gifAllowed}
         />
 
         <Controller
@@ -84,7 +83,6 @@ export const ChannelSettingsChat: React.FC = () => {
           )}
           name="nsfw"
           control={control}
-          defaultValue={channel?.nsfw}
         />
 
         <div className="p-2">
@@ -105,13 +103,12 @@ export const ChannelSettingsChat: React.FC = () => {
               )}
               name="slowmode"
               control={control}
-              defaultValue={channel?.slowmode}
             />
           </div>
         </div>
       </div>
 
-      <SaveFormPanel show={isDirty} reset={() => reset(defaultValues)} />
+      <SaveFormPanel show={isDirty} reset={() => reset()} />
     </form>
   );
 };

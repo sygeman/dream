@@ -1,8 +1,8 @@
 'use client';
 import { SettingsLayout } from 'apps/client/components/settings/layouts-settings';
-import { ChannelSettingsOverview } from './overview';
-import { ChannelSettingsMode } from './mode';
-import { ChannelSettingsChat } from './chat';
+import { ChannelSettingsOverview } from './overview/overview';
+import { ChannelSettingsMode } from './mode/mode';
+import { ChannelSettingsChat } from './chat/chat';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { useMemo } from 'react';
 
@@ -24,21 +24,21 @@ export const ChannelSettingsModal = () => {
         {
           label: 'Channel Settings',
           items: [
-            // {
-            //   key: 'overview',
-            //   label: 'Overview',
-            //   content: <ChannelSettingsOverview />,
-            // },
-            // {
-            //   key: 'mode',
-            //   label: 'Mode',
-            //   content: <ChannelSettingsMode />,
-            // },
-            // {
-            //   key: 'chat',
-            //   label: 'Chat',
-            //   content: <ChannelSettingsChat />,
-            // },
+            {
+              key: 'overview',
+              label: 'Overview',
+              content: <ChannelSettingsOverview />,
+            },
+            {
+              key: 'mode',
+              label: 'Mode',
+              content: <ChannelSettingsMode />,
+            },
+            {
+              key: 'chat',
+              label: 'Chat',
+              content: <ChannelSettingsChat />,
+            },
           ],
         },
         {

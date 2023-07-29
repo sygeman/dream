@@ -1,48 +1,47 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { useUpdateChannelSettingsMutation } from './channel-settings.api';
-import { useCommunityChannel } from '@dream/mono-use-community-channel';
 import { urlNameRegExp } from 'apps/client/helpers/regexp-url-name';
 import { SaveFormPanel } from 'apps/client/components/save-form-panel';
+import {
+  getChannelSettingsAction,
+  updateChannelSettingsAction,
+} from './actions';
+import { useParams } from 'next/navigation';
 
-interface IFormInput {
+interface FormInput {
   name: string;
   title: string;
 }
 
-export const ChannelSettingsOverview: React.FC = () => {
+export const ChannelSettingsOverview = () => {
   const origin = typeof window !== 'undefined' ? window?.location?.origin : '';
-  const { community, channel, channelId, communityId } = useCommunityChannel();
-  const defaultValues = {
-    name: channel?.name,
-    title: channel?.title,
-  };
+  const params = useParams();
 
   const {
     register,
     reset,
     handleSubmit,
     formState: { isDirty },
-  } = useForm<IFormInput>();
-
-  const [updateChannelSettings] = useUpdateChannelSettingsMutation({
-    onCompleted: (data) => {
-      reset({
-        name: data?.updateChannelSettings?.name,
-        title: data?.updateChannelSettings?.title,
-      });
-    },
+  } = useForm<FormInput>({
+    defaultValues: async () =>
+      getChannelSettingsAction(
+        params.community as string,
+        params.channel as string,
+      ),
   });
 
-  const onSubmit: SubmitHandler<IFormInput> = (data) => {
-    updateChannelSettings({
-      variables: { input: { ...data, communityId, channelId } },
+  const onSubmit: SubmitHandler<FormInput> = async (data) => {
+    const { channelSettings } = await updateChannelSettingsAction({
+      community: params.community as string,
+      channel: params.channel as string,
+      ...data,
+    });
+
+    reset({
+      name: channelSettings?.name,
+      title: channelSettings?.title,
     });
   };
-
-  useEffect(() => {
-    reset(defaultValues);
-  }, [channel]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -57,7 +56,7 @@ export const ChannelSettingsOverview: React.FC = () => {
 
       <div className="flex items-center mb-2">
         <label htmlFor="name" className="text-accent text-xs">
-          {origin}/{community?.name}/
+          {origin}/{params?.community}/
         </label>
         <input
           {...register('name', {
@@ -71,7 +70,7 @@ export const ChannelSettingsOverview: React.FC = () => {
         />
       </div>
 
-      <SaveFormPanel show={isDirty} reset={() => reset(defaultValues)} />
+      <SaveFormPanel show={isDirty} reset={() => reset()} />
     </form>
   );
 };

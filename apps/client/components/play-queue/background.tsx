@@ -1,7 +1,11 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-export const Backgroud: React.FC<{ imageUrl?: string }> = ({ imageUrl }) => (
+type Props = {
+  imageUrl?: string;
+};
+
+export const Backgroud = ({ imageUrl }: Props) => (
   <AnimatePresence>
     <motion.div
       key={imageUrl}

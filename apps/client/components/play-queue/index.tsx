@@ -1,19 +1,19 @@
-import { useEffect, useState } from 'react';
+import { ReactNode, PropsWithChildren, useEffect, useState } from 'react';
 import { Backgroud } from './background';
 import { History } from './history';
 import { Queue } from './queue';
 
-export interface PlayQueueLayoutProps {
+type PlayQueueLayoutProps = PropsWithChildren & {
   backgroudImageUrl?: string;
   hideWithBlur?: boolean;
-  history?: React.ReactNode;
-  current?: React.ReactNode;
-  queue?: React.ReactNode;
+  history?: ReactNode;
+  current?: ReactNode;
+  queue?: ReactNode;
   addActionAccent?: boolean;
   addActionLabel: string;
   addActionModalKey: string;
   onMinimalContentChanged?: (minimal: boolean) => void;
-}
+};
 
 enum PlayQueueViewType {
   HISTORY,
@@ -21,7 +21,7 @@ enum PlayQueueViewType {
   QUEUE,
 }
 
-export const PlayQueueLayout: React.FC<PlayQueueLayoutProps> = ({
+export const PlayQueueLayout = ({
   children,
   backgroudImageUrl,
   hideWithBlur,
@@ -32,9 +32,9 @@ export const PlayQueueLayout: React.FC<PlayQueueLayoutProps> = ({
   addActionAccent,
   addActionLabel,
   onMinimalContentChanged = () => null,
-}) => {
+}: PlayQueueLayoutProps) => {
   const [viewType, setViewType] = useState<PlayQueueViewType>(
-    PlayQueueViewType.CURRENT
+    PlayQueueViewType.CURRENT,
   );
 
   useEffect(() => {
@@ -53,7 +53,7 @@ export const PlayQueueLayout: React.FC<PlayQueueLayoutProps> = ({
             setViewType(
               viewType === PlayQueueViewType.HISTORY
                 ? PlayQueueViewType.CURRENT
-                : PlayQueueViewType.HISTORY
+                : PlayQueueViewType.HISTORY,
             )
           }
           hidden={viewType === PlayQueueViewType.QUEUE}
@@ -70,7 +70,7 @@ export const PlayQueueLayout: React.FC<PlayQueueLayoutProps> = ({
             setViewType(
               viewType === PlayQueueViewType.QUEUE
                 ? PlayQueueViewType.CURRENT
-                : PlayQueueViewType.QUEUE
+                : PlayQueueViewType.QUEUE,
             )
           }
         >

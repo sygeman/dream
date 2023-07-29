@@ -1,8 +1,8 @@
 import React from 'react';
 import { RadioGroup } from '@headlessui/react';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
-import { RadioButton } from '@dream/mono/components/radio';
-import { SaveFormPanel } from '@dream/mono-components-save-form';
+import { RadioButton } from 'apps/client/components/radio';
+import { SaveFormPanel } from 'apps/client/components/save-form-panel';
 import { strategies } from './strategies';
 import {
   getSpotifyModeSettingsAction,

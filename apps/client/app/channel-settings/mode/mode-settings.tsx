@@ -1,9 +1,9 @@
 import React from 'react';
 import { ChannelTwitchModeSettings } from './twitch/settings';
-import { channelMods } from '@dream/mono/utils/channel-mods';
 import { ArrowLeftIcon } from '@heroicons/react/24/outline';
 import { ChannelMode } from '@prisma/client';
 import { ChannelSpotifyModeSettings } from './spotify/settings';
+import { channelMods } from 'apps/client/helpers/channel-mods';
 
 type Props = {
   modeKey: ChannelMode | null;

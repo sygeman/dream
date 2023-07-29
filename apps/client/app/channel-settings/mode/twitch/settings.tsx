@@ -1,11 +1,11 @@
 import React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { SaveFormPanel } from '@dream/mono-components-save-form';
 import {
   getTwitchModeSettingsAction,
   setTwitchModeSettingsAction,
 } from './actions';
 import { useParams } from 'next/navigation';
+import { SaveFormPanel } from 'apps/client/components/save-form-panel';
 
 interface FormInput {
   channelKey: string | null;

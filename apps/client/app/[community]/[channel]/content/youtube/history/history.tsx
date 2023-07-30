@@ -1,10 +1,5 @@
-// import {
-//   useWaitlistYoutubeHistoryQuery,
-//   useWaitlistYoutubeHistoryUpdatedSubscription,
-// } from './mode-waitlist.api';
-import { TrackFromList } from './components/track-from-list';
+import { TrackFromList } from '../components/track-from-list';
 import { dateDistanceInWordsToNow } from 'apps/client/helpers/date-distance-in-words-to-now';
-import { useCommunityChannel } from '@dream/mono-use-community-channel';
 
 export const ChannelYoutubeModeHistory = () => {
   // const { channelId } = useCommunityChannel();

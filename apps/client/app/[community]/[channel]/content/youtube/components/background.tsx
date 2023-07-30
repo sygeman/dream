@@ -1,11 +1,10 @@
-import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-interface TrackInfoProps {
+type Props = {
   imageUrl?: string;
-}
+};
 
-export const Backgroud: React.FC<TrackInfoProps> = ({ imageUrl }) => (
+export const Backgroud = ({ imageUrl }: Props) => (
   <AnimatePresence>
     <motion.div
       key={imageUrl}

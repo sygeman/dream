@@ -1,20 +1,13 @@
 import { useState } from 'react';
 import clsx from 'clsx';
 import { useParams, useRouter } from 'next/navigation';
-// import { useWaitlistYoutubeQueueAddVideoMutation } from './mode-waitlist.api';
 import ReactPlayer from 'react-player';
 import { addVideoAction } from './actions';
-// import { useCommunityChannel } from '@dream/mono-use-community-channel';
 
 export const ChannelYoutubeModeAddVideo = () => {
   const [videoId, setVideoId] = useState('');
   const router = useRouter();
   const params = useParams();
-  // const { channelId } = useCommunityChannel();
-
-  // const [addVideoMutation] = useWaitlistYoutubeQueueAddVideoMutation({
-  //   onCompleted: () => router.back(),
-  // });
 
   const addVideo = async () => {
     addVideoAction({

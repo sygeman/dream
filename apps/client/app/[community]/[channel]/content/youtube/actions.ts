@@ -2,75 +2,200 @@
 
 import { getCurretUserId } from 'apps/client/helpers/get-current-user';
 import { prisma } from 'apps/client/libs/prisma';
+import { pusher } from 'apps/client/libs/pusher';
 import { getYoutubeVideo } from 'apps/client/libs/youtube';
 
-// export const getTwitchModeAction = async (
-//   communityName: string,
-//   channelName: string,
-// ) => {
-//   const twitchStream = await prisma.twitchMode.findFirst({
-//     where: {
-//       channel: { name: channelName, community: { name: communityName } },
-//     },
+// async init(channelId: string) {
+//   const waitlistYoutube = await prisma.youtubeMode.findFirst({
+//     where: { channelId },
 //   });
 
-//   return twitchStream;
-// };
+//   if (waitlistYoutube) return waitlistYoutube;
 
-export const addVideoAction = async (payload: {
-  communityName: string;
-  channelName: string;
-  videoId: string;
+//   return prisma.youtubeMode.create({
+//     data: {
+//       channel: { connect: { id: channelId } },
+//     },
+//   });
+// }
+
+const updateWaitlistState = async ({
+  waitlistId,
+  itemId = null,
+  duration = 0,
 }) => {
-  const [userId, video, channel] = await Promise.all([
-    getCurretUserId(),
-    getYoutubeVideo(payload.videoId),
-    prisma.channel.findFirst({
-      where: {
-        name: payload.channelName,
-        community: { name: payload.communityName },
-      },
-    }),
-  ]);
+  console.log(`Update waitlist state waitlist:${waitlistId}, item:${itemId}`);
 
-  if (!channel) throw 'Channel not found';
-  if (!video) throw 'Video not found';
-  if (!userId) throw 'User not found';
-
-  const newItem = await prisma.youtubeModeItem.create({
-    data: {
-      duration: video.duration_ms, // TODO: Include start, end position
-      end: video.duration_ms,
-      channel: {
-        connect: { id: channel.id },
-      },
-      author: {
-        connect: { id: userId },
-      },
-      video: {
-        connectOrCreate: {
-          where: { id: payload.videoId },
-          create: {
-            id: payload.videoId,
-            title: video.title,
-            cover: video.cover,
-            duration: video.duration_ms,
-          },
-        },
-      },
-    },
+  const waitlistYoutubeUpdated = await prisma.youtubeMode.update({
+    where: { id: waitlistId },
+    data: { itemId },
   });
 
-  // this.pubsub.publish('waitlistYoutubeQueueUpdated', {
-  //   channelId: newItem.channelId,
-  //   waitlistYoutubeQueueUpdated: true,
-  // });
+  if (itemId) {
+    // Create new skip process
+    console.log(`Create new skip process waitlist:${itemId}`);
+    // waitlistYoutubeQueue.add(
+    //   `skip`,
+    //   { itemId },
+    //   { delay: duration, removeOnComplete: true }
+    // );
+    // skipVideoByQueue(itemId);
+  }
 
-  // const waitlistYoutubeIsEmpty = await this.prisma.youtubeMode.findFirst({
-  //   where: { channelId, itemId: null },
-  // });
+  console.log(
+    `waitlistYoutubeCurrentUpdated - ${waitlistYoutubeUpdated.channelId}`,
+  );
 
-  // if (waitlistYoutubeIsEmpty) {
-  //   return this.setVideo({ channelId });
-  // }
+  // pubsub.publish('waitlistYoutubeCurrentUpdated', {
+  //   channelId: waitlistYoutubeUpdated.channelId,
+  //   waitlistYoutubeCurrentUpdated: true,
+  // });
+};
+
+const setVideo = async ({ channelId, manualSkip = false }) => {
+  console.log(`setVideo channel:${channelId}`);
+
+  // Get current state
+  const waitlistYoutube = await prisma.youtubeMode.findFirst({
+    where: { channelId },
+  });
+
+  if (waitlistYoutube?.itemId) {
+    // Update current item data
+    await prisma.youtubeModeItem.update({
+      where: { id: waitlistYoutube?.itemId },
+      data: { endedAt: new Date(), skipped: manualSkip },
+    });
+  }
+
+  // Cut first video from queue
+  const item = await prisma.youtubeModeItem.findFirst({
+    where: {
+      channelId,
+      startedAt: null,
+      canceled: false,
+    },
+    include: { video: true },
+    orderBy: { createdAt: 'asc' },
+  });
+
+  if (!item) {
+    console.log('Queue is empty');
+    // Clear state
+    return updateWaitlistState({ waitlistId: waitlistYoutube?.id });
+  }
+
+  const itemId = item.id;
+
+  const updatedItem = await prisma.youtubeModeItem.update({
+    where: { id: itemId },
+    data: { startedAt: new Date() },
+  });
+
+  pusher.trigger(channelId, 'waitlistYoutubeQueueUpdated', {
+    channelId: updatedItem.channelId,
+    waitlistYoutubeQueueUpdated: true,
+  });
+
+  pusher.trigger(channelId, 'waitlistYoutubeHistoryUpdated', {
+    channelId: updatedItem.channelId,
+    waitlistYoutubeHistoryUpdated: true,
+  });
+
+  return updateWaitlistState({
+    waitlistId: waitlistYoutube?.id,
+    itemId,
+    duration: item?.duration,
+  });
+};
+
+// @Query(() => YoutubeModeHistory)
+//   async waitlistYoutubeHistory(@Args({ name: 'channelId' }) channelId: string) {
+//     const historyItems = await prisma.youtubeModeItem.findMany({
+//       where: { channel: { id: channelId }, endedAt: { not: null } },
+//       orderBy: {
+//         createdAt: 'desc',
+//       },
+//       include: { video: true, author: true },
+//       take: 15,
+//     });
+
+//     const history = {
+//       items: historyItems.reverse().map((item) => ({
+//         data: {
+//           ...item,
+//           cover: item.video.cover,
+//           title: item.video.title,
+//         },
+//         actions: [YoutubeModeHistoryItemAction.ADD_TO_QUEUE],
+//       })),
+//     };
+
+//     return history;
+//   }
+
+//   @Query(() => YoutubeModeCurrent, { nullable: true })
+//   async waitlistYoutubeCurrent(@Args({ name: 'channelId' }) channelId: string) {
+//     const modeData = await prisma.youtubeMode.findFirst({
+//       where: { channel: { id: channelId } },
+//       include: {
+//         item: { include: { video: true, author: true } },
+//       },
+//     });
+
+//     if (!modeData?.item) {
+//       return null;
+//     }
+
+//     const current = {
+//       item: {
+//         ...modeData.item,
+//         cover: modeData.item.video.cover,
+//         title: modeData.item.video.title,
+//       },
+//       actions: [YoutubeModeCurrentAction.SKIP],
+//     };
+
+//     return current;
+//   }
+
+//   @Query(() => YoutubeModeQueue)
+//   async waitlistYoutubeQueue(@Args({ name: 'channelId' }) channelId: string) {
+//     const queueItems = await prisma.youtubeModeItem.findMany({
+//       where: {
+//         channel: { id: channelId },
+//         startedAt: null,
+//         canceled: false,
+//       },
+//       include: { video: true, author: true },
+//       take: 15,
+//     });
+
+//     const queue = {
+//       actions: [YoutubeModeQueueAction.ADD_VIDEO],
+//       items: queueItems.map((item) => ({
+//         data: {
+//           ...item,
+//           cover: item.video.cover,
+//           title: item.video.title,
+//         },
+//         actions: [YoutubeModeQueueItemAction.CANCEL],
+//       })),
+//     };
+
+//     return queue;
+//   }
+
+export const skipVideoByQueue = async (itemId: string) => {
+  console.log('skipTrackByQueue', itemId);
+
+  if (!itemId) return null;
+
+  const waitlistYoutube = await prisma.youtubeMode.findFirst({
+    where: { itemId },
+  });
+
+  if (!waitlistYoutube) return null;
+
+  return setVideo({ channelId: waitlistYoutube.channelId });
 };

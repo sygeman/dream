@@ -1,30 +1,20 @@
-import { TrackInfo } from 'libs/mode/spotify/ui/src/lib/components/track-info';
-import React, { useEffect, useState } from 'react';
+import { secondsToDurationFormat } from 'apps/client/helpers/seconds-to-duration-format';
+import { useProgress } from './use-progress';
 
-const secondsToDurationFormat = (s: number) =>
-  new Date(s * 1000).toISOString().substr(11, 8);
+type Props = {
+  start: number;
+  duration: number;
+  imageUrl: string;
+  name: string;
+};
 
 export const ChannelModeWaitlistProgress = ({
   start,
   duration,
   imageUrl,
   name,
-}) => {
-  console.log({ start, duration, imageUrl, name });
-
-  const [progress, setProgress] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const s = +new Date(+start);
-      const now = +new Date();
-      setProgress(Math.round((now - s) / 1000));
-    }, 50);
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, [start]);
+}: Props) => {
+  const { progress } = useProgress(start);
 
   return (
     <div className="flex relative w-full h-12">

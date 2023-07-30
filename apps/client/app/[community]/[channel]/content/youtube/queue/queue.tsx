@@ -1,9 +1,4 @@
-// import {
-//   useWaitlistYoutubeQueueQuery,
-//   useWaitlistYoutubeQueueUpdatedSubscription,
-// } from './mode-waitlist.api';
-import { TrackFromList } from './components/track-from-list';
-// import { useCommunityChannel } from '@dream/mono-use-community-channel';
+import { TrackFromList } from '../components/track-from-list';
 
 export const ChannelYoutubeModeQueue = () => {
   // const { channelId } = useCommunityChannel();

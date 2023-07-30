@@ -1,48 +1,17 @@
 'use client';
-// import {
-//   useWaitlistYoutubeCurrentQuery,
-//   useWaitlistYoutubeCurrentUpdatedSubscription,
-// } from './mode-waitlist.api';
-import { ChannelYoutubeModeHistory } from './history';
-import { ChannelYoutubeModeQueue } from './queue';
-import { ChannelYoutubeModeCurrent } from './current';
-// import { useCommunityChannel } from '@dream/mono-use-community-channel';
-import { YoutubeModeAddVideoModal } from './modals/add-video';
+import { useState } from 'react';
 import { PlayQueueLayout } from 'apps/client/components/play-queue';
-import { useMemo, useState } from 'react';
-import { usePathname, useSearchParams } from 'next/navigation';
+import { ChannelYoutubeModeHistory } from './history/history';
+import { ChannelYoutubeModeCurrent } from './current/current';
+import { useCurrent } from './current/use-current';
+import { ChannelYoutubeModeQueue } from './queue/queue';
+import { YoutubeModeAddVideoModal } from './add-video/modal';
+import { useAddVideoLink } from './add-video/use-add-video-link';
 
 export const ChannelYoutubeMode = () => {
   const [minimal, setMinimal] = useState(false);
-  const searchParams = useSearchParams();
-  const pathname = usePathname();
-
-  const waitlistYoutubeAddVideoLink = useMemo(() => {
-    const newParams = new URLSearchParams(Array.from(searchParams.entries()));
-    newParams.set('waitlistYoutubeAddVideo', '1');
-    return `${pathname}?${newParams?.toString()}`;
-  }, [searchParams]);
-
-  // const { channelId } = useCommunityChannel();
-
-  // const currentQuery = useWaitlistYoutubeCurrentQuery({
-  //   variables: { channelId },
-  //   skip: !channelId,
-  //   fetchPolicy: 'network-only',
-  // });
-
-  // useWaitlistYoutubeCurrentUpdatedSubscription({
-  //   variables: { channelId },
-  //   skip: !channelId,
-  //   onData: () => {
-  //     currentQuery.refetch();
-  //   },
-  // });
-
-  // const current = currentQuery?.data?.waitlistYoutubeCurrent?.item;
-  const current: any = null;
-
-  console.log(current);
+  const { waitlistYoutubeAddVideoLink } = useAddVideoLink();
+  const current = useCurrent();
 
   return (
     <PlayQueueLayout

@@ -1,18 +1,11 @@
-import React from 'react';
-
-interface TrackInfoProps {
+type Props = {
   imageUrl?: string;
   artist?: string;
   name?: string;
   progress?: number;
-}
+};
 
-export const TrackInfo: React.FC<TrackInfoProps> = ({
-  imageUrl,
-  artist,
-  name,
-  progress = 0,
-}) => (
+export const TrackInfo = ({ imageUrl, artist, name, progress = 0 }: Props) => (
   <div className="flex relative w-full h-16">
     <div className="flex absolute left-0 bottom-0 w-full">
       <div className="h-16 w-16">

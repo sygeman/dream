@@ -1,9 +1,10 @@
 import Pusher from 'pusher';
+import * as pusherConfig from 'apps/client/config/pusher';
 
 export const pusher = new Pusher({
-  appId: process.env.PUSHER_ID as string,
-  key: process.env.NEXT_PUBLIC_PUSHER_KEY as string,
-  secret: process.env.PUSHER_SECRET as string,
-  host: process.env.NEXT_PUBLIC_PUSHER_HOST as string,
-  port: process.env.NEXT_PUBLIC_PUSHER_PORT as string,
+  appId: pusherConfig.appId,
+  key: pusherConfig.key,
+  secret: pusherConfig.secret,
+  host: pusherConfig.host,
+  port: pusherConfig.port,
 });

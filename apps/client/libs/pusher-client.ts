@@ -1,9 +1,10 @@
 import Pusher from 'pusher-js';
+import * as pusherConfig from 'apps/client/config/pusher';
 
-export const pusher = new Pusher(process.env.NEXT_PUBLIC_PUSHER_KEY as string, {
-  wsHost: process.env.NEXT_PUBLIC_PUSHER_HOST as string,
-  cluster: process.env.NEXT_PUBLIC_PUSHER_CLUSTER as string,
-  wsPort: parseInt(process.env.NEXT_PUBLIC_PUSHER_PORT as string, 10),
+export const pusher = new Pusher(pusherConfig.key, {
+  wsHost: pusherConfig.host,
+  cluster: pusherConfig.cluster,
+  wsPort: parseInt(pusherConfig.port, 10),
   forceTLS: false,
   enabledTransports: ['ws', 'wss'],
 });

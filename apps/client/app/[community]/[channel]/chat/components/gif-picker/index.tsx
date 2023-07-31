@@ -3,6 +3,7 @@ import useAxios from 'axios-hooks';
 import { useDebounce } from 'use-debounce';
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid';
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
+import { key as tenorKey } from 'apps/client/config/tenor';
 
 export interface GifPickerProps {
   onSelect?: (url: string) => void;
@@ -20,12 +21,10 @@ export const GifPicker: React.FC<GifPickerProps> = ({
   const [searchQueryWithDebounce] = useDebounce(searchQuery, 300);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const key = 'J9KE7ZY93YW1';
-
   const [{ data, loading, error }, refetch] = useAxios({
     url: 'https://g.tenor.com/v1/search',
     params: {
-      key,
+      key: tenorKey,
       q: searchQueryWithDebounce,
       pos: nextPos,
     },

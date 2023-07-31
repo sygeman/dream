@@ -2,13 +2,14 @@ import type { NextAuthOptions } from 'next-auth';
 import TwitchProvider from 'next-auth/providers/twitch';
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import { prisma } from '../libs/prisma';
+import * as twitchConfig from './twitch';
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
     TwitchProvider({
-      clientId: process.env.TWITCH_ID || '',
-      clientSecret: process.env.TWITCH_SECRET || '',
+      clientId: twitchConfig.clientId,
+      clientSecret: twitchConfig.clientSecret,
       authorization: {
         params: {
           scope: 'openid user:read:email user:read:follows',

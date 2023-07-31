@@ -1,4 +1,5 @@
 import { toSeconds } from 'apps/client/helpers/to-seconds';
+import { key as youtubeKey } from 'apps/client/config/youtube';
 
 export const getYoutubeVideo = async (
   videoId: string,
@@ -9,7 +10,7 @@ export const getYoutubeVideo = async (
   duration_ms: number;
 }> => {
   const params = new URLSearchParams();
-  params.set('key', process.env.YOUTUBE_KEY as string);
+  params.set('key', youtubeKey);
   params.set('part', 'snippet, contentDetails');
   params.set('id', videoId);
 

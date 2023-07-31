@@ -1,7 +1,7 @@
-export const compactMessages = (messages) => {
+export const compactMessages = (messages: any) => {
   const compactInterval = 90e3; // 1,5 min
 
-  return messages.map((message, index, array) => {
+  return messages.map((message: any, index: any, array: any) => {
     let compact = false;
 
     if (index > 0) {

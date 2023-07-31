@@ -5,6 +5,8 @@ import { Scroller } from './scrollbar';
 import { ChatMessage } from './message';
 
 export const ChatMessages = ({
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   messages,
   // loadNextPage,
   // loadPrevPage,
@@ -17,8 +19,12 @@ export const ChatMessages = ({
   const showButtonTimeoutRef = useRef(null);
 
   useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     clearTimeout(showButtonTimeoutRef.current);
     if (!atBottom) {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       showButtonTimeoutRef.current = setTimeout(() => setShowButton(true), 500);
     } else {
       setShowButton(false);
@@ -27,11 +33,15 @@ export const ChatMessages = ({
 
   useEffect(() => {
     return () => {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       clearTimeout(showButtonTimeoutRef.current);
     };
   }, []);
 
   const toBottom = () =>
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     virtuoso.current.scrollToIndex({
       index: messages.length - 1,
     });
@@ -50,6 +60,8 @@ export const ChatMessages = ({
         atBottomStateChange={setAtBottom}
         itemContent={(_index, item) => <ChatMessage {...item} />}
         followOutput
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
         components={{ Scroller }}
       />
       {showButton && (
@@ -59,7 +71,7 @@ export const ChatMessages = ({
             'flex w-full items-center justify-center',
             'text-white text-sm',
             'bg-surface',
-            'opacity-90 cursor-pointer'
+            'opacity-90 cursor-pointer',
           )}
           onClick={toBottom}
         >

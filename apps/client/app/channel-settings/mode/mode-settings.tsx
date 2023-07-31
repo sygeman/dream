@@ -2,7 +2,7 @@ import React from 'react';
 import { ChannelTwitchModeSettings } from './twitch/settings';
 import { ArrowLeftIcon } from '@heroicons/react/24/outline';
 import { ChannelMode } from '@prisma/client';
-import { ChannelSpotifyModeSettings } from './spotify/settings';
+// import { ChannelSpotifyModeSettings } from './spotify/settings';
 import { channelMods } from 'apps/client/helpers/channel-mods';
 
 type Props = {
@@ -17,8 +17,8 @@ export const ModeSettings = ({ modeKey, onClose }: Props) => {
     switch (modeKey) {
       case ChannelMode.TWITCH:
         return <ChannelTwitchModeSettings />;
-      case ChannelMode.SPOTIFY:
-        return <ChannelSpotifyModeSettings />;
+      // case ChannelMode.SPOTIFY:
+      //   return <ChannelSpotifyModeSettings />;
       default:
         return null;
     }

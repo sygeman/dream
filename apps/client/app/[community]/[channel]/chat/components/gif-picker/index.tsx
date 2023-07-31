@@ -29,6 +29,8 @@ export const GifPicker: React.FC<GifPickerProps> = ({
       pos: nextPos,
     },
   });
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   const gifs = [].concat(...Object.values(dataPerPage)) || [];
 
   const loadMore = () => {
@@ -44,6 +46,8 @@ export const GifPicker: React.FC<GifPickerProps> = ({
 
   useEffect(() => {
     setTimeout(() => {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       inputRef.current.focus();
     }, 300);
   }, []);
@@ -68,12 +72,18 @@ export const GifPicker: React.FC<GifPickerProps> = ({
         >
           {gifs.map((gif) => (
             <div
+              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+              // @ts-ignore
               key={gif.id}
               className="w-full cursor-pointer rounded overflow-hidden mb-2 bg-background"
               style={{ breakInside: 'avoid' }}
+              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+              // @ts-ignore
               onClick={() => onSelect(gif.itemurl)}
             >
               {gifContainer(
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-ignore
                 <video src={gif.media?.[0].webm.url} loop autoPlay />,
               )}
             </div>

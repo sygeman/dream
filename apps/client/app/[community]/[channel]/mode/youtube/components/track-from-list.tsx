@@ -1,5 +1,13 @@
-import React from 'react';
 import { EllipsisVerticalIcon } from '@heroicons/react/20/solid';
+
+type Props = {
+  cover?: string;
+  artists?: string;
+  title?: string;
+  avatar?: string;
+  username?: string;
+  info?: string;
+};
 
 export const TrackFromList = ({
   cover,
@@ -8,8 +16,8 @@ export const TrackFromList = ({
   avatar,
   username = '',
   info = '',
-}) => (
-  <div className="flex px-4 py-1.5 items-center opacity-70 hover:opacity-100 group">
+}: Props) => (
+  <div className="flex px-4 py-1 items-center opacity-70 hover:opacity-100 group">
     <div>
       <img src={cover} className="h-8 w-8" alt="" />
     </div>

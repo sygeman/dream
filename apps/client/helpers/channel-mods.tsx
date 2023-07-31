@@ -36,11 +36,11 @@ export const channelMods = [
     description: 'Awesome mode description',
     ...youtubeStyle,
   },
-  {
-    id: 'spotify',
-    value: ChannelMode.SPOTIFY,
-    title: 'Spotify',
-    description: 'Awesome mode description',
-    ...spotifyStyle,
-  },
+  // {
+  //   id: 'spotify',
+  //   value: ChannelMode.SPOTIFY,
+  //   title: 'Spotify',
+  //   description: 'Awesome mode description',
+  //   ...spotifyStyle,
+  // },
 ];

@@ -10,7 +10,7 @@ const getContainerHeight = ({
   return (parentWidth * height) / width;
 };
 
-export const formatedTenorGif = (tenorGif) => {
+export const formatedTenorGif = (tenorGif: any) => {
   if (!tenorGif) {
     return;
   }

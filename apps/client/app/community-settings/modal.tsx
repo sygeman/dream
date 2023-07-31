@@ -2,7 +2,6 @@
 import { useMemo } from 'react';
 import { SettingsLayout } from 'apps/client/components/settings/layouts-settings';
 import { CommunitySettingsOverview } from './overview';
-import { CommunitySettingsEmoji } from './emoji';
 import { usePathname, useSearchParams } from 'next/navigation';
 
 export const CommunitySettingsModal = () => {
@@ -28,11 +27,6 @@ export const CommunitySettingsModal = () => {
               label: 'Overview',
               content: <CommunitySettingsOverview />,
             },
-            // {
-            //   key: 'emoji',
-            //   label: 'Emoji',
-            //   content: <CommunitySettingsEmoji />,
-            // },
           ],
         },
         {

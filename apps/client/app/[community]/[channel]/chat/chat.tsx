@@ -21,7 +21,7 @@ export const Chat = ({ channelId, messages: messagesInit }: Props) => {
         <div className="flex flex-col w-full max-h-max overflow-y-auto py-4">
           {messages.length > 0 ? (
             <ChatMessages
-              messages={compactMessages(messages).map((message) => ({
+              messages={compactMessages(messages).map((message: any) => ({
                 authorName: message.user.name,
                 authorAvatar: message.user.avatar,
                 content: message.content,

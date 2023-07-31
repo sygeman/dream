@@ -4,11 +4,17 @@ import ReactPlayer from 'react-player';
 import { ChannelModeWaitlistProgress } from '../components/progress/progress';
 import { CurrentMenu } from './menu';
 
+type Props = {
+  current: any;
+  muted?: boolean;
+  minimal?: boolean;
+};
+
 export const ChannelYoutubeModeCurrent = ({
   current,
   muted = false,
   minimal = false,
-}) => {
+}: Props) => {
   const player = useRef<any>(null);
   const [isReady, setIsReady] = useState<boolean>(false);
 

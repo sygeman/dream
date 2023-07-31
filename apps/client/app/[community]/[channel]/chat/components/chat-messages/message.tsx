@@ -3,6 +3,15 @@ import { dateDistanceInWordsToNow } from 'apps/client/helpers/date-distance-in-w
 import { GifContainer } from './gif';
 import { renderMessageText } from './render-message-text';
 
+type Props = {
+  authorName: any;
+  authorAvatar: any;
+  content: any;
+  compact: boolean;
+  tenorGif: any;
+  createdAt: any;
+};
+
 export const ChatMessage = ({
   authorName,
   authorAvatar,
@@ -10,23 +19,27 @@ export const ChatMessage = ({
   compact = false,
   tenorGif,
   createdAt,
-}) => {
+}: Props) => {
   const ref = useRef<HTMLDivElement | null>(null);
   const [isIntersecting, setIntersecting] = useState(false);
 
   useEffect(() => {
     const rootRef =
-      ref.current.parentNode.parentNode.parentNode.parentNode.parentNode;
+      ref.current?.parentNode?.parentNode?.parentNode?.parentNode?.parentNode;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         setIntersecting(entry.isIntersecting);
       },
       {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
         root: rootRef,
       },
     );
 
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     observer.observe(ref.current);
 
     return () => {

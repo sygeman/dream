@@ -1,13 +1,13 @@
 import { prisma } from 'apps/client/libs/prisma';
 import { CommunityRightPanel } from './community-right-panel';
-import { ChannelContent } from './content';
+import { ChannelModeContent } from './mode';
 import { ChannelHeader } from './header';
 
 type Props = {
   params: { community: string; channel: string };
 };
 
-export async function CommunityChannelPage({ params }: Props) {
+async function CommunityChannelPage({ params }: Props) {
   const channel = await prisma.channel.findFirst({
     where: {
       name: params.channel,
@@ -44,7 +44,7 @@ export async function CommunityChannelPage({ params }: Props) {
     <>
       <div className="h-screen w-full flex flex-1 flex-col">
         <ChannelHeader title={channel?.title} />
-        <ChannelContent mode={channel?.mode} />
+        <ChannelModeContent mode={channel?.mode} />
       </div>
       {channel && (
         <CommunityRightPanel

@@ -7,7 +7,7 @@ type Props = {
   params: { community: string };
 } & PropsWithChildren;
 
-export async function CommunityLayout({
+async function CommunityLayout({
   params: { community: name },
   children,
 }: Props) {

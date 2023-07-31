@@ -32,7 +32,7 @@ export const ChatBottom: React.FC<ChatBottomProps> = ({ channelId }) => {
 
   const sendMessage = async () => {
     const content = convertTextToEmojiCode(
-      textareaRef.current.value.trim(),
+      (textareaRef.current?.value || '').trim(),
       emojis,
     );
 
@@ -154,13 +154,15 @@ export const ChatBottom: React.FC<ChatBottomProps> = ({ channelId }) => {
                     <Tab.Panel>
                       <EmojiPicker
                         onSelect={(alias) => {
-                          const prevValue = textareaRef.current.value;
+                          const prevValue = textareaRef.current?.value || '';
                           const newValue =
                             prevValue.length === 0
                               ? `:${alias}: `
                               : `${prevValue} :${alias}: `;
 
-                          textareaRef.current.value = newValue;
+                          if (textareaRef.current) {
+                            textareaRef.current.value = newValue;
+                          }
                         }}
                       />
                     </Tab.Panel>

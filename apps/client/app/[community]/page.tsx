@@ -4,7 +4,7 @@ type Props = {
   params: { community: string };
 };
 
-export async function CommunityPage({ params: { community: name } }: Props) {
+async function CommunityPage({ params: { community: name } }: Props) {
   const community = await prisma.community.findFirst({
     where: { name, deleted: false },
   });

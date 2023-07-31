@@ -1,27 +1,30 @@
-import { type PropsWithChildren } from "react";
-import { AppPanel } from "./app-panel/app-panel";
 // import 'overlayscrollbars/overlayscrollbars.css';
-import "rc-slider/assets/index.css";
-import "./globals.css";
-import { roboto } from "./fonts";
-import { LoginModal } from "./login/modal";
-import { LogoutModal } from "./logout/modal";
-import { UserSettingsModal } from "./user-settings/modal";
-import { NewCommunityModal } from "./new-community/modal";
-import { DeleteCommunityModal } from "./delete-community/modal";
-import { CommunitySettingsModal } from "./community-settings/modal";
-import { NewChannelModal } from "./new-channel/modal";
-import { DeleteChannelModal } from "./delete-channel/modal";
-import { ChannelSettingsModal } from "./channel-settings/modal";
-import { Locale } from "@prisma/client";
-import { prisma } from "../libs/prisma";
-import { IntlProvider } from "@/libs/intl";
-import { getCurretUserId } from "../helpers/get-current-user";
-import { ThemeProvider } from "@/components/theme-provider";
+import 'rc-slider/assets/index.css';
+import './globals.css';
 
-type Props = PropsWithChildren;
+import { Locale } from '@prisma/client';
+import { type PropsWithChildren } from 'react';
 
-const MainLayout = async ({ children }: Props) => {
+import { ThemeProvider } from '@/components/theme-provider';
+import { IntlProvider } from '@/libs/intl';
+
+import { getCurretUserId } from '../helpers/get-current-user';
+import { prisma } from '../libs/prisma';
+import { AppPanel } from './app-panel/app-panel';
+import { ChannelSettingsModal } from './channel-settings/modal';
+import { CommunitySettingsModal } from './community-settings/modal';
+import { DeleteChannelModal } from './delete-channel/modal';
+import { DeleteCommunityModal } from './delete-community/modal';
+import { roboto } from './fonts';
+import { LoginModal } from './login/modal';
+import { LogoutModal } from './logout/modal';
+import { NewChannelModal } from './new-channel/modal';
+import { NewCommunityModal } from './new-community/new-community';
+import { UserSettingsModal } from './user-settings/modal';
+
+type Properties = PropsWithChildren;
+
+const MainLayout = async ({ children }: Properties) => {
   const userId = await getCurretUserId();
   const user = await prisma.user.findFirst({ where: { id: userId } });
   const locale = user?.locale || Locale.en_US;
@@ -48,7 +51,7 @@ const MainLayout = async ({ children }: Props) => {
           <IntlProvider locale={locale}>
             <div className="h-screen bg-background flex">
               <AppPanel />
-              <div className="flex flex-1 h-full overflow-hidden rounded-l-xl">
+              <div className="flex flex-1 h-full overflow-hidden rounded-l-xl ">
                 {children}
               </div>
 

@@ -1,9 +1,11 @@
-import React from "react";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/config/next-auth";
-import { UserPanel } from "./user-panel/user-panel";
-import { AppPanelCommunities } from "./app-panel-communities";
-import { Logo } from "./logo";
+import { getServerSession } from 'next-auth';
+import React from 'react';
+
+import { authOptions } from '@/config/next-auth';
+
+import { AppPanelCommunities } from './app-panel-communities';
+import { Logo } from './logo';
+import { UserPanel } from './user-panel/user-panel';
 
 export const AppPanel = async () => {
   const session = await getServerSession(authOptions);

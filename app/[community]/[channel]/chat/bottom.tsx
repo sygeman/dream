@@ -1,24 +1,26 @@
-"use client";
-import React, { Fragment, useRef, useState } from "react";
-import TextareaAutosize from "react-textarea-autosize";
-import { convertTextToEmojiCode } from "./convert-text-to-emoji-code";
-import { Menu, Tab, Transition } from "@headlessui/react";
-import { FaceSmileIcon, PhotoIcon } from "@heroicons/react/20/solid";
-import clsx from "clsx";
-import { GifPicker } from "./components/gif-picker";
-import { PickerTab } from "./components/picker-tab";
-import { EmojiPicker } from "./components/emoji-picker";
-import { useParams, usePathname } from "next/navigation";
-import { createMessageAction } from "./actions";
-import { Button } from "@/components/ui/button";
+'use client';
+import { Menu, Tab, Transition } from '@headlessui/react';
+import { FaceSmileIcon, PhotoIcon } from '@heroicons/react/20/solid';
+import clsx from 'clsx';
+import { useParams, usePathname } from 'next/navigation';
+import React, { Fragment, useRef, useState } from 'react';
+import TextareaAutosize from 'react-textarea-autosize';
 
-interface ChatBottomProps {
+import { Button } from '@/components/ui/button';
+
+import { createMessageAction } from './actions';
+import { EmojiPicker } from './components/emoji-picker';
+import { GifPicker } from './components/gif-picker';
+import { PickerTab } from './components/picker-tab';
+import { convertTextToEmojiCode } from './convert-text-to-emoji-code';
+
+interface ChatBottomProperties {
   channelId: string;
 }
 
-export const ChatBottom: React.FC<ChatBottomProps> = ({ channelId }) => {
-  const params = useParams();
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
+export const ChatBottom: React.FC<ChatBottomProperties> = ({ channelId }) => {
+  const parameters = useParams();
+  const textareaReference = useRef<HTMLTextAreaElement>(null);
   let lock = false;
 
   // const { communityId } = useCommunityChannel();
@@ -33,7 +35,7 @@ export const ChatBottom: React.FC<ChatBottomProps> = ({ channelId }) => {
 
   const sendMessage = async () => {
     const content = convertTextToEmojiCode(
-      (textareaRef.current?.value || "").trim(),
+      (textareaReference.current?.value || '').trim(),
       emojis
     );
 
@@ -41,16 +43,16 @@ export const ChatBottom: React.FC<ChatBottomProps> = ({ channelId }) => {
       lock = true;
 
       const formData = new FormData();
-      formData.set("content", content);
+      formData.set('content', content);
 
       await createMessageAction({
         content,
-        community: params.community as string,
-        channel: params.channel as string,
+        community: parameters.community as string,
+        channel: parameters.channel as string,
       });
 
-      if (textareaRef.current) {
-        textareaRef.current.value = "";
+      if (textareaReference.current) {
+        textareaReference.current.value = '';
         lock = false;
       }
     }
@@ -67,18 +69,18 @@ export const ChatBottom: React.FC<ChatBottomProps> = ({ channelId }) => {
     <div className="px-2">
       <div className="flex relative">
         <TextareaAutosize
-          ref={textareaRef}
+          ref={textareaReference}
           maxLength={500}
           maxRows={3}
           rows={1}
           placeholder="Send a message"
           className="bg-background text-white text-xs resize-none p-2 pr-6 rounded w-full focus:outline-none focus:ring-1"
           onKeyDown={(e) => {
-            if (!textareaRef.current) {
+            if (!textareaReference.current) {
               return null;
             }
 
-            if (e.key === "Enter") {
+            if (e.key === 'Enter') {
               e.preventDefault();
               sendMessage();
             }
@@ -92,10 +94,10 @@ export const ChatBottom: React.FC<ChatBottomProps> = ({ channelId }) => {
                 <PhotoIcon
                   onClick={() => setPickerType(PickerType.GIF)}
                   className={clsx(
-                    "h-4",
+                    'h-4',
                     open && pickerType === PickerType.GIF
-                      ? "text-white"
-                      : "text-accent"
+                      ? 'text-white'
+                      : 'text-muted-foreground'
                   )}
                 />
               )}
@@ -105,10 +107,10 @@ export const ChatBottom: React.FC<ChatBottomProps> = ({ channelId }) => {
                 <FaceSmileIcon
                   onClick={() => setPickerType(PickerType.EMOJI)}
                   className={clsx(
-                    "h-4",
+                    'h-4',
                     open && pickerType === PickerType.EMOJI
-                      ? "text-white"
-                      : "text-accent"
+                      ? 'text-white'
+                      : 'text-muted-foreground'
                   )}
                 />
               )}
@@ -125,8 +127,10 @@ export const ChatBottom: React.FC<ChatBottomProps> = ({ channelId }) => {
               <Menu.Items className="absolute right-0 bottom-10 bg-background rounded w-full shadow-md">
                 <Tab.Group
                   defaultIndex={pickerType === PickerType.GIF ? 0 : 1}
-                  onChange={(i) =>
-                    setPickerType(i === 0 ? PickerType.GIF : PickerType.EMOJI)
+                  onChange={(index) =>
+                    setPickerType(
+                      index === 0 ? PickerType.GIF : PickerType.EMOJI
+                    )
                   }
                 >
                   <Tab.List className="p-1">
@@ -155,14 +159,15 @@ export const ChatBottom: React.FC<ChatBottomProps> = ({ channelId }) => {
                     <Tab.Panel>
                       <EmojiPicker
                         onSelect={(alias) => {
-                          const prevValue = textareaRef.current?.value || "";
+                          const previousValue =
+                            textareaReference.current?.value || '';
                           const newValue =
-                            prevValue.length === 0
+                            previousValue.length === 0
                               ? `:${alias}: `
-                              : `${prevValue} :${alias}: `;
+                              : `${previousValue} :${alias}: `;
 
-                          if (textareaRef.current) {
-                            textareaRef.current.value = newValue;
+                          if (textareaReference.current) {
+                            textareaReference.current.value = newValue;
                           }
                         }}
                       />
@@ -175,7 +180,9 @@ export const ChatBottom: React.FC<ChatBottomProps> = ({ channelId }) => {
         </Menu>
       </div>
       <div className="flex justify-end my-2">
-        <Button onClick={sendMessage}>Chat</Button>
+        <Button size={'sm'} onClick={sendMessage}>
+          Chat
+        </Button>
       </div>
     </div>
   );

@@ -1,37 +1,38 @@
 'use client';
 
-import { Fragment, useMemo } from 'react';
-import clsx from 'clsx';
-import Link from 'next/link';
-import { usePathname, useSearchParams } from 'next/navigation';
 import { Menu, Transition } from '@headlessui/react';
 import {
   ChevronDownIcon,
+  CogIcon,
   PlusCircleIcon,
   XMarkIcon,
-  CogIcon,
 } from '@heroicons/react/20/solid';
+import clsx from 'clsx';
+import Link from 'next/link';
+import { usePathname, useSearchParams } from 'next/navigation';
+import { Fragment, useMemo } from 'react';
+
 import { MenuItem } from './item';
 
-type Props = {
+type Properties = {
   title?: string;
 };
 
-export const CommunityHeader = ({ title }: Props) => {
-  const searchParams = useSearchParams();
+export const CommunityHeader = ({ title }: Properties) => {
+  const searchParameters = useSearchParams();
   const pathname = usePathname();
 
   const newChannelLink = useMemo(() => {
-    const newParams = new URLSearchParams(Array.from(searchParams.entries()));
-    newParams.set('newChannel', '1');
-    return `${pathname}?${newParams?.toString()}`;
-  }, [searchParams]);
+    const newParameters = new URLSearchParams([...searchParameters.entries()]);
+    newParameters.set('newChannel', '1');
+    return `${pathname}?${newParameters?.toString()}`;
+  }, [searchParameters]);
 
   const communitySettingsLink = useMemo(() => {
-    const newParams = new URLSearchParams(Array.from(searchParams.entries()));
-    newParams.set('communitySettings', 'overview');
-    return `${pathname}?${newParams?.toString()}`;
-  }, [searchParams]);
+    const newParameters = new URLSearchParams([...searchParameters.entries()]);
+    newParameters.set('communitySettings', 'overview');
+    return `${pathname}?${newParameters?.toString()}`;
+  }, [searchParameters]);
 
   return (
     <Menu as="div" className="relative z-10">
@@ -41,12 +42,12 @@ export const CommunityHeader = ({ title }: Props) => {
             id="1"
             className={clsx(
               'flex justify-between items-center w-full h-10 px-4 text-md transition-colors',
-              'bg-surface cursor-pointer text-white focus:outline-none hover:bg-surface-light',
-              open && 'bg-surface-light',
+              'bg-zinc-900 cursor-pointer text-white focus:outline-none hover:bg-zinc-900-light',
+              open && 'bg-zinc-900-light'
             )}
           >
             {title}
-            <span className="w-4 h-4 flex items-center justify-center text-accent">
+            <span className="w-4 h-4 flex items-center justify-center text-muted-foreground">
               {open ? (
                 <XMarkIcon aria-hidden="true" />
               ) : (

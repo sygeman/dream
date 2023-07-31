@@ -1,27 +1,28 @@
 'use client';
 
-import React from 'react';
+import { AspectRatio } from '@radix-ui/react-aspect-ratio';
 import Link from 'next/link';
+import React from 'react';
 
-type Props = {
+type Properties = {
   title: string;
   name: string;
   online: number;
 };
 
-export const CommunityCard = ({ title, name, online }: Props) => (
+export const CommunityCard = ({ title, name, online }: Properties) => (
   <Link href={`/${name}`}>
-    <div className="flex flex-col shrink-0 overflow-hidden items-center justify-center  cursor-pointer hover:opacity-90 bg-surface-light m-4 rounded">
-      <div className="w-full bg-background aspect-w-16 aspect-h-9 relative">
-        <div className="absolute h-full w-full flex justify-center items-center text-center overflow-hidden text-accent opacity-25 text-3xl">
+    <div className="flex flex-col shrink-0 overflow-hidden items-center justify-center cursor-pointer hover:opacity-90 bg-background m-4 rounded-lg">
+      <AspectRatio
+        ratio={16 / 9}
+        className="flex justify-center items-center bg-muted"
+      >
+        <div className="absolute h-full w-full flex justify-center items-center text-center overflow-hidden text-foreground opacity-25 text-3xl">
           {title}
         </div>
-      </div>
-      <div className="flex items-center justify-between w-full px-4 py-2 border-t border-surface">
-        <span className="text-sm text-white">{title}</span>
-        <span className="text-accent text-xs rounded bg-surface px-2 py-1">
-          {online}
-        </span>
+      </AspectRatio>
+      <div className="flex items-center justify-between w-full px-4 py-2">
+        <span className="text-foreground">{title}</span>
       </div>
     </div>
   </Link>

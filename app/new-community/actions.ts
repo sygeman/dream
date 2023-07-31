@@ -1,7 +1,7 @@
-"use server";
+'use server';
 
-import { getCurretUserId } from "@/helpers/get-current-user";
-import { prisma } from "@/libs/prisma";
+import { getCurretUserId } from '@/helpers/get-current-user';
+import { prisma } from '@/libs/prisma';
 
 export async function createCommunityAction(data: {
   title: string;
@@ -9,11 +9,11 @@ export async function createCommunityAction(data: {
 }) {
   const userId = await getCurretUserId();
 
-  if (!userId) throw "Unauthorized";
+  if (!userId) throw 'Unauthorized';
 
   const count = await prisma.community.count({ where: { ownerId: userId } });
 
-  if (count > 3) throw "Community count limit per user";
+  if (count > 3) throw 'Community count limit per user';
 
   const community = await prisma.community.create({
     data: {

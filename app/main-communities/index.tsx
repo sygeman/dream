@@ -1,7 +1,9 @@
-import React from "react";
-import { prisma } from "@/libs/prisma";
-import { MainCommunitiesList } from "./list";
-import { checkIsUser } from "@/helpers/get-current-user";
+import React from 'react';
+
+import { checkIsUser } from '@/helpers/get-current-user';
+import { prisma } from '@/libs/prisma';
+
+import { MainCommunitiesList } from './list';
 
 export const MainCommunities = async () => {
   const isUser = await checkIsUser();

@@ -1,22 +1,24 @@
-import React from "react";
-import { RadioGroup } from "@headlessui/react";
-import { useForm, SubmitHandler, Controller } from "react-hook-form";
-import { RadioButton } from "@/components/radio";
-import { SaveFormPanel } from "@/components/save-form-panel";
-import { strategies } from "./strategies";
+import { RadioGroup } from '@headlessui/react';
+import { SpotifyModeStrategy } from '@prisma/client';
+import { useParams } from 'next/navigation';
+import React from 'react';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+
+import { RadioButton } from '@/components/radio';
+import { SaveFormPanel } from '@/components/save-form-panel';
+
 import {
   getSpotifyModeSettingsAction,
   setSpotifyModeSettingsAction,
-} from "./actions";
-import { useParams } from "next/navigation";
-import { SpotifyModeStrategy } from "@prisma/client";
+} from './actions';
+import { strategies } from './strategies';
 
 interface FormInput {
   strategy?: SpotifyModeStrategy | null;
 }
 
 export const ChannelSpotifyModeSettings = () => {
-  const params = useParams();
+  const parameters = useParams();
 
   const {
     control,
@@ -26,16 +28,16 @@ export const ChannelSpotifyModeSettings = () => {
   } = useForm<FormInput>({
     defaultValues: async () =>
       getSpotifyModeSettingsAction(
-        params.community as string,
-        params.channel as string
+        parameters.community as string,
+        parameters.channel as string
       ),
   });
 
   const onSubmit: SubmitHandler<FormInput> = async (data) => {
     const spotifyModeSettings = await setSpotifyModeSettingsAction(
       {
-        communityName: params.community as string,
-        channelName: params.channel as string,
+        communityName: parameters.community as string,
+        channelName: parameters.channel as string,
       },
       data
     );
@@ -52,7 +54,7 @@ export const ChannelSpotifyModeSettings = () => {
               value={field.value}
               onChange={field.onChange}
             >
-              <RadioGroup.Label className="text-accent text-xs">
+              <RadioGroup.Label className="text-muted-foreground text-xs">
                 Strategy
               </RadioGroup.Label>
               <div className="flex flex-col w-full">
@@ -69,7 +71,7 @@ export const ChannelSpotifyModeSettings = () => {
                           </RadioGroup.Label>
                           <RadioGroup.Description
                             as="div"
-                            className="text-xs text-accent opacity-80"
+                            className="text-xs text-muted-foreground opacity-80"
                           >
                             {strategy.description}
                           </RadioGroup.Description>

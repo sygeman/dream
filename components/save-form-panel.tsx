@@ -24,7 +24,7 @@ export const SaveFormPanel = ({ show, reset }: Props) => (
       <span className="flex flex-1 text-white text-sm px-2">
         You have unsaved changes
       </span>
-      <button className="btn text-accent mr-2" onClick={reset}>
+      <button className="btn text-muted-foreground mr-2" onClick={reset}>
         Reset
       </button>
       <button type="submit" className="btn btn-primary">

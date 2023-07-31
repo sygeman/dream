@@ -70,8 +70,8 @@ export const ChatMessages = ({
             'absolute bottom-0',
             'flex w-full items-center justify-center',
             'text-white text-sm',
-            'bg-surface',
-            'opacity-90 cursor-pointer',
+            'bg-zinc-900',
+            'opacity-90 cursor-pointer'
           )}
           onClick={toBottom}
         >

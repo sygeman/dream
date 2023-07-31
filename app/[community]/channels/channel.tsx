@@ -4,14 +4,14 @@ import clsx from 'clsx';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 
-type Props = {
+type Properties = {
   title: string;
   name?: string;
   state?: string;
   online?: number;
 };
 
-export const ChannelItem = ({ name, title, state, online }: Props) => {
+export const ChannelItem = ({ name, title, state, online }: Properties) => {
   const { community, channel } = useParams();
   const selected = name === channel;
 
@@ -26,9 +26,9 @@ export const ChannelItem = ({ name, title, state, online }: Props) => {
           'flex items-center flex-1 w-full h-10',
           'px-2 py-1',
           'cursor-pointer transition-colors',
-          'hover:bg-surface-light',
+          'hover:bg-zinc-900-light',
           'rounded',
-          selected && 'bg-surface-light',
+          selected && 'bg-zinc-900-light'
         )}
       >
         <div className="flex flex-col flex-1">
@@ -36,7 +36,7 @@ export const ChannelItem = ({ name, title, state, online }: Props) => {
             <span
               className={clsx(
                 'text-white font-medium',
-                state ? 'text-xs' : 'text-sm',
+                state ? 'text-xs' : 'text-sm'
               )}
             >
               {title}
@@ -44,7 +44,7 @@ export const ChannelItem = ({ name, title, state, online }: Props) => {
           </div>
           {state && (
             <div className="flex flex-1" title={state}>
-              <span className="text-accent text-xs line-clamp-1 mr-1">
+              <span className="text-muted-foreground text-xs line-clamp-1 mr-1">
                 {state}
               </span>
             </div>
@@ -53,7 +53,7 @@ export const ChannelItem = ({ name, title, state, online }: Props) => {
 
         {typeof online === 'number' && online > 0 && (
           <div>
-            <span className="text-accent text-xs rounded bg-background px-2 py-1">
+            <span className="text-muted-foreground text-xs rounded bg-background px-2 py-1">
               {online}
             </span>
           </div>

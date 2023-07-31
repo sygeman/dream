@@ -1,13 +1,15 @@
-import React from "react";
-import Slider from "rc-slider";
-import { useForm, SubmitHandler, Controller } from "react-hook-form";
-import { SaveFormPanel } from "@/components/save-form-panel";
-import { SwitchFormField } from "@/components/switch-form-field";
-import { useParams } from "next/navigation";
+import { useParams } from 'next/navigation';
+import Slider from 'rc-slider';
+import React from 'react';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+
+import { SaveFormPanel } from '@/components/save-form-panel';
+import { SwitchFormField } from '@/components/switch-form-field';
+
 import {
   getChannelChatSettingsAction,
   updateChannelChatSettingsAction,
-} from "./actions";
+} from './actions';
 
 interface FormInput {
   gifAllowed: boolean;
@@ -16,7 +18,7 @@ interface FormInput {
 }
 
 export const ChannelSettingsChat = () => {
-  const params = useParams();
+  const parameters = useParams();
 
   const {
     control,
@@ -26,16 +28,16 @@ export const ChannelSettingsChat = () => {
   } = useForm<FormInput>({
     defaultValues: async () =>
       getChannelChatSettingsAction(
-        params.community as string,
-        params.channel as string
+        parameters.community as string,
+        parameters.channel as string
       ),
   });
 
   const onSubmit: SubmitHandler<FormInput> = async (data) => {
     const { channelSettings } = await updateChannelChatSettingsAction(
       {
-        community: params.community as string,
-        channel: params.channel as string,
+        community: parameters.community as string,
+        channel: parameters.channel as string,
       },
       data
     );
@@ -48,16 +50,16 @@ export const ChannelSettingsChat = () => {
   };
 
   const marks = {
-    0: "Off",
-    5: "5s",
-    10: "10s",
-    15: "15s",
-    30: "30s",
+    0: 'Off',
+    5: '5s',
+    10: '10s',
+    15: '15s',
+    30: '30s',
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="divide-surface-light divide-y">
+      <div className="divide-zinc-900-light divide-y">
         <Controller
           render={({ field }) => (
             <SwitchFormField
@@ -86,7 +88,7 @@ export const ChannelSettingsChat = () => {
         />
 
         <div className="p-2">
-          <div className="text-sm text-accent">Slowmode</div>
+          <div className="text-sm text-muted-foreground">Slowmode</div>
           <div className="p-2">
             <Controller
               render={({ field }) => (
@@ -97,7 +99,7 @@ export const ChannelSettingsChat = () => {
                   marks={marks}
                   step={null}
                   onChange={(slowmode) => {
-                    if (typeof slowmode === "number") field.onChange(slowmode);
+                    if (typeof slowmode === 'number') field.onChange(slowmode);
                   }}
                 />
               )}

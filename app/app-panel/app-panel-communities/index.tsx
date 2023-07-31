@@ -1,8 +1,10 @@
-import React from "react";
-import { HeartIcon } from "@heroicons/react/20/solid";
-import { prisma } from "@/libs/prisma";
-import { AppPanelCommunitiesList } from "./list";
-import { checkIsUser } from "@/helpers/get-current-user";
+import { HeartIcon } from '@heroicons/react/20/solid';
+import React from 'react';
+
+import { checkIsUser } from '@/helpers/get-current-user';
+import { prisma } from '@/libs/prisma';
+
+import { AppPanelCommunitiesList } from './list';
 
 export const AppPanelCommunities = async () => {
   const isUser = await checkIsUser();
@@ -14,7 +16,7 @@ export const AppPanelCommunities = async () => {
   return (
     <>
       <div className="flex justify-center py-2">
-        <HeartIcon className="h-4 text-accent" />
+        <HeartIcon className="h-4 text-muted-foreground" />
       </div>
       <AppPanelCommunitiesList communities={communities} isUser={isUser} />
     </>

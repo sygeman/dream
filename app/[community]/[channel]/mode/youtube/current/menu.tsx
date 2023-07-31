@@ -1,17 +1,18 @@
-import { Fragment } from 'react';
-import { EllipsisVerticalIcon, ForwardIcon } from '@heroicons/react/20/solid';
 import { Menu, Transition } from '@headlessui/react';
+import { EllipsisVerticalIcon, ForwardIcon } from '@heroicons/react/20/solid';
 import clsx from 'clsx';
-import { skipVideoAction } from './actions';
 import { useParams } from 'next/navigation';
+import { Fragment } from 'react';
+
+import { skipVideoAction } from './actions';
 
 export const CurrentMenu = () => {
-  const params = useParams();
+  const parameters = useParams();
 
   const skipTrack = () => {
     skipVideoAction({
-      communityName: params.community as string,
-      channelName: params.channel as string,
+      communityName: parameters.community as string,
+      channelName: parameters.channel as string,
     });
   };
 
@@ -22,10 +23,10 @@ export const CurrentMenu = () => {
           <Menu.Button
             className={clsx(
               'h-6 w-6 flex btn btn-secondary p-0 items-center justify-center',
-              open && 'bg-surface',
+              open && 'bg-zinc-900'
             )}
           >
-            <EllipsisVerticalIcon className="h-4 text-accent" />
+            <EllipsisVerticalIcon className="h-4 text-muted-foreground" />
           </Menu.Button>
           <Transition
             as={Fragment}
@@ -39,7 +40,7 @@ export const CurrentMenu = () => {
             <Menu.Items
               className={clsx(
                 'absolute right-0 w-48 mt-2 origin-top-right bg-background p-2',
-                'divide-y divide-gray-100 rounded shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none',
+                'divide-y divide-gray-100 rounded shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none'
               )}
             >
               <Menu.Item
@@ -47,12 +48,12 @@ export const CurrentMenu = () => {
                 onClick={skipTrack}
                 className={clsx(
                   'flex justify-between items-center w-full h-8 px-2',
-                  'rounded overflow-hidden text-accent font-medium',
-                  'hover:bg-surface hover:text-white',
+                  'rounded overflow-hidden text-muted-foreground font-medium',
+                  'hover:bg-zinc-900 hover:text-white'
                 )}
               >
                 <span className="text-sm">Skip</span>
-                <ForwardIcon className="h-4 text-accent" />
+                <ForwardIcon className="h-4 text-muted-foreground" />
               </Menu.Item>
             </Menu.Items>
           </Transition>

@@ -1,22 +1,22 @@
 'use client';
-import React, { useMemo } from 'react';
-import Link from 'next/link';
 import { CogIcon } from '@heroicons/react/20/solid';
+import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
+import React, { useMemo } from 'react';
 
-type Props = {
+type Properties = {
   title?: string;
 };
 
-export const ChannelHeader = ({ title }: Props) => {
-  const searchParams = useSearchParams();
+export const ChannelHeader = ({ title }: Properties) => {
+  const searchParameters = useSearchParams();
   const pathname = usePathname();
 
   const channelSettingsLink = useMemo(() => {
-    const newParams = new URLSearchParams(Array.from(searchParams.entries()));
-    newParams.set('channelSettings', 'overview');
-    return `${pathname}?${newParams?.toString()}`;
-  }, [searchParams]);
+    const newParameters = new URLSearchParams([...searchParameters.entries()]);
+    newParameters.set('channelSettings', 'overview');
+    return `${pathname}?${newParameters?.toString()}`;
+  }, [searchParameters]);
 
   return (
     <div className="flex shrink-0 w-full bg-background-light text-white h-10 px-4">
@@ -24,11 +24,14 @@ export const ChannelHeader = ({ title }: Props) => {
 
       <div className="h-full flex items-center ml-4">
         <Link
-          className="h-8 w-8 rounded hover:bg-surface-light flex items-center justify-center"
+          className="h-8 w-8 rounded hover:bg-zinc-900-light flex items-center justify-center"
           href={channelSettingsLink}
           passHref
         >
-          <CogIcon className="w-4 h-4 text-accent" aria-hidden="true" />
+          <CogIcon
+            className="w-4 h-4 text-muted-foreground"
+            aria-hidden="true"
+          />
         </Link>
       </div>
     </div>

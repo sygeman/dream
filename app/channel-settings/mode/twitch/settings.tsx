@@ -1,18 +1,20 @@
-import React from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useParams } from 'next/navigation';
+import React from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+
+import { SaveFormPanel } from '@/components/save-form-panel';
+
 import {
   getTwitchModeSettingsAction,
   setTwitchModeSettingsAction,
-} from "./actions";
-import { useParams } from "next/navigation";
-import { SaveFormPanel } from "@/components/save-form-panel";
+} from './actions';
 
 interface FormInput {
   channelKey: string | null;
 }
 
 export const ChannelTwitchModeSettings = () => {
-  const params = useParams();
+  const parameters = useParams();
 
   const {
     register,
@@ -22,16 +24,16 @@ export const ChannelTwitchModeSettings = () => {
   } = useForm<FormInput>({
     defaultValues: async () =>
       getTwitchModeSettingsAction(
-        params.community as string,
-        params.channel as string
+        parameters.community as string,
+        parameters.channel as string
       ),
   });
 
   const onSubmit: SubmitHandler<FormInput> = async (data) => {
     const twitchStreamSettings = await setTwitchModeSettingsAction(
       {
-        communityName: params.community as string,
-        channelName: params.channel as string,
+        communityName: parameters.community as string,
+        channelName: parameters.channel as string,
       },
       data
     );
@@ -42,16 +44,19 @@ export const ChannelTwitchModeSettings = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="w-full">
       <div className="flex items-center mb-2">
-        <label htmlFor="channelKey" className="text-accent text-xs mr-2">
+        <label
+          htmlFor="channelKey"
+          className="text-muted-foreground text-xs mr-2"
+        >
           https://www.twitch.tv/
         </label>
         <input
           autoFocus
-          {...register("channelKey", {
+          {...register('channelKey', {
             required: true,
             minLength: 1,
             maxLength: 50,
-            pattern: /[0-9a-zA-Z_]+/,
+            pattern: /\w+/,
           })}
           placeholder="sygeman"
           className="bg-background text-white text-xs p-2 rounded w-full focus:outline-none focus:ring-1"

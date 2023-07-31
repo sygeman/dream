@@ -1,7 +1,8 @@
-import { secondsToDurationFormat } from "@/helpers/seconds-to-duration-format";
-import { useProgress } from "./use-progress";
+import { secondsToDurationFormat } from '@/helpers/seconds-to-duration-format';
 
-type Props = {
+import { useProgress } from './use-progress';
+
+type Properties = {
   start: number;
   duration: number;
   imageUrl: string;
@@ -13,7 +14,7 @@ export const ChannelModeWaitlistProgress = ({
   duration,
   imageUrl,
   name,
-}: Props) => {
+}: Properties) => {
   const { progress } = useProgress(start);
 
   return (
@@ -29,12 +30,14 @@ export const ChannelModeWaitlistProgress = ({
           />
           <div className="absolute top-0 left-0 h-full w-full flex items-center px-4">
             <div className="flex flex-col">
-              <span className="text-sm text-accent font-medium">{name}</span>
+              <span className="text-sm text-muted-foreground font-medium">
+                {name}
+              </span>
               <span className="text-lg text-white">
                 <div className="text-xs">
                   <span>{secondsToDurationFormat(progress)}</span>
-                  <span className="text-accent px-1">/</span>
-                  <span className="text-accent">
+                  <span className="text-muted-foreground px-1">/</span>
+                  <span className="text-muted-foreground">
                     {secondsToDurationFormat(duration / 1000)}
                   </span>
                 </div>

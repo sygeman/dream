@@ -1,9 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
-import { dateDistanceInWordsToNow } from "@/helpers/date-distance-in-words-to-now";
-import { GifContainer } from "./gif";
-import { renderMessageText } from "./render-message-text";
+import React, { useEffect, useRef, useState } from 'react';
 
-type Props = {
+import { dateDistanceInWordsToNow } from '@/helpers/date-distance-in-words-to-now';
+
+import { GifContainer } from './gif';
+import { renderMessageText } from './render-message-text';
+
+type Properties = {
   authorName: any;
   authorAvatar: any;
   content: any;
@@ -19,13 +21,14 @@ export const ChatMessage = ({
   compact = false,
   tenorGif,
   createdAt,
-}: Props) => {
-  const ref = useRef<HTMLDivElement | null>(null);
+}: Properties) => {
+  const reference = useRef<HTMLDivElement | null>(null);
   const [isIntersecting, setIntersecting] = useState(false);
 
   useEffect(() => {
-    const rootRef =
-      ref.current?.parentNode?.parentNode?.parentNode?.parentNode?.parentNode;
+    const rootReference =
+      reference.current?.parentNode?.parentNode?.parentNode?.parentNode
+        ?.parentNode;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -34,13 +37,13 @@ export const ChatMessage = ({
       {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        root: rootRef,
+        root: rootReference,
       }
     );
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    observer.observe(ref.current);
+    observer.observe(reference.current);
 
     return () => {
       observer.disconnect();
@@ -48,7 +51,10 @@ export const ChatMessage = ({
   });
 
   return (
-    <div ref={ref} className="px-2 w-full relative overflow-hidden text-sm">
+    <div
+      ref={reference}
+      className="px-2 w-full relative overflow-hidden text-sm"
+    >
       {!compact && (
         <div className="flex items-center w-full pt-1">
           <div className="flex items-center justify-center rounded-full cursor-pointer">
@@ -65,13 +71,13 @@ export const ChatMessage = ({
           <div className="font-medium text-sm text-white ml-2">
             {authorName}
           </div>
-          <div className="text-accent text-xs ml-2">
+          <div className="text-muted-foreground text-xs ml-2">
             {dateDistanceInWordsToNow(createdAt)}
           </div>
         </div>
       )}
       <div className="relative">
-        <div className="overflow-hidden text-accent break-words ml-6 flex flex-wrap">
+        <div className="overflow-hidden text-muted-foreground break-words ml-6 flex flex-wrap">
           {tenorGif ? (
             <div className="p-1 pr-3 w-full ">
               <GifContainer

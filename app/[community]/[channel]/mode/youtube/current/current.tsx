@@ -1,10 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react';
 import clsx from 'clsx';
+import React, { useEffect, useRef, useState } from 'react';
 import ReactPlayer from 'react-player';
+
 import { ChannelModeWaitlistProgress } from '../components/progress/progress';
 import { CurrentMenu } from './menu';
 
-type Props = {
+type Properties = {
   current: any;
   muted?: boolean;
   minimal?: boolean;
@@ -14,13 +15,13 @@ export const ChannelYoutubeModeCurrent = ({
   current,
   muted = false,
   minimal = false,
-}: Props) => {
+}: Properties) => {
   const player = useRef<any>(null);
   const [isReady, setIsReady] = useState<boolean>(false);
 
   useEffect(() => {
     const s = +new Date(+current?.startedAt);
-    const now = +new Date();
+    const now = Date.now();
     const start = (now - s) / 1000;
 
     console.log(start);
@@ -37,7 +38,7 @@ export const ChannelYoutubeModeCurrent = ({
           <div
             className={clsx(
               'aspect-w-16 aspect-h-9 z-10',
-              minimal && 'absolute',
+              minimal && 'absolute'
             )}
           >
             <ReactPlayer
@@ -58,7 +59,7 @@ export const ChannelYoutubeModeCurrent = ({
               name={current.title}
             />
             <div className="flex flex-col text-xs font-medium px-2 opacity-70 text-right ml-auto">
-              <div className="text-accent">from</div>
+              <div className="text-muted-foreground">from</div>
               <div className="text-white">{current.author.name}</div>
             </div>
             <div className="flex rounded-full overflow-hidden h-8 w-8 bg-background mr-2">
@@ -70,7 +71,7 @@ export const ChannelYoutubeModeCurrent = ({
       ) : (
         <div className="flex flex-col px-4">
           <div className="text-md text-white">Nothing is playing now</div>
-          <div className="text-sm text-accent">
+          <div className="text-sm text-muted-foreground">
             The queue is empty, add some cool video
           </div>
         </div>

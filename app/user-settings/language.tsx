@@ -1,10 +1,12 @@
-import { RadioGroup } from "@headlessui/react";
-import { RadioButton } from "@/components/radio";
-import { Locale } from "@prisma/client";
-import { useIntl } from "@/libs/intl";
-import { useRouter } from "next/navigation";
-import { lang } from "@/lang";
-import { setLocaleAction } from "./actions";
+import { RadioGroup } from '@headlessui/react';
+import { Locale } from '@prisma/client';
+import { useRouter } from 'next/navigation';
+
+import { RadioButton } from '@/components/radio';
+import { lang } from '@/lang';
+import { useIntl } from '@/libs/intl';
+
+import { setLocaleAction } from './actions';
 
 const languages = Object.values(lang);
 
@@ -25,8 +27,8 @@ export const UserSettingsLanguage = () => {
           value={locale}
           onChange={(newLocale: Locale) => setLocale(newLocale)}
         >
-          <RadioGroup.Label className="text-accent text-xs">
-            {formatMessage({ id: "userSettingsLanguageSelectLabel" })}
+          <RadioGroup.Label className="text-muted-foreground text-xs">
+            {formatMessage({ id: 'userSettingsLanguageSelectLabel' })}
           </RadioGroup.Label>
           <div className="flex flex-col w-full">
             {languages.map((language) => (
@@ -44,7 +46,7 @@ export const UserSettingsLanguage = () => {
                         as="div"
                         className="ml-auto px-2 flex"
                       >
-                        <div className="text-xs text-accent px-2">
+                        <div className="text-xs text-muted-foreground px-2">
                           {formatMessage({ id: language.value })}
                         </div>
                         <img

@@ -1,35 +1,36 @@
-import { useState } from 'react';
 import clsx from 'clsx';
 import { useParams, useRouter } from 'next/navigation';
+import { useState } from 'react';
 import ReactPlayer from 'react-player';
+
 import { addVideoAction } from './actions';
 
 export const ChannelYoutubeModeAddVideo = () => {
   const [videoId, setVideoId] = useState('');
   const router = useRouter();
-  const params = useParams();
+  const parameters = useParams();
 
   const addVideo = async () => {
     addVideoAction({
-      communityName: params.community as string,
-      channelName: params.channel as string,
+      communityName: parameters.community as string,
+      channelName: parameters.channel as string,
       videoId,
     });
   };
 
   return (
     <div className="p-4">
-      <h2 className="text-accent-light uppercase text-sm font-medium mb-2">
+      <h2 className="text-muted-foreground-light uppercase text-sm font-medium mb-2">
         Add Video To Queue
       </h2>
-      <p className="mb-4 text-accent text-sm">
+      <p className="mb-4 text-muted-foreground text-sm">
         <input
           type="text"
           className="bg-background text-white text-xs p-2 rounded w-full focus:outline-none focus:ring-1 mb-2"
           placeholder="Paste youtube video link here..."
           onChange={(e) => {
             const videoId = e.target.value.match(
-              /(.*?)(^|\/|v=)([a-z0-9_-]{11})(.*)?/i,
+              /(.*?)(^|\/|v=)([\w-]{11})(.*)?/i
             )?.[3];
             setVideoId(videoId || '');
           }}

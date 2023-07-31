@@ -1,42 +1,43 @@
 'use client';
 
-import React, { useState } from 'react';
-import { Chat } from '../chat/chat';
-import {
-  UsersIcon,
-  ChatBubbleBottomCenterTextIcon,
-} from '@heroicons/react/20/solid';
 import { Transition } from '@headlessui/react';
-import { Users } from './users';
+import {
+  ChatBubbleBottomCenterTextIcon,
+  UsersIcon,
+} from '@heroicons/react/20/solid';
 import { ChannelMessage } from '@prisma/client';
+import React, { useState } from 'react';
 
-type Props = {
+import { Chat } from '../chat/chat';
+import { Users } from './users';
+
+type Properties = {
   channelId: string;
   messages: ChannelMessage[];
 };
 
-export const CommunityRightPanel = ({ channelId, messages }: Props) => {
+export const CommunityRightPanel = ({ channelId, messages }: Properties) => {
   const [usersIsOpen, setUsersIsOpen] = useState(false);
 
   return (
-    <div className="h-screen flex flex-col shrink-0 w-80 bg-surface relative">
+    <div className="h-screen flex flex-col shrink-0 w-80 bg-zinc-900 relative">
       <div className="flex items-center h-10">
-        <div className="flex flex-1 justify-center items-center bg-surface h-full">
+        <div className="flex flex-1 justify-center items-center bg-zinc-900 h-full">
           <span className="text-white text-sm">
             <ChatBubbleBottomCenterTextIcon className="text-white h-3.5" />
           </span>
         </div>
         <div
-          className="flex flex-1 justify-center items-center bg-surface h-full cursor-pointer"
+          className="flex flex-1 justify-center items-center bg-zinc-900 h-full cursor-pointer"
           onClick={() => setUsersIsOpen(true)}
         >
-          <UsersIcon className="text-accent h-3.5" />
+          <UsersIcon className="text-muted-foreground h-3.5" />
         </div>
       </div>
       <Chat channelId={channelId} messages={messages} />
       <Transition
         as="div"
-        className="absolute h-full w-full bg-surface"
+        className="absolute h-full w-full bg-zinc-900"
         show={usersIsOpen}
         enter="transition ease-out duration-100"
         enterFrom="opacity-0 scale-95"

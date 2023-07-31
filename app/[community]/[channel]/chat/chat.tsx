@@ -35,7 +35,7 @@ export const Chat = ({ channelId, messages: messagesInit }: Props) => {
               {[...Array(20).keys()].map((i) => (
                 <div
                   key={i}
-                  className="flex shrink-0 rounded h-11 bg-surface-dark mx-2 my-1 opacity-20 animate-pulse"
+                  className="flex shrink-0 rounded h-11 bg-zinc-900-dark mx-2 my-1 opacity-20 animate-pulse"
                 />
               ))}
             </div>

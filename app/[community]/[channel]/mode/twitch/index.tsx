@@ -1,19 +1,22 @@
 'use client';
 import dynamic from 'next/dynamic';
-import { useEffect, useState } from 'react';
-import { getTwitchModeAction } from './actions';
 import { useParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
+
+import { AspectRatio } from '@/components/ui/aspect-ratio';
+
+import { getTwitchModeAction } from './actions';
 
 const Player = dynamic(() => import('./player'), { ssr: false });
 
 export const ChannelTwitchMode = () => {
-  const params = useParams();
+  const parameters = useParams();
   const [twitchStream, setTwitchStream] = useState<any>(null);
 
   useEffect(() => {
     getTwitchModeAction(
-      params.community as string,
-      params.channel as string,
+      parameters.community as string,
+      parameters.channel as string
     ).then((data) => {
       setTwitchStream(data);
     });
@@ -23,9 +26,9 @@ export const ChannelTwitchMode = () => {
 
   return (
     <div className="h-full w-full bg-background-light">
-      <div className="bg-black flex justify-center aspect-w-16 aspect-h-9">
+      <AspectRatio ratio={16 / 9} className="bg-black flex justify-center">
         {channelKey && <Player channelKey={channelKey} />}
-      </div>
+      </AspectRatio>
     </div>
   );
 };

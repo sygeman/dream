@@ -1,13 +1,15 @@
-import React, { useState } from "react";
-import { Transition } from "@headlessui/react";
-import { channelMods } from "@/helpers/channel-mods";
-import { ChannelSettingsModeCard } from "./mode-card";
-import { ModeSettings } from "./mode-settings";
-import { Controller, SubmitHandler, useForm } from "react-hook-form";
-import { ChannelMode } from "@prisma/client";
-import { useParams } from "next/navigation";
-import { SaveFormPanel } from "@/components/save-form-panel";
-import { getChannelModeAction, setChannelModeAction } from "./actions";
+import { Transition } from '@headlessui/react';
+import { ChannelMode } from '@prisma/client';
+import { useParams } from 'next/navigation';
+import React, { useState } from 'react';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+
+import { SaveFormPanel } from '@/components/save-form-panel';
+import { channelMods } from '@/helpers/channel-mods';
+
+import { getChannelModeAction, setChannelModeAction } from './actions';
+import { ChannelSettingsModeCard } from './mode-card';
+import { ModeSettings } from './mode-settings';
 
 interface FormInput {
   mode: ChannelMode;
@@ -16,7 +18,7 @@ interface FormInput {
 export const ChannelSettingsMode = () => {
   const [selectedChannelMode, setSelectedChannelMode] =
     useState<ChannelMode | null>(null);
-  const params = useParams();
+  const parameters = useParams();
 
   const {
     control,
@@ -26,16 +28,16 @@ export const ChannelSettingsMode = () => {
   } = useForm<FormInput>({
     defaultValues: async () =>
       getChannelModeAction(
-        params.community as string,
-        params.channel as string
+        parameters.community as string,
+        parameters.channel as string
       ),
   });
 
   const onSubmit: SubmitHandler<FormInput> = async (data) => {
     const { mode } = await setChannelModeAction(
       {
-        communityName: params.community as string,
-        channelName: params.channel as string,
+        communityName: parameters.community as string,
+        channelName: parameters.channel as string,
       },
       data
     );
@@ -72,7 +74,7 @@ export const ChannelSettingsMode = () => {
       </form>
       <Transition
         as="div"
-        className="absolute top-0 left-0 p-4 pt-10 h-full w-full bg-surface"
+        className="absolute top-0 left-0 p-4 pt-10 h-full w-full bg-zinc-900"
         show={!!selectedChannelMode}
         enter="transition ease-out duration-200"
         enterFrom="opacity-0 scale-95"

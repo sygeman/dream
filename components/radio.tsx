@@ -30,5 +30,5 @@ type Props = {
 
 export const RadioButton = ({ checked }: Props) => {
   if (checked) return <DotCircleIcon className="h-5 w-5 text-white" />;
-  return <CircleIcon className="h-5 w-5 text-accent opacity-80" />;
+  return <CircleIcon className="h-5 w-5 text-muted-foreground opacity-80" />;
 };

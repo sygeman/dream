@@ -1,9 +1,11 @@
-import clsx from "clsx";
-import { useForm, SubmitHandler } from "react-hook-form";
-import { urlNameRegExp } from "@/helpers/regexp-url-name";
-import { useParams } from "next/navigation";
-import { useRouter } from "next/navigation";
-import { createChannelAction } from "./actions";
+import clsx from 'clsx';
+import { useParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
+import { SubmitHandler, useForm } from 'react-hook-form';
+
+import { urlNameRegExp } from '@/helpers/regexp-url-name';
+
+import { createChannelAction } from './actions';
 
 interface IFormInput {
   name: string;
@@ -11,8 +13,8 @@ interface IFormInput {
 }
 
 export const NewChannel = () => {
-  const origin = typeof window !== "undefined" ? window?.location?.origin : "";
-  const params = useParams();
+  const origin = typeof window === 'undefined' ? '' : window?.location?.origin;
+  const parameters = useParams();
   const router = useRouter();
 
   const {
@@ -23,33 +25,33 @@ export const NewChannel = () => {
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
     const { channel } = await createChannelAction({
-      community: params.community as string,
+      community: parameters.community as string,
       ...data,
     });
 
-    router.push(`/${params.community}/${channel.name}`);
+    router.push(`/${parameters.community}/${channel.name}`);
   };
 
   const isError = Object.keys(errors).length > 0;
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <label htmlFor="title" className="text-accent text-xs">
+      <label htmlFor="title" className="text-muted-foreground text-xs">
         Title
       </label>
       <input
         autoFocus
-        {...register("title", { required: true, minLength: 1, maxLength: 50 })}
+        {...register('title', { required: true, minLength: 1, maxLength: 50 })}
         placeholder="Awesome Channel"
         className="bg-background text-white text-xs p-2 rounded w-full focus:outline-none focus:ring-1 mb-2"
       />
 
       <div className="flex items-center mb-2">
-        <label htmlFor="name" className="text-accent text-xs">
-          {origin}/{params.community}/
+        <label htmlFor="name" className="text-muted-foreground text-xs">
+          {origin}/{parameters.community}/
         </label>
         <input
-          {...register("name", {
+          {...register('name', {
             required: true,
             minLength: 1,
             maxLength: 50,
@@ -64,7 +66,7 @@ export const NewChannel = () => {
         <button
           type="submit"
           disabled={isError}
-          className={clsx("btn btn-primary", isError && "cursor-not-allowed")}
+          className={clsx('btn btn-primary', isError && 'cursor-not-allowed')}
         >
           Create
         </button>

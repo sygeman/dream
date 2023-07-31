@@ -1,11 +1,16 @@
-type Props = {
+type Properties = {
   imageUrl?: string;
   artist?: string;
   name?: string;
   progress?: number;
 };
 
-export const TrackInfo = ({ imageUrl, artist, name, progress = 0 }: Props) => (
+export const TrackInfo = ({
+  imageUrl,
+  artist,
+  name,
+  progress = 0,
+}: Properties) => (
   <div className="flex relative w-full h-16">
     <div className="flex absolute left-0 bottom-0 w-full">
       <div className="h-16 w-16">
@@ -18,7 +23,9 @@ export const TrackInfo = ({ imageUrl, artist, name, progress = 0 }: Props) => (
         />
         <div className="absolute top-0 left-0 h-full w-full flex items-center px-4">
           <div className="flex flex-col">
-            <span className="text-base text-accent font-medium">{artist}</span>
+            <span className="text-base text-muted-foreground font-medium">
+              {artist}
+            </span>
             <span className="text-lg text-white">{name}</span>
           </div>
         </div>

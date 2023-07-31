@@ -19,7 +19,7 @@ export const EmojiPicker: React.FC<{ onSelect: (alias: string) => void }> = ({
         <div
           key={emoji.id}
           onClick={() => onSelect(emoji.alias)}
-          className="p-1 m-1 hover:bg-surface rounded cursor-pointer"
+          className="p-1 m-1 hover:bg-zinc-900 rounded cursor-pointer"
         >
           <img
             className="w-6 h-6 object-contain"

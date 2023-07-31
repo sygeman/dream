@@ -22,14 +22,14 @@ export const SwitchFormField = ({
         <Switch.Label className="text-sm text-white mr-2" passive>
           {title}
         </Switch.Label>
-        <Switch.Description className="text-xs text-accent mr-2">
+        <Switch.Description className="text-xs text-muted-foreground mr-2">
           {description}
         </Switch.Description>
       </div>
       <Switch
         className={clsx(
           'relative inline-flex shrink-0 h-5 w-10 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75',
-          checked ? 'bg-primary' : 'bg-background',
+          checked ? 'bg-primary' : 'bg-background'
         )}
         checked={checked}
         onChange={onChange}
@@ -38,7 +38,7 @@ export const SwitchFormField = ({
           aria-hidden="true"
           className={clsx(
             checked ? 'translate-x-5 bg-white' : 'translate-x-0 bg-accent',
-            'pointer-events-none inline-block h-4 w-4 rounded-full  shadow-lg transform ring-0 transition ease-in-out duration-200',
+            'pointer-events-none inline-block h-4 w-4 rounded-full  shadow-lg transform ring-0 transition ease-in-out duration-200'
           )}
         />
       </Switch>

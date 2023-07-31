@@ -1,28 +1,29 @@
-"use client";
+'use client';
 
-import React, { useMemo } from "react";
-import Link from "next/link";
-import { usePathname, useSearchParams } from "next/navigation";
-import { UserCircleIcon } from "@heroicons/react/20/solid";
-import { SessionUser } from "@/types/session-user";
+import { UserCircleIcon } from '@heroicons/react/20/solid';
+import Link from 'next/link';
+import { usePathname, useSearchParams } from 'next/navigation';
+import React, { useMemo } from 'react';
 
-type Props = { user?: SessionUser };
+import { SessionUser } from '@/types/session-user';
 
-export const UserPanel = ({ user }: Props) => {
-  const searchParams = useSearchParams();
+type Properties = { user?: SessionUser };
+
+export const UserPanel = ({ user }: Properties) => {
+  const searchParameters = useSearchParams();
   const pathname = usePathname();
 
   const userLink = useMemo(() => {
-    const newParams = new URLSearchParams(Array.from(searchParams.entries()));
+    const newParameters = new URLSearchParams([...searchParameters.entries()]);
 
     if (user) {
-      newParams.set("userSettings", "language");
+      newParameters.set('userSettings', 'language');
     } else {
-      newParams.set("authModal", "1");
+      newParameters.set('authModal', '1');
     }
 
-    return `${pathname}?${newParams?.toString()}`;
-  }, [user, searchParams]);
+    return `${pathname}?${newParameters?.toString()}`;
+  }, [user, searchParameters]);
 
   return (
     <Link href={userLink} passHref>
@@ -34,7 +35,7 @@ export const UserPanel = ({ user }: Props) => {
         </div>
       ) : (
         <div className="flex items-center justify-center w-12 h-12 cursor-pointer">
-          <UserCircleIcon className="text-accent h-5" />
+          <UserCircleIcon className="text-muted-foreground h-5" />
         </div>
       )}
     </Link>

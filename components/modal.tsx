@@ -1,7 +1,7 @@
 'use client';
-import React, { Fragment, useRef } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { XMarkIcon } from '@heroicons/react/20/solid';
+import React, { Fragment, useRef } from 'react';
 
 export type ModalProps = {
   id: string;
@@ -20,7 +20,7 @@ export const Modal: React.FC<ModalProps> = ({
   title = '',
   children,
 }) => {
-  const completeButtonRef = useRef(null);
+  const completeButtonReference = useRef(null);
   const open = isOpen(id);
   const close = () => onClose(id);
 
@@ -32,7 +32,7 @@ export const Modal: React.FC<ModalProps> = ({
         static
         open={open}
         onClose={close}
-        initialFocus={completeButtonRef}
+        initialFocus={completeButtonReference}
       >
         <div className="min-h-screen px-4 text-center" tabIndex={1}>
           <Dialog.Overlay className="fixed inset-0 bg-background opacity-90" />
@@ -53,22 +53,22 @@ export const Modal: React.FC<ModalProps> = ({
             leaveFrom="opacity-100 scale-100"
             leaveTo="opacity-0 scale-95"
           >
-            <div className="inline-block w-full max-w-md my-8 overflow-hidden text-left align-middle transition-all transform bg-surface shadow-xl rounded-lg">
-              <div className="m-auto z-30 bg-surface rounded-lg overflow-hidden">
+            <div className="inline-block w-full max-w-md my-8 overflow-hidden text-left align-middle transition-all transform bg-zinc-900 shadow-xl rounded-lg">
+              <div className="m-auto z-30 bg-zinc-900 rounded-lg overflow-hidden">
                 {!minimal && (
-                  <div className="bg-surface-light px-4 py-2 flex items-center">
+                  <div className="bg-zinc-900-light px-4 py-2 flex items-center">
                     <div className="flex flex-1 text-white text-sm">
                       {title}
                     </div>
                     <button
-                      className="btn h-6 w-6 p-1 hover:bg-surface focus:outline-none text-accent"
+                      className="btn h-6 w-6 p-1 hover:bg-zinc-900 focus:outline-none text-muted-foreground"
                       onClick={close}
                     >
                       <XMarkIcon />
                     </button>
                   </div>
                 )}
-                <div className={!minimal ? 'p-4' : undefined}>{children}</div>
+                <div className={minimal ? undefined : 'p-4'}>{children}</div>
               </div>
             </div>
           </Transition.Child>

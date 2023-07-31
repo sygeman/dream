@@ -1,9 +1,9 @@
-import React from 'react';
-import clsx from 'clsx';
-import { CheckCircleIcon } from '@heroicons/react/24/outline';
 import { Cog6ToothIcon } from '@heroicons/react/20/solid';
+import { CheckCircleIcon } from '@heroicons/react/24/outline';
+import clsx from 'clsx';
+import React from 'react';
 
-type Props = {
+type Properties = {
   mode: any;
   active: boolean;
   openSettings: () => void;
@@ -15,21 +15,23 @@ export const ChannelSettingsModeCard = ({
   active,
   openSettings,
   makeCurrent,
-}: Props) => {
+}: Properties) => {
   return (
     <div
       className={clsx(
         'flex overflow-hidden items-center justify-center cursor-pointer',
         'bg-background rounded-md',
         'border-x-4',
-        active ? mode?.borderColor : ' border-transparent',
+        active ? mode?.borderColor : ' border-transparent'
       )}
       onClick={makeCurrent}
     >
       <div className="w-full bg-background flex items-center relative">
         <div className="flex flex-col px-2">
           <span className="text-sm text-white font-medium">{mode?.title}</span>
-          <span className="text-xs text-accent">{mode?.description}</span>
+          <span className="text-xs text-muted-foreground">
+            {mode?.description}
+          </span>
         </div>
       </div>
       <div className="flex items-center justify-end w-full p-2">
@@ -45,7 +47,7 @@ export const ChannelSettingsModeCard = ({
             openSettings();
           }}
         >
-          <Cog6ToothIcon className="h-4 text-accent" />
+          <Cog6ToothIcon className="h-4 text-muted-foreground" />
         </button>
       </div>
     </div>

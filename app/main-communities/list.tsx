@@ -8,6 +8,7 @@ import { usePathname, useSearchParams } from "next/navigation";
 import { Community } from "@prisma/client";
 import { CommunityCard } from "./card";
 import { useIntl } from "@/libs/intl";
+import { Button } from "@/components/ui/button";
 
 type Props = {
   communities: Community[];
@@ -46,9 +47,9 @@ export const MainCommunitiesList = ({ communities, isUser }: Props) => {
             </div>
 
             <Link href={newCommunityLink} passHref>
-              <button className="btn btn-primary ml-4 h-8">
+              <Button className="ml-4 h-8">
                 {formatMessage({ id: "mainCreateCommunityButton" })}
-              </button>
+              </Button>
             </Link>
           </div>
           <div

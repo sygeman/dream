@@ -2,7 +2,7 @@ import { type PropsWithChildren } from "react";
 import { AppPanel } from "./app-panel/app-panel";
 // import 'overlayscrollbars/overlayscrollbars.css';
 import "rc-slider/assets/index.css";
-import "./global.css";
+import "./globals.css";
 import { roboto } from "./fonts";
 import { LoginModal } from "./login/modal";
 import { LogoutModal } from "./logout/modal";
@@ -17,6 +17,7 @@ import { Locale } from "@prisma/client";
 import { prisma } from "../libs/prisma";
 import { IntlProvider } from "@/libs/intl";
 import { getCurretUserId } from "../helpers/get-current-user";
+import { ThemeProvider } from "@/components/theme-provider";
 
 type Props = PropsWithChildren;
 
@@ -43,26 +44,28 @@ const MainLayout = async ({ children }: Props) => {
         />
       </head>
       <body>
-        <IntlProvider locale={locale}>
-          <div className="h-screen bg-background flex">
-            <AppPanel />
-            <div className="flex flex-1 h-full overflow-hidden rounded-l-xl">
-              {children}
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+          <IntlProvider locale={locale}>
+            <div className="h-screen bg-background flex">
+              <AppPanel />
+              <div className="flex flex-1 h-full overflow-hidden rounded-l-xl">
+                {children}
+              </div>
+
+              <LoginModal />
+              <LogoutModal />
+              <UserSettingsModal />
+
+              <NewCommunityModal />
+              <DeleteCommunityModal />
+              <CommunitySettingsModal />
+
+              <NewChannelModal />
+              <DeleteChannelModal />
+              <ChannelSettingsModal />
             </div>
-
-            <LoginModal />
-            <LogoutModal />
-            <UserSettingsModal />
-
-            <NewCommunityModal />
-            <DeleteCommunityModal />
-            <CommunitySettingsModal />
-
-            <NewChannelModal />
-            <DeleteChannelModal />
-            <ChannelSettingsModal />
-          </div>
-        </IntlProvider>
+          </IntlProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

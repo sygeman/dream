@@ -1,15 +1,16 @@
-'use client';
-import React, { Fragment, useRef, useState } from 'react';
-import TextareaAutosize from 'react-textarea-autosize';
-import { convertTextToEmojiCode } from './convert-text-to-emoji-code';
-import { Menu, Tab, Transition } from '@headlessui/react';
-import { FaceSmileIcon, PhotoIcon } from '@heroicons/react/20/solid';
-import clsx from 'clsx';
-import { GifPicker } from './components/gif-picker';
-import { PickerTab } from './components/picker-tab';
-import { EmojiPicker } from './components/emoji-picker';
-import { useParams, usePathname } from 'next/navigation';
-import { createMessageAction } from './actions';
+"use client";
+import React, { Fragment, useRef, useState } from "react";
+import TextareaAutosize from "react-textarea-autosize";
+import { convertTextToEmojiCode } from "./convert-text-to-emoji-code";
+import { Menu, Tab, Transition } from "@headlessui/react";
+import { FaceSmileIcon, PhotoIcon } from "@heroicons/react/20/solid";
+import clsx from "clsx";
+import { GifPicker } from "./components/gif-picker";
+import { PickerTab } from "./components/picker-tab";
+import { EmojiPicker } from "./components/emoji-picker";
+import { useParams, usePathname } from "next/navigation";
+import { createMessageAction } from "./actions";
+import { Button } from "@/components/ui/button";
 
 interface ChatBottomProps {
   channelId: string;
@@ -32,15 +33,15 @@ export const ChatBottom: React.FC<ChatBottomProps> = ({ channelId }) => {
 
   const sendMessage = async () => {
     const content = convertTextToEmojiCode(
-      (textareaRef.current?.value || '').trim(),
-      emojis,
+      (textareaRef.current?.value || "").trim(),
+      emojis
     );
 
     if (!lock && content.length > 0) {
       lock = true;
 
       const formData = new FormData();
-      formData.set('content', content);
+      formData.set("content", content);
 
       await createMessageAction({
         content,
@@ -49,7 +50,7 @@ export const ChatBottom: React.FC<ChatBottomProps> = ({ channelId }) => {
       });
 
       if (textareaRef.current) {
-        textareaRef.current.value = '';
+        textareaRef.current.value = "";
         lock = false;
       }
     }
@@ -77,7 +78,7 @@ export const ChatBottom: React.FC<ChatBottomProps> = ({ channelId }) => {
               return null;
             }
 
-            if (e.key === 'Enter') {
+            if (e.key === "Enter") {
               e.preventDefault();
               sendMessage();
             }
@@ -91,10 +92,10 @@ export const ChatBottom: React.FC<ChatBottomProps> = ({ channelId }) => {
                 <PhotoIcon
                   onClick={() => setPickerType(PickerType.GIF)}
                   className={clsx(
-                    'h-4',
+                    "h-4",
                     open && pickerType === PickerType.GIF
-                      ? 'text-white'
-                      : 'text-accent',
+                      ? "text-white"
+                      : "text-accent"
                   )}
                 />
               )}
@@ -104,10 +105,10 @@ export const ChatBottom: React.FC<ChatBottomProps> = ({ channelId }) => {
                 <FaceSmileIcon
                   onClick={() => setPickerType(PickerType.EMOJI)}
                   className={clsx(
-                    'h-4',
+                    "h-4",
                     open && pickerType === PickerType.EMOJI
-                      ? 'text-white'
-                      : 'text-accent',
+                      ? "text-white"
+                      : "text-accent"
                   )}
                 />
               )}
@@ -154,7 +155,7 @@ export const ChatBottom: React.FC<ChatBottomProps> = ({ channelId }) => {
                     <Tab.Panel>
                       <EmojiPicker
                         onSelect={(alias) => {
-                          const prevValue = textareaRef.current?.value || '';
+                          const prevValue = textareaRef.current?.value || "";
                           const newValue =
                             prevValue.length === 0
                               ? `:${alias}: `
@@ -174,9 +175,7 @@ export const ChatBottom: React.FC<ChatBottomProps> = ({ channelId }) => {
         </Menu>
       </div>
       <div className="flex justify-end my-2">
-        <button className="btn btn-primary" onClick={sendMessage}>
-          Chat
-        </button>
+        <Button onClick={sendMessage}>Chat</Button>
       </div>
     </div>
   );

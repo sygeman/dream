@@ -36,7 +36,7 @@ services:
     ports:
       - '3333:3333'
     environment:
-      - PRISMA_MONO_URL=postgresql://postgres:postgres@postgres:5432/postgres?schema=public
+      - PRISMA_URL=postgresql://postgres:postgres@postgres:5432/postgres?schema=public
       - REDIS_URL=redis://redis:6379
       - TWITCH_ID=${TWITCH_ID}
       - TWITCH_SECRET=${TWITCH_SECRET}
@@ -47,7 +47,7 @@ services:
   client:
     image: ghcr.io/sygeman/dream/mono-client
     environment:
-      PRISMA_MONO_URL: '${PRISMA_MONO_URL}'
+      PRISMA_URL: '${PRISMA_URL}'
       YOUTUBE_KEY: '${YOUTUBE_KEY}'
       SESSION_PASSWORD: '${SESSION_PASSWORD}'
       NEXT_PUBLIC_MONO_API: '${NEXT_PUBLIC_MONO_API}'

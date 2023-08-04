@@ -25,5 +25,5 @@ pnpm generate
 
 Run client
 ```
-pnpm start client
+pnpm dev
 ```

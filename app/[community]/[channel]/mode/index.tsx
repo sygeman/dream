@@ -1,18 +1,22 @@
 import { ChannelMode } from '@prisma/client';
-import { ChannelYoutubeMode } from './youtube';
-import { ChannelTwitchMode } from './twitch';
 
-type Props = {
+import { ChannelTwitchMode } from './twitch';
+import { ChannelYoutubeMode } from './youtube';
+
+type Properties = {
   mode?: ChannelMode;
 };
 
-export const ChannelModeContent = ({ mode }: Props) => {
+export const ChannelModeContent = ({ mode }: Properties) => {
   switch (mode) {
-    case ChannelMode.TWITCH:
+    case ChannelMode.TWITCH: {
       return <ChannelTwitchMode />;
-    case ChannelMode.YOUTUBE:
+    }
+    case ChannelMode.YOUTUBE: {
       return <ChannelYoutubeMode />;
-    default:
-      return null;
+    }
+    default: {
+      return;
+    }
   }
 };

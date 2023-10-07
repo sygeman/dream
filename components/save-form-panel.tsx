@@ -1,11 +1,11 @@
 import { Transition } from '@headlessui/react';
 
-type Props = {
+type Properties = {
   show: boolean;
   reset: () => void;
 };
 
-export const SaveFormPanel = ({ show, reset }: Props) => (
+export const SaveFormPanel = ({ show, reset }: Properties) => (
   <Transition
     as="div"
     className="flex w-full absolute left-0 bottom-4 p-2"

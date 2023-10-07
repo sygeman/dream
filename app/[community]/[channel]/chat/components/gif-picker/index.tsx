@@ -30,7 +30,7 @@ export const GifPicker: React.FC<GifPickerProperties> = ({
       pos: nextPos,
     },
   });
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+
   // @ts-ignore
   const gifs = Object.values(dataPerPage).flat() || [];
 
@@ -47,7 +47,6 @@ export const GifPicker: React.FC<GifPickerProperties> = ({
 
   useEffect(() => {
     setTimeout(() => {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       inputReference.current.focus();
     }, 300);
@@ -60,7 +59,7 @@ export const GifPicker: React.FC<GifPickerProperties> = ({
           ref={inputReference}
           className="bg-zinc-900 text-white text-xs resize-none p-2 pr-10 rounded w-full focus:outline-none"
           placeholder="Search Tensor"
-          onChange={(e) => setSearchQuery(e.currentTarget.value.trim())}
+          onChange={(event) => setSearchQuery(event.currentTarget.value.trim())}
         />
         <div className="absolute top-2 right-2 h-8 w-8 flex justify-center items-center">
           <MagnifyingGlassIcon className="h-4 text-muted-foreground" />
@@ -73,17 +72,14 @@ export const GifPicker: React.FC<GifPickerProperties> = ({
         >
           {gifs.map((gif) => (
             <div
-              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
               // @ts-ignore
               key={gif.id}
               className="w-full cursor-pointer rounded overflow-hidden mb-2 bg-background"
               style={{ breakInside: 'avoid' }}
-              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
               // @ts-ignore
               onClick={() => onSelect(gif.itemurl)}
             >
               {gifContainer(
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-ignore
                 <video src={gif.media?.[0].webm.url} loop autoPlay />
               )}

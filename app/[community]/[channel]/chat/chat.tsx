@@ -1,18 +1,19 @@
 'use client';
 
-import { ChatMessages } from './components/chat-messages';
+import { type ChannelMessage } from '@prisma/client';
+
 import { ChatBottom } from './bottom';
 import { compactMessages } from './compact-messages';
+import { ChatMessages } from './components/chat-messages';
 import { formatedTenorGif } from './formated-tenor-gif';
-import { type ChannelMessage } from '@prisma/client';
 import { useChat } from './use-chat';
 
-type Props = {
+type Properties = {
   channelId: string;
   messages: ChannelMessage[];
 };
 
-export const Chat = ({ channelId, messages: messagesInit }: Props) => {
+export const Chat = ({ channelId, messages: messagesInit }: Properties) => {
   const messages = useChat(messagesInit, channelId);
 
   return (
@@ -32,9 +33,9 @@ export const Chat = ({ channelId, messages: messagesInit }: Props) => {
             />
           ) : (
             <div className="flex flex-col flex-1 overflow-hidden relative h-full">
-              {[...Array(20).keys()].map((i) => (
+              {[...Array.from({ length: 20 }).keys()].map((index) => (
                 <div
-                  key={i}
+                  key={index}
                   className="flex shrink-0 rounded h-11 bg-zinc-900-dark mx-2 my-1 opacity-20 animate-pulse"
                 />
               ))}

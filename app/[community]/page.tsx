@@ -1,10 +1,10 @@
-import { prisma } from "@/libs/prisma";
+import { prisma } from '@/libs/prisma';
 
-type Props = {
+type Properties = {
   params: { community: string };
 };
 
-async function CommunityPage({ params: { community: name } }: Props) {
+async function CommunityPage({ params: { community: name } }: Properties) {
   const community = await prisma.community.findFirst({
     where: { name, deleted: false },
   });

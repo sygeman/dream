@@ -13,21 +13,21 @@ type Properties = {
   menu: SettingsMenuItem[];
 };
 
+const generateLink = (
+  searchParameters_: ReadonlyURLSearchParams,
+  pathname: string,
+  id: string,
+  value: string
+) => {
+  const newParameters = new URLSearchParams([...searchParameters_.entries()]);
+  newParameters.set(id, value);
+  return `${pathname}?${newParameters?.toString()}`;
+};
+
 export const SettingsMenu = ({ id, menu }: Properties) => {
   const pathname = usePathname();
   const searchParameters = useSearchParams();
   const section = searchParameters.get(id);
-
-  const generateLink = (
-    searchParameters_: ReadonlyURLSearchParams,
-    pathname: string,
-    id: string,
-    value: string
-  ) => {
-    const newParameters = new URLSearchParams([...searchParameters_.entries()]);
-    newParameters.set(id, value);
-    return `${pathname}?${newParameters?.toString()}`;
-  };
 
   return (
     <div className="px-2 divide-y divide-zinc-900-light">

@@ -97,7 +97,7 @@ export const ChannelSettingsChat = () => {
                   min={0}
                   max={30}
                   marks={marks}
-                  step={null}
+                  step={undefined}
                   onChange={(slowmode) => {
                     if (typeof slowmode === 'number') field.onChange(slowmode);
                   }}

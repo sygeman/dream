@@ -1,8 +1,9 @@
-"use server";
+'use server';
 
-import { ChannelMode } from "@prisma/client";
-import { getCurretUserId } from "@/helpers/get-current-user";
-import { prisma } from "@/libs/prisma";
+import { ChannelMode } from '@prisma/client';
+
+import { getCurretUserId } from '@/helpers/get-current-user';
+import { prisma } from '@/libs/prisma';
 
 export const getChannelModeAction = async (
   communityName: string,
@@ -12,7 +13,7 @@ export const getChannelModeAction = async (
     where: { name: channelName, community: { name: communityName } },
   });
 
-  if (!channel) throw "Channel not found";
+  if (!channel) throw 'Channel not found';
 
   return { mode: channel.mode };
 };
@@ -31,8 +32,8 @@ export const setChannelModeAction = async (
     include: { community: true },
   });
 
-  if (!channel) throw "Channel not found";
-  if (channel.community.ownerId !== userId) throw "Deny";
+  if (!channel) throw 'Channel not found';
+  if (channel.community.ownerId !== userId) throw 'Deny';
 
   const channelUpdate = await prisma.channel.update({
     where: { id: channel.id },

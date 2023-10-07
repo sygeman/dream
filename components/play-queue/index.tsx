@@ -1,9 +1,10 @@
-import { ReactNode, PropsWithChildren, useEffect, useState } from 'react';
+import { PropsWithChildren, ReactNode, useEffect, useState } from 'react';
+
 import { Backgroud } from './background';
 import { History } from './history';
 import { Queue } from './queue';
 
-type PlayQueueLayoutProps = PropsWithChildren & {
+type PlayQueueLayoutProperties = PropsWithChildren & {
   backgroudImageUrl?: string;
   hideWithBlur?: boolean;
   history?: ReactNode;
@@ -31,15 +32,15 @@ export const PlayQueueLayout = ({
   addActionModalLink,
   addActionAccent,
   addActionLabel,
-  onMinimalContentChanged = () => null,
-}: PlayQueueLayoutProps) => {
+  onMinimalContentChanged = () => {},
+}: PlayQueueLayoutProperties) => {
   const [viewType, setViewType] = useState<PlayQueueViewType>(
-    PlayQueueViewType.CURRENT,
+    PlayQueueViewType.CURRENT
   );
 
   useEffect(() => {
     onMinimalContentChanged(viewType !== PlayQueueViewType.CURRENT);
-  }, [viewType]);
+  }, [onMinimalContentChanged, viewType]);
 
   return (
     <div className="h-screen w-full flex flex-1 flex-col relative overflow-hidden">
@@ -53,7 +54,7 @@ export const PlayQueueLayout = ({
             setViewType(
               viewType === PlayQueueViewType.HISTORY
                 ? PlayQueueViewType.CURRENT
-                : PlayQueueViewType.HISTORY,
+                : PlayQueueViewType.HISTORY
             )
           }
           hidden={viewType === PlayQueueViewType.QUEUE}
@@ -70,7 +71,7 @@ export const PlayQueueLayout = ({
             setViewType(
               viewType === PlayQueueViewType.QUEUE
                 ? PlayQueueViewType.CURRENT
-                : PlayQueueViewType.QUEUE,
+                : PlayQueueViewType.QUEUE
             )
           }
         >

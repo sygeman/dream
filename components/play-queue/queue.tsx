@@ -17,7 +17,7 @@ export const Queue = ({
   addActionModalLink,
   addActionAccent,
   addActionLabel,
-  onSelect = () => null,
+  onSelect = () => {},
 }: Properties) => (
   <div
     className={clsx(

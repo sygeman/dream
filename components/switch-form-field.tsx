@@ -1,9 +1,9 @@
 'use client';
-import { type ReactNode } from 'react';
-import clsx from 'clsx';
 import { Switch } from '@headlessui/react';
+import clsx from 'clsx';
+import { type ReactNode } from 'react';
 
-type Props = {
+type Properties = {
   title: string | ReactNode;
   description: string | ReactNode;
   checked: boolean;
@@ -15,7 +15,7 @@ export const SwitchFormField = ({
   description,
   checked,
   onChange,
-}: Props) => (
+}: Properties) => (
   <div className="w-full p-2 flex items-center">
     <Switch.Group>
       <div className="flex-1">

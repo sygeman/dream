@@ -1,30 +1,32 @@
-"use client";
-import { useMemo } from "react";
-import { SettingsLayout } from "@/components/settings/layouts-settings";
-import { CommunitySettingsOverview } from "./overview";
-import { usePathname, useSearchParams } from "next/navigation";
+'use client';
+import { usePathname, useSearchParams } from 'next/navigation';
+import { useMemo } from 'react';
+
+import { SettingsLayout } from '@/components/settings/layouts-settings';
+
+import { CommunitySettingsOverview } from './overview';
 
 export const CommunitySettingsModal = () => {
-  const searchParams = useSearchParams();
+  const searchParameters = useSearchParams();
   const pathname = usePathname();
 
   const deleteCommunityLink = useMemo(() => {
-    const newParams = new URLSearchParams(Array.from(searchParams.entries()));
-    newParams.delete("communitySettings");
-    newParams.set("deleteCommunity", "1");
-    return `${pathname}?${newParams?.toString()}`;
-  }, [searchParams]);
+    const newParameters = new URLSearchParams([...searchParameters.entries()]);
+    newParameters.delete('communitySettings');
+    newParameters.set('deleteCommunity', '1');
+    return `${pathname}?${newParameters?.toString()}`;
+  }, [searchParameters]);
 
   return (
     <SettingsLayout
       id="communitySettings"
       menu={[
         {
-          label: "Community Settings",
+          label: 'Community Settings',
           items: [
             {
-              key: "overview",
-              label: "Overview",
+              key: 'overview',
+              label: 'Overview',
               content: <CommunitySettingsOverview />,
             },
           ],
@@ -32,8 +34,8 @@ export const CommunitySettingsModal = () => {
         {
           items: [
             {
-              key: "delete-community",
-              label: "Delete Community",
+              key: 'delete-community',
+              label: 'Delete Community',
               link: deleteCommunityLink,
             },
           ],

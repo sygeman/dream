@@ -1,13 +1,13 @@
 import { memo } from 'react';
 import ReactPlayer from 'react-player';
 
-type Props = {
+type Properties = {
   isIntersecting?: boolean;
   tenorGif: any;
 };
 
 export const GifContainer = memo(
-  ({ isIntersecting, tenorGif: { containerHeight, video } }: Props) => {
+  ({ isIntersecting, tenorGif: { containerHeight, video } }: Properties) => {
     return (
       <div
         style={{ height: containerHeight }}
@@ -24,5 +24,7 @@ export const GifContainer = memo(
         {/* )} */}
       </div>
     );
-  },
+  }
 );
+
+GifContainer.displayName = 'GifContainer';

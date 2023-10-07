@@ -1,13 +1,14 @@
-import { prisma } from "@/libs/prisma";
-import { CommunityRightPanel } from "./community-right-panel";
-import { ChannelModeContent } from "./mode";
-import { ChannelHeader } from "./header";
+import { prisma } from '@/libs/prisma';
 
-type Props = {
+import { CommunityRightPanel } from './community-right-panel';
+import { ChannelHeader } from './header';
+import { ChannelModeContent } from './mode';
+
+type Properties = {
   params: { community: string; channel: string };
 };
 
-async function CommunityChannelPage({ params }: Props) {
+async function CommunityChannelPage({ params }: Properties) {
   const channel = await prisma.channel.findFirst({
     where: {
       name: params.channel,
@@ -26,10 +27,10 @@ async function CommunityChannelPage({ params }: Props) {
         },
       },
       deleted: false,
-      tenorGifId: null,
+      tenorGifId: undefined,
     },
     orderBy: {
-      createdAt: "desc",
+      createdAt: 'desc',
     },
     take: 50,
     include: {

@@ -24,11 +24,11 @@ const CircleIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
-type Props = {
+type Properties = {
   checked: boolean;
 };
 
-export const RadioButton = ({ checked }: Props) => {
+export const RadioButton = ({ checked }: Properties) => {
   if (checked) return <DotCircleIcon className="h-5 w-5 text-white" />;
   return <CircleIcon className="h-5 w-5 text-muted-foreground opacity-80" />;
 };

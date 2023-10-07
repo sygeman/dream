@@ -11,7 +11,7 @@ const Player = dynamic(() => import('./player'), { ssr: false });
 
 export const ChannelTwitchMode = () => {
   const parameters = useParams();
-  const [twitchStream, setTwitchStream] = useState<any>(null);
+  const [twitchStream, setTwitchStream] = useState<any>('');
 
   useEffect(() => {
     getTwitchModeAction(

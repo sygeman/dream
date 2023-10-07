@@ -53,7 +53,7 @@ export const Users = ({ onClose }: Properties) => {
           <input
             placeholder="Find user online"
             className="bg-background text-muted-foreground text-sm focus:outline-none focus:ring-1 rounded p-1 px-2 w-full"
-            onChange={(e) => setUsersFilter(e?.target?.value)}
+            onChange={(event) => setUsersFilter(event?.target?.value)}
           />
         </div>
         {/* {!channelUsersOnlineQuery.loading && usersOnline.length === 0 && (

@@ -2,12 +2,12 @@
 import clsx from 'clsx';
 import { signIn } from 'next-auth/react';
 
-type Props = {
+type Properties = {
   provider: string;
   className: string;
 };
 
-export const SocialButton = ({ provider, className }: Props) => (
+export const SocialButton = ({ provider, className }: Properties) => (
   <button
     onClick={() => signIn(provider)}
     className={clsx('btn-social w-full', className)}

@@ -42,8 +42,8 @@ export const ChannelSettingsModeCard = ({
         )}
         <button
           className="btn mr-2"
-          onClick={(e) => {
-            e.stopPropagation();
+          onClick={(event) => {
+            event.stopPropagation();
             openSettings();
           }}
         >

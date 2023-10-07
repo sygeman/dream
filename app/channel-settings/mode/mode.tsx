@@ -16,8 +16,9 @@ interface FormInput {
 }
 
 export const ChannelSettingsMode = () => {
-  const [selectedChannelMode, setSelectedChannelMode] =
-    useState<ChannelMode | null>(null);
+  const [selectedChannelMode, setSelectedChannelMode] = useState<ChannelMode>(
+    ChannelMode.NONE
+  );
   const parameters = useParams();
 
   const {
@@ -85,7 +86,7 @@ export const ChannelSettingsMode = () => {
       >
         <ModeSettings
           modeKey={selectedChannelMode}
-          onClose={() => setSelectedChannelMode(null)}
+          onClose={() => setSelectedChannelMode(ChannelMode.NONE)}
         />
       </Transition>
     </div>

@@ -8,7 +8,7 @@ import { channelMods } from '@/helpers/channel-mods';
 import { ChannelTwitchModeSettings } from './twitch/settings';
 
 type Properties = {
-  modeKey: ChannelMode | null;
+  modeKey?: ChannelMode;
   onClose: () => void;
 };
 
@@ -23,12 +23,12 @@ export const ModeSettings = ({ modeKey, onClose }: Properties) => {
       // case ChannelMode.SPOTIFY:
       //   return <ChannelSpotifyModeSettings />;
       default: {
-        return null;
+        return;
       }
     }
   };
 
-  if (!modeKey) return null;
+  if (!modeKey) return;
 
   return (
     <div className="flex flex-col flex-1">

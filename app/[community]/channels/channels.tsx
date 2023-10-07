@@ -1,12 +1,13 @@
 'use client';
 
-import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
 import { Channel } from '@prisma/client';
+import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
+
 import { ChannelItem } from './channel';
 
-type Props = { channels: Channel[] };
+type Properties = { channels: Channel[] };
 
-export const CommunityChannels = ({ channels }: Props) => (
+export const CommunityChannels = ({ channels }: Properties) => (
   <div className="flex flex-1 w-full overflow-hidden">
     <OverlayScrollbarsComponent className="w-full">
       <ChannelItem key="welcome" title="Welcome" />

@@ -1,12 +1,12 @@
-import { type ElementType } from 'react';
 import clsx from 'clsx';
+import { type ElementType } from 'react';
 
-type Props = {
+type Properties = {
   Icon: ElementType;
   label: string;
 };
 
-export const MenuItem = ({ Icon, label }: Props) => (
+export const MenuItem = ({ Icon, label }: Properties) => (
   <div
     className={clsx(
       'w-full flex justify-between items-center',

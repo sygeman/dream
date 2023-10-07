@@ -1,7 +1,7 @@
-"use server";
+'use server';
 
-import { getCurretUserId } from "@/helpers/get-current-user";
-import { prisma } from "@/libs/prisma";
+import { getCurretUserId } from '@/helpers/get-current-user';
+import { prisma } from '@/libs/prisma';
 
 export const getTwitchModeSettingsAction = async (
   communityName: string,
@@ -13,7 +13,7 @@ export const getTwitchModeSettingsAction = async (
     },
   });
 
-  return { channelKey: twitchStream?.channelKey || null };
+  return { channelKey: twitchStream?.channelKey || undefined };
 };
 
 export const setTwitchModeSettingsAction = async (
@@ -35,8 +35,8 @@ export const setTwitchModeSettingsAction = async (
     include: { community: true },
   });
 
-  if (!channel) throw "Channel not found";
-  if (channel.community.ownerId !== userId) throw "Deny";
+  if (!channel) throw 'Channel not found';
+  if (channel.community.ownerId !== userId) throw 'Deny';
 
   let twitchStream = await prisma.twitchMode.findFirst({
     where: { channel: { id: channel.id } },

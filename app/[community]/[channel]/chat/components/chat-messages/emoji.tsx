@@ -1,6 +1,6 @@
-type Props = { emojiId: string };
+type Properties = { emojiId: string };
 
-export const Emoji = ({ emojiId }: Props) => {
+export const Emoji = ({ emojiId }: Properties) => {
   // const emojiQuery = useEmojiQuery({
   //   variables: { emojiId },
   //   fetchPolicy: 'cache-first',

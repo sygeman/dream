@@ -1,17 +1,18 @@
 'use client';
 
+import { Community } from '@prisma/client';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
-import { Community } from '@prisma/client';
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
-import { AppPanelNewCommunity } from './new';
+
 import { AppPanelMenuItem } from './menu-item';
+import { AppPanelNewCommunity } from './new';
 
-type Props = { communities: Community[]; isUser: boolean };
+type Properties = { communities: Community[]; isUser: boolean };
 
-export const AppPanelCommunitiesList = ({ communities, isUser }: Props) => {
-  const searchParams = useSearchParams();
-  const currentCommunity = searchParams.get('community');
+export const AppPanelCommunitiesList = ({ communities, isUser }: Properties) => {
+  const searchParameters = useSearchParams();
+  const currentCommunity = searchParameters.get('community');
 
   return (
     <div className="flex flex-1 w-full overflow-hidden">

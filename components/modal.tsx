@@ -3,7 +3,7 @@ import { Dialog, Transition } from '@headlessui/react';
 import { XMarkIcon } from '@heroicons/react/20/solid';
 import React, { Fragment, useRef } from 'react';
 
-export type ModalProps = {
+export type ModalProperties = {
   id: string;
   isOpen: (id: string) => boolean;
   onClose: (id: string) => void;
@@ -12,7 +12,7 @@ export type ModalProps = {
   children?: React.ReactNode;
 };
 
-export const Modal: React.FC<ModalProps> = ({
+export const Modal: React.FC<ModalProperties> = ({
   id,
   isOpen,
   onClose,

@@ -28,8 +28,8 @@ export const ChannelYoutubeModeAddVideo = () => {
           type="text"
           className="bg-background text-white text-xs p-2 rounded w-full focus:outline-none focus:ring-1 mb-2"
           placeholder="Paste youtube video link here..."
-          onChange={(e) => {
-            const videoId = e.target.value.match(
+          onChange={(event) => {
+            const videoId = event.target.value.match(
               /(.*?)(^|\/|v=)([\w-]{11})(.*)?/i
             )?.[3];
             setVideoId(videoId || '');

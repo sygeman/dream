@@ -1,11 +1,11 @@
 'use client';
 import ReactPlayer from 'react-player';
 
-type Props = {
+type Properties = {
   channelKey: string;
 };
 
-const Player = ({ channelKey }: Props) => (
+const Player = ({ channelKey }: Properties) => (
   <ReactPlayer
     url={`https://www.twitch.tv/${channelKey}`}
     height="100%"

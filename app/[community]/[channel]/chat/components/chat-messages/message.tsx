@@ -35,13 +35,11 @@ export const ChatMessage = ({
         setIntersecting(entry.isIntersecting);
       },
       {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         root: rootReference,
       }
     );
 
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     observer.observe(reference.current);
 

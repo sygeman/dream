@@ -1,5 +1,6 @@
-import { TrackFromList } from "../components/track-from-list";
-import { dateDistanceInWordsToNow } from "@/helpers/date-distance-in-words-to-now";
+import { dateDistanceInWordsToNow } from '@/helpers/date-distance-in-words-to-now';
+
+import { TrackFromList } from '../components/track-from-list';
 
 export const ChannelYoutubeModeHistory = () => {
   // const { channelId } = useCommunityChannel();
@@ -27,7 +28,7 @@ export const ChannelYoutubeModeHistory = () => {
         <div key={item.data.id}>
           <TrackFromList
             cover={item.data.cover}
-            artists={""}
+            artists={''}
             title={item.data.title}
             avatar={item.data.author.avatar}
             info={dateDistanceInWordsToNow(item.data.endedAt)}

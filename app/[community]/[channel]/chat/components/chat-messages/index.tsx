@@ -1,11 +1,11 @@
 import clsx from 'clsx';
 import React, { useEffect, useRef, useState } from 'react';
 import { Virtuoso, VirtuosoHandle } from 'react-virtuoso';
-import { Scroller } from './scrollbar';
+
 import { ChatMessage } from './message';
+import { Scroller } from './scrollbar';
 
 export const ChatMessages = ({
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   messages,
   // loadNextPage,
@@ -16,31 +16,30 @@ export const ChatMessages = ({
   const virtuoso = useRef<VirtuosoHandle>(null);
   const [atBottom, setAtBottom] = useState(false);
   const [showButton, setShowButton] = useState(false);
-  const showButtonTimeoutRef = useRef(null);
+  const showButtonTimeoutReference = useRef(null);
 
   useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    clearTimeout(showButtonTimeoutRef.current);
-    if (!atBottom) {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      showButtonTimeoutRef.current = setTimeout(() => setShowButton(true), 500);
-    } else {
+    clearTimeout(showButtonTimeoutReference.current);
+    if (atBottom) {
       setShowButton(false);
+    } else {
+      // @ts-ignore
+      showButtonTimeoutReference.current = setTimeout(
+        () => setShowButton(true),
+        500
+      );
     }
   }, [atBottom, setShowButton]);
 
   useEffect(() => {
     return () => {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-      clearTimeout(showButtonTimeoutRef.current);
+      clearTimeout(showButtonTimeoutReference.current);
     };
   }, []);
 
   const toBottom = () =>
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     virtuoso.current.scrollToIndex({
       index: messages.length - 1,
@@ -53,14 +52,13 @@ export const ChatMessages = ({
         ref={virtuoso}
         className="h-full"
         // overscan={200}
-        initialTopMostItemIndex={100000}
+        initialTopMostItemIndex={100_000}
         // startReached={loadPrevPage}
         // endReached={loadNextPage}
         // firstItemIndex={firstItemIndex}
         atBottomStateChange={setAtBottom}
         itemContent={(_index, item) => <ChatMessage {...item} />}
         followOutput
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         components={{ Scroller }}
       />

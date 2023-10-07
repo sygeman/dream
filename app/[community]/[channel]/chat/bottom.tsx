@@ -75,13 +75,13 @@ export const ChatBottom: React.FC<ChatBottomProperties> = ({ channelId }) => {
           rows={1}
           placeholder="Send a message"
           className="bg-background text-white text-xs resize-none p-2 pr-6 rounded w-full focus:outline-none focus:ring-1"
-          onKeyDown={(e) => {
+          onKeyDown={(event) => {
             if (!textareaReference.current) {
-              return null;
+              return;
             }
 
-            if (e.key === 'Enter') {
-              e.preventDefault();
+            if (event.key === 'Enter') {
+              event.preventDefault();
               sendMessage();
             }
           }}

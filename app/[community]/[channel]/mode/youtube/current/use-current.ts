@@ -1,5 +1,5 @@
 export const useCurrent = () => {
-  const current: any = null;
+  const current: any = undefined;
 
   // const currentQuery = useWaitlistYoutubeCurrentQuery({
   //   variables: { channelId },

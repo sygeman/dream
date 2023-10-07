@@ -6,8 +6,8 @@ export const compactMessages = (messages: any) => {
 
     if (index > 0) {
       const diff =
-        parseInt(message.createdAt, 10) -
-        parseInt(array[index - 1].createdAt, 10);
+        Number.parseInt(message.createdAt, 10) -
+        Number.parseInt(array[index - 1].createdAt, 10);
 
       if (
         diff < compactInterval &&

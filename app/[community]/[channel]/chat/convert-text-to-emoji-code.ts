@@ -2,7 +2,7 @@ export const convertTextToEmojiCode = (text: string, emojis: any) => {
   return text
     .split(' ')
     .map((word) => {
-      const emoji = emojis.find((e: any) => `:${e.alias}:` === word);
+      const emoji = emojis.find(({ alias }: any) => `:${alias}:` === word);
 
       if (!emoji) return word;
 

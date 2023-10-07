@@ -1,9 +1,9 @@
-"use server";
+'use server';
 
-import { getCurretUserId } from "@/helpers/get-current-user";
-import { prisma } from "@/libs/prisma";
-import { pusher } from "@/libs/pusher";
-import { getYoutubeVideo } from "@/libs/youtube";
+import { getCurretUserId } from '@/helpers/get-current-user';
+import { prisma } from '@/libs/prisma';
+import { pusher } from '@/libs/pusher';
+import { getYoutubeVideo } from '@/libs/youtube';
 
 // async init(channelId: string) {
 //   const waitlistYoutube = await prisma.youtubeMode.findFirst({
@@ -187,15 +187,15 @@ import { getYoutubeVideo } from "@/libs/youtube";
 //   }
 
 export const skipVideoByQueue = async (itemId: string) => {
-  console.log("skipTrackByQueue", itemId);
+  console.log('skipTrackByQueue', itemId);
 
-  if (!itemId) return null;
+  if (!itemId) return;
 
   const waitlistYoutube = await prisma.youtubeMode.findFirst({
     where: { itemId },
   });
 
-  if (!waitlistYoutube) return null;
+  if (!waitlistYoutube) return;
 
   // return setVideo({ channelId: waitlistYoutube.channelId });
 };

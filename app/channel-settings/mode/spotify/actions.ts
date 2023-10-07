@@ -1,8 +1,9 @@
-"use server";
+'use server';
 
-import { SpotifyModeStrategy } from "@prisma/client";
-import { getCurretUserId } from "@/helpers/get-current-user";
-import { prisma } from "@/libs/prisma";
+import { SpotifyModeStrategy } from '@prisma/client';
+
+import { getCurretUserId } from '@/helpers/get-current-user';
+import { prisma } from '@/libs/prisma';
 
 export const getSpotifyModeSettingsAction = async (
   communityName: string,
@@ -36,8 +37,8 @@ export const setSpotifyModeSettingsAction = async (
     include: { community: true },
   });
 
-  if (!channel) throw "Channel not found";
-  if (channel.community.ownerId !== userId) throw "Deny";
+  if (!channel) throw 'Channel not found';
+  if (channel.community.ownerId !== userId) throw 'Deny';
 
   let spotifyMode = await prisma.spotifyMode.findFirst({
     where: { channel: { id: channel.id } },

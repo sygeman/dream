@@ -1,9 +1,10 @@
 import { Fragment } from 'react';
+
 import { Emoji } from './emoji';
 
 const splitTextToEmojiArray = (text: string) => {
-  return text.split(/(\<\:[^:]+\:[a-zA-Z0-9]+\>)/g).map((txt) => {
-    const findEmoji = txt.match(/\<\:([^:]+)\:([a-zA-Z0-9]+)\>/);
+  return text.split(/(<:[^:]+:[\dA-Za-z]+>)/g).map((txt) => {
+    const findEmoji = txt.match(/<:([^:]+):([\dA-Za-z]+)>/);
 
     if (findEmoji) {
       return { type: 'emoji', name: findEmoji[1], id: findEmoji[2] };

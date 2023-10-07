@@ -1,9 +1,10 @@
-"use server";
+'use server';
 
-import { prisma } from "@/libs/prisma";
-import { pusher } from "@/libs/pusher";
-import { CHANNEL_MESSAGE_CREATED } from "./constants";
-import { getCurretUserId } from "@/helpers/get-current-user";
+import { getCurretUserId } from '@/helpers/get-current-user';
+import { prisma } from '@/libs/prisma';
+import { pusher } from '@/libs/pusher';
+
+import { CHANNEL_MESSAGE_CREATED } from './constants';
 
 export const createMessageAction = async (data: {
   channel: string;
@@ -32,7 +33,7 @@ export const createMessageAction = async (data: {
   });
 
   if (!channel) {
-    throw "Channel not found";
+    throw 'Channel not found';
   }
 
   const message = await prisma.channelMessage.create({

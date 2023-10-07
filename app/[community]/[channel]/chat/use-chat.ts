@@ -1,7 +1,9 @@
-import { ChannelMessage } from "@prisma/client";
-import { pusher } from "@/libs/pusher-client";
-import { useEffect, useState } from "react";
-import { CHANNEL_MESSAGE_CREATED } from "./constants";
+import { ChannelMessage } from '@prisma/client';
+import { useEffect, useState } from 'react';
+
+import { pusher } from '@/libs/pusher-client';
+
+import { CHANNEL_MESSAGE_CREATED } from './constants';
 
 export const useChat = (messagesInit: ChannelMessage[], channelId: string) => {
   const [messages, setMessages] = useState<ChannelMessage[]>(messagesInit);
@@ -10,14 +12,14 @@ export const useChat = (messagesInit: ChannelMessage[], channelId: string) => {
     pusher
       .subscribe(channelId)
       .bind(CHANNEL_MESSAGE_CREATED, (newMessage: ChannelMessage) => {
-        setMessages((prevMessages) => {
-          const messageIsExist = !!prevMessages.find(
+        setMessages((previousMessages) => {
+          const messageIsExist = !!previousMessages.some(
             (message) => message.id === newMessage.id
           );
 
-          if (messageIsExist) return prevMessages;
+          if (messageIsExist) return previousMessages;
 
-          return [...prevMessages.slice(-50), newMessage];
+          return [...previousMessages.slice(-50), newMessage];
         });
       });
 

@@ -1,32 +1,34 @@
-"use client";
-import { usePathname, useSearchParams } from "next/navigation";
-import { SettingsLayout } from "@/components/settings/layouts-settings";
-import { UserSettingsLanguage } from "./language";
-import { useMemo } from "react";
-import { useIntl } from "@/libs/intl";
+'use client';
+import { usePathname, useSearchParams } from 'next/navigation';
+import { useMemo } from 'react';
+
+import { SettingsLayout } from '@/components/settings/layouts-settings';
+import { useIntl } from '@/libs/intl';
+
+import { UserSettingsLanguage } from './language';
 
 export const UserSettingsModal = () => {
-  const searchParams = useSearchParams();
+  const searchParameters = useSearchParams();
   const pathname = usePathname();
   const { formatMessage } = useIntl();
 
   const logoutLink = useMemo(() => {
-    const newParams = new URLSearchParams(Array.from(searchParams.entries()));
-    newParams.delete("userSettings");
-    newParams.set("logout", "1");
-    return `${pathname}?${newParams?.toString()}`;
-  }, [searchParams]);
+    const newParameters = new URLSearchParams([...searchParameters.entries()]);
+    newParameters.delete('userSettings');
+    newParameters.set('logout', '1');
+    return `${pathname}?${newParameters?.toString()}`;
+  }, [pathname, searchParameters]);
 
   return (
     <SettingsLayout
       id="userSettings"
       menu={[
         {
-          label: formatMessage({ id: "userSettingsMenuLabel" }),
+          label: formatMessage({ id: 'userSettingsMenuLabel' }),
           items: [
             {
-              key: "language",
-              label: formatMessage({ id: "userSettingsLanguageMenuItemLabel" }),
+              key: 'language',
+              label: formatMessage({ id: 'userSettingsLanguageMenuItemLabel' }),
               content: <UserSettingsLanguage />,
             },
           ],
@@ -34,8 +36,8 @@ export const UserSettingsModal = () => {
         {
           items: [
             {
-              key: "logout",
-              label: formatMessage({ id: "userSettingsLogoutMenuItemLabel" }),
+              key: 'logout',
+              label: formatMessage({ id: 'userSettingsLogoutMenuItemLabel' }),
               link: logoutLink,
             },
           ],

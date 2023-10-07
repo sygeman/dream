@@ -6,7 +6,7 @@ export const useProgress = (start: number) => {
   useEffect(() => {
     const interval = setInterval(() => {
       const s = +new Date(+start);
-      const now = +new Date();
+      const now = Date.now();
       setProgress(Math.round((now - s) / 1000));
     }, 50);
 

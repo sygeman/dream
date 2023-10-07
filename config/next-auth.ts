@@ -1,6 +1,7 @@
+import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import type { NextAuthOptions } from 'next-auth';
 import TwitchProvider from 'next-auth/providers/twitch';
-import { PrismaAdapter } from '@next-auth/prisma-adapter';
+
 import { prisma } from '../libs/prisma';
 import * as twitchConfig from './twitch';
 

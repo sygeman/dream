@@ -19,6 +19,7 @@ services:
 
   soketi:
     image: quay.io/soketi/soketi:latest-16-alpine
+    restart: always
     ports:
       - '6001:6001'
       - '9601:9601'

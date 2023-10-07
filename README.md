@@ -2,28 +2,36 @@
 
 ## Local dev
 
-Install deps with pnpm 
+Install deps with bun
+
 ```
-pnpm i
+bun i
 ```
 
 Copy and fill env
+
 ```
 cp .env.example .env.local
 ```
 
-Run docker compose 
+Run docker compose
+
 ```
 docker compose -f ./docker-compose.dev.yml up -d
 ```
 
 Preparate prisma
+
 ```
-pnpm dbpush
-pnpm generate
+bun dbpush
+bun generate
 ```
 
 Run client
+
 ```
-pnpm dev
+bun dev
 ```
+
+Update deps
+NPM_CHECK_INSTALLER=bun bunx npm-check -u

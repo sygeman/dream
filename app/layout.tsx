@@ -1,5 +1,3 @@
-// import 'overlayscrollbars/overlayscrollbars.css';
-import 'rc-slider/assets/index.css';
 import './globals.css';
 
 import { Locale } from '@prisma/client';

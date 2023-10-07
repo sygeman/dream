@@ -1,10 +1,10 @@
 import { useParams } from 'next/navigation';
-import Slider from 'rc-slider';
 import React from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 
 import { SaveFormPanel } from '@/components/save-form-panel';
 import { SwitchFormField } from '@/components/switch-form-field';
+import { Slider } from '@/components/ui/slider';
 
 import {
   getChannelChatSettingsAction,
@@ -49,14 +49,6 @@ export const ChannelSettingsChat = () => {
     });
   };
 
-  const marks = {
-    0: 'Off',
-    5: '5s',
-    10: '10s',
-    15: '15s',
-    30: '30s',
-  };
-
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="divide-zinc-900-light divide-y">
@@ -87,27 +79,28 @@ export const ChannelSettingsChat = () => {
           control={control}
         />
 
-        <div className="p-2">
-          <div className="text-sm text-muted-foreground">Slowmode</div>
-          <div className="p-2">
-            <Controller
-              render={({ field }) => (
+        <Controller
+          render={({ field }) => (
+            <div className="p-2">
+              <div className="text-sm text-muted-foreground">
+                Slowmode - {field.value}s
+              </div>
+              <div className="p-2">
                 <Slider
-                  value={field.value}
+                  value={[field.value]}
                   min={0}
                   max={30}
-                  marks={marks}
-                  step={undefined}
-                  onChange={(slowmode) => {
+                  step={5}
+                  onValueChange={([slowmode]) => {
                     if (typeof slowmode === 'number') field.onChange(slowmode);
                   }}
                 />
-              )}
-              name="slowmode"
-              control={control}
-            />
-          </div>
-        </div>
+              </div>
+            </div>
+          )}
+          name="slowmode"
+          control={control}
+        />
       </div>
 
       <SaveFormPanel show={isDirty} reset={() => reset()} />

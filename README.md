@@ -23,8 +23,8 @@ docker compose -f ./docker-compose.dev.yml up -d
 Preparate prisma
 
 ```
-bun dbpush
-bun generate
+bunx prisma db push
+bunx prisma generate
 ```
 
 Run client
@@ -34,4 +34,7 @@ bun dev
 ```
 
 Update deps
+
+```
 NPM_CHECK_INSTALLER=bun bunx npm-check -u
+```

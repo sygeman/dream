@@ -1,7 +1,8 @@
 'use client';
 
 import { Channel } from '@prisma/client';
-import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
+
+import { ScrollArea } from '@/components/ui/scroll-area';
 
 import { ChannelItem } from './channel';
 
@@ -9,7 +10,7 @@ type Properties = { channels: Channel[] };
 
 export const CommunityChannels = ({ channels }: Properties) => (
   <div className="flex flex-1 w-full overflow-hidden">
-    <OverlayScrollbarsComponent className="w-full">
+    <ScrollArea className="w-full">
       <ChannelItem key="welcome" title="Welcome" />
       {channels.map((channel) => (
         <ChannelItem
@@ -20,6 +21,6 @@ export const CommunityChannels = ({ channels }: Properties) => (
           name={channel.name}
         />
       ))}
-    </OverlayScrollbarsComponent>
+    </ScrollArea>
   </div>
 );

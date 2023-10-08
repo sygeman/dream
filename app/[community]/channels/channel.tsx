@@ -26,9 +26,9 @@ export const ChannelItem = ({ name, title, state, online }: Properties) => {
           'flex items-center flex-1 w-full h-10',
           'px-2 py-1',
           'cursor-pointer transition-colors',
-          'hover:bg-zinc-900-light',
+          'hover:bg-accent',
           'rounded',
-          selected && 'bg-zinc-900-light'
+          selected && 'bg-accent'
         )}
       >
         <div className="flex flex-col flex-1">

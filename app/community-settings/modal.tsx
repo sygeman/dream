@@ -15,7 +15,7 @@ export const CommunitySettingsModal = () => {
     newParameters.delete('communitySettings');
     newParameters.set('deleteCommunity', '1');
     return `${pathname}?${newParameters?.toString()}`;
-  }, [searchParameters]);
+  }, [pathname, searchParameters]);
 
   return (
     <SettingsLayout

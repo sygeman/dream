@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import Image from 'next/image';
 import React, { useEffect, useRef, useState } from 'react';
 import ReactPlayer from 'react-player';
 
@@ -63,7 +64,15 @@ export const ChannelYoutubeModeCurrent = ({
               <div className="text-white">{current.author.name}</div>
             </div>
             <div className="flex rounded-full overflow-hidden h-8 w-8 bg-background mr-2">
-              <img src={current.author.avatar} className="" alt="" />
+              {current.author.avatar && (
+                <Image
+                  width={32}
+                  height={32}
+                  src={current.author.avatar}
+                  className=""
+                  alt=""
+                />
+              )}
             </div>
             <CurrentMenu />
           </div>

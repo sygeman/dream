@@ -16,7 +16,7 @@ export const ChannelHeader = ({ title }: Properties) => {
     const newParameters = new URLSearchParams([...searchParameters.entries()]);
     newParameters.set('channelSettings', 'overview');
     return `${pathname}?${newParameters?.toString()}`;
-  }, [searchParameters]);
+  }, [pathname, searchParameters]);
 
   return (
     <div className="flex shrink-0 w-full bg-background-light text-white h-10 px-4">

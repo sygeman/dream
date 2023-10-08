@@ -9,7 +9,7 @@ export const useAddVideoLink = () => {
     const newParameters = new URLSearchParams([...searchParameters.entries()]);
     newParameters.set('waitlistYoutubeAddVideo', '1');
     return `${pathname}?${newParameters?.toString()}`;
-  }, [searchParameters]);
+  }, [pathname, searchParameters]);
 
   return { waitlistYoutubeAddVideoLink };
 };

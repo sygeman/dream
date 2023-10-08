@@ -1,4 +1,5 @@
 import { EllipsisVerticalIcon } from '@heroicons/react/20/solid';
+import Image from 'next/image';
 
 type Properties = {
   cover?: string;
@@ -19,7 +20,9 @@ export const TrackFromList = ({
 }: Properties) => (
   <div className="flex px-4 py-1 items-center opacity-70 hover:opacity-100 group">
     <div>
-      <img src={cover} className="h-8 w-8" alt="" />
+      {cover && (
+        <Image width={32} height={32} src={cover} className="h-8 w-8" alt="" />
+      )}
     </div>
     <div className="flex flex-col text-sm px-2">
       <div className="text-sm">{artists}</div>
@@ -31,7 +34,9 @@ export const TrackFromList = ({
         className="flex rounded-full overflow-hidden h-6 w-6 bg-zinc-900"
         title={username}
       >
-        <img src={avatar} className="" alt="" />
+        {avatar && (
+          <Image height={24} width={24} src={avatar} className="" alt="" />
+        )}
       </div>
       <div className="ml-2">
         <button className="h-6 w-6 flex btn p-0 items-center justify-center opacity-0 group-hover:opacity-100">

@@ -17,7 +17,7 @@ export const ChannelSettingsModal = () => {
     newParameters.delete('channelSettings');
     newParameters.set('deleteChannel', '1');
     return `${pathname}?${newParameters?.toString()}`;
-  }, [searchParameters]);
+  }, [pathname, searchParameters]);
 
   return (
     <SettingsLayout

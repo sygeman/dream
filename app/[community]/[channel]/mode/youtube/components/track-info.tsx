@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 type Properties = {
   imageUrl?: string;
   artist?: string;
@@ -14,7 +16,7 @@ export const TrackInfo = ({
   <div className="flex relative w-full h-16">
     <div className="flex absolute left-0 bottom-0 w-full">
       <div className="h-16 w-16">
-        <img src={imageUrl} alt="" />
+        {imageUrl && <Image height={64} width={64} src={imageUrl} alt="" />}
       </div>
       <div className="flex flex-1 relative">
         <div

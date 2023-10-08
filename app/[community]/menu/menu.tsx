@@ -26,13 +26,13 @@ export const CommunityHeader = ({ title }: Properties) => {
     const newParameters = new URLSearchParams([...searchParameters.entries()]);
     newParameters.set('newChannel', '1');
     return `${pathname}?${newParameters?.toString()}`;
-  }, [searchParameters]);
+  }, [pathname, searchParameters]);
 
   const communitySettingsLink = useMemo(() => {
     const newParameters = new URLSearchParams([...searchParameters.entries()]);
     newParameters.set('communitySettings', 'overview');
     return `${pathname}?${newParameters?.toString()}`;
-  }, [searchParameters]);
+  }, [pathname, searchParameters]);
 
   return (
     <Menu as="div" className="relative z-10">

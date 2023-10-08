@@ -21,7 +21,7 @@ export const AppPanelNewCommunity = ({ isUser }: Properties) => {
     }
 
     return `${pathname}?${newParameters?.toString()}`;
-  }, [isUser, searchParameters]);
+  }, [isUser, pathname, searchParameters]);
 
   return (
     <Link href={newCommunityLink} passHref>

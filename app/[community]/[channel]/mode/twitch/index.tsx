@@ -20,7 +20,7 @@ export const ChannelTwitchMode = () => {
     ).then((data) => {
       setTwitchStream(data);
     });
-  }, []);
+  }, [parameters.channel, parameters.community]);
 
   const channelKey = twitchStream?.channelKey;
 

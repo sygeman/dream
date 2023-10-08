@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React, { useEffect, useRef, useState } from 'react';
 
 import { dateDistanceInWordsToNow } from '@/helpers/date-distance-in-words-to-now';
@@ -57,7 +58,9 @@ export const ChatMessage = ({
         <div className="flex items-center w-full pt-1">
           <div className="flex items-center justify-center rounded-full cursor-pointer">
             {authorAvatar ? (
-              <img
+              <Image
+                width={16}
+                height={16}
                 className="h-4 w-4 rounded-full"
                 src={authorAvatar}
                 alt={authorName}

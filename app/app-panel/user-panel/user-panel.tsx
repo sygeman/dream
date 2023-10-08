@@ -1,6 +1,7 @@
 'use client';
 
 import { UserCircleIcon } from '@heroicons/react/20/solid';
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
 import React, { useMemo } from 'react';
@@ -23,14 +24,22 @@ export const UserPanel = ({ user }: Properties) => {
     }
 
     return `${pathname}?${newParameters?.toString()}`;
-  }, [user, searchParameters]);
+  }, [searchParameters, user, pathname]);
 
   return (
     <Link href={userLink} passHref>
       {user ? (
         <div className="flex items-center justify-center w-12 h-12 cursor-pointer">
           <div className="rounded-full h-8 w-8 flex items-center justify-center">
-            <img src={user.image} className="h-full w-full rounded-full" />
+            {user.image && (
+              <Image
+                src={user.image}
+                alt=""
+                width={32}
+                height={32}
+                className="h-full w-full rounded-full"
+              />
+            )}
           </div>
         </div>
       ) : (

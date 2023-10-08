@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 import { secondsToDurationFormat } from '@/helpers/seconds-to-duration-format';
 
 import { useProgress } from './use-progress';
@@ -21,7 +23,7 @@ export const ChannelModeWaitlistProgress = ({
     <div className="flex relative w-full h-12">
       <div className="flex absolute left-0 bottom-0 w-full">
         <div className="flex items-center justify-center h-12 w-12">
-          <img src={imageUrl} alt="" />
+          {imageUrl && <Image width={48} height={48} src={imageUrl} alt="" />}
         </div>
         <div className="flex flex-1 relative">
           <div

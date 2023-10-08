@@ -1,5 +1,6 @@
 import { RadioGroup } from '@headlessui/react';
 import { Locale } from '@prisma/client';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
 import { RadioButton } from '@/components/radio';
@@ -49,8 +50,11 @@ export const UserSettingsLanguage = () => {
                         <div className="text-xs text-muted-foreground px-2">
                           {formatMessage({ id: language.value })}
                         </div>
-                        <img
+                        <Image
+                          alt=""
                           className="h-5 w-5"
+                          width={20}
+                          height={20}
                           src={`/flags/${language.flag}.svg`}
                         />
                       </RadioGroup.Description>

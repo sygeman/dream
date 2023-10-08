@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import Image from 'next/image';
 import React from 'react';
 
 interface AppPanelMenuItemProperties {
@@ -33,7 +34,13 @@ export const AppPanelMenuItem: React.FC<AppPanelMenuItemProperties> = ({
       )}
     >
       {img ? (
-        <img src={img} className="h-full" alt={label} />
+        <Image
+          width={32}
+          height={32}
+          src={img}
+          className="h-full"
+          alt={label}
+        />
       ) : (
         <span className="text-muted-foreground text-sm">{label?.[0]}</span>
       )}

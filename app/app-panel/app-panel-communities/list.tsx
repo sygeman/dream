@@ -3,20 +3,24 @@
 import { Community } from '@prisma/client';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
-import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
+
+import { ScrollArea } from '@/components/ui/scroll-area';
 
 import { AppPanelMenuItem } from './menu-item';
 import { AppPanelNewCommunity } from './new';
 
 type Properties = { communities: Community[]; isUser: boolean };
 
-export const AppPanelCommunitiesList = ({ communities, isUser }: Properties) => {
+export const AppPanelCommunitiesList = ({
+  communities,
+  isUser,
+}: Properties) => {
   const searchParameters = useSearchParams();
   const currentCommunity = searchParameters.get('community');
 
   return (
     <div className="flex flex-1 w-full overflow-hidden">
-      <OverlayScrollbarsComponent className="w-full">
+      <ScrollArea className="w-full">
         {communities.map((community) => (
           <Link key={community?.id} href={`/${community?.name}`} passHref>
             <AppPanelMenuItem
@@ -28,7 +32,7 @@ export const AppPanelCommunitiesList = ({ communities, isUser }: Properties) => 
         ))}
 
         <AppPanelNewCommunity isUser={isUser} />
-      </OverlayScrollbarsComponent>
+      </ScrollArea>
     </div>
   );
 };

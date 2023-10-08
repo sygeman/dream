@@ -1,9 +1,9 @@
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid';
 import useAxios from 'axios-hooks';
-import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
 import React, { useEffect, useRef, useState } from 'react';
 import { useDebounce } from 'use-debounce';
 
+import { ScrollArea } from '@/components/ui/scroll-area';
 import { key as tenorKey } from '@/config/tenor';
 
 export interface GifPickerProperties {
@@ -65,7 +65,7 @@ export const GifPicker: React.FC<GifPickerProperties> = ({
           <MagnifyingGlassIcon className="h-4 text-muted-foreground" />
         </div>
       </div>
-      <OverlayScrollbarsComponent className="w-full h-64 px-2 pb-2">
+      <ScrollArea className="w-full h-64 px-2 pb-2">
         <div
           className="box-border mx-auto gap-x-2 before:box-inherit after:box-inherit"
           style={{ columnCount: 2 }}
@@ -87,7 +87,7 @@ export const GifPicker: React.FC<GifPickerProperties> = ({
           ))}
         </div>
         <div onClick={loadMore}>Load More</div>
-      </OverlayScrollbarsComponent>
+      </ScrollArea>
     </div>
   );
 };

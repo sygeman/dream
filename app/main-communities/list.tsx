@@ -4,10 +4,10 @@ import { Community } from '@prisma/client';
 import clsx from 'clsx';
 import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
-import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
 import React, { useMemo } from 'react';
 
 import { Button } from '@/components/ui/button';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import { useIntl } from '@/libs/intl';
 
 import { CommunityCard } from './card';
@@ -37,7 +37,7 @@ export const MainCommunitiesList = ({ communities, isUser }: Properties) => {
   return (
     <div className="flex flex-col w-full bg-zinc-900">
       <div className="flex flex-1 w-full overflow-hidden">
-        <OverlayScrollbarsComponent className="h-full w-full">
+        <ScrollArea className="h-full w-full">
           <div className="flex items-center mt-6 px-6 space-x-4">
             <div className="flex flex-col">
               <span className="text-lg">
@@ -69,7 +69,7 @@ export const MainCommunitiesList = ({ communities, isUser }: Properties) => {
               />
             ))}
           </div>
-        </OverlayScrollbarsComponent>
+        </ScrollArea>
       </div>
     </div>
   );

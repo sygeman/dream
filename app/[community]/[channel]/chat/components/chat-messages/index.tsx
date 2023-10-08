@@ -3,7 +3,6 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Virtuoso, VirtuosoHandle } from 'react-virtuoso';
 
 import { ChatMessage } from './message';
-import { Scroller } from './scrollbar';
 
 export const ChatMessages = ({
   // @ts-ignore
@@ -51,16 +50,10 @@ export const ChatMessages = ({
         data={messages}
         ref={virtuoso}
         className="h-full"
-        // overscan={200}
         initialTopMostItemIndex={100_000}
-        // startReached={loadPrevPage}
-        // endReached={loadNextPage}
-        // firstItemIndex={firstItemIndex}
         atBottomStateChange={setAtBottom}
         itemContent={(_index, item) => <ChatMessage {...item} />}
         followOutput
-        // @ts-ignore
-        components={{ Scroller }}
       />
       {showButton && (
         <button

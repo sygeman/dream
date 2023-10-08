@@ -16,7 +16,7 @@ import { DeleteCommunityModal } from './delete-community/modal';
 import { roboto } from './fonts';
 import { LoginModal } from './login/modal';
 import { LogoutModal } from './logout/modal';
-import { NewChannelModal } from './new-channel/modal';
+import { NewChannelModal } from './new-channel/new-channel';
 import { NewCommunityModal } from './new-community/new-community';
 import { UserSettingsModal } from './user-settings/modal';
 

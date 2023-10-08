@@ -1,29 +1,47 @@
-import clsx from 'clsx';
-import { useParams } from 'next/navigation';
-import { useRouter } from 'next/navigation';
-import { SubmitHandler, useForm } from 'react-hook-form';
+'use client';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useParams, useRouter } from 'next/navigation';
+import { useForm } from 'react-hook-form';
+import * as z from 'zod';
 
+import { Button } from '@/components/ui/button';
+import {
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
 import { urlNameRegExp } from '@/helpers/regexp-url-name';
+import { useDialogUrl } from '@/helpers/use-dialog-url';
 
 import { createChannelAction } from './actions';
 
-interface IFormInput {
-  name: string;
-  title: string;
-}
+const formSchema = z.object({
+  title: z.string().min(2).max(50),
+  name: z.string().min(2).max(50).regex(urlNameRegExp),
+});
 
-export const NewChannel = () => {
-  const origin = typeof window === 'undefined' ? '' : window?.location?.origin;
-  const parameters = useParams();
+export const NewChannelModal = () => {
+  const host = typeof window === 'undefined' ? '' : window?.location?.host;
   const router = useRouter();
+  const parameters = useParams();
+  const dialogUrl = useDialogUrl();
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<IFormInput>();
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+  });
 
-  const onSubmit: SubmitHandler<IFormInput> = async (data) => {
+  const onSubmit = async (data: z.infer<typeof formSchema>) => {
     const { channel } = await createChannelAction({
       community: parameters.community as string,
       ...data,
@@ -32,45 +50,57 @@ export const NewChannel = () => {
     router.push(`/${parameters.community}/${channel.name}`);
   };
 
-  const isError = Object.keys(errors).length > 0;
-
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <label htmlFor="title" className="text-muted-foreground text-xs">
-        Title
-      </label>
-      <input
-        autoFocus
-        {...register('title', { required: true, minLength: 1, maxLength: 50 })}
-        placeholder="Awesome Channel"
-        className="bg-background text-white text-xs p-2 rounded w-full focus:outline-none focus:ring-1 mb-2"
-      />
+    <Dialog {...dialogUrl('newChannel')}>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>New channel</DialogTitle>
+        </DialogHeader>
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+            <FormField
+              control={form.control}
+              name="title"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Title</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Awesome channel" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-      <div className="flex items-center mb-2">
-        <label htmlFor="name" className="text-muted-foreground text-xs">
-          {origin}/{parameters.community}/
-        </label>
-        <input
-          {...register('name', {
-            required: true,
-            minLength: 1,
-            maxLength: 50,
-            pattern: urlNameRegExp,
-          })}
-          placeholder="awesome"
-          className="bg-background text-white text-xs p-2 rounded w-full focus:outline-none focus:ring-1"
-        />
-      </div>
+            <FormField
+              control={form.control}
+              name="name"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>
+                    <span>
+                      {host}/{parameters.community}/
+                    </span>
+                    <span className="text-white">
+                      {field.value || 'awesome'}
+                    </span>
+                  </FormLabel>
+                  <FormControl>
+                    <Input placeholder="awesome" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-      <div className="flex w-full justify-end mt-2">
-        <button
-          type="submit"
-          disabled={isError}
-          className={clsx('btn btn-primary', isError && 'cursor-not-allowed')}
-        >
-          Create
-        </button>
-      </div>
-    </form>
+            <DialogFooter>
+              <Button type="submit" size="sm">
+                Create
+              </Button>
+            </DialogFooter>
+          </form>
+        </Form>
+      </DialogContent>
+    </Dialog>
   );
 };

@@ -11,7 +11,7 @@ import { prisma } from '../libs/prisma';
 import { AppPanel } from './app-panel/app-panel';
 import { ChannelSettingsModal } from './channel-settings/modal';
 import { CommunitySettingsModal } from './community-settings/modal';
-import { DeleteChannelModal } from './delete-channel/modal';
+import { DeleteChannelModal } from './delete-channel/delete-channel';
 import { DeleteCommunityModal } from './delete-community/modal';
 import { roboto } from './fonts';
 import { LoginModal } from './login/modal';

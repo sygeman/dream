@@ -1,12 +1,23 @@
-import clsx from 'clsx';
+'use client';
 import { useParams, useRouter } from 'next/navigation';
 import React from 'react';
 
+import { Button } from '@/components/ui/button';
+import {
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog';
+import { useDialogUrl } from '@/helpers/use-dialog-url';
+
 import { deleteChannelAction } from './actions';
 
-export const DeleteChannel = () => {
+export const DeleteChannelModal = () => {
   const router = useRouter();
   const parameters = useParams();
+  const dialogUrl = useDialogUrl();
 
   const deleteChannel = async () => {
     await deleteChannelAction({
@@ -18,29 +29,21 @@ export const DeleteChannel = () => {
   };
 
   return (
-    <div className="p-4">
-      <h2 className="text-muted-foreground-light uppercase text-sm font-medium mb-2">
-        Delete Channel
-      </h2>
-      <p className="mb-6 text-muted-foreground text-sm">
-        Are yor sure want to delete the channel? This cannot be undone.
-      </p>
-      <div className="flex w-full justify-end">
-        <button
-          type="button"
-          className={clsx('btn mr-2')}
-          onClick={() => router.back()}
-        >
-          Cancel
-        </button>
-        <button
-          type="button"
-          className={clsx('btn btn-primary')}
-          onClick={deleteChannel}
-        >
-          Delete Channel
-        </button>
-      </div>
-    </div>
+    <Dialog {...dialogUrl('deleteChannel')}>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Delete Channel</DialogTitle>
+        </DialogHeader>
+        <p className="text-muted-foreground text-sm">
+          Are yor sure want to delete the channel? This cannot be undone.
+        </p>
+        <DialogFooter>
+          <Button variant="ghost" onClick={() => router.back()}>
+            Cancel
+          </Button>
+          <Button onClick={deleteChannel}>Delete Channel</Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   );
 };

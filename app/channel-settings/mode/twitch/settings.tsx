@@ -10,7 +10,7 @@ import {
 } from './actions';
 
 interface FormInput {
-  channelKey: string | null;
+  channelKey: string | undefined;
 }
 
 export const ChannelTwitchModeSettings = () => {

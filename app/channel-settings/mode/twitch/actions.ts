@@ -22,7 +22,7 @@ export const setTwitchModeSettingsAction = async (
     channelName: string;
   },
   data: {
-    channelKey: string | null;
+    channelKey: string | undefined;
   }
 ) => {
   const userId = await getCurretUserId();
@@ -52,7 +52,7 @@ export const setTwitchModeSettingsAction = async (
       },
     });
 
-    return { channelKey: twitchStream.channelKey };
+    return { channelKey: twitchStream.channelKey || undefined };
   }
 
   const upsertTwitchStream = await prisma.twitchMode.update({
@@ -60,5 +60,5 @@ export const setTwitchModeSettingsAction = async (
     data,
   });
 
-  return { channelKey: upsertTwitchStream.channelKey };
+  return { channelKey: upsertTwitchStream.channelKey || undefined };
 };

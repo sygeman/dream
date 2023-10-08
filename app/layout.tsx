@@ -12,7 +12,7 @@ import { AppPanel } from './app-panel/app-panel';
 import { ChannelSettingsModal } from './channel-settings/modal';
 import { CommunitySettingsModal } from './community-settings/modal';
 import { DeleteChannelModal } from './delete-channel/delete-channel';
-import { DeleteCommunityModal } from './delete-community/modal';
+import { DeleteCommunityModal } from './delete-community/delete-community';
 import { roboto } from './fonts';
 import { LoginModal } from './login/modal';
 import { LogoutModal } from './logout/modal';

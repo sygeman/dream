@@ -1,41 +1,45 @@
-import clsx from 'clsx';
+'use client';
 import { useParams, useRouter } from 'next/navigation';
+import React from 'react';
+
+import { Button } from '@/components/ui/button';
+import {
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog';
+import { useDialogUrl } from '@/helpers/use-dialog-url';
 
 import { deleteCommunityAction } from './actions';
 
-export const DeleteCommunity = () => {
+export const DeleteCommunityModal = () => {
   const parameters = useParams();
   const router = useRouter();
+  const dialogUrl = useDialogUrl();
+
+  const deleteCommunity = async () => {
+    await deleteCommunityAction(parameters.community as string);
+    router.push(`/`);
+  };
 
   return (
-    <div className="p-4">
-      <h2 className="text-muted-foreground-light uppercase text-sm font-medium mb-2">
-        Delete Community
-      </h2>
-      <p className="mb-6 text-muted-foreground text-sm">
-        Are yor sure want to delete the community? This cannot be undone.
-      </p>
-      <div className="flex w-full justify-end">
-        <button
-          type="button"
-          className={clsx('btn mr-2')}
-          onClick={() => {
-            router.back();
-          }}
-        >
-          Cancel
-        </button>
-        <button
-          type="button"
-          className={clsx('btn btn-primary')}
-          onClick={async () => {
-            await deleteCommunityAction(parameters.community as string);
-            router.push(`/`);
-          }}
-        >
-          Delete Community
-        </button>
-      </div>
-    </div>
+    <Dialog {...dialogUrl('deleteCommunity')}>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Delete Community</DialogTitle>
+        </DialogHeader>
+        <p className="text-muted-foreground text-sm">
+          Are yor sure want to delete the community? This cannot be undone.
+        </p>
+        <DialogFooter>
+          <Button variant="ghost" onClick={() => router.back()}>
+            Cancel
+          </Button>
+          <Button onClick={deleteCommunity}>Delete Community</Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   );
 };

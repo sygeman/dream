@@ -1,9 +1,11 @@
 'use client';
 import { PlusCircleIcon } from '@heroicons/react/20/solid';
-import clsx from 'clsx';
+import cn from 'clsx';
 import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { useMemo } from 'react';
+
+import { Button } from '@/components/ui/button';
 
 type Properties = { isUser: boolean };
 
@@ -26,26 +28,21 @@ export const AppPanelNewCommunity = ({ isUser }: Properties) => {
   return (
     <Link href={newCommunityLink} passHref>
       <div
-        className={clsx(
+        className={cn(
           'group relative',
           'flex shrink-0 items-center justify-center',
           'w-12 h-12 cursor-pointer'
         )}
       >
         <div
-          className={clsx(
+          className={cn(
             'absolute left-0 border-l h-4',
             'border-transparent group-hover:border-accent'
           )}
-        ></div>
-        <button
-          className={clsx(
-            'rounded-full h-8 w-8 p-2 flex items-center justify-center transition-colors',
-            'bg-zinc-900 group-hover:bg-primary focus:outline-none text-primary group-hover:text-white'
-          )}
-        >
-          <PlusCircleIcon />
-        </button>
+        />
+        <Button variant="ghost" className="rounded-full h-8 w-8">
+          <PlusCircleIcon className="h-4 w-4 flex shrink-0" />
+        </Button>
       </div>
     </Link>
   );

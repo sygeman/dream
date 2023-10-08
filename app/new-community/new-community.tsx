@@ -87,7 +87,9 @@ export const NewCommunityModal = () => {
             />
 
             <DialogFooter>
-              <Button type="submit">Create</Button>
+              <Button type="submit" size="sm">
+                Create
+              </Button>
             </DialogFooter>
           </form>
         </Form>

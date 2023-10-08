@@ -1,5 +1,7 @@
 import { Transition } from '@headlessui/react';
 
+import { Button } from '@/components/ui/button';
+
 type Properties = {
   show: boolean;
   reset: () => void;
@@ -21,15 +23,13 @@ export const SaveFormPanel = ({ show, reset }: Properties) => (
       <div className="w-full h-full bg-background opacity-75 rounded-md"></div>
     </div>
     <div className="flex w-full items-center z-20 px-4">
-      <span className="flex flex-1 text-white text-sm px-2">
-        You have unsaved changes
-      </span>
-      <button className="btn text-muted-foreground mr-2" onClick={reset}>
+      <span className="flex flex-1 text-sm px-2">You have unsaved changes</span>
+      <Button variant="ghost" size="sm" className="mr-2" onClick={reset}>
         Reset
-      </button>
-      <button type="submit" className="btn btn-primary">
+      </Button>
+      <Button type="submit" size="sm">
         Save Changes
-      </button>
+      </Button>
     </div>
   </Transition>
 );

@@ -41,7 +41,12 @@ export default function GamesPage() {
         {/* Шапка */}
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between py-8">
-            <Logo withBackground />
+            <div className="flex items-center gap-8">
+              <Logo withBackground />
+              <h1 className="text-xl md:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 dark:from-blue-400 dark:via-purple-400 dark:to-pink-400 animate-gradient tracking-[0.05em] [text-shadow:_0_1px_12px_rgb(0_0_0_/_20%)] dark:[text-shadow:_0_1px_12px_rgb(255_255_255_/_20%)] transition-[background-image,text-shadow] duration-300 will-change-[background-image]">
+                Игры
+              </h1>
+            </div>
             <div className="relative">
               <ThemeToggle />
             </div>
@@ -50,10 +55,6 @@ export default function GamesPage() {
 
         {/* Основной контент */}
         <div className="container mx-auto px-4 py-8">
-          <h1 className="text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 dark:from-blue-400 dark:via-purple-400 dark:to-pink-400 animate-gradient text-center tracking-wider mb-12 [text-shadow:_0_1px_12px_rgb(0_0_0_/_20%)] dark:[text-shadow:_0_1px_12px_rgb(255_255_255_/_20%)] transition-[background-image,text-shadow] duration-300 will-change-[background-image]">
-            Игры
-          </h1>
-
           {/* Сетка игр */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {games.map((game) => (

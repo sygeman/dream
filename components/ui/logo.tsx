@@ -3,9 +3,10 @@ import Link from "next/link";
 interface LogoProps {
   size?: "sm" | "lg";
   withBackground?: boolean;
+  href?: string;
 }
 
-export function Logo({ size = "sm", withBackground = false }: LogoProps) {
+export function Logo({ size = "sm", withBackground = false, href }: LogoProps) {
   const text = (
     <span
       className={cn(
@@ -25,13 +26,15 @@ export function Logo({ size = "sm", withBackground = false }: LogoProps) {
     text
   );
 
-  return size === "lg" ? (
-    content
-  ) : (
-    <Link href="/" className="relative">
-      {content}
-    </Link>
-  );
+  if (href) {
+    return (
+      <Link href={href} className="relative">
+        {content}
+      </Link>
+    );
+  }
+
+  return content;
 }
 
 function cn(...classes: string[]) {

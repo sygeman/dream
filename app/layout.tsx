@@ -2,7 +2,6 @@ import "@/app/globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { cn } from "@/lib/utils";
 import { Inter as FontSans } from "next/font/google";
-import "plyr-react/plyr.css";
 import { PropsWithChildren } from "react";
 
 const fontSans = FontSans({

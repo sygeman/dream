@@ -1,6 +1,7 @@
 import { Logo } from "@/components/ui/logo";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import Link from "next/link";
+import { GithubIcon } from "lucide-react";
 
 export function Header() {
   return (
@@ -15,7 +16,15 @@ export function Header() {
             Игры
           </Link>
         </div>
-        <div className="relative">
+        <div className="flex items-center gap-4">
+          <a
+            href="https://github.com/sygeman/dream"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-black/60 dark:text-white/60 hover:text-black dark:hover:text-white transition-colors duration-300"
+          >
+            <GithubIcon className="size-5" />
+          </a>
           <ThemeToggle />
         </div>
       </div>

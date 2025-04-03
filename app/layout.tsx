@@ -1,26 +1,30 @@
 import "@/app/globals.css";
-import { cn } from "@/lib/utils";
-import { Inter as FontSans } from "next/font/google";
-import { PropsWithChildren } from "react";
+import { Inter, Chakra_Petch } from "next/font/google";
 import type { Metadata } from "next";
 import { Providers } from "@/components/providers";
 
-const fontSans = FontSans({
+const inter = Inter({ subsets: ["latin", "cyrillic"] });
+const chakraPetch = Chakra_Petch({
   subsets: ["latin"],
-  variable: "--font-sans",
+  weight: ["700"],
+  variable: "--font-logo",
 });
 
 export const metadata: Metadata = {
   title: "SGMN.DEV",
-  description: "SGMN.DEV - Personal Website",
+  description: "Personal website",
 };
 
-export default function RootLayout({ children }: PropsWithChildren) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head />
       <body
-        className={cn("min-h-screen font-sans antialiased", fontSans.variable)}
+        className={`${inter.className} ${chakraPetch.variable} antialiased`}
+        suppressHydrationWarning
       >
         <Providers>{children}</Providers>
       </body>

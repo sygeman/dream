@@ -1,34 +1,28 @@
 import "@/app/globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
 import { cn } from "@/lib/utils";
 import { Inter as FontSans } from "next/font/google";
 import { PropsWithChildren } from "react";
+import type { Metadata } from "next";
+import { Providers } from "@/components/providers";
 
 const fontSans = FontSans({
   subsets: ["latin"],
   variable: "--font-sans",
 });
 
-export default function RootLayout({ children }: PropsWithChildren) {
-  const title = "Dream";
+export const metadata: Metadata = {
+  title: "SGMN.DEV",
+  description: "SGMN.DEV - Personal Website",
+};
 
+export default function RootLayout({ children }: PropsWithChildren) {
   return (
-    <html suppressHydrationWarning>
-      <title>{title}</title>
+    <html lang="en" suppressHydrationWarning>
+      <head />
       <body
-        className={cn(
-          "min-h-screen bg-background font-sans antialiased",
-          fontSans.variable
-        )}
+        className={cn("min-h-screen font-sans antialiased", fontSans.variable)}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
-        </ThemeProvider>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

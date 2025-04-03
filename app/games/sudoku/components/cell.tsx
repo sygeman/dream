@@ -1,46 +1,36 @@
 "use client";
 
+import { cn } from "@/lib/utils";
+
 interface CellProps {
+  id: string;
   value: string;
-  selected?: boolean;
-  highlightLine?: boolean;
-  highlightSame?: boolean;
-  highlightError?: boolean;
-  notProtected?: boolean;
-  onClick?: () => void;
+  isSelected: boolean;
+  isProtected: boolean;
+  isError: boolean;
+  onClick: () => void;
 }
 
 export function Cell({
+  id,
   value,
-  selected,
-  highlightLine,
-  highlightSame,
-  highlightError,
-  notProtected,
+  isSelected,
+  isProtected,
+  isError,
   onClick,
 }: CellProps) {
   return (
     <button
-      className={`
-        flex justify-center items-center
-        h-8 w-8 cursor-pointer rounded-sm
-        font-medium text-xl outline-none
-        ${notProtected && !selected ? "text-indigo-400" : "text-white/50"}
-        ${
-          highlightError
-            ? "bg-red-600/20"
-            : selected
-            ? "bg-indigo-900"
-            : highlightSame
-            ? "bg-transparent"
-            : highlightLine
-            ? "bg-slate-700/60"
-            : "bg-slate-800/70"
-        }
-      `}
+      className={cn(
+        "flex h-10 w-10 items-center justify-center border border-neutral-800 text-xl font-bold transition-colors",
+        isSelected && "bg-neutral-800",
+        isProtected && "text-neutral-400",
+        !isProtected && "hover:bg-neutral-900",
+        isError && "text-red-500"
+      )}
       onClick={onClick}
     >
-      {value}
+      {value !== "0" ? value : ""}
     </button>
   );
 }

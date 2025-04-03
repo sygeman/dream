@@ -1,24 +1,45 @@
 "use client";
 
+import { Cell } from "./cell";
+import { SQUARES } from "../utils/constants";
+import { SQUARE_PEERS } from "../utils/units";
+
 interface GridProps {
-  gap?: number;
-  renderCell: (rowIndex: number, cellIndex: number) => React.ReactNode;
+  board: string;
+  selectedCell: string | null;
+  protectedCells: { [key: string]: boolean };
+  errorCells: { [key: string]: boolean };
+  onCellClick: (id: string) => void;
 }
 
-export function Grid({ gap = 1, renderCell }: GridProps) {
+export function Grid({
+  board,
+  selectedCell,
+  protectedCells,
+  errorCells,
+  onCellClick,
+}: GridProps) {
   return (
-    <div
-      className={`grid grid-cols-3 ${
-        gap === 1 ? "gap-0.5" : gap === 2 ? "gap-1" : ""
-      }`}
-    >
-      {Array.from({ length: 3 }, (_, rowIndex) =>
-        Array.from({ length: 3 }, (_, cellIndex) => (
-          <div key={`${rowIndex}-${cellIndex}`}>
-            {renderCell(rowIndex, cellIndex)}
-          </div>
-        ))
-      )}
+    <div className="grid grid-cols-9 gap-px bg-neutral-800 p-px">
+      {SQUARES.map((id) => {
+        const index = SQUARES.indexOf(id);
+        const value = board[index];
+        const isSelected = selectedCell === id;
+        const isProtected = protectedCells[id];
+        const isError = errorCells[id];
+
+        return (
+          <Cell
+            key={id}
+            id={id}
+            value={value}
+            isSelected={isSelected}
+            isProtected={isProtected}
+            isError={isError}
+            onClick={() => onCellClick(id)}
+          />
+        );
+      })}
     </div>
   );
 }

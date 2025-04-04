@@ -1,4 +1,4 @@
-import { assert, expect, test } from "vitest";
+import { expect, test } from "vitest";
 import { SQUARES, UNITS, SQUARE_UNITS, SQUARE_PEERS } from "./index";
 
 test("squares size", () => {

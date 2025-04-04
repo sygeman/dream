@@ -6,7 +6,7 @@ import { GithubIcon } from "lucide-react";
 export function Header() {
   return (
     <div className="container mx-auto px-4">
-      <div className="flex items-center justify-between py-8">
+      <div className="flex items-center justify-between py-4">
         <div className="flex items-center gap-8">
           <Logo withBackground href="/" />
           <Link

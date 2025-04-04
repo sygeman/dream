@@ -1,4 +1,4 @@
-import { GamepadIcon } from "lucide-react";
+import { GamepadIcon, GithubIcon } from "lucide-react";
 import Link from "next/link";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { Logo } from "@/components/ui/logo";
@@ -23,7 +23,15 @@ export default function Page() {
       </div>
 
       {/* Кнопка переключения темы */}
-      <div className="fixed top-4 right-4 z-50">
+      <div className="fixed top-4 right-4 z-50 flex items-center gap-4">
+        <a
+          href="https://github.com/sygeman/dream"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-black/60 dark:text-white/60 hover:text-black dark:hover:text-white transition-colors duration-300"
+        >
+          <GithubIcon className="size-5" />
+        </a>
         <ThemeToggle />
       </div>
     </div>

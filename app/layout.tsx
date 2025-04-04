@@ -11,7 +11,7 @@ const chakraPetch = Chakra_Petch({
 });
 
 export const metadata: Metadata = {
-  title: "SGMN.DEV",
+  title: "sgmn.dev",
   description: "Personal website",
 };
 

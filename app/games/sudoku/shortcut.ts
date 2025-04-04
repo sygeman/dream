@@ -18,7 +18,7 @@ export const useShortcut = ({
     const indexRow = rowsAsArray.findIndex((r) => r === row);
     const indexCol = colsAsArray.findIndex((c) => c === col);
     return { row, col, indexRow, indexCol };
-  }, [selected]);
+  }, [selected, rowsAsArray, colsAsArray]);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {

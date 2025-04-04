@@ -56,16 +56,18 @@ export const Game: FC = () => {
 
   const includesCount = useMemo(() => getIncludesCount(board), [board]);
 
-  const newGame = useCallback(() => {
-    setInitBoard(BLANK_BOARD);
-    reset();
-  }, []);
-
   const reset = useCallback(() => {
     setBoard(initBoard);
     setSelected(SQUARES[0]);
     setFailures(0);
   }, [initBoard]);
+
+  const newGame = useCallback(() => {
+    setInitBoard(BLANK_BOARD);
+    setBoard(BLANK_BOARD);
+    setSelected(SQUARES[0]);
+    setFailures(0);
+  }, []);
 
   const setValue = useCallback(
     (id: string, value: string) => {

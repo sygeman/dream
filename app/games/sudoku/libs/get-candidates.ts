@@ -7,13 +7,13 @@ export function getCandidates(board: string) {
   const candidateMap: { [key: string]: string } = {};
 
   // Start by assigning every digit as a candidate to every square
-  for (let si in SQUARES) {
+  for (const si in SQUARES) {
     candidateMap[SQUARES[si]] = DIGITS;
   }
 
   // For each non-blank square, assign its value in the candidate map and
   // propigate.
-  for (let square in squaresValuesMap) {
+  for (const square in squaresValuesMap) {
     const val = squaresValuesMap[square];
 
     if (DIGITS.includes(val)) {

@@ -7,7 +7,7 @@ export function getSquarePeers(
   const squarePeersMap: { [key: string]: string[] } = {};
 
   // For every square...
-  for (let si in squares) {
+  for (const si in squares) {
     const curSquare = squares[si];
     const curSquareUnits = unitsMap[curSquare];
 
@@ -15,11 +15,11 @@ export function getSquarePeers(
     const curSquarePeers: string[] = [];
 
     // Look through the current square's units map...
-    for (let sui in curSquareUnits) {
+    for (const sui in curSquareUnits) {
       const curUnit = curSquareUnits[sui];
 
-      for (let ui in curUnit) {
-        let curUnitSquare = curUnit[ui];
+      for (const ui in curUnit) {
+        const curUnitSquare = curUnit[ui];
 
         if (
           curSquarePeers.indexOf(curUnitSquare) === -1 &&

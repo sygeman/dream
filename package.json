@@ -48,7 +48,7 @@
     "eslint-config-next": "15.2.4",
     "eslint-plugin-perfectionist": "4.11.0",
     "eslint-plugin-unicorn": "58.0.0",
-    "tailwindcss": "4.1.1",
+    "tailwindcss": "4.1.2",
     "typescript": "5.8.2",
     "vitest": "3.1.1"
   },

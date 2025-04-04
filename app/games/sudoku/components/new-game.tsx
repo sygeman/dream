@@ -8,16 +8,16 @@ interface NewGameProps {
 
 export const NewGame: FC<NewGameProps> = (props) => (
   <div className="scale-150 flex flex-col items-center">
-    <div className="uppercase font-medium text-gray-400">New game</div>
+    <div className="uppercase font-medium text-gray-400">Новая игра</div>
     <div className="flex gap-1 mt-2">
       <HeaderButton onClick={() => props.onSelect(DIFFICULTY.easy)}>
-        Easy
+        Легко
       </HeaderButton>
       <HeaderButton onClick={() => props.onSelect(DIFFICULTY.medium)}>
-        Medium
+        Средне
       </HeaderButton>
       <HeaderButton onClick={() => props.onSelect(DIFFICULTY.hard)}>
-        Hard
+        Сложно
       </HeaderButton>
     </div>
   </div>

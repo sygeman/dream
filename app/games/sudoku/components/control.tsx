@@ -30,13 +30,14 @@ export const Control: FC<ControlProps> = (props) => (
       <button
         className={clsx(
           "py-1 px-2 rounded",
-          "bg-slate-800/50 text-gray-400 font-medium uppercase text-sm",
+          "bg-slate-100/50 dark:bg-slate-800/50 text-black/60 dark:text-gray-400 font-medium uppercase text-sm",
+          "hover:bg-slate-200 dark:hover:bg-slate-700",
           "disabled:opacity-20"
         )}
         disabled={props.selectedIsProtected}
         onClick={() => props.setValueSelected(BLANK_CHAR)}
       >
-        Erase
+        Стереть
       </button>
     </div>
   </>

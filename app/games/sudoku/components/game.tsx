@@ -21,9 +21,9 @@ import { NewGame } from "./new-game";
 
 export const getDifficulty = (initBoard: string) => {
   const difficulty = initBoard.split("").filter((c) => c === BLANK_CHAR).length;
-  if (difficulty > DIFFICULTY.medium) return "Hard";
-  if (difficulty > DIFFICULTY.easy) return "Medium";
-  return "Easy";
+  if (difficulty > DIFFICULTY.medium) return "Сложно";
+  if (difficulty > DIFFICULTY.easy) return "Средне";
+  return "Легко";
 };
 
 export const Game: FC = () => {
@@ -106,18 +106,18 @@ export const Game: FC = () => {
               <div className="flex h-8 w-full items-end py-1 whitespace-nowrap">
                 <div className="w-full">
                   <div className="px-1 max-w-fit uppercase text-sm font-medium bg-indigo-900 text-white/50 rounded-sm">
-                    Sudoku
+                    Судоку
                   </div>
                 </div>
                 <div className="flex gap-1">
-                  <HeaderButton onClick={newGame}>New Game</HeaderButton>
-                  <HeaderButton onClick={reset}>Reset</HeaderButton>
+                  <HeaderButton onClick={newGame}>Новая игра</HeaderButton>
+                  <HeaderButton onClick={reset}>Сброс</HeaderButton>
                 </div>
               </div>
 
               <div className="flex justify-between font-medium text-xs py-0.5 text-gray-400">
                 <div>{difficultyLabel}</div>
-                <div>Failures: {failures}</div>
+                <div>Ошибок: {failures}</div>
               </div>
 
               <X3Grid

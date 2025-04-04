@@ -16,13 +16,13 @@ export const End: FC<EndProps> = (props) => (
         "w-full py-4 bg-indigo-900/80"
       )}
     >
-      <div className="font-medium">Awesome!</div>
+      <div className="font-medium">Отлично!</div>
       <div className="font-medium text-xs text-gray-400">
-        Failures: {props.failures}
+        Ошибок: {props.failures}
       </div>
       <div className="flex gap-1 mt-2">
-        <HeaderButton onClick={props.newGame}>New Game</HeaderButton>
-        <HeaderButton onClick={props.reset}>Again</HeaderButton>
+        <HeaderButton onClick={props.newGame}>Новая игра</HeaderButton>
+        <HeaderButton onClick={props.reset}>Ещё раз</HeaderButton>
       </div>
     </div>
   </div>

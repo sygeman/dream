@@ -14,8 +14,8 @@ interface ControlProps {
 }
 
 export const Control: FC<ControlProps> = (props) => (
-  <>
-    <div className="flex flex-wrap gap-1 w-full justify-center">
+  <div className="flex flex-col gap-2">
+    <div className="grid grid-cols-9 gap-0.5 sm:gap-1">
       {x9Array.map((_value, index) => (
         <ControlButton
           key={index}
@@ -26,11 +26,11 @@ export const Control: FC<ControlProps> = (props) => (
         </ControlButton>
       ))}
     </div>
-    <div className="mt-2 flex flex-wrap gap-1 w-full justify-center">
+    <div className="flex justify-center">
       <button
         className={clsx(
-          "py-1 px-2 rounded",
-          "bg-slate-100/50 dark:bg-slate-800/50 text-black/60 dark:text-gray-400 font-medium uppercase text-sm",
+          "py-1 px-2 sm:px-3 md:px-4 rounded",
+          "bg-slate-100/50 dark:bg-slate-800/50 text-black/60 dark:text-gray-400 font-medium uppercase text-sm sm:text-base",
           "hover:bg-slate-200 dark:hover:bg-slate-700",
           "disabled:opacity-20"
         )}
@@ -40,5 +40,5 @@ export const Control: FC<ControlProps> = (props) => (
         Стереть
       </button>
     </div>
-  </>
+  </div>
 );

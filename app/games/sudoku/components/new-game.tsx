@@ -7,9 +7,11 @@ interface NewGameProps {
 }
 
 export const NewGame: FC<NewGameProps> = (props) => (
-  <div className="scale-150 flex flex-col items-center">
-    <div className="uppercase font-medium text-gray-400">Новая игра</div>
-    <div className="flex gap-1 mt-2">
+  <div className="w-full h-full flex flex-col items-center justify-center">
+    <div className="uppercase font-medium text-gray-400 text-base sm:text-lg md:text-xl">
+      Новая игра
+    </div>
+    <div className="flex flex-wrap gap-2 mt-4 justify-center">
       <HeaderButton onClick={() => props.onSelect(DIFFICULTY.easy)}>
         Легко
       </HeaderButton>

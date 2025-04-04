@@ -90,28 +90,30 @@ export const Game: FC = () => {
   useShortcut({ selected, select: setSelected, setValueSelected });
 
   return (
-    <div>
+    <div className="w-full h-full">
       {initBoard === BLANK_BOARD ? (
         <NewGame
           onSelect={(difficulty) => setInitBoard(generateBoard(difficulty))}
         />
       ) : (
-        <div className="relative w-80">
+        <div className="relative w-full h-full flex flex-col">
           <div
-            className={clsx("relative", {
+            className={clsx("relative flex-1", {
               "blur-sm": solved,
             })}
           >
-            <div className="relative">
-              <div className="flex h-8 w-full items-end py-1 whitespace-nowrap">
-                <div className="w-full">
-                  <div className="px-1 max-w-fit uppercase text-sm font-medium bg-indigo-900 text-white/50 rounded-sm">
-                    Судоку
-                  </div>
+            <div className="relative h-full flex flex-col">
+              <div className="flex items-center justify-between py-2 sm:py-3 whitespace-nowrap">
+                <div className="px-2 sm:px-3 py-1 uppercase text-base sm:text-lg md:text-xl font-medium bg-indigo-900 text-white/80 rounded-md">
+                  Судоку
                 </div>
-                <div className="flex gap-1">
-                  <HeaderButton onClick={newGame}>Новая игра</HeaderButton>
-                  <HeaderButton onClick={reset}>Сброс</HeaderButton>
+                <div className="flex gap-2">
+                  <HeaderButton onClick={newGame} size="lg">
+                    Новая игра
+                  </HeaderButton>
+                  <HeaderButton onClick={reset} size="lg">
+                    Сброс
+                  </HeaderButton>
                 </div>
               </div>
 
@@ -120,37 +122,39 @@ export const Game: FC = () => {
                 <div>Ошибок: {failures}</div>
               </div>
 
-              <X3Grid
-                gap={2}
-                renderCell={(mainRowIndex, mainCellIndex) => (
-                  <X3Grid
-                    gap={1}
-                    renderCell={(innerRowIndex, innerCellIndex) => {
-                      const rowIndex = innerRowIndex + mainRowIndex * 3;
-                      const cellIndex = innerCellIndex + mainCellIndex * 3;
-                      const id = `${ROWS[rowIndex]}${cellIndex + 1}`;
-                      const cellData = boardData[id];
+              <div className="flex-1 aspect-square">
+                <X3Grid
+                  gap={2}
+                  renderCell={(mainRowIndex, mainCellIndex) => (
+                    <X3Grid
+                      gap={1}
+                      renderCell={(innerRowIndex, innerCellIndex) => {
+                        const rowIndex = innerRowIndex + mainRowIndex * 3;
+                        const cellIndex = innerCellIndex + mainCellIndex * 3;
+                        const id = `${ROWS[rowIndex]}${cellIndex + 1}`;
+                        const cellData = boardData[id];
 
-                      const cellSelected = cellData.selected;
-                      const cellHighlightLine = cellData.selectedLine;
-                      const cellHighlightSame = cellData.selectedSame;
-                      const value = cellData.value;
+                        const cellSelected = cellData.selected;
+                        const cellHighlightLine = cellData.selectedLine;
+                        const cellHighlightSame = cellData.selectedSame;
+                        const value = cellData.value;
 
-                      return (
-                        <Cell
-                          value={value === BLANK_CHAR ? "" : value}
-                          selected={cellSelected}
-                          highlightLine={cellHighlightLine}
-                          highlightSame={cellHighlightSame}
-                          highlightError={cellData.error}
-                          notProtected={!cellData.protected}
-                          onClick={() => setSelected(id)}
-                        />
-                      );
-                    }}
-                  />
-                )}
-              />
+                        return (
+                          <Cell
+                            value={value === BLANK_CHAR ? "" : value}
+                            selected={cellSelected}
+                            highlightLine={cellHighlightLine}
+                            highlightSame={cellHighlightSame}
+                            highlightError={cellData.error}
+                            notProtected={!cellData.protected}
+                            onClick={() => setSelected(id)}
+                          />
+                        );
+                      }}
+                    />
+                  )}
+                />
+              </div>
 
               <div className="mt-4">
                 <Control
